@@ -1,0 +1,69 @@
+//
+// Quick Edit Form
+// --------------------------------------------------
+.nestedpages .quick-edit {
+	background-color: $white;
+	border-radius: 0;
+	.form-interior {
+		padding: 10px;
+	}
+	h3 {
+		margin: 0 0 8px 0;
+		font-size: 14px;
+	}
+	.fields {
+		margin-bottom: 10px;
+		background: url('../images/border.png') repeat-y;
+		background-position: center;
+		@include clearfix;
+	}
+	.left {
+		float: left;
+		width: 48%;
+	}
+	.right {
+		float: right;
+		width: 48%;
+	}
+	label {
+		font-style: oblique;
+	}
+	.buttons {
+		clear: both;
+		@include clearfix;
+		background-color: darken($white, 75%);
+		padding: 8px;
+	}
+	.form-control {
+		clear: both;
+		@include clearfix;
+		margin-bottom: 5px;
+		input[type='text'],
+		input[type='password'],
+		select {
+			float: right;
+			width: 75%;
+		}
+		label {
+			float: left;
+			width: 20%;
+		}
+	}
+	.comments {
+		float: right;
+		width: 75%;
+		margin-bottom: 10px;
+		@include clearfix;
+	}
+	.dates {
+		float: right;
+		width: 75%;
+		margin-bottom: 6px;
+		select	{
+			width: 25%;
+		} 
+		input {
+			width: 12%;
+		}
+	}
+}

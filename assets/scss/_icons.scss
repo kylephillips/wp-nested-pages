@@ -1,0 +1,52 @@
+@font-face {
+	font-family: 'nestedpages';
+	src:url('fonts/nestedpages.eot?-cjbqo6');
+	src:url('fonts/nestedpages.eot?#iefix-cjbqo6') format('embedded-opentype'),
+		url('fonts/nestedpages.woff?-cjbqo6') format('woff'),
+		url('fonts/nestedpages.ttf?-cjbqo6') format('truetype'),
+		url('fonts/nestedpages.svg?-cjbqo6#nestedpages') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="np-icon-"], [class*=" np-icon-"] {
+	font-family: 'nestedpages';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.np-icon-no:before {
+	content: "\e601";
+}
+.np-icon-yes:before {
+	content: "\e602";
+}
+.np-icon-menu:before {
+	content: "\e603";
+}
+.np-icon-arrow-down:before {
+	content: "\e604";
+}
+.np-icon-arrow-right:before {
+	content: "\e605";
+}
+.np-icon-sub-menu:before {
+	content: "\e600";
+}
+.np-icon-pencil:before {
+	content: "\e608";
+}
+.np-icon-bubble:before {
+	content: "\e607";
+}
+.np-icon-menu2:before {
+	content: "\e606";
+}

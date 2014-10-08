@@ -1,0 +1,28 @@
+// Expand/Contract Button
+	.wppages-handle-expand {
+		float: left;
+		background-color: darken($white, 5%);
+		font-size: 18px;
+		width: 46px;
+		height: 46px;
+		margin-right: 5px;
+		text-align: center;
+		border-right: 1px solid $border;
+		div {
+			background-color: $white;
+			border: 1px solid $border;
+			width: 24px;
+			height: 24px;
+			line-height: 24px;
+			border-radius: 15px;
+			margin-top: 9px;
+			cursor: pointer;
+			transition: all 200ms ease;
+			&:hover {
+				background-color: $blue;
+				border-color: $blue;
+				color: $white;
+				transition: all 200ms ease;
+			}
+		}
+	}

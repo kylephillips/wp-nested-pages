@@ -1,0 +1,201 @@
+//
+// The Page Listing
+// --------------------------------------------------
+
+#nested-loading {
+	display: none;
+	float: right;
+	width: 30px;
+	margin: -30px 20px 0 0;
+}
+
+.nestedpages {
+	clear: both;
+	border-radius: 4px;
+
+	// Sortable Placeholder
+	.ui-sortable-placeholder {
+		display: block !important;
+		position: relative;
+		min-height: 46px;
+		border: 0;
+		border: 1px dashed $blue !important;
+		background-color: lighten($blue, 65%);
+		margin: 0;
+	}
+
+	// Sortable Helper
+	.ui-sortable-helper {
+		opacity: 0.8;
+		box-shadow: 2px 2px 3px 0px rgba(0,0,0,.5);
+	}
+
+
+	ol {
+		list-style-type: none;
+		clear: both;
+		margin: 0;
+		@include wptable;
+
+		a {
+			text-decoration: none;
+		}
+
+		.page-link {
+			line-height: 26px;
+			span {
+				margin-left: 10px;
+				display: none;
+				i {
+					font-size: 12px;
+					margin-right: 3px;
+				}
+			}
+			&:hover {
+				span {
+					display: inline-block;
+				}
+			}
+		}
+
+		li {
+			margin: 0;
+			border-top: 1px solid $border;
+			background-color: $blue;
+			&:first-child {
+				border: 0;
+			}
+		} // li
+
+		ol {
+			display: none;
+			border-radius: 0;
+			list-style-type: none;
+			border: 0;
+			box-shadow: none;
+			border-top: 1px solid $border;
+		} // ol 2
+
+	} // ol 1
+
+	// Block that holds the toggle child arrow
+	.child-toggle {
+		float: left;
+		margin: -10px 10px 0 0;
+		width: 46px;
+		height: 46px;
+		background-color: darken($white, 6%);
+		text-align: center;
+		a { // Arrow Toggle
+			display: inline-block;
+			margin-top: 7px;
+			width: 28px;
+			height: 28px;
+			background-color: $white;
+			border: 1px solid $border;
+			border-radius: 20px;
+			font-size: 20px;
+			line-height: 30px;
+			color: $black;
+			transition: all 200ms ease;
+			&:hover {
+				background-color: $blue;
+				color: $white;
+				border-color: $blue;
+			}
+		}
+	} // .child-toggle
+
+
+	// Handle for sortable functionality
+	.handle {
+		display: inline-block;
+		cursor: move;
+		font-size: 20px;
+		color: darken($white, 30%);
+		transition: all 200ms ease;
+		position: relative;
+		top: 3px;
+		&:hover {
+			transition: all 200ms ease;
+			color: $blue;
+		}
+	} // .handle
+
+
+	// Submenu Indicator
+	.np-icon-sub-menu {
+		display: none;
+		color: darken($white, 40%);
+		position: relative;
+		left: 2px;
+	}
+
+
+	// Normalize the submenu and handle icons
+	.handle, .np-icon-sub-menu {
+		width: 30px;
+		height: 46px;
+		line-height: 36px;
+		margin-top: -10px;
+	}
+
+	// Hide/show the submenu indicator & handle on hover of the row
+	li ol .row {
+		.np-icon-sub-menu { display: inline-block; }
+		.handle { display: none; }
+		&:hover {
+			.np-icon-sub-menu {	display: none; }
+			.handle { display: inline-block; }
+		}
+	}
+
+
+	// Main Row Element
+	.row {
+		background-color: $white;
+		display: block;
+		padding: 10px 0px 0px 0px;
+		height: 36px;
+		@include clearfix;
+		&:hover {
+			background-color: darken($white, 6%);
+		}
+	} // .row
+
+
+	// Inner row element gets padding to give visual indicator of nested depth
+	ol li ol {
+		.row-inner {
+			padding-left: 86px;
+		}
+		li ol {
+			.row-inner {
+				padding-left: 116px;
+			}
+			li ol {
+				.row-inner {
+					padding-left: 156px;
+				}
+			}
+		}
+	}
+
+	// Action Buttons
+	.action-buttons {
+		display: none;
+		float: right;
+		margin: 0 10px 0 0;
+		a {
+			margin-left: 5px;
+		}
+	}
+	// Show the action buttons on hover
+	.row:hover .action-buttons {
+		display: block;
+	}
+
+
+
+
+} // .nestedpages
