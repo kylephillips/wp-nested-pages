@@ -89,6 +89,14 @@ class PageListing {
 			while ( $pages->have_posts() ) : $pages->the_post();
 				echo '<li id="menuItem_' . get_the_id() . '" class="page-row">';
 					$count++;
+					global $post;
+					$template = get_post_meta(get_the_id(), '_wp_page_template', true);
+					$month = get_the_time('m');
+					$d = get_the_time('d');
+					$y = get_the_time('Y');
+					$h = get_the_time('G');
+					$m = get_the_time('i');
+					$s = get_the_time('s');
 					include( dirname( dirname(__FILE__) ) . '/views/row.php');
 				$this->loopPages(get_the_id(), $count);
 				echo '</li>';
