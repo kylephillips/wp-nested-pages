@@ -143,5 +143,42 @@ jQuery(function($){
 		});
 	}
 
+	/**
+	* ------------------------------------------------------------------------
+	* Quick Edit
+	* ------------------------------------------------------------------------
+	**/
+
+	$(document).on('click', '.np-quick-edit', function(e){
+		e.preventDefault();
+		set_quick_edit_data($(this));
+	});
+
+
+	/**
+	* Set Quick Edit data
+	*/
+	function set_quick_edit_data(item)
+	{
+		var post = {
+			title : $(item).attr('data-title'),
+			slug : $(item).attr('data-slug'),
+			author : $(item).attr('data-author'),
+			cs : $(item).attr('data-commentstatus'),
+			status : $(item).attr('data-status'),
+			template : $(item).attr('data-template'),
+			month : $(item).attr('data-month'),
+			day : $(item).attr('data-day'),
+			year : $(item).attr('data-year'),
+			hour : $(item).attr('data-hour'),
+			minute : $(item).attr('data-minute'),
+			second : $(item).attr('data-second')
+		};
+		var newform = $('.quick-edit-form').clone().appendTo($(item).closest('.row').parent('li')).show();
+		
+
+		console.log(post);
+	}
+
 
 }); //$

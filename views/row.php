@@ -12,7 +12,7 @@
 			<?php endif; ?>
 			<a href="#" class="np-btn">Add Child</a>
 
-			<a href="#" class="np-btn np-quick-edit" data-template="<?php echo $template; ?>" data-title="<?php the_title(); ?>" data-slug="<?php echo $post->post_name; ?>" data-commentstatus="<?php echo $cs; ?>" data-author="<?php echo $post->post_author; ?>" data-month="<?php echo $month; ?>" data-day="<?php echo $d; ?>" data-year="<?php echo $y; ?>" data-hour="<?php echo $h; ?>" data-minute="<?php echo $m; ?>" data-second="<?php echo $s; ?>">Quick Edit</a>
+			<a href="#" class="np-btn np-quick-edit" data-template="<?php echo $template; ?>" data-title="<?php the_title(); ?>" data-slug="<?php echo $post->post_name; ?>" data-commentstatus="<?php echo $cs; ?>" data-status="<?php echo get_post_status(); ?>" data-author="<?php echo $post->post_author; ?>" data-month="<?php echo $month; ?>" data-day="<?php echo $d; ?>" data-year="<?php echo $y; ?>" data-hour="<?php echo $h; ?>" data-minute="<?php echo $m; ?>" data-second="<?php echo $s; ?>">Quick Edit</a>
 
 			<a href="<?php echo get_the_permalink(); ?>" class="np-btn">View</a>
 		</div>
