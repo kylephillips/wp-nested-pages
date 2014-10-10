@@ -6,7 +6,7 @@
 	</h2>
 
 	<ul class="nestedpages-toggleall">
-		<li><a href="#" class="np-btn" data-toggle="closed">Expand Pages</a></li>
+		<li><a href="#" class="np-btn" data-toggle="closed"><?php _e('Expand'); ?> <?php echo $this->post_type->labels->name; ?></a></li>
 	</ul>
 
 	<img src="<?php echo plugins_url(); ?>/nestedpages/assets/images/loading.gif" alt="loading" id="nested-loading" />
@@ -14,6 +14,8 @@
 	<ul class="subsubsub">
 		<li><a href="<?php echo $this->defaultPagesLink(); ?>">Default <?php echo $this->post_type->labels->name; ?></a></li>
 	</ul>
+
+	<div id="np-error" class="updated error" style="clear:both;display:none;"></div>
 
 	<div class="nestedpages">
 		<?php
@@ -25,7 +27,7 @@
 		
 
 		<div class="quick-edit">
-			<?php // include('quickedit.php'); ?>
+			<?php include('quickedit.php'); ?>
 		</div><!-- .quick-edit -->
 	</div>
 

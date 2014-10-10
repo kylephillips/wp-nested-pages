@@ -117,6 +117,7 @@ jQuery(function($){
 	*/
 	function submit_sortable_form()
 	{
+		$('#np-error').hide();
 		$('#nested-loading').show();
 		list = $('ol.sortable').nestedSortable('toHierarchy', {startDepthCount: 0});
 		console.log(list);
@@ -132,7 +133,8 @@ jQuery(function($){
 			},
 			success: function(data){
 				if (data.status === 'error'){
-					alert('error');
+					$('#np-error').text(data.message).show();
+					$('#nested-loading').hide();
 				} else {
 					$('#nested-loading').hide();
 					console.log(data);

@@ -76,22 +76,25 @@ class PageListing {
 	*/
 	private function loopPages($parent_id = 0, $count = 0)
 	{
-		$pages = get_pages(array(
-			'sort_column' => 'menu_order',
-			'parent' => $parent_id
+		$pages = new \WP_Query(array(
+			'post_type' => 'page',
+			'posts_per_page' => -1,
+			'orderby' => 'menu_order',
+			'post_parent' => $parent_id,
+			'order' => 'ASC'
 		));
-		if ( $pages ) :
+		if ( $pages->have_posts() ) :
 			$count++;
 			echo ( $count == 1 ) ? '<ol class="sortable nplist">' : '<ol class="nplist">';
-			foreach ( $pages as $page ){
-				echo '<li id="menuItem_' . $page->ID . '" class="page-row">';
+			while ( $pages->have_posts() ) : $pages->the_post();
+				echo '<li id="menuItem_' . get_the_id() . '" class="page-row">';
 					$count++;
 					include( dirname( dirname(__FILE__) ) . '/views/row.php');
-				$this->loopPages($page->ID, $count);
+				$this->loopPages(get_the_id(), $count);
 				echo '</li>';
-			}
+			endwhile;
 			echo '</ol>';
-		endif;
+		endif; wp_reset_postdata();
 	}
 
 

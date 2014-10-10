@@ -10,6 +10,8 @@ function nestedpages_sort_handler()
 * updates menu order & page parents
 * @return json response
 */
+require_once('PostRepository.php');
+
 class SortHandler {
 
 	/**
@@ -19,18 +21,43 @@ class SortHandler {
 	private $data;
 
 
+	/**
+	* Post Factory
+	* @var object
+	*/
+	private $post_repo;
+
+
+	/**
+	* Response
+	* @var array;
+	*/
+	private $response;
+
+
 	public function __construct()
+	{
+		$this->post_repo = new NestedPages\PostRepository;
+		$this->process();	
+	}
+
+
+	/**
+	* Process the Form
+	*/
+	private function process()
 	{
 		$this->setData();
 		$this->validateData();
-		$this->response();
+		$this->updateOrder();
+		$this->sendResponse();
 	}
 
 
 	/**
 	* Set the Form Data
 	*/
-	public function setData()
+	private function setData()
 	{
 		$nonce = sanitize_text_field($_POST['nonce']);
 		
@@ -50,12 +77,24 @@ class SortHandler {
 
 		// Validate Nonce
 		if ( ! wp_verify_nonce( $data['nonce'], 'nestedpages-nonce' ) ){
-			$output = json_encode(array(
-				'status' => 'error',
-				'message' => 'Busted Yo!'
-			));
-			echo $output;
+			$this->response = array( 'status' => 'error', 'message' => 'Incorrect Form Field' );
+			$this->sendResponse();
 			die();
+		}
+	}
+
+
+	/**
+	* Update Post Order
+	*/
+	private function updateOrder()
+	{
+		$posts = $this->data['list'];
+		$order = $this->post_repo->updateOrder($posts);
+		if ( $order ){
+			$this->response = array('status' => 'success', 'message' => 'Page order successfully updated.');
+		} else {
+			$this->response = array('status'=>'error', 'message'=>'There was an order updating the page order.');
 		}
 	}
 
@@ -63,9 +102,9 @@ class SortHandler {
 	/**
 	* Return Response
 	*/
-	private function response()
+	private function sendResponse()
 	{
-		return wp_send_json(array('data'=>$this->data));
+		return wp_send_json($this->response);
 	}
 
 
