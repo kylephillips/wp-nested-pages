@@ -19,11 +19,11 @@
 			
 			<div class="form-control">
 				<label><?php _e( 'Title' ); ?></label>
-				<input type="text" name="post_title" value="" />
+				<input type="text" name="post_title" class="np_title" value="" />
 			</div>
 			<div class="form-control">
 				<label><?php _e( 'Slug' ); ?></label>
-				<input type="text" name="post_name" value="" />
+				<input type="text" name="post_name" class="np_slug" value="" />
 			</div>
 			<div>
 				<label><?php _e( 'Date' ); ?></label>
@@ -44,7 +44,7 @@
 				);
 
 				if ( $authors = wp_dropdown_users( $users_opt ) ) :
-					$authors_dropdown  = '<div class="form-control"><label>' . __( 'Author' ) . '</label>';
+					$authors_dropdown  = '<div class="form-control np_author"><label>' . __( 'Author' ) . '</label>';
 					$authors_dropdown .= $authors;
 					$authors_dropdown .= '</div>';
 				endif;
@@ -57,20 +57,20 @@
 		<div class="right">
 			<div class="form-control">
 				<label><?php _e( 'Template' ); ?></label>
-				<select name="page_template">
+				<select name="page_template" class="np_template">
 					<option value="default"><?php _e( 'Default Template' ); ?></option>
 					<?php page_template_dropdown() ?>
 				</select>
 			</div>
 			<div class="comments">
 				<label>
-					<input type="checkbox" name="comment_status" value="open" />
+					<input type="checkbox" name="comment_status" class="np_cs" value="open" />
 					<span class="checkbox-title"><?php _e( 'Allow Comments' ); ?></span>
 				</label>
 			</div>
 			<div class="form-control">
 				<label><?php _e( 'Status' ); ?></label>
-				<select name="_status">
+				<select name="_status" class="np_status">
 				<?php if ( $can_publish ) : ?>
 					<option value="publish"><?php _e( 'Published' ); ?></option>
 					<option value="future"><?php _e( 'Scheduled' ); ?></option>
