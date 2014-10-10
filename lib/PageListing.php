@@ -94,9 +94,8 @@ class PageListing {
 					$month = get_the_time('m');
 					$d = get_the_time('d');
 					$y = get_the_time('Y');
-					$h = get_the_time('G');
+					$h = get_the_time('H');
 					$m = get_the_time('i');
-					$s = get_the_time('s');
 					include( dirname( dirname(__FILE__) ) . '/views/row.php');
 				$this->loopPages(get_the_id(), $count);
 				echo '</li>';

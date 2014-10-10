@@ -143,6 +143,8 @@ jQuery(function($){
 		});
 	}
 
+
+
 	/**
 	* ------------------------------------------------------------------------
 	* Quick Edit
@@ -151,7 +153,14 @@ jQuery(function($){
 
 	$(document).on('click', '.np-quick-edit', function(e){
 		e.preventDefault();
+		revert_quick_edit();
 		set_quick_edit_data($(this));
+	});
+
+	$(document).on('click', '.np-cancel-quickedit', function(e){
+		var row = $(this).parents('.page-row');
+		revert_quick_edit(row);
+		e.preventDefault();
 	});
 
 
@@ -160,7 +169,7 @@ jQuery(function($){
 	*/
 	function set_quick_edit_data(item)
 	{
-		var post = {
+		var data = {
 			title : $(item).attr('data-title'),
 			slug : $(item).attr('data-slug'),
 			author : $(item).attr('data-author'),
@@ -171,13 +180,45 @@ jQuery(function($){
 			day : $(item).attr('data-day'),
 			year : $(item).attr('data-year'),
 			hour : $(item).attr('data-hour'),
-			minute : $(item).attr('data-minute'),
-			second : $(item).attr('data-second')
+			minute : $(item).attr('data-minute')
 		};
-		var newform = $('.quick-edit-form').clone().appendTo($(item).closest('.row').parent('li')).show();
-		
+		var newform = $('.quick-edit-form').clone().appendTo($(item).closest('.row').parent('li'));
+		var row = $(newform).siblings('.row').hide();
+		populate_quick_edit(newform, data);
+		console.log(data);
+	}
 
-		console.log(post);
+
+	/**
+	* Populate the Quick Edit Form
+	*/
+	function populate_quick_edit(form, data)
+	{
+		$(form).find('.np_title').val(data.title);
+		$(form).find('.np_slug').val(data.slug);
+		$(form).find('.np_author select').val(data.author);
+		$(form).find('.np_template').val(data.template);
+		$(form).find('.np_status').val(data.status);
+		if ( data.cs === 'open' ) $(form).find('.np_cs').prop('checked', 'checked');
+		
+		// Date Fields
+		$(form).find('select[name="mm"]').val(data.month);
+		$(form).find('input[name="jj"]').val(data.day);
+		$(form).find('input[name="aa"]').val(data.year);
+		$(form).find('input[name="hh"]').val(data.hour);
+		$(form).find('input[name="mn"]').val(data.minute);
+
+		$(form).show();
+	}
+
+
+	/**
+	* Remove the quick edit form and restore the row
+	*/
+	function revert_quick_edit()
+	{
+		$('.sortable .quick-edit').remove();
+		$('.row').show();
 	}
 
 

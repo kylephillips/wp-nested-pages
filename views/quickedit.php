@@ -85,7 +85,7 @@
 		</div><!-- .form-interior -->
 
 		<div class="buttons">
-			<a accesskey="c" href="#inline-edit" class="button-secondary cancel alignleft"><?php _e( 'Cancel' ); ?></a>
+			<a accesskey="c" href="#inline-edit" class="button-secondary alignleft np-cancel-quickedit"><?php _e( 'Cancel' ); ?></a>
 			<?php wp_nonce_field( 'inlineeditnonce', '_inline_edit', false ); ?>
 				<a accesskey="s" href="#inline-edit" class="button-primary save alignright"><?php _e( 'Update' ); ?></a>
 				<span class="spinner"></span>
