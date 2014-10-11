@@ -5,6 +5,12 @@
 jQuery(function($){
 
 	/**
+	* ------------------------------------------------------------------------
+	* Sortable and Toggline
+	* ------------------------------------------------------------------------
+	**/
+
+	/**
 	* Add the Submenu Toggles (using JS to prevent additional DB Queries)
 	*/
 	$(document).ready(function(){
@@ -22,7 +28,7 @@ jQuery(function($){
 	});
 
 	/**
-	* Toggle all pages
+	* Toggle all pages (Expand All)
 	*/
 	$(document).on('click', '.nestedpages-toggleall a', function(e){
 		e.preventDefault();
@@ -30,14 +36,14 @@ jQuery(function($){
 		{
 			$('.nestedpages ol li ol').show();
 			$(this).attr('data-toggle', 'opened');
-			$(this).text('Collapse Pages');
+			$(this).text(nestedpages.collapse_text);
 			$('.child-toggle i').removeClass('np-icon-arrow-right').addClass('np-icon-arrow-down');
 			revert_quick_edit();
 		} else
 		{
 			$('.nestedpages ol li ol').hide();
 			$(this).attr('data-toggle', 'closed');
-			$(this).text('Expand Pages');
+			$(this).text(nestedpages.expand_text);
 			$('.child-toggle i').removeClass('np-icon-arrow-down').addClass('np-icon-arrow-right');
 			revert_quick_edit();
 		}
@@ -177,6 +183,9 @@ jQuery(function($){
 			}
 		});
 	}
+
+
+
 
 
 

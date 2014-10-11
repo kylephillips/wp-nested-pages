@@ -6,7 +6,7 @@
 	</h2>
 
 	<ul class="nestedpages-toggleall">
-		<li><a href="#" class="np-btn" data-toggle="closed"><?php _e('Expand'); ?> <?php echo $this->post_type->labels->name; ?></a></li>
+		<li><a href="#" class="np-btn" data-toggle="closed"><?php _e('Expand Pages'); ?></a></li>
 	</ul>
 
 	<img src="<?php echo plugins_url(); ?>/nestedpages/assets/images/loading.gif" alt="loading" id="nested-loading" />
