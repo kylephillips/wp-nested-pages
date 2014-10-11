@@ -4,7 +4,7 @@
 		<i class="np-icon-sub-menu"></i>
 		<i class="handle np-icon-menu"></i>
 		<a href="<?php echo get_edit_post_link(); ?>" class="page-link page-title">
-			<?php the_title(); ?> 
+			<span class="title"><?php the_title(); ?></span>
 			<?php 
 			if ( $user = wp_check_post_lock(get_the_id()) ){
 				$u = get_userdata($user);

@@ -233,7 +233,6 @@ jQuery(function($){
 		var newform = $('.quick-edit-form').clone().appendTo($(item).closest('.row').parent('li'));
 		var row = $(newform).siblings('.row').hide();
 		populate_quick_edit(newform, data);
-		console.log(data);
 	}
 
 
@@ -286,16 +285,41 @@ jQuery(function($){
 			data: $(form).serialize() + '&action=npquickedit&nonce=' + nestedpages.np_nonce,
 			success: function(data){
 				if (data.status === 'error'){
-					console.log(data);
 					np_remove_qe_loading(form);
 					$(form).find('.np-quickedit-error').text(data.message).show();
 				} else {
 					np_remove_qe_loading(form);
 					np_qe_update_animate(form);
-					console.log(data); // TODO: update data attributes of updated row & title text
+					np_update_qe_data(form, data.post_data);
 				}
 			}
 		});
+	}
+
+
+	/**
+	* Update Row Data after Quick Edit
+	*/
+	function np_update_qe_data(form, data)
+	{
+		var row = $(form).closest('.page-row');
+		$(row).find('.title').text(data.post_title);
+		var button = $(row).find('.np-quick-edit');
+
+		$(button).attr('data-id', data.post_id);
+		$(button).attr('data-template', data.page_template);
+		$(button).attr('data-title', data.post_title);
+		$(button).attr('data-slug', data.post_name);
+		$(button).attr('data-commentstatus', data.comment_status);
+		$(button).attr('data-status', data._status);
+		$(button).attr('data-author', data.post_author);
+
+		$(button).attr('data-month', data.mm);
+		$(button).attr('data-day', data.jj);
+		$(button).attr('data-year', data.aa);
+		$(button).attr('data-hour', data.hh);
+		$(button).attr('data-minute', data.mn);
+
 	}
 
 	/**

@@ -31,11 +31,11 @@ class NestedPages {
 	*/
 	private function setVersion()
 	{
-		if ( !get_option('wppages_version') ){
-			update_option('wppages_version', $this->version);
+		if ( !get_option('nestedpages_version') ){
+			update_option('nestedpages_version', $this->version);
 		}
-		elseif ( get_option('wppages_version') < $this->version ){
-			update_option('wppages_version', $this->version);	
+		elseif ( get_option('nestedpages_version') < $this->version ){
+			update_option('nestedpages_version', $this->version);	
 		}
 	}
 

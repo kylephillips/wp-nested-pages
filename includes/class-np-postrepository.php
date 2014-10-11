@@ -44,8 +44,6 @@ class NP_PostRepository {
 	public function updatePost($data)
 	{
 		$date = $this->validateDate($data);
-
-		$cs = ( isset($data['comment_status']) ) ? 'open' : 'closed';
 		
 		$updated_post = array(
 			'ID' => sanitize_text_field($data['post_id']),
@@ -53,7 +51,7 @@ class NP_PostRepository {
 			'post_author' => sanitize_text_field($data['post_author']),
 			'post_name' => sanitize_text_field($data['post_name']),
 			'post_date' => $date,
-			'comment_status' => $cs,
+			'comment_status' => sanitize_text_field($data['comment_status']),
 			'post_status' => sanitize_text_field($data['_status'])
 		);
 

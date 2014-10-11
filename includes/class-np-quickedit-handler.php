@@ -63,6 +63,7 @@ class NP_QuickEdit_Handler {
 		foreach( $_POST as $key => $value ){
 			$data[$key] = $value;
 		}
+		if ( !isset($_POST['comment_status']) ) $data['comment_status'] = 'closed';
 		$this->data = $data;
 	}
 
