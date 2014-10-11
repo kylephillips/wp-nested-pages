@@ -68,7 +68,7 @@ class NestedPages {
 	*/
 	public function settingsLink($links)
 	{ 
-		$settings_link = '<a href="options-general.php?page=nestedpages">' . __('Settings') . '</a>'; 
+		$settings_link = '<a href="options-general.php?page=nestedpages">' . __('Settings', 'nestedpages') . '</a>'; 
 		array_unshift($links, $settings_link); 
 		return $links; 
 	}

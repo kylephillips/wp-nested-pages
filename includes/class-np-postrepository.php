@@ -90,7 +90,7 @@ class NP_PostRepository {
 				$data['aa'] . '-' . $data['mm'] . '-' . $data['jj']
 				)
 			){
-			return wp_send_json(array('status' => 'error', 'message' => 'Please provide a valid date.'));
+			return wp_send_json(array('status' => 'error', 'message' => __('Please provide a valid date.', 'nestedpages') ));
 			die();
 		}
 
@@ -105,7 +105,7 @@ class NP_PostRepository {
 			$date = strtotime($data['aa'] . '-' . $data['mm'] . '-' . $data['jj'] . ' ' . $data['hh'] . ':' . $data['mm'] . ':' . $data['ss']);
 			return date('Y-m-d H:i:s', $date);
 		} else {
-			return wp_send_json(array('status' => 'error', 'message' => 'Please provide a valid date.'));
+			return wp_send_json(array('status' => 'error', 'message' => __('Please provide a valid date.', 'nestedpages') ));
 			die();
 		}
 	}

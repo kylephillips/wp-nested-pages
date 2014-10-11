@@ -284,12 +284,13 @@ jQuery(function($){
 			data: $(form).serialize() + '&action=npquickedit&nonce=' + nestedpages.np_nonce,
 			success: function(data){
 				if (data.status === 'error'){
+					console.log(data);
 					np_remove_qe_loading(form);
 					$(form).find('.np-quickedit-error').text(data.message).show();
 				} else {
 					np_remove_qe_loading(form);
 					np_qe_update_animate(form);
-					console.log(data);
+					console.log(data); // TODO: update data attributes of updated row & title text
 				}
 			}
 		});

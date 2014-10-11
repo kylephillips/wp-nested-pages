@@ -8,9 +8,9 @@
 			<?php 
 			if ( $user = wp_check_post_lock(get_the_id()) ){
 				$u = get_userdata($user);
-				echo '<span class="locked"><i class="np-icon-lock"></i><em> ' . $u->display_name . ' currently editing</em></span>';
+				echo '<span class="locked"><i class="np-icon-lock"></i><em> ' . $u->display_name . ' ' . __('currently editing', 'nestedpages') . '</em></span>';
 			} else {
-				echo '<span class="edit-indicator"><i class="np-icon-pencil"></i>Edit</span>';
+				echo '<span class="edit-indicator"><i class="np-icon-pencil"></i>' . __('Edit', 'nestedpages') . '</span>';
 			}
 			?>
 		</a>
@@ -28,7 +28,7 @@
 			
 			<?php endif; ?>
 			
-			<a href="#" class="np-btn">Add Child</a>
+			<a href="#" class="np-btn"><?php _e('Add Child', 'nestedpages'); ?></a>
 
 			<?php if ( !$user = wp_check_post_lock(get_the_id()) ) : ?>
 			<a href="#" 
@@ -45,11 +45,11 @@
 				data-year="<?php echo $y; ?>" 
 				data-hour="<?php echo $h; ?>" 
 				data-minute="<?php echo $m; ?>">
-				Quick Edit
+				<?php _e('Quick Edit', 'nestedpages'); ?>
 			</a>
 			<?php endif; ?>
 
-			<a href="<?php echo get_the_permalink(); ?>" class="np-btn">View</a>
+			<a href="<?php echo get_the_permalink(); ?>" class="np-btn"><?php _e('View', 'nestedpages'); ?></a>
 		</div><!-- .action-buttons -->
 	</div><!-- .row-inner -->
 </div><!-- .row -->

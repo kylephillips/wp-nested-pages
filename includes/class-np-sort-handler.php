@@ -77,7 +77,7 @@ class NP_SortHandler {
 
 		// Validate Nonce
 		if ( ! wp_verify_nonce( $data['nonce'], 'nestedpages-nonce' ) ){
-			$this->response = array( 'status' => 'error', 'message' => 'Incorrect Form Field' );
+			$this->response = array( 'status' => 'error', 'message' => __('Incorrect Form Field','nestedpages') );
 			$this->sendResponse();
 			die();
 		}
@@ -92,9 +92,9 @@ class NP_SortHandler {
 		$posts = $this->data['list'];
 		$order = $this->post_repo->updateOrder($posts);
 		if ( $order ){
-			$this->response = array('status' => 'success', 'message' => 'Page order successfully updated.');
+			$this->response = array('status' => 'success', 'message' => __('Page order successfully updated.','nestedpages') );
 		} else {
-			$this->response = array('status'=>'error', 'message'=>'There was an order updating the page order.');
+			$this->response = array('status'=>'error', 'message'=> __('There was an order updating the page order.','nestedpages') );
 		}
 	}
 

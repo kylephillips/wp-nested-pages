@@ -43,9 +43,9 @@ class NP_PageListing {
 	public function submenu()
 	{
 		global $submenu;
-    	$submenu['nestedpages'][50] = array( 'All Pages', 'publish_pages', esc_url(admin_url('admin.php?page=nestedpages')) );
-    	$submenu['nestedpages'][60] = array( 'Add New', 'publish_pages', $this->addNewPageLink() );
-    	$submenu['nestedpages'][70] = array( 'Default Listing', 'publish_pages', $this->defaultPagesLink() );
+    	$submenu['nestedpages'][50] = array( __('All Pages','nestedpages'), 'publish_pages', esc_url(admin_url('admin.php?page=nestedpages')) );
+    	$submenu['nestedpages'][60] = array( __('Add New','nestedpages'), 'publish_pages', $this->addNewPageLink() );
+    	$submenu['nestedpages'][70] = array( __('Default Listing','nestedpages'), 'publish_pages', $this->defaultPagesLink() );
 	}
 
 
