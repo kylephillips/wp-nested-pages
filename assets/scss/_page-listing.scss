@@ -66,6 +66,11 @@
 			}
 		}
 
+		.status {
+			color: darken($white, 40%);
+			margin-left: 10px;
+		}
+
 		li {
 			margin: 0;
 			border-top: 1px solid $border;

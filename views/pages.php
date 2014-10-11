@@ -12,20 +12,18 @@
 	<img src="<?php echo plugins_url(); ?>/nestedpages/assets/images/loading.gif" alt="loading" id="nested-loading" />
 
 	<ul class="subsubsub">
+		<li><a href="#all" class="np-toggle-publish active">All</a> | </li>
+		<li><a href="#published" class="np-toggle-publish">Published</a> | </li>
 		<li><a href="<?php echo $this->defaultPagesLink(); ?>"><?php _e('Default'); ?> <?php echo $this->post_type->labels->name; ?></a></li>
 	</ul>
 
 	<div id="np-error" class="updated error" style="clear:both;display:none;"></div>
 
 	<div class="nestedpages">
-
-		<?php $this->loopPages(); ?>		
-
+		<?php $this->loopPages(); ?>
 		<div class="quick-edit quick-edit-form" style="display:none;">
 			<?php include('quickedit.php'); ?>
 		</div><!-- .quick-edit -->
-	</div>
-
-	
+	</div>	
 
 </div><!-- .wrap -->

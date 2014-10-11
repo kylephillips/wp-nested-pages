@@ -34,6 +34,7 @@ class NP_PageListing {
 			'dashicons-admin-page',
 			20
 		);
+    
 	}
 
 
@@ -87,9 +88,11 @@ class NP_PageListing {
 			$count++;
 			echo ( $count == 1 ) ? '<ol class="sortable nplist">' : '<ol class="nplist">';
 			while ( $pages->have_posts() ) : $pages->the_post();
-				echo '<li id="menuItem_' . get_the_id() . '" class="page-row">';
+				global $post;
+				echo '<li id="menuItem_' . get_the_id() . '" class="page-row';
+				if ( $post->post_status == 'publish' ) echo ' published';
+				echo '">';
 					$count++;
-					global $post;
 					$template = get_post_meta(get_the_id(), '_wp_page_template', true);
 					$month = get_the_time('m');
 					$d = get_the_time('d');

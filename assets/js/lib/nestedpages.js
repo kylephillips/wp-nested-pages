@@ -49,9 +49,25 @@ jQuery(function($){
 		}
 	});
 
+	/**
+	* Toggle between showing published pages and all
+	*/
+	$(document).on('click', '.np-toggle-publish', function(e){
+		e.preventDefault();
+		var target = $(this).attr('href');
+		$('.np-toggle-publish').removeClass('active');
+		$(this).addClass('active');
+		if ( target == '#published' ){
+			$('.nplist .page-row').hide();
+			$('.nplist .published').show();
+		} else {
+			$('.nplist .page-row').show();
+		}
+	});
+
 
 	/**
-	* Toggle Responsive Action Buttons
+	* Toggle Responsive Action Buttons (Quick edit, add child, etc)
 	*/
 	$(document).on('click', '.np-toggle-edit', function(e){
 		e.preventDefault();
@@ -64,7 +80,6 @@ jQuery(function($){
 			$(buttons).show();
 		}
 	});
-
 	/**
 	* Remove display block on action buttons when sizing up
 	*/
@@ -311,8 +326,17 @@ jQuery(function($){
 	*/
 	function np_update_qe_data(form, data)
 	{
+		
 		var row = $(form).closest('.page-row');
 		$(row).find('.title').text(data.post_title);
+		
+		var status = $(row).find('.status');
+		if ( (data._status !== 'publish') && (data._status !== 'future') ){
+			$(status).text('(' + data._status + ')');
+		} else {
+			$(status).text('');
+		}
+
 		var button = $(row).find('.np-quick-edit');
 
 		$(button).attr('data-id', data.post_id);

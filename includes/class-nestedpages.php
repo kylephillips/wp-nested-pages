@@ -5,6 +5,7 @@ require_once('class-np-sort-handler.php');
 require_once('class-np-quickedit-handler.php');
 require_once('class-np-dependencies.php');
 require_once('class-np-pagelisting.php');
+require_once('class-np-navmenu.php');
 
 /**
 * Primary Plugin Class
@@ -23,7 +24,7 @@ class NestedPages {
 		add_filter( 'plugin_action_links_' . 'nestedpages/nestedpages.php', [ $this, 'settingsLink' ] );
 		$this->init();
 		$this->formActions();
-		add_action('init', array($this, 'add_localization') );
+		add_action('init', array($this, 'addLocalization') );
 	}
 
 	/**
@@ -47,6 +48,7 @@ class NestedPages {
 		new NP_Activate;
 		new NP_Dependencies;
 		new NP_PageListing;
+		$this->addMenu();
 		$this->setVersion();
 	}
 
@@ -77,9 +79,22 @@ class NestedPages {
 	/**
 	* Localization Domain
 	*/
-	public function add_localization()
+	public function addLocalization()
 	{
 		load_plugin_textdomain('nestedpages', false, 'nestedpages' . '/languages' );
+	}
+
+
+	/**
+	* Add the nav menu
+	*/
+	public function addMenu()
+	{
+		$menu_e = get_term_by('slug', 'nestedpages', 'nav_menu');
+		if ( !$menu_e ){
+			$menu = new NP_NavMenu;
+			$menu->addMenu();
+		}
 	}
 
 

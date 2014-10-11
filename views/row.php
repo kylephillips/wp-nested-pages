@@ -6,12 +6,20 @@
 		<a href="<?php echo get_edit_post_link(); ?>" class="page-link page-title">
 			<span class="title"><?php the_title(); ?></span>
 			<?php 
-			if ( $user = wp_check_post_lock(get_the_id()) ){
-				$u = get_userdata($user);
-				echo '<span class="locked"><i class="np-icon-lock"></i><em> ' . $u->display_name . ' ' . __('currently editing', 'nestedpages') . '</em></span>';
-			} else {
-				echo '<span class="edit-indicator"><i class="np-icon-pencil"></i>' . __('Edit', 'nestedpages') . '</span>';
-			}
+				// Post Status
+				if ( $post->post_status !== 'publish' ){
+					echo '<span class="status">(' . $post->post_status . ')</span>';
+				} else {
+					echo '<span class="status"></span>';
+				}
+				
+				// Post Lock
+				if ( $user = wp_check_post_lock(get_the_id()) ){
+					$u = get_userdata($user);
+					echo '<span class="locked"><i class="np-icon-lock"></i><em> ' . $u->display_name . ' ' . __('currently editing', 'nestedpages') . '</em></span>';
+				} else {
+					echo '<span class="edit-indicator"><i class="np-icon-pencil"></i>' . __('Edit', 'nestedpages') . '</span>';
+				}
 			?>
 		</a>
 

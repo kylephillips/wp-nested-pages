@@ -11,6 +11,7 @@ function nestedpages_sort_handler()
 * @return json response
 */
 require_once('class-np-postrepository.php');
+require_once('class-np-navmenu.php');
 
 class NP_SortHandler {
 
@@ -50,6 +51,7 @@ class NP_SortHandler {
 		$this->setData();
 		$this->validateData();
 		$this->updateOrder();
+		$this->syncMenu();
 		$this->sendResponse();
 	}
 
@@ -98,6 +100,16 @@ class NP_SortHandler {
 		}
 	}
 
+
+	/**
+	* Sync the Nav Menu
+	*/
+	private function syncMenu()
+	{
+		$menu = new NP_NavMenu;
+		$menu->clearMenu();
+		$menu->sync();
+	}
 
 	/**
 	* Return Response
