@@ -30,6 +30,7 @@
 			
 			<a href="#" class="np-btn">Add Child</a>
 
+			<?php if ( !$user = wp_check_post_lock(get_the_id()) ) : ?>
 			<a href="#" 
 				class="np-btn np-quick-edit" 
 				data-id="<?php echo get_the_id(); ?>" 
@@ -46,6 +47,7 @@
 				data-minute="<?php echo $m; ?>">
 				Quick Edit
 			</a>
+			<?php endif; ?>
 
 			<a href="<?php echo get_the_permalink(); ?>" class="np-btn">View</a>
 		</div><!-- .action-buttons -->
