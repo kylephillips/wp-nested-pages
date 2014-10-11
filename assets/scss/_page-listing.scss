@@ -61,6 +61,9 @@
 		.locked {
 			color: $black;
 			margin-left: 20px;
+			em {
+				font-style: normal;
+			}
 		}
 
 		li {
@@ -223,6 +226,10 @@
 			&:hover span {
 				display: none;
 			}
+		}
+
+		ol .locked em {
+			display: none;
 		}
 
 		.child-toggle {

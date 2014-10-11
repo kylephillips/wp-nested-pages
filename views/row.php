@@ -8,7 +8,7 @@
 			<?php 
 			if ( $user = wp_check_post_lock(get_the_id()) ){
 				$u = get_userdata($user);
-				echo '<span class="locked"><i class="np-icon-lock"></i> ' . $u->display_name . ' currently editing</span>';
+				echo '<span class="locked"><i class="np-icon-lock"></i><em> ' . $u->display_name . ' currently editing</em></span>';
 			} else {
 				echo '<span class="edit-indicator"><i class="np-icon-pencil"></i>Edit</span>';
 			}

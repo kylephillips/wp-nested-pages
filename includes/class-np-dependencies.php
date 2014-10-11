@@ -33,6 +33,13 @@ class NP_Dependencies {
 			wp_enqueue_script('jquery-ui-core');
 			
 			wp_enqueue_script('jquery-ui-sortable');
+
+			wp_enqueue_script(
+				'ui-touch-punch', 
+				plugins_url() . '/nestedpages/assets/js/source/jquery.ui.touch-punch.min.js', 
+				array('jquery', 'jquery-ui-sortable'), 
+				'1.0'
+			);
 			
 			wp_enqueue_script(
 				'nested-sortable', 
