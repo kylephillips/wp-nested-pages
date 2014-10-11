@@ -43,6 +43,38 @@ jQuery(function($){
 
 
 	/**
+	* Toggle Responsive Action Buttons
+	*/
+	$(document).on('click', '.np-toggle-edit', function(e){
+		e.preventDefault();
+		var buttons = $(this).siblings('.action-buttons');
+		if ( $(buttons).is(':visible') ){
+			$(this).removeClass('active');
+			$(buttons).hide();
+		} else {
+			$(this).addClass('active');
+			$(buttons).show();
+		}
+	});
+
+	/**
+	* Remove display block on action buttons when sizing up
+	*/
+	var actiondelay = (function(){
+		var timer = 0;
+		return function(callback, ms){
+			clearTimeout (timer);
+			timer = setTimeout(callback, ms);
+		};
+	})();
+	$(window).resize(function() {
+		actiondelay(function(){
+			$('.action-buttons').removeAttr('style');
+			$('.np-toggle-edit').removeClass('active');
+		}, 500);
+	});
+
+	/**
 	* Make the Menu sortable
 	*/
 	$(document).ready(function(){

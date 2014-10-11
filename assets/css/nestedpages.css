@@ -44,7 +44,7 @@
 .np-icon-menu2:before {
   content: "\e606"; }
 
-.np-btn {
+.np-btn, .np-toggle-edit {
   text-decoration: none;
   color: #555;
   display: inline-block;
@@ -56,7 +56,7 @@
   -webkit-transition: all 200ms ease;
        -o-transition: all 200ms ease;
           transition: all 200ms ease; }
-  .np-btn:hover {
+  .np-btn:hover, .np-toggle-edit:hover {
     background-color: #0074a2;
     color: #ffffff;
     -webkit-transition: all 200ms ease;
@@ -64,6 +64,21 @@
             transition: all 200ms ease;
     -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
             box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08); }
+
+.np-toggle-edit {
+  display: none;
+  float: right;
+  margin-right: 10px; }
+  .np-toggle-edit.active {
+    background-color: #0074a2;
+    color: #ffffff;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    border-color: #0074a2; }
+
+@media (max-width: 767px) {
+  .np-toggle-edit {
+    display: inline-block; } }
 
 .np-quickedit-error {
   border-left: 4px solid #dd3d36;
@@ -265,8 +280,28 @@
     margin: 0 10px 0 0; }
     .nestedpages .action-buttons a {
       margin-left: 5px; }
+
+@media (min-width: 768px) {
   .nestedpages .row:hover .action-buttons {
-    display: block; }
+    display: block; } }
+
+@media (max-width: 767px) {
+  .nestedpages ol .page-link {
+    line-height: 24px; }
+    .nestedpages ol .page-link:hover span {
+      display: none; }
+  .nestedpages .child-toggle {
+    background: transparent; }
+  .nestedpages .row {
+    height: auto; }
+  .nestedpages .action-buttons {
+    display: none;
+    background-color: #0074a2;
+    float: none;
+    margin: 0;
+    padding: 8px; }
+    .nestedpages .action-buttons a {
+      margin-left: 5px; } }
 
 .nestedpages .quick-edit {
   background-color: #ffffff;
@@ -353,3 +388,27 @@
     height: 25px;
     margin: 2px 10px 0 0;
     background: url('../images/loading-white.gif') no-repeat; }
+
+@media (max-width: 767px) {
+  .nestedpages .quick-edit .fields {
+    background: transparent; }
+  .nestedpages .quick-edit .left, .nestedpages .quick-edit .right {
+    float: none;
+    width: 100%; }
+  .nestedpages .quick-edit .form-control {
+    margin-bottom: 10px; }
+    .nestedpages .quick-edit .form-control input[type='text'], .nestedpages .quick-edit .form-control input[type='password'], .nestedpages .quick-edit .form-control select {
+      float: none;
+      width: 100%; }
+    .nestedpages .quick-edit .form-control label {
+      display: block;
+      float: none;
+      width: 100%;
+      margin-bottom: 4px; }
+  .nestedpages .quick-edit .comments {
+    float: none;
+    width: 100%; }
+  .nestedpages .quick-edit .dates {
+    float: none;
+    width: 100%;
+    margin-bottom: 6px; } }

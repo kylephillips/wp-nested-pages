@@ -75,3 +75,40 @@
 		background: url('../images/loading-white.gif') no-repeat;
 	}
 }
+
+@media (max-width: 767px)
+{
+	.nestedpages .quick-edit {
+		.fields {
+			background: transparent;
+		}
+		.left, .right {
+			float: none;
+			width: 100%;
+		}
+		.form-control {
+			margin-bottom: 10px;
+			input[type='text'],
+			input[type='password'],
+			select {
+				float: none;
+				width: 100%;
+			}
+			label {
+				display: block;
+				float: none;
+				width: 100%;
+				margin-bottom: 4px;
+			}
+		}
+		.comments {
+			float: none;
+			width: 100%;
+		}
+		.dates {
+			float: none;
+			width: 100%;
+			margin-bottom: 6px;
+		}
+	}
+}

@@ -198,12 +198,45 @@
 			margin-left: 5px;
 		}
 	}
-	// Show the action buttons on hover
-	.row:hover .action-buttons {
-		display: block;
-	}
-
-
 
 
 } // .nestedpages
+
+@media (min-width: 768px)
+{
+	.nestedpages .row:hover .action-buttons {
+		display: block;
+	}
+}
+
+
+@media (max-width: 767px)
+{
+	.nestedpages {
+		ol .page-link {
+			line-height: 24px;
+			&:hover span {
+				display: none;
+			}
+		}
+
+		.child-toggle {
+			background: transparent;
+		}
+
+		.row {
+			height: auto;
+		}
+
+		.action-buttons {
+			display: none;
+			background-color: $blue;
+			float: none;
+			margin: 0;
+			padding: 8px;
+			a {
+				margin-left: 5px;
+			}
+		}
+	} // .nestedpages
+} // media query

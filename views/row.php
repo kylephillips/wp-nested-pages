@@ -12,6 +12,9 @@
 			}
 			?>
 		</a>
+		
+		<a href="#" class="np-toggle-edit"><i class="np-icon-pencil"></i></a>
+
 		<div class="action-buttons">
 			<?php if ( $post->comment_status == 'open' ) : $comments = wp_count_comments(get_the_id()); $cs = 'open' ?>
 			
