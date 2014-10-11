@@ -23,6 +23,7 @@ class NestedPages {
 		add_filter( 'plugin_action_links_' . 'nestedpages/nestedpages.php', [ $this, 'settingsLink' ] );
 		$this->init();
 		$this->formActions();
+		add_action('init', array($this, 'add_localization') );
 	}
 
 	/**
@@ -67,9 +68,18 @@ class NestedPages {
 	*/
 	public function settingsLink($links)
 	{ 
-		$settings_link = '<a href="options-general.php?page=nestedpages">Settings</a>'; 
+		$settings_link = '<a href="options-general.php?page=nestedpages">' . __('Settings') . '</a>'; 
 		array_unshift($links, $settings_link); 
 		return $links; 
+	}
+
+
+	/**
+	* Localization Domain
+	*/
+	public function add_localization()
+	{
+		load_plugin_textdomain('nestedpages', false, 'nestedpages' . '/languages' );
 	}
 
 
