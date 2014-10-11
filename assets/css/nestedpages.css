@@ -41,6 +41,9 @@
 .np-icon-bubble:before {
   content: "\e607"; }
 
+.np-icon-lock:before {
+  content: "\e609"; }
+
 .np-icon-menu2:before {
   content: "\e606"; }
 
@@ -161,14 +164,17 @@
       text-decoration: none; }
     .nestedpages ol .page-link {
       line-height: 26px; }
-      .nestedpages ol .page-link span {
+      .nestedpages ol .page-link .edit-indicator {
         margin-left: 10px;
         display: none; }
-        .nestedpages ol .page-link span i {
+        .nestedpages ol .page-link .edit-indicator i {
           font-size: 12px;
           margin-right: 3px; }
-      .nestedpages ol .page-link:hover span {
+      .nestedpages ol .page-link:hover .edit-indicator {
         display: inline-block; }
+    .nestedpages ol .locked {
+      color: #333;
+      margin-left: 20px; }
     .nestedpages ol li {
       margin: 0;
       border-top: 1px solid #e1e1e1;

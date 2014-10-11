@@ -43,7 +43,7 @@
 
 		.page-link {
 			line-height: 26px;
-			span {
+			.edit-indicator {
 				margin-left: 10px;
 				display: none;
 				i {
@@ -52,10 +52,15 @@
 				}
 			}
 			&:hover {
-				span {
+				.edit-indicator {
 					display: inline-block;
 				}
 			}
+		}
+
+		.locked {
+			color: $black;
+			margin-left: 20px;
 		}
 
 		li {

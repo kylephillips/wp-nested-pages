@@ -4,15 +4,17 @@
 		<i class="np-icon-sub-menu"></i>
 		<i class="handle np-icon-menu"></i>
 		<a href="<?php echo get_edit_post_link(); ?>" class="page-link page-title">
-			<?php the_title(); ?> <span><i class="np-icon-pencil"></i>Edit</span>
+			<?php the_title(); ?> 
 			<?php 
 			if ( $user = wp_check_post_lock(get_the_id()) ){
-				echo ' Locked';
-				print_r($user);
+				$u = get_userdata($user);
+				echo '<span class="locked"><i class="np-icon-lock"></i> ' . $u->display_name . ' currently editing</span>';
+			} else {
+				echo '<span class="edit-indicator"><i class="np-icon-pencil"></i>Edit</span>';
 			}
 			?>
 		</a>
-		
+
 		<a href="#" class="np-toggle-edit"><i class="np-icon-pencil"></i></a>
 
 		<div class="action-buttons">
