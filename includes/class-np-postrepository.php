@@ -16,7 +16,7 @@ class NP_PostRepository {
 				'post_parent' => $parent
 			));
 
-			if ( count($post['children']) > 0 ){
+			if ( isset($post['children']) ){
 				$this->updateOrder($post['children'], $post['id']);
 			}
 		}
@@ -44,16 +44,20 @@ class NP_PostRepository {
 	public function updatePost($data)
 	{
 		$date = $this->validateDate($data);
+
 		$cs = ( isset($data['comment_status']) ) ? 'open' : 'closed';
+		
 		$updated_post = array(
 			'ID' => sanitize_text_field($data['post_id']),
+			'post_title' => sanitize_text_field($data['post_title']),
 			'post_author' => sanitize_text_field($data['post_author']),
 			'post_name' => sanitize_text_field($data['post_name']),
 			'post_date' => $date,
 			'comment_status' => $cs,
 			'post_status' => sanitize_text_field($data['_status'])
 		);
-		wp_update_post($updated_post);
+
+		$updated = wp_update_post($updated_post);
 		$this->updateTemplate($data);
 		return $updated_post;
 	}
@@ -65,7 +69,7 @@ class NP_PostRepository {
 	public function updateTemplate($data)
 	{
 		update_post_meta( 
-			sanitize_text_field($data['post_id']), 
+			$data['post_id'], 
 			'_wp_page_template', 
 			sanitize_text_field($data['page_template'])
 		);
@@ -79,7 +83,13 @@ class NP_PostRepository {
 	private function validateDate($data)
 	{
 		// First validate that it is an actual date
-		if ( !checkdate( $data['mm'], $data['jj'], $data['aa'] ) ){
+		if ( !wp_checkdate( 
+				intval($data['mm']), 
+				intval($data['jj']), 
+				intval($data['aa']),
+				$data['aa'] . '-' . $data['mm'] . '-' . $data['jj']
+				)
+			){
 			return wp_send_json(array('status' => 'error', 'message' => 'Please provide a valid date.'));
 			die();
 		}
@@ -92,8 +102,8 @@ class NP_PostRepository {
 			&& ( $data['mm'] !== "" )
 			&& ( $data['ss'] !== "" ) )
 		{
-			$date = $data['aa'] . '-' . $data['mm'] . '-' . $data['jj'] . ' ' . $data['hh'] . ':' . $data['mm'] . ':' . $date['ss'];
-			return $date;
+			$date = strtotime($data['aa'] . '-' . $data['mm'] . '-' . $data['jj'] . ' ' . $data['hh'] . ':' . $data['mm'] . ':' . $data['ss']);
+			return date('Y-m-d H:i:s', $date);
 		} else {
 			return wp_send_json(array('status' => 'error', 'message' => 'Please provide a valid date.'));
 			die();
