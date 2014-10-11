@@ -12,7 +12,7 @@ var uglify = require('gulp-uglify');
 var scss = 'assets/scss/**/*';
 var css = 'assets/css/';
 
-var js_source = 'assets/js/source/*';
+var js_source = 'assets/js/lib/nestedpages.js';
 var js_compiled = 'assets/js/';
 
 /**
@@ -25,7 +25,7 @@ gulp.task('scss', function(){
 		.pipe(gulp.dest(css))
 		.pipe(plumber())
 		.pipe(livereload())
-		.pipe(notify('WP Pages styles compiled & compressed.'));
+		.pipe(notify('Nested Pages styles compiled & compressed.'));
 });
 
 /**
@@ -37,7 +37,7 @@ gulp.task('scripts', function(){
 		.pipe(gulp.dest(js_compiled))
 		.pipe(uglify())
 		.pipe(gulp.dest(js_compiled))
-		.pipe(notify('WP Pages scripts compiles & compressed.'));
+		.pipe(notify('Nested Pages scripts compiles & compressed.'));
 });
 
 

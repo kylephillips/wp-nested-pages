@@ -36,21 +36,21 @@ class NP_Dependencies {
 
 			wp_enqueue_script(
 				'ui-touch-punch', 
-				plugins_url() . '/nestedpages/assets/js/source/jquery.ui.touch-punch.min.js', 
+				plugins_url() . '/nestedpages/assets/js/lib/jquery.ui.touch-punch.min.js', 
 				array('jquery', 'jquery-ui-sortable'), 
 				'1.0'
 			);
 			
 			wp_enqueue_script(
 				'nested-sortable', 
-				plugins_url() . '/nestedpages/assets/js/source/jquery.mjs.nestedSortable.js', 
+				plugins_url() . '/nestedpages/assets/js/lib/jquery.mjs.nestedSortable.js', 
 				array('jquery', 'jquery-ui-sortable'), 
 				'1.0'
 			);
 			
 			wp_enqueue_script(
 				'nestedpages', 
-				plugins_url() . '/nestedpages/assets/js/source/nestedpages.js', 
+				plugins_url() . '/nestedpages/assets/js/nestedpages.js', 
 				array('jquery'), 
 				'1.0'
 			);
