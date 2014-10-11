@@ -1,9 +1,9 @@
-<?php namespace NestedPages;
+<?php
 
-require_once('Activate.php');
-require_once('SortHandler.php');
-require_once('Dependencies.php');
-require_once('PageListing.php');
+require_once('class-np-activate.php');
+require_once('class-np-sorthandler.php');
+require_once('class-np-dependencies.php');
+require_once('class-np-pagelisting.php');
 
 /**
 * Primary Plugin Class
@@ -42,9 +42,9 @@ class NestedPages {
 	*/
 	public function init()
 	{
-		new Activate;
-		new Dependencies;
-		new PageListing;
+		new NP_Activate;
+		new NP_Dependencies;
+		new NP_PageListing;
 		$this->setVersion();
 	}
 

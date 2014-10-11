@@ -31,11 +31,13 @@ jQuery(function($){
 			$('.nestedpages ol li ol').show();
 			$(this).attr('data-toggle', 'opened');
 			$(this).text('Collapse Pages');
+			revert_quick_edit();
 		} else
 		{
 			$('.nestedpages ol li ol').hide();
 			$(this).attr('data-toggle', 'closed');
 			$(this).text('Expand Pages');
+			revert_quick_edit();
 		}
 	});
 

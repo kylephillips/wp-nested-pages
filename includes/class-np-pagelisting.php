@@ -1,9 +1,9 @@
-<?php namespace NestedPages;
+<?php
 
 /**
 * Register the Admin Page Listing & Show View (Overwrites Pages Menu Item)
 */
-class PageListing {
+class NP_PageListing {
 
 	/**
 	* Post Type

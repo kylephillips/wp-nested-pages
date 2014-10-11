@@ -2,7 +2,7 @@
 
 function nestedpages_sort_handler()
 {
-	new SortHandler;
+	new NP_SortHandler;
 }
 
 /**
@@ -10,9 +10,9 @@ function nestedpages_sort_handler()
 * updates menu order & page parents
 * @return json response
 */
-require_once('PostRepository.php');
+require_once('class-np-postrepository.php');
 
-class SortHandler {
+class NP_SortHandler {
 
 	/**
 	* Form Data
@@ -37,7 +37,7 @@ class SortHandler {
 
 	public function __construct()
 	{
-		$this->post_repo = new NestedPages\PostRepository;
+		$this->post_repo = new NP_PostRepository;
 		$this->process();	
 	}
 

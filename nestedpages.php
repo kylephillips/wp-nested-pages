@@ -8,5 +8,5 @@ Author: Kyle Phillips
 Author URI: https://github.com/kylephillips
 License: GPLv2 or later.
 */
-require_once('lib/NestedPages.php');
-$nested_pages = new NestedPages\NestedPages;
+require_once('includes/class-nestedpages.php');
+$nested_pages = new NestedPages;

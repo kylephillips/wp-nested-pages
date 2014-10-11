@@ -8,7 +8,7 @@
 		</a>
 		<div class="action-buttons">
 			<?php if ( $post->comment_status == 'open' ) : $comments = wp_count_comments(get_the_id()); $cs = 'open' ?>
-			<a href="#" class="np-btn"><i class="np-icon-bubble"></i> <?php echo $comments->total_comments; ?></a>
+			<a href="<?php echo admin_url( 'edit-comments.php?p=' . get_the_id() ); ?>" class="np-btn"><i class="np-icon-bubble"></i> <?php echo $comments->total_comments; ?></a>
 			<?php else : $cs = 'closed'; ?>
 			<?php endif; ?>
 			<a href="#" class="np-btn">Add Child</a>

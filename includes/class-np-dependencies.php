@@ -1,8 +1,8 @@
-<?php namespace NestedPages;
+<?php
 /**
 * Plugin Dependencies
 */
-class Dependencies {
+class NP_Dependencies {
 
 	public function __construct()
 	{

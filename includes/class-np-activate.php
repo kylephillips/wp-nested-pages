@@ -1,8 +1,8 @@
-<?php namespace NestedPages;
+<?php
 /**
 * Plugin Activation
 */
-class Activate {
+class NP_Activate {
 
 	public function __construct()
 	{

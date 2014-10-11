@@ -1,6 +1,6 @@
-<?php namespace NestedPages;
+<?php
 
-class PostRepository {
+class NP_PostRepository {
 
 
 	/**
