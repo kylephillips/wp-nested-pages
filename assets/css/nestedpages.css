@@ -65,6 +65,12 @@
     -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
             box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08); }
 
+.np-quickedit-error {
+  border-left: 4px solid #dd3d36;
+  padding: 4px 0 4px 8px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9; }
+
 .nestedpages-toggleall {
   float: right;
   margin-top: -30px; }
@@ -237,6 +243,16 @@
       clear: both; }
     .nestedpages .row:hover {
       background-color: #f0f0f0; }
+    .nestedpages .row.np-updated {
+      background-color: #e9f7df;
+      -webkit-transition: background-color 400ms ease;
+           -o-transition: background-color 400ms ease;
+              transition: background-color 400ms ease; }
+    .nestedpages .row.np-updated-show {
+      background-color: #ffffff;
+      -webkit-transition: background-color 400ms ease;
+           -o-transition: background-color 400ms ease;
+              transition: background-color 400ms ease; }
   .nestedpages ol li ol .row-inner {
     padding-left: 86px; }
   .nestedpages ol li ol li ol .row-inner {
@@ -330,3 +346,10 @@
       width: 25%; }
     .nestedpages .quick-edit .dates input {
       width: 12%; }
+  .nestedpages .quick-edit .np-qe-loading {
+    display: none;
+    float: right;
+    width: 25px;
+    height: 25px;
+    margin: 2px 10px 0 0;
+    background: url('../images/loading-white.gif') no-repeat; }

@@ -1,7 +1,8 @@
 <?php
 
 require_once('class-np-activate.php');
-require_once('class-np-sorthandler.php');
+require_once('class-np-sort-handler.php');
+require_once('class-np-quickedit-handler.php');
 require_once('class-np-dependencies.php');
 require_once('class-np-pagelisting.php');
 
@@ -56,6 +57,7 @@ class NestedPages {
 	{
 		if ( is_admin() ) {
 			add_action( 'wp_ajax_npsort', 'nestedpages_sort_handler' );
+			add_action( 'wp_ajax_npquickedit', 'nestedpages_quickedit_handler' );
 		}
 	}
 

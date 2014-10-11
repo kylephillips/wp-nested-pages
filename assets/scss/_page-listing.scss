@@ -161,6 +161,14 @@
 		&:hover {
 			background-color: darken($white, 6%);
 		}
+		&.np-updated {
+			background-color: lighten(#7ad03a, 40%);
+			transition: background-color 400ms ease;
+		}
+		&.np-updated-show {
+			background-color: $white;
+			transition: background-color 400ms ease;	
+		}
 	} // .row
 
 

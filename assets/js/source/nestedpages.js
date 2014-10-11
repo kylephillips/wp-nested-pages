@@ -122,7 +122,6 @@ jQuery(function($){
 		$('#np-error').hide();
 		$('#nested-loading').show();
 		list = $('ol.sortable').nestedSortable('toHierarchy', {startDepthCount: 0});
-		console.log(list);
 
 		$.ajax({
 			url: ajaxurl,
@@ -153,16 +152,28 @@ jQuery(function($){
 	* ------------------------------------------------------------------------
 	**/
 
+	// Show the form
 	$(document).on('click', '.np-quick-edit', function(e){
 		e.preventDefault();
 		revert_quick_edit();
 		set_quick_edit_data($(this));
 	});
 
+	// Cancel the form
 	$(document).on('click', '.np-cancel-quickedit', function(e){
 		var row = $(this).parents('.page-row');
 		revert_quick_edit(row);
 		e.preventDefault();
+	});
+
+	// Submit the form
+	$(document).on('click', '.np-save-quickedit', function(e){
+		e.preventDefault();
+		$('.row').removeClass('np-updated').removeClass('np-updated-show');
+		var form = $(this).parents('form');
+		$(this).attr('disabled', 'disabled');
+		$(form).find('.np-qe-loading').show();
+		submit_np_quickedit(form);
 	});
 
 
@@ -172,6 +183,7 @@ jQuery(function($){
 	function set_quick_edit_data(item)
 	{
 		var data = {
+			id : $(item).attr('data-id'),
 			title : $(item).attr('data-title'),
 			slug : $(item).attr('data-slug'),
 			author : $(item).attr('data-author'),
@@ -196,6 +208,7 @@ jQuery(function($){
 	*/
 	function populate_quick_edit(form, data)
 	{
+		$(form).find('.np_id').val(data.id);
 		$(form).find('.np_title').val(data.title);
 		$(form).find('.np_slug').val(data.slug);
 		$(form).find('.np_author select').val(data.author);
@@ -219,8 +232,57 @@ jQuery(function($){
 	*/
 	function revert_quick_edit()
 	{
+		$('.np-quickedit-error').hide();
 		$('.sortable .quick-edit').remove();
 		$('.row').show();
+	}
+
+
+	/**
+	* Submit the Quick Edit Form
+	*/
+	function submit_np_quickedit(form)
+	{
+		$('.np-quickedit-error').hide();
+
+		$.ajax({
+			url: ajaxurl,
+			type: 'post',
+			datatype: 'json',
+			data: $(form).serialize() + '&action=npquickedit&nonce=' + nestedpages.np_nonce,
+			success: function(data){
+				if (data.status === 'error'){
+					np_remove_qe_loading(form);
+					$(form).find('.np-quickedit-error').text(data.message).show();
+				} else {
+					np_remove_qe_loading(form);
+					np_qe_update_animate(form);
+					console.log(data);
+				}
+			}
+		});
+	}
+
+	/**
+	* Remove loading state from Quick Edit form
+	*/
+	function np_remove_qe_loading(form)
+	{
+		$(form).find('.np-save-quickedit').removeAttr('disabled');
+		$(form).find('.np-qe-loading').hide();
+	}
+
+	/**
+	* Show quick edit update animation
+	*/
+	function np_qe_update_animate(form)
+	{
+		var row = $(form).closest('.page-row').find('.row').addClass('np-updated');
+		$(form).hide();
+		$(row).show();
+		setTimeout(function(){
+			$(row).addClass('np-updated-show');
+		}, 1500);
 	}
 
 

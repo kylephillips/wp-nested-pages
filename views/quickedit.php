@@ -14,7 +14,11 @@
 	<form method="get" action="">
 		<div class="form-interior">
 		<h3>Quick Edit</h3>
+
+		<div class="np-quickedit-error" style="clear:both;display:none;"></div>
+
 		<div class="fields">
+		
 		<div class="left">
 			
 			<div class="form-control">
@@ -85,10 +89,13 @@
 		</div><!-- .form-interior -->
 
 		<div class="buttons">
-			<a accesskey="c" href="#inline-edit" class="button-secondary alignleft np-cancel-quickedit"><?php _e( 'Cancel' ); ?></a>
-			<?php wp_nonce_field( 'inlineeditnonce', '_inline_edit', false ); ?>
-				<a accesskey="s" href="#inline-edit" class="button-primary save alignright"><?php _e( 'Update' ); ?></a>
-				<span class="spinner"></span>
-			<input type="hidden" name="post_view" value="<?php echo esc_attr( $m ); ?>" />
+			<input type="hidden" name="post_id" class="np_id" value="<?php echo get_the_id(); ?>">
+			<a accesskey="c" href="#inline-edit" class="button-secondary alignleft np-cancel-quickedit">
+				<?php _e( 'Cancel' ); ?>
+			</a>
+			<a accesskey="s" href="#inline-edit" class="button-primary np-save-quickedit alignright">
+				<?php _e( 'Update' ); ?>
+			</a>
+			<span class="np-qe-loading"></span>
 		</div>
 	</form>
