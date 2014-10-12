@@ -11,8 +11,8 @@
 	<img src="<?php echo plugins_url(); ?>/nestedpages/assets/images/loading.gif" alt="loading" id="nested-loading" />
 
 	<ul class="subsubsub">
-		<li><a href="#all" class="np-toggle-publish active">All</a> | </li>
-		<li><a href="#published" class="np-toggle-publish">Published</a> | </li>
+		<li><a href="#all" class="np-toggle-publish active"><?php _e('All'); ?></a> | </li>
+		<li><a href="#published" class="np-toggle-publish"><?php _e('Published'); ?></a> | </li>
 		<li><a href="<?php echo $this->defaultPagesLink(); ?>"><?php _e('Default'); ?> <?php echo $this->post_type->labels->name; ?></a></li>
 	</ul>
 
