@@ -255,7 +255,15 @@ jQuery(function($){
 			minute : $(item).attr('data-minute'),
 			navstatus : $(item).attr('data-navstatus')
 		};
-		var newform = $('.quick-edit-form').clone().appendTo($(item).closest('.row').parent('li'));
+		var parent_li = $(item).closest('.row').parent('li');
+		
+		if ( $(parent_li).children('ol').length > 0 ){
+			var child_ol = $(parent_li).children('ol');
+			var newform = $('.quick-edit-form').clone().insertBefore(child_ol);
+		} else {
+			var newform = $('.quick-edit-form').clone().appendTo(parent_li);
+		}
+
 		var row = $(newform).siblings('.row').hide();
 		populate_quick_edit(newform, data);
 	}
