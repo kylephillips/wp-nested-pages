@@ -5,6 +5,7 @@ require_once('class-np-sort-handler.php');
 require_once('class-np-quickedit-handler.php');
 require_once('class-np-dependencies.php');
 require_once('class-np-pagelisting.php');
+require_once('class-np-newpage.php');
 require_once('class-np-navmenu.php');
 
 /**
@@ -20,7 +21,7 @@ class NestedPages {
 
 	public function __construct()
 	{
-		$this->version = 0.1;
+		$this->version = 1.0;
 		add_filter( 'plugin_action_links_' . 'nestedpages/nestedpages.php', [ $this, 'settingsLink' ] );
 		$this->init();
 		$this->formActions();
@@ -48,6 +49,7 @@ class NestedPages {
 		new NP_Activate;
 		new NP_Dependencies;
 		new NP_PageListing;
+		new NP_NewPage;
 		$this->addMenu();
 		$this->setVersion();
 	}

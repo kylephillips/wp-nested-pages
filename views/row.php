@@ -39,11 +39,9 @@
 				<i class="np-icon-bubble"></i> <?php echo $comments->total_comments; ?>
 			</a>
 			
-			<?php else : $cs = 'closed'; ?>
+			<?php else : $cs = 'closed'; endif; ?>
 			
-			<?php endif; ?>
-			
-			<a href="#" class="np-btn"><?php _e('Add Child', 'nestedpages'); ?></a>
+			<a href="<?php echo $this->addNewPageLink(); ?>&npparent=<?php echo get_the_id(); ?>" class="np-btn"><?php _e('Add Child', 'nestedpages'); ?></a>
 
 			<?php if ( !$user = wp_check_post_lock(get_the_id()) ) : ?>
 			<a href="#" 

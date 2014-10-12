@@ -119,6 +119,9 @@
 			line-height: 30px;
 			color: $black;
 			transition: all 200ms ease;
+			i {
+				line-height: 26px;
+			}
 			&:hover {
 				background-color: $blue;
 				color: $white;

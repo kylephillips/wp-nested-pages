@@ -225,6 +225,8 @@
       -webkit-transition: all 200ms ease;
            -o-transition: all 200ms ease;
               transition: all 200ms ease; }
+      .nestedpages .child-toggle a i {
+        line-height: 26px; }
       .nestedpages .child-toggle a:hover {
         background-color: #0074a2;
         color: #ffffff;
