@@ -1,6 +1,6 @@
 <?php
 /**
-* Plugin Dependencies
+* Plugin JS & CSS Dependencies
 */
 class NP_Dependencies {
 
@@ -24,7 +24,8 @@ class NP_Dependencies {
 	}
 
 	/**
-	* Admin Scripts
+	* Admin Scripts required by plugin
+	* Only Loads on the Nested Pages screen
 	*/
 	public function scripts()
 	{

@@ -1,10 +1,14 @@
 <?php
+/**
+* The generated nav menu that matches the nested pages structure
+*/
 class NP_NavMenu {
 
 	/**
 	* The Menu ID
 	*/
 	public $id;
+
 
 	/**
 	* The Menu Items

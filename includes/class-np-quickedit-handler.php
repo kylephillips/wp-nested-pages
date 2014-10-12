@@ -7,8 +7,7 @@ function nestedpages_quickedit_handler()
 
 
 /**
-* Handles processing sortable pages
-* updates menu order & page parents
+* Handles processing the quick edit form
 * @return json response
 */
 require_once('class-np-postrepository.php');
@@ -75,7 +74,7 @@ class NP_QuickEdit_Handler {
 	private function validateNonce()
 	{
 		if ( ! wp_verify_nonce( $this->nonce, 'nestedpages-nonce' ) ){
-			$this->response = array( 'status' => 'error', 'message' => 'Incorrect Form Field' );
+			$this->response = array( 'status' => 'error', 'message' => __('Incorrect Form Field') );
 			$this->sendResponse();
 			die();
 		}
@@ -95,11 +94,14 @@ class NP_QuickEdit_Handler {
 
 			$this->response = array(
 				'status' => 'success', 
-				'message' => 'Post successfully updated', 
+				'message' => __('Post successfully updated'), 
 				'post_data' => $data
 			);
 		} else {
-			$this->response = array('status' => 'error', 'message' => 'There was an error updating the page.' );
+			$this->response = array(
+				'status' => 'error', 
+				'message' => __('There was an error updating the page.') 
+			);
 		}
 	}
 
