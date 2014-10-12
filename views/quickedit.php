@@ -83,6 +83,12 @@
 					<option value="draft"><?php _e( 'Draft' ); ?></option>
 				</select>
 			</div>
+			<div class="comments">
+				<label>
+					<input type="checkbox" name="nav_status" class="np_nav_status" value="hide" />
+					<span class="checkbox-title"><?php _e( 'Hide in Nav Menu' ); ?></span>
+				</label>
+			</div>
 		</div><!-- .right -->
 		</div><!-- .fields -->
 

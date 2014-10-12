@@ -56,7 +56,10 @@ class NP_PostRepository {
 		);
 
 		$updated = wp_update_post($updated_post);
+
 		$this->updateTemplate($data);
+		$this->updateNavStatus($data);
+
 		return $updated_post;
 	}
 
@@ -73,6 +76,19 @@ class NP_PostRepository {
 		);
 	}
 
+
+	/**
+	* Update Nav Status (show/hide in nav menu)
+	*/
+	private function updateNavStatus($data)
+	{
+		$status = ( isset($data['nav_status']) ) ? 'hide' : 'show';
+		update_post_meta( 
+			$data['post_id'], 
+			'np_nav_status', 
+			$status
+		);
+	}
 
 
 	/**

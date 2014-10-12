@@ -77,7 +77,7 @@ class NP_PageListing {
 	*/
 	private function loopPages($parent_id = 0, $count = 0)
 	{
-		$pages = new \WP_Query(array(
+		$pages = new WP_Query(array(
 			'post_type' => 'page',
 			'posts_per_page' => -1,
 			'orderby' => 'menu_order',
@@ -93,8 +93,13 @@ class NP_PageListing {
 				if ( $post->post_status == 'publish' ) echo ' published';
 				echo '">';
 					$count++;
+					
 					$template = get_post_meta(get_the_id(), '_wp_page_template', true);
 					$month = get_the_time('m');
+					
+					$ns = get_post_meta( get_the_id(), 'np_nav_status', true);
+					$nav_status = ( $ns == 'hide' ) ? 'hide' : 'show';
+					
 					$d = get_the_time('d');
 					$y = get_the_time('Y');
 					$h = get_the_time('H');

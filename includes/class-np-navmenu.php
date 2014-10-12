@@ -64,15 +64,18 @@ class NP_NavMenu {
 		));
 		if ( $page_q->have_posts() ) : while ( $page_q->have_posts() ) : $page_q->the_post();
 
-			$menu = wp_update_nav_menu_item($this->id, 0, array(
-				'menu-item-title' => get_the_title(),
-				'menu-item-url' => get_the_permalink(),
-				'menu-item-status' => 'publish',
-				'menu-item-type' => 'post_type',
-				'menu-item-object' => 'page',
-				'menu-item-object-id' => get_the_id(),
-				'menu-item-parent-id' => $menu_parent
-			));
+			$ns = get_post_meta( get_the_id(), 'np_nav_status', true);
+			if ( $ns !== 'hide' ) {
+				$menu = wp_update_nav_menu_item($this->id, 0, array(
+					'menu-item-title' => get_the_title(),
+					'menu-item-url' => get_the_permalink(),
+					'menu-item-status' => 'publish',
+					'menu-item-type' => 'post_type',
+					'menu-item-object' => 'page',
+					'menu-item-object-id' => get_the_id(),
+					'menu-item-parent-id' => $menu_parent
+				));
+			}
 			$this->sync( get_the_id(), $menu );
 
 		endwhile; endif; wp_reset_postdata();

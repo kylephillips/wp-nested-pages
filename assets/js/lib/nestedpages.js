@@ -252,7 +252,8 @@ jQuery(function($){
 			day : $(item).attr('data-day'),
 			year : $(item).attr('data-year'),
 			hour : $(item).attr('data-hour'),
-			minute : $(item).attr('data-minute')
+			minute : $(item).attr('data-minute'),
+			navstatus : $(item).attr('data-navstatus')
 		};
 		var newform = $('.quick-edit-form').clone().appendTo($(item).closest('.row').parent('li'));
 		var row = $(newform).siblings('.row').hide();
@@ -272,6 +273,12 @@ jQuery(function($){
 		$(form).find('.np_template').val(data.template);
 		$(form).find('.np_status').val(data.status);
 		if ( data.cs === 'open' ) $(form).find('.np_cs').prop('checked', 'checked');
+		
+		if ( data.navstatus === 'hide' ) {
+			$(form).find('.np_nav_status').prop('checked', 'checked');
+		} else {
+			$(form).find('.np_nav_status').removeAttr('checked');
+		}
 		
 		// Date Fields
 		$(form).find('select[name="mm"]').val(data.month);
@@ -325,8 +332,7 @@ jQuery(function($){
 	* Update Row Data after Quick Edit
 	*/
 	function np_update_qe_data(form, data)
-	{
-		
+	{console.log(data);
 		var row = $(form).closest('.page-row');
 		$(row).find('.title').text(data.post_title);
 		
@@ -335,6 +341,13 @@ jQuery(function($){
 			$(status).text('(' + data._status + ')');
 		} else {
 			$(status).text('');
+		}
+
+		var nav_status = $(row).find('.nav-status');
+		if ( (data.nav_status == 'hide') ){
+			$(nav_status).text('(Hidden)');
+		} else {
+			$(nav_status).text('');
 		}
 
 		var button = $(row).find('.np-quick-edit');
@@ -346,6 +359,7 @@ jQuery(function($){
 		$(button).attr('data-commentstatus', data.comment_status);
 		$(button).attr('data-status', data._status);
 		$(button).attr('data-author', data.post_author);
+		$(button).attr('data-navstatus', data.nav_status);
 
 		$(button).attr('data-month', data.mm);
 		$(button).attr('data-day', data.jj);

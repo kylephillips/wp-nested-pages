@@ -12,6 +12,13 @@
 				} else {
 					echo '<span class="status"></span>';
 				}
+
+				// Nav Status
+				if ( $nav_status == 'hide' ){
+					echo '<span class="nav-status">(Hidden)</span>';
+				} else {
+					echo '<span class="nav-status"></span>';
+				}
 				
 				// Post Lock
 				if ( $user = wp_check_post_lock(get_the_id()) ){
@@ -47,6 +54,7 @@
 				data-slug="<?php echo $post->post_name; ?>" 
 				data-commentstatus="<?php echo $cs; ?>" 
 				data-status="<?php echo get_post_status(); ?>" 
+				data-navstatus="<?php echo $nav_status; ?>"
 				data-author="<?php echo $post->post_author; ?>" 
 				data-month="<?php echo $month; ?>" 
 				data-day="<?php echo $d; ?>" 

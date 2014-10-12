@@ -49,6 +49,7 @@ class NP_QuickEdit_Handler {
 		$this->setData();
 		$this->validateNonce();
 		$this->updatePost();
+		$this->syncMenu();
 		$this->sendResponse();
 	}
 
@@ -88,14 +89,29 @@ class NP_QuickEdit_Handler {
 	{
 		$update = $this->post_repo->updatePost($this->data);
 		if ( $update ){
+			
+			$data = $this->data;
+			$data['nav_status'] = ( isset($data['nav_status']) ) ? 'hide' : 'show';
+
 			$this->response = array(
 				'status' => 'success', 
 				'message' => 'Post successfully updated', 
-				'post_data' => $this->data
+				'post_data' => $data
 			);
 		} else {
 			$this->response = array('status' => 'error', 'message' => 'There was an error updating the page.' );
 		}
+	}
+
+
+	/**
+	* Sync the Nav Menu
+	*/
+	private function syncMenu()
+	{
+		$menu = new NP_NavMenu;
+		$menu->clearMenu();
+		$menu->sync();
 	}
 
 

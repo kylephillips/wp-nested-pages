@@ -41,6 +41,7 @@
 			text-decoration: none;
 		}
 
+
 		.page-link {
 			line-height: 26px;
 			.edit-indicator {
@@ -58,6 +59,7 @@
 			}
 		}
 
+		// Indicates post is being edited
 		.locked {
 			color: $black;
 			margin-left: 20px;
@@ -66,9 +68,15 @@
 			}
 		}
 
+		// Indicates status if not published
 		.status {
 			color: darken($white, 40%);
-			margin-left: 10px;
+			margin: 0px 10px;
+		}
+
+		// Indicates hidden from nav is selected
+		.nav-status {
+			color: darken($white, 30%);
 		}
 
 		li {
