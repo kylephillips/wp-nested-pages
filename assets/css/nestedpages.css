@@ -99,6 +99,16 @@
     color: #333;
     font-weight: bold; }
 
+.np-sync-menu-cont {
+  float: right;
+  margin: -27px 15px 0px 0px; }
+
+#nested-loading {
+  display: none;
+  float: right;
+  width: 30px;
+  margin: -31px 120px 0 0; }
+
 .wppages-top-tools {
   margin-bottom: 20px;
   padding-top: 10px; }
@@ -134,12 +144,6 @@
       -webkit-transition: all 200ms ease;
            -o-transition: all 200ms ease;
               transition: all 200ms ease; }
-
-#nested-loading {
-  display: none;
-  float: right;
-  width: 30px;
-  margin: -30px 20px 0 0; }
 
 .nestedpages {
   clear: both;

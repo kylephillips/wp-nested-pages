@@ -176,6 +176,8 @@ jQuery(function($){
 	{
 		$('#np-error').hide();
 		$('#nested-loading').show();
+		var syncmenu = ( $('.np-sync-menu').is(':checked') ) ? 'sync' : 'nosync';
+
 		list = $('ol.sortable').nestedSortable('toHierarchy', {startDepthCount: 0});
 
 		$.ajax({
@@ -185,7 +187,8 @@ jQuery(function($){
 			data: {
 				action : 'npsort',
 				nonce : nestedpages.np_nonce,
-				list : list
+				list : list,
+				syncmenu : syncmenu
 			},
 			success: function(data){
 				if (data.status === 'error'){
@@ -193,7 +196,6 @@ jQuery(function($){
 					$('#nested-loading').hide();
 				} else {
 					$('#nested-loading').hide();
-					console.log(data);
 				}
 			}
 		});
@@ -316,12 +318,13 @@ jQuery(function($){
 	function submit_np_quickedit(form)
 	{
 		$('.np-quickedit-error').hide();
+		var syncmenu = ( $('.np-sync-menu').is(':checked') ) ? 'sync' : 'nosync';
 
 		$.ajax({
 			url: ajaxurl,
 			type: 'post',
 			datatype: 'json',
-			data: $(form).serialize() + '&action=npquickedit&nonce=' + nestedpages.np_nonce,
+			data: $(form).serialize() + '&action=npquickedit&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
 			success: function(data){
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);
@@ -341,7 +344,6 @@ jQuery(function($){
 	*/
 	function np_update_qe_data(form, data)
 	{
-		console.log(data);
 		var row = $(form).parent('.quick-edit').siblings('.row');
 		$(row).find('.title').text(data.post_title);
 		

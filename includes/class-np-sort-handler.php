@@ -106,9 +106,14 @@ class NP_SortHandler {
 	*/
 	private function syncMenu()
 	{
-		$menu = new NP_NavMenu;
-		$menu->clearMenu();
-		$menu->sync();
+		if ( $_POST['syncmenu'] == 'sync' ){
+			$menu = new NP_NavMenu;
+			$menu->clearMenu();
+			$menu->sync();
+			update_option('nestedpages_menusync', 'sync');
+		} else {
+			update_option('nestedpages_menusync', 'nosync');
+		}
 	}
 
 	/**

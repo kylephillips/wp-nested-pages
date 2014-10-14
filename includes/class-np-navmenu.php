@@ -57,7 +57,6 @@ class NP_NavMenu {
 	*/
 	public function sync($parent = 0, $menu_parent = 0)
 	{
-
 		$page_q = new WP_Query(array(
 			'post_type' => 'page',
 			'posts_per_page' => -1,
@@ -69,7 +68,7 @@ class NP_NavMenu {
 		if ( $page_q->have_posts() ) : while ( $page_q->have_posts() ) : $page_q->the_post();
 
 			$ns = get_post_meta( get_the_id(), 'np_nav_status', true);
-			if ( $ns !== 'hide' ) {
+			if ( ($ns == 'show') || ($ns == '') ) {
 				$menu = wp_update_nav_menu_item($this->id, 0, array(
 					'menu-item-title' => get_the_title(),
 					'menu-item-url' => get_the_permalink(),
@@ -79,10 +78,11 @@ class NP_NavMenu {
 					'menu-item-object-id' => get_the_id(),
 					'menu-item-parent-id' => $menu_parent
 				));
+				$this->sync( get_the_id(), $menu );
 			}
-			$this->sync( get_the_id(), $menu );
 
 		endwhile; endif; wp_reset_postdata();
+		
 	}
 
 

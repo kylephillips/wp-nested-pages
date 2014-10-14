@@ -8,6 +8,12 @@
 		<li><a href="#" class="np-btn" data-toggle="closed"><?php _e('Expand Pages'); ?></a></li>
 	</ul>
 
+	<div class="np-sync-menu-cont">
+		<label>
+			<input type="checkbox" name="np_sync_menu" class="np-sync-menu" value="sync" <?php if ( get_option('nestedpages_menusync') == 'sync' ) echo 'checked'; ?>/> <?php _e('Sync Menu'); ?>
+		</label>
+	</div>
+
 	<img src="<?php echo plugins_url(); ?>/nestedpages/assets/images/loading.gif" alt="loading" id="nested-loading" />
 
 	<ul class="subsubsub">
