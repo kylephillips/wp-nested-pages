@@ -4,10 +4,12 @@
 */
 class NP_Activate {
 
+
 	public function __construct()
 	{
 		register_activation_hook( dirname( dirname(__FILE__) ) . '/nestedpages.php', [ $this, 'install' ] );
 	}
+
 
 	/**
 	* Activation Hook
@@ -17,6 +19,7 @@ class NP_Activate {
 		$this->checkVersions();
 		$this->setOptions();
 	}
+
 
 	/**
 	* Check Wordpress and PHP versions
@@ -34,6 +37,7 @@ class NP_Activate {
 		
 		wp_die('<p><strong>Nested Pages</strong> plugin requires'.$flag.'  version '.$version.' or greater.</p>','Plugin Activation Error',  array( 'response'=>200, 'back_link'=>TRUE ) );
 	}
+
 
 	/**
 	* Set Default Options

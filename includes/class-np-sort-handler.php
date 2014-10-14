@@ -116,6 +116,7 @@ class NP_SortHandler {
 		}
 	}
 
+
 	/**
 	* Return Response
 	*/
@@ -123,7 +124,6 @@ class NP_SortHandler {
 	{
 		return wp_send_json($this->response);
 	}
-
 
 
 }

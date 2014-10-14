@@ -4,6 +4,7 @@
 	* Bulk functionality removed
 	* Other post type functionality removed (this will only be used for pages)
 	* Order and parents are saved using drag and drop functionality
+	* @todo bring in taxonomy functionality
 	*/
 	$post = get_default_post_to_edit( 'page' );
 	$post_type_object = get_post_type_object( 'page' );

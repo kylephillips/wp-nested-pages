@@ -10,6 +10,7 @@ class NP_Dependencies {
 		add_action( 'admin_enqueue_scripts', [ $this, 'scripts' ]);
 	}
 
+
 	/**
 	* Admin Styles
 	*/
@@ -22,6 +23,7 @@ class NP_Dependencies {
 			'1.0'
 		);
 	}
+
 
 	/**
 	* Admin Scripts required by plugin

@@ -1,5 +1,5 @@
 <?php
-
+// Activate and Check Versions
 require_once('class-np-activate.php');
 
 // Form Handlers
@@ -17,6 +17,7 @@ require_once('class-np-navmenu.php');
 * Primary Plugin Class
 */
 class NestedPages {
+
 
 	/**
 	* Plugin Version
@@ -46,19 +47,18 @@ class NestedPages {
 		}
 	}
 
+
 	/**
 	* Initialize Plugin
 	*/
 	public function init()
 	{
-		$active = new NP_Activate;
-		if ( $active ){
-			new NP_Dependencies;
-			new NP_PageListing;
-			new NP_NewPage;
-			$this->addMenu();
-			$this->setVersion();
-		}
+		new NP_Activate;
+		new NP_Dependencies;
+		new NP_PageListing;
+		new NP_NewPage;
+		$this->addMenu();
+		$this->setVersion();
 	}
 
 
@@ -95,9 +95,6 @@ class NestedPages {
 			$menu->addMenu();
 		}
 	}
-
-
-
 
 
 }

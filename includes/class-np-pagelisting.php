@@ -46,7 +46,7 @@ class NP_PageListing {
 		global $submenu;
     	$submenu['nestedpages'][50] = array( __('All Pages','nestedpages'), 'publish_pages', esc_url(admin_url('admin.php?page=nestedpages')) );
     	$submenu['nestedpages'][60] = array( __('Add New','nestedpages'), 'publish_pages', $this->addNewPageLink() );
-    	$submenu['nestedpages'][70] = array( __('Default Listing','nestedpages'), 'publish_pages', $this->defaultPagesLink() );
+    	$submenu['nestedpages'][70] = array( __('Default Pages','nestedpages'), 'publish_pages', $this->defaultPagesLink() );
 	}
 
 
@@ -73,7 +73,18 @@ class NP_PageListing {
 
 
 	/**
-	* Loop through all the pages and create the nested list
+	* The Main View
+	* Replaces Default Pages Listing
+	*/
+	public function pageListing()
+	{
+		include( dirname( dirname(__FILE__) ) . '/views/pages.php');
+	}
+
+
+	/**
+	* Loop through all the pages and create the nested / sortable list
+	* Recursive Method, called in page.php view
 	*/
 	private function loopPages($parent_id = 0, $count = 0)
 	{
@@ -112,14 +123,5 @@ class NP_PageListing {
 		endif; wp_reset_postdata();
 	}
 
-
-	/**
-	* The Main View
-	* Replaces Default Pages Listing
-	*/
-	public function pageListing()
-	{
-		include( dirname( dirname(__FILE__) ) . '/views/pages.php');
-	}
 
 }

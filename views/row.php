@@ -1,3 +1,8 @@
+<?php
+/**
+* Row represents a single page
+*/
+?>
 <div class="row">
 	<div class="child-toggle"></div>
 	<div class="row-inner">

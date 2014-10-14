@@ -42,6 +42,7 @@ class NP_NavMenu {
 		if ( $menu ) $this->id = $menu->term_id;
 	}
 
+
 	/**
 	* Set the Menu Items
 	*/
