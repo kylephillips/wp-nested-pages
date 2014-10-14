@@ -11,6 +11,11 @@
 		<a href="<?php echo get_edit_post_link(); ?>" class="page-link page-title">
 			<span class="title"><?php the_title(); ?></span>
 			<?php 
+				
+				if ( function_exists('wpseo_auto_load') ){
+					echo $yoast_score;
+				}
+
 				// Post Status
 				if ( $post->post_status !== 'publish' ){
 					echo '<span class="status">(' . $post->post_status . ')</span>';

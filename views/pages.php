@@ -1,4 +1,5 @@
 <div class="wrap">
+
 	<h2>
 		<?php echo $this->post_type->labels->name; ?>
 		<a href="<?php echo $this->addNewPageLink(); ?>" class="add-new-h2"><?php echo $this->post_type->labels->add_new; ?></a>

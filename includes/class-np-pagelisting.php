@@ -115,6 +115,11 @@ class NP_PageListing {
 					$y = get_the_time('Y');
 					$h = get_the_time('H');
 					$m = get_the_time('i');
+
+					if ( function_exists('wpseo_auto_load') ) {
+						$yoast_score = get_post_meta(get_the_id(), '_yoast_wpseo_linkdex', true);
+					};
+
 					include( dirname( dirname(__FILE__) ) . '/views/row.php');
 				$this->loopPages(get_the_id(), $count);
 				echo '</li>';
