@@ -1,8 +1,13 @@
 <?php
 
 require_once('class-np-activate.php');
+
+// Form Handlers
 require_once('class-np-sort-handler.php');
 require_once('class-np-quickedit-handler.php');
+require_once('class-np-syncmenu-handler.php');
+
+// Required Classes
 require_once('class-np-dependencies.php');
 require_once('class-np-pagelisting.php');
 require_once('class-np-newpage.php');
@@ -22,7 +27,6 @@ class NestedPages {
 	public function __construct()
 	{
 		$this->version = 1.0;
-		add_filter( 'plugin_action_links_' . 'nestedpages/nestedpages.php', [ $this, 'settingsLink' ] );
 		$this->init();
 		$this->formActions();
 		add_action('init', array($this, 'addLocalization') );
@@ -46,12 +50,14 @@ class NestedPages {
 	*/
 	public function init()
 	{
-		new NP_Activate;
-		new NP_Dependencies;
-		new NP_PageListing;
-		new NP_NewPage;
-		$this->addMenu();
-		$this->setVersion();
+		$active = new NP_Activate;
+		if ( $active ){
+			new NP_Dependencies;
+			new NP_PageListing;
+			new NP_NewPage;
+			$this->addMenu();
+			$this->setVersion();
+		}
 	}
 
 
@@ -63,18 +69,8 @@ class NestedPages {
 		if ( is_admin() ) {
 			add_action( 'wp_ajax_npsort', 'nestedpages_sort_handler' );
 			add_action( 'wp_ajax_npquickedit', 'nestedpages_quickedit_handler' );
+			add_action( 'wp_ajax_npsyncmenu', 'nestedpages_syncmenu_handler' );
 		}
-	}
-
-
-	/**
-	* Add a link to the settings on the plugin page
-	*/
-	public function settingsLink($links)
-	{ 
-		$settings_link = '<a href="options-general.php?page=nestedpages">' . __('Settings', 'nestedpages') . '</a>'; 
-		array_unshift($links, $settings_link); 
-		return $links; 
 	}
 
 

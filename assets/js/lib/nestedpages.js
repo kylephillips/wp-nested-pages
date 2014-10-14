@@ -205,6 +205,40 @@ jQuery(function($){
 
 
 
+	/**
+	* ------------------------------------------------------------------------
+	* Sync Menu Toggle
+	* ------------------------------------------------------------------------
+	**/
+	$('.np-sync-menu').on('change', function(){
+		var setting = ( $(this).is(':checked') ) ? 'sync' : 'nosync';
+		np_updated_sync_menu(setting);
+	});
+
+	function np_updated_sync_menu(setting)
+	{
+		$.ajax({
+			url: ajaxurl,
+			type: 'post',
+			datatype: 'json',
+			data: {
+				action : 'npsyncmenu',
+				nonce : nestedpages.np_nonce,
+				syncmenu : setting
+			},
+			success: function(data){
+				console.log(data);
+				if (data.status === 'error'){
+					alert('There was an error saving the sync setting.')
+				}
+			}
+		});
+	}
+
+
+
+
+
 
 	/**
 	* ------------------------------------------------------------------------
