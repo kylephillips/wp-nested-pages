@@ -328,8 +328,8 @@ jQuery(function($){
 					$(form).find('.np-quickedit-error').text(data.message).show();
 				} else {
 					np_remove_qe_loading(form);
-					np_qe_update_animate(form);
 					np_update_qe_data(form, data.post_data);
+					np_qe_update_animate(form);
 				}
 			}
 		});
@@ -340,8 +340,9 @@ jQuery(function($){
 	* Update Row Data after Quick Edit
 	*/
 	function np_update_qe_data(form, data)
-	{console.log(data);
-		var row = $(form).closest('.page-row');
+	{
+		console.log(data);
+		var row = $(form).parent('.quick-edit').siblings('.row');
 		$(row).find('.title').text(data.post_title);
 		
 		var status = $(row).find('.status');
@@ -390,10 +391,11 @@ jQuery(function($){
 	* Show quick edit update animation
 	*/
 	function np_qe_update_animate(form)
-	{
-		var row = $(form).closest('.page-row').find('.row').addClass('np-updated');
-		$(form).hide();
+	{	
+		var row = $(form).parent('.quick-edit').siblings('.row');
+		$(row).addClass('np-updated');
 		$(row).show();
+		$(form).parent('.quick-edit').remove();
 		setTimeout(function(){
 			$(row).addClass('np-updated-show');
 		}, 1500);
