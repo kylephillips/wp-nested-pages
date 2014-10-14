@@ -72,6 +72,36 @@
 			color: darken($white, 30%);
 		}
 
+		// Yoast SEO Indicator
+		// See Yoast's metabox-tabs.css
+		.np-seo-indicator {
+			display: block;
+			float: right;
+			width: 12px;
+			height: 12px;
+			border-radius: 8px;
+			background-color: darken($white, 40%);
+			margin: 6px 10px 0 0;
+			&.good {
+				background-color: #7ad03a;
+			}
+			&.ok {
+				background-color: #ffba00;
+			}
+			&.poor {
+				background-color: #ee7c1b;
+			}
+			&.bad {
+				background-color: #dd3d36;
+			}
+			&.warn {
+				background-color: maroon;
+			}
+			&.wrong {
+				background-color: red;
+			}
+		}
+
 		li {
 			margin: 0;
 			border-top: 1px solid $border;

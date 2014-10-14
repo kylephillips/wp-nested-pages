@@ -125,6 +125,11 @@ class NP_PageListing {
 					$y = get_the_time('Y');
 					$h = get_the_time('H');
 					$m = get_the_time('i');
+
+					if ( function_exists('wpseo_translate_score') ) {
+						$yoast_score = get_post_meta(get_the_id(), '_yoast_wpseo_linkdex', true);
+						$score = wpseo_translate_score($yoast_score);
+					};
 					
 					include( dirname( dirname(__FILE__) ) . '/views/row.php');
 				$this->loopPages(get_the_id(), $count);

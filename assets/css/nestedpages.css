@@ -192,6 +192,27 @@
       margin: 0px 10px; }
     .nestedpages ol .nav-status {
       color: #b3b3b3; }
+    .nestedpages ol .np-seo-indicator {
+      display: block;
+      float: right;
+      width: 12px;
+      height: 12px;
+      -webkit-border-radius: 8px;
+              border-radius: 8px;
+      background-color: #999999;
+      margin: 6px 10px 0 0; }
+      .nestedpages ol .np-seo-indicator.good {
+        background-color: #7ad03a; }
+      .nestedpages ol .np-seo-indicator.ok {
+        background-color: #ffba00; }
+      .nestedpages ol .np-seo-indicator.poor {
+        background-color: #ee7c1b; }
+      .nestedpages ol .np-seo-indicator.bad {
+        background-color: #dd3d36; }
+      .nestedpages ol .np-seo-indicator.warn {
+        background-color: maroon; }
+      .nestedpages ol .np-seo-indicator.wrong {
+        background-color: red; }
     .nestedpages ol li {
       margin: 0;
       border-top: 1px solid #e1e1e1;

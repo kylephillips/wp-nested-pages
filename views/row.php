@@ -12,8 +12,8 @@
 			<span class="title"><?php the_title(); ?></span>
 			<?php 
 				
-				if ( function_exists('wpseo_auto_load') ){
-					echo $yoast_score;
+				if ( function_exists('wpseo_translate_score') ){
+					echo '<span class="np-seo-indicator ' . $score . '"></span>';
 				}
 
 				// Post Status
