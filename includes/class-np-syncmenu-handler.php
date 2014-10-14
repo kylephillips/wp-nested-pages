@@ -7,6 +7,7 @@ function nestedpages_syncmenu_handler()
 	new NP_SyncMenu_Handler;
 }
 
+require_once('class-np-navmenu.php');
 class NP_SyncMenu_Handler {
 
 	/**
@@ -36,6 +37,7 @@ class NP_SyncMenu_Handler {
 		$this->sendResponse();
 	}
 
+
 	/**
 	* Set the Form Data
 	*/
@@ -49,6 +51,7 @@ class NP_SyncMenu_Handler {
 		$this->data = $data;
 	}
 
+
 	/**
 	* Validate the Nonce
 	*/
@@ -61,6 +64,7 @@ class NP_SyncMenu_Handler {
 		}
 	}
 
+
 	/**
 	* Update the sync setting
 	*/
@@ -68,12 +72,25 @@ class NP_SyncMenu_Handler {
 	{
 		if ( $this->data['syncmenu'] == 'sync' ){
 			update_option('nestedpages_menusync', 'sync');
+			$this->syncMenu();
 			$this->response = array('status'=>'success', 'message'=> __('Menu sync enabled.'));
 		} else {
 			update_option('nestedpages_menusync', 'nosync');
 			$this->response = array('status'=>'success', 'message'=> __('Menu sync disabled.'));
 		}
 	}
+
+
+	/**
+	* Sync the Nav Menu
+	*/
+	private function syncMenu()
+	{
+		$menu = new NP_NavMenu;
+		$menu->clearMenu();
+		$menu->sync();
+	}
+
 
 	/**
 	* Return Response
