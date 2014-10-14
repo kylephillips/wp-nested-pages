@@ -32,6 +32,7 @@ class NestedPages {
 		add_action('init', array($this, 'addLocalization') );
 	}
 
+
 	/**
 	* Set the Plugin Version
 	*/
@@ -94,6 +95,9 @@ class NestedPages {
 			$menu->addMenu();
 		}
 	}
+
+
+
 
 
 }

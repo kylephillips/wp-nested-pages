@@ -14,8 +14,25 @@ class NP_Activate {
 	*/
 	public function install()
 	{
+		$this->checkVersions();
 		$this->setOptions();
-		$this->checkVersion();
+	}
+
+	/**
+	* Check Wordpress and PHP versions
+	*/
+	public function checkVersions( $wp = '3.9', $php = '5.3.0' ) {
+		global $wp_version;
+		if ( version_compare( PHP_VERSION, $php, '<' ) )
+			$flag = 'PHP';
+		elseif ( version_compare( $wp_version, $wp, '<' ) )
+			$flag = 'WordPress';
+		else 
+			return;
+		$version = 'PHP' == $flag ? $php : $wp;
+		deactivate_plugins( basename( __FILE__ ) );
+		
+		wp_die('<p><strong>Nested Pages</strong> plugin requires'.$flag.'  version '.$version.' or greater.</p>','Plugin Activation Error',  array( 'response'=>200, 'back_link'=>TRUE ) );
 	}
 
 	/**
@@ -26,29 +43,6 @@ class NP_Activate {
 		if ( !get_option('nestedpages_menusync') ){
 			update_option('nestedpages_menusync', 'sync');
 		}
-	}
-
-
-	/**
-	* Check Version
-	*/
-	public function checkVersion()
-	{
-		$version = ( floatval(get_bloginfo('version')) );
-		if ( $version < 3.9 ){
-			add_action( 'admin_notices', array($this, 'versionNotice' ) );
-			return false;
-		} else {
-			return true;
-		}
-	}
-
-	/**
-	* Version Notice
-	*/
-	public function versionNotice()
-	{
-		echo '<div class="updated error"><p>Nested Pages requires Wordpress version 3.9 or higher</p></div>';
 	}
 
 
