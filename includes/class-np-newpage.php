@@ -34,7 +34,7 @@ class NP_NewPage {
 
 		if ( $parent_title ) :
 			$out = '<script>';
-			$out .= 'jQuery(document).ready(function(){jQuery("#parent_id").val("' . $parent . '");var html = \'<div id="message" class="updated"><p>' . __('Adding child page under:') . ' <strong>' . get_the_title($parent) . '</strong>.</p></div>\'; jQuery(".wrap").prepend(html); });';
+			$out .= 'jQuery(document).ready(function(){jQuery("#parent_id").val("' . $parent . '");var html = \'<div id="message" class="updated"><p>' . __('Adding child page under:') . ' <strong>' . get_the_title($parent) . '</strong></p></div>\'; jQuery(".wrap").prepend(html); });';
 			$out .= '</script>';
 			echo $out;
 		endif;
