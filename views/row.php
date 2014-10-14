@@ -57,6 +57,7 @@
 				data-slug="<?php echo $post->post_name; ?>" 
 				data-commentstatus="<?php echo $cs; ?>" 
 				data-status="<?php echo get_post_status(); ?>" 
+				data-np-status="<?php echo $np_status; ?>"
 				data-navstatus="<?php echo $nav_status; ?>"
 				data-author="<?php echo $post->post_author; ?>" 
 				data-month="<?php echo $month; ?>" 

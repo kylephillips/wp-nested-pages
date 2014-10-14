@@ -91,6 +91,7 @@ class NP_QuickEdit_Handler {
 			
 			$data = $this->data;
 			$data['nav_status'] = ( isset($data['nav_status']) ) ? 'hide' : 'show';
+			$data['np_status'] = ( isset($data['nested_pages_status']) ) ? 'hide' : 'show';
 
 			$this->response = array(
 				'status' => 'success', 
