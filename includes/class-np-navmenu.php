@@ -68,8 +68,14 @@ class NP_NavMenu {
 		));
 		if ( $page_q->have_posts() ) : while ( $page_q->have_posts() ) : $page_q->the_post();
 
+			// Nav Status
 			$ns = get_post_meta( get_the_id(), 'np_nav_status', true);
+
+			// Nested Pages Visibility
+			$np_status = get_post_meta( get_the_id(), 'nested_pages_status', true );
+
 			if ( ($ns == 'show') || ($ns == '') ) {
+				if ( $np_status !== 'hide' ){
 				$menu = wp_update_nav_menu_item($this->id, 0, array(
 					'menu-item-title' => get_the_title(),
 					'menu-item-url' => get_the_permalink(),
@@ -80,6 +86,7 @@ class NP_NavMenu {
 					'menu-item-parent-id' => $menu_parent
 				));
 				$this->sync( get_the_id(), $menu );
+				}
 			}
 
 		endwhile; endif; wp_reset_postdata();

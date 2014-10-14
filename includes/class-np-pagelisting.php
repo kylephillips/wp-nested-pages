@@ -99,6 +99,10 @@ class NP_PageListing {
 			$count++;
 			echo ( $count == 1 ) ? '<ol class="sortable nplist">' : '<ol class="nplist">';
 			while ( $pages->have_posts() ) : $pages->the_post();
+
+				// Don't include posts that are hidden from nested pages
+				if ( get_post_meta(get_the_id(), 'nested_pages_status', true) !== 'hide') :
+
 				global $post;
 				echo '<li id="menuItem_' . get_the_id() . '" class="page-row';
 				if ( $post->post_status == 'publish' ) echo ' published';
@@ -106,24 +110,29 @@ class NP_PageListing {
 					$count++;
 					
 					$template = get_post_meta(get_the_id(), '_wp_page_template', true);
-					$month = get_the_time('m');
 					
+					// Show Hide in generated nav menu
 					$ns = get_post_meta( get_the_id(), 'np_nav_status', true);
 					$nav_status = ( $ns == 'hide' ) ? 'hide' : 'show';
+
+					// Nested Pages Status (show/hide in nested pages)
+					$np_status = get_post_meta( get_the_id(), 'nested_pages_status', true );
+					$np_status = ( $np_status == 'hide' ) ? 'hide' : 'show';
 					
+					// Date Vars
 					$d = get_the_time('d');
+					$month = get_the_time('m');
 					$y = get_the_time('Y');
 					$h = get_the_time('H');
 					$m = get_the_time('i');
-
-					if ( function_exists('wpseo_auto_load') ) {
-						$yoast_score = get_post_meta(get_the_id(), '_yoast_wpseo_linkdex', true);
-					};
-
+					
 					include( dirname( dirname(__FILE__) ) . '/views/row.php');
 				$this->loopPages(get_the_id(), $count);
 				echo '</li>';
-			endwhile;
+
+				endif; // NP Status
+
+			endwhile; // Loop
 			echo '</ol>';
 		endif; wp_reset_postdata();
 	}

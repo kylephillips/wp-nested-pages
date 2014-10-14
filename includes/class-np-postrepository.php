@@ -59,6 +59,7 @@ class NP_PostRepository {
 
 		$this->updateTemplate($data);
 		$this->updateNavStatus($data);
+		$this->updateNestedPagesStatus($data);
 
 		return $updated_post;
 	}
@@ -86,6 +87,20 @@ class NP_PostRepository {
 		update_post_meta( 
 			$data['post_id'], 
 			'np_nav_status', 
+			$status
+		);
+	}
+
+
+	/**
+	* Update Nested Pages Visibility (how/hide in Nested Pages interface)
+	*/
+	private function updateNestedPagesStatus($data)
+	{
+		$status = ( isset($data['nested_pages_status']) ) ? 'hide' : 'show';
+		update_post_meta( 
+			$data['post_id'], 
+			'nested_pages_status', 
 			$status
 		);
 	}

@@ -30,6 +30,8 @@
 		<div class="quick-edit quick-edit-form" style="display:none;">
 			<?php include('quickedit.php'); ?>
 		</div><!-- .quick-edit -->
-	</div>	
+	</div>
+
+	<!-- TODO: nested pages hidden pages -->
 
 </div><!-- .wrap -->

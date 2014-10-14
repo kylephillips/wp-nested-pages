@@ -90,6 +90,12 @@
 					<span class="checkbox-title"><?php _e( 'Hide in Nav Menu' ); ?></span>
 				</label>
 			</div>
+			<div class="comments">
+				<label>
+					<input type="checkbox" name="nested_pages_status" class="np_status" value="hide" />
+					<span class="checkbox-title"><?php _e( 'Hide in Nested Pages' ); ?></span>
+				</label>
+			</div>
 		</div><!-- .right -->
 		</div><!-- .fields -->
 
