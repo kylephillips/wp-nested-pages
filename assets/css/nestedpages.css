@@ -77,6 +77,16 @@
     -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
             box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08); }
 
+.np-btn-trash {
+  background-color: #e14d43;
+  border-color: #e14d43;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 0 rgba(0, 0, 0, 0.08);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 0 rgba(0, 0, 0, 0.08);
+  color: #ffffff; }
+  .np-btn-trash:hover {
+    background-color: #ba251e;
+    border-color: #ba251e; }
+
 .np-toggle-edit {
   display: none;
   float: right;

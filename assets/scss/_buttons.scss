@@ -18,6 +18,18 @@
 	}
 }
 
+
+.np-btn-trash {
+	background-color: $red;
+	border-color: $red;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 1px 0 rgba(0,0,0,.08);
+	color: $white;
+	&:hover {
+		background-color: darken($red, 15%);
+		border-color: darken($red, 15%);
+	}
+}
+
 // Toggle button for edit buttons (responsive)
 .np-toggle-edit {
 	display: none;

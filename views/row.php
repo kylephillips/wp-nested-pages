@@ -47,6 +47,7 @@
 		<a href="#" class="np-toggle-edit"><i class="np-icon-pencil"></i></a>
 
 		<div class="action-buttons">
+
 			<?php if ( $post->comment_status == 'open' ) : $comments = wp_count_comments(get_the_id()); $cs = 'open' ?>
 			
 			<a href="<?php echo admin_url( 'edit-comments.php?p=' . get_the_id() ); ?>" class="np-btn">
@@ -79,6 +80,10 @@
 			<?php endif; ?>
 
 			<a href="<?php echo get_the_permalink(); ?>" class="np-btn"><?php _e('View', 'nestedpages'); ?></a>
+			<!--
+			<a href="#" class="np-btn np-btn-trash">
+				<i class="np-icon-remove"></i>
+			</a> -->
 		</div><!-- .action-buttons -->
 	</div><!-- .row-inner -->
 </div><!-- .row -->
