@@ -1,7 +1,8 @@
 <?php
 
 /**
-* Register the Admin Page Listing & Show View (Overwrites Pages Menu Item)
+* Primary Listing Class
+* Initiates Page Listing screen (overwriting default), and displays primary plugin view.
 */
 class NP_PageListing {
 
@@ -15,8 +16,8 @@ class NP_PageListing {
 	public function __construct()
 	{
 		$this->post_type = get_post_type_object('page');
-		add_action( 'admin_menu', [ $this, 'adminMenu' ] );
-		add_action( 'admin_menu', [ $this, 'submenu' ] );
+		add_action( 'admin_menu', array($this, 'adminMenu') );
+		add_action( 'admin_menu', array($this, 'submenu') );
 	}
 
 
@@ -32,7 +33,7 @@ class NP_PageListing {
 			'nestedpages', 
 			array( $this, 'pageListing' ),
 			'dashicons-admin-page',
-			20
+			20 // Overwrite Default Pages Menu Item
 		);
     
 	}
