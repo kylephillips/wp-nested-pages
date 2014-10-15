@@ -2,6 +2,7 @@
 /**
 * Plugin Activation
 */
+require_once('class-np-navmenu.php');
 class NP_Activate {
 
 	/**
@@ -15,6 +16,7 @@ class NP_Activate {
 		register_activation_hook( dirname( dirname(__FILE__) ) . '/nestedpages.php', array($this, 'install') );
 		$this->version = 1.0;
 		$this->setVersion();
+		$this->addMenu();
 	}
 
 
@@ -59,6 +61,18 @@ class NP_Activate {
 		}
 	}
 
+
+	/**
+	* Add the nav menu
+	*/
+	public function addMenu()
+	{
+		$menu_e = get_term_by('slug', 'nestedpages', 'nav_menu');
+		if ( !$menu_e ){
+			$menu = new NP_NavMenu;
+			$menu->addMenu();
+		}
+	}
 
 
 	/**

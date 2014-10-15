@@ -11,7 +11,6 @@ require_once('class-np-handler-syncmenu.php');
 require_once('class-np-dependencies.php');
 require_once('class-np-pagelisting.php');
 require_once('class-np-newpage.php');
-require_once('class-np-navmenu.php');
 require_once('class-np-pagemeta.php');
 
 /**
@@ -38,7 +37,6 @@ class NestedPages {
 		new NP_PageListing;
 		new NP_NewPage;
 		new NP_PageMeta;
-		$this->addMenu();
 	}
 
 
@@ -61,19 +59,6 @@ class NestedPages {
 	public function addLocalization()
 	{
 		load_plugin_textdomain('nestedpages', false, 'nestedpages' . '/languages' );
-	}
-
-
-	/**
-	* Add the nav menu
-	*/
-	public function addMenu()
-	{
-		$menu_e = get_term_by('slug', 'nestedpages', 'nav_menu');
-		if ( !$menu_e ){
-			$menu = new NP_NavMenu;
-			$menu->addMenu();
-		}
 	}
 
 
