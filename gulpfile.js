@@ -20,7 +20,7 @@ var js_compiled = 'assets/js/';
 */
 gulp.task('scss', function(){
 	return gulp.src(scss)
-		.pipe(sass())
+		.pipe(sass({ outputStyle: 'compressed' }))
 		.pipe(autoprefix('last 15 version'))
 		.pipe(gulp.dest(css))
 		.pipe(plumber())
