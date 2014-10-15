@@ -12,7 +12,7 @@ class NP_Activate {
 
 	public function __construct()
 	{
-		register_activation_hook( dirname( dirname(__FILE__) ) . '/nestedpages.php', [ $this, 'install' ] );
+		register_activation_hook( dirname( dirname(__FILE__) ) . '/nestedpages.php', array($this, 'install') );
 		$this->version = 1.0;
 		$this->setVersion();
 	}
@@ -31,7 +31,7 @@ class NP_Activate {
 	/**
 	* Check Wordpress and PHP versions
 	*/
-	public function checkVersions( $wp = '3.9', $php = '5.3.0' ) {
+	private function checkVersions( $wp = '3.9', $php = '5.3.0' ) {
 		global $wp_version;
 		if ( version_compare( PHP_VERSION, $php, '<' ) )
 			$flag = 'PHP';
@@ -64,7 +64,7 @@ class NP_Activate {
 	/**
 	* Set Default Options
 	*/
-	public function setOptions()
+	private function setOptions()
 	{
 		if ( !get_option('nestedpages_menusync') ){
 			update_option('nestedpages_menusync', 'sync');
