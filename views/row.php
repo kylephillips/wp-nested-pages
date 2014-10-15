@@ -23,6 +23,10 @@
 					echo '<span class="status"></span>';
 				}
 
+				// Nested Pages Status
+				if ( $np_status == 'hide' )
+					echo '<i class="np-icon-eye-blocked"></i>';
+
 				// Nav Status
 				if ( $nav_status == 'hide' ){
 					echo '<span class="nav-status">(Hidden)</span>';

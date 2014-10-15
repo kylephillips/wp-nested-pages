@@ -67,9 +67,19 @@
 			margin: 0px 10px;
 		}
 
+		// Indicates page is hidden from nested pages
+		.np-icon-eye-blocked {
+			color: darken($white, 40%);
+		}
+
 		// Indicates hidden from nav is selected
 		.nav-status {
 			color: darken($white, 30%);
+		}
+
+		// Hidden from Nested Pages
+		.np-hide {
+			display: none;
 		}
 
 		// Yoast SEO Indicator
@@ -106,7 +116,13 @@
 			margin: 0;
 			border-top: 1px solid $border;
 			background-color: $blue;
+			&.first {
+				border: 0;
+			}
 			&:first-child {
+				border: 0;
+			}
+			&.no-border {
 				border: 0;
 			}
 		} // li

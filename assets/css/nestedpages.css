@@ -44,8 +44,17 @@
 .np-icon-lock:before {
   content: "\e609"; }
 
+.np-icon-remove:before {
+  content: "\e60a"; }
+
 .np-icon-menu2:before {
   content: "\e606"; }
+
+.np-icon-eye:before {
+  content: "\e60b"; }
+
+.np-icon-eye-blocked:before {
+  content: "\e60c"; }
 
 .np-btn, .np-toggle-edit {
   text-decoration: none;
@@ -190,8 +199,12 @@
     .nestedpages ol .status {
       color: #999999;
       margin: 0px 10px; }
+    .nestedpages ol .np-icon-eye-blocked {
+      color: #999999; }
     .nestedpages ol .nav-status {
       color: #b3b3b3; }
+    .nestedpages ol .np-hide {
+      display: none; }
     .nestedpages ol .np-seo-indicator {
       display: block;
       float: right;
@@ -217,7 +230,11 @@
       margin: 0;
       border-top: 1px solid #e1e1e1;
       background-color: #0074a2; }
+      .nestedpages ol li.first {
+        border: 0; }
       .nestedpages ol li:first-child {
+        border: 0; }
+      .nestedpages ol li.no-border {
         border: 0; }
     .nestedpages ol ol {
       display: none;

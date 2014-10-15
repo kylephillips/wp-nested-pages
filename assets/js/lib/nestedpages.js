@@ -10,11 +10,13 @@ jQuery(function($){
 	* ------------------------------------------------------------------------
 	**/
 
+
 	/**
 	* Add the Submenu Toggles (using JS to prevent additional DB Queries)
 	*/
 	$(document).ready(function(){
 		add_remove_submenu_toggles();
+		np_set_borders();
 	});
 	
 	/**
@@ -25,6 +27,7 @@ jQuery(function($){
 		var submenu = $(this).parent('.child-toggle').parent('.row').siblings('ol');
 		$(this).find('i').toggleClass('np-icon-arrow-down').toggleClass('np-icon-arrow-right');
 		$(submenu).toggle();
+		np_set_borders();
 	});
 
 	/**
@@ -39,6 +42,7 @@ jQuery(function($){
 			$(this).text(nestedpages.collapse_text);
 			$('.child-toggle i').removeClass('np-icon-arrow-right').addClass('np-icon-arrow-down');
 			revert_quick_edit();
+			np_set_borders();
 		} else
 		{
 			$('.nestedpages ol li ol').hide();
@@ -46,8 +50,40 @@ jQuery(function($){
 			$(this).text(nestedpages.expand_text);
 			$('.child-toggle i').removeClass('np-icon-arrow-down').addClass('np-icon-arrow-right');
 			revert_quick_edit();
+			np_set_borders();
 		}
 	});
+
+	/**
+	* Toggle hidden pages
+	*/
+	$(document).on('click', '.np-toggle-hidden', function(e){
+		e.preventDefault();
+		var action = $(this).attr('href');
+		if ( action === 'show' ){
+			$(this).attr('href', 'hide');
+			$(this).text('Show Hidden Pages');
+			$('.np-hide').removeClass('shown').hide();
+			np_set_borders();
+		} else {
+			$(this).attr('href', 'show');
+			$(this).text('Hide Hidden Pages');
+			$('.np-hide').addClass('shown').show();
+			np_set_borders();
+		}
+	});
+	
+	/**
+	* Fix :visible :first css limitation when toggling various options
+	*/
+	function np_set_borders()
+	{
+		var lists = $('.nplist');
+		$('.page-row').removeClass('no-border');
+		$.each(lists, function(){
+			$(this).find('.page-row:visible:first').addClass('no-border');
+		});
+	}
 
 	/**
 	* Toggle between showing published pages and all
@@ -403,6 +439,15 @@ jQuery(function($){
 			$(nav_status).text('');
 		}
 
+		// Hide / Show in Nested Pages
+		var li = $(row).parent('li');
+		if ( (data.np_status == 'hide') ){
+			$(li).addClass('np-hide');
+		} else {
+			$(li).removeClass('np-hide');
+			$(row).find('.np-icon-eye-blocked').remove();
+		}
+
 		var button = $(row).find('.np-quick-edit');
 
 		$(button).attr('data-id', data.post_id);
@@ -441,6 +486,7 @@ jQuery(function($){
 		$(row).addClass('np-updated');
 		$(row).show();
 		$(form).parent('.quick-edit').remove();
+		np_set_borders();
 		setTimeout(function(){
 			$(row).addClass('np-updated-show');
 		}, 1500);

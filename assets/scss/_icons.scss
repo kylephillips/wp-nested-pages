@@ -22,7 +22,6 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
 .np-icon-no:before {
 	content: "\e601";
 }
@@ -50,6 +49,15 @@
 .np-icon-lock:before {
 	content: "\e609";
 }
+.np-icon-remove:before {
+	content: "\e60a";
+}
 .np-icon-menu2:before {
 	content: "\e606";
+}
+.np-icon-eye:before {
+	content: "\e60b";
+}
+.np-icon-eye-blocked:before {
+	content: "\e60c";
 }
