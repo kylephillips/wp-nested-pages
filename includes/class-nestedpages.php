@@ -20,32 +20,11 @@ require_once('class-np-pagemeta.php');
 class NestedPages {
 
 
-	/**
-	* Plugin Version
-	*/
-	private $version;
-
-
 	public function __construct()
 	{
-		$this->version = 1.0;
 		$this->init();
 		$this->formActions();
 		add_action('init', array($this, 'addLocalization') );
-	}
-
-
-	/**
-	* Set the Plugin Version
-	*/
-	private function setVersion()
-	{
-		if ( !get_option('nestedpages_version') ){
-			update_option('nestedpages_version', $this->version);
-		}
-		elseif ( get_option('nestedpages_version') < $this->version ){
-			update_option('nestedpages_version', $this->version);	
-		}
 	}
 
 
@@ -60,7 +39,6 @@ class NestedPages {
 		new NP_NewPage;
 		new NP_PageMeta;
 		$this->addMenu();
-		$this->setVersion();
 	}
 
 

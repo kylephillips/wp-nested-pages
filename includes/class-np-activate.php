@@ -4,10 +4,17 @@
 */
 class NP_Activate {
 
+	/**
+	* Plugin Version
+	*/
+	private $version;
+
 
 	public function __construct()
 	{
 		register_activation_hook( dirname( dirname(__FILE__) ) . '/nestedpages.php', [ $this, 'install' ] );
+		$this->version = 1.0;
+		$this->setVersion();
 	}
 
 
@@ -37,6 +44,21 @@ class NP_Activate {
 		
 		wp_die('<p><strong>Nested Pages</strong> plugin requires'.$flag.'  version '.$version.' or greater.</p>','Plugin Activation Error',  array( 'response'=>200, 'back_link'=>TRUE ) );
 	}
+
+
+	/**
+	* Set the Plugin Version
+	*/
+	private function setVersion()
+	{
+		if ( !get_option('nestedpages_version') ){
+			update_option('nestedpages_version', $this->version);
+		}
+		elseif ( get_option('nestedpages_version') < $this->version ){
+			update_option('nestedpages_version', $this->version);	
+		}
+	}
+
 
 
 	/**
