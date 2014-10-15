@@ -3,9 +3,9 @@
 require_once('class-np-activate.php');
 
 // Form Handlers
-require_once('class-np-sort-handler.php');
-require_once('class-np-quickedit-handler.php');
-require_once('class-np-syncmenu-handler.php');
+require_once('class-np-handler-sort.php');
+require_once('class-np-handler-quickedit.php');
+require_once('class-np-handler-syncmenu.php');
 
 // Required Classes
 require_once('class-np-dependencies.php');
