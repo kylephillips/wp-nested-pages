@@ -143,10 +143,4 @@ class NP_PageListing {
 	}
 
 
-	/**
-	* Display Hidden Pages
-	*/
-
-
-
 }

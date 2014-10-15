@@ -1,13 +1,28 @@
 <?php
 
+require_once('class-np-validation.php');
+
 class NP_PostRepository {
+
+	/**
+	* Validation Class
+	* @var NP_Validation instance
+	*/
+	protected $validation;
+
+
+	public function __construct()
+	{
+		$this->validation = new NP_Validation;
+	}
+
 
 	/**
 	* Update Order
 	*/
 	public function updateOrder($posts, $parent = 0)
 	{
-		$this->validateIDs($posts);
+		$this->validation->validatePostIDs($posts);
 		foreach( $posts as $key => $post )
 		{
 			wp_update_post(array(
@@ -25,27 +40,13 @@ class NP_PostRepository {
 
 
 	/**
-	* Validate Post IDs before saving
-	*/
-	private function validateIDs($posts)
-	{
-		foreach ($posts as $post)
-		{
-			if ( !is_numeric($post['id']) ){
-				return wp_send_json(array('status'=>'error', 'message'=>'Incorrect Form Field'));
-			}
-		}
-	}
-
-
-	/**
 	* Update Post
 	*/
 	public function updatePost($data)
 	{
-		$date = $this->validateDate($data);
+		$date = $this->validation->validateDate($data);
 		if ( !isset($_POST['comment_status']) ) $data['comment_status'] = 'closed';
-		
+
 		$updated_post = array(
 			'ID' => sanitize_text_field($data['post_id']),
 			'post_title' => sanitize_text_field($data['post_title']),
@@ -105,40 +106,5 @@ class NP_PostRepository {
 			$status
 		);
 	}
-
-
-	/**
-	* Validate Date Input
-	*/
-	private function validateDate($data)
-	{
-		// First validate that it is an actual date
-		if ( !wp_checkdate( 
-				intval($data['mm']), 
-				intval($data['jj']), 
-				intval($data['aa']),
-				$data['aa'] . '-' . $data['mm'] . '-' . $data['jj']
-				)
-			){
-			return wp_send_json(array('status' => 'error', 'message' => __('Please provide a valid date.', 'nestedpages') ));
-			die();
-		}
-
-		// Validate all the fields are there
-		if ( ($data['aa'] !== "") 
-			&& ( $data['mm'] !== "" )
-			&& ( $data['jj'] !== "" )
-			&& ( $data['hh'] !== "" )
-			&& ( $data['mm'] !== "" )
-			&& ( $data['ss'] !== "" ) )
-		{
-			$date = strtotime($data['aa'] . '-' . $data['mm'] . '-' . $data['jj'] . ' ' . $data['hh'] . ':' . $data['mm'] . ':' . $data['ss']);
-			return date('Y-m-d H:i:s', $date);
-		} else {
-			return wp_send_json(array('status' => 'error', 'message' => __('Please provide a valid date.', 'nestedpages') ));
-			die();
-		}
-	}
-
 
 }
