@@ -1,33 +1,18 @@
 <?php
-/**
-* Turn on/off menu sync
-*/
+
 function nestedpages_syncmenu_handler()
 {
 	new NP_SyncMenu_Handler;
 }
 
+require_once('class-np-handler-base.php');
 require_once('class-np-navmenu.php');
-class NP_SyncMenu_Handler {
 
-	/**
-	* Nonce
-	* @var string
-	*/
-	private $nonce;
-
-	/**
-	* Form Data
-	* @var array
-	*/
-	private $data;
-
-	/**
-	* Response
-	* @var array;
-	*/
-	private $response;
-
+/**
+* Turn on/off menu sync
+* @return json response
+*/
+class NP_SyncMenu_Handler extends NP_BaseHandler {
 
 	public function __construct()
 	{
@@ -36,34 +21,6 @@ class NP_SyncMenu_Handler {
 		$this->updateSync();
 		$this->sendResponse();
 	}
-
-
-	/**
-	* Set the Form Data
-	*/
-	private function setData()
-	{
-		$this->nonce = sanitize_text_field($_POST['nonce']);
-		$data = array();		
-		foreach( $_POST as $key => $value ){
-			$data[$key] = $value;
-		}
-		$this->data = $data;
-	}
-
-
-	/**
-	* Validate the Nonce
-	*/
-	private function validateNonce()
-	{
-		if ( ! wp_verify_nonce( $this->nonce, 'nestedpages-nonce' ) ){
-			$this->response = array( 'status' => 'error', 'message' => __('Incorrect Form Field') );
-			$this->sendResponse();
-			die();
-		}
-	}
-
 
 	/**
 	* Update the sync setting
@@ -78,26 +35,6 @@ class NP_SyncMenu_Handler {
 			update_option('nestedpages_menusync', 'nosync');
 			$this->response = array('status'=>'success', 'message'=> __('Menu sync disabled.'));
 		}
-	}
-
-
-	/**
-	* Sync the Nav Menu
-	*/
-	private function syncMenu()
-	{
-		$menu = new NP_NavMenu;
-		$menu->clearMenu();
-		$menu->sync();
-	}
-
-
-	/**
-	* Return Response
-	*/
-	private function sendResponse()
-	{
-		return wp_send_json($this->response);
 	}
 
 }

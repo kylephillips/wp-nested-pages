@@ -5,41 +5,14 @@ function nestedpages_quickedit_handler()
 	new NP_QuickEdit_Handler;
 }
 
+require_once('class-np-handler-base.php');
+require_once('class-np-postrepository.php');
 
 /**
 * Handles processing the quick edit form
 * @return json response
 */
-require_once('class-np-postrepository.php');
-
-class NP_QuickEdit_Handler {
-
-	/**
-	* Nonce
-	* @var string
-	*/
-	private $nonce;
-
-	/**
-	* Form Data
-	* @var array
-	*/
-	private $data;
-
-
-	/**
-	* Post Repo
-	* @var object
-	*/
-	private $post_repo;
-
-
-	/**
-	* Response
-	* @var array;
-	*/
-	private $response;
-
+class NP_QuickEdit_Handler extends NP_BaseHandler {
 
 
 	public function __construct()
@@ -52,35 +25,6 @@ class NP_QuickEdit_Handler {
 		$this->sendResponse();
 	}
 
-
-	/**
-	* Set the Form Data
-	*/
-	private function setData()
-	{
-		$this->nonce = sanitize_text_field($_POST['nonce']);
-		$data = array();		
-		foreach( $_POST as $key => $value ){
-			$data[$key] = $value;
-		}
-		if ( !isset($_POST['comment_status']) ) $data['comment_status'] = 'closed';
-		$this->data = $data;
-	}
-
-
-	/**
-	* Validate the Nonce
-	*/
-	private function validateNonce()
-	{
-		if ( ! wp_verify_nonce( $this->nonce, 'nestedpages-nonce' ) ){
-			$this->response = array( 'status' => 'error', 'message' => __('Incorrect Form Field') );
-			$this->sendResponse();
-			die();
-		}
-	}
-
-
 	/**
 	* Update the Post
 	*/
@@ -92,6 +36,7 @@ class NP_QuickEdit_Handler {
 			$data = $this->data;
 			$data['nav_status'] = ( isset($data['nav_status']) ) ? 'hide' : 'show';
 			$data['np_status'] = ( isset($data['nested_pages_status']) ) ? 'hide' : 'show';
+			if ( !isset($_POST['comment_status']) ) $data['comment_status'] = 'closed';
 
 			$this->response = array(
 				'status' => 'success', 
@@ -106,28 +51,4 @@ class NP_QuickEdit_Handler {
 		}
 	}
 
-
-	/**
-	* Sync the Nav Menu
-	*/
-	private function syncMenu()
-	{
-		if ( $_POST['syncmenu'] == 'sync' ){
-			$menu = new NP_NavMenu;
-			$menu->clearMenu();
-			$menu->sync();
-			update_option('nestedpages_menusync', 'sync');
-		} else {
-			update_option('nestedpages_menusync', 'nosync');
-		}
-	}
-
-
-	/**
-	* Return Response
-	*/
-	private function sendResponse()
-	{
-		return wp_send_json($this->response);
-	}
 }

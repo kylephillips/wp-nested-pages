@@ -44,6 +44,7 @@ class NP_PostRepository {
 	public function updatePost($data)
 	{
 		$date = $this->validateDate($data);
+		if ( !isset($_POST['comment_status']) ) $data['comment_status'] = 'closed';
 		
 		$updated_post = array(
 			'ID' => sanitize_text_field($data['post_id']),
