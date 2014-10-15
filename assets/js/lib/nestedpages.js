@@ -443,6 +443,7 @@ jQuery(function($){
 		var li = $(row).parent('li');
 		if ( (data.np_status == 'hide') ){
 			$(li).addClass('np-hide');
+			$(row).find('.status').after('<i class="np-icon-eye-blocked"></i>');
 		} else {
 			$(li).removeClass('np-hide');
 			$(row).find('.np-icon-eye-blocked').remove();
