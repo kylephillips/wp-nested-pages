@@ -33,7 +33,7 @@ gulp.task('scss', function(){
 */
 gulp.task('scripts', function(){
 	return gulp.src(js_source)
-		.pipe(concat('nestedpages.js'))
+		.pipe(concat('nestedpages.min.js'))
 		.pipe(gulp.dest(js_compiled))
 		.pipe(uglify())
 		.pipe(gulp.dest(js_compiled))

@@ -152,6 +152,7 @@ jQuery(function($){
     			setTimeout(
     				function(){
     					add_remove_submenu_toggles();
+    					np_set_borders();
     			}, 100
     			);
     			submit_sortable_form();

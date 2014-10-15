@@ -53,7 +53,7 @@ class NP_Dependencies {
 			
 			wp_enqueue_script(
 				'nestedpages', 
-				plugins_url() . '/nestedpages/assets/js/nestedpages.js', 
+				plugins_url() . '/nestedpages/assets/js/nestedpages.min.js', 
 				array('jquery'), 
 				'1.0'
 			);
