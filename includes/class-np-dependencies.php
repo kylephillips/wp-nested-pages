@@ -6,8 +6,8 @@ class NP_Dependencies {
 
 	public function __construct()
 	{
-		add_action( 'admin_enqueue_scripts', [ $this, 'styles' ]);
-		add_action( 'admin_enqueue_scripts', [ $this, 'scripts' ]);
+		add_action( 'admin_enqueue_scripts', array($this, 'styles') );
+		add_action( 'admin_enqueue_scripts', array($this, 'scripts') );
 	}
 
 
