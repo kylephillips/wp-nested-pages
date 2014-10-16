@@ -11,7 +11,6 @@ require_once('class-np-handler-syncmenu.php');
 require_once('class-np-dependencies.php');
 require_once('class-np-pagelisting.php');
 require_once('class-np-newpage.php');
-require_once('class-np-pagemeta.php');
 
 /**
 * Primary Plugin Class
@@ -36,7 +35,6 @@ class NestedPages {
 		new NP_Dependencies;
 		new NP_PageListing;
 		new NP_NewPage;
-		new NP_PageMeta;
 	}
 
 
