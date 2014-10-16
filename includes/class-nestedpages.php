@@ -56,7 +56,7 @@ class NestedPages {
 	*/
 	public function addLocalization()
 	{
-		load_plugin_textdomain('nestedpages', false, 'nestedpages' . '/lang' );
+		load_plugin_textdomain('nestedpages', false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/lang' );
 	}
 
 
