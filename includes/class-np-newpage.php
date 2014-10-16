@@ -5,39 +5,53 @@
 */
 class NP_NewPage {
 
+	/**
+	* Parent Page
+	*/
+	private $parent_page;
+
 
 	public function __construct()
 	{
-		add_action('admin_head', array($this, 'checkPage'));
+		add_action('admin_notices', array($this, 'showNotice'));
+		add_action('admin_head', array($this, 'selectParent'));
 	}
 
 
 	/**
-	* Check if the page is the add new page screen and there is a parameter to add a child page
+	* Check if this is a new child page
 	*/
-	public function checkPage()
+	private function isChild()
 	{
 		$page = get_current_screen();
 		if ( ($page->id == 'page') && ($page->action == 'add') && (isset($_GET['npparent'])) ){
-			$this->setParent();
+			$this->parent_page = (int) sanitize_text_field($_GET['npparent']);
+			return true;
+		} else {
+			return false;
 		}
 	}
 
 
 	/**
-	* Set the parent id & output script to select field value & show mesage
+	* Show the admin notice
 	*/
-	private function setParent()
+	public function showNotice()
 	{
-		$parent = (int) sanitize_text_field($_GET['npparent']);
-		$parent_title = get_the_title($parent);
+		if ( $this->isChild() ) {
+			echo '<div id="message" class="updated"><p>' . __('Adding child page under:') . ' <strong>' . get_the_title($this->parent_page) . '</strong></p></div>';
+		}
+	}
 
-		if ( $parent_title ) :
-			$out = '<script>';
-			$out .= 'jQuery(document).ready(function(){jQuery("#parent_id").val("' . $parent . '");var html = \'<div id="message" class="updated"><p>' . __('Adding child page under:') . ' <strong>' . get_the_title($parent) . '</strong></p></div>\'; jQuery(".wrap").prepend(html); });';
-			$out .= '</script>';
-			echo $out;
-		endif;
+
+	/**
+	* Preselect the parent page
+	*/
+	public function selectParent()
+	{
+		if ( $this->isChild() ) {
+			echo '<script>jQuery(document).ready(function(){ jQuery("#parent_id").val("' . $this->parent_page . '"); });</script>';
+		}
 	}
 
 }
