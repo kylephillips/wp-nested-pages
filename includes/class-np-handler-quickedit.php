@@ -34,8 +34,11 @@ class NP_QuickEdit_Handler extends NP_BaseHandler {
 		if ( $update ){
 			
 			$data = $this->data;
+			
+			// Add additional meta to response
 			$data['nav_status'] = ( isset($data['nav_status']) ) ? 'hide' : 'show';
 			$data['np_status'] = ( isset($data['nested_pages_status']) ) ? 'hide' : 'show';
+
 			if ( !isset($_POST['comment_status']) ) $data['comment_status'] = 'closed';
 
 			$this->response = array(

@@ -74,10 +74,14 @@ class NP_NavMenu {
 			// Nested Pages Visibility
 			$np_status = get_post_meta( get_the_id(), 'nested_pages_status', true );
 
+			// Nav Title
+			$nav_title = get_post_meta( get_the_id(), 'np_nav_title', true );
+			$nav_title = ( $nav_title !== "" ) ? $nav_title : get_the_title();
+
 			if ( ($ns == 'show') || ($ns == '') ) {
 				if ( $np_status !== 'hide' ){
 				$menu = wp_update_nav_menu_item($this->id, 0, array(
-					'menu-item-title' => get_the_title(),
+					'menu-item-title' => $nav_title,
 					'menu-item-url' => get_the_permalink(),
 					'menu-item-status' => 'publish',
 					'menu-item-type' => 'post_type',

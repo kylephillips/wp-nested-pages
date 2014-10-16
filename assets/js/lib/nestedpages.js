@@ -327,7 +327,8 @@ jQuery(function($){
 			hour : $(item).attr('data-hour'),
 			minute : $(item).attr('data-minute'),
 			navstatus : $(item).attr('data-navstatus'),
-			npstatus : $(item).attr('data-np-status')
+			npstatus : $(item).attr('data-np-status'),
+			navtitle : $(item).attr('data-navtitle')
 		};
 		var parent_li = $(item).closest('.row').parent('li');
 		
@@ -354,6 +355,7 @@ jQuery(function($){
 		$(form).find('.np_author select').val(data.author);
 		$(form).find('.np_template').val(data.template);
 		$(form).find('.np_status').val(data.status);
+		$(form).find('.np_nav_title').val(data.navtitle);
 		if ( data.cs === 'open' ) $(form).find('.np_cs').prop('checked', 'checked');
 
 		if ( data.npstatus === 'hide' ){
@@ -408,6 +410,7 @@ jQuery(function($){
 					np_remove_qe_loading(form);
 					$(form).find('.np-quickedit-error').text(data.message).show();
 				} else {
+					console.log(data);
 					np_remove_qe_loading(form);
 					np_update_qe_data(form, data.post_data);
 					np_qe_update_animate(form);
@@ -461,6 +464,7 @@ jQuery(function($){
 		$(button).attr('data-author', data.post_author);
 		$(button).attr('data-navstatus', data.nav_status);
 		$(button).attr('data-np-status', data.np_status);
+		$(button).attr('data-navtitle', data.np_nav_title);
 
 		$(button).attr('data-month', data.mm);
 		$(button).attr('data-day', data.jj);

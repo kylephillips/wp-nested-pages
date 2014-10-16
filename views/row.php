@@ -69,6 +69,7 @@
 				data-status="<?php echo get_post_status(); ?>" 
 				data-np-status="<?php echo $np_status; ?>"
 				data-navstatus="<?php echo $nav_status; ?>"
+				data-navtitle="<?php echo $nav_title; ?>"
 				data-author="<?php echo $post->post_author; ?>" 
 				data-month="<?php echo $month; ?>" 
 				data-day="<?php echo $d; ?>" 

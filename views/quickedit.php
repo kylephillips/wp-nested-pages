@@ -57,6 +57,18 @@
 			endif;
 			?>
 
+			<div class="form-control">
+				<label><?php _e( 'Status' ); ?></label>
+				<select name="_status" class="np_status">
+				<?php if ( $can_publish ) : ?>
+					<option value="publish"><?php _e( 'Published' ); ?></option>
+					<option value="future"><?php _e( 'Scheduled' ); ?></option>
+				<?php endif; ?>
+					<option value="pending"><?php _e( 'Pending Review' ); ?></option>
+					<option value="draft"><?php _e( 'Draft' ); ?></option>
+				</select>
+			</div>
+
 		</div><!-- .left -->
 
 		<div class="right">
@@ -74,15 +86,8 @@
 				</label>
 			</div>
 			<div class="form-control">
-				<label><?php _e( 'Status' ); ?></label>
-				<select name="_status" class="np_status">
-				<?php if ( $can_publish ) : ?>
-					<option value="publish"><?php _e( 'Published' ); ?></option>
-					<option value="future"><?php _e( 'Scheduled' ); ?></option>
-				<?php endif; ?>
-					<option value="pending"><?php _e( 'Pending Review' ); ?></option>
-					<option value="draft"><?php _e( 'Draft' ); ?></option>
-				</select>
+				<label><?php _e( 'Menu Title' ); ?></label>
+				<input type="text" name="np_nav_title" class="np_nav_title" value="" />
 			</div>
 			<div class="comments">
 				<label>

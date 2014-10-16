@@ -121,6 +121,9 @@ class NP_PageListing {
 					// Show Hide in generated nav menu
 					$ns = get_post_meta( get_the_id(), 'np_nav_status', true);
 					$nav_status = ( $ns == 'hide' ) ? 'hide' : 'show';
+
+					// Menu Title
+					$nav_title = get_post_meta(get_the_id(), 'np_nav_title', true);
 					
 					// Date Vars
 					$d = get_the_time('d');

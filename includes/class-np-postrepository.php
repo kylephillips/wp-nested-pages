@@ -62,8 +62,9 @@ class NP_PostRepository {
 		$this->updateTemplate($data);
 		$this->updateNavStatus($data);
 		$this->updateNestedPagesStatus($data);
+		$this->updateNavTitle($data);
 
-		return $updated_post;
+		return $updated;
 	}
 
 
@@ -72,10 +73,11 @@ class NP_PostRepository {
 	*/
 	public function updateTemplate($data)
 	{
+		$template = sanitize_text_field($data['page_template']);
 		update_post_meta( 
 			$data['post_id'], 
 			'_wp_page_template', 
-			sanitize_text_field($data['page_template'])
+			$template
 		);
 	}
 
@@ -105,6 +107,22 @@ class NP_PostRepository {
 			'nested_pages_status', 
 			$status
 		);
+	}
+
+
+	/**
+	* Update Nested Pages Menu Title
+	*/
+	private function updateNavTitle($data)
+	{
+		if ( isset($data['np_nav_title']) ){
+			$title = sanitize_text_field($data['np_nav_title']);
+			update_post_meta( 
+				$data['post_id'], 
+				'np_nav_title', 
+				$title
+			);
+		}
 	}
 
 }
