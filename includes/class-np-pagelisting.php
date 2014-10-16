@@ -26,16 +26,17 @@ class NP_PageListing {
 	*/
 	public function adminMenu()
 	{
-		add_menu_page( 
-			$this->post_type->labels->name,
-			$this->post_type->labels->name,
-			'delete_pages',
-			'nestedpages', 
-			array( $this, 'pageListing' ),
-			'dashicons-admin-page',
-			20 // Overwrite Default Pages Menu Item
-		);
-    
+		if ( current_user_can('edit_pages') ){
+			add_menu_page( 
+				$this->post_type->labels->name,
+				$this->post_type->labels->name,
+				'delete_pages',
+				'nestedpages', 
+				array( $this, 'pageListing' ),
+				'dashicons-admin-page',
+				20 // Overwrite Default Pages Menu Item
+			);
+    	}
 	}
 
 
@@ -98,7 +99,13 @@ class NP_PageListing {
 		));
 		if ( $pages->have_posts() ) :
 			$count++;
-			echo ( $count == 1 ) ? '<ol class="sortable nplist">' : '<ol class="nplist">';
+
+			if ( $count == 1 ) {
+				echo ( current_user_can('edit_theme_options') ) ? '<ol class="sortable nplist">' : '<ol class="sortable no-sort nplist">';
+			} else {
+				echo '<ol class="nplist">';	
+			} 
+
 			while ( $pages->have_posts() ) : $pages->the_post();
 
 

@@ -85,6 +85,7 @@
 					<span class="checkbox-title"><?php _e( 'Allow Comments' ); ?></span>
 				</label>
 			</div>
+			<?php if ( current_user_can('edit_theme_options') ) : ?>
 			<div class="form-control">
 				<label><?php _e( 'Menu Title' ); ?></label>
 				<input type="text" name="np_nav_title" class="np_nav_title" value="" />
@@ -101,6 +102,7 @@
 					<span class="checkbox-title"><?php _e( 'Hide in Nested Pages' ); ?></span>
 				</label>
 			</div>
+			<?php endif; ?>
 		</div><!-- .right -->
 		</div><!-- .fields -->
 

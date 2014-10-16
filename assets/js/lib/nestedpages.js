@@ -137,7 +137,7 @@ jQuery(function($){
 	* Make the Menu sortable
 	*/
 	$(document).ready(function(){
-		$('.sortable').nestedSortable({
+		$('.sortable').not('.no-sort').nestedSortable({
 			items : 'li',
 			toleranceElement: '> .row',
 			handle: '.handle',

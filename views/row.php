@@ -7,7 +7,9 @@
 	<div class="child-toggle"></div>
 	<div class="row-inner">
 		<i class="np-icon-sub-menu"></i>
+		<?php if ( current_user_can('edit_theme_options') ) : ?>
 		<i class="handle np-icon-menu"></i>
+		<?php endif; ?>
 		<a href="<?php echo get_edit_post_link(); ?>" class="page-link page-title">
 			<span class="title"><?php the_title(); ?></span>
 			<?php 
