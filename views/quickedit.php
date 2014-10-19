@@ -10,6 +10,20 @@
 	$post_type_object = get_post_type_object( 'page' );
 	$m = ( isset( $mode ) && 'excerpt' == $mode ) ? 'excerpt' : 'list';
 	$can_publish = current_user_can( $post_type_object->cap->publish_posts );
+
+	$taxonomy_names = get_object_taxonomies( 'page' );
+	$hierarchical_taxonomies = array();
+	$flat_taxonomies = array();
+	foreach ( $taxonomy_names as $taxonomy_name ) {
+		$taxonomy = get_taxonomy( $taxonomy_name );
+		if ( !$taxonomy->show_ui )
+			continue;
+
+		if ( $taxonomy->hierarchical )
+			$hierarchical_taxonomies[] = $taxonomy;
+		else
+			$flat_taxonomies[] = $taxonomy;
+	}
 ?>
 
 	<form method="get" action="">
@@ -104,6 +118,19 @@
 			</div>
 			<?php endif; ?>
 		</div><!-- .right -->
+		<?php /*
+		<!-- TODO: add categories for post as class names in row, populate quick edit with class names -->
+		<?php foreach ( $hierarchical_taxonomies as $taxonomy ) : ?>
+
+			<span class="title inline-edit-categories-label"><?php echo esc_html( $taxonomy->labels->name ) ?></span>
+			<input type="hidden" name="<?php echo ( $taxonomy->name == 'category' ) ? 'post_category[]' : 'tax_input[' . esc_attr( $taxonomy->name ) . '][]'; ?>" value="0" />
+			<ul class="cat-checklist <?php echo esc_attr( $taxonomy->name )?>-checklist">
+				<?php wp_terms_checklist( 2, array( 'taxonomy' => $taxonomy->name ) ) ?>
+			</ul>
+
+	<?php endforeach; //$hierarchical_taxonomies as $taxonomy ?>
+*/?>
+
 		</div><!-- .fields -->
 
 		</div><!-- .form-interior -->

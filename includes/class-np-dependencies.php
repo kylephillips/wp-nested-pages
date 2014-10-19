@@ -4,10 +4,16 @@
 */
 class NP_Dependencies {
 
+	/**
+	* Plugin Directory
+	*/
+	private $plugin_dir;
+
 	public function __construct()
 	{
 		add_action( 'admin_enqueue_scripts', array($this, 'styles') );
 		add_action( 'admin_enqueue_scripts', array($this, 'scripts') );
+		$this->plugin_dir = plugins_url() . '/wp-nested-pages';
 	}
 
 
@@ -18,7 +24,7 @@ class NP_Dependencies {
 	{
 		wp_enqueue_style(
 			'nestedpages', 
-			plugins_url() . '/nestedpages/assets/css/nestedpages.css', 
+			$this->plugin_dir . '/assets/css/nestedpages.css', 
 			array(), 
 			'1.0'
 		);
@@ -39,21 +45,21 @@ class NP_Dependencies {
 
 			wp_enqueue_script(
 				'ui-touch-punch', 
-				plugins_url() . '/nestedpages/assets/js/lib/jquery.ui.touch-punch.min.js', 
+				$this->plugin_dir . '/assets/js/lib/jquery.ui.touch-punch.min.js', 
 				array('jquery', 'jquery-ui-sortable'), 
 				'1.0'
 			);
 			
 			wp_enqueue_script(
 				'nested-sortable', 
-				plugins_url() . '/nestedpages/assets/js/lib/jquery.mjs.nestedSortable.js', 
+				$this->plugin_dir . '/assets/js/lib/jquery.mjs.nestedSortable.js', 
 				array('jquery', 'jquery-ui-sortable'), 
 				'1.0'
 			);
 			
 			wp_enqueue_script(
 				'nestedpages', 
-				plugins_url() . '/nestedpages/assets/js/nestedpages.min.js', 
+				$this->plugin_dir . '/assets/js/nestedpages.min.js', 
 				array('jquery'), 
 				'1.0'
 			);

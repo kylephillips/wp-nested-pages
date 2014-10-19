@@ -17,7 +17,7 @@
 	</div>
 	<?php endif; ?>
 
-	<img src="<?php echo plugins_url(); ?>/nestedpages/assets/images/loading.gif" alt="loading" id="nested-loading" />
+	<img src="<?php echo plugins_url(); ?>/wp-nested-pages/assets/images/loading.gif" alt="loading" id="nested-loading" />
 
 	<ul class="subsubsub">
 		<li><a href="#all" class="np-toggle-publish active"><?php _e('All'); ?></a> | </li>
