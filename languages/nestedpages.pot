@@ -1,0 +1,179 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Nested Pages\n"
+"POT-Creation-Date: 2014-10-19 22:04-0500\n"
+"PO-Revision-Date: 2014-10-19 22:05-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/class-np-dependencies.php:72 views/pages.php:9
+msgid "Expand Pages"
+msgstr ""
+
+#: includes/class-np-dependencies.php:73
+msgid "Collapse Pages"
+msgstr ""
+
+#: includes/class-np-handler-base.php:57
+msgid "Incorrect Form Field"
+msgstr ""
+
+#: includes/class-np-handler-quickedit.php:46
+msgid "Post successfully updated"
+msgstr ""
+
+#: includes/class-np-handler-quickedit.php:52
+msgid "There was an error updating the page."
+msgstr ""
+
+#: includes/class-np-handler-sort.php:39
+msgid "Page order successfully updated."
+msgstr ""
+
+#: includes/class-np-handler-sort.php:41
+msgid "There was an order updating the page order."
+msgstr ""
+
+#: includes/class-np-handler-syncmenu.php:33
+msgid "Menu sync enabled."
+msgstr ""
+
+#: includes/class-np-handler-syncmenu.php:36
+msgid "Menu sync disabled."
+msgstr ""
+
+#: includes/class-np-newpage.php:42
+msgid "Adding child page under:"
+msgstr ""
+
+#: includes/class-np-pagelisting.php:49
+msgid "All Pages"
+msgstr ""
+
+#: includes/class-np-pagelisting.php:50
+msgid "Add New"
+msgstr ""
+
+#: includes/class-np-pagelisting.php:51
+msgid "Default Pages"
+msgstr ""
+
+#: includes/class-np-validation.php:36 includes/class-np-validation.php:51
+msgid "Please provide a valid date."
+msgstr ""
+
+#: views/pages.php:15
+msgid "Sync Menu"
+msgstr ""
+
+#: views/pages.php:23
+msgid "All"
+msgstr ""
+
+#: views/pages.php:24 views/quickedit.php:78
+msgid "Published"
+msgstr ""
+
+#: views/pages.php:25
+msgid "Show Hidden Pages"
+msgstr ""
+
+#: views/pages.php:26
+msgid "Default"
+msgstr ""
+
+#: views/quickedit.php:31 views/row.php:81
+msgid "Quick Edit"
+msgstr ""
+
+#: views/quickedit.php:40
+msgid "Title"
+msgstr ""
+
+#: views/quickedit.php:44
+msgid "Slug"
+msgstr ""
+
+#: views/quickedit.php:48
+msgid "Date"
+msgstr ""
+
+#: views/quickedit.php:66
+msgid "Author"
+msgstr ""
+
+#: views/quickedit.php:75
+msgid "Status"
+msgstr ""
+
+#: views/quickedit.php:79
+msgid "Scheduled"
+msgstr ""
+
+#: views/quickedit.php:81
+msgid "Pending Review"
+msgstr ""
+
+#: views/quickedit.php:82
+msgid "Draft"
+msgstr ""
+
+#: views/quickedit.php:90
+msgid "Template"
+msgstr ""
+
+#: views/quickedit.php:92
+msgid "Default Template"
+msgstr ""
+
+#: views/quickedit.php:99
+msgid "Allow Comments"
+msgstr ""
+
+#: views/quickedit.php:104
+msgid "Menu Title"
+msgstr ""
+
+#: views/quickedit.php:110
+msgid "Hide in Nav Menu"
+msgstr ""
+
+#: views/quickedit.php:116
+msgid "Hide in Nested Pages"
+msgstr ""
+
+#: views/quickedit.php:141
+msgid "Cancel"
+msgstr ""
+
+#: views/quickedit.php:144
+msgid "Update"
+msgstr ""
+
+#: views/row.php:42
+msgid "currently editing"
+msgstr ""
+
+#: views/row.php:44
+msgid "Edit"
+msgstr ""
+
+#: views/row.php:61
+msgid "Add Child"
+msgstr ""
+
+#: views/row.php:85
+msgid "View"
+msgstr ""
