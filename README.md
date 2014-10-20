@@ -94,5 +94,8 @@ Bulk quick edits are not currently supported by Nested Pages. To edit in bulk, c
 **What about custom columns?**
 Custom columns are not currently supported by Nested Pages. To view custom columns, click on “Default Pages” to view the native interface. If you are using WordPress SEO by Yoast, a page analysis indicator is shown.
 
+**What are those dots in my page rows?**
+If you have Wordpress SEO by Yoast installed, your page score indicators are shown along with the pages.
+
 ## Screenshots
 ![Screenshot](https://raw.githubusercontent.com/kylephillips/wp-nested-pages/master/assets/screenshot-2.png)
