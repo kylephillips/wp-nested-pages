@@ -6,7 +6,6 @@ function nestedpages_syncmenu_handler()
 }
 
 require_once('class-np-handler-base.php');
-require_once('class-np-navmenu.php');
 
 /**
 * Turn on/off menu sync
@@ -16,11 +15,11 @@ class NP_SyncMenu_Handler extends NP_BaseHandler {
 
 	public function __construct()
 	{
-		$this->setData();
-		$this->validateNonce();
+		parent::__construct();
 		$this->updateSync();
 		$this->sendResponse();
 	}
+
 
 	/**
 	* Update the sync setting

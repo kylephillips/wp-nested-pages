@@ -1,6 +1,7 @@
 <?php
 
 require_once('class-np-navmenu.php');
+require_once('class-np-postrepository.php');
 
 /**
 * Base Form Handler Class
@@ -19,7 +20,6 @@ abstract class NP_BaseHandler {
 	*/
 	protected $data;
 
-
 	/**
 	* Post Repo
 	* @var object
@@ -32,6 +32,13 @@ abstract class NP_BaseHandler {
 	* @var array;
 	*/
 	protected $response;
+
+	public function __construct()
+	{
+		$this->post_repo = new NP_PostRepository;
+		$this->setData();
+		$this->validateNonce();
+	}
 
 
 	/**

@@ -6,7 +6,6 @@ function nestedpages_quickedit_handler()
 }
 
 require_once('class-np-handler-base.php');
-require_once('class-np-postrepository.php');
 
 /**
 * Handles processing the quick edit form
@@ -17,9 +16,7 @@ class NP_QuickEdit_Handler extends NP_BaseHandler {
 
 	public function __construct()
 	{
-		$this->post_repo = new NP_PostRepository;
-		$this->setData();
-		$this->validateNonce();
+		parent::__construct();
 		$this->updatePost();
 		$this->syncMenu();
 		$this->sendResponse();

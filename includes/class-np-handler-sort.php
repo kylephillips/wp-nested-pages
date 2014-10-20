@@ -11,7 +11,6 @@ function nestedpages_sort_handler()
 * @return json response
 */
 require_once('class-np-handler-base.php');
-require_once('class-np-postrepository.php');
 require_once('class-np-navmenu.php');
 
 class NP_SortHandler extends NP_BaseHandler {
@@ -19,9 +18,7 @@ class NP_SortHandler extends NP_BaseHandler {
 
 	public function __construct()
 	{
-		$this->post_repo = new NP_PostRepository;
-		$this->setData();
-		$this->validateNonce();
+		parent::__construct();
 		$this->updateOrder();
 		$this->syncMenu();
 		$this->sendResponse();

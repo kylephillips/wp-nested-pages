@@ -9,7 +9,6 @@ class NP_NavMenu {
 	*/
 	public $id;
 
-
 	/**
 	* The Menu Items
 	*/
