@@ -2,7 +2,7 @@
 /*
 Plugin Name: Nested Pages
 Plugin URI: http://nestedpages.com
-Description: Adds intuitive drag and drop functionality for page sorting and nesting, while retaining the quick edit features you're used to.
+Description: Provides an intuitive drag and drop interface for managing pages in the Wordpress admin, while maintaining quick edit functionality.
 Version: 1.0
 Author: Kyle Phillips
 Author URI: https://github.com/kylephillips

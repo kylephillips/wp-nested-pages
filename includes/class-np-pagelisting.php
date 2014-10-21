@@ -72,8 +72,7 @@ class NP_PageListing {
 	*/
 	private function addNewPageLink()
 	{
-		$link = esc_url( admin_url('post-new.php?post_type=page') );
-		return $link;
+		return esc_url( admin_url('post-new.php?post_type=page') );
 	}
 
 
