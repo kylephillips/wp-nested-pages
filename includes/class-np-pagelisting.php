@@ -13,6 +13,20 @@ class NP_PageListing {
 	private $post_type;
 
 
+	/**
+	* Hierarchical Taxonomies
+	* @var array
+	*/
+	private $h_taxonomies;
+
+
+	/**
+	* Flat Taxonomies
+	* @var array
+	*/
+	private $f_taxonomies;
+
+
 	public function __construct()
 	{
 		$this->post_type = get_post_type_object('page');
@@ -85,6 +99,48 @@ class NP_PageListing {
 
 
 	/**
+	* Set the Taxonomies for Pages
+	*/
+	private function setTaxonomies()
+	{
+		$taxonomy_names = get_object_taxonomies( 'page' );
+		$hierarchical_taxonomies = array();
+		$flat_taxonomies = array();
+		foreach ( $taxonomy_names as $taxonomy_name ) {
+			$taxonomy = get_taxonomy( $taxonomy_name );
+			if ( !$taxonomy->show_ui )
+				continue;
+
+			if ( $taxonomy->hierarchical )
+				$hierarchical_taxonomies[] = $taxonomy;
+			else
+				$flat_taxonomies[] = $taxonomy;
+		}
+		$this->h_taxonomies = $hierarchical_taxonomies;
+		$this->f_taxonomies = $flat_taxonomies;
+	}
+
+
+	/**
+	* Get a Posts Taxonomies
+	*/
+	private function hierarchicalTaxonomies($page_id)
+	{
+		$out = '';
+		if ( count($this->h_taxonomies) > 0 ) {
+			foreach ( $this->h_taxonomies as $taxonomy ){
+				$terms = wp_get_post_terms($page_id, $taxonomy->name);
+				foreach ( $terms as $term ){
+					$out .= 'in-' . $taxonomy->name . '-' . $term->term_id . ' ';
+				}
+			}
+		}
+		if ( $out !== '' ) $out .= ' has-tax ';
+		return $out;
+	}
+
+
+	/**
 	* Loop through all the pages and create the nested / sortable list
 	* Recursive Method, called in page.php view
 	*/
@@ -101,15 +157,20 @@ class NP_PageListing {
 			$count++;
 
 			if ( $count == 1 ) {
-				echo ( current_user_can('edit_theme_options') ) ? '<ol class="sortable nplist">' : '<ol class="sortable no-sort nplist">';
+				
+				$this->setTaxonomies();
+
+				echo ( current_user_can('edit_theme_options') ) 
+					? '<ol class="sortable nplist">' 
+					: '<ol class="sortable no-sort nplist">';
 			} else {
 				echo '<ol class="nplist">';	
 			} 
 
 			while ( $pages->have_posts() ) : $pages->the_post();
 
-
 				global $post;
+				
 				echo '<li id="menuItem_' . get_the_id() . '" class="page-row';
 
 				// Published?
@@ -119,6 +180,9 @@ class NP_PageListing {
 				$np_status = get_post_meta( get_the_id(), 'nested_pages_status', true );
 				$np_status = ( $np_status == 'hide' ) ? 'hide' : 'show';
 				if ( $np_status == 'hide' ) echo ' np-hide';
+
+				// Taxonomies
+				echo ' ' . $this->hierarchicalTaxonomies( get_the_id() );
 				
 				echo '">';
 					$count++;

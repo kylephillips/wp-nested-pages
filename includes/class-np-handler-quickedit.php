@@ -17,6 +17,7 @@ class NP_QuickEdit_Handler extends NP_BaseHandler {
 	public function __construct()
 	{
 		parent::__construct();
+		//return wp_send_json($this->data);
 		$this->updatePost();
 		$this->syncMenu();
 		$this->sendResponse();
@@ -24,6 +25,7 @@ class NP_QuickEdit_Handler extends NP_BaseHandler {
 
 	/**
 	* Update the Post
+	* @todo update taxonomies
 	*/
 	private function updatePost()
 	{

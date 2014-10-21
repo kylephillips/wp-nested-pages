@@ -4,26 +4,13 @@
 	* Bulk functionality removed
 	* Other post type functionality removed (this will only be used for pages)
 	* Order and parents are saved using drag and drop functionality
-	* @todo bring in taxonomy functionality
 	*/
 	$post = get_default_post_to_edit( 'page' );
 	$post_type_object = get_post_type_object( 'page' );
 	$m = ( isset( $mode ) && 'excerpt' == $mode ) ? 'excerpt' : 'list';
 	$can_publish = current_user_can( $post_type_object->cap->publish_posts );
 
-	$taxonomy_names = get_object_taxonomies( 'page' );
-	$hierarchical_taxonomies = array();
-	$flat_taxonomies = array();
-	foreach ( $taxonomy_names as $taxonomy_name ) {
-		$taxonomy = get_taxonomy( $taxonomy_name );
-		if ( !$taxonomy->show_ui )
-			continue;
-
-		if ( $taxonomy->hierarchical )
-			$hierarchical_taxonomies[] = $taxonomy;
-		else
-			$flat_taxonomies[] = $taxonomy;
-	}
+	
 ?>
 
 	<form method="get" action="">
@@ -115,21 +102,30 @@
 					<input type="checkbox" name="nested_pages_status" class="np_status" value="hide" />
 					<span class="checkbox-title"><?php _e( 'Hide in Nested Pages' ); ?></span>
 				</label>
+			</div>			
+			<?php endif; // Edit theme options?>
+
+			<?php if ( !empty($this->h_taxonomies) ) : ?>
+			<div class="form-control">
+				<a href="#" class="np-btn np-toggle-taxonomies"><?php _e('Edit Taxonomies'); ?></a>
 			</div>
 			<?php endif; ?>
+
 		</div><!-- .right -->
-		<?php /*
-		<!-- TODO: add categories for post as class names in row, populate quick edit with class names -->
-		<?php foreach ( $hierarchical_taxonomies as $taxonomy ) : ?>
 
-			<span class="title inline-edit-categories-label"><?php echo esc_html( $taxonomy->labels->name ) ?></span>
-			<input type="hidden" name="<?php echo ( $taxonomy->name == 'category' ) ? 'post_category[]' : 'tax_input[' . esc_attr( $taxonomy->name ) . '][]'; ?>" value="0" />
-			<ul class="cat-checklist <?php echo esc_attr( $taxonomy->name )?>-checklist">
-				<?php wp_terms_checklist( 2, array( 'taxonomy' => $taxonomy->name ) ) ?>
-			</ul>
-
-	<?php endforeach; //$hierarchical_taxonomies as $taxonomy ?>
-*/?>
+		<?php if ( !empty($this->h_taxonomies) ) : ?>
+		<div class="np-taxonomies">
+			<?php foreach ( $this->h_taxonomies as $taxonomy ) : ?>
+				<div class="np-taxonomy">
+					<span class="title"><?php echo esc_html( $taxonomy->labels->name ) ?></span>
+					<input type="hidden" name="<?php echo ( $taxonomy->name == 'category' ) ? 'post_category[]' : 'tax_input[' . esc_attr( $taxonomy->name ) . '][]'; ?>" value="0" />
+					<ul class="cat-checklist <?php echo esc_attr( $taxonomy->name )?>-checklist">
+						<?php wp_terms_checklist( array( 'taxonomy' => $taxonomy->name ) ) ?>
+					</ul>
+				</div><!-- .np-taxonomy -->
+			<?php endforeach; ?>
+		</div><!-- .taxonomies -->
+		<?php endif; // if taxonomies ?>
 
 		</div><!-- .fields -->
 

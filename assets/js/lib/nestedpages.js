@@ -307,6 +307,11 @@ jQuery(function($){
 		submit_np_quickedit(form);
 	});
 
+	// Toggle the Taxonomies
+	$(document).on('click', '.np-toggle-taxonomies', function(e){
+		$(this).parents('form').find('.np-taxonomies').toggle();
+	});
+
 
 	/**
 	* Set Quick Edit data
@@ -331,6 +336,17 @@ jQuery(function($){
 			navtitle : $(item).attr('data-navtitle')
 		};
 		var parent_li = $(item).closest('.row').parent('li');
+
+		// Add Array of Taxonomies to the data object
+		if ( $(parent_li).hasClass('has-tax') ){
+			data.taxonomies = [];
+			var classes = $(parent_li).attr('class').split(/\s+/);
+			for ( i = 0; i < classes.length; i++ ){
+				if ( classes[i].substring(0, 3) === 'in-'){
+					data.taxonomies.push(classes[i]);
+				}
+			}
+		}
 		
 		if ( $(parent_li).children('ol').length > 0 ){
 			var child_ol = $(parent_li).children('ol');
@@ -376,6 +392,15 @@ jQuery(function($){
 		$(form).find('input[name="aa"]').val(data.year);
 		$(form).find('input[name="hh"]').val(data.hour);
 		$(form).find('input[name="mn"]').val(data.minute);
+
+		// Taxonomies
+		if ( data.hasOwnProperty('taxonomies') ){
+			var taxonomies = data.taxonomies;
+			for ( i = 0; i < taxonomies.length; i++ ){
+				var tax = '#' + taxonomies[i];
+				$(form).find(tax).prop('checked', 'checked');
+			}
+		}
 
 		$(form).show();
 	}
