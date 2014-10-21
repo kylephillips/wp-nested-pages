@@ -348,6 +348,7 @@ jQuery(function($){
 			}
 		}
 		
+		// Append the form to the list item
 		if ( $(parent_li).children('ol').length > 0 ){
 			var child_ol = $(parent_li).children('ol');
 			var newform = $('.quick-edit-form').clone().insertBefore(child_ol);
@@ -393,7 +394,7 @@ jQuery(function($){
 		$(form).find('input[name="hh"]').val(data.hour);
 		$(form).find('input[name="mn"]').val(data.minute);
 
-		// Taxonomies
+		// Populate Taxonomy Checkboxes
 		if ( data.hasOwnProperty('taxonomies') ){
 			var taxonomies = data.taxonomies;
 			for ( i = 0; i < taxonomies.length; i++ ){
