@@ -56,22 +56,23 @@ class NP_PostRepository {
 			'comment_status' => sanitize_text_field($data['comment_status']),
 			'post_status' => sanitize_text_field($data['_status'])
 		);
-
-		$updated = wp_update_post($updated_post);
+		wp_update_post($updated_post);
 
 		$this->updateTemplate($data);
 		$this->updateNavStatus($data);
 		$this->updateNestedPagesStatus($data);
 		$this->updateNavTitle($data);
+		$this->updateCategories($data);
+		$this->updateHierarchicalTaxonomies($data);
 
-		return $updated;
+		return true;
 	}
 
 
 	/**
 	* Update Page Template
 	*/
-	public function updateTemplate($data)
+	private function updateTemplate($data)
 	{
 		$template = sanitize_text_field($data['page_template']);
 		update_post_meta( 
@@ -122,6 +123,41 @@ class NP_PostRepository {
 				'np_nav_title', 
 				$title
 			);
+		}
+	}
+
+
+	/**
+	*  Update Categories
+	*/
+	private function updateCategories($data)
+	{
+		if ( isset($data['post_category']) )
+		{
+			$this->validation->validateIntegerArray($data['post_category']);
+			$cats = array();
+			foreach($data['post_category'] as $cat) {
+				if ( $cat !== 0 ) $cats[] = (int) $cat;
+			}
+			wp_set_post_terms($data['post_id'], $cats, 'category');
+		}
+	}
+
+
+	/**
+	*  Update Hierarchical Taxonomy Terms
+	*/
+	private function updateHierarchicalTaxonomies($data)
+	{
+		if ( isset($data['tax_input']) ) {
+			foreach ( $data['tax_input'] as $taxonomy => $term_ids ){
+				$this->validation->validateIntegerArray($term_ids);
+				$terms = array();
+				foreach ( $term_ids as $term ){
+					if ( $term !== 0 ) $terms[] = (int) $term;
+				}
+				wp_set_post_terms($data['post_id'], $terms, $taxonomy);
+			}
 		}
 	}
 

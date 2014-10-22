@@ -17,11 +17,11 @@ class NP_QuickEdit_Handler extends NP_BaseHandler {
 	public function __construct()
 	{
 		parent::__construct();
-		//return wp_send_json($this->data);
 		$this->updatePost();
 		$this->syncMenu();
 		$this->sendResponse();
 	}
+
 
 	/**
 	* Update the Post
@@ -29,28 +29,26 @@ class NP_QuickEdit_Handler extends NP_BaseHandler {
 	*/
 	private function updatePost()
 	{
-		$update = $this->post_repo->updatePost($this->data);
-		if ( $update ){
-			
-			$data = $this->data;
-			
-			// Add additional meta to response
-			$data['nav_status'] = ( isset($data['nav_status']) ) ? 'hide' : 'show';
-			$data['np_status'] = ( isset($data['nested_pages_status']) ) ? 'hide' : 'show';
+		$updated = $this->post_repo->updatePost($this->data);
+		if ( !$updated ) $this->sendErrorResponse();
 
-			if ( !isset($_POST['comment_status']) ) $data['comment_status'] = 'closed';
+		$this->addData();
+		$this->response = array(
+			'status' => 'success', 
+			'message' => __('Post successfully updated'), 
+			'post_data' => $this->data
+		);
+	}
 
-			$this->response = array(
-				'status' => 'success', 
-				'message' => __('Post successfully updated'), 
-				'post_data' => $data
-			);
-		} else {
-			$this->response = array(
-				'status' => 'error', 
-				'message' => __('There was an error updating the page.') 
-			);
-		}
+
+	/**
+	* Add additional data to the response object
+	*/
+	private function addData()
+	{
+		$this->data['nav_status'] = ( isset($data['nav_status']) ) ? 'hide' : 'show';
+		$this->data['np_status'] = ( isset($data['nested_pages_status']) ) ? 'hide' : 'show';
+		if ( !isset($_POST['comment_status']) ) $this->data['comment_status'] = 'closed';
 	}
 
 }

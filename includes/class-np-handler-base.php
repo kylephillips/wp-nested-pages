@@ -85,6 +85,19 @@ abstract class NP_BaseHandler {
 
 
 	/**
+	* Send a Generic Success Message
+	*/
+	protected function sendErrorResponse()
+	{
+		$this->response = array(
+			'status' => 'error', 
+			'message' => __('There was an error updating the page.') 
+		);
+		$this->sendResponse();
+	}
+
+
+	/**
 	* Return Response
 	*/
 	protected function sendResponse()

@@ -338,13 +338,11 @@ jQuery(function($){
 		var parent_li = $(item).closest('.row').parent('li');
 
 		// Add Array of Taxonomies to the data object
-		if ( $(parent_li).hasClass('has-tax') ){
-			data.taxonomies = [];
-			var classes = $(parent_li).attr('class').split(/\s+/);
-			for ( i = 0; i < classes.length; i++ ){
-				if ( classes[i].substring(0, 3) === 'in-'){
-					data.taxonomies.push(classes[i]);
-				}
+		data.taxonomies = [];
+		var classes = $(parent_li).attr('class').split(/\s+/);
+		for ( i = 0; i < classes.length; i++ ){
+			if ( classes[i].substring(0, 3) === 'in-'){
+				data.taxonomies.push(classes[i]);
 			}
 		}
 		
@@ -498,7 +496,61 @@ jQuery(function($){
 		$(button).attr('data-hour', data.hh);
 		$(button).attr('data-minute', data.mn);
 
+		np_remove_taxonomy_classes(li);
+		np_add_category_classes(li, data);
+		np_add_taxonomy_classes(li, data);
+
 	}
+
+	
+	/**
+	* Remove taxonomy classes from the row
+	*/
+	function np_remove_taxonomy_classes(row)
+	{
+		taxonomies = [];
+		var classes = $(row).attr('class').split(/\s+/);
+		for ( i = 0; i < classes.length; i++ ){
+			if ( classes[i].substring(0, 3) === 'in-'){
+				$(row).removeClass(classes[i]);
+			}
+		}
+	}
+
+
+	/**
+	* Add category classes to the row
+	*/
+	function np_add_category_classes(row, data)
+	{
+		if ( data.hasOwnProperty('post_category') ){
+			var cats = data.post_category;
+			for ( i = 0; i < cats.length; i++ ){
+				var taxclass = 'in-category-' + cats[i];
+				$(row).addClass(taxclass);
+			}
+		}
+	}
+
+
+	/**
+	* Add Taxonomy Classes to the row
+	*/
+	function np_add_taxonomy_classes(row, data)
+	{
+		if ( data.hasOwnProperty('tax_input') )
+		{
+			var taxonomies = data.tax_input;
+			$.each(taxonomies, function(tax, terms){
+				for (i = 0; i < terms.length; i++){
+					var taxclass = 'in-' + tax + '-' + terms[i];
+					$(row).addClass(taxclass);
+				}
+			});
+
+		}
+	}
+
 
 	/**
 	* Remove loading state from Quick Edit form

@@ -19,6 +19,19 @@ class NP_Validation {
 		}
 	}
 
+	/**
+	* Validate IDs in an array (tax ids)
+	*/
+	public function validateIntegerArray($items)
+	{
+		foreach ( $items as $item )
+		{
+			if ( !is_numeric($item) ){
+				return wp_send_json(array('status'=>'error', 'message'=>'Incorrect Form Field'));
+			}
+		}
+	}
+
 
 	/**
 	* Validate Date Input
