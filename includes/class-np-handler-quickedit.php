@@ -31,7 +31,6 @@ class NP_QuickEdit_Handler extends NP_BaseHandler {
 	{
 		$updated = $this->post_repo->updatePost($this->data);
 		if ( !$updated ) $this->sendErrorResponse();
-
 		$this->addData();
 		$this->response = array(
 			'status' => 'success', 
@@ -46,8 +45,8 @@ class NP_QuickEdit_Handler extends NP_BaseHandler {
 	*/
 	private function addData()
 	{
-		$this->data['nav_status'] = ( isset($data['nav_status']) ) ? 'hide' : 'show';
-		$this->data['np_status'] = ( isset($data['nested_pages_status']) ) ? 'hide' : 'show';
+		$this->data['nav_status'] = ( isset($this->data['nav_status']) ) ? 'hide' : 'show';
+		$this->data['np_status'] = ( isset($this->data['nested_pages_status']) ) ? 'hide' : 'show';
 		if ( !isset($_POST['comment_status']) ) $this->data['comment_status'] = 'closed';
 	}
 

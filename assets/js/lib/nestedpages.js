@@ -264,7 +264,6 @@ jQuery(function($){
 				syncmenu : setting
 			},
 			success: function(data){
-				console.log(data);
 				if (data.status === 'error'){
 					alert('There was an error saving the sync setting.')
 				}
@@ -434,7 +433,6 @@ jQuery(function($){
 					np_remove_qe_loading(form);
 					$(form).find('.np-quickedit-error').text(data.message).show();
 				} else {
-					console.log(data);
 					np_remove_qe_loading(form);
 					np_update_qe_data(form, data.post_data);
 					np_qe_update_animate(form);
