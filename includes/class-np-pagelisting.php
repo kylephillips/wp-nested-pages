@@ -48,9 +48,9 @@ class NP_PageListing {
 				'nestedpages', 
 				array( $this, 'pageListing' ),
 				'dashicons-admin-page',
-				20 // Overwrite Default Pages Menu Item
+				20
 			);
-    	}
+		}
 	}
 
 
@@ -60,9 +60,9 @@ class NP_PageListing {
 	public function submenu()
 	{
 		global $submenu;
-    	$submenu['nestedpages'][50] = array( __('All Pages','nestedpages'), 'publish_pages', esc_url(admin_url('admin.php?page=nestedpages')) );
-    	$submenu['nestedpages'][60] = array( __('Add New','nestedpages'), 'publish_pages', $this->addNewPageLink() );
-    	$submenu['nestedpages'][70] = array( __('Default Pages','nestedpages'), 'publish_pages', $this->defaultPagesLink() );
+		$submenu['nestedpages'][50] = array( __('All Pages','nestedpages'), 'publish_pages', esc_url(admin_url('admin.php?page=nestedpages')) );
+		$submenu['nestedpages'][60] = array( __('Add New','nestedpages'), 'publish_pages', $this->addNewPageLink() );
+		$submenu['nestedpages'][70] = array( __('Default Pages','nestedpages'), 'publish_pages', $this->defaultPagesLink() );
 	}
 
 
