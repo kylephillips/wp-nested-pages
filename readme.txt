@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Nested Pages ===
 Contributors: kylephillips
 Donate link: http://nestedpages.com/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit
@@ -8,11 +8,11 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WP Nested Pages provides an intuitive drag and drop interface for managing pages in the Wordpress admin, while maintaining quick edit functionality.
+Nested Pages provides an intuitive drag and drop interface for managing pages in the Wordpress admin, while maintaining quick edit functionality.
 
 == Description ==
 
-Nested Pages offers
+**Nested Pages offers**
 
 * A drag and drop interface for managing your pages - simple and intuitive
 * Quick edit functionality
@@ -53,7 +53,6 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 
 = Does quick edit support taxonomies? =
 Hierarchical taxonomies are currently supported
-
 
 == Screenshots ==
 
