@@ -13,7 +13,7 @@ WP Nested Pages provides an intuitive drag and drop interface for managing pages
 * A native Wordpress menu, automatically generated to match your Nested Pages screen
 * A touch-friendly interface
 
-For more information visit [nestedpages.com](http://nestedpages.com).
+For more information visit [nestedpages.com](http://nestedpages.com) or view the [Wordpress Plugin Page](https://wordpress.org/plugins/wp-nested-pages).
 
 ### Using Nested Pages
 
