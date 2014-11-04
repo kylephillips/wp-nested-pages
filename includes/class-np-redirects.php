@@ -19,7 +19,7 @@ class NP_Redirects {
 	{
 		$screen = get_current_screen();
 		if ( ($screen->id == 'edit-page') && (isset($_GET['trashed'])) && (intval($_GET['trashed']) >0)){
-			$redirect = add_query_arg(array('page'=>'nestedpages', 'trashed' => false, 'ids' => $_GET['ids'] ));
+			$redirect = add_query_arg(array('page'=>'nestedpages', 'trashed' => true, 'ids' => $_GET['ids'] ));
 			wp_redirect($redirect);
 			exit();
 		}

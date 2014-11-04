@@ -5,6 +5,8 @@
 		<a href="<?php echo $this->addNewPageLink(); ?>" class="add-new-h2"><?php echo $this->post_type->labels->add_new; ?></a>
 	</h2>
 
+	<?php echo $this->trashConfirmation(); ?>
+
 	<ul class="nestedpages-toggleall">
 		<li><a href="#" class="np-btn" data-toggle="closed"><?php _e('Expand Pages'); ?></a></li>
 	</ul>

@@ -138,6 +138,25 @@ class NP_PageListing {
 		return $out;
 	}
 
+	/**
+	* Display Trash Confirmation
+	* @todo add restored confimration
+	* @todo add styling to clear floats
+	*/
+	private function trashConfirmation()
+	{
+		$out = "";
+		if ( (isset($_GET['trashed'])) && (intval($_GET['trashed']) >0) ){
+			$trashed = ( explode(',', $_GET['ids']) );
+			if ( count($trashed) > 1 ){
+				$out = '<div id="message" class="updated below-h2"><p>' . count($trashed) . ' pages moved to the Trash.</p></div>';
+			} else {
+				$out = '<div id="message" class="updated below-h2"><p><strong>' . get_the_title($_GET['ids']) . ' </strong>page moved to the Trash.</p></div>';
+			}
+		}
+		return $out;
+	}
+
 
 	/**
 	* Loop through all the pages and create the nested / sortable list
