@@ -1,5 +1,5 @@
 <?php
-
+require_once('class-np-confirmation.php');
 /**
 * Primary Listing Class
 * Initiates Page Listing screen (overwriting default), and displays primary plugin view.
@@ -139,22 +139,13 @@ class NP_PageListing {
 	}
 
 	/**
-	* Display Trash Confirmation
-	* @todo add restored confimration
+	* Display Confirmation Message
 	* @todo add styling to clear floats
 	*/
-	private function trashConfirmation()
+	private function confirmation()
 	{
-		$out = "";
-		if ( (isset($_GET['trashed'])) && (intval($_GET['trashed']) >0) ){
-			$trashed = ( explode(',', $_GET['ids']) );
-			if ( count($trashed) > 1 ){
-				$out = '<div id="message" class="updated below-h2"><p>' . count($trashed) . ' pages moved to the Trash.</p></div>';
-			} else {
-				$out = '<div id="message" class="updated below-h2"><p><strong>' . get_the_title($_GET['ids']) . ' </strong>page moved to the Trash.</p></div>';
-			}
-		}
-		return $out;
+		$confirmation = new NP_Confirmation;
+		return $confirmation->getMessage();
 	}
 
 
