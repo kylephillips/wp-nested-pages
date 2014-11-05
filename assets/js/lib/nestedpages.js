@@ -28,6 +28,7 @@ jQuery(function($){
 		$(this).find('i').toggleClass('np-icon-arrow-down').toggleClass('np-icon-arrow-right');
 		$(submenu).toggle();
 		np_set_borders();
+		np_sync_user_toggles();
 	});
 
 	/**
@@ -52,6 +53,7 @@ jQuery(function($){
 			revert_quick_edit();
 			np_set_borders();
 		}
+		np_sync_user_toggles();
 	});
 
 	/**
@@ -572,6 +574,53 @@ jQuery(function($){
 		setTimeout(function(){
 			$(row).addClass('np-updated-show');
 		}, 1500);
+	}
+
+
+
+
+	/**
+	* ------------------------------------------------------------------------
+	* Sync User's Toggled Pages
+	* ------------------------------------------------------------------------
+	**/
+
+	/** 
+	* Get an array of visible pages' ids
+	* @return array
+	*/
+	function np_get_visible_rows()
+	{
+		var visible_ids = [];
+		var visible = $('.page-row:visible');
+		$.each(visible, function(i, v){
+			var id = $(this).attr('id');
+			visible_ids.push(id.replace("menuItem_", ""));
+		});
+		return visible_ids;
+	}
+
+	/**
+	* Sync the user's stored toggle status
+	*/
+	function np_sync_user_toggles()
+	{
+		var ids = np_get_visible_rows();
+		$.ajax({
+			url: ajaxurl,
+			type: 'post',
+			datatype: 'json',
+			data: {
+				action : 'npnesttoggle',
+				nonce : nestedpages.np_nonce,
+				ids : ids
+			},
+			success: function(data){
+				if ( data.status !== 'success' ){
+					console.log('There was an error saving toggled pages.');
+				}
+			}
+		});
 	}
 
 

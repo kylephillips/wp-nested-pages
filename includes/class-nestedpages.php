@@ -6,6 +6,7 @@ require_once('class-np-activate.php');
 require_once('class-np-handler-sort.php');
 require_once('class-np-handler-quickedit.php');
 require_once('class-np-handler-syncmenu.php');
+require_once('class-np-handler-nesttoggle.php');
 
 // Required Classes
 require_once('class-np-dependencies.php');
@@ -49,6 +50,7 @@ class NestedPages {
 			add_action( 'wp_ajax_npsort', 'nestedpages_sort_handler' );
 			add_action( 'wp_ajax_npquickedit', 'nestedpages_quickedit_handler' );
 			add_action( 'wp_ajax_npsyncmenu', 'nestedpages_syncmenu_handler' );
+			add_action( 'wp_ajax_npnesttoggle', 'nestedpages_nesttoggle_handler' );
 		}
 	}
 
