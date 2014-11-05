@@ -86,6 +86,15 @@ class NP_PageListing {
 		return $link;
 	}
 
+	/**
+	* User's Toggled Pages
+	*/
+	private function visiblePages()
+	{
+		$visible = get_user_meta(get_current_user_id(), 'np_visible_pages', true);
+		return unserialize($visible);
+	}
+
 
 	/**
 	* The Main View
@@ -150,6 +159,32 @@ class NP_PageListing {
 
 
 	/**
+	* Opening list tag <ol>
+	* @param array $pages - array of page objects from current query
+	* @param int $count - current count in loop
+	*/
+	private function listOpening($pages, $count)
+	{
+		$children = array();
+		$all_children = $pages->posts;
+		foreach($all_children as $child){
+			array_push($children, $child->ID);
+		}
+		$compared = array_intersect($this->visiblePages(), $children);
+
+		if ( $count == 1 ) {
+			echo ( current_user_can('edit_theme_options') ) 
+				? '<ol class="sortable nplist">' 
+				: '<ol class="sortable no-sort nplist">';
+		} else {
+			echo '<ol class="nplist"';
+			if ( count($compared) > 0 ) echo ' style="display:block;"';
+			echo '>';	
+		} 
+	}
+
+
+	/**
 	* Loop through all the pages and create the nested / sortable list
 	* Recursive Method, called in page.php view
 	*/
@@ -165,16 +200,8 @@ class NP_PageListing {
 		if ( $pages->have_posts() ) :
 			$count++;
 
-			if ( $count == 1 ) {
-				
-				$this->setTaxonomies();
-
-				echo ( current_user_can('edit_theme_options') ) 
-					? '<ol class="sortable nplist">' 
-					: '<ol class="sortable no-sort nplist">';
-			} else {
-				echo '<ol class="nplist">';	
-			} 
+			$this->setTaxonomies();
+			$this->listOpening($pages, $count);
 
 			while ( $pages->have_posts() ) : $pages->the_post();
 
