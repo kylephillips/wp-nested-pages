@@ -1,8 +1,10 @@
+<?php add_thickbox(); ?>
 <div class="wrap">
 
 	<h2>
 		<?php echo $this->post_type->labels->name; ?>
 		<a href="<?php echo $this->addNewPageLink(); ?>" class="add-new-h2"><?php echo $this->post_type->labels->add_new; ?></a>
+		<a href="#TB_inline?width=200&height=200&inlineId=np-add-page" class="add-new-h2 thickbox"><?php _e('Add Redirect', 'nestedpages'); ?></a>
 	</h2>
 
 	<?php if ( $this->confirmation() ) echo $this->confirmation() . '<div style="clear:both;"></div>'; ?>
@@ -39,6 +41,14 @@
 		<div class="quick-edit quick-edit-form" style="display:none;">
 			<?php include('quickedit.php'); ?>
 		</div>
+
+		<div class="quick-edit quick-edit-form-redirect" style="display:none;">
+			<?php include('quickedit-redirect.php'); ?>
+		</div>
 	</div>
 
 </div><!-- .wrap -->
+
+<div id="np-add-page" style="display:none;">
+    <p>Lorem Ipsum sit dolla amet.</p>
+</div>

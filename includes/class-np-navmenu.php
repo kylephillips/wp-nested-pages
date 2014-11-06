@@ -53,12 +53,25 @@ class NP_NavMenu {
 
 
 	/**
+	* Verify URL Format
+	* @param string - URL to check
+	* @return string - formatted URL
+	*/
+	private function check_url($url)
+	{
+		$parsed = parse_url($url);
+		if (empty($parsed['scheme'])) $url = 'http://' . ltrim($url, '/');
+		return $url;
+	}
+
+
+	/**
 	* Create the menu with nested pages (Recursive function)
 	*/
 	public function sync($parent = 0, $menu_parent = 0)
 	{
 		$page_q = new WP_Query(array(
-			'post_type' => 'page',
+			'post_type' => array('page','np-redirect'),
 			'posts_per_page' => -1,
 			'post_status' => 'publish',
 			'orderby' => 'menu_order',
@@ -73,21 +86,39 @@ class NP_NavMenu {
 			// Nested Pages Visibility
 			$np_status = get_post_meta( get_the_id(), 'nested_pages_status', true );
 
+			// Link Target
+			$link_target = get_post_meta( get_the_id(), 'np_link_target', true );
+
 			// Nav Title
 			$nav_title = get_post_meta( get_the_id(), 'np_nav_title', true );
 			$nav_title = ( $nav_title !== "" ) ? $nav_title : get_the_title();
 
 			if ( ($ns == 'show') || ($ns == '') ) {
 				if ( $np_status !== 'hide' ){
-				$menu = wp_update_nav_menu_item($this->id, 0, array(
-					'menu-item-title' => $nav_title,
-					'menu-item-url' => get_the_permalink(),
-					'menu-item-status' => 'publish',
-					'menu-item-type' => 'post_type',
-					'menu-item-object' => 'page',
-					'menu-item-object-id' => get_the_id(),
-					'menu-item-parent-id' => $menu_parent
-				));
+
+					if ( get_post_type() == 'page' ){
+						$menu = wp_update_nav_menu_item($this->id, 0, array(
+							'menu-item-title' => $nav_title,
+							'menu-item-url' => get_the_permalink(),
+							'menu-item-status' => 'publish',
+							'menu-item-type' => 'post_type',
+							'menu-item-object' => 'page',
+							'menu-item-object-id' => get_the_id(),
+							'menu-item-parent-id' => $menu_parent
+						));
+					} else { // redirect
+						$menu = wp_update_nav_menu_item($this->id, 0, array(
+							'menu-item-title' => $nav_title,
+							'menu-item-url' => $this->check_url(get_the_content()),
+							'menu-item-status' => 'publish',
+							'menu-item-type' => 'custom',
+							'menu-item-object' => 'page',
+							'menu-item-object-id' => get_the_id(),
+							'menu-item-parent-id' => $menu_parent,
+							'menu-item-target' => $link_target
+						));
+					}
+
 				$this->sync( get_the_id(), $menu );
 				}
 			}

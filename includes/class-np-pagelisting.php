@@ -1,5 +1,6 @@
 <?php
 require_once('class-np-confirmation.php');
+require_once('class-np-helpers.php');
 /**
 * Primary Listing Class
 * Initiates Page Listing screen (overwriting default), and displays primary plugin view.
@@ -25,6 +26,13 @@ class NP_PageListing {
 	* @var array
 	*/
 	private $f_taxonomies;
+
+
+	/**
+	* Post Data
+	* @var array
+	*/
+	private $post_data;
 
 
 	public function __construct()
@@ -102,7 +110,7 @@ class NP_PageListing {
 	*/
 	public function pageListing()
 	{
-		include( dirname( dirname(__FILE__) ) . '/views/pages.php');
+		include( NP_Helpers::view('pages') );
 	}
 
 
@@ -165,11 +173,13 @@ class NP_PageListing {
 	*/
 	private function listOpening($pages, $count)
 	{
+		// Get array of child pages
 		$children = array();
 		$all_children = $pages->posts;
 		foreach($all_children as $child){
 			array_push($children, $child->ID);
 		}
+		// Compare child pages with user's toggled pages
 		$compared = array_intersect($this->visiblePages(), $children);
 
 		if ( $count == 1 ) {
@@ -185,13 +195,50 @@ class NP_PageListing {
 
 
 	/**
+	* Set Post Data
+	*/
+	private function setPostData($post)
+	{
+		$this->post_data['template'] = get_post_meta($post->ID, '_wp_page_template', true);
+
+		// Show Hide in generated nav menu
+		$ns = get_post_meta( get_the_id(), 'np_nav_status', true);
+		$this->post_data['nav_status'] = ( $ns == 'hide' ) ? 'hide' : 'show';
+
+		// Hidden in Nested Pages?
+		$np_status = get_post_meta( get_the_id(), 'nested_pages_status', true );
+		$this->post_data['np_status'] = ( $np_status == 'hide' ) ? 'hide' : 'show';
+
+		// Menu Title
+		$this->post_data['nav_title'] = get_post_meta(get_the_id(), 'np_nav_title', true);
+
+		// Redirect Link Target
+		$this->post_data['link_target'] = get_post_meta(get_the_id(), 'np_link_target', true);
+
+		// Yoast Score
+		if ( function_exists('wpseo_translate_score') ) {
+			$yoast_score = get_post_meta(get_the_id(), '_yoast_wpseo_linkdex', true);
+			$this->post_data['score'] = wpseo_translate_score($yoast_score);
+		};
+
+		// Date Vars
+		$this->post_data['d'] = get_the_time('d');
+		$this->post_data['month'] = get_the_time('m');
+		$this->post_data['y'] = get_the_time('Y');
+		$this->post_data['h'] = get_the_time('H');
+		$this->post_data['m'] = get_the_time('i');
+	}
+
+
+	/**
 	* Loop through all the pages and create the nested / sortable list
 	* Recursive Method, called in page.php view
 	*/
 	private function loopPages($parent_id = 0, $count = 0)
 	{
+		$this->setTaxonomies();
 		$pages = new WP_Query(array(
-			'post_type' => 'page',
+			'post_type' => array('page','np-redirect'),
 			'posts_per_page' => -1,
 			'orderby' => 'menu_order',
 			'post_parent' => $parent_id,
@@ -200,12 +247,12 @@ class NP_PageListing {
 		if ( $pages->have_posts() ) :
 			$count++;
 
-			$this->setTaxonomies();
 			$this->listOpening($pages, $count);
 
 			while ( $pages->have_posts() ) : $pages->the_post();
 
 				global $post;
+				$this->setPostData($post);
 				
 				echo '<li id="menuItem_' . get_the_id() . '" class="page-row';
 
@@ -213,38 +260,20 @@ class NP_PageListing {
 				if ( $post->post_status == 'publish' ) echo ' published';
 				
 				// Hidden in Nested Pages?
-				$np_status = get_post_meta( get_the_id(), 'nested_pages_status', true );
-				$np_status = ( $np_status == 'hide' ) ? 'hide' : 'show';
-				if ( $np_status == 'hide' ) echo ' np-hide';
+				if ( $this->post_data['np_status'] == 'hide' ) echo ' np-hide';
 
 				// Taxonomies
 				echo ' ' . $this->hierarchicalTaxonomies( get_the_id() );
 				
 				echo '">';
 					$count++;
-					
-					$template = get_post_meta(get_the_id(), '_wp_page_template', true);
-					
-					// Show Hide in generated nav menu
-					$ns = get_post_meta( get_the_id(), 'np_nav_status', true);
-					$nav_status = ( $ns == 'hide' ) ? 'hide' : 'show';
 
-					// Menu Title
-					$nav_title = get_post_meta(get_the_id(), 'np_nav_title', true);
-					
-					// Date Vars
-					$d = get_the_time('d');
-					$month = get_the_time('m');
-					$y = get_the_time('Y');
-					$h = get_the_time('H');
-					$m = get_the_time('i');
+					if ( get_post_type() == 'page' ){
+						include( NP_Helpers::view('row') );
+					} else {
+						include( NP_Helpers::view('row-redirect') );
+					}
 
-					if ( function_exists('wpseo_translate_score') ) {
-						$yoast_score = get_post_meta(get_the_id(), '_yoast_wpseo_linkdex', true);
-						$score = wpseo_translate_score($yoast_score);
-					};
-					
-					include( dirname( dirname(__FILE__) ) . '/views/row.php');
 				$this->loopPages(get_the_id(), $count);
 				echo '</li>';
 

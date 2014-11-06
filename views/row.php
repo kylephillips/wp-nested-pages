@@ -15,7 +15,7 @@
 			<?php 
 				
 				if ( function_exists('wpseo_translate_score') ){
-					echo '<span class="np-seo-indicator ' . $score . '"></span>';
+					echo '<span class="np-seo-indicator ' . $this->post_data['score'] . '"></span>';
 				}
 
 				// Post Status
@@ -26,11 +26,11 @@
 				}
 
 				// Nested Pages Status
-				if ( $np_status == 'hide' )
+				if ( $this->post_data['np_status'] == 'hide' )
 					echo '<i class="np-icon-eye-blocked"></i>';
 
 				// Nav Status
-				if ( $nav_status == 'hide' ){
+				if ( $this->post_data['nav_status'] == 'hide' ){
 					echo '<span class="nav-status">(Hidden)</span>';
 				} else {
 					echo '<span class="nav-status"></span>';
@@ -64,20 +64,20 @@
 			<a href="#" 
 				class="np-btn np-quick-edit" 
 				data-id="<?php echo get_the_id(); ?>" 
-				data-template="<?php echo $template; ?>" 
+				data-template="<?php echo $this->post_data['template']; ?>" 
 				data-title="<?php the_title(); ?>" 
 				data-slug="<?php echo $post->post_name; ?>" 
 				data-commentstatus="<?php echo $cs; ?>" 
 				data-status="<?php echo get_post_status(); ?>" 
-				data-np-status="<?php echo $np_status; ?>"
-				data-navstatus="<?php echo $nav_status; ?>"
-				data-navtitle="<?php echo $nav_title; ?>"
+				data-np-status="<?php echo $this->post_data['np_status']; ?>"
+				data-navstatus="<?php echo $this->post_data['nav_status']; ?>"
+				data-navtitle="<?php echo $this->post_data['nav_title']; ?>"
 				data-author="<?php echo $post->post_author; ?>" 
-				data-month="<?php echo $month; ?>" 
-				data-day="<?php echo $d; ?>" 
-				data-year="<?php echo $y; ?>" 
-				data-hour="<?php echo $h; ?>" 
-				data-minute="<?php echo $m; ?>">
+				data-month="<?php echo $this->post_data['month']; ?>" 
+				data-day="<?php echo $this->post_data['d']; ?>" 
+				data-year="<?php echo $this->post_data['y']; ?>" 
+				data-hour="<?php echo $this->post_data['h']; ?>" 
+				data-minute="<?php echo $this->post_data['m']; ?>">
 				<?php _e('Quick Edit', 'nestedpages'); ?>
 			</a>
 			<?php endif; ?>

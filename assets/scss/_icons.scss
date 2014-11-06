@@ -22,6 +22,7 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+
 .np-icon-no:before {
 	content: "\e601";
 }
@@ -40,6 +41,9 @@
 .np-icon-sub-menu:before {
 	content: "\e600";
 }
+.np-icon-arrows-alt:before {
+	content: "\f0b2";
+}
 .np-icon-pencil:before {
 	content: "\e608";
 }
@@ -52,12 +56,30 @@
 .np-icon-remove:before {
 	content: "\e60a";
 }
+.np-icon-list:before {
+	content: "\e60d";
+}
 .np-icon-menu2:before {
 	content: "\e606";
+}
+.np-icon-link:before {
+	content: "\e612";
 }
 .np-icon-eye:before {
 	content: "\e60b";
 }
 .np-icon-eye-blocked:before {
 	content: "\e60c";
+}
+.np-icon-mail:before {
+	content: "\e60e";
+}
+.np-icon-github:before {
+	content: "\e60f";
+}
+.np-icon-wordpress:before {
+	content: "\e610";
+}
+.np-icon-linkedin:before {
+	content: "\e611";
 }

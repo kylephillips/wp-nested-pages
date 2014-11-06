@@ -1,5 +1,5 @@
 /**
-* WP Pages Scripts Required by WP Pages Plugin
+* Scripts Required by Nested Pages Plugin
 * @author Kyle Phillips
 */
 jQuery(function($){
@@ -280,7 +280,7 @@ jQuery(function($){
 
 	/**
 	* ------------------------------------------------------------------------
-	* Quick Edit
+	* Quick Edit - Pages
 	* ------------------------------------------------------------------------
 	**/
 
@@ -575,6 +575,85 @@ jQuery(function($){
 			$(row).addClass('np-updated-show');
 		}, 1500);
 	}
+
+
+
+
+
+	/**
+	* ------------------------------------------------------------------------
+	* Quick Edit - Redirect
+	* ------------------------------------------------------------------------
+	**/
+	$(document).on('click', '.np-quick-edit-redirect', function(e){
+		e.preventDefault();
+		revert_quick_edit();
+		set_redirect_quick_edit_data($(this));
+	});
+
+	/**
+	* Set the Redirect Quick edit data & create form
+	*/
+	function set_redirect_quick_edit_data(item)
+	{
+		var data = {
+			id : $(item).attr('data-id'),
+			url : $(item).attr('data-url'),
+			title : $(item).attr('data-title'),
+			status : $(item).attr('data-status'),
+			navstatus : $(item).attr('data-navstatus'),
+			npstatus : $(item).attr('data-np-status'),
+			linktarget : $(item).attr('data-linktarget')
+		};
+		console.log(data);
+		var parent_li = $(item).closest('.row').parent('li');
+		
+		// Append the form to the list item
+		if ( $(parent_li).children('ol').length > 0 ){
+			var child_ol = $(parent_li).children('ol');
+			var newform = $('.quick-edit-form-redirect').clone().insertBefore(child_ol);
+		} else {
+			var newform = $('.quick-edit-form-redirect').clone().appendTo(parent_li);
+		}
+
+		var row = $(newform).siblings('.row').hide();
+		$(newform).show();
+
+		populate_redirect_quick_edit(newform, data);
+	}
+
+	/**
+	* Populate the Quick Edit Form
+	*/
+	function populate_redirect_quick_edit(form, data)
+	{
+		$(form).find('.np_id').val(data.id);
+		$(form).find('.np_title').val(data.title);
+		$(form).find('.np_author select').val(data.author);
+		$(form).find('.np_status').val(data.status);
+		$(form).find('.np_content').val(data.url);
+
+		if ( data.npstatus === 'hide' ){
+			$(form).find('.np_status').prop('checked', 'checked');
+		} else {
+			$(form).find('.np_status').removeAttr('checked');
+		}
+		
+		if ( data.navstatus === 'hide' ) {
+			$(form).find('.np_nav_status').prop('checked', 'checked');
+		} else {
+			$(form).find('.np_nav_status').removeAttr('checked');
+		}
+
+		if ( data.linktarget === "_blank" ) {
+			$(form).find('.np_link_target').prop('checked', 'checked');
+		} else {
+			$(form).find('.np_link_target').removeAttr('checked');
+		}
+
+		$(form).show();
+	}
+
 
 
 

@@ -13,6 +13,7 @@ require_once('class-np-dependencies.php');
 require_once('class-np-pagelisting.php');
 require_once('class-np-newpage.php');
 require_once('class-np-redirects.php');
+require_once('class-np-posttypes.php');
 
 /**
 * Primary Plugin Class
@@ -38,6 +39,7 @@ class NestedPages {
 		new NP_PageListing;
 		new NP_NewPage;
 		new NP_Redirects;
+		new NP_PostTypes;
 	}
 
 

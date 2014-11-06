@@ -39,6 +39,7 @@ class NP_Dependencies {
 	{
 		$screen = get_current_screen();
 		if ( strpos( $screen->id, 'nestedpages' ) ) :
+			wp_enqueue_script('thickbox');
 			wp_enqueue_script('jquery-ui-core');
 			
 			wp_enqueue_script('jquery-ui-sortable');

@@ -12,7 +12,9 @@ var uglify = require('gulp-uglify');
 var scss = 'assets/scss/**/*';
 var css = 'assets/css/';
 
-var js_source = 'assets/js/lib/nestedpages.js';
+var js_source = [
+	'assets/js/lib/nestedpages.js'
+];
 var js_compiled = 'assets/js/';
 
 /**

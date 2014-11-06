@@ -66,6 +66,11 @@ Hierarchical taxonomies are currently supported
 
 == Changelog ==
 
+= 1.1 =
+* Expanded/Collapsed pages now saved for each user
+* Trashing pages now redirects to Nested Pages view
+* Trash link added to quickly get to a list of trashed pages
+
 = 1.0 =
 * Nested Pages
 
