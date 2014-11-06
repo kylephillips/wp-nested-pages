@@ -71,7 +71,9 @@ class NP_Dependencies {
 				array( 
 					'np_nonce' => wp_create_nonce( 'nestedpages-nonce' ),
 					'expand_text' => __('Expand Pages', 'nestedpages'),
-					'collapse_text' => __('Collapse Pages', 'nestedpages')
+					'collapse_text' => __('Collapse Pages', 'nestedpages'),
+					'show_hidden' => __('Show Hidden', 'nestedpages'),
+					'hide_hidden' => __('Hide Hidden', 'nestedpages')
 				)
 			);
 		endif;

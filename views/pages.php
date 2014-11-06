@@ -26,7 +26,7 @@
 	<ul class="subsubsub">
 		<li><a href="#all" class="np-toggle-publish active"><?php _e('All'); ?></a> | </li>
 		<li><a href="#published" class="np-toggle-publish"><?php _e('Published'); ?></a> | </li>
-		<li><a href="#show" class="np-toggle-hidden"><?php _e('Show Hidden Pages'); ?></a> | </li>
+		<li><a href="#show" class="np-toggle-hidden"><?php _e('Show Hidden'); ?></a> | </li>
 		<?php if ( current_user_can('delete_pages') ) : ?>
 		<li><a href="edit.php?post_status=trash&post_type=page"><?php _e('Trash'); ?></a></li> | </li>
 		<?php endif; ?>

@@ -64,12 +64,12 @@ jQuery(function($){
 		var action = $(this).attr('href');
 		if ( action === 'show' ){
 			$(this).attr('href', 'hide');
-			$(this).text('Show Hidden Pages');
+			$(this).text(nestedpages.show_hidden);
 			$('.np-hide').removeClass('shown').hide();
 			np_set_borders();
 		} else {
 			$(this).attr('href', 'show');
-			$(this).text('Hide Hidden Pages');
+			$(this).text(nestedpages.hide_hidden);
 			$('.np-hide').addClass('shown').show();
 			np_set_borders();
 		}
