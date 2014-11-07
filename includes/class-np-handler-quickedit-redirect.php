@@ -25,7 +25,6 @@ class NP_QuickEdit_Handler_Redirect extends NP_BaseHandler {
 
 	/**
 	* Update the Post
-	* @todo update taxonomies
 	*/
 	private function updatePost()
 	{

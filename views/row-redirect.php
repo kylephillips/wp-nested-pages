@@ -41,6 +41,7 @@
 			<a href="#" 
 				class="np-btn np-quick-edit-redirect" 
 				data-id="<?php echo get_the_id(); ?>" 
+				data-parentid="<?php echo $this->post_data['parent_id']; ?>"
 				data-title="<?php the_title(); ?>" 
 				data-url="<?php echo NP_Helpers::check_url(get_the_content()); ?>"
 				data-status="<?php echo get_post_status(); ?>" 

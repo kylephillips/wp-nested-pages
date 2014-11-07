@@ -557,7 +557,7 @@ jQuery(function($){
 	*/
 	function np_remove_qe_loading(form)
 	{
-		$(form).find('.np-save-quickedit').removeAttr('disabled');
+		$(form).find('.np-save-quickedit, .np-save-quickedit-redirect').removeAttr('disabled');
 		$(form).find('.np-qe-loading').hide();
 	}
 
@@ -613,7 +613,8 @@ jQuery(function($){
 			status : $(item).attr('data-status'),
 			navstatus : $(item).attr('data-navstatus'),
 			npstatus : $(item).attr('data-np-status'),
-			linktarget : $(item).attr('data-linktarget')
+			linktarget : $(item).attr('data-linktarget'),
+			parentid : $(item).attr('data-parentid')
 		};
 		var parent_li = $(item).closest('.row').parent('li');
 		
@@ -641,6 +642,7 @@ jQuery(function($){
 		$(form).find('.np_author select').val(data.author);
 		$(form).find('.np_status').val(data.status);
 		$(form).find('.np_content').val(data.url);
+		$(form).find('.np_parent_id').val(data.parentid);
 
 		if ( data.npstatus === 'hide' ){
 			$(form).find('.np_status').prop('checked', 'checked');
@@ -671,13 +673,13 @@ jQuery(function($){
 	{
 		$('.np-quickedit-error').hide();
 		var syncmenu = ( $('.np-sync-menu').is(':checked') ) ? 'sync' : 'nosync';
-
 		$.ajax({
 			url: ajaxurl,
 			type: 'post',
 			datatype: 'json',
 			data: $(form).serialize() + '&action=npquickeditredirect&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
 			success: function(data){
+				console.log(data);
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);
 					$(form).find('.np-quickedit-error').text(data.message).show();
@@ -686,6 +688,10 @@ jQuery(function($){
 					np_update_qe_redirect_data(form, data.post_data);
 					np_qe_update_animate(form);
 				}
+			},
+			error: function(){
+				np_remove_qe_loading(form);
+				$(form).find('.np-quickedit-error').text('The form could not be saved at this time.').show();
 			}
 		});
 	}
@@ -697,7 +703,7 @@ jQuery(function($){
 	function np_update_qe_redirect_data(form, data)
 	{
 		var row = $(form).parent('.quick-edit').siblings('.row');
-		$(row).find('.title').text(data.post_title);
+		$(row).find('.title').html(data.post_title + ' <i class="np-icon-link"></i>');
 		
 		var status = $(row).find('.status');
 		if ( (data._status !== 'publish') && (data._status !== 'future') ){
@@ -790,11 +796,66 @@ jQuery(function($){
 					$('.np-new-link-error').text(data.message).show();
 				} else {
 					np_remove_link_loading();
+					np_create_redirect_row(data.post_data);
 					// np_update_qe_redirect_data(form, data.post_data);
 					// np_qe_update_animate(form);
 				}
 			}
 		});
+	}
+
+	/**
+	* Create the new row and append where needed
+	*/
+	function np_create_redirect_row(data)
+	{
+		var html = '<li id="menuItem_' + data.id + '" class="page-row';
+		if ( data._status === 'publish' ){
+			html += ' published';
+		}
+		html += '">'
+
+		html += '<div class="row"><div class="child-toggle"></div><div class="row-inner"><i class="np-icon-sub-menu"></i><i class="handle np-icon-menu"></i><a href="' + data.np_link_content + '" class="page-link page-title" target="_blank"><span class="title">' + data.np_link_title + ' <i class="np-icon-link"></i></span>';
+
+		// Post Status
+		if ( data._status !== 'publish' ){
+			html += '<span class="status">' + data._status + '</span>';
+		} else {
+			html += '<span class="status"></span>';
+		}
+
+		// Nested Pages Status
+		if ( data.np_status === "hide" ){
+			html += '<i class="np-icon-eye-blocked"></i>';
+		}
+
+		// Nav Menu Status
+		if ( data.nav_status === "hide" ){
+			html += '<span class="nav-status">(Hidden)</span>';
+		} else {
+			html += '<span class="nav-status"></span>';
+		}
+
+		// Quick Edit Button
+		html += '</a><a href="#" class="np-toggle-edit"><i class="np-icon-pencil"></i></a><div class="action-buttons"><a href="#" class="np-btn np-quick-edit-redirect" ';
+		html +=	'data-id="' + data.id + '"'; 
+		html += 'data-parentid="' + data.parent_id + '"';
+		html += 'data-title="' + data.np_link_title + '" ';
+		html += 'data-url="' + data.np_link_content + '" ';
+		html += 'data-status="' + data._status + '" ';
+		html += 'data-np-status="' + data.np_status + '" ';
+		html += 'data-navstatus="' + data.nav_status + '" ';
+		html += 'data-linktarget="' + data.link_target + '">'
+		html += 'Quick Edit</a>';
+		html += '</div></div></div></li>';
+
+		if ( data.parent_id === "0" ){
+			$('.sortable.nplist li:first-child').after(html);
+		}
+
+		$('#np-link-modal').modal('hide');
+		np_set_borders();
+
 	}
 
 

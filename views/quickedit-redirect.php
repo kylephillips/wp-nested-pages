@@ -67,6 +67,7 @@
 
 	<div class="buttons">
 		<input type="hidden" name="post_id" class="np_id" value="<?php echo get_the_id(); ?>">
+		<input type="hidden" name="parent_id" class="np_parent_id" value="">
 		<a accesskey="c" href="#inline-edit" class="button-secondary alignleft np-cancel-quickedit">
 			<?php _e( 'Cancel' ); ?>
 		</a>

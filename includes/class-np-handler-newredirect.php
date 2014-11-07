@@ -6,6 +6,7 @@ function nestedpages_new_redirect()
 }
 
 require_once('class-np-handler-base.php');
+require_once('class-np-helpers.php');
 
 /**
 * Creates new Redirect/Link
@@ -31,12 +32,23 @@ class NP_NewRedirect extends NP_BaseHandler {
 	{
 		$updated = $this->post_repo->saveRedirect($this->data);
 		if ( !$updated ) $this->sendErrorResponse();
+		$this->data['id'] = $updated;
 		$this->addData();
+		$this->formatLink();
 		$this->response = array(
 			'status' => 'success', 
 			'message' => __('Redirect successfully updated'),
 			'post_data' => $this->data
 		);
+	}
+
+
+	/**
+	* Format the new link for AJAX response
+	*/
+	private function formatLink()
+	{
+		$this->data['np_link_content'] = NP_Helpers::check_url($this->data['np_link_content']);
 	}
 
 

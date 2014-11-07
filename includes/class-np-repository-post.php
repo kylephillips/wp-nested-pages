@@ -245,7 +245,7 @@ class NP_PostRepository {
 		$this->updateNavStatus($data);
 		$this->updateNestedPagesStatus($data);
 		$this->updateLinkTarget($data);
-		return true;
+		return $this->new_id;
 	}
 
 }

@@ -215,6 +215,9 @@ class NP_PageListing {
 		// Redirect Link Target
 		$this->post_data['link_target'] = get_post_meta(get_the_id(), 'np_link_target', true);
 
+		// Parent ID
+		$this->post_data['parent_id'] = $post->post_parent;
+
 		// Yoast Score
 		if ( function_exists('wpseo_translate_score') ) {
 			$yoast_score = get_post_meta(get_the_id(), '_yoast_wpseo_linkdex', true);
