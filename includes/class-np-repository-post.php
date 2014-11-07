@@ -6,10 +6,9 @@ class NP_PostRepository {
 
 	/**
 	* Validation Class
-	* @var NP_Validation instance
+	* @var object NP_Validation
 	*/
 	protected $validation;
-
 
 	public function __construct()
 	{
@@ -19,6 +18,9 @@ class NP_PostRepository {
 
 	/**
 	* Update Order
+	* @param array posts
+	* @param int parent
+	* @since 1.0
 	*/
 	public function updateOrder($posts, $parent = 0)
 	{
@@ -41,6 +43,8 @@ class NP_PostRepository {
 
 	/**
 	* Update Post
+	* @param array data
+	* @since 1.0
 	*/
 	public function updatePost($data)
 	{
@@ -71,6 +75,8 @@ class NP_PostRepository {
 
 	/**
 	* Update Page Template
+	* @param array data
+	* @since 1.0
 	*/
 	private function updateTemplate($data)
 	{
@@ -85,6 +91,8 @@ class NP_PostRepository {
 
 	/**
 	* Update Nav Status (show/hide in nav menu)
+	* @since 1.0
+	* @param array data
 	*/
 	private function updateNavStatus($data)
 	{
@@ -99,6 +107,8 @@ class NP_PostRepository {
 
 	/**
 	* Update Nested Pages Visibility (how/hide in Nested Pages interface)
+	* @since 1.0
+	* @param array data
 	*/
 	private function updateNestedPagesStatus($data)
 	{
@@ -113,6 +123,8 @@ class NP_PostRepository {
 
 	/**
 	* Update Nested Pages Menu Title
+	* @since 1.0
+	* @param array data
 	*/
 	private function updateNavTitle($data)
 	{
@@ -128,7 +140,9 @@ class NP_PostRepository {
 
 
 	/**
-	*  Update Categories
+	* Update Categories
+	* @since 1.0
+	* @param array data
 	*/
 	private function updateCategories($data)
 	{
@@ -145,7 +159,9 @@ class NP_PostRepository {
 
 
 	/**
-	*  Update Hierarchical Taxonomy Terms
+	* Update Hierarchical Taxonomy Terms
+	* @since 1.0
+	* @param array data
 	*/
 	private function updateHierarchicalTaxonomies($data)
 	{
@@ -159,6 +175,45 @@ class NP_PostRepository {
 				wp_set_post_terms($data['post_id'], $terms, $taxonomy);
 			}
 		}
+	}
+
+
+	/**
+	* Update Link Target for Redirects
+	* @since 1.1
+	* @param array data
+	*/
+	private function updateLinkTarget($data)
+	{
+		$link_target = ( isset($data['link_target']) ) ? "_blank" : "";
+		update_post_meta( 
+			$data['post_id'], 
+			'np_link_target', 
+			$link_target
+		);
+	}
+
+
+	/**
+	* Update a Redirect
+	* @since 1.1
+	* @param array data
+	*/
+	public function updateRedirect($data)
+	{
+		$updated_post = array(
+			'ID' => sanitize_text_field($data['post_id']),
+			'post_title' => sanitize_text_field($data['post_title']),
+			'post_status' => sanitize_text_field($data['_status']),
+			'post_content' => sanitize_text_field($data['post_content'])
+		);
+		wp_update_post($updated_post);
+
+		$this->updateNavStatus($data);
+		$this->updateNestedPagesStatus($data);
+		$this->updateLinkTarget($data);
+
+		return true;
 	}
 
 }

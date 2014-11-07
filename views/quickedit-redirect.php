@@ -56,7 +56,7 @@
 		</div>
 		<div class="comments">
 			<label>
-				<input type="checkbox" name="nested_pages_link_target" class="np_link_target" value="_blank" />
+				<input type="checkbox" name="link_target" class="link_target" value="_blank" />
 				<span class="checkbox-title"><?php _e( 'Open link in new window', 'nestedpages' ); ?></span>
 			</label>
 		</div>			
@@ -73,7 +73,7 @@
 		<a accesskey="c" href="#inline-edit" class="button-secondary alignleft np-cancel-quickedit">
 			<?php _e( 'Cancel' ); ?>
 		</a>
-		<a accesskey="s" href="#inline-edit" class="button-primary np-save-quickedit alignright">
+		<a accesskey="s" href="#inline-edit" class="button-primary np-save-quickedit-redirect alignright">
 			<?php _e( 'Update' ); ?>
 		</a>
 		<span class="np-qe-loading"></span>

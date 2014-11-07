@@ -1,7 +1,7 @@
 <?php
 
 require_once('class-np-navmenu.php');
-require_once('class-np-postrepository.php');
+require_once('class-np-repository-post.php');
 
 /**
 * Base Form Handler Class
