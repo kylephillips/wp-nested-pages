@@ -5,9 +5,7 @@
 		<?php echo $this->post_type->labels->name; ?>
 		<a href="<?php echo $this->addNewPageLink(); ?>" class="add-new-h2"><?php echo $this->post_type->labels->add_new; ?></a>
 		<?php if ( current_user_can('publish_pages') ) : ?>
-		<span class="open-redirect-modal">
-			<a href="#" class="add-new-h2" title="<?php _e('Add Link', 'nestedpages'); ?>" data-toggle="modal" data-target="#np-link-modal"><?php _e('Add Link', 'nestedpages'); ?></a>
-		</span>
+		<a href="#" class="add-new-h2 open-redirect-modal" title="<?php _e('Add Link', 'nestedpages'); ?>" data-parentid="0"><?php _e('Add Link', 'nestedpages'); ?></a>
 		<?php endif; ?>
 	</h2>
 

@@ -744,10 +744,58 @@ jQuery(function($){
 	* Add new Redirect link (modal)
 	* ------------------------------------------------------------------------
 	**/
-	$(document).on('click', '.open-redirect-modal', function(){
-		//$('.np-modal-form').find('input').val('');
+	$(document).on('click', '.open-redirect-modal', function(e){
+		e.preventDefault();
+		var parent_id = $(this).attr('data-parentid');
+		$('.np-modal-form').find('input').val('');
+		$('.np-modal-form').find('.parent_id').val(parent_id);
+		$('#np-link-modal').modal('show');
 	});
 
+	$(document).on('click', '.np-save-link', function(e){
+		e.preventDefault();
+		$('.np-new-link-error').hide();
+		$('.np-link-loading').show();
+		$(this).attr('disabled', 'disabled');
+		np_save_new_link();
+	});
+
+	/**
+	* Remove loading state from link form
+	*/
+	function np_remove_link_loading()
+	{
+		$('.np-link-loading').hide();
+		$('.np-save-link').removeAttr('disabled');
+	}
+
+	/**
+	* Set new link data
+	*/
+	function np_save_new_link()
+	{
+		$('.np-new-link-error').hide();
+		var data = $('.np-new-link-form').serialize();
+		var syncmenu = ( $('.np-sync-menu').is(':checked') ) ? 'sync' : 'nosync';
+
+		$.ajax({
+			url: ajaxurl,
+			type: 'post',
+			datatype: 'json',
+			data: data + '&action=npnewredirect&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
+			success: function(data){
+				console.log(data);
+				if (data.status === 'error'){
+					np_remove_link_loading();
+					$('.np-new-link-error').text(data.message).show();
+				} else {
+					np_remove_link_loading();
+					// np_update_qe_redirect_data(form, data.post_data);
+					// np_qe_update_animate(form);
+				}
+			}
+		});
+	}
 
 
 

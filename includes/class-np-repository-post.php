@@ -10,6 +10,11 @@ class NP_PostRepository {
 	*/
 	protected $validation;
 
+	/**
+	* New Post ID
+	*/
+	protected $new_id;
+
 	public function __construct()
 	{
 		$this->validation = new NP_Validation;
@@ -97,8 +102,9 @@ class NP_PostRepository {
 	private function updateNavStatus($data)
 	{
 		$status = ( isset($data['nav_status']) ) ? 'hide' : 'show';
+		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
 		update_post_meta( 
-			$data['post_id'], 
+			$id, 
 			'np_nav_status', 
 			$status
 		);
@@ -113,8 +119,9 @@ class NP_PostRepository {
 	private function updateNestedPagesStatus($data)
 	{
 		$status = ( isset($data['nested_pages_status']) ) ? 'hide' : 'show';
+		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
 		update_post_meta( 
-			$data['post_id'], 
+			$id, 
 			'nested_pages_status', 
 			$status
 		);
@@ -186,8 +193,9 @@ class NP_PostRepository {
 	private function updateLinkTarget($data)
 	{
 		$link_target = ( isset($data['link_target']) ) ? "_blank" : "";
+		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
 		update_post_meta( 
-			$data['post_id'], 
+			$id, 
 			'np_link_target', 
 			$link_target
 		);
@@ -205,7 +213,8 @@ class NP_PostRepository {
 			'ID' => sanitize_text_field($data['post_id']),
 			'post_title' => sanitize_text_field($data['post_title']),
 			'post_status' => sanitize_text_field($data['_status']),
-			'post_content' => sanitize_text_field($data['post_content'])
+			'post_content' => sanitize_text_field($data['post_content']),
+			'post_parent' => sanitize_text_field($data['parent_id'])
 		);
 		wp_update_post($updated_post);
 
@@ -213,6 +222,29 @@ class NP_PostRepository {
 		$this->updateNestedPagesStatus($data);
 		$this->updateLinkTarget($data);
 
+		return true;
+	}
+
+
+	/**
+	* Save a new Redirect
+	* @since 1.1
+	* @param array data
+	*/
+	public function saveRedirect($data)
+	{
+		$this->validation->validateRedirect($data);
+		$new_link = array(
+			'post_title' => sanitize_text_field($data['np_link_title']),
+			'post_status' => sanitize_text_field($data['_status']),
+			'post_content' => sanitize_text_field($data['np_link_content']),
+			'post_type' => 'np-redirect'
+		);
+		$this->new_id = wp_insert_post($new_link);
+
+		$this->updateNavStatus($data);
+		$this->updateNestedPagesStatus($data);
+		$this->updateLinkTarget($data);
 		return true;
 	}
 

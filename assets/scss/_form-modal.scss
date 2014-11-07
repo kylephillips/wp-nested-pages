@@ -2,12 +2,12 @@
 // Modal Forms
 // --------------------------------------------------
 .np-modal-form {
-	padding: 15px 0;
 
 	.form-interior {
 		@include clearfix;
 		background: url('../images/border.png') repeat-y;
 		background-position: center;
+		padding: 5px 0;
 	}
 
 	.form-control {

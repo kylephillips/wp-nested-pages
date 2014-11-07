@@ -23,8 +23,8 @@ class NP_PostTypes {
 		);
 		$args = array(
 			'labels' => $labels,
-			'public' => false,  
-			'show_ui' => false,
+			'public' => true,  
+			'show_ui' => true,
 			'menu_position' => 5,
 			'capability_type' => 'post',  
 			'hierarchical' => true,  
