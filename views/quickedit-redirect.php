@@ -1,7 +1,4 @@
 <?php 
-	/**
-	* See public inline_edit method of WP_Posts_List_Table class
-	*/
 	$post_type_object = get_post_type_object( 'np-redirect' );
 	$can_publish = current_user_can( $post_type_object->cap->publish_posts );
 ?>

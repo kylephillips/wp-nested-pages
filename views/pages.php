@@ -4,7 +4,11 @@
 	<h2>
 		<?php echo $this->post_type->labels->name; ?>
 		<a href="<?php echo $this->addNewPageLink(); ?>" class="add-new-h2"><?php echo $this->post_type->labels->add_new; ?></a>
-		<a href="#TB_inline?width=200&height=200&inlineId=np-add-page" class="add-new-h2 thickbox"><?php _e('Add Redirect', 'nestedpages'); ?></a>
+		<?php if ( current_user_can('publish_pages') ) : ?>
+		<span class="open-redirect-modal">
+			<a href="#" class="add-new-h2" title="<?php _e('Add Link', 'nestedpages'); ?>" data-toggle="modal" data-target="#np-link-modal"><?php _e('Add Link', 'nestedpages'); ?></a>
+		</span>
+		<?php endif; ?>
 	</h2>
 
 	<?php if ( $this->confirmation() ) echo $this->confirmation() . '<div style="clear:both;"></div>'; ?>
@@ -39,16 +43,16 @@
 		<?php $this->loopPages(); ?>
 		
 		<div class="quick-edit quick-edit-form" style="display:none;">
-			<?php include('quickedit.php'); ?>
+			<?php include( NP_Helpers::view('quickedit') ); ?>
 		</div>
 
+		<?php if ( current_user_can('publish_pages') ) : ?>
 		<div class="quick-edit quick-edit-form-redirect" style="display:none;">
-			<?php include('quickedit-redirect.php'); ?>
+			<?php include( NP_Helpers::view('quickedit-redirect') ); ?>
 		</div>
+		<?php endif; ?>
 	</div>
 
 </div><!-- .wrap -->
 
-<div id="np-add-page" style="display:none;">
-    <p>Lorem Ipsum sit dolla amet.</p>
-</div>
+<?php include( NP_Helpers::view('link-form') ); ?>

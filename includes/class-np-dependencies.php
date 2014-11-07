@@ -45,6 +45,13 @@ class NP_Dependencies {
 			wp_enqueue_script('jquery-ui-sortable');
 
 			wp_enqueue_script(
+				'bootstrap-modal', 
+				$this->plugin_dir . '/assets/js/lib/bs-modal.js', 
+				array('jquery'), 
+				'1.0'
+			);
+
+			wp_enqueue_script(
 				'ui-touch-punch', 
 				$this->plugin_dir . '/assets/js/lib/jquery.ui.touch-punch.min.js', 
 				array('jquery', 'jquery-ui-sortable'), 

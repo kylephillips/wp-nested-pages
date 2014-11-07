@@ -615,7 +615,6 @@ jQuery(function($){
 			npstatus : $(item).attr('data-np-status'),
 			linktarget : $(item).attr('data-linktarget')
 		};
-		console.log(data);
 		var parent_li = $(item).closest('.row').parent('li');
 		
 		// Append the form to the list item
@@ -679,7 +678,6 @@ jQuery(function($){
 			datatype: 'json',
 			data: $(form).serialize() + '&action=npquickeditredirect&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
 			success: function(data){
-				console.log(data);
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);
 					$(form).find('.np-quickedit-error').text(data.message).show();
@@ -698,7 +696,6 @@ jQuery(function($){
 	*/
 	function np_update_qe_redirect_data(form, data)
 	{
-		console.log(data);
 		var row = $(form).parent('.quick-edit').siblings('.row');
 		$(row).find('.title').text(data.post_title);
 		
@@ -738,6 +735,18 @@ jQuery(function($){
 		$(button).attr('data-linktarget', data.link_target);
 
 	}
+
+
+
+
+	/**
+	* ------------------------------------------------------------------------
+	* Add new Redirect link (modal)
+	* ------------------------------------------------------------------------
+	**/
+	$(document).on('click', '.open-redirect-modal', function(){
+		//$('.np-modal-form').find('input').val('');
+	});
 
 
 

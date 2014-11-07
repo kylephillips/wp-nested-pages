@@ -1,0 +1,46 @@
+//
+// Modal Forms
+// --------------------------------------------------
+.np-modal-form {
+	padding: 15px 0;
+
+	.form-interior {
+		@include clearfix;
+		background: url('../images/border.png') repeat-y;
+		background-position: center;
+	}
+
+	.form-control {
+		@include clearfix;
+		margin-bottom: 10px;
+	}
+
+	.checkbox {
+		margin-bottom: 10px;
+	}
+
+	.left {
+		float: left;
+		width: 45%;
+	}
+
+	.right {
+		float: right;
+		width: 45%;
+		padding-top: 18px;
+	}
+
+	label {
+		display: block;
+	}
+
+	input[type="text"],
+	select {
+		width: 100%;
+	}
+
+	.buttons {
+		clear: both;
+	}
+
+} // .np-modal-form
