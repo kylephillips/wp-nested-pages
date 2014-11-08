@@ -79,17 +79,8 @@
 				<span class="checkbox-title"><?php _e( 'Allow Comments' ); ?></span>
 			</label>
 		</div>
+		
 		<?php if ( current_user_can('edit_theme_options') ) : ?>
-		<div class="form-control">
-			<label><?php _e( 'Menu Title' ); ?></label>
-			<input type="text" name="np_nav_title" class="np_nav_title" value="" />
-		</div>
-		<div class="comments">
-			<label>
-				<input type="checkbox" name="nav_status" class="np_nav_status" value="hide" />
-				<span class="checkbox-title"><?php _e( 'Hide in Nav Menu' ); ?></span>
-			</label>
-		</div>
 		<div class="comments">
 			<label>
 				<input type="checkbox" name="nested_pages_status" class="np_status" value="hide" />
@@ -98,9 +89,15 @@
 		</div>			
 		<?php endif; // Edit theme options?>
 
+		<?php if ( current_user_can('edit_theme_options') ) : // Menu Options Button ?>
+		<div class="form-control">
+			<a href="#" class="np-btn np-toggle-menuoptions"><?php _e('Menu Options', 'nestedpages'); ?></a>
+		</div>
+		<?php endif; ?>
+
 		<?php if ( !empty($this->h_taxonomies) ) : ?>
 		<div class="form-control">
-			<a href="#" class="np-btn np-toggle-taxonomies"><?php _e('Edit Taxonomies'); ?></a>
+			<a href="#" class="np-btn np-toggle-taxonomies"><?php _e('Edit Taxonomies', 'nestedpages'); ?></a>
 		</div>
 		<?php endif; ?>
 
@@ -119,6 +116,40 @@
 		<?php endforeach; ?>
 	</div><!-- .taxonomies -->
 	<?php endif; // if taxonomies ?>
+
+
+	<?php if ( current_user_can('edit_theme_options') ) : // Menu Options?>
+	<div class="np-menuoptions">
+		<div class="menuoptions-left">
+			<div class="form-control">
+				<label><?php _e( 'Navigation Label', 'nestedpages' ); ?></label>
+				<input type="text" name="np_nav_title" class="np_nav_title" value="" />
+			</div>
+			<div class="form-control">
+				<label><?php _e( 'Title Attribute', 'nestedpages' ); ?></label>
+				<input type="text" name="np_title_attribute" class="np_title_attribute" value="" />
+			</div>
+			<div class="form-control">
+				<label><?php _e( 'CSS Classes', 'nestedpages' ); ?></label>
+				<input type="text" name="np_nav_css_classes" class="np_nav_css_classes" value="" />
+			</div>
+		</div><!-- .menuoptions-left -->
+		<div class="menuoptions-right">
+			<div class="form-control">
+				<label>
+					<input type="checkbox" name="nav_status" class="np_nav_status" value="hide" />
+					<span class="checkbox-title"><?php _e( 'Hide in Nav Menu', 'nestedpages' ); ?></span>
+				</label>
+			</div>
+			<div class="form-control">
+				<label>
+					<input type="checkbox" name="link_target" class="link_target" value="_blank" />
+					<span class="checkbox-title"><?php _e( 'Open link in new window', 'nestedpages' ); ?></span>
+				</label>
+			</div>
+		</div><!-- .menuoptions-right -->
+	</div>
+	<?php endif; ?>
 
 	</div><!-- .fields -->
 

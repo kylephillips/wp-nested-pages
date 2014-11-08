@@ -89,6 +89,12 @@ class NP_NavMenu {
 			// Link Target
 			$link_target = get_post_meta( get_the_id(), 'np_link_target', true );
 
+			// Title Attribue
+			$title_attribute = get_post_meta( get_the_id(), 'np_title_attribute', true );
+
+			// CSS Classes
+			$css_classes = get_post_meta( get_the_id(), 'np_nav_css_classes', true );
+
 			// Nav Title
 			$nav_title = get_post_meta( get_the_id(), 'np_nav_title', true );
 			$nav_title = ( $nav_title !== "" ) ? $nav_title : get_the_title();
@@ -100,17 +106,22 @@ class NP_NavMenu {
 						$menu = wp_update_nav_menu_item($this->id, 0, array(
 							'menu-item-title' => $nav_title,
 							'menu-item-url' => get_the_permalink(),
+							'menu-item-attr-title' => $title_attribute,
 							'menu-item-status' => 'publish',
+							'menu-item-classes' => $css_classes,
 							'menu-item-type' => 'post_type',
 							'menu-item-object' => 'page',
 							'menu-item-object-id' => get_the_id(),
-							'menu-item-parent-id' => $menu_parent
+							'menu-item-parent-id' => $menu_parent,
+							'menu-item-target' => $link_target
 						));
 					} else { // redirect
 						$menu = wp_update_nav_menu_item($this->id, 0, array(
 							'menu-item-title' => $nav_title,
 							'menu-item-url' => $this->check_url(get_the_content()),
+							'menu-item-attr-title' => $title_attribute,
 							'menu-item-status' => 'publish',
+							'menu-item-classes' => $css_classes,
 							'menu-item-type' => 'custom',
 							'menu-item-object' => 'page',
 							'menu-item-object-id' => get_the_id(),

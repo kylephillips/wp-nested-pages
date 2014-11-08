@@ -99,8 +99,9 @@ class NP_PageListing {
 	*/
 	private function visiblePages()
 	{
-		$visible = get_user_meta(get_current_user_id(), 'np_visible_pages', true);
-		return unserialize($visible);
+		$visible = unserialize(get_user_meta(get_current_user_id(), 'np_visible_pages', true));
+		if ( !$visible ) $visible = array();
+		return $visible;
 	}
 
 
@@ -226,6 +227,12 @@ class NP_PageListing {
 
 		// Parent ID
 		$this->post_data['parent_id'] = $post->post_parent;
+
+		// Nav Title Attribute
+		$this->post_data['nav_title_attr'] = get_post_meta(get_the_id(), 'np_title_attribute', true);
+
+		// Nav CSS Classes
+		$this->post_data['nav_css'] = get_post_meta(get_the_id(), 'np_nav_css_classes', true);
 
 		// Yoast Score
 		if ( function_exists('wpseo_translate_score') ) {

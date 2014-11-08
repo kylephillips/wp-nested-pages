@@ -14,7 +14,7 @@
 	<div class="left">
 		
 		<div class="form-control">
-			<label><?php _e( 'Menu Title' ); ?></label>
+			<label><?php _e( 'Label', 'nestedpages' ); ?></label>
 			<input type="text" name="post_title" class="np_title" value="" />
 		</div>
 
@@ -38,7 +38,16 @@
 	</div><!-- .left -->
 
 	<div class="right">
+
 		<?php if ( current_user_can('edit_theme_options') ) : ?>
+		<div class="form-control">
+			<label><?php _e( 'Title Attribute', 'nestedpages' ); ?></label>
+			<input type="text" name="np_title_attribute" class="np_title_attribute" value="" />
+		</div>
+		<div class="form-control">
+			<label><?php _e( 'CSS Classes', 'nestedpages' ); ?></label>
+			<input type="text" name="np_nav_css_classes" class="np_nav_css_classes" value="" />
+		</div>
 		<div class="comments">
 			<label>
 				<input type="checkbox" name="nav_status" class="np_nav_status" value="hide" />

@@ -68,18 +68,19 @@
 	}
 
 	// Taxonomies
-	.np-toggle-taxonomies {
+	.np-toggle-taxonomies, .np-toggle-menuoptions {
 		clear: both;
 		float: right;
 		width: 71%;
 		text-align: center;
 	}
-	.np-taxonomies {
+	.np-taxonomies, .np-menuoptions {
 		display: none;
 		clear: both;
 		background-color: $gray-lighter;
 		padding: 8px;
 		@include clearfix;
+		margin-top: 5px;
 	}
 	.np-taxonomy {
 		float: left;
@@ -95,6 +96,28 @@
 			border: 0;
 		}
 	} // .np-taxonomy
+
+	// Menu Items
+	.np-menuoptions {
+		padding: 15px;
+		label, input[type="text"] {
+			display: block;
+			float: none;
+			width: 100%;
+		}
+		.menuoptions-left {
+			float: left;
+			width: 47%;
+		}
+		.menuoptions-right {
+			float: right;
+			width: 47%;
+			padding-top: 18px;
+			label {
+				margin-bottom: 10px;
+			}
+		}
+	} // .np-menuoptions
 }
 
 .np-qe-loading {

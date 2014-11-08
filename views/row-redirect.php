@@ -47,6 +47,8 @@
 				data-status="<?php echo get_post_status(); ?>" 
 				data-np-status="<?php echo $this->post_data['np_status']; ?>"
 				data-navstatus="<?php echo $this->post_data['nav_status']; ?>"
+				data-navtitleattr="<?php echo $this->post_data['nav_title_attr']; ?>"
+				data-navcss="<?php echo $this->post_data['nav_css']; ?>"
 				data-linktarget="<?php echo $this->post_data['link_target']; ?>">
 				<?php _e('Quick Edit', 'nestedpages'); ?>
 			</a>

@@ -324,6 +324,11 @@ jQuery(function($){
 		$(this).parents('form').find('.np-taxonomies').toggle();
 	});
 
+	// Toggle the Menu Options
+	$(document).on('click', '.np-toggle-menuoptions', function(e){
+		$(this).parents('form').find('.np-menuoptions').toggle();
+	});
+
 
 	/**
 	* Set Quick Edit data
@@ -345,7 +350,10 @@ jQuery(function($){
 			minute : $(item).attr('data-minute'),
 			navstatus : $(item).attr('data-navstatus'),
 			npstatus : $(item).attr('data-np-status'),
-			navtitle : $(item).attr('data-navtitle')
+			navtitle : $(item).attr('data-navtitle'),
+			navtitleattr : $(item).attr('data-navtitleattr'),
+			navcss : $(item).attr('data-navcss'),
+			linktarget : $(item).attr('data-linktarget')
 		};
 		var parent_li = $(item).closest('.row').parent('li');
 
@@ -383,6 +391,8 @@ jQuery(function($){
 		$(form).find('.np_template').val(data.template);
 		$(form).find('.np_status').val(data.status);
 		$(form).find('.np_nav_title').val(data.navtitle);
+		$(form).find('.np_title_attribute').val(data.navtitleattr);
+		$(form).find('.np_nav_css_classes').val(data.navcss);
 		if ( data.cs === 'open' ) $(form).find('.np_cs').prop('checked', 'checked');
 
 		if ( data.npstatus === 'hide' ){
@@ -395,6 +405,12 @@ jQuery(function($){
 			$(form).find('.np_nav_status').prop('checked', 'checked');
 		} else {
 			$(form).find('.np_nav_status').removeAttr('checked');
+		}
+
+		if ( data.linktarget === "_blank" ) {
+			$(form).find('.link_target').prop('checked', 'checked');
+		} else {
+			$(form).find('.link_target').removeAttr('checked');
 		}
 		
 		// Date Fields
@@ -497,9 +513,13 @@ jQuery(function($){
 		$(button).attr('data-commentstatus', data.comment_status);
 		$(button).attr('data-status', data._status);
 		$(button).attr('data-author', data.post_author);
-		$(button).attr('data-navstatus', data.nav_status);
 		$(button).attr('data-np-status', data.np_status);
+		
+		$(button).attr('data-navstatus', data.nav_status);
 		$(button).attr('data-navtitle', data.np_nav_title);
+		$(button).attr('data-linktarget', data.link_target);
+		$(button).attr('data-navtitleattr', data.np_title_attribute);
+		$(button).attr('data-navcss', data.np_nav_css_classes);
 
 		$(button).attr('data-month', data.mm);
 		$(button).attr('data-day', data.jj);
@@ -625,7 +645,9 @@ jQuery(function($){
 			navstatus : $(item).attr('data-navstatus'),
 			npstatus : $(item).attr('data-np-status'),
 			linktarget : $(item).attr('data-linktarget'),
-			parentid : $(item).attr('data-parentid')
+			parentid : $(item).attr('data-parentid'),
+			navtitleattr : $(item).attr('data-navtitleattr'),
+			navcss : $(item).attr('data-navcss')
 		};
 		var parent_li = $(item).closest('.row').parent('li');
 		
@@ -654,6 +676,8 @@ jQuery(function($){
 		$(form).find('.np_status').val(data.status);
 		$(form).find('.np_content').val(data.url);
 		$(form).find('.np_parent_id').val(data.parentid);
+		$(form).find('.np_title_attribute').val(data.navtitleattr);
+		$(form).find('.np_nav_css_classes').val(data.navcss);
 
 		if ( data.npstatus === 'hide' ){
 			$(form).find('.np_status').prop('checked', 'checked');
@@ -750,6 +774,8 @@ jQuery(function($){
 		$(button).attr('data-navstatus', data.nav_status);
 		$(button).attr('data-np-status', data.np_status);
 		$(button).attr('data-linktarget', data.link_target);
+		$(button).attr('data-navtitleattr', data.np_title_attribute);
+		$(button).attr('data-navcss', data.np_nav_css_classes);
 	}
 
 

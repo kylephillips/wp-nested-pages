@@ -68,11 +68,18 @@ class NP_PostRepository {
 		wp_update_post($updated_post);
 
 		$this->updateTemplate($data);
-		$this->updateNavStatus($data);
 		$this->updateNestedPagesStatus($data);
-		$this->updateNavTitle($data);
+
+		// Taxonomies
 		$this->updateCategories($data);
 		$this->updateHierarchicalTaxonomies($data);
+
+		// Menu Options
+		$this->updateNavStatus($data);
+		$this->updateNavTitle($data);
+		$this->updateLinkTarget($data);
+		$this->updateTitleAttribute($data);
+		$this->updateNavCSS($data);
 
 		return true;
 	}
@@ -129,7 +136,7 @@ class NP_PostRepository {
 
 
 	/**
-	* Update Nested Pages Menu Title
+	* Update Nested Pages Menu Navigation Label
 	* @since 1.0
 	* @param array data
 	*/
@@ -141,6 +148,42 @@ class NP_PostRepository {
 				$data['post_id'], 
 				'np_nav_title', 
 				$title
+			);
+		}
+	}
+
+
+	/**
+	* Update Nested Pages Menu Navigation CSS Classes
+	* @since 1.0
+	* @param array data
+	*/
+	private function updateNavCSS($data)
+	{
+		if ( isset($data['np_nav_css_classes']) ){
+			$css_classes = sanitize_text_field($data['np_nav_css_classes']);
+			update_post_meta( 
+				$data['post_id'], 
+				'np_nav_css_classes', 
+				$css_classes
+			);
+		}
+	}
+
+
+	/**
+	* Update Nested Pages Menu Title Attribute
+	* @since 1.0
+	* @param array data
+	*/
+	private function updateTitleAttribute($data)
+	{
+		if ( isset($data['np_title_attribute']) ){
+			$title_attr = sanitize_text_field($data['np_title_attribute']);
+			update_post_meta( 
+				$data['post_id'], 
+				'np_title_attribute', 
+				$title_attr
 			);
 		}
 	}
@@ -221,6 +264,8 @@ class NP_PostRepository {
 		$this->updateNavStatus($data);
 		$this->updateNestedPagesStatus($data);
 		$this->updateLinkTarget($data);
+		$this->updateTitleAttribute($data);
+		$this->updateNavCSS($data);
 
 		return true;
 	}

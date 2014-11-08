@@ -11,6 +11,7 @@ class NP_PostTypes {
 		add_action( 'trashed_post', array( $this, 'trashHook' ) );
 	}
 
+
 	/**
 	* Redirects Post Type
 	*/
