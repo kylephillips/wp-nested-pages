@@ -113,6 +113,15 @@ class NP_PageListing {
 		include( NP_Helpers::view('pages') );
 	}
 
+	/**
+	* Get Trash Count (pages)
+	*/
+	private function trashCount()
+	{
+		$trashed = new WP_Query(array('post_type'=>'page','post_status'=>'trash','posts_per_page'=>-1));
+		return $trashed->found_posts;
+	}
+
 
 	/**
 	* Set the Taxonomies for Pages
@@ -234,6 +243,20 @@ class NP_PageListing {
 
 
 	/**
+	* Get count of published posts
+	* @param object $pages
+	*/
+	private function publishCount($pages)
+	{
+		$publish_count = 1;
+		foreach ( $pages->posts as $p ){
+			if ( $p->post_status !== 'trash' ) $publish_count++;
+		}
+		return $publish_count;
+	}
+
+
+	/**
 	* Loop through all the pages and create the nested / sortable list
 	* Recursive Method, called in page.php view
 	*/
@@ -244,31 +267,36 @@ class NP_PageListing {
 			'post_type' => array('page','np-redirect'),
 			'posts_per_page' => -1,
 			'orderby' => 'menu_order',
+			'post_status' => array('publish','trash'),
 			'post_parent' => $parent_id,
 			'order' => 'ASC'
 		));
 		if ( $pages->have_posts() ) :
 			$count++;
 
-			$this->listOpening($pages, $count);
-
+			if ( $this->publishCount($pages) > 1 ){
+				$this->listOpening($pages, $count);			
+			}
+			
 			while ( $pages->have_posts() ) : $pages->the_post();
 
 				global $post;
 				$this->setPostData($post);
-				
-				echo '<li id="menuItem_' . get_the_id() . '" class="page-row';
+				if ( get_post_status(get_the_id()) !== 'trash' ) :
 
-				// Published?
-				if ( $post->post_status == 'publish' ) echo ' published';
-				
-				// Hidden in Nested Pages?
-				if ( $this->post_data['np_status'] == 'hide' ) echo ' np-hide';
+					echo '<li id="menuItem_' . get_the_id() . '" class="page-row';
 
-				// Taxonomies
-				echo ' ' . $this->hierarchicalTaxonomies( get_the_id() );
-				
-				echo '">';
+					// Published?
+					if ( $post->post_status == 'publish' ) echo ' published';
+					
+					// Hidden in Nested Pages?
+					if ( $this->post_data['np_status'] == 'hide' ) echo ' np-hide';
+
+					// Taxonomies
+					echo ' ' . $this->hierarchicalTaxonomies( get_the_id() );
+					
+					echo '">';
+					
 					$count++;
 
 					if ( get_post_type() == 'page' ){
@@ -277,11 +305,20 @@ class NP_PageListing {
 						include( NP_Helpers::view('row-redirect') );
 					}
 
+				endif; // trash status
+				
 				$this->loopPages(get_the_id(), $count);
-				echo '</li>';
+
+				if ( get_post_status(get_the_id()) !== 'trash' ) {
+					echo '</li>';
+				}				
 
 			endwhile; // Loop
-			echo '</ol>';
+			
+			if ( $this->publishCount($pages) > 1 ){
+				echo '</ol>';
+			}
+
 		endif; wp_reset_postdata();
 	}
 

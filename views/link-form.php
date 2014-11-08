@@ -10,7 +10,7 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 		<div class="modal-content">
 			<form method="get" action="" class="np-modal-form np-new-link-form">
 			<div class="modal-header">
-				<h4 class="modal-title"><?php _e('Add Link', 'nestedpages'); ?></h4>
+				<h4 class="modal-title" id="np-add-link-title"><?php _e('Add Link', 'nestedpages'); ?></h4>
 			</div>
 			<div class="modal-body">
 				<div class="form-interior">

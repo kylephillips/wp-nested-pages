@@ -238,6 +238,7 @@ class NP_PostRepository {
 			'post_title' => sanitize_text_field($data['np_link_title']),
 			'post_status' => sanitize_text_field($data['_status']),
 			'post_content' => sanitize_text_field($data['np_link_content']),
+			'post_parent' => sanitize_text_field($data['parent_id']),
 			'post_type' => 'np-redirect'
 		);
 		$this->new_id = wp_insert_post($new_link);

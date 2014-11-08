@@ -51,10 +51,12 @@
 				<?php _e('Quick Edit', 'nestedpages'); ?>
 			</a>
 
-			<!--
-			<a href="#" class="np-btn np-btn-trash">
+			<?php if ( current_user_can('delete_pages') ) : ?>
+			<a href="<?php echo get_delete_post_link(get_the_id(), '', true); ?>" class="np-btn np-btn-trash">
 				<i class="np-icon-remove"></i>
-			</a> -->
+			</a>
+			<?php endif; ?>
+
 		</div><!-- .action-buttons -->
 	</div><!-- .row-inner -->
 </div><!-- .row -->

@@ -17,6 +17,11 @@
 	z-index: 99999;
 	-webkit-overflow-scrolling: touch;
 	outline: 0;
+	&.fade .modal-dialog {
+		@include translate(0, -25%);
+		@include transition-transform(0.3s ease-out);
+	}
+	&.in .modal-dialog { @include translate(0, 0) }
 }
 .modal-open .modal {
 	overflow-x: hidden;
@@ -47,9 +52,7 @@
 	bottom: 0;
 	left: 0;
 	background-color: #000;
-  // Fade for backdrop
-  &.fade { opacity: 0; }
-  &.in { opacity: .9; }
+	opacity: .85;
 }
 
 

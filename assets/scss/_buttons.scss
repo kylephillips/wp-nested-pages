@@ -14,7 +14,9 @@
 		background-color: $blue;
 		color: $white;
 		transition: all 200ms ease;
-		box-shadow: 0 1px 0 rgba(0,0,0,.08);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25), 0 1px 0 rgba(0,0,0,.08);
+		border-color: $blue;
+		transition: all 200ms ease;
 	}
 }
 

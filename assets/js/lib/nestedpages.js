@@ -246,9 +246,20 @@ jQuery(function($){
 
 	/**
 	* ------------------------------------------------------------------------
-	* Sync Menu Toggle
+	* Sync Menu
 	* ------------------------------------------------------------------------
 	**/
+
+	/**
+	* Sync menu to catch any trash updates
+	*/
+	$(document).ready(function(){
+		if ( nestedpages.syncmenu === '1' ) np_updated_sync_menu('sync'); 
+	});
+
+	/**
+	* Checkbox Toggle
+	*/
 	$('.np-sync-menu').on('change', function(){
 		var setting = ( $(this).is(':checked') ) ? 'sync' : 'nosync';
 		np_updated_sync_menu(setting);
@@ -739,8 +750,8 @@ jQuery(function($){
 		$(button).attr('data-navstatus', data.nav_status);
 		$(button).attr('data-np-status', data.np_status);
 		$(button).attr('data-linktarget', data.link_target);
-
 	}
+
 
 
 
@@ -755,6 +766,11 @@ jQuery(function($){
 		var parent_id = $(this).attr('data-parentid');
 		$('.np-modal-form').find('input').val('');
 		$('.np-modal-form').find('.parent_id').val(parent_id);
+		if (parent_id === '0'){
+			$('#np-add-link-title').text(nestedpages.add_link);
+		} else {
+			$('#np-add-link-title').text(nestedpages.add_child_link);
+		}
 		$('#np-link-modal').modal('show');
 	});
 
@@ -797,8 +813,6 @@ jQuery(function($){
 				} else {
 					np_remove_link_loading();
 					np_create_redirect_row(data.post_data);
-					// np_update_qe_redirect_data(form, data.post_data);
-					// np_qe_update_animate(form);
 				}
 			}
 		});
@@ -850,12 +864,45 @@ jQuery(function($){
 		html += '</div></div></div></li>';
 
 		if ( data.parent_id === "0" ){
-			$('.sortable.nplist li:first-child').after(html);
+			$('.nplist:first li:first').after(html);
+		} else {
+			np_append_child_link(html, data);
 		}
 
 		$('#np-link-modal').modal('hide');
-		np_set_borders();
 
+		var row = $('#menuItem_' + data.id).find('.row');
+		np_qe_update_redirect_animate(row);
+	}
+
+
+	/**
+	* Append a child link
+	*/
+	function np_append_child_link(html, data)
+	{
+		var parent_row = $('#menuItem_' + data.parent_id);
+		if ( $(parent_row).children('ol').length === 0 ){
+			html = '<ol class="sortable nplist" style="display:block;">' + html + '</ol>';
+			$(parent_row).append(html);
+		} else {
+			$(parent_row).find('ol:first').prepend(html);
+		}
+		add_remove_submenu_toggles();
+		np_sync_user_toggles();
+	}
+
+
+	/**
+	* Show quick edit update animation after adding redirect
+	*/
+	function np_qe_update_redirect_animate(row)
+	{	
+		$(row).addClass('np-updated');
+		np_set_borders();
+		setTimeout(function(){
+			$(row).addClass('np-updated-show');
+		}, 1500);
 	}
 
 
@@ -905,6 +952,7 @@ jQuery(function($){
 			}
 		});
 	}
+
 
 
 }); //$

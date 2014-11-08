@@ -72,16 +72,22 @@ class NP_Dependencies {
 				'1.0'
 			);
 
+			$localized_data = array(
+				'np_nonce' => wp_create_nonce( 'nestedpages-nonce' ),
+				'expand_text' => __('Expand Pages', 'nestedpages'),
+				'collapse_text' => __('Collapse Pages', 'nestedpages'),
+				'show_hidden' => __('Show Hidden', 'nestedpages'),
+				'hide_hidden' => __('Hide Hidden', 'nestedpages'),
+				'add_link' => __('Add Link', 'nestedpages'),
+				'add_child_link' => __('Add Child Link', 'nestedpages')
+			);
+			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;
+			$localized_data['syncmenu'] = $syncmenu;
+
 			wp_localize_script( 
 				'nestedpages', 
 				'nestedpages', 
-				array( 
-					'np_nonce' => wp_create_nonce( 'nestedpages-nonce' ),
-					'expand_text' => __('Expand Pages', 'nestedpages'),
-					'collapse_text' => __('Collapse Pages', 'nestedpages'),
-					'show_hidden' => __('Show Hidden', 'nestedpages'),
-					'hide_hidden' => __('Hide Hidden', 'nestedpages')
-				)
+				$localized_data
 			);
 		endif;
 	}

@@ -51,14 +51,22 @@
 		<div class="action-buttons">
 
 			<?php if ( $post->comment_status == 'open' ) : $comments = wp_count_comments(get_the_id()); $cs = 'open' ?>
+
 			
 			<a href="<?php echo admin_url( 'edit-comments.php?p=' . get_the_id() ); ?>" class="np-btn">
 				<i class="np-icon-bubble"></i> <?php echo $comments->total_comments; ?>
 			</a>
 			
 			<?php else : $cs = 'closed'; endif; ?>
+
+
+			<?php if ( current_user_can('publish_pages') ) : ?>
+		
+			<a href="#" class="np-btn open-redirect-modal" data-parentid="<?php echo get_the_id(); ?>"><i class="np-icon-link"></i></a>
 			
 			<a href="<?php echo $this->addNewPageLink(); ?>&npparent=<?php echo get_the_id(); ?>" class="np-btn"><?php _e('Add Child', 'nestedpages'); ?></a>
+
+			<?php endif; ?>
 
 			<?php if ( !$user = wp_check_post_lock(get_the_id()) ) : ?>
 			<a href="#" 
@@ -83,10 +91,13 @@
 			<?php endif; ?>
 
 			<a href="<?php echo get_the_permalink(); ?>" class="np-btn"><?php _e('View', 'nestedpages'); ?></a>
-			<!--
-			<a href="#" class="np-btn np-btn-trash">
+			
+			<?php if ( current_user_can('delete_pages') ) : ?>
+			<a href="<?php echo get_delete_post_link(get_the_id()); ?>" class="np-btn np-btn-trash">
 				<i class="np-icon-remove"></i>
-			</a> -->
+			</a>
+			<?php endif; ?>
+
 		</div><!-- .action-buttons -->
 	</div><!-- .row-inner -->
 </div><!-- .row -->
