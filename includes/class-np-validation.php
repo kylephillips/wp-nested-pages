@@ -81,4 +81,17 @@ class NP_Validation {
 	}
 
 
+	/**
+	* Validate a string isn't empty
+	*/
+	public function checkEmpty($var, $title)
+	{
+		if ( $var == "" ){
+			$message = __('Please provide a ', 'nestedpages') . $title;
+			return wp_send_json(array('status' => 'error', 'message' => $message));
+			die();
+		}
+	}
+
+
 }

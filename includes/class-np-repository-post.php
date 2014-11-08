@@ -53,6 +53,7 @@ class NP_PostRepository {
 	*/
 	public function updatePost($data)
 	{
+		$this->validation->checkEmpty($data['post_title'], __('Title', 'nestedpages'));
 		$date = $this->validation->validateDate($data);
 		if ( !isset($_POST['comment_status']) ) $data['comment_status'] = 'closed';
 
@@ -252,6 +253,7 @@ class NP_PostRepository {
 	*/
 	public function updateRedirect($data)
 	{
+		$this->validation->checkEmpty($data['post_title'], __('Label', 'nestedpages'));
 		$updated_post = array(
 			'ID' => sanitize_text_field($data['post_id']),
 			'post_title' => sanitize_text_field($data['post_title']),
