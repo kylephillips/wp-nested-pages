@@ -16,6 +16,7 @@ require_once('class-np-pagelisting.php');
 require_once('class-np-newpage.php');
 require_once('class-np-redirects.php');
 require_once('class-np-posttypes.php');
+require_once('class-np-settings.php');
 
 /**
 * Primary Plugin Class
@@ -28,6 +29,7 @@ class NestedPages {
 		$this->init();
 		$this->formActions();
 		add_action('init', array($this, 'addLocalization') );
+		add_filter( 'plugin_action_links_' . 'wp-nested-pages/nestedpages.php', array($this, 'settingsLink' ) );
 	}
 
 
@@ -42,6 +44,7 @@ class NestedPages {
 		new NP_NewPage;
 		new NP_Redirects;
 		new NP_PostTypes;
+		new NP_Settings;
 	}
 
 
@@ -67,6 +70,17 @@ class NestedPages {
 	public function addLocalization()
 	{
 		load_plugin_textdomain('nestedpages', false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages' );
+	}
+
+
+	/**
+	* Add a link to the settings on the plugin page
+	*/
+	public function settingsLink($links)
+	{ 
+  		$settings_link = '<a href="options-general.php?page=nested-pages-settings">' . __('Settings','nestedpages') . '</a>'; 
+  		array_unshift($links, $settings_link); 
+  		return $links; 
 	}
 
 
