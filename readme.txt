@@ -22,7 +22,7 @@ Nested Pages provides an intuitive drag and drop interface for managing pages in
 
 For more information visit [nestedpages.com](http://nestedpages.com).
 
-**Nested Pages requires Wordpress version 3.8 or higher, and PHP version 5.4 or higher.**
+**Nested Pages requires Wordpress version 3.8 or higher, and PHP version 5.3 or higher.**
 
 == Installation ==
 
@@ -67,12 +67,20 @@ Hierarchical taxonomies are currently supported
 == Changelog ==
 
 = 1.1 =
-* Expanded/Collapsed pages now saved for each user
+* Expanded/Collapsed states now saved for each user
+* Trash functionality added
 * Trashing pages now redirects to Nested Pages view
 * Trash link added to quickly get to a list of trashed pages
+* New "Add link" functionality – creates custom link menu items
+* Additional options added for generated menu items - title attribute, css classes, link target
 
 = 1.0 =
 * Nested Pages
+
+== Upgrade Notice ==
+
+= 1.1 =
+Several new features have been added in version 1.1, including: saved toggle states, additional menu options, trash functionality, ability to add "link" menu items, and more.
 
 == More Information ==
 
