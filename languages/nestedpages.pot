@@ -1,11 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nested Pages\n"
-"POT-Creation-Date: 2014-10-19 22:04-0500\n"
-"PO-Revision-Date: 2014-10-19 22:05-0500\n"
+"POT-Creation-Date: 2014-11-08 19:39-0500\n"
+"PO-Revision-Date: 2014-11-08 19:39-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,42 +14,87 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: includes/class-np-dependencies.php:72 views/pages.php:9
+#: includes/class-np-confirmation.php:57
+msgid "pages moved to the Trash"
+msgstr ""
+
+#: includes/class-np-confirmation.php:59
+msgid "page moved to the Trash"
+msgstr ""
+
+#: includes/class-np-confirmation.php:64
+msgid "Undo"
+msgstr ""
+
+#: includes/class-np-confirmation.php:80
+msgid "pages"
+msgstr ""
+
+#: includes/class-np-confirmation.php:80
+msgid "page"
+msgstr ""
+
+#: includes/class-np-confirmation.php:81
+msgid "restored from trash"
+msgstr ""
+
+#: includes/class-np-dependencies.php:77 views/pages.php:15
 msgid "Expand Pages"
 msgstr ""
 
-#: includes/class-np-dependencies.php:73
+#: includes/class-np-dependencies.php:78
 msgid "Collapse Pages"
 msgstr ""
 
-#: includes/class-np-handler-base.php:57
+#: includes/class-np-dependencies.php:79 views/pages.php:31
+msgid "Show Hidden"
+msgstr ""
+
+#: includes/class-np-dependencies.php:80
+msgid "Hide Hidden"
+msgstr ""
+
+#: includes/class-np-dependencies.php:81 views/link-form.php:13
+#: views/pages.php:8
+msgid "Add Link"
+msgstr ""
+
+#: includes/class-np-dependencies.php:82
+msgid "Add Child Link"
+msgstr ""
+
+#: includes/class-np-handler-base.php:64
 msgid "Incorrect Form Field"
 msgstr ""
 
-#: includes/class-np-handler-quickedit.php:46
-msgid "Post successfully updated"
-msgstr ""
-
-#: includes/class-np-handler-quickedit.php:52
+#: includes/class-np-handler-base.php:94
 msgid "There was an error updating the page."
 msgstr ""
 
-#: includes/class-np-handler-sort.php:39
+#: includes/class-np-handler-newredirect.php:40
+#: includes/class-np-handler-quickedit-redirect.php:36
+msgid "Redirect successfully updated"
+msgstr ""
+
+#: includes/class-np-handler-quickedit.php:37
+msgid "Post successfully updated"
+msgstr ""
+
+#: includes/class-np-handler-sort.php:36
 msgid "Page order successfully updated."
 msgstr ""
 
-#: includes/class-np-handler-sort.php:41
+#: includes/class-np-handler-sort.php:38
 msgid "There was an order updating the page order."
 msgstr ""
 
-#: includes/class-np-handler-syncmenu.php:33
+#: includes/class-np-handler-syncmenu.php:32
 msgid "Menu sync enabled."
 msgstr ""
 
-#: includes/class-np-handler-syncmenu.php:36
+#: includes/class-np-handler-syncmenu.php:35
 msgid "Menu sync disabled."
 msgstr ""
 
@@ -58,108 +102,172 @@ msgstr ""
 msgid "Adding child page under:"
 msgstr ""
 
-#: includes/class-np-pagelisting.php:49
+#: includes/class-np-pagelisting.php:71
 msgid "All Pages"
 msgstr ""
 
-#: includes/class-np-pagelisting.php:50
+#: includes/class-np-pagelisting.php:72
 msgid "Add New"
 msgstr ""
 
-#: includes/class-np-pagelisting.php:51
+#: includes/class-np-pagelisting.php:73
 msgid "Default Pages"
 msgstr ""
 
-#: includes/class-np-validation.php:36 includes/class-np-validation.php:51
-msgid "Please provide a valid date."
+#: includes/class-np-posttypes.php:21
+msgid "Redirects"
 msgstr ""
 
-#: views/pages.php:15
-msgid "Sync Menu"
+#: includes/class-np-posttypes.php:22 views/quickedit-redirect.php:8
+msgid "Redirect"
 msgstr ""
 
-#: views/pages.php:23
-msgid "All"
-msgstr ""
-
-#: views/pages.php:24 views/quickedit.php:78
-msgid "Published"
-msgstr ""
-
-#: views/pages.php:25
-msgid "Show Hidden Pages"
-msgstr ""
-
-#: views/pages.php:26
-msgid "Default"
-msgstr ""
-
-#: views/quickedit.php:31 views/row.php:81
-msgid "Quick Edit"
-msgstr ""
-
-#: views/quickedit.php:40
+#: includes/class-np-repository-post.php:56 views/quickedit.php:20
 msgid "Title"
 msgstr ""
 
-#: views/quickedit.php:44
-msgid "Slug"
+#: includes/class-np-repository-post.php:256 views/quickedit-redirect.php:17
+msgid "Label"
 msgstr ""
 
-#: views/quickedit.php:48
-msgid "Date"
+#: includes/class-np-validation.php:49 includes/class-np-validation.php:64
+msgid "Please provide a valid date."
 msgstr ""
 
-#: views/quickedit.php:66
-msgid "Author"
+#: includes/class-np-validation.php:76
+msgid "Please provide a menu title."
 msgstr ""
 
-#: views/quickedit.php:75
-msgid "Status"
+#: includes/class-np-validation.php:79
+msgid "Please provide a valid URL."
 msgstr ""
 
-#: views/quickedit.php:79
-msgid "Scheduled"
+#: includes/class-np-validation.php:90
+msgid "Please provide a "
 msgstr ""
 
-#: views/quickedit.php:81
-msgid "Pending Review"
-msgstr ""
-
-#: views/quickedit.php:82
-msgid "Draft"
-msgstr ""
-
-#: views/quickedit.php:90
-msgid "Template"
-msgstr ""
-
-#: views/quickedit.php:92
-msgid "Default Template"
-msgstr ""
-
-#: views/quickedit.php:99
-msgid "Allow Comments"
-msgstr ""
-
-#: views/quickedit.php:104
+#: views/link-form.php:23
 msgid "Menu Title"
 msgstr ""
 
-#: views/quickedit.php:110
+#: views/link-form.php:28 views/quickedit-redirect.php:22
+msgid "URL"
+msgstr ""
+
+#: views/link-form.php:33 views/quickedit-redirect.php:27
+#: views/quickedit.php:55
+msgid "Status"
+msgstr ""
+
+#: views/link-form.php:36 views/pages.php:30 views/quickedit-redirect.php:30
+#: views/quickedit.php:58
+msgid "Published"
+msgstr ""
+
+#: views/link-form.php:37 views/quickedit-redirect.php:31
+#: views/quickedit.php:59
+msgid "Scheduled"
+msgstr ""
+
+#: views/link-form.php:39 views/quickedit-redirect.php:33
+#: views/quickedit.php:61
+msgid "Pending Review"
+msgstr ""
+
+#: views/link-form.php:40 views/quickedit-redirect.php:34
+#: views/quickedit.php:62
+msgid "Draft"
+msgstr ""
+
+#: views/link-form.php:51 views/quickedit-redirect.php:54
+#: views/quickedit.php:141
 msgid "Hide in Nav Menu"
 msgstr ""
 
-#: views/quickedit.php:116
+#: views/link-form.php:56 views/quickedit-redirect.php:60
+#: views/quickedit.php:87
 msgid "Hide in Nested Pages"
 msgstr ""
 
-#: views/quickedit.php:141
+#: views/link-form.php:61 views/quickedit-redirect.php:66
+#: views/quickedit.php:147
+msgid "Open link in new window"
+msgstr ""
+
+#: views/link-form.php:73
+msgid "Save Link"
+msgstr ""
+
+#: views/pages.php:21
+msgid "Sync Menu"
+msgstr ""
+
+#: views/pages.php:29
+msgid "All"
+msgstr ""
+
+#: views/pages.php:34
+msgid "Trash"
+msgstr ""
+
+#: views/pages.php:37
+msgid "Default"
+msgstr ""
+
+#: views/quickedit-redirect.php:44 views/quickedit.php:129
+msgid "Title Attribute"
+msgstr ""
+
+#: views/quickedit-redirect.php:48 views/quickedit.php:133
+msgid "CSS Classes"
+msgstr ""
+
+#: views/quickedit-redirect.php:81 views/quickedit.php:161
 msgid "Cancel"
 msgstr ""
 
-#: views/quickedit.php:144
+#: views/quickedit-redirect.php:84 views/quickedit.php:164
 msgid "Update"
+msgstr ""
+
+#: views/quickedit.php:11 views/row-redirect.php:53 views/row.php:92
+msgid "Quick Edit"
+msgstr ""
+
+#: views/quickedit.php:24
+msgid "Slug"
+msgstr ""
+
+#: views/quickedit.php:28
+msgid "Date"
+msgstr ""
+
+#: views/quickedit.php:46
+msgid "Author"
+msgstr ""
+
+#: views/quickedit.php:70
+msgid "Template"
+msgstr ""
+
+#: views/quickedit.php:72
+msgid "Default Template"
+msgstr ""
+
+#: views/quickedit.php:79
+msgid "Allow Comments"
+msgstr ""
+
+#: views/quickedit.php:94
+msgid "Menu Options"
+msgstr ""
+
+#: views/quickedit.php:100
+msgid "Edit Taxonomies"
+msgstr ""
+
+#: views/quickedit.php:125
+msgid "Navigation Label"
 msgstr ""
 
 #: views/row.php:42
@@ -170,10 +278,10 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: views/row.php:61
+#: views/row.php:67
 msgid "Add Child"
 msgstr ""
 
-#: views/row.php:85
+#: views/row.php:96
 msgid "View"
 msgstr ""
