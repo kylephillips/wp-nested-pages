@@ -93,7 +93,7 @@
 			</a>
 			<?php endif; ?>
 
-			<a href="<?php echo get_the_permalink(); ?>" class="np-btn"><?php _e('View', 'nestedpages'); ?></a>
+			<a href="<?php echo get_the_permalink(); ?>" class="np-btn" target="_blank"><?php _e('View', 'nestedpages'); ?></a>
 			
 			<?php if ( current_user_can('delete_pages') ) : ?>
 			<a href="<?php echo get_delete_post_link(get_the_id()); ?>" class="np-btn np-btn-trash">
