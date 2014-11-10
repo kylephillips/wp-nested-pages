@@ -67,6 +67,7 @@ Hierarchical taxonomies are currently supported
 == Changelog ==
 
 = 1.1.11 =
+* Status bug fix in pages view
 * Option to customize the generated nav menu added
 
 = 1.1 =

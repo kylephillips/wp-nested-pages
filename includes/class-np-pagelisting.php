@@ -274,7 +274,7 @@ class NP_PageListing {
 			'post_type' => array('page','np-redirect'),
 			'posts_per_page' => -1,
 			'orderby' => 'menu_order',
-			'post_status' => array('publish','trash'),
+			'post_status' => array('publish', 'pending', 'draft', 'private', 'future', 'trash'),
 			'post_parent' => $parent_id,
 			'order' => 'ASC'
 		));
