@@ -1,4 +1,3 @@
-<?php add_thickbox(); ?>
 <div class="wrap">
 
 	<h2>
