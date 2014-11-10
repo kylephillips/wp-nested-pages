@@ -31,6 +31,7 @@ class NP_Confirmation {
 	{
 		if ( (isset($_GET['trashed'])) && (intval($_GET['trashed']) > 0) ) $this->type = 'trashConfirm';
 		if ( (isset($_GET['untrashed'])) && (intval($_GET['untrashed']) > 0) ) $this->type = 'trashRestored';
+		if ( (isset($_GET['linkdeleted'])) && (intval($_GET['linkdeleted']) > 0 ) ) $this->type = 'linkDeleted';
 	}
 
 
@@ -75,10 +76,18 @@ class NP_Confirmation {
 	*/
 	private function trashRestored()
 	{
-		$out = "";
 		$untrashed = sanitize_text_field($_GET['untrashed']);
 		$page = ( intval($untrashed) > 1 ) ? __('pages', 'nestedpages') : __('page', 'nestedpages');
 		$this->message = '<div id="message" class="updated below-h2"><p>' . $untrashed . ' ' . $page . ' ' . __('restored from trash', 'nestedpages') . '.</p></div>';
+	}
+
+
+	/**
+	* Link Successfully Deleted
+	*/
+	private function linkDeleted()
+	{
+		$this->message = '<div id="message" class="updated below-h2"><p>' . __('Link successfully deleted.', 'nestedpages') . '</p></div>';
 	}
 
 

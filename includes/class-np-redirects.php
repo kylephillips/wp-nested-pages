@@ -11,6 +11,7 @@ class NP_Redirects {
 		add_action('load-edit.php', array($this, 'pageRestored'));
 		add_action('load-edit.php', array($this, 'addNPLink'));
 		add_filter( "views_edit-page", array($this, 'addNPLink' ));
+		add_action('deleted_post', array($this, 'linkDeleted'), 10, 1);
 	}
 
 
@@ -39,6 +40,20 @@ class NP_Redirects {
 			exit();
 		}
 	}
+
+
+	/**
+	* Add link trashed param to URL after delete (for notification)
+	*/
+	public function linkDeleted($post_id)
+	{
+		if ( get_post_type($post_id) == 'np-redirect' ){
+			$redirect = add_query_arg(array('page'=>'nestedpages', 'linkdeleted' => true, '_wpnonce' => false, 'post' => false, 'action'=>false));
+			wp_redirect($redirect);
+			exit();
+		}
+	}
+
 
 	/**
 	* Add a nested pages link to the subsub list (WP_List_Table class)
