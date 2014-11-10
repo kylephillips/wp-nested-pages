@@ -1,4 +1,5 @@
 <?php
+require_once('class-np-helpers.php');
 /**
 * The generated nav menu that matches the nested pages structure
 */
@@ -14,21 +15,29 @@ class NP_NavMenu {
 	*/
 	public $items;
 
+	/**
+	* Menu Name Option
+	*/
+	private $menu_name;
+
 
 	public function __construct()
 	{
+		$this->getMenuName();
 		$this->setID();
 		$this->setItems();
 	}
 
 
 	/**
-	* Add the Nav Menu
+	* Get Optional custom menu name
+	* @since 1.1.11
 	*/
-	public function addMenu()
+	private function getMenuName()
 	{
-		$menu = wp_create_nav_menu('nestedpages');
-		$this->id = $menu;
+		$this->menu_name = ( get_option('nestedpages_menu') )
+			? get_option('nestedpages_menu')
+			: 'nestedpages';
 	}
 
 
@@ -37,8 +46,22 @@ class NP_NavMenu {
 	*/
 	public function setID()
 	{
-		$menu = get_term_by('slug', 'nestedpages', 'nav_menu');
-		if ( $menu ) $this->id = $menu->term_id;
+		$menu = get_term_by('name', $this->menu_name, 'nav_menu');
+		if ( $menu ) {
+			$this->id = $menu->term_id;
+		} else {
+			$this->addMenu();
+		}
+	}
+
+
+	/**
+	* Add the Nav Menu
+	*/
+	public function addMenu()
+	{
+		$menu = wp_create_nav_menu($this->menu_name);
+		$this->id = $menu;
 	}
 
 
@@ -47,7 +70,7 @@ class NP_NavMenu {
 	*/
 	public function setItems()
 	{
-		$menu = get_term_by('slug', 'nestedpages', 'nav_menu');
+		$menu = get_term_by('name', $this->menu_name, 'nav_menu');
 		if ( $menu ) $this->items = wp_get_nav_menu_items($this->id);
 	}
 
@@ -118,7 +141,7 @@ class NP_NavMenu {
 					} else { // redirect
 						$menu = wp_update_nav_menu_item($this->id, 0, array(
 							'menu-item-title' => $nav_title,
-							'menu-item-url' => $this->check_url(get_the_content()),
+							'menu-item-url' => NP_Helpers::check_url(get_the_content()),
 							'menu-item-attr-title' => $title_attribute,
 							'menu-item-status' => 'publish',
 							'menu-item-classes' => $css_classes,

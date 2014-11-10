@@ -83,6 +83,9 @@ class NP_Activate {
 		if ( !get_option('nestedpages_menusync') ){
 			update_option('nestedpages_menusync', 'sync');
 		}
+		if ( !get_option('nestedpages_menu') ){
+			update_option('nestedpages_menu', 'nestedpages');
+		}
 	}
 
 
