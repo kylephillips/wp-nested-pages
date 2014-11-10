@@ -66,6 +66,9 @@ Hierarchical taxonomies are currently supported
 
 == Changelog ==
 
+= 1.1.11 =
+* Option to customize the generated nav menu added
+
 = 1.1 =
 * Expanded/Collapsed states now saved for each user
 * Trash functionality added
