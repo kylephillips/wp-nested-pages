@@ -17,6 +17,7 @@ require_once('class-np-newpage.php');
 require_once('class-np-redirects.php');
 require_once('class-np-posttypes.php');
 require_once('class-np-settings.php');
+require_once('class-np-updates.php');
 
 /**
 * Primary Plugin Class
@@ -39,6 +40,7 @@ class NestedPages {
 	public function init()
 	{
 		new NP_Activate;
+		new NP_Updates;
 		new NP_Dependencies;
 		new NP_PageListing;
 		new NP_NewPage;
