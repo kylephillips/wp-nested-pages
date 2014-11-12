@@ -27,11 +27,11 @@
 	<ul class="subsubsub">
 		<li><a href="#all" class="np-toggle-publish active"><?php _e('All'); ?></a> | </li>
 		<li><a href="#published" class="np-toggle-publish"><?php _e('Published'); ?></a> | </li>
-		<li><a href="#show" class="np-toggle-hidden"><?php _e('Show Hidden'); ?></a> | </li>
+		<li><a href="#show" class="np-toggle-hidden"><?php _e('Show Hidden'); ?> </a>
+			<span class="count">(<?php echo $this->post_repo->getHiddenCount(); ?>)</span> | </li>
 		<?php if ( current_user_can('delete_pages') ) : ?>
-		<li><a href="edit.php?post_status=trash&post_type=page">
-			<?php _e('Trash'); ?> (<?php echo $this->trashCount(); ?>)
-		</a></li> | </li>
+		<li><a href="edit.php?post_status=trash&post_type=page"><?php _e('Trash'); ?> </a>
+			<span class="count">(<?php echo $this->post_repo->trashedPagesCount(); ?>)</span> | </li>
 		<?php endif; ?>
 		<li><a href="<?php echo $this->defaultPagesLink(); ?>"><?php _e('Default'); ?> <?php echo $this->post_type->labels->name; ?></a></li>
 	</ul>

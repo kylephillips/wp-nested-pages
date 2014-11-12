@@ -10,10 +10,12 @@ class NP_PostRepository {
 	*/
 	protected $validation;
 
+
 	/**
 	* New Post ID
 	*/
 	protected $new_id;
+
 
 	public function __construct()
 	{
@@ -33,7 +35,7 @@ class NP_PostRepository {
 		foreach( $posts as $key => $post )
 		{
 			wp_update_post(array(
-				'ID' => $post['id'],
+				'ID' => sanitize_text_field($post['id']),
 				'menu_order' => $key,
 				'post_parent' => $parent
 			));
@@ -294,6 +296,32 @@ class NP_PostRepository {
 		$this->updateNestedPagesStatus($data);
 		$this->updateLinkTarget($data);
 		return $this->new_id;
+	}
+
+
+	/**
+	* Get count of hidden pages
+	* @since 1.1.4
+	*/
+	public function getHiddenCount()
+	{
+		$hidden = new WP_Query(array(
+			'post_type' => array('page', 'np-redirect'),
+			'meta_key' => 'nested_pages_status',
+			'meta_value' => 'hide',
+			'perm' => 'readable'));
+		return $hidden->found_posts;
+	}
+
+
+	/**
+	* Get Trash Count (pages)
+	* @since 1.1.4
+	*/
+	public function trashedPagesCount()
+	{
+		$trashed = new WP_Query(array('post_type'=>'page','post_status'=>'trash','posts_per_page'=>-1));
+		return $trashed->found_posts;
 	}
 
 }

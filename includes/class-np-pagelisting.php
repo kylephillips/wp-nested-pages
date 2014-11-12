@@ -1,6 +1,7 @@
 <?php
 require_once('class-np-confirmation.php');
 require_once('class-np-helpers.php');
+require_once('class-np-repository-post.php');
 /**
 * Primary Listing Class
 * Initiates Page Listing screen (overwriting default), and displays primary plugin view.
@@ -35,8 +36,15 @@ class NP_PageListing {
 	private $post_data;
 
 
+	/**
+	* Post Repository
+	*/
+	private $post_repo;
+
+
 	public function __construct()
 	{
+		$this->post_repo = new NP_PostRepository;
 		$this->post_type = get_post_type_object('page');
 		add_action( 'admin_menu', array($this, 'adminMenu') );
 		add_action( 'admin_menu', array($this, 'submenu') );
@@ -112,15 +120,6 @@ class NP_PageListing {
 	public function pageListing()
 	{
 		include( NP_Helpers::view('pages') );
-	}
-
-	/**
-	* Get Trash Count (pages)
-	*/
-	private function trashCount()
-	{
-		$trashed = new WP_Query(array('post_type'=>'page','post_status'=>'trash','posts_per_page'=>-1));
-		return $trashed->found_posts;
 	}
 
 
