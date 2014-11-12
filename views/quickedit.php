@@ -30,6 +30,9 @@
 		</div>
 
 		<?php 
+		/*
+		* Authors Dropdown
+		*/
 		$authors_dropdown = '';
 		if ( is_super_admin() || current_user_can( $post_type_object->cap->edit_others_posts ) ) :
 			$users_opt = array(
@@ -86,18 +89,22 @@
 				<input type="checkbox" name="nested_pages_status" class="np_status" value="hide" />
 				<span class="checkbox-title"><?php _e( 'Hide in Nested Pages' ); ?></span>
 			</label>
-		</div>			
+		</div>
+
+		<div class="comments np-hide-options">
+			<p>Hide from:</p>
+			<label><input type="checkbox" >Administrators</label>
+			<label><input type="checkbox" >Editors</label>
+		</div>
 		<?php endif; // Edit theme options?>
 
-		<?php if ( current_user_can('edit_theme_options') ) : // Menu Options Button ?>
-		<div class="form-control">
-			<a href="#" class="np-btn np-toggle-menuoptions"><?php _e('Menu Options', 'nestedpages'); ?></a>
-		</div>
-		<?php endif; ?>
 
-		<?php if ( !empty($this->h_taxonomies) ) : ?>
-		<div class="form-control">
-			<a href="#" class="np-btn np-toggle-taxonomies"><?php _e('Edit Taxonomies', 'nestedpages'); ?></a>
+		<?php if ( current_user_can('edit_theme_options') ) : // Menu Options Button ?>
+		<div class="form-control np-toggle-options">
+			<a href="#" class="np-btn np-btn-half np-toggle-menuoptions"><?php _e('Menu Options', 'nestedpages'); ?></a>
+			<?php if ( !empty($this->h_taxonomies) ) : ?>
+			<a href="#" class="np-btn np-btn-half right np-toggle-taxonomies"><?php _e('Taxonomies', 'nestedpages'); ?></a>
+			<?php endif; ?>
 		</div>
 		<?php endif; ?>
 

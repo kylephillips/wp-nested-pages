@@ -326,8 +326,26 @@ jQuery(function($){
 
 	// Toggle the Menu Options
 	$(document).on('click', '.np-toggle-menuoptions', function(e){
+		e.preventDefault();
 		$(this).parents('form').find('.np-menuoptions').toggle();
 	});
+
+	// Toggle the hide from options
+	$(document).on('change', '.np_status', function(){
+		np_hide_options();
+	});
+
+	/**
+	* Hide/show the hide from options
+	*/
+	function np_hide_options()
+	{
+		if ( $('.np_status').is(':checked') ){
+			$('.np-hide-options').show();
+		} else {
+			$('.np-hide-options').hide();
+		}
+	}
 
 
 	/**
@@ -429,6 +447,10 @@ jQuery(function($){
 			}
 		}
 
+		// Hide/show the hide from options
+		np_hide_options();
+		show_quick_edit_overlay()
+
 		$(form).show();
 	}
 
@@ -439,8 +461,28 @@ jQuery(function($){
 	function revert_quick_edit()
 	{
 		$('.np-quickedit-error').hide();
+		remove_quick_edit_overlay();
 		$('.sortable .quick-edit').remove();
 		$('.row').show();
+	}
+
+	/**
+	* Show the Quick edit overlay
+	*/
+	function show_quick_edit_overlay()
+	{
+		$('body').append('<div class="np-quick-edit-overlay"></div>');
+		$('.np-quick-edit-overlay').fadeIn('fast');
+	}
+
+	/**
+	* Remove the Quick edit overlay
+	*/
+	function remove_quick_edit_overlay()
+	{
+		$('.np-quick-edit-overlay').fadeOut('fast', function(){
+			$(this).remove();
+		});
 	}
 
 
@@ -601,6 +643,7 @@ jQuery(function($){
 		$(row).addClass('np-updated');
 		$(row).show();
 		$(form).parent('.quick-edit').remove();
+		remove_quick_edit_overlay();
 		np_set_borders();
 		setTimeout(function(){
 			$(row).addClass('np-updated-show');
@@ -696,6 +739,10 @@ jQuery(function($){
 		} else {
 			$(form).find('.link_target').removeAttr('checked');
 		}
+
+		// Hide/show the hide from options
+		np_hide_options();
+		show_quick_edit_overlay();
 
 		$(form).show();
 	}
