@@ -62,7 +62,7 @@ class NP_PostRepository {
 		if ( isset($_POST['keep_private']) && $_POST['keep_private'] == 'private' ){
 			$status = 'private';
 		} else {
-			$status = ( isset($data['status']) ) ? sanitize_text_field($data['_status']) : 'publish';
+			$status = ( isset($data['_status']) ) ? sanitize_text_field($data['_status']) : 'publish';
 		}
 
 		$updated_post = array(

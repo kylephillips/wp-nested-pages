@@ -69,6 +69,7 @@ Hierarchical taxonomies are currently supported
 
 = 1.1.4 =
 * Password/Private functionality added to page quick edit
+* Quick edit UI enhancements
 
 = 1.1.3 =
 * Option to customize the generated nav menu added
@@ -88,6 +89,9 @@ Hierarchical taxonomies are currently supported
 * Nested Pages
 
 == Upgrade Notice ==
+
+= 1.1.4 =
+Added password/private functionality to quick edit along with UI enhancements.
 
 = 1.1.3 =
 Added option to rename the generated nav menu.

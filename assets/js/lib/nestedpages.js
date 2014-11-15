@@ -327,6 +327,7 @@ jQuery(function($){
 	// Toggle the Taxonomies
 	$(document).on('click', '.np-toggle-taxonomies', function(e){
 		$(this).parents('form').find('.np-taxonomies').toggle();
+		e.preventDefault();
 	});
 
 	// Toggle the Menu Options
