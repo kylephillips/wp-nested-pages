@@ -14,7 +14,7 @@ class NP_Activate {
 	public function __construct()
 	{
 		register_activation_hook( dirname( dirname(__FILE__) ) . '/nestedpages.php', array($this, 'install') );
-		$this->version = '1.1.3';
+		$this->version = '1.1.4';
 		$this->setVersion();
 		$this->addMenu();
 	}

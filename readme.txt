@@ -4,7 +4,8 @@ Donate link: http://nestedpages.com/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit
 Requires at least: 3.8
 Tested up to: 4.0
-Stable tag: 1.1.2
+Stable tag: 1.1.3
+
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +66,9 @@ Hierarchical taxonomies are currently supported
 4. Toggle nested child pages for a clutter-free tree
 
 == Changelog ==
+
+= 1.1.4 =
+* Password/Private functionality added to page quick edit
 
 = 1.1.3 =
 * Option to customize the generated nav menu added
