@@ -538,6 +538,13 @@ jQuery(function($){
 			$(status).text('');
 		}
 
+		// Password Lock Icon
+		if ( data.post_password !== "" ){
+			var statustext = $(status).text();
+			statustext += ' <i class="np-icon-lock"></i>';
+			$(status).html(statustext);
+		}
+
 		// Hide / Show in Nav
 		var nav_status = $(row).find('.nav-status');
 		if ( (data.nav_status == 'hide') ){

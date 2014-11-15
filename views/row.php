@@ -19,11 +19,10 @@
 				}
 
 				// Post Status
-				if ( $post->post_status !== 'publish' ){
-					echo '<span class="status">(' . $post->post_status . ')</span>';
-				} else {
-					echo '<span class="status"></span>';
-				}
+				echo '<span class="status">';
+				if ( $post->post_status !== 'publish' )	echo '(' . $post->post_status . ')';
+				if ( post_password_required($post->ID) ) echo ' <i class="np-icon-lock"></i>';
+				echo '</span>';
 
 				// Nested Pages Status
 				if ( $this->post_data['np_status'] == 'hide' )
