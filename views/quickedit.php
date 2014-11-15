@@ -76,6 +76,21 @@
 				<?php page_template_dropdown() ?>
 			</select>
 		</div>
+
+		<?php if ( $can_publish ) : ?>
+		<div class="form-control password">
+			<label><?php _e( 'Password' ); ?></label>
+			<input type="text" class="post_password" name="post_password" value="" />
+			<div class="private">
+				<em style="margin:2px 8px 0 0" class="alignleft"><?php _e( '&ndash;OR&ndash;' ); ?></em>
+				<label>
+					<input type="checkbox" class="keep_private" name="keep_private" value="private" />
+					<?php echo __( 'Private' ); ?>
+				</label>
+			</div>
+		</div>
+		<?php endif; ?>
+
 		<div class="comments">
 			<label>
 				<input type="checkbox" name="comment_status" class="np_cs" value="open" />

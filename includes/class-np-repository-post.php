@@ -59,6 +59,12 @@ class NP_PostRepository {
 		$date = $this->validation->validateDate($data);
 		if ( !isset($_POST['comment_status']) ) $data['comment_status'] = 'closed';
 
+		if ( isset($_POST['keep_private']) && $_POST['keep_private'] == 'private' ){
+			$status = 'private';
+		} else {
+			$status = ( isset($data['status']) ) ? sanitize_text_field($data['_status']) : 'publish';
+		}
+
 		$updated_post = array(
 			'ID' => sanitize_text_field($data['post_id']),
 			'post_title' => sanitize_text_field($data['post_title']),
@@ -66,7 +72,8 @@ class NP_PostRepository {
 			'post_name' => sanitize_text_field($data['post_name']),
 			'post_date' => $date,
 			'comment_status' => sanitize_text_field($data['comment_status']),
-			'post_status' => sanitize_text_field($data['_status'])
+			'post_status' => $status,
+			'post_password' => sanitize_text_field($data['post_password'])
 		);
 		wp_update_post($updated_post);
 
@@ -322,6 +329,20 @@ class NP_PostRepository {
 	{
 		$trashed = new WP_Query(array('post_type'=>'page','post_status'=>'trash','posts_per_page'=>-1));
 		return $trashed->found_posts;
+	}
+
+
+	/**
+	* Get count of published posts
+	* @param object $pages
+	*/
+	public function publishCount($pages)
+	{
+		$publish_count = 1;
+		foreach ( $pages->posts as $p ){
+			if ( $p->post_status !== 'trash' ) $publish_count++;
+		}
+		return $publish_count;
 	}
 
 }

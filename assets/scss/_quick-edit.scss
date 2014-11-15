@@ -11,7 +11,12 @@
 	right: 0;
 	bottom: 0;
 	left: 0;
-	display: none;
+	opacity: 0;
+	transition: opacity 200ms ease;
+	&.active {
+		opacity: 1;
+		transition: opacity 200ms ease;
+	}
 }
 .nestedpages .quick-edit {
 	position: relative;
@@ -62,6 +67,24 @@
 		label {
 			float: left;
 			width: 20%;
+		}
+		&.password {
+			label {
+				width: 25%;
+			}
+			input[type="text"]{
+				float: left;
+				width: 35%;
+			}
+			.private {
+				float: right;
+				width: 35%;
+				margin-top: 4px;
+				label {
+					width: auto;
+					float: none;
+				}
+			}
 		}
 	}
 	.comments {

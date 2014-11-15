@@ -48,6 +48,8 @@ class NP_QuickEdit_Handler extends NP_BaseHandler {
 		$this->data['nav_status'] = ( isset($this->data['nav_status']) ) ? 'hide' : 'show';
 		$this->data['np_status'] = ( isset($this->data['nested_pages_status']) ) ? 'hide' : 'show';
 		$this->data['link_target'] = ( isset($this->data['link_target']) ) ? '_blank' : 'none';
+		$this->data['keep_private'] = ( isset($this->data['keep_private']) ) ? 'private' : 'public';
+		$this->data['_status'] = ( isset($this->data['_status']) ) ? $this->data['_status'] : 'publish';
 		if ( !isset($_POST['comment_status']) ) $this->data['comment_status'] = 'closed';
 	}
 

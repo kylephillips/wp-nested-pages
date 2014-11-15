@@ -233,6 +233,9 @@ class NP_PageListing {
 		// Nav CSS Classes
 		$this->post_data['nav_css'] = get_post_meta(get_the_id(), 'np_nav_css_classes', true);
 
+		// Post Password
+		$this->post_data['password'] = $post->post_password;
+
 		// Yoast Score
 		if ( function_exists('wpseo_translate_score') ) {
 			$yoast_score = get_post_meta(get_the_id(), '_yoast_wpseo_linkdex', true);

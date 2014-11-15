@@ -41,7 +41,7 @@ class NP_PostTypes {
 
 
 	/**
-	* Trash hook - unset parent pages
+	* Trash hook - make sure child pages of trashed page are visible
 	*/
 	public function trashHook($post_id)
 	{

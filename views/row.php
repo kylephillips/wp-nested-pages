@@ -84,6 +84,9 @@
 				data-linktarget="<?php echo $this->post_data['link_target']; ?>" 
 				data-navtitle="<?php echo $this->post_data['nav_title']; ?>"
 				data-author="<?php echo $post->post_author; ?>" 
+				<?php if ( current_user_can('publish_pages') ) : ?>
+				data-password="<?php echo $post->post_password; ?>"
+				<?php endif; ?>
 				data-month="<?php echo $this->post_data['month']; ?>" 
 				data-day="<?php echo $this->post_data['d']; ?>" 
 				data-year="<?php echo $this->post_data['y']; ?>" 
