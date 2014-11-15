@@ -105,12 +105,6 @@
 				<span class="checkbox-title"><?php _e( 'Hide in Nested Pages' ); ?></span>
 			</label>
 		</div>
-
-		<div class="comments np-hide-options">
-			<p>Hide from:</p>
-			<label><input type="checkbox" >Administrators</label>
-			<label><input type="checkbox" >Editors</label>
-		</div>
 		<?php endif; // Edit theme options?>
 
 

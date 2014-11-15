@@ -336,11 +336,6 @@ jQuery(function($){
 		$(this).parents('form').find('.np-menuoptions').toggle();
 	});
 
-	// Toggle the hide from options
-	$(document).on('change', '.np_status', function(){
-		np_hide_options();
-	});
-
 	// Toggle password/private
 	$(document).on('change', '.keep_private', function(){
 		if ( this.checked ){
@@ -349,18 +344,6 @@ jQuery(function($){
 			$('.post_password').prop('readonly', false);
 		}
 	});
-
-	/**
-	* Hide/show the hide from options
-	*/
-	function np_hide_options()
-	{
-		if ( $('.np_status').is(':checked') ){
-			$('.np-hide-options').show();
-		} else {
-			$('.np-hide-options').hide();
-		}
-	}
 
 
 	/**
@@ -473,8 +456,6 @@ jQuery(function($){
 			}
 		}
 
-		// Hide/show the hide from options
-		np_hide_options();
 		show_quick_edit_overlay()
 
 		$(form).show();
@@ -776,8 +757,6 @@ jQuery(function($){
 			$(form).find('.link_target').removeAttr('checked');
 		}
 
-		// Hide/show the hide from options
-		np_hide_options();
 		show_quick_edit_overlay();
 
 		$(form).show();
