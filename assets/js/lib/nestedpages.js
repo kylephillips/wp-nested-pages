@@ -451,6 +451,10 @@ jQuery(function($){
 		} else {
 			$(form).find('.link_target').removeAttr('checked');
 		}
+
+		if ( data.status === "private" ) {
+			$(form).find('.np_status').val('publish');
+		}
 		
 		// Date Fields
 		$(form).find('select[name="mm"]').val(data.month);
