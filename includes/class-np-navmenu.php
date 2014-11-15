@@ -20,6 +20,12 @@ class NP_NavMenu {
 	*/
 	private $menu_name;
 
+	/**
+	* Individual Post
+	* @var array
+	*/
+	private $post;
+
 
 	public function __construct()
 	{
@@ -76,15 +82,22 @@ class NP_NavMenu {
 
 
 	/**
-	* Verify URL Format
-	* @param string - URL to check
-	* @return string - formatted URL
+	* Set the post settings
+	* @param object - post object
+	* @since 1.1.4
 	*/
-	private function check_url($url)
+	private function set_post($post)
 	{
-		$parsed = parse_url($url);
-		if (empty($parsed['scheme'])) $url = 'http://' . ltrim($url, '/');
-		return $url;
+		$this->post['ID'] = $post->ID;
+		$this->post['show_in_nav'] = get_post_meta( $post->ID, 'np_nav_status', true);
+		$this->post['nested_pages_visible'] = get_post_meta( $post->ID, 'nested_pages_status', true );
+		$this->post['link_target'] = get_post_meta( $post->ID, 'np_link_target', true );
+		$this->post['title_attribute'] = get_post_meta( $post->ID, 'np_title_attribute', true );
+		$this->post['css_classes'] = get_post_meta( $post->ID, 'np_nav_css_classes', true );
+		$this->post['permalink'] = get_the_permalink($post->ID);
+
+		$nav_title = get_post_meta( $post->ID, 'np_nav_title', true );
+		$this->post['nav_title'] = ( $nav_title !== "" ) ? $nav_title : $post->post_title;
 	}
 
 
@@ -102,63 +115,56 @@ class NP_NavMenu {
 			'post_parent' => $parent
 		));
 		if ( $page_q->have_posts() ) : while ( $page_q->have_posts() ) : $page_q->the_post();
-
-			// Nav Status
-			$ns = get_post_meta( get_the_id(), 'np_nav_status', true);
-
-			// Nested Pages Visibility
-			$np_status = get_post_meta( get_the_id(), 'nested_pages_status', true );
-
-			// Link Target
-			$link_target = get_post_meta( get_the_id(), 'np_link_target', true );
-
-			// Title Attribue
-			$title_attribute = get_post_meta( get_the_id(), 'np_title_attribute', true );
-
-			// CSS Classes
-			$css_classes = get_post_meta( get_the_id(), 'np_nav_css_classes', true );
-
-			// Nav Title
-			$nav_title = get_post_meta( get_the_id(), 'np_nav_title', true );
-			$nav_title = ( $nav_title !== "" ) ? $nav_title : get_the_title();
-
-			if ( ($ns == 'show') || ($ns == '') ) {
-				if ( $np_status !== 'hide' ){
-
-					if ( get_post_type() == 'page' ){
-						$menu = wp_update_nav_menu_item($this->id, 0, array(
-							'menu-item-title' => $nav_title,
-							'menu-item-url' => get_the_permalink(),
-							'menu-item-attr-title' => $title_attribute,
-							'menu-item-status' => 'publish',
-							'menu-item-classes' => $css_classes,
-							'menu-item-type' => 'post_type',
-							'menu-item-object' => 'page',
-							'menu-item-object-id' => get_the_id(),
-							'menu-item-parent-id' => $menu_parent,
-							'menu-item-target' => $link_target
-						));
-					} else { // redirect
-						$menu = wp_update_nav_menu_item($this->id, 0, array(
-							'menu-item-title' => $nav_title,
-							'menu-item-url' => NP_Helpers::check_url(get_the_content()),
-							'menu-item-attr-title' => $title_attribute,
-							'menu-item-status' => 'publish',
-							'menu-item-classes' => $css_classes,
-							'menu-item-type' => 'custom',
-							'menu-item-object' => 'page',
-							'menu-item-object-id' => get_the_id(),
-							'menu-item-parent-id' => $menu_parent,
-							'menu-item-target' => $link_target
-						));
-					}
-
+			global $post;
+			$this->set_post($post);
+			if ( ($this->post['show_in_nav'] == 'show') || ($this->post['show_in_nav'] == '') ) {
+				$menu = ( get_post_type() == 'page' ) ? $this->syncPageItem($menu_parent) : $this->syncLinkItem($menu_parent);
 				$this->sync( get_the_id(), $menu );
-				}
 			}
-
 		endwhile; endif; wp_reset_postdata();
-		
+	}
+
+
+	/**
+	* Sync Page Menu Item
+	* @since 1.1.4
+	*/
+	private function syncPageItem($menu_parent)
+	{
+		$menu = wp_update_nav_menu_item($this->id, 0, array(
+			'menu-item-title' => $this->post['nav_title'],
+			'menu-item-url' => $this->post['permalink'],
+			'menu-item-attr-title' => $this->post['title_attribute'],
+			'menu-item-status' => 'publish',
+			'menu-item-classes' => $this->post['css_classes'],
+			'menu-item-type' => 'post_type',
+			'menu-item-object' => 'page',
+			'menu-item-object-id' => $this->post['ID'],
+			'menu-item-parent-id' => $menu_parent,
+			'menu-item-target' => $this->post['link_target']
+		));
+		return $menu;
+	}
+
+
+	/**
+	* Sync Link Menu Item
+	* @since 1.1.4
+	*/
+	private function syncLinkItem($menu_parent)
+	{
+		$menu = wp_update_nav_menu_item($this->id, 0, array(
+			'menu-item-title' => $this->post['nav_title'],
+			'menu-item-url' => NP_Helpers::check_url(get_the_content($this->post['ID'])),
+			'menu-item-attr-title' => $this->post['title_attribute'],
+			'menu-item-status' => 'publish',
+			'menu-item-classes' => $this->post['css_classes'],
+			'menu-item-type' => 'custom',
+			'menu-item-object' => 'page',
+			'menu-item-object-id' => $this->post['ID'],
+			'menu-item-parent-id' => $menu_parent,
+			'menu-item-target' => $this->post['link_target']
+		));
 	}
 
 
