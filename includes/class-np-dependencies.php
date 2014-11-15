@@ -26,7 +26,7 @@ class NP_Dependencies {
 			'nestedpages', 
 			$this->plugin_dir . '/assets/css/nestedpages.css', 
 			array(), 
-			'1.1'
+			'1.1.4'
 		);
 	}
 
@@ -69,7 +69,7 @@ class NP_Dependencies {
 				'nestedpages', 
 				$this->plugin_dir . '/assets/js/nestedpages.min.js', 
 				array('jquery'), 
-				'1.0'
+				'1.1.4'
 			);
 
 			$localized_data = array(
