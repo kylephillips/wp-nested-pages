@@ -18,6 +18,7 @@ require_once('class-np-redirects.php');
 require_once('class-np-posttypes.php');
 require_once('class-np-settings.php');
 require_once('class-np-updates.php');
+require_once('class-np-handler-gettax.php');
 
 /**
 * Primary Plugin Class
@@ -62,6 +63,7 @@ class NestedPages {
 			add_action( 'wp_ajax_npnesttoggle', 'nestedpages_nesttoggle_handler' );
 			add_action( 'wp_ajax_npquickeditredirect', 'nestedpages_quickedit_redirect_handler' );
 			add_action( 'wp_ajax_npnewredirect', 'nestedpages_new_redirect');
+			add_action( 'wp_ajax_gettax', 'nestedpages_get_tax' );
 		}
 	}
 

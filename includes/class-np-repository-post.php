@@ -82,7 +82,7 @@ class NP_PostRepository {
 
 		// Taxonomies
 		$this->updateCategories($data);
-		$this->updateHierarchicalTaxonomies($data);
+		$this->updateTaxonomies($data);
 
 		// Menu Options
 		$this->updateNavStatus($data);
@@ -223,18 +223,51 @@ class NP_PostRepository {
 	* @since 1.0
 	* @param array data
 	*/
-	private function updateHierarchicalTaxonomies($data)
+	private function updateTaxonomies($data)
 	{
 		if ( isset($data['tax_input']) ) {
 			foreach ( $data['tax_input'] as $taxonomy => $term_ids ){
-				$this->validation->validateIntegerArray($term_ids);
-				$terms = array();
-				foreach ( $term_ids as $term ){
-					if ( $term !== 0 ) $terms[] = (int) $term;
+				$tax = get_taxonomy($taxonomy);
+				if ( $tax->hierarchical ){
+					$this->validation->validateIntegerArray($term_ids);
+					$this->updateHierarchicalTaxonomies($data, $taxonomy, $term_ids);
+				} else {
+					$this->updateFlatTaxonomy($data, $taxonomy, $term_ids);
 				}
-				wp_set_post_terms($data['post_id'], $terms, $taxonomy);
 			}
 		}
+	}
+
+
+	/**
+	* Update Hierarchical Taxonomy Terms
+	* @since 1.1.4
+	* @param array data
+	*/
+	private function updateHierarchicalTaxonomies($data, $taxonomy, $term_ids)
+	{
+		$terms = array();
+		foreach ( $term_ids as $term ){
+			if ( $term !== 0 ) $terms[] = (int) $term;
+		}
+		wp_set_post_terms($data['post_id'], $terms, $taxonomy);
+	}
+
+
+	/**
+	* Update Flat Taxonomy Terms
+	* @since 1.1.4
+	* @param array data
+	*/
+	private function updateFlatTaxonomy($data, $taxonomy, $terms)
+	{
+		$terms = explode(',', sanitize_text_field($terms));
+		$new_terms = array();
+		foreach($terms as $term)
+		{
+			if ( $term !== "" )	array_push($new_terms, $term);
+		}
+		wp_set_post_terms($data['post_id'], $new_terms, $taxonomy);
 	}
 
 

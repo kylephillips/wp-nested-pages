@@ -130,6 +130,13 @@
 				</ul>
 			</div><!-- .np-taxonomy -->
 		<?php endforeach; ?>
+
+		<?php foreach ( $this->f_taxonomies as $taxonomy ) : ?>
+			<div class="np-taxonomy">
+				<span class="title"><?php echo esc_html( $taxonomy->labels->name ) ?></span>
+				<textarea id="<?php echo esc_attr($taxonomy->name); ?>" cols="22" rows="1" name="tax_input[<?php echo esc_attr( $taxonomy->name )?>]" class="tax_input_<?php echo esc_attr( $taxonomy->name )?>" data-autotag data-taxonomy="<?php echo esc_attr($taxonomy->name); ?>"></textarea>
+			</div><!-- .np-taxonomy -->
+		<?php endforeach; ?>
 	</div><!-- .taxonomies -->
 	<?php endif; // if taxonomies ?>
 

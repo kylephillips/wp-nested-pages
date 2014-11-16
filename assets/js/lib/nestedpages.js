@@ -375,11 +375,15 @@ jQuery(function($){
 		var parent_li = $(item).closest('.row').parent('li');
 
 		// Add Array of Taxonomies to the data object
-		data.taxonomies = [];
+		data.h_taxonomies = [];
+		data.f_taxonomies = [];
 		var classes = $(parent_li).attr('class').split(/\s+/);
 		for ( i = 0; i < classes.length; i++ ){
 			if ( classes[i].substring(0, 3) === 'in-'){
-				data.taxonomies.push(classes[i]);
+				data.h_taxonomies.push(classes[i]);
+			}
+			if ( classes[i].substring(0, 4) === 'inf-' ){
+				data.f_taxonomies.push(classes[i]);	
 			}
 		}
 		
@@ -397,7 +401,7 @@ jQuery(function($){
 
 
 	/**
-	* Populate the Quick Edit Form
+	* Populate the Quick Edit Form and show it
 	*/
 	function populate_quick_edit(form, data)
 	{
@@ -447,18 +451,103 @@ jQuery(function($){
 		$(form).find('input[name="hh"]').val(data.hour);
 		$(form).find('input[name="mn"]').val(data.minute);
 
-		// Populate Taxonomy Checkboxes
-		if ( data.hasOwnProperty('taxonomies') ){
-			var taxonomies = data.taxonomies;
+		// Populate Hierarchical Taxonomy Checkboxes
+		if ( data.hasOwnProperty('h_taxonomies') ){
+			var taxonomies = data.h_taxonomies;
 			for ( i = 0; i < taxonomies.length; i++ ){
 				var tax = '#' + taxonomies[i];
 				$(form).find(tax).prop('checked', 'checked');
 			}
 		}
 
-		show_quick_edit_overlay()
+		show_quick_edit_overlay();
 
 		$(form).show();
+
+		// Populate Flat Taxonomies (makes ajax request, so do this after showing form)
+		if ( data.hasOwnProperty('f_taxonomies') ){
+			create_taxonomy_object(data.f_taxonomies);	
+			set_wp_suggest(form);		
+		}
+	}
+
+
+	/**
+	* Create object of flat taxonomies out of class names
+	*/
+	function create_taxonomy_object(taxonomies)
+	{
+		var out = "";
+		var terms = {};
+		for ( i = 0; i < taxonomies.length; i++ ){
+			// Get the term
+			var tax_array = taxonomies[i].split('-'); // split the string into an array
+			var splitter = tax_array.indexOf('nps'); // find the index of the name splitter
+			var term = tax_array.splice(splitter + 1); // Splice off the name
+			term = term.join('-'); // Join the name back into a string
+
+			// Get the taxonomy
+			var tax = taxonomies[i].split('-').splice(0, splitter);
+			tax.shift('inf');
+			var taxonomy = tax.join('-');				
+
+			// Add taxonomy array to object
+			if ( !(taxonomy in terms) ){
+				terms[taxonomy] = [];
+			}
+			// push term to taxonomy array
+			var term_array = terms[taxonomy];
+			term_array.push(term);
+		}
+		get_taxonomy_names(terms);
+	}
+
+
+
+	/**
+	* Get Taxonomy Names
+	* @param array of term slugs
+	*/
+	function get_taxonomy_names(taxonomies)
+	{
+		$.ajax({
+			url: ajaxurl,
+			type: 'post',
+			datatype: 'json',
+			data : {
+				action : 'gettax',
+				nonce : nestedpages.np_nonce,
+				terms : taxonomies
+			},
+			success: function(data){
+				populate_flat_taxonomies(data.terms);
+			}
+		});
+	}
+
+	/**
+	* Populate flat taxonomy textareas
+	* @param object
+	*/
+	function populate_flat_taxonomies(terms)
+	{
+		$.each(terms, function(i, v){
+			var textarea = $('#' + i);
+			$(textarea).val(v.join(','));
+		});
+	}
+
+
+	/**
+	* Set WP Taxonomy Suggest (Flat taxonomies)
+	*/
+	function set_wp_suggest(form)
+	{
+		var tagfields = $(form).find('[data-autotag]');
+		$.each(tagfields, function(i, v){
+			var taxonomy = $(this).attr('data-taxonomy');
+			$(this).suggest(ajaxurl + '?action=ajax-tag-search&tax=' + taxonomy , {multiple:true, multipleSep: ","});
+		});
 	}
 
 
@@ -595,7 +684,8 @@ jQuery(function($){
 
 		np_remove_taxonomy_classes(li);
 		np_add_category_classes(li, data);
-		np_add_taxonomy_classes(li, data);
+		np_add_h_taxonomy_classes(li, data);
+		np_add_f_taxonomy_classes(li, data);
 
 	}
 
@@ -609,6 +699,9 @@ jQuery(function($){
 		var classes = $(row).attr('class').split(/\s+/);
 		for ( i = 0; i < classes.length; i++ ){
 			if ( classes[i].substring(0, 3) === 'in-'){
+				$(row).removeClass(classes[i]);
+			}
+			if ( classes[i].substring(0, 4) === 'inf-'){
 				$(row).removeClass(classes[i]);
 			}
 		}
@@ -631,9 +724,9 @@ jQuery(function($){
 
 
 	/**
-	* Add Taxonomy Classes to the row
+	* Add Hierarchical Taxonomy Classes to the row
 	*/
-	function np_add_taxonomy_classes(row, data)
+	function np_add_h_taxonomy_classes(row, data)
 	{
 		if ( data.hasOwnProperty('tax_input') )
 		{
@@ -641,6 +734,25 @@ jQuery(function($){
 			$.each(taxonomies, function(tax, terms){
 				for (i = 0; i < terms.length; i++){
 					var taxclass = 'in-' + tax + '-' + terms[i];
+					$(row).addClass(taxclass);
+				}
+			});
+
+		}
+	}
+
+
+	/**
+	* Add Flat Taxonomy Classes to the row
+	*/
+	function np_add_f_taxonomy_classes(row, data)
+	{
+		if ( data.hasOwnProperty('flat_tax') )
+		{
+			var taxonomies = data.flat_tax;
+			$.each(taxonomies, function(tax, terms){
+				for (i = 0; i < terms.length; i++){
+					var taxclass = 'inf-' + tax + '-nps-' + terms[i];
 					$(row).addClass(taxclass);
 				}
 			});

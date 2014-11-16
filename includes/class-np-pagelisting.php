@@ -147,7 +147,7 @@ class NP_PageListing {
 
 
 	/**
-	* Get a Posts Taxonomies
+	* Get Post Hierarchical Taxonomies
 	*/
 	private function hierarchicalTaxonomies($page_id)
 	{
@@ -160,7 +160,24 @@ class NP_PageListing {
 				}
 			}
 		}
-		if ( $out !== '' ) $out .= ' has-tax ';
+		return $out;
+	}
+
+
+	/**
+	* Get Post Flat Taxonomies
+	*/
+	private function flatTaxonomies($page_id)
+	{
+		$out = '';
+		if ( count($this->f_taxonomies) > 0 ) {
+			foreach ( $this->f_taxonomies as $taxonomy ){
+				$terms = wp_get_post_terms($page_id, $taxonomy->name);
+				foreach ( $terms as $term ){
+					$out .= 'inf-' . $taxonomy->name . '-nps-' . $term->term_id . ' ';
+				}
+			}
+		}
 		return $out;
 	}
 
@@ -303,6 +320,7 @@ class NP_PageListing {
 
 					// Taxonomies
 					echo ' ' . $this->hierarchicalTaxonomies( get_the_id() );
+					echo ' ' . $this->flatTaxonomies( get_the_id() );
 					
 					echo '">';
 					
