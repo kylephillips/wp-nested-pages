@@ -5,6 +5,10 @@
 		<table class="form-table">
 			<?php settings_fields( 'nestedpages-general' ); ?>
 			<tr valign="top">
+				<th scope="row"><?php _e('Nested Pages Version', 'nestedpages'); ?></th>
+				<td><strong><?php echo get_option('nestedpages_version'); ?></strong></td>
+			</tr>
+			<tr valign="top">
 				<th scope="row"><?php _e('Menu Name', 'nestedpages'); ?></th>
 				<td>
 					<input type="text" name="nestedpages_menu" id="nestedpages_menu" value="<?php echo $menu_name; ?>">
