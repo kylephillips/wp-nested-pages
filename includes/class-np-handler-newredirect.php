@@ -37,7 +37,7 @@ class NP_NewRedirect extends NP_BaseHandler {
 		$this->formatLink();
 		$this->response = array(
 			'status' => 'success', 
-			'message' => __('Redirect successfully updated'),
+			'message' => __('Link successfully updated', 'nestedpages'),
 			'post_data' => $this->data
 		);
 	}

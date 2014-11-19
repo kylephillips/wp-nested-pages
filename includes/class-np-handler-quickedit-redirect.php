@@ -33,7 +33,7 @@ class NP_QuickEdit_Handler_Redirect extends NP_BaseHandler {
 		$this->addData();
 		$this->response = array(
 			'status' => 'success', 
-			'message' => __('Redirect successfully updated'),
+			'message' => __('Link successfully updated', 'nestedpages'),
 			'post_data' => $this->data
 		);
 	}

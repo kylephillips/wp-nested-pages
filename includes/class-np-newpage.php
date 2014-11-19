@@ -39,7 +39,7 @@ class NP_NewPage {
 	public function showNotice()
 	{
 		if ( $this->isChild() ) {
-			echo '<div id="message" class="updated"><p>' . __('Adding child page under:') . ' <strong>' . get_the_title($this->parent_page) . '</strong></p></div>';
+			echo '<div id="message" class="updated"><p>' . __('Adding child page under:', 'nestedpages') . ' <strong>' . get_the_title($this->parent_page) . '</strong></p></div>';
 		}
 	}
 

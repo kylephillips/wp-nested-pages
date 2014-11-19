@@ -16,7 +16,7 @@
 
 				// Post Status
 				if ( $post->post_status !== 'publish' ){
-					echo '<span class="status">(' . $post->post_status . ')</span>';
+					echo '<span class="status">(' . __(ucfirst($post->post_status)) . ')</span>';
 				} else {
 					echo '<span class="status"></span>';
 				}
@@ -27,7 +27,7 @@
 
 				// Nav Status
 				if ( $this->post_data['nav_status'] == 'hide' ){
-					echo '<span class="nav-status">(Hidden)</span>';
+					echo '<span class="nav-status">(' . __('Hidden', 'nestedpages') . ')</span>';
 				} else {
 					echo '<span class="nav-status"></span>';
 				}
@@ -50,7 +50,7 @@
 				data-navtitleattr="<?php echo $this->post_data['nav_title_attr']; ?>"
 				data-navcss="<?php echo $this->post_data['nav_css']; ?>"
 				data-linktarget="<?php echo $this->post_data['link_target']; ?>">
-				<?php _e('Quick Edit', 'nestedpages'); ?>
+				<?php _e('Quick Edit'); ?>
 			</a>
 
 			<?php if ( current_user_can('delete_pages') ) : ?>

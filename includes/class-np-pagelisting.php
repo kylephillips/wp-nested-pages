@@ -58,8 +58,8 @@ class NP_PageListing {
 	{
 		if ( current_user_can('edit_pages') ){
 			add_menu_page( 
-				$this->post_type->labels->name,
-				$this->post_type->labels->name,
+				__($this->post_type->labels->name),
+				__($this->post_type->labels->name),
 				'delete_pages',
 				'nestedpages', 
 				array( $this, 'pageListing' ),

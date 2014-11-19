@@ -20,7 +20,7 @@
 
 				// Post Status
 				echo '<span class="status">';
-				if ( $post->post_status !== 'publish' )	echo '(' . $post->post_status . ')';
+				if ( $post->post_status !== 'publish' )	echo '(' . __(ucfirst($post->post_status)) . ')';
 				if ( post_password_required($post->ID) ) echo ' <i class="np-icon-lock"></i>';
 				echo '</span>';
 
@@ -30,7 +30,7 @@
 
 				// Nav Status
 				if ( $this->post_data['nav_status'] == 'hide' ){
-					echo '<span class="nav-status">(Hidden)</span>';
+					echo '<span class="nav-status">' . __('Hidden', 'nestedpages') . '</span>';
 				} else {
 					echo '<span class="nav-status"></span>';
 				}
@@ -40,7 +40,7 @@
 					$u = get_userdata($user);
 					echo '<span class="locked"><i class="np-icon-lock"></i><em> ' . $u->display_name . ' ' . __('currently editing', 'nestedpages') . '</em></span>';
 				} else {
-					echo '<span class="edit-indicator"><i class="np-icon-pencil"></i>' . __('Edit', 'nestedpages') . '</span>';
+					echo '<span class="edit-indicator"><i class="np-icon-pencil"></i>' . __('Edit') . '</span>';
 				}
 			?>
 		</a>
@@ -91,11 +91,11 @@
 				data-year="<?php echo $this->post_data['y']; ?>" 
 				data-hour="<?php echo $this->post_data['h']; ?>" 
 				data-minute="<?php echo $this->post_data['m']; ?>">
-				<?php _e('Quick Edit', 'nestedpages'); ?>
+				<?php _e('Quick Edit'); ?>
 			</a>
 			<?php endif; ?>
 
-			<a href="<?php echo get_the_permalink(); ?>" class="np-btn" target="_blank"><?php _e('View', 'nestedpages'); ?></a>
+			<a href="<?php echo get_the_permalink(); ?>" class="np-btn" target="_blank"><?php _e('View'); ?></a>
 			
 			<?php if ( current_user_can('delete_pages') ) : ?>
 			<a href="<?php echo get_delete_post_link(get_the_id()); ?>" class="np-btn np-btn-trash">

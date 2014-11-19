@@ -18,8 +18,8 @@ class NP_PostTypes {
 	public function registerRedirects()
 	{
 		$labels = array(
-			'name' => __('Redirects'),  
-			'singular_name' => __('Redirect'),
+			'name' => __('Redirects', 'nestedpages'),  
+			'singular_name' => __('Redirect', 'nestedpages'),
 			'add_new_item'=> 'Add Redirect',
 			'edit_item' => 'Edit Redirect',
 			'view_item' => 'View Redirect'

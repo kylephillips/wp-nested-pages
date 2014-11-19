@@ -62,7 +62,7 @@ class NP_Redirects {
 	{
 		$screen = get_current_screen();
 		if ( $screen->parent_file == 'edit.php?post_type=page' ){
-			$link = array('Nested Pages' => '<a href="' . esc_url(admin_url('admin.php?page=nestedpages')) . '">Nested Pages</a>');
+			$link = array('Nested Pages' => '<a href="' . esc_url(admin_url('admin.php?page=nestedpages')) . '">' . __('Nested Pages', 'nestedpages') . '</a>');
 			$views = array_merge($views, $link);
 		}
 		return $views;

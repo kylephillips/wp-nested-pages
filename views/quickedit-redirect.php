@@ -5,7 +5,7 @@
 
 <form method="get" action="">
 	<div class="form-interior">
-	<h3><?php _e('Redirect', 'nestedpages'); ?></h3>
+	<h3><?php _e('Link', 'nestedpages'); ?></h3>
 
 	<div class="np-quickedit-error" style="clear:both;display:none;"></div>
 
@@ -14,7 +14,7 @@
 	<div class="left">
 		
 		<div class="form-control">
-			<label><?php _e( 'Label', 'nestedpages' ); ?></label>
+			<label><?php _e( 'Navigation Label' ); ?></label>
 			<input type="text" name="post_title" class="np_title" value="" />
 		</div>
 
@@ -41,11 +41,11 @@
 
 		<?php if ( current_user_can('edit_theme_options') ) : ?>
 		<div class="form-control">
-			<label><?php _e( 'Title Attribute', 'nestedpages' ); ?></label>
+			<label><?php _e( 'Title Attribute' ); ?></label>
 			<input type="text" name="np_title_attribute" class="np_title_attribute" value="" />
 		</div>
 		<div class="form-control">
-			<label><?php _e( 'CSS Classes', 'nestedpages' ); ?></label>
+			<label><?php _e( 'CSS Classes' ); ?></label>
 			<input type="text" name="np_nav_css_classes" class="np_nav_css_classes" value="" />
 		</div>
 		<div class="comments">
@@ -63,7 +63,7 @@
 		<div class="comments">
 			<label>
 				<input type="checkbox" name="link_target" class="link_target" value="_blank" />
-				<span class="checkbox-title"><?php _e( 'Open link in new window', 'nestedpages' ); ?></span>
+				<span class="checkbox-title"><?php _e( 'Open link in a new window/tab' ); ?></span>
 			</label>
 		</div>			
 		<?php endif; // Edit theme options?>
