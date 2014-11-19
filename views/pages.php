@@ -1,23 +1,27 @@
 <div class="wrap">
 
 	<h2>
-		<?php echo $this->post_type->labels->name; ?>
-		<a href="<?php echo $this->addNewPageLink(); ?>" class="add-new-h2"><?php echo $this->post_type->labels->add_new; ?></a>
+		<?php _e($this->post_type->labels->name); ?>
+		<a href="<?php echo $this->addNewPageLink(); ?>" class="add-new-h2">
+			<?php _e($this->post_type->labels->add_new_item); ?>
+		</a>
 		<?php if ( current_user_can('publish_pages') ) : ?>
-		<a href="#" class="add-new-h2 open-redirect-modal" title="<?php _e('Add Link', 'nestedpages'); ?>" data-parentid="0"><?php _e('Add Link', 'nestedpages'); ?></a>
+		<a href="#" class="add-new-h2 open-redirect-modal" title="<?php _e('Add Link', 'nestedpages'); ?>" data-parentid="0">
+			<?php _e('Add Link', 'nestedpages'); ?>
+		</a>
 		<?php endif; ?>
 	</h2>
 
 	<?php if ( $this->confirmation() ) echo $this->confirmation() . '<div style="clear:both;"></div>'; ?>
 
 	<ul class="nestedpages-toggleall" <?php if ( $this->confirmation() ) echo 'style="margin-top:0"';?>>
-		<li><a href="#" class="np-btn" data-toggle="closed"><?php _e('Expand Pages'); ?></a></li>
+		<li><a href="#" class="np-btn" data-toggle="closed"><?php _e('Expand Pages', 'nestedpages'); ?></a></li>
 	</ul>
 
 	<?php if ( current_user_can('edit_theme_options') ) : ?>
 	<div class="np-sync-menu-cont" <?php if ( $this->confirmation() ) echo 'style="margin-top:2px;"';?>>
 		<label>
-			<input type="checkbox" name="np_sync_menu" class="np-sync-menu" value="sync" <?php if ( get_option('nestedpages_menusync') == 'sync' ) echo 'checked'; ?>/> <?php _e('Sync Menu'); ?>
+			<input type="checkbox" name="np_sync_menu" class="np-sync-menu" value="sync" <?php if ( get_option('nestedpages_menusync') == 'sync' ) echo 'checked'; ?>/> <?php _e('Sync Menu', 'nestedpages'); ?>
 		</label>
 	</div>
 	<?php endif; ?>
@@ -27,16 +31,18 @@
 	<ul class="subsubsub">
 		<li><a href="#all" class="np-toggle-publish active"><?php _e('All'); ?></a> | </li>
 		<li><a href="#published" class="np-toggle-publish"><?php _e('Published'); ?></a> | </li>
-		<li><a href="#show" class="np-toggle-hidden"><?php _e('Show Hidden'); ?> </a>
+		<li><a href="#show" class="np-toggle-hidden"><?php _e('Show Hidden', 'nestedpages'); ?> </a>
 			<span class="count">(<?php echo $this->post_repo->getHiddenCount(); ?>)</span> | </li>
 		<?php if ( current_user_can('delete_pages') ) : ?>
 		<li><a href="edit.php?post_status=trash&post_type=page"><?php _e('Trash'); ?> </a>
 			<span class="count">(<?php echo $this->post_repo->trashedPagesCount(); ?>)</span> | </li>
 		<?php endif; ?>
-		<li><a href="<?php echo $this->defaultPagesLink(); ?>"><?php _e('Default'); ?> <?php echo $this->post_type->labels->name; ?></a></li>
+		<li><a href="<?php echo $this->defaultPagesLink(); ?>"><?php _e('Default'); ?> <?php _e($this->post_type->labels->name); ?></a></li>
 	</ul>
 
+
 	<div id="np-error" class="updated error" style="clear:both;display:none;"></div>
+
 
 	<div class="nestedpages">
 		<?php $this->loopPages(); ?>
