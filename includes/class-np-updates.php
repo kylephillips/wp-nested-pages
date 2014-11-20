@@ -32,4 +32,6 @@ class NP_Updates {
 			update_option('nestedpages_menu', 'nestedpages');
 	}
 
+	
+
 }

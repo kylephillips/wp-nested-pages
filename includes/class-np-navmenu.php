@@ -16,9 +16,10 @@ class NP_NavMenu {
 	public $items;
 
 	/**
-	* Menu Name Option
+	* Menu Object
+	* @var object
 	*/
-	private $menu_name;
+	private $menu;
 
 	/**
 	* Individual Post
@@ -29,7 +30,7 @@ class NP_NavMenu {
 
 	public function __construct()
 	{
-		$this->getMenuName();
+		$this->setMenu();
 		$this->setID();
 		$this->setItems();
 	}
@@ -37,13 +38,12 @@ class NP_NavMenu {
 
 	/**
 	* Get Optional custom menu name
-	* @since 1.1.11
+	* @since 1.1.5
 	*/
-	private function getMenuName()
+	private function setMenu()
 	{
-		$this->menu_name = ( get_option('nestedpages_menu') )
-			? get_option('nestedpages_menu')
-			: 'nestedpages';
+		$menu_id = get_option('nestedpages_menu');
+		$this->menu = get_term_by('id', $menu_id, 'nav_menu');
 	}
 
 
@@ -52,22 +52,7 @@ class NP_NavMenu {
 	*/
 	public function setID()
 	{
-		$menu = get_term_by('name', $this->menu_name, 'nav_menu');
-		if ( $menu ) {
-			$this->id = $menu->term_id;
-		} else {
-			$this->addMenu();
-		}
-	}
-
-
-	/**
-	* Add the Nav Menu
-	*/
-	public function addMenu()
-	{
-		$menu = wp_create_nav_menu($this->menu_name);
-		$this->id = $menu;
+		$this->id = $this->menu->term_id;
 	}
 
 
@@ -76,7 +61,7 @@ class NP_NavMenu {
 	*/
 	public function setItems()
 	{
-		$menu = get_term_by('name', $this->menu_name, 'nav_menu');
+		$menu = get_term_by('id', $this->id, 'nav_menu');
 		if ( $menu ) $this->items = wp_get_nav_menu_items($this->id);
 	}
 

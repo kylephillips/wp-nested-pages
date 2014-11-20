@@ -5,12 +5,18 @@ require_once('class-np-helpers.php');
 */
 class NP_Settings {
 
+	/**
+	* Nested Pages Menu
+	* @var object
+	*/
+	private $menu;
+
 
 	public function __construct()
 	{
 		add_action( 'admin_menu', array( $this, 'registerSettingsPage' ) );
 		add_action( 'admin_init', array($this, 'registerSettings' ) );
-		add_action('updated_option', array($this, 'updateMenuName'), 10, 3);
+		add_action( 'updated_option', array($this, 'updateMenuName'), 10, 3);
 	}
 
 
@@ -40,17 +46,32 @@ class NP_Settings {
 
 
 	/**
-	* Update the menu name if custom is provided
-	* @since 1.1.11
+	* Update the menu name if option is updated
+	* @since 1.1.5
 	*/
 	public function updateMenuName($option, $old_value, $value)
 	{
 		if ( $option == 'nestedpages_menu' ){
-			$menu = get_term_by('name', $old_value, 'nav_menu');
+			
+			delete_option('nestedpages_menu'); // Delete the option to prevent infinite loop
+			update_option('nestedpages_menu', $old_value);
+
+			$menu = get_term_by('id', $old_value, 'nav_menu');
 			wp_update_term($menu->term_id, 'nav_menu', array(
-				'name' => $value
+				'name' => $value,
+				'slug' => sanitize_title($value)
 			));
 		}
+	}
+
+
+	/**
+	* Set the Menu Object
+	*/
+	private function setMenu()
+	{
+		$menu_id = get_option('nestedpages_menu');
+		$this->menu = get_term_by('id', $menu_id, 'nav_menu');
 	}
 
 
@@ -59,7 +80,7 @@ class NP_Settings {
 	*/
 	public function settingsPage()
 	{
-		$menu_name = ( get_option('nestedpages_menu') ) ? get_option('nestedpages_menu') : 'nestedpages';
+		$this->setMenu();
 		include( NP_Helpers::view('settings') );
 	}	
 

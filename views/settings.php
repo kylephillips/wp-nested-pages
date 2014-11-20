@@ -11,7 +11,7 @@
 			<tr valign="top">
 				<th scope="row"><?php _e('Menu Name', 'nestedpages'); ?></th>
 				<td>
-					<input type="text" name="nestedpages_menu" id="nestedpages_menu" value="<?php echo $menu_name; ?>">
+					<input type="text" name="nestedpages_menu" id="nestedpages_menu" value="<?php echo $this->menu->name; ?>">
 					<p><em><?php _e('Important: Once the menu name has changed, theme files should be updated to reference the new name.', 'nestedpages'); ?></em></p>
 				</td>
 			</tr>
