@@ -27,6 +27,21 @@ Copyright: Kyle Phillips
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+    
+/**
+* Check Wordpress and PHP versions before instantiating plugin
+*/
+register_activation_hook( __FILE__, 'nestedpages_check_versions' );
+function nestedpages_check_versions( $wp = '3.9', $php = '5.3.0' ) {
+    global $wp_version;
+    if ( version_compare( PHP_VERSION, $php, '<' ) ) $flag = 'PHP';
+    elseif ( version_compare( $wp_version, $wp, '<' ) ) $flag = 'WordPress';
+    else return;
+    $version = 'PHP' == $flag ? $php : $wp;
+    deactivate_plugins( basename( __FILE__ ) );
+    
+    wp_die('<p><strong>Nested Pages</strong> plugin requires'.$flag.'  version '.$version.' or greater.</p>','Plugin Activation Error',  array( 'response'=>200, 'back_link'=>TRUE ) );
+}
 
 if( !class_exists('NestedPages') ) :
 	require_once('includes/class-nestedpages.php');
