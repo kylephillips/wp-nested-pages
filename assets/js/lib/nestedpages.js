@@ -74,6 +74,19 @@ jQuery(function($){
 			np_set_borders();
 		}
 	});
+
+	/**
+	* Tabs
+	*/
+	$('.np-tabs a').on('click', function(e){
+		e.preventDefault();
+		$('.np-tabs a').removeClass('active');
+		$(this).addClass('active');
+		
+		var target = $(this).attr('href');
+		$('.np-tabbed-content').hide();
+		$(target).show();
+	});
 	
 	/**
 	* Fix :visible :first css limitation when toggling various options
@@ -971,8 +984,8 @@ jQuery(function($){
 	$(document).on('click', '.open-redirect-modal', function(e){
 		e.preventDefault();
 		var parent_id = $(this).attr('data-parentid');
-		$('.np-modal-form').find('input').val('');
-		$('.np-modal-form').find('.parent_id').val(parent_id);
+		$('#np-link-modal').find('input').val('');
+		$('#np-link-modal .parent_id').val(parent_id);
 		if (parent_id === '0'){
 			$('#np-add-link-title').text(nestedpages.add_link);
 		} else {

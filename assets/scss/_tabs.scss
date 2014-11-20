@@ -1,0 +1,25 @@
+//
+// Tabs
+// --------------------------------------------------
+.np-tabs {
+	background-color: darken($white, 8%);
+	padding: 0px;
+	ul {
+		text-align: left;
+		@include unstyled;
+		li {
+			display: inline-block;
+			margin: 0;
+			a {
+				display: block;
+				text-decoration: none;
+				padding: 5px 10px;
+				&.active {
+					position: relative;
+					color: $black;
+					background-color: $white;
+				}
+			}
+		}
+	}
+}
