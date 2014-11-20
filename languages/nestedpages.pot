@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nested Pages\n"
-"POT-Creation-Date: 2014-11-08 19:39-0500\n"
-"PO-Revision-Date: 2014-11-08 19:39-0500\n"
+"POT-Creation-Date: 2014-11-18 21:05-0500\n"
+"PO-Revision-Date: 2014-11-18 21:05-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,15 +16,19 @@ msgstr ""
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: includes/class-np-confirmation.php:57
+#: includes/class-nestedpages.php:85
+msgid "Settings"
+msgstr ""
+
+#: includes/class-np-confirmation.php:58
 msgid "pages moved to the Trash"
 msgstr ""
 
-#: includes/class-np-confirmation.php:59
+#: includes/class-np-confirmation.php:60
 msgid "page moved to the Trash"
 msgstr ""
 
-#: includes/class-np-confirmation.php:64
+#: includes/class-np-confirmation.php:65
 msgid "Undo"
 msgstr ""
 
@@ -40,7 +44,11 @@ msgstr ""
 msgid "restored from trash"
 msgstr ""
 
-#: includes/class-np-dependencies.php:77 views/pages.php:15
+#: includes/class-np-confirmation.php:90
+msgid "Link successfully deleted."
+msgstr ""
+
+#: includes/class-np-dependencies.php:77 views/pages.php:18
 msgid "Expand Pages"
 msgstr ""
 
@@ -48,7 +56,7 @@ msgstr ""
 msgid "Collapse Pages"
 msgstr ""
 
-#: includes/class-np-dependencies.php:79 views/pages.php:31
+#: includes/class-np-dependencies.php:79 views/pages.php:34
 msgid "Show Hidden"
 msgstr ""
 
@@ -56,8 +64,8 @@ msgstr ""
 msgid "Hide Hidden"
 msgstr ""
 
-#: includes/class-np-dependencies.php:81 views/link-form.php:13
-#: views/pages.php:8
+#: includes/class-np-dependencies.php:81 views/link-form.php:14
+#: views/pages.php:9 views/pages.php:10
 msgid "Add Link"
 msgstr ""
 
@@ -75,10 +83,10 @@ msgstr ""
 
 #: includes/class-np-handler-newredirect.php:40
 #: includes/class-np-handler-quickedit-redirect.php:36
-msgid "Redirect successfully updated"
+msgid "Link successfully updated"
 msgstr ""
 
-#: includes/class-np-handler-quickedit.php:37
+#: includes/class-np-handler-quickedit.php:38
 msgid "Post successfully updated"
 msgstr ""
 
@@ -102,15 +110,15 @@ msgstr ""
 msgid "Adding child page under:"
 msgstr ""
 
-#: includes/class-np-pagelisting.php:71
+#: includes/class-np-pagelisting.php:79
 msgid "All Pages"
 msgstr ""
 
-#: includes/class-np-pagelisting.php:72
+#: includes/class-np-pagelisting.php:80
 msgid "Add New"
 msgstr ""
 
-#: includes/class-np-pagelisting.php:73
+#: includes/class-np-pagelisting.php:81
 msgid "Default Pages"
 msgstr ""
 
@@ -118,15 +126,19 @@ msgstr ""
 msgid "Redirects"
 msgstr ""
 
-#: includes/class-np-posttypes.php:22 views/quickedit-redirect.php:8
+#: includes/class-np-posttypes.php:22
 msgid "Redirect"
 msgstr ""
 
-#: includes/class-np-repository-post.php:56 views/quickedit.php:20
+#: includes/class-np-redirects.php:65
+msgid "Nested Pages"
+msgstr ""
+
+#: includes/class-np-repository-post.php:58 views/quickedit.php:20
 msgid "Title"
 msgstr ""
 
-#: includes/class-np-repository-post.php:256 views/quickedit-redirect.php:17
+#: includes/class-np-repository-post.php:298
 msgid "Label"
 msgstr ""
 
@@ -146,91 +158,108 @@ msgstr ""
 msgid "Please provide a "
 msgstr ""
 
-#: views/link-form.php:23
-msgid "Menu Title"
+#: views/link-form.php:15
+msgid "Add Menu Item"
 msgstr ""
 
-#: views/link-form.php:28 views/quickedit-redirect.php:22
+#: views/link-form.php:31 views/quickedit-redirect.php:17
+#: views/quickedit.php:148
+msgid "Navigation Label"
+msgstr ""
+
+#: views/link-form.php:36 views/quickedit-redirect.php:22
 msgid "URL"
 msgstr ""
 
-#: views/link-form.php:33 views/quickedit-redirect.php:27
-#: views/quickedit.php:55
+#: views/link-form.php:41 views/quickedit-redirect.php:27
+#: views/quickedit.php:58
 msgid "Status"
 msgstr ""
 
-#: views/link-form.php:36 views/pages.php:30 views/quickedit-redirect.php:30
-#: views/quickedit.php:58
+#: views/link-form.php:44 views/pages.php:33 views/quickedit-redirect.php:30
+#: views/quickedit.php:61
 msgid "Published"
 msgstr ""
 
-#: views/link-form.php:37 views/quickedit-redirect.php:31
-#: views/quickedit.php:59
+#: views/link-form.php:45 views/quickedit-redirect.php:31
+#: views/quickedit.php:62
 msgid "Scheduled"
 msgstr ""
 
-#: views/link-form.php:39 views/quickedit-redirect.php:33
-#: views/quickedit.php:61
+#: views/link-form.php:47 views/quickedit-redirect.php:33
+#: views/quickedit.php:64
 msgid "Pending Review"
 msgstr ""
 
-#: views/link-form.php:40 views/quickedit-redirect.php:34
-#: views/quickedit.php:62
+#: views/link-form.php:48 views/quickedit-redirect.php:34
+#: views/quickedit.php:65
 msgid "Draft"
 msgstr ""
 
-#: views/link-form.php:51 views/quickedit-redirect.php:54
-#: views/quickedit.php:141
+#: views/link-form.php:59 views/quickedit-redirect.php:54
+#: views/quickedit.php:164
 msgid "Hide in Nav Menu"
 msgstr ""
 
-#: views/link-form.php:56 views/quickedit-redirect.php:60
-#: views/quickedit.php:87
+#: views/link-form.php:64 views/quickedit-redirect.php:60
+#: views/quickedit.php:105
 msgid "Hide in Nested Pages"
 msgstr ""
 
-#: views/link-form.php:61 views/quickedit-redirect.php:66
-#: views/quickedit.php:147
-msgid "Open link in new window"
+#: views/link-form.php:69 views/quickedit-redirect.php:66
+#: views/quickedit.php:170
+msgid "Open link in a new window/tab"
 msgstr ""
 
-#: views/link-form.php:73
+#: views/link-form.php:80 views/link-form.php:98
+msgid "Close"
+msgstr ""
+
+#: views/link-form.php:83
 msgid "Save Link"
 msgstr ""
 
-#: views/pages.php:21
+#: views/link-form.php:101
+msgid "Add Item"
+msgstr ""
+
+#: views/pages.php:24
 msgid "Sync Menu"
 msgstr ""
 
-#: views/pages.php:29
+#: views/pages.php:32
 msgid "All"
 msgstr ""
 
-#: views/pages.php:34
+#: views/pages.php:37
 msgid "Trash"
 msgstr ""
 
-#: views/pages.php:37
+#: views/pages.php:40
 msgid "Default"
 msgstr ""
 
-#: views/quickedit-redirect.php:44 views/quickedit.php:129
+#: views/quickedit-redirect.php:8
+msgid "Link"
+msgstr ""
+
+#: views/quickedit-redirect.php:44 views/quickedit.php:152
 msgid "Title Attribute"
 msgstr ""
 
-#: views/quickedit-redirect.php:48 views/quickedit.php:133
+#: views/quickedit-redirect.php:48 views/quickedit.php:156
 msgid "CSS Classes"
 msgstr ""
 
-#: views/quickedit-redirect.php:81 views/quickedit.php:161
+#: views/quickedit-redirect.php:81 views/quickedit.php:184
 msgid "Cancel"
 msgstr ""
 
-#: views/quickedit-redirect.php:84 views/quickedit.php:164
+#: views/quickedit-redirect.php:84 views/quickedit.php:187
 msgid "Update"
 msgstr ""
 
-#: views/quickedit.php:11 views/row-redirect.php:53 views/row.php:92
+#: views/quickedit.php:11 views/row-redirect.php:53 views/row.php:94
 msgid "Quick Edit"
 msgstr ""
 
@@ -242,46 +271,76 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: views/quickedit.php:46
+#: views/quickedit.php:49
 msgid "Author"
 msgstr ""
 
-#: views/quickedit.php:70
+#: views/quickedit.php:73
 msgid "Template"
 msgstr ""
 
-#: views/quickedit.php:72
+#: views/quickedit.php:75
 msgid "Default Template"
 msgstr ""
 
-#: views/quickedit.php:79
+#: views/quickedit.php:82
+msgid "Password"
+msgstr ""
+
+#: views/quickedit.php:85
+msgid "&ndash;OR&ndash;"
+msgstr ""
+
+#: views/quickedit.php:88
+msgid "Private"
+msgstr ""
+
+#: views/quickedit.php:97
 msgid "Allow Comments"
 msgstr ""
 
-#: views/quickedit.php:94
+#: views/quickedit.php:113
 msgid "Menu Options"
 msgstr ""
 
-#: views/quickedit.php:100
-msgid "Edit Taxonomies"
+#: views/quickedit.php:115
+msgid "Taxonomies"
 msgstr ""
 
-#: views/quickedit.php:125
-msgid "Navigation Label"
+#: views/row-redirect.php:30 views/row.php:33
+msgid "Hidden"
 msgstr ""
 
-#: views/row.php:42
+#: views/row.php:41
 msgid "currently editing"
 msgstr ""
 
-#: views/row.php:44
+#: views/row.php:43
 msgid "Edit"
 msgstr ""
 
-#: views/row.php:67
+#: views/row.php:66
 msgid "Add Child"
 msgstr ""
 
-#: views/row.php:96
+#: views/row.php:98
 msgid "View"
+msgstr ""
+
+#: views/settings.php:2
+msgid "Nested Pages Settings"
+msgstr ""
+
+#: views/settings.php:8
+msgid "Nested Pages Version"
+msgstr ""
+
+#: views/settings.php:12
+msgid "Menu Name"
+msgstr ""
+
+#: views/settings.php:15
+msgid ""
+"Important: Once the menu name has changed, theme files should be updated to "
+"reference the new name."
 msgstr ""
