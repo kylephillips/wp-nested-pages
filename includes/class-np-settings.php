@@ -52,15 +52,17 @@ class NP_Settings {
 	public function updateMenuName($option, $old_value, $value)
 	{
 		if ( $option == 'nestedpages_menu' ){
-						
-			delete_option('nestedpages_menu'); // Delete the option to prevent infinite loop
-			update_option('nestedpages_menu', $old_value);
 
 			$menu = get_term_by('id', $old_value, 'nav_menu');
-			wp_update_term($menu->term_id, 'nav_menu', array(
-				'name' => $value,
-				'slug' => sanitize_title($value)
-			));
+			if ( $menu ) {
+				delete_option('nestedpages_menu'); // Delete the option to prevent infinite loop
+				update_option('nestedpages_menu', $old_value);
+
+				wp_update_term($menu->term_id, 'nav_menu', array(
+					'name' => $value,
+					'slug' => sanitize_title($value)
+				));
+			}
 		}
 	}
 

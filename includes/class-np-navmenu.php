@@ -42,8 +42,22 @@ class NP_NavMenu {
 	*/
 	private function setMenu()
 	{
-		$menu_id = get_option('nestedpages_menu');
-		$this->menu = get_term_by('id', $menu_id, 'nav_menu');
+		if ( get_option('nestedpages_menu') ){
+			$menu_id = get_option('nestedpages_menu');
+			$this->menu = get_term_by('id', $menu_id, 'nav_menu');
+		} else {
+			$this->createNewMenu();
+			$this->setMenu();
+		}
+	}
+
+	/**
+	* Create Empty Menu if one doesn't exist
+	*/
+	private function createNewMenu()
+	{
+		$menu_id = wp_create_nav_menu('Nested Pages');
+		update_option('nestedpages_menu', $menu_id);
 	}
 
 
@@ -62,7 +76,12 @@ class NP_NavMenu {
 	public function setItems()
 	{
 		$menu = get_term_by('id', $this->id, 'nav_menu');
-		if ( $menu ) $this->items = wp_get_nav_menu_items($this->id);
+		if ( $menu ) {
+			$this->items = wp_get_nav_menu_items($this->id);
+		} else {
+			$this->createNewMenu();
+			$this->setItems();
+		}
 	}
 
 

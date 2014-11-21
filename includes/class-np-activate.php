@@ -23,7 +23,6 @@ class NP_Activate {
 	public function install()
 	{
 		$this->version = '1.1.5';
-		$this->addMenu();
 		new NP_ActivateUpgrades($this->version);
 		$this->setVersion();
 		$this->setOptions();
@@ -37,18 +36,7 @@ class NP_Activate {
 	{
 		update_option('nestedpages_version', $this->version);
 	}
-
-
-	/**
-	* Add the nav menu if there isnt one
-	*/
-	private function addMenu()
-	{
-		if ( !get_option('nestedpages_menu') ){
-			$menu_id = wp_create_nav_menu('Nested Pages');
-			update_option('nestedpages_menu', $menu_id);
-		}
-	}
+	
 
 
 	/**
