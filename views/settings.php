@@ -16,6 +16,7 @@
 				</td>
 			</tr>
 		</table>
+		<input type="hidden" name="nestedpages_menusync" value="<?php echo get_option('nestedpages_menusync'); ?>">
 		<?php submit_button(); ?>
 	</form>
 </div><!-- .wrap -->

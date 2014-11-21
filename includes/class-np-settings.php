@@ -26,8 +26,8 @@ class NP_Settings {
 	public function registerSettingsPage()
 	{
 		add_options_page( 
-			'Nested Pages Settings',
-			'Nested Pages',
+			__('Nested Pages Settings', 'nestedpages'),
+			__('Nested Pages', 'nestedpages'),
 			'manage_options',
 			'nested-pages-settings', 
 			array( $this, 'settingsPage' ) 
@@ -52,7 +52,7 @@ class NP_Settings {
 	public function updateMenuName($option, $old_value, $value)
 	{
 		if ( $option == 'nestedpages_menu' ){
-			
+						
 			delete_option('nestedpages_menu'); // Delete the option to prevent infinite loop
 			update_option('nestedpages_menu', $old_value);
 
