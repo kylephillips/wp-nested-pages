@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nested Pages\n"
-"POT-Creation-Date: 2014-11-18 21:05-0500\n"
-"PO-Revision-Date: 2014-11-18 21:05-0500\n"
+"POT-Creation-Date: 2014-11-20 20:17-0500\n"
+"PO-Revision-Date: 2014-11-20 20:17-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -158,10 +158,6 @@ msgstr ""
 msgid "Please provide a "
 msgstr ""
 
-#: views/link-form.php:15
-msgid "Add Menu Item"
-msgstr ""
-
 #: views/link-form.php:31 views/quickedit-redirect.php:17
 #: views/quickedit.php:148
 msgid "Navigation Label"
@@ -211,16 +207,12 @@ msgstr ""
 msgid "Open link in a new window/tab"
 msgstr ""
 
-#: views/link-form.php:80 views/link-form.php:98
+#: views/link-form.php:80
 msgid "Close"
 msgstr ""
 
 #: views/link-form.php:83
 msgid "Save Link"
-msgstr ""
-
-#: views/link-form.php:101
-msgid "Add Item"
 msgstr ""
 
 #: views/pages.php:24
