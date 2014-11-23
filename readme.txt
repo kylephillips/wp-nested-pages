@@ -3,8 +3,8 @@ Contributors: kylephillips
 Donate link: http://nestedpages.com/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit
 Requires at least: 3.8
-Tested up to: 4.0
-Stable tag: 1.1.4
+Tested up to: 4.0.1
+Stable tag: 1.1.5
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -65,6 +65,10 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.1.5 =
+* Menu Sync bug fixes
+* Localization bug fixes
+
 = 1.1.4 =
 * Password/Private functionality added to page quick edit
 * Flat taxonomy support added to page quick edit
@@ -90,6 +94,9 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 
 == Upgrade Notice ==
 
+= 1.1.5 =
+Various bug fixes in the menu system and localization.
+
 = 1.1.4 =
 Added additional quick edit functionality along with UI enhancements.
 
@@ -105,7 +112,7 @@ Several new features have been added in version 1.1, including: saved toggle sta
 == More Information ==
 
 = Generated Menu =
-The generated menu is available for use with the name "nestedpages".
+The default menu generated automatically is named "Nested Pages". You may rename the menu under Appearance > Menus, or under the Nested Pages settings.
 
 
 = Toggling the Page Tree =
@@ -116,8 +123,6 @@ To toggle the child pages in and out of view, click the arrow to the left of a p
 = Theme Use =
 
 To order by nested pages ordering in your theme, use the `menu_order` order option in your queries. 
-
-Additionally, the generated menu is available for use, with the name `nestedpages`. 
 
 
 = Hiding Pages from the Tree View =
@@ -133,7 +138,7 @@ To sort pages, hover over the page row. A menu icon (three lines) will appear. C
 
 = Menu Sync =
 
-After installing Nested Pages, a new menu will be available with the name `nestedpages`. By default, menu syncing is enabled. To disable the sync, uncheck “Sync Menu” at the top of the Nested Pages screen. Recheck the box to enable it again and to run the sync. 
+After installing Nested Pages, a new menu will be available with the name `Nested Pages`. By default, menu syncing is enabled. To disable the sync, uncheck “Sync Menu” at the top of the Nested Pages screen. Recheck the box to enable it again and to run the sync. 
 
 **Saving Performance:** If your site has a very large number of pages, disabling page sync may help speed up the save time when using Nested Pages.
 

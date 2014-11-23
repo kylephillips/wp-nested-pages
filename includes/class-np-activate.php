@@ -13,7 +13,7 @@ class NP_Activate {
 
 	public function __construct()
 	{
-		register_activation_hook( dirname( dirname(__FILE__) ) . '/nestedpages.php', array($this, 'install') );
+		$this->install();
 	}
 
 

@@ -15,8 +15,8 @@ class NP_Settings {
 	public function __construct()
 	{
 		add_action( 'admin_menu', array( $this, 'registerSettingsPage' ) );
-		add_action( 'admin_init', array($this, 'registerSettings' ) );
-		add_action( 'updated_option', array($this, 'updateMenuName'), 10, 3);
+		add_action( 'admin_init', array( $this, 'registerSettings' ) );
+		add_action( 'updated_option', array( $this, 'updateMenuName'), 10, 3);
 	}
 
 
@@ -57,7 +57,6 @@ class NP_Settings {
 			if ( $menu ) {
 				delete_option('nestedpages_menu'); // Delete the option to prevent infinite loop
 				update_option('nestedpages_menu', $old_value);
-
 				wp_update_term($menu->term_id, 'nav_menu', array(
 					'name' => $value,
 					'slug' => sanitize_title($value)
@@ -69,6 +68,7 @@ class NP_Settings {
 
 	/**
 	* Set the Menu Object
+	* @since 1.1.5
 	*/
 	private function setMenu()
 	{
