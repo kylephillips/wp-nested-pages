@@ -15,6 +15,7 @@ class NP_NewPage {
 	{
 		add_action('admin_notices', array($this, 'showNotice'));
 		add_action('admin_head', array($this, 'selectParent'));
+		add_action('admin_head', array($this, 'expandPagesMenu'));
 	}
 
 
@@ -54,5 +55,15 @@ class NP_NewPage {
 		}
 	}
 
+	/**
+	* Expand the Pages submenu
+	*/
+	public function expandPagesMenu()
+	{
+		$page = get_current_screen();
+		if ( ($page->id == 'page') && ($page->action == 'add') ){
+			echo '<script>jQuery(document).ready(function(){jQuery("#toplevel_page_nestedpages").removeClass("wp-not-current-submenu").addClass("wp-has-current-submenu").addClass("wp-menu-open");jQuery("#toplevel_page_nestedpages a:first").addClass("wp-has-current-submenu");var addnew = jQuery("#toplevel_page_nestedpages ul li:nth-child(3)");jQuery(addnew).addClass("current");jQuery(addnew).children("a").addClass("current");});</script>';
+		}
+	}
+
 }
-?>
