@@ -61,7 +61,6 @@ class NP_NewPage {
 	public function expandPagesMenu()
 	{
 		$page = get_current_screen();
-		
 		if ( ($page->id == 'page') && ($page->action == 'add') ){
 			echo '<script>jQuery(document).ready(function(){jQuery("#toplevel_page_nestedpages").removeClass("wp-not-current-submenu").addClass("wp-has-current-submenu").addClass("wp-menu-open");jQuery("#toplevel_page_nestedpages a:first").addClass("wp-has-current-submenu");var addnew = jQuery("#toplevel_page_nestedpages ul li:nth-child(3)");jQuery(addnew).addClass("current");jQuery(addnew).children("a").addClass("current");});</script>';
 		}
