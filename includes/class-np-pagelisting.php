@@ -45,7 +45,7 @@ class NP_PageListing {
 	public function __construct()
 	{
 		$this->post_repo = new NP_PostRepository;
-		$this->post_type = get_post_type_object('page');
+		$this->setPostType();
 		add_action( 'admin_menu', array($this, 'adminMenu') );
 		add_action( 'admin_menu', array($this, 'submenu') );
 	}
@@ -67,6 +67,16 @@ class NP_PageListing {
 				20
 			);
 		}
+	}
+
+
+	/**
+	* Set the Post Type & verify it exists
+	* @since 1.1.16
+	*/
+	private function setPostType()
+	{
+		$this->post_type = get_post_type_object('page');
 	}
 
 

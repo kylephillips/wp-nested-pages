@@ -29,7 +29,8 @@ class NestedPages {
 	{
 		$this->init();
 		$this->formActions();
-		add_action('init', array($this, 'addLocalization') );
+		add_action( 'init', array($this, 'addLocalization') );
+		add_action( 'admin_init', array($this, 'verifyPostType') );
 		add_filter( 'plugin_action_links_' . 'wp-nested-pages/nestedpages.php', array($this, 'settingsLink' ) );
 	}
 
@@ -83,6 +84,19 @@ class NestedPages {
   		$settings_link = '<a href="options-general.php?page=nested-pages-settings">' . __('Settings') . '</a>'; 
   		array_unshift($links, $settings_link); 
   		return $links; 
+	}
+
+
+	/**
+	* Check for the page post type before doing anything
+	*/
+	public function verifyPostType()
+	{
+		if ( !get_post_type_object( 'page' ) ){
+			$plugin = dirname(dirname( __FILE__ ) ) . '/nestedpages.php';
+			deactivate_plugins( $plugin );
+    		wp_die('<p>Nested Pages has been deactivated. This plugin requires the <strong>"page"</strong> post type to be enabled and available for use. Please disable any plugins that may be interfering with this post type and reactivate.</p>','Plugin Activation Error',  array( 'response'=>200, 'back_link'=>TRUE ) );
+		}
 	}
 
 
