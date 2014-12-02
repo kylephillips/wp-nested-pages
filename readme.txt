@@ -65,6 +65,10 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.1.6 =
+* Minor UI Improvements - Current admin page now highlighted
+* Page post type bug - now verfied before plugin activation
+
 = 1.1.5 =
 * Menu Sync bug fixes
 * Localization bug fixes
@@ -93,6 +97,9 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 * Nested Pages
 
 == Upgrade Notice ==
+
+= 1.1.6 = 
+Minor UI enhancements and bug fixes
 
 = 1.1.5 =
 Various bug fixes in the menu system and localization.

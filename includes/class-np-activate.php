@@ -22,7 +22,7 @@ class NP_Activate {
 	*/
 	public function install()
 	{
-		$this->version = '1.1.5';
+		$this->version = '1.1.6';
 		new NP_ActivateUpgrades($this->version);
 		$this->setVersion();
 		$this->setOptions();
