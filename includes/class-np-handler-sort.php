@@ -35,7 +35,7 @@ class NP_SortHandler extends NP_BaseHandler {
 		if ( $order ){
 			$this->response = array('status' => 'success', 'message' => __('Page order successfully updated.','nestedpages') );
 		} else {
-			$this->response = array('status'=>'error', 'message'=> __('There was an order updating the page order.','nestedpages') );
+			$this->response = array('status'=>'error', 'message'=> __('There was an error updating the page order.','nestedpages') );
 		}
 	}
 
