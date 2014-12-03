@@ -25,6 +25,11 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 
 **Nested Pages requires Wordpress version 3.8 or higher, and PHP version 5.3 or higher.**
 
+**Languages:**
+
+* English
+* Français (Nico Mollet)
+
 == Installation ==
 
 1. Upload wp-nested-pages to the wp-content/plugins/ directory
@@ -68,6 +73,7 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 = 1.1.6 =
 * Minor UI Improvements - Current admin page now highlighted
 * Page post type bug - now verfied before plugin activation
+* French Translation (Provided by Nico Mollet)
 
 = 1.1.5 =
 * Menu Sync bug fixes
@@ -99,7 +105,7 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 == Upgrade Notice ==
 
 = 1.1.6 = 
-Minor UI enhancements and bug fixes
+Minor UI enhancements and bug fixes.
 
 = 1.1.5 =
 Various bug fixes in the menu system and localization.
