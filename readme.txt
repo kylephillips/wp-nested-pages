@@ -73,6 +73,7 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 = 1.1.6 =
 * Minor UI Improvements - Current admin page now highlighted
 * Page post type bug - now verfied before plugin activation
+* Multisite bug fixes
 * French Translation (Provided by Nico Mollet)
 
 = 1.1.5 =

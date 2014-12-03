@@ -29,11 +29,11 @@ class NestedPages {
 	{
 		$this->init();
 		$this->formActions();
+		add_action( 'init', array($this, 'listPages') );
 		add_action( 'init', array($this, 'addLocalization') );
 		add_action( 'admin_init', array($this, 'verifyPostType') );
 		add_filter( 'plugin_action_links_' . 'wp-nested-pages/nestedpages.php', array($this, 'settingsLink' ) );
 	}
-
 
 	/**
 	* Initialize Plugin
@@ -42,12 +42,21 @@ class NestedPages {
 	{
 		new NP_Activate;
 		new NP_Dependencies;
-		new NP_PageListing;
 		new NP_NewPage;
 		new NP_Redirects;
 		new NP_PostTypes;
 		new NP_Settings;
 	}
+
+	/**
+	* Page Listing
+	* @since 1.1.6 - Moved into init due to Multisite bug
+	*/
+	public function listPages()
+	{
+		new NP_PageListing;
+	}
+	
 
 
 	/**
