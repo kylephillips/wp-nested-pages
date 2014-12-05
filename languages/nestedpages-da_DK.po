@@ -1,0 +1,479 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Nested Pages v1.1.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2014-12-05 11:01:10+0000\n"
+"Last-Translator: support <support@infoland.dk>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: Danish\n"
+"X-Poedit-Country: DENMARK\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: includes/class-nestedpages.php:93
+#@ default
+msgid "Settings"
+msgstr ""
+
+#: includes/class-np-confirmation.php:58
+#@ nestedpages
+msgid "pages moved to the Trash"
+msgstr "sider flyttet til papirkurven"
+
+#: includes/class-np-confirmation.php:60
+#@ nestedpages
+msgid "page moved to the Trash"
+msgstr "side flyttet til papirkurven"
+
+#: includes/class-np-confirmation.php:65
+#@ default
+msgid "Undo"
+msgstr ""
+
+#: includes/class-np-confirmation.php:80
+#@ nestedpages
+msgid "pages"
+msgstr "sider"
+
+#: includes/class-np-confirmation.php:80
+#@ nestedpages
+msgid "page"
+msgstr "side"
+
+#: includes/class-np-confirmation.php:81
+#@ nestedpages
+msgid "restored from trash"
+msgstr "gendannet fra papirkurven"
+
+#: includes/class-np-confirmation.php:90
+#@ nestedpages
+msgid "Link successfully deleted."
+msgstr "Link slettet."
+
+#: includes/class-np-dependencies.php:77
+#: views/pages.php:18
+#@ nestedpages
+msgid "Expand Pages"
+msgstr "Fold ud"
+
+#: includes/class-np-dependencies.php:78
+#@ nestedpages
+msgid "Collapse Pages"
+msgstr "Fold sammen"
+
+#: includes/class-np-dependencies.php:79
+#: views/pages.php:34
+#@ nestedpages
+msgid "Show Hidden"
+msgstr "Vis skjulte"
+
+#: includes/class-np-dependencies.php:80
+#@ nestedpages
+msgid "Hide Hidden"
+msgstr "Skjul skjulte"
+
+#: includes/class-np-dependencies.php:81
+#: views/link-form.php:14
+#: views/pages.php:9
+#: views/pages.php:10
+#@ nestedpages
+#@ default
+msgid "Add Link"
+msgstr "Tilføj link"
+
+#: includes/class-np-dependencies.php:82
+#@ nestedpages
+msgid "Add Child Link"
+msgstr "Tilføj link under"
+
+#: includes/class-np-handler-base.php:64
+#@ nestedpages
+msgid "Incorrect Form Field"
+msgstr "Ukorrekt formular felt"
+
+#: includes/class-np-handler-base.php:94
+#@ nestedpages
+msgid "There was an error updating the page."
+msgstr "Der skete en fejl under opdateringen af siden."
+
+#: includes/class-np-handler-newredirect.php:40
+#: includes/class-np-handler-quickedit-redirect.php:36
+#@ nestedpages
+msgid "Link successfully updated"
+msgstr "Link opdateret."
+
+#: includes/class-np-handler-quickedit.php:38
+#@ default
+msgid "Post successfully updated"
+msgstr ""
+
+#: includes/class-np-handler-sort.php:36
+#@ nestedpages
+msgid "Page order successfully updated."
+msgstr "Side rækkefølge opdateret."
+
+#: includes/class-np-handler-sort.php:38
+#@ nestedpages
+msgid "There was an error updating the page order."
+msgstr "Der skete en fejl under opdateringen af side rækkefølgen."
+
+#: includes/class-np-handler-syncmenu.php:32
+#@ default
+msgid "Menu sync enabled."
+msgstr ""
+
+#: includes/class-np-handler-syncmenu.php:35
+#@ default
+msgid "Menu sync disabled."
+msgstr ""
+
+#: includes/class-np-newpage.php:43
+#@ nestedpages
+msgid "Adding child page under:"
+msgstr "Tilføjer side under:"
+
+#: includes/class-np-pagelisting.php:89
+#@ nestedpages
+msgid "All Pages"
+msgstr "Alle sider"
+
+#: includes/class-np-pagelisting.php:90
+#@ nestedpages
+msgid "Add New"
+msgstr "Tilføj ny"
+
+#: includes/class-np-pagelisting.php:91
+#@ nestedpages
+msgid "Default Pages"
+msgstr "Standard visning"
+
+#: includes/class-np-posttypes.php:21
+#@ nestedpages
+msgid "Redirects"
+msgstr "Viderestillinger"
+
+#: includes/class-np-posttypes.php:22
+#@ nestedpages
+msgid "Redirect"
+msgstr "Viderestilling"
+
+#. translators: plugin header field 'Name'
+#: includes/class-np-redirects.php:65
+#: includes/class-np-settings.php:30
+#: nestedpages.php:0
+#@ nestedpages
+msgid "Nested Pages"
+msgstr "Sider"
+
+#: includes/class-np-repository-post.php:58
+#: views/quickedit.php:20
+#@ nestedpages
+#@ default
+msgid "Title"
+msgstr "Titel"
+
+#: includes/class-np-repository-post.php:298
+#@ nestedpages
+msgid "Label"
+msgstr "Label"
+
+#: includes/class-np-settings.php:29
+#: views/settings.php:2
+#@ nestedpages
+msgid "Nested Pages Settings"
+msgstr "Nested Pages Indstillinger"
+
+#: includes/class-np-validation.php:49
+#: includes/class-np-validation.php:64
+#@ nestedpages
+msgid "Please provide a valid date."
+msgstr "Vælg venligst en gyldig dato."
+
+#: includes/class-np-validation.php:76
+#@ nestedpages
+msgid "Please provide a menu title."
+msgstr "Angiv venligst en menu titel."
+
+#: includes/class-np-validation.php:79
+#@ nestedpages
+msgid "Please provide a valid URL."
+msgstr "Indtast venligst en gyldig URL."
+
+#: includes/class-np-validation.php:90
+#@ nestedpages
+msgid "Please provide a "
+msgstr "Angiv venligst"
+
+#. translators: plugin header field 'PluginURI'
+#: nestedpages.php:0
+#@ nestedpages
+msgid "http://nestedpages.com"
+msgstr "http://nestedpages.com"
+
+#. translators: plugin header field 'Description'
+#: nestedpages.php:0
+#@ nestedpages
+msgid "Provides an intuitive drag and drop interface for managing pages in the Wordpress admin, while maintaining quick edit functionality."
+msgstr "Giver dig en intuitiv \\\"drag and drop\\\" oversigt til håndtering af Sider, mens du stadig beholder lynrediger funktionen."
+
+#. translators: plugin header field 'Author'
+#: nestedpages.php:0
+#@ nestedpages
+msgid "Kyle Phillips"
+msgstr "Kyle Phillips"
+
+#. translators: plugin header field 'AuthorURI'
+#: nestedpages.php:0
+#@ nestedpages
+msgid "https://github.com/kylephillips"
+msgstr "https://github.com/kylephillips"
+
+#. translators: plugin header field 'Version'
+#: nestedpages.php:0
+#@ nestedpages
+msgid "1.1.6"
+msgstr ""
+
+#: views/link-form.php:31
+#: views/quickedit-redirect.php:17
+#: views/quickedit.php:148
+#@ default
+msgid "Navigation Label"
+msgstr ""
+
+#: views/link-form.php:36
+#: views/quickedit-redirect.php:22
+#@ nestedpages
+#@ default
+msgid "URL"
+msgstr "URL"
+
+#: views/link-form.php:41
+#: views/quickedit-redirect.php:27
+#: views/quickedit.php:58
+#@ default
+msgid "Status"
+msgstr ""
+
+#: views/link-form.php:44
+#: views/pages.php:33
+#: views/quickedit-redirect.php:30
+#: views/quickedit.php:61
+#@ default
+msgid "Published"
+msgstr ""
+
+#: views/link-form.php:45
+#: views/quickedit-redirect.php:31
+#: views/quickedit.php:62
+#@ default
+msgid "Scheduled"
+msgstr ""
+
+#: views/link-form.php:47
+#: views/quickedit-redirect.php:33
+#: views/quickedit.php:64
+#@ default
+msgid "Pending Review"
+msgstr ""
+
+#: views/link-form.php:48
+#: views/quickedit-redirect.php:34
+#: views/quickedit.php:65
+#@ default
+msgid "Draft"
+msgstr ""
+
+#: views/link-form.php:59
+#: views/quickedit-redirect.php:54
+#: views/quickedit.php:164
+#@ nestedpages
+msgid "Hide in Nav Menu"
+msgstr "Skjul i Menuer"
+
+#: views/link-form.php:64
+#: views/quickedit-redirect.php:60
+#: views/quickedit.php:105
+#@ nestedpages
+msgid "Hide in Nested Pages"
+msgstr "Skjul i denne oversigt"
+
+#: views/link-form.php:69
+#: views/quickedit-redirect.php:66
+#: views/quickedit.php:170
+#@ default
+msgid "Open link in a new window/tab"
+msgstr ""
+
+#: views/link-form.php:80
+#@ default
+msgid "Close"
+msgstr ""
+
+#: views/link-form.php:83
+#@ nestedpages
+msgid "Save Link"
+msgstr "Gem link"
+
+#: views/pages.php:24
+#@ nestedpages
+msgid "Sync Menu"
+msgstr "Synkronisere til Menuer"
+
+#: views/pages.php:32
+#@ default
+msgid "All"
+msgstr ""
+
+#: views/pages.php:37
+#@ default
+msgid "Trash"
+msgstr ""
+
+#: views/pages.php:40
+#@ default
+msgid "Default"
+msgstr ""
+
+#: views/quickedit-redirect.php:8
+#@ nestedpages
+msgid "Link"
+msgstr "Link"
+
+#: views/quickedit-redirect.php:44
+#: views/quickedit.php:152
+#@ default
+msgid "Title Attribute"
+msgstr ""
+
+#: views/quickedit-redirect.php:48
+#: views/quickedit.php:156
+#@ default
+msgid "CSS Classes"
+msgstr ""
+
+#: views/quickedit-redirect.php:81
+#: views/quickedit.php:184
+#@ default
+msgid "Cancel"
+msgstr ""
+
+#: views/quickedit-redirect.php:84
+#: views/quickedit.php:187
+#@ default
+msgid "Update"
+msgstr ""
+
+#: views/quickedit.php:11
+#: views/row-redirect.php:53
+#: views/row.php:94
+#@ default
+msgid "Quick Edit"
+msgstr ""
+
+#: views/quickedit.php:24
+#@ default
+msgid "Slug"
+msgstr ""
+
+#: views/quickedit.php:28
+#@ default
+msgid "Date"
+msgstr ""
+
+#: views/quickedit.php:49
+#@ default
+msgid "Author"
+msgstr ""
+
+#: views/quickedit.php:73
+#@ default
+msgid "Template"
+msgstr ""
+
+#: views/quickedit.php:75
+#@ default
+msgid "Default Template"
+msgstr ""
+
+#: views/quickedit.php:82
+#@ default
+msgid "Password"
+msgstr ""
+
+#: views/quickedit.php:85
+#@ default
+msgid "&ndash;OR&ndash;"
+msgstr ""
+
+#: views/quickedit.php:88
+#@ default
+msgid "Private"
+msgstr ""
+
+#: views/quickedit.php:97
+#@ default
+msgid "Allow Comments"
+msgstr ""
+
+#: views/quickedit.php:113
+#@ nestedpages
+msgid "Menu Options"
+msgstr "Menuer indstilinger"
+
+#: views/quickedit.php:115
+#@ nestedpages
+msgid "Taxonomies"
+msgstr "Taxonomier"
+
+#: views/row-redirect.php:30
+#: views/row.php:33
+#@ nestedpages
+msgid "Hidden"
+msgstr "Skjult"
+
+#: views/row.php:41
+#@ nestedpages
+msgid "currently editing"
+msgstr "redigere siden"
+
+#: views/row.php:43
+#@ default
+msgid "Edit"
+msgstr ""
+
+#: views/row.php:66
+#@ nestedpages
+msgid "Add Child"
+msgstr "Tilføj underside"
+
+#: views/row.php:98
+#@ default
+msgid "View"
+msgstr ""
+
+#: views/settings.php:8
+#@ nestedpages
+msgid "Nested Pages Version"
+msgstr "Plugin version"
+
+#: views/settings.php:12
+#@ nestedpages
+msgid "Menu Name"
+msgstr "Menunavn"
+
+#: views/settings.php:15
+#@ nestedpages
+msgid "Important: Once the menu name has changed, theme files should be updated to reference the new name."
+msgstr "Vigtig: Når menunavnet ændret, skal dette ajourføres i temaet, så temaet bruger det nye navn."
+
