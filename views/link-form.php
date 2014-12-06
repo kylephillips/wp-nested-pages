@@ -5,7 +5,7 @@
 $post_type_object = get_post_type_object( 'page' );
 $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 ?>
-<div class="modal fade" id="np-link-modal">
+<div class="np-modal fade" id="np-link-modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			

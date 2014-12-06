@@ -2,11 +2,22 @@
 // Modals
 // --------------------------------------------------
 
+// Modal background
+.modal-backdrop {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: #000;
+	opacity: .85;
+}
+
 .modal-open {
 	overflow: hidden;
 }
 
-.modal {
+.np-modal {
 	display: none;
 	overflow: hidden;
 	position: fixed;
@@ -22,77 +33,69 @@
 		@include transition-transform(0.3s ease-out);
 	}
 	&.in .modal-dialog { @include translate(0, 0) }
-}
-.modal-open .modal {
-	overflow-x: hidden;
-	overflow-y: auto;
-}
-
-.modal-dialog {
- 	position: relative;
-	width: auto;
-	margin: 10px auto 0px auto;
-	max-width: 500px;
-}
-
-// Actual modal
-.modal-content {
-	position: relative;
-	background-color: $white;
-	box-shadow: 0 3px 9px rgba(0,0,0,.5);
-	background-clip: padding-box;
-	outline: 0;
-}
-
-// Modal background
-.modal-backdrop {
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background-color: #000;
-	opacity: .85;
-}
 
 
-.modal-header {
-	padding: 8px;
-	background-color: darken($white, 8%);
-	.sr-only {
-		display: none;
+	.modal-open .modal {
+		overflow-x: hidden;
+		overflow-y: auto;
 	}
-}
 
-.modal-header .close {
-	margin-top: -2px;
-}
-
-.modal-title {
-	margin: 0;
-}
-
-.modal-body {
-	position: relative;
-	padding: 10px;
-}
-
-// Footer (for actions)
-.modal-footer {
-	padding: 10px;
-	text-align: right;
-	background-color: #404040;
-	@include clearfix;
-	.modal-close {
-		float: left;
+	.modal-dialog {
+	 	position: relative;
+		width: auto;
+		margin: 10px auto 0px auto;
+		max-width: 500px;
 	}
-}
 
-// Measure scrollbar width for padding body during modal show/hide
-.modal-scrollbar-measure {
-	position: absolute;
-	top: -9999px;
-	width: 50px;
-	height: 50px;
-	overflow: scroll;
+	// Actual modal
+	.modal-content {
+		position: relative;
+		background-color: $white;
+		box-shadow: 0 3px 9px rgba(0,0,0,.5);
+		background-clip: padding-box;
+		outline: 0;
+	}
+
+
+	.modal-header {
+		padding: 8px;
+		background-color: darken($white, 8%);
+		.sr-only {
+			display: none;
+		}
+	}
+
+	.modal-header .close {
+		margin-top: -2px;
+	}
+
+	.modal-title {
+		margin: 0;
+	}
+
+	.modal-body {
+		position: relative;
+		padding: 10px;
+	}
+
+	// Footer (for actions)
+	.modal-footer {
+		padding: 10px;
+		text-align: right;
+		background-color: #404040;
+		@include clearfix;
+		.modal-close {
+			float: left;
+		}
+	}
+
+	// Measure scrollbar width for padding body during modal show/hide
+	.modal-scrollbar-measure {
+		position: absolute;
+		top: -9999px;
+		width: 50px;
+		height: 50px;
+		overflow: scroll;
+	}
+
 }
