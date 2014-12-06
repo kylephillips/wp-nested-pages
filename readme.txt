@@ -27,8 +27,10 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 
 **Languages:**
 
+* Danish (Thomas Blomberg)
 * English
-* Français (Nico Mollet)
+* Finnish (Roni Laukkarinen)
+* French (Nico Mollet)
 
 == Installation ==
 
@@ -69,6 +71,10 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 4. Toggle nested child pages for a clutter-free tree
 
 == Changelog ==
+
+= 1.1.7 =
+* Danish Translation (Provided by Thomas Blomberg)
+* Finnish Translation (Provided by Roni Laukkarinen)
 
 = 1.1.6 =
 * Minor UI Improvements - Current admin page now highlighted
