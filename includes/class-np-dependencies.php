@@ -26,7 +26,7 @@ class NP_Dependencies {
 			'nestedpages', 
 			$this->plugin_dir . '/assets/css/nestedpages.css', 
 			array(), 
-			'1.1.4'
+			'1.1.7'
 		);
 	}
 
@@ -41,37 +41,31 @@ class NP_Dependencies {
 		if ( strpos( $screen->id, 'nestedpages' ) ) :
 			wp_enqueue_script('suggest');
 			wp_enqueue_script('jquery-ui-core');
-			
 			wp_enqueue_script('jquery-ui-sortable');
-
 			wp_enqueue_script(
 				'bootstrap-modal', 
 				$this->plugin_dir . '/assets/js/lib/bs-modal.js', 
 				array('jquery'), 
 				'1.0'
 			);
-
 			wp_enqueue_script(
 				'ui-touch-punch', 
 				$this->plugin_dir . '/assets/js/lib/jquery.ui.touch-punch.min.js', 
 				array('jquery', 'jquery-ui-sortable'), 
 				'1.0'
 			);
-			
 			wp_enqueue_script(
 				'nested-sortable', 
 				$this->plugin_dir . '/assets/js/lib/jquery.mjs.nestedSortable.js', 
 				array('jquery', 'jquery-ui-sortable'), 
 				'1.0'
 			);
-			
 			wp_enqueue_script(
 				'nestedpages', 
 				$this->plugin_dir . '/assets/js/nestedpages.min.js', 
 				array('jquery'), 
-				'1.1.4'
+				'1.1.7'
 			);
-
 			$localized_data = array(
 				'np_nonce' => wp_create_nonce( 'nestedpages-nonce' ),
 				'expand_text' => __('Expand Pages', 'nestedpages'),
@@ -83,7 +77,6 @@ class NP_Dependencies {
 			);
 			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;
 			$localized_data['syncmenu'] = $syncmenu;
-
 			wp_localize_script( 
 				'nestedpages', 
 				'nestedpages', 
