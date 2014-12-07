@@ -35,9 +35,11 @@
 			<span class="count">(<?php echo $this->post_repo->getHiddenCount(); ?>)</span> | </li>
 		<?php if ( current_user_can('delete_pages') ) : ?>
 		<li><a href="edit.php?post_status=trash&post_type=page"><?php _e('Trash'); ?> </a>
-			<span class="count">(<?php echo $this->post_repo->trashedPagesCount(); ?>)</span> | </li>
+			<span class="count">(<?php echo $this->post_repo->trashedPagesCount(); ?>)</span></li>
 		<?php endif; ?>
-		<li><a href="<?php echo $this->defaultPagesLink(); ?>"><?php _e('Default'); ?> <?php _e($this->post_type->labels->name); ?></a></li>
+		<?php if ( get_option('nestedpages_hidedefault') !== 'hide' ) : ?>
+		<li> | <a href="<?php echo $this->defaultPagesLink(); ?>"><?php _e('Default'); ?> <?php _e($this->post_type->labels->name); ?></a></li>
+		<?php endif; ?>
 	</ul>
 
 

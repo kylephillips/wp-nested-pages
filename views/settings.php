@@ -15,6 +15,15 @@
 					<p><em><?php _e('Important: Once the menu name has changed, theme files should be updated to reference the new name.', 'nestedpages'); ?></em></p>
 				</td>
 			</tr>
+			<tr valign="top">
+				<th scope="row"><?php _e('Hide Default Pages', 'nestedpages'); ?></th>
+				<td>
+					<label>
+						<input type="checkbox" id="nestedpages_hidedefault" name="nestedpages_hidedefault" <?php if ( get_option('nestedpages_hidedefault') == 'hide') echo 'checked'; ?> value="hide" >
+						<?php _e('Hide Default Pages', 'nestedpages'); ?>
+					</label>
+				</td>
+			</tr>
 		</table>
 		<input type="hidden" name="nestedpages_menusync" value="<?php echo get_option('nestedpages_menusync'); ?>">
 		<?php submit_button(); ?>

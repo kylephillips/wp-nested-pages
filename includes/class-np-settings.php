@@ -42,6 +42,7 @@ class NP_Settings {
 	{
 		register_setting( 'nestedpages-general', 'nestedpages_menu' );
 		register_setting( 'nestedpages-general', 'nestedpages_menusync' );
+		register_setting( 'nestedpages-general', 'nestedpages_hidedefault' );
 	}
 
 
