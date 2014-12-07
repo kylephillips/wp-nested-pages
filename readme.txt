@@ -75,6 +75,7 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 = 1.1.7 =
 * Danish Translation (Provided by Thomas Blomberg)
 * Finnish Translation (Provided by Roni Laukkarinen)
+* Added option to hide default pages
 
 = 1.1.6 =
 * Minor UI Improvements - Current admin page now highlighted
