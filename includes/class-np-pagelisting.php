@@ -301,14 +301,16 @@ class NP_PageListing {
 	private function loopPages($parent_id = 0, $count = 0)
 	{
 		$this->setTaxonomies();
-		$pages = new WP_Query(array(
+		$query_args = array(
 			'post_type' => array('page','np-redirect'),
 			'posts_per_page' => -1,
 			'orderby' => 'menu_order',
 			'post_status' => array('publish', 'pending', 'draft', 'private', 'future', 'trash'),
 			'post_parent' => $parent_id,
 			'order' => 'ASC'
-		));
+		);
+		$pages = new WP_Query(apply_filters('nestedpages_page_listing', $query_args));
+		
 		if ( $pages->have_posts() ) :
 			$count++;
 
