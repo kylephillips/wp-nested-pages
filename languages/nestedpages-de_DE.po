@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nested Pages\n"
 "POT-Creation-Date: 2014-11-20 20:17-0500\n"
-"PO-Revision-Date: 2014-12-08 11:35+0100\n"
+"PO-Revision-Date: 2014-12-09 10:47+0100\n"
 "Last-Translator: Bartosz Podlewski <b.podlewski@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -177,7 +177,7 @@ msgstr "Status"
 #: views/link-form.php:44 views/pages.php:33 views/quickedit-redirect.php:30
 #: views/quickedit.php:61
 msgid "Published"
-msgstr "Publisizert"
+msgstr "Publiziert"
 
 #: views/link-form.php:45 views/quickedit-redirect.php:31
 #: views/quickedit.php:62
@@ -307,7 +307,7 @@ msgstr "Versteckt"
 
 #: views/row.php:41
 msgid "currently editing"
-msgstr "Gerade in bearbeitung"
+msgstr "Gerade in Bearbeitung"
 
 #: views/row.php:43
 msgid "Edit"
