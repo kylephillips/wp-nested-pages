@@ -2,6 +2,7 @@
 require_once('class-np-confirmation.php');
 require_once('class-np-helpers.php');
 require_once('class-np-repository-post.php');
+require_once('class-np-repository-user.php');
 /**
 * Primary Listing Class
 * Initiates Page Listing screen (overwriting default), and displays primary plugin view.
@@ -42,9 +43,16 @@ class NP_PageListing {
 	private $post_repo;
 
 
+	/**
+	* User Repository
+	*/
+	private $user;
+
+
 	public function __construct()
 	{
 		$this->post_repo = new NP_PostRepository;
+		$this->user = new NP_UserRepository;
 		$this->setPostType();
 		add_action( 'admin_menu', array($this, 'adminMenu') );
 		add_action( 'admin_menu', array($this, 'submenu') );
@@ -56,7 +64,7 @@ class NP_PageListing {
 	*/
 	public function adminMenu()
 	{
-		if ( current_user_can('edit_pages') ){
+		if ( (current_user_can('edit_pages')) || ($this->user->canSortPages()) ){
 			add_menu_page( 
 				__($this->post_type->labels->name),
 				__($this->post_type->labels->name),
@@ -221,7 +229,7 @@ class NP_PageListing {
 		$compared = array_intersect($this->visiblePages(), $children);
 
 		if ( $count == 1 ) {
-			echo ( current_user_can('edit_theme_options') ) 
+			echo ( $this->user->canSortPages() ) 
 				? '<ol class="sortable nplist">' 
 				: '<ol class="sortable no-sort nplist">';
 		} else {

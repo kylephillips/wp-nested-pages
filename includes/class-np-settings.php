@@ -1,5 +1,6 @@
 <?php
 require_once('class-np-helpers.php');
+require_once('class-np-repository-user.php');
 /**
 * Plugin Settings
 */
@@ -11,12 +12,18 @@ class NP_Settings {
 	*/
 	private $menu;
 
+	/**
+	* User Repository
+	*/
+	private $user_repo;
+
 
 	public function __construct()
 	{
 		add_action( 'admin_menu', array( $this, 'registerSettingsPage' ) );
 		add_action( 'admin_init', array( $this, 'registerSettings' ) );
 		add_action( 'updated_option', array( $this, 'updateMenuName'), 10, 3);
+		$this->user_repo = new NP_UserRepository;
 	}
 
 
@@ -43,6 +50,7 @@ class NP_Settings {
 		register_setting( 'nestedpages-general', 'nestedpages_menu' );
 		register_setting( 'nestedpages-general', 'nestedpages_menusync' );
 		register_setting( 'nestedpages-general', 'nestedpages_hidedefault' );
+		register_setting( 'nestedpages-general', 'nestedpages_allowsorting' );
 	}
 
 

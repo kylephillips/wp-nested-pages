@@ -1,3 +1,7 @@
+<?php
+$allowsorting = get_option('nestedpages_allowsorting', array());
+if ( $allowsorting == "" ) $allowsorting = array();
+?>
 <div class="wrap">
 	<h1><?php _e('Nested Pages Settings', 'nestedpages'); ?></h1>
 
@@ -22,6 +26,19 @@
 						<input type="checkbox" id="nestedpages_hidedefault" name="nestedpages_hidedefault" <?php if ( get_option('nestedpages_hidedefault') == 'hide') echo 'checked'; ?> value="hide" >
 						<?php _e('Hide Default Pages', 'nestedpages'); ?>
 					</label>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><?php _e('Allow Page Sorting', 'nestedpages'); ?></th>
+				<td>
+					<?php foreach ( $this->user_repo->allRoles() as $role ) : ?>
+					<label>
+						<input type="checkbox" name="nestedpages_allowsorting[]" value="<?php echo $role; ?>" <?php if ( in_array($role, $allowsorting) ) echo 'checked'; ?> >
+						<?php echo $role; ?>
+					</label>
+					<br />
+					<?php endforeach; ?>
+					<p><em><?php _e('Admins always have sorting ability.', 'nestedpages'); ?></em></p>
 				</td>
 			</tr>
 		</table>
