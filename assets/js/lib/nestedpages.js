@@ -781,7 +781,7 @@ jQuery(function($){
 	*/
 	function np_remove_qe_loading(form)
 	{
-		$(form).find('.np-save-quickedit, .np-save-quickedit-redirect').removeAttr('disabled');
+		$(form).find('.np-save-quickedit, .np-save-quickedit-redirect, .np-save-newchild').removeAttr('disabled');
 		$(form).find('.np-qe-loading').hide();
 	}
 
@@ -1177,6 +1177,8 @@ jQuery(function($){
 
 
 
+
+
 	/**
 	* ------------------------------------------------------------------------
 	* New Child Page(s)
@@ -1282,6 +1284,49 @@ jQuery(function($){
 		$(this).parents('.new-child-row').parent('li').remove();
 		update_pages_text(form);
 	});
+
+
+	/**
+	* Submit the new child page form
+	*/
+	$(document).on('click', '.np-save-newchild', function(e){
+		e.preventDefault();
+		$(this).prop('disabled', 'disabled');
+		var form = $(this).parents('form');
+		$(form).find('.np-qe-loading').show();
+		submit_new_child_form(form);
+	});
+
+
+	/**
+	* Process New Child Form
+	*/
+	function submit_new_child_form(form)
+	{
+		$('.np-quickedit-error').hide();
+		var syncmenu = ( $('.np-sync-menu').is(':checked') ) ? 'sync' : 'nosync';
+		$.ajax({
+			url: ajaxurl,
+			type: 'post',
+			datatype: 'json',
+			data: $(form).serialize() + '&action=npnewchild&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
+			success: function(data){
+				console.log(data);
+				if (data.status === 'error'){
+					np_remove_qe_loading(form);
+					$(form).find('.np-quickedit-error').text(data.message).show();
+				} else {
+					np_remove_qe_loading(form);
+					// np_update_qe_redirect_data(form, data.post_data);
+					// np_qe_update_animate(form);
+				}
+			},
+			error: function(){
+				np_remove_qe_loading(form);
+				$(form).find('.np-quickedit-error').text('The form could not be saved at this time.').show();
+			}
+		});
+	}
 
 
 
