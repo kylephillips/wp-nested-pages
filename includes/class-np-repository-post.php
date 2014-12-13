@@ -401,10 +401,14 @@ class NP_PostRepository {
 			$pages[$c]['title'] = get_the_title();
 			$pages[$c]['slug'] = $post->post_name;
 			$pages[$c]['author'] = get_the_author_meta('ID');
-			$pages[$c]['status'] = get_post_status();
+			$pages[$c]['status'] = ucfirst(get_post_status());
 			$pages[$c]['template'] = get_page_template_slug();
 			$pages[$c]['post_parent'] = $post->post_parent;
 			$pages[$c]['edit_link'] = get_edit_post_link($post->ID);
+			$pages[$c]['view_link'] = get_the_permalink();
+			$pages[$c]['delete_link'] = get_delete_post_link($post->ID);
+			$pages[$c]['comment_status'] = $post->comment_status;
+			$pages[$c]['comment_count'] =  wp_count_comments($post->ID);
 
 			// Date Vars
 			$pages[$c]['day'] = get_the_time('d');

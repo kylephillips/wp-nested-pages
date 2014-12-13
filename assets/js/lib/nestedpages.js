@@ -611,7 +611,6 @@ jQuery(function($){
 			datatype: 'json',
 			data: $(form).serialize() + '&action=npquickedit&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
 			success: function(data){
-				console.log(data);
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);
 					$(form).find('.np-quickedit-error').text(data.message).show();
@@ -790,10 +789,10 @@ jQuery(function($){
 	*/
 	function np_qe_update_animate(form)
 	{	
-		var row = $(form).parent('.quick-edit').siblings('.row');
+		var row = $(form).parent('.quick-edit, .new-child').siblings('.row');
 		$(row).addClass('np-updated');
 		$(row).show();
-		$(form).parent('.quick-edit').remove();
+		$(form).parent('.quick-edit, .new-child').remove();
 		remove_quick_edit_overlay();
 		np_set_borders();
 		setTimeout(function(){
@@ -910,7 +909,6 @@ jQuery(function($){
 			datatype: 'json',
 			data: $(form).serialize() + '&action=npquickeditredirect&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
 			success: function(data){
-				console.log(data);
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);
 					$(form).find('.np-quickedit-error').text(data.message).show();
@@ -1028,7 +1026,6 @@ jQuery(function($){
 			datatype: 'json',
 			data: data + '&action=npnewredirect&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
 			success: function(data){
-				console.log(data);
 				if (data.status === 'error'){
 					np_remove_link_loading();
 					$('.np-new-link-error').text(data.message).show();
@@ -1253,7 +1250,7 @@ jQuery(function($){
 		var html = '<li><i class="handle np-icon-menu"></i><div class="form-control new-child-row"><label>' + nestedpages.title + '</label><div><input type="text" name="post_title[]" class="np_title" placeholder="' + nestedpages.page_title + '" value="" /><a href="#" class="button-secondary np-remove-child">-</a></div></div></li>';
 		var container = $(item).siblings('.new-page-titles').append(html);
 		// Make sortable
-		$('.new-page-titles').nestedSortable({
+		$('.new-page-titles').sortable({
 			items : 'li',
 			handle: '.handle',
 		});
@@ -1311,14 +1308,12 @@ jQuery(function($){
 			datatype: 'json',
 			data: $(form).serialize() + '&action=npnewchild&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
 			success: function(data){
-				console.log(data);
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);
 					$(form).find('.np-quickedit-error').text(data.message).show();
 				} else {
 					np_remove_qe_loading(form);
-					// np_update_qe_redirect_data(form, data.post_data);
-					// np_qe_update_animate(form);
+					add_new_child_pages(form, data);
 				}
 			},
 			error: function(){
@@ -1326,6 +1321,75 @@ jQuery(function($){
 				$(form).find('.np-quickedit-error').text('The form could not be saved at this time.').show();
 			}
 		});
+	}
+
+
+	/**
+	* Add the Child New Pages
+	*/
+	function add_new_child_pages(form, data)
+	{
+		var pages = data.new_pages;
+		var parent_li = $(form).parent('.new-child').parent('.page-row');
+		
+		// If parent li doesn't have a child ol, add one
+		if ( $(parent_li).children('ol').length === 0 ){
+			$(parent_li).append('<ol class="nplist"></ol>');
+		}
+		var appendto = $(parent_li).children('ol');
+
+		for (i = 0; i < pages.length; i++){
+			append_new_child_row(appendto, pages[i]);
+		}
+
+		// Show the child page list and reset submenu toggles
+		$(appendto).show();
+		add_remove_submenu_toggles();
+		np_qe_update_animate(form);
+	}
+
+
+	/**
+	* Append the Row to the View
+	*/
+	function append_new_child_row(appendto, page)
+	{
+		var html = '<li id="menuItem_' + page.id + '" class="page-row';
+		if ( page.status === 'publish' ) html += ' published';
+		html += '">';
+		html += '<div class="row">';
+		html += '<div class="child-toggle"></div>';
+		html += '<div class="row-inner">';
+		html += '<i class="np-icon-sub-menu"></i><i class="handle np-icon-menu"></i>';
+		html += '<a href="' + page.edit_link + '" class="page-link page-title">';
+		html += '<span class="title">' + page.title + '</span>';
+		
+		// Status
+		if ( page.status !== 'Publish' ){
+			html += '<span class="status">(' + page.status + ')</span>';
+		} else {
+			html += '<span class="status"></span>';
+		}
+
+		html += '<span class="nav-status"></span><span class="edit-indicator"><i class="np-icon-pencil"></i>Edit</span>';
+		html += '</a>';
+
+		// Action Buttons
+		html += '<div class="action-buttons">';
+		html += '<a href="#" class="np-btn open-redirect-modal" data-parentid="' + page.id + '"><i class="np-icon-link"></i></a>';
+		html += '<a href="#" class="np-btn add-new-child" data-id="' + page.id + '" data-parentname="' + page.title + '">' + nestedpages.add_child_short + '</a>';
+		
+		// Quick Edit (data attrs)
+		html += '<a href="#" class="np-btn np-quick-edit" data-id="' + page.id + '" data-template="' + page.template + '" data-title="' + page.title + '" data-slug="' + page.slug + '" data-commentstatus="closed" data-status="' + page.status + '" data-np-status="show"	data-navstatus="show" data-author="' + page.author + '" data-month="' + page.month + '" data-day="' + page.day + '" data-year="' + page.year + '" data-hour="' + page.hour + '" data-minute="' + page.minute + '">' + nestedpages.quick_edit + '</a>';
+
+		html += '<a href="' + page.view_link + '" class="np-btn" target="_blank">' + nestedpages.view + '</a>';
+		html += '<a href="' + page.delete_link + '" class="np-btn np-btn-trash"><i class="np-icon-remove"></i></a>';
+		html += '</div><!-- .action-buttons -->';
+
+		html += '</div><!-- .row-inner --></div><!-- .row -->';
+		html += '</li>';
+
+		$(appendto).append(html);
 	}
 
 

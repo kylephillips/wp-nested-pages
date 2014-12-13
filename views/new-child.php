@@ -15,9 +15,12 @@
 		<ol class="new-page-titles">
 			<li>
 				<i class="handle np-icon-menu"></i>
-				<div class="form-control">
+				<div class="form-control new-child-row">
 					<label><?php _e( 'Title' ); ?></label>
-					<input type="text" name="post_title[]" class="np_title" placeholder="<?php _e('Page Title', 'nestedpages'); ?>" value="" />
+					<div>
+						<input type="text" name="post_title[]" class="np_title" placeholder="<?php _e('Page Title', 'nestedpages'); ?>" value="" />
+						<a href="#" class="button-secondary np-remove-child">-</a>
+					</div>
 				</div>
 			</li>
 		</ol>

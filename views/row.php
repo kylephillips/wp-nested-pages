@@ -45,6 +45,7 @@
 			?>
 		</a>
 
+		<!-- Responsive Toggle Button -->
 		<a href="#" class="np-toggle-edit"><i class="np-icon-pencil"></i></a>
 
 		<div class="action-buttons">
