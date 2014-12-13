@@ -378,4 +378,43 @@ class NP_PostRepository {
 		return $publish_count;
 	}
 
+
+	/**
+	* Get an array of pages given an array of IDs
+	* @since 1.1.8 (used in creation of new pages)
+	* @param ids array
+	* @return array
+	*/
+	public function pageArray($ids)
+	{
+		$pages = array();
+		$page_query = new WP_Query(array(
+			'post_type' => 'page',
+			'posts_per_page' => -1,
+			'post__in' => $ids,
+			'post_status' => array('publish', 'draft')
+		));
+		if ( $page_query->have_posts() ) : $c = 0; while ( $page_query->have_posts() ) : $page_query->the_post();
+			global $post;
+			
+			$pages[$c]['id'] = get_the_id();
+			$pages[$c]['title'] = get_the_title();
+			$pages[$c]['slug'] = $post->post_name;
+			$pages[$c]['author'] = get_the_author_meta('ID');
+			$pages[$c]['status'] = get_post_status();
+			$pages[$c]['template'] = get_page_template_slug();
+			$pages[$c]['post_parent'] = $post->post_parent;
+
+			// Date Vars
+			$pages[$c]['day'] = get_the_time('d');
+			$pages[$c]['month'] = get_the_time('m');
+			$pages[$c]['year'] = get_the_time('Y');
+			$pages[$c]['hour'] = get_the_time('H');
+			$pages[$c]['minute'] = get_the_time('i');
+
+
+		$c++; endwhile; endif; wp_reset_postdata();
+		return $pages;
+	}
+
 }

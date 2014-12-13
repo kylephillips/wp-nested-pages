@@ -94,4 +94,36 @@ class NP_Validation {
 	}
 
 
+	/**
+	* Validate New Pages
+	*/
+	public function validateNewPages($data)
+	{
+		// Check for Parent ID
+		if ( (!isset($data['parent_id'])) || (!is_numeric($data['parent_id'])) ){
+			$message = __('A valid parent page was not provided.', 'nestedpages');
+			return wp_send_json(array('status' => 'error', 'message' => $message));
+			die();
+		}
+
+		// Make sure there's at least one page
+		if ( !isset($data['post_title']) ){
+			$message = __('Please provide at least one page title.', 'nestedpages');
+			return wp_send_json(array('status' => 'error', 'message' => $message));
+			die();
+		}
+
+		// Page fields cannot be blank
+		foreach ( $data['post_title'] as $title ){
+			if ( $title == "" ){
+				$message = __('Page titles cannot be blank.', 'nestedpages');
+				return wp_send_json(array('status' => 'error', 'message' => $message));
+				die();
+			}
+		}
+
+		return true;
+	}
+
+
 }
