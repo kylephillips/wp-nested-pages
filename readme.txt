@@ -3,7 +3,7 @@ Contributors: kylephillips
 Donate link: http://nestedpages.com/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit
 Requires at least: 3.8
-Tested up to: 4.0.1
+Tested up to: 4.1
 Stable tag: 1.1.7
 
 License: GPLv2 or later
@@ -19,6 +19,7 @@ Nested Pages provides an intuitive drag and drop interface for managing pages in
 * Quick edit functionality
 * An expandable, sortable tree view of your site's page structure
 * A native Wordpress menu, automatically generated to match your Nested Pages screen
+* A way to quickly add child pages (ideal for development)
 * A touch-friendly interface
 
 For more information visit [nestedpages.com](http://nestedpages.com).
@@ -46,7 +47,7 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 Nested Pages is currently limited to the WordPress “Page” post type.
 
 = How do I access the WordPress “Pages” screen? =
-Click the “Default Pages” link in the page subnav, or on the Nested Pages screen.
+Click the “Default Pages” link in the page subnav, or on the Nested Pages screen. This item may be optionally hidden under the Nested Pages settings.
 
 = How do I save the order I create? =
 Page sorting and nesting is saved in the background after changes are made to the structure.
@@ -71,7 +72,14 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 
 4. Toggle nested child pages for a clutter-free tree
 
+5. Quickly add child pages without leaving the page tree
+
 == Changelog ==
+
+= 1.1.8 =
+* New Child Pages Interface - Add child pages more efficiently with the new add child pages dialog. Add a single child page without leaving the Nested Pages view, or add multiple pages with one click. Reorder multiple child pages before saving with the drag and drop interface you're accustomed to.
+* Tested for 4.1 compatibility
+* Page ID indicator added to Quick Edit dialog
 
 = 1.1.7 =
 * Danish Translation (Provided by Thomas Blomberg)
@@ -115,6 +123,9 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 * Nested Pages
 
 == Upgrade Notice ==
+
+= 1.1.8 =
+New Child Pages Interface
 
 = 1.1.6 = 
 Minor UI enhancements and bug fixes.
