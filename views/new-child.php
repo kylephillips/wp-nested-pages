@@ -72,10 +72,10 @@
 
 	<div class="buttons">
 		<input type="hidden" name="parent_id" class="page_parent_id" />
-		<a accesskey="c" href="#inline-edit" class="button-secondary alignleft np-cancel-newchild">
+		<a accesskey="c" href="#" class="button-secondary alignleft np-cancel-newchild">
 			<?php _e( 'Cancel' ); ?>
 		</a>
-		<a accesskey="s" href="#inline-edit" class="button-primary np-save-newchild alignright">
+		<a accesskey="s" href="#" class="button-primary np-save-newchild alignright">
 			<?php _e( 'Add Page' ); ?>
 		</a>
 		<span class="np-qe-loading"></span>
