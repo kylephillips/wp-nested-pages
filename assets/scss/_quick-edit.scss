@@ -30,6 +30,16 @@
 	h3 {
 		margin: 0 0 8px 0;
 		font-size: 14px;
+		// Page ID
+		span {
+			float: right;
+			font-size: 12px;
+			em {
+				font-weight: normal;
+				font-style: normal;
+				color: darken($white, 50%);
+			}
+		}
 	}
 	.fields {
 		margin-bottom: 10px;

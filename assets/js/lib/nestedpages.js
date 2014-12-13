@@ -418,6 +418,7 @@ jQuery(function($){
 	*/
 	function populate_quick_edit(form, data)
 	{
+		$(form).find('.page_id').html('<em>Page ID:</em> ' + data.id);
 		$(form).find('.np_id').val(data.id);
 		$(form).find('.np_title').val(data.title);
 		$(form).find('.np_slug').val(data.slug);
