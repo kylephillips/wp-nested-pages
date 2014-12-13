@@ -32,6 +32,7 @@ class NP_NewChild_Handler extends NP_BaseHandler {
 		$this->factory = new NP_PostFactory;
 		$this->validation = new NP_Validation;
 		$this->savePages();
+		$this->syncMenu();
 		$this->sendResponse();
 	}
 
