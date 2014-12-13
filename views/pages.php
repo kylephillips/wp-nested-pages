@@ -49,13 +49,17 @@
 	<div class="nestedpages">
 		<?php $this->loopPages(); ?>
 		
-		<div class="quick-edit quick-edit-form" style="display:none;">
+		<div class="quick-edit quick-edit-form np-inline-modal" style="display:none;">
 			<?php include( NP_Helpers::view('quickedit') ); ?>
 		</div>
 
 		<?php if ( current_user_can('publish_pages') ) : ?>
-		<div class="quick-edit quick-edit-form-redirect" style="display:none;">
+		<div class="quick-edit quick-edit-form-redirect np-inline-modal" style="display:none;">
 			<?php include( NP_Helpers::view('quickedit-redirect') ); ?>
+		</div>
+
+		<div class="new-child new-child-form np-inline-modal" style="display:none;">
+			<?php include( NP_Helpers::view('new-child') ); ?>
 		</div>
 		<?php endif; ?>
 	</div>

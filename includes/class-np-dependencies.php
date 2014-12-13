@@ -73,7 +73,13 @@ class NP_Dependencies {
 				'show_hidden' => __('Show Hidden', 'nestedpages'),
 				'hide_hidden' => __('Hide Hidden', 'nestedpages'),
 				'add_link' => __('Add Link', 'nestedpages'),
-				'add_child_link' => __('Add Child Link', 'nestedpages')
+				'add_child_link' => __('Add Child Link', 'nestedpages'),
+				'title' => __('Title', 'nestedpages'),
+				'page_title' => __('Page Title', 'nestedpages'),
+				'add_child'  => __('Add Child Page', 'nestedpages'),
+				'add_child_pages' => __('Add Child Pages', 'nestedpages'),
+				'add_page' => __('Add Page', 'nestedpages'),
+				'add_pages' => __('Add Pages', 'nestedpages')
 			);
 			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;
 			$localized_data['syncmenu'] = $syncmenu;

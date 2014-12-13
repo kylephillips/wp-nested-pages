@@ -316,8 +316,9 @@ jQuery(function($){
 	});
 
 	// Hide the form when clicking modal overlay
-	$(document).on('click', '.np-quick-edit-overlay', function(e){
+	$(document).on('click', '.np-inline-overlay', function(e){
 		revert_quick_edit();
+		revert_new_child();
 	});
 
 	// Cancel the form
@@ -581,9 +582,9 @@ jQuery(function($){
 	*/
 	function show_quick_edit_overlay()
 	{
-		$('body').append('<div class="np-quick-edit-overlay"></div>');
+		$('body').append('<div class="np-inline-overlay"></div>');
 		setTimeout(function(){
-			$('.np-quick-edit-overlay').addClass('active');
+			$('.np-inline-overlay').addClass('active');
 		}, 50);
 	}
 
@@ -592,7 +593,7 @@ jQuery(function($){
 	*/
 	function remove_quick_edit_overlay()
 	{
-		$('.np-quick-edit-overlay').removeClass('active').remove();
+		$('.np-inline-overlay').removeClass('active').remove();
 	}
 
 
@@ -1173,6 +1174,105 @@ jQuery(function($){
 			}
 		});
 	}
+
+
+
+	/**
+	* ------------------------------------------------------------------------
+	* New Child Page(s)
+	* ------------------------------------------------------------------------
+	**/
+
+	/**
+	* Remove the new page form and restore the row
+	*/
+	function revert_new_child()
+	{
+		$('.np-newchild-error').hide();
+		remove_quick_edit_overlay();
+		$('.sortable .new-child').remove();
+		$('.row').show();
+	}
+
+
+	/**
+	* Show the New Page Form
+	*/
+	$(document).on('click', '.add-new-child', function(e){
+		e.preventDefault();
+		populate_new_child($(this));
+	});
+
+
+	/**
+	* Set the Form Data for adding new child & Show it
+	*/
+	function populate_new_child(item)
+	{
+		var parent_li = $(item).closest('.row').parent('li');
+
+		// Append the form to the list item
+		if ( $(parent_li).children('ol').length > 0 ){
+			var child_ol = $(parent_li).children('ol');
+			var newform = $('.new-child-form').clone().insertBefore(child_ol);
+		} else {
+			var newform = $('.new-child-form').clone().appendTo(parent_li);
+		}
+
+		var row = $(newform).siblings('.row').hide();
+
+		show_quick_edit_overlay();
+
+		$(newform).find('.parent_name').html('<em>Parent:</em> ' + $(item).attr('data-parentname'));
+		$(newform).find('.page_parent_id').val($(item).attr('data-id'));
+		$(newform).show();
+	}
+
+
+	/**
+	* Add a Page Title
+	*/
+	$(document).on('click', '.add-new-child-row', function(e){
+		e.preventDefault();
+		add_new_title_field($(this));
+		var form = $(this).parents('form');
+		update_pages_text(form);
+	});
+
+	/**
+	* Add a new title field
+	*/
+	function add_new_title_field(item)
+	{
+		var html = '<div class="form-control new-child-row"><label>' + nestedpages.title + '</label><div><input type="text" name="post_title[]" class="np_title" placeholder="' + nestedpages.page_title + '" value="" /><a href="#" class="button-secondary np-remove-child">-</a></div></div>';
+		var container = $(item).siblings('.new-page-titles').append(html);
+	}
+
+	/**
+	* Update Pages Text
+	* Toggle between singular and plural text for adding new page(s)
+	*/
+	function update_pages_text(form)
+	{
+		var count = $(form).find($('.new-child-row')).length;
+		if ( count > 0 ){
+			$(form).find('h3').text(nestedpages.add_child_pages);
+			$(form).find('.np-save-newchild').text(nestedpages.add_pages);
+		} else {
+			$(form).find('h3').text(nestedpages.add_child);
+			$(form).find('.np-save-newchild').text(nestedpages.add_page);
+		}
+	}
+
+	/**
+	* Remove New Child Page Field
+	*/
+	$(document).on('click', '.np-remove-child', function(e){
+		e.preventDefault();
+		var form = $(this).parents('form');
+		$(this).parents('.new-child-row').remove();
+		update_pages_text(form);
+	});
 
 
 

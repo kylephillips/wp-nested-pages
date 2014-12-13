@@ -63,7 +63,7 @@
 		
 			<a href="#" class="np-btn open-redirect-modal" data-parentid="<?php echo get_the_id(); ?>"><i class="np-icon-link"></i></a>
 			
-			<a href="<?php echo $this->addNewPageLink(); ?>&npparent=<?php echo get_the_id(); ?>" class="np-btn"><?php _e('Add Child', 'nestedpages'); ?></a>
+			<a href="#" class="np-btn add-new-child" data-id="<?php echo get_the_id(); ?>" data-parentname="<?php the_title(); ?>"><?php _e('Add Child', 'nestedpages'); ?></a>
 
 			<?php endif; ?>
 
