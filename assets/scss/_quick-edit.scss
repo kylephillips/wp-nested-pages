@@ -75,21 +75,6 @@
 				}
 			}
 		}
-		&.new-child-row {
-			div {
-				float: right;
-				width: 75%;
-				margin: 2px;
-				@include clearfix;
-				input[type='text']{
-					float: left;
-					width: 80%;
-				}
-				a {
-					float: right;
-				}
-			}
-		}
 	}
 	.comments {
 		float: right;
@@ -181,6 +166,50 @@
 			font-style: normal;
 		}
 	}
+
+	// Sortable New Page Titles
+	.new-page-titles {
+		display: block;
+		border: 0;
+		li {
+			background: transparent;
+			border: 0;
+			padding: 4px;
+			@include clearfix;
+			&:nth-child(even){
+				background-color: darken($white, 6%);
+			}
+			label {
+				margin-top: 7px;
+			}
+		}
+		.form-control {
+			float: right;
+			width: 90%;
+			clear: none;
+		}
+		.np-icon-menu {
+			float: left;
+			margin-top: 0px;
+			height: auto;
+			line-height: 26px;
+		}
+		.new-child-row {
+			div {
+				float: right;
+				width: 75%;
+				margin: 2px;
+				@include clearfix;
+				input[type='text']{
+					float: left;
+					width: 80%;
+				}
+				a {
+					float: right;
+				}
+			}
+		} // .new-child-row
+	} // .new-page-titles
 }
 
 .np-qe-loading {

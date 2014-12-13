@@ -12,12 +12,15 @@
 	
 	<div class="left">
 
-		<div class="new-page-titles">
-			<div class="form-control">
-				<label><?php _e( 'Title' ); ?></label>
-				<input type="text" name="post_title[]" class="np_title" placeholder="<?php _e('Page Title', 'nestedpages'); ?>" value="" />
-			</div>
-		</div>
+		<ol class="new-page-titles">
+			<li>
+				<i class="handle np-icon-menu"></i>
+				<div class="form-control">
+					<label><?php _e( 'Title' ); ?></label>
+					<input type="text" name="post_title[]" class="np_title" placeholder="<?php _e('Page Title', 'nestedpages'); ?>" value="" />
+				</div>
+			</li>
+		</ol>
 
 		<a href="#" class="add-new-child-row button-primary" style="clear:both;"><?php _e('+', 'nestedpages'); ?></a>
 	</div><!-- .left -->

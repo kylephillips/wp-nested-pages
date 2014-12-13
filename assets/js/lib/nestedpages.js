@@ -1248,8 +1248,13 @@ jQuery(function($){
 	*/
 	function add_new_title_field(item)
 	{
-		var html = '<div class="form-control new-child-row"><label>' + nestedpages.title + '</label><div><input type="text" name="post_title[]" class="np_title" placeholder="' + nestedpages.page_title + '" value="" /><a href="#" class="button-secondary np-remove-child">-</a></div></div>';
+		var html = '<li><i class="handle np-icon-menu"></i><div class="form-control new-child-row"><label>' + nestedpages.title + '</label><div><input type="text" name="post_title[]" class="np_title" placeholder="' + nestedpages.page_title + '" value="" /><a href="#" class="button-secondary np-remove-child">-</a></div></div></li>';
 		var container = $(item).siblings('.new-page-titles').append(html);
+		// Make sortable
+		$('.new-page-titles').nestedSortable({
+			items : 'li',
+			handle: '.handle',
+		});
 	}
 
 	/**
@@ -1274,7 +1279,7 @@ jQuery(function($){
 	$(document).on('click', '.np-remove-child', function(e){
 		e.preventDefault();
 		var form = $(this).parents('form');
-		$(this).parents('.new-child-row').remove();
+		$(this).parents('.new-child-row').parent('li').remove();
 		update_pages_text(form);
 	});
 
