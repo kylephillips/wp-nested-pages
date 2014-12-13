@@ -404,6 +404,7 @@ class NP_PostRepository {
 			$pages[$c]['status'] = get_post_status();
 			$pages[$c]['template'] = get_page_template_slug();
 			$pages[$c]['post_parent'] = $post->post_parent;
+			$pages[$c]['edit_link'] = get_edit_post_link($post->ID);
 
 			// Date Vars
 			$pages[$c]['day'] = get_the_time('d');
