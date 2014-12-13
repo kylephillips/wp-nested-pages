@@ -1194,6 +1194,10 @@ jQuery(function($){
 		$('.row').show();
 	}
 
+	$(document).on('click', '.np-cancel-newchild', function(e){
+		e.preventDefault();
+		revert_new_child();
+	});
 
 	/**
 	* Show the New Page Form
@@ -1230,7 +1234,7 @@ jQuery(function($){
 
 
 	/**
-	* Add a Page Title
+	* Add a Page Title Field
 	*/
 	$(document).on('click', '.add-new-child-row', function(e){
 		e.preventDefault();
@@ -1256,10 +1260,10 @@ jQuery(function($){
 	{
 		var count = $(form).find($('.new-child-row')).length;
 		if ( count > 0 ){
-			$(form).find('h3').text(nestedpages.add_child_pages);
+			$(form).find('h3 strong').text(nestedpages.add_child_pages);
 			$(form).find('.np-save-newchild').text(nestedpages.add_pages);
 		} else {
-			$(form).find('h3').text(nestedpages.add_child);
+			$(form).find('h3 strong').text(nestedpages.add_child);
 			$(form).find('.np-save-newchild').text(nestedpages.add_page);
 		}
 	}

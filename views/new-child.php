@@ -4,7 +4,7 @@
 ?>
 <form method="get" action="">
 	<div class="form-interior">
-	<h3><?php _e('Add Child Page'); ?><span class="parent_name"></span></h3>
+	<h3><strong><?php _e('Add Child Page'); ?></strong><span class="parent_name"></span></h3>
 
 	<div class="np-quickedit-error" style="clear:both;display:none;"></div>
 	
@@ -69,7 +69,7 @@
 
 	<div class="buttons">
 		<input type="hidden" name="parent_id" class="page_parent_id" />
-		<a accesskey="c" href="#inline-edit" class="button-secondary alignleft np-cancel-quickedit">
+		<a accesskey="c" href="#inline-edit" class="button-secondary alignleft np-cancel-newchild">
 			<?php _e( 'Cancel' ); ?>
 		</a>
 		<a accesskey="s" href="#inline-edit" class="button-primary np-save-newchild alignright">
