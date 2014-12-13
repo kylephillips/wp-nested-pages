@@ -1265,7 +1265,7 @@ jQuery(function($){
 		var count = $(form).find($('.new-child-row')).length;
 		if ( count > 0 ){
 			$(form).find('h3 strong').text(nestedpages.add_child_pages);
-			$(form).find('.np-save-newchild').text(nestedpages.add_pages);
+			$(form).find('.np-save-newchild').text(nestedpages.add_pages + ' (' + count + ')');
 		} else {
 			$(form).find('h3 strong').text(nestedpages.add_child);
 			$(form).find('.np-save-newchild').text(nestedpages.add_page);
