@@ -10,6 +10,7 @@ require_once('class-np-handler-newredirect.php');
 require_once('class-np-handler-syncmenu.php');
 require_once('class-np-handler-nesttoggle.php');
 require_once('class-np-handler-gettax.php');
+require_once('class-np-handler-newchild.php');
 
 // Required Classes
 require_once('class-np-dependencies.php');
@@ -72,6 +73,7 @@ class NestedPages {
 			add_action( 'wp_ajax_npquickeditredirect', 'nestedpages_quickedit_redirect_handler' );
 			add_action( 'wp_ajax_npnewredirect', 'nestedpages_new_redirect');
 			add_action( 'wp_ajax_gettax', 'nestedpages_get_tax' );
+			add_action( 'wp_ajax_npnewchild', 'nestedpages_newchild_handler' );
 		}
 	}
 
