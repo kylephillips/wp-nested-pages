@@ -31,7 +31,7 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 * English
 * Finnish (Roni Laukkarinen)
 * French (Nico Mollet)
-* German/Swiss German (@podlebar)
+* German/Swiss German (Bartosz Podlewski)
 
 == Installation ==
 
