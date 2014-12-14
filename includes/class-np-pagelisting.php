@@ -54,28 +54,18 @@ class NP_PageListing {
 		$this->post_repo = new NP_PostRepository;
 		$this->user = new NP_UserRepository;
 		$this->setPostType();
-		add_action( 'admin_menu', array($this, 'adminMenu') );
-		add_action( 'admin_menu', array($this, 'submenu') );
+		
 	}
-
 
 	/**
-	* Add the admin menu item
+	* Called by Menu Class
+	* @since 1.2
 	*/
-	public function adminMenu()
-	{
-		if ( (current_user_can('edit_pages')) || ($this->user->canSortPages()) ){
-			add_menu_page( 
-				__($this->post_type->labels->name),
-				__($this->post_type->labels->name),
-				'delete_pages',
-				'nestedpages', 
-				array( $this, 'pageListing' ),
-				'dashicons-admin-page',
-				20
-			);
-		}
-	}
+	public static function admin_menu() {
+        $class_name = get_class();
+        $classinstance = new $class_name();
+        return array(&$classinstance, "pageListing");
+    }
 
 
 	/**
@@ -89,46 +79,6 @@ class NP_PageListing {
 
 
 	/**
-	* Add Submenu
-	*/
-	public function submenu()
-	{
-		global $submenu;
-		$submenu['nestedpages'][50] = array( __('All Pages','nestedpages'), 'publish_pages', esc_url(admin_url('admin.php?page=nestedpages')) );
-		$this->additionalSubmenus();
-		
-	}
-
-
-	/**
-	* Add Additional Submenus
-	* @since 1.1.8
-	*/
-	public function additionalSubmenus()
-	{
-		global $submenu;
-		// Get the right submenu and remove all pages link
-		foreach($submenu as $key => $sub){
-			if ($key == 'edit.php?post_type=' . $this->post_type->name){
-				unset($sub['5']); // Remove "All Pages"
-				$menu_items = $sub;
-			}
-		}
-		if ( isset($menu_items) ){
-			$c = 60;
-			foreach($menu_items as $item){
-				$submenu['nestedpages'][$c] = array( $item[0], $item[1], $item[2]);
-				$c = $c + 10;
-			}
-		}
-		// Default Pages
-		if ( get_option('nestedpages_hidedefault') !== 'hide' ){
-			$submenu['nestedpages'][$c] = array( __('Default Pages','nestedpages'), 'publish_pages', $this->defaultPagesLink() );
-		}
-	}
-
-
-	/**
 	* Add New Page Link
 	* @return string
 	*/
@@ -137,16 +87,6 @@ class NP_PageListing {
 		return esc_url( admin_url('post-new.php?post_type=page') );
 	}
 
-
-	/**
-	* Link to the default WP Pages listing
-	* @return string
-	*/
-	private function defaultPagesLink()
-	{
-		$link = esc_url( admin_url('edit.php?post_type=page') );
-		return $link;
-	}
 
 	/**
 	* User's Toggled Pages
@@ -174,7 +114,7 @@ class NP_PageListing {
 	*/
 	private function setTaxonomies()
 	{
-		$taxonomy_names = get_object_taxonomies( 'page' );
+		$taxonomy_names = get_object_taxonomies( $this->post_type->name );
 		$hierarchical_taxonomies = array();
 		$flat_taxonomies = array();
 		foreach ( $taxonomy_names as $taxonomy_name ) {

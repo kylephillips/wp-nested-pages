@@ -16,6 +16,7 @@ class NP_Helpers {
 		return $url;
 	}
 
+
 	/**
 	* Plugin Root Directory
 	*/
@@ -24,12 +25,25 @@ class NP_Helpers {
 		return plugins_url() . '/wp-simple-locator';
 	}
 
+
 	/**
 	* View
 	*/
 	public static function view($file)
 	{
 		return dirname(dirname(__FILE__)) . '/views/' . $file . '.php';
+	}
+
+
+	/**
+	* Link to the default WP Pages listing
+	* @since 1.2
+	* @return string
+	*/
+	public static function defaultPagesLink()
+	{
+		$link = esc_url( admin_url('edit.php?post_type=page') );
+		return $link;
 	}
 
 }

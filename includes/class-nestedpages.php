@@ -15,6 +15,7 @@ require_once('class-np-handler-newchild.php');
 // Required Classes
 require_once('class-np-dependencies.php');
 require_once('class-np-pagelisting.php');
+require_once('class-np-adminmenu.php');
 require_once('class-np-newpage.php');
 require_once('class-np-redirects.php');
 require_once('class-np-posttypes.php');
@@ -55,6 +56,7 @@ class NestedPages {
 	*/
 	public function listPages()
 	{
+		new NP_AdminMenu;
 		new NP_PageListing;
 	}
 	
