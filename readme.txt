@@ -4,7 +4,7 @@ Donate link: http://nestedpages.com/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.1.7
+Stable tag: 1.1.8
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -126,7 +126,7 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 == Upgrade Notice ==
 
 = 1.1.8 =
-New Child Pages Interface
+New Child Pages Interface, various UI enhancements
 
 = 1.1.6 = 
 Minor UI enhancements and bug fixes.
