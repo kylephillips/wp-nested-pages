@@ -80,7 +80,7 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 * New Child Pages Interface - Add child pages more efficiently with the new add child pages dialog. Add a single child page without leaving the Nested Pages view, or add multiple pages with one click. Reorder multiple child pages before saving with the drag and drop interface you're accustomed to.
 * Tested for 4.1 compatibility
 * Page ID indicator added to Quick Edit dialog
-* Taxonomies enabled for pages now display in the admin menu
+* Taxonomies & other custom menu items now visible in pages admin menu
 
 = 1.1.7 =
 * Danish Translation (Provided by Thomas Blomberg)

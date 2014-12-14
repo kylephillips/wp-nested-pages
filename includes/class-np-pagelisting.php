@@ -95,36 +95,36 @@ class NP_PageListing {
 	{
 		global $submenu;
 		$submenu['nestedpages'][50] = array( __('All Pages','nestedpages'), 'publish_pages', esc_url(admin_url('admin.php?page=nestedpages')) );
-		$submenu['nestedpages'][60] = array( __('Add New','nestedpages'), 'publish_pages', $this->addNewPageLink() );
-		if ( get_option('nestedpages_hidedefault') !== 'hide' ){
-			$submenu['nestedpages'][70] = array( __('Default Pages','nestedpages'), 'publish_pages', $this->defaultPagesLink() );
-		}
-		$this->taxonomySubmenus();
+		$this->additionalSubmenus();
+		
 	}
 
 
 	/**
-	* Add Taxonomy Submenus
+	* Add Additional Submenus
 	* @since 1.1.8
 	*/
-	public function taxonomySubmenus()
+	public function additionalSubmenus()
 	{
 		global $submenu;
-		$taxonomies = get_object_taxonomies($this->post_type->name, 'objects');
-		if ( $taxonomies ){
-			$c = 80;
-			foreach ( $taxonomies as $taxonomy ){
-				if ( $taxonomy->show_ui == true ){
-					$submenu['nestedpages'][$c] = array( 
-						$taxonomy->labels->name, 
-						'manage_categories', 
-						esc_url(admin_url('edit-tags.php?taxonomy=' . $taxonomy->name)) 
-					);
-					$c = $c + 10;
-				}
+		// Get the right submenu and remove all pages link
+		foreach($submenu as $key => $sub){
+			if ($key == 'edit.php?post_type=' . $this->post_type->name){
+				unset($sub['5']); // Remove "All Pages"
+				$menu_items = $sub;
 			}
 		}
-		
+		if ( isset($menu_items) ){
+			$c = 60;
+			foreach($menu_items as $item){
+				$submenu['nestedpages'][$c] = array( $item[0], $item[1], $item[2]);
+				$c = $c + 10;
+			}
+		}
+		// Default Pages
+		if ( get_option('nestedpages_hidedefault') !== 'hide' ){
+			$submenu['nestedpages'][$c] = array( __('Default Pages','nestedpages'), 'publish_pages', $this->defaultPagesLink() );
+		}
 	}
 
 
