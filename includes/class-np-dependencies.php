@@ -26,7 +26,7 @@ class NP_Dependencies {
 			'nestedpages', 
 			$this->plugin_dir . '/assets/css/nestedpages.css', 
 			array(), 
-			'1.1.7'
+			'1.1.8'
 		);
 	}
 
@@ -64,7 +64,7 @@ class NP_Dependencies {
 				'nestedpages', 
 				$this->plugin_dir . '/assets/js/nestedpages.min.js', 
 				array('jquery'), 
-				'1.1.7'
+				'1.1.8'
 			);
 			$localized_data = array(
 				'np_nonce' => wp_create_nonce( 'nestedpages-nonce' ),

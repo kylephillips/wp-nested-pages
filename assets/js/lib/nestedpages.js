@@ -1263,7 +1263,7 @@ jQuery(function($){
 	function update_pages_text(form)
 	{
 		var count = $(form).find($('.new-child-row')).length;
-		if ( count > 0 ){
+		if ( count > 1 ){
 			$(form).find('h3 strong').text(nestedpages.add_child_pages);
 			$(form).find('.np-save-newchild').text(nestedpages.add_pages + ' (' + count + ')');
 		} else {
@@ -1380,7 +1380,7 @@ jQuery(function($){
 		html += '<a href="#" class="np-btn add-new-child" data-id="' + page.id + '" data-parentname="' + page.title + '">' + nestedpages.add_child_short + '</a>';
 		
 		// Quick Edit (data attrs)
-		html += '<a href="#" class="np-btn np-quick-edit" data-id="' + page.id + '" data-template="' + page.template + '" data-title="' + page.title + '" data-slug="' + page.slug + '" data-commentstatus="closed" data-status="' + page.status + '" data-np-status="show"	data-navstatus="show" data-author="' + page.author + '" data-month="' + page.month + '" data-day="' + page.day + '" data-year="' + page.year + '" data-hour="' + page.hour + '" data-minute="' + page.minute + '">' + nestedpages.quick_edit + '</a>';
+		html += '<a href="#" class="np-btn np-quick-edit" data-id="' + page.id + '" data-template="' + page.template + '" data-title="' + page.title + '" data-slug="' + page.slug + '" data-commentstatus="closed" data-status="' + page.status.toLowerCase() + '" data-np-status="show"	data-navstatus="show" data-author="' + page.author + '" data-month="' + page.month + '" data-day="' + page.day + '" data-year="' + page.year + '" data-hour="' + page.hour + '" data-minute="' + page.minute + '">' + nestedpages.quick_edit + '</a>';
 
 		html += '<a href="' + page.view_link + '" class="np-btn" target="_blank">' + nestedpages.view + '</a>';
 		html += '<a href="' + page.delete_link + '" class="np-btn np-btn-trash"><i class="np-icon-remove"></i></a>';
