@@ -45,7 +45,8 @@ function nestedpages_check_versions( $wp = '3.9', $php = '5.3.2' ) {
 }
 
 
-if( !class_exists('NestedPages') ) :
-	require_once('includes/class-nestedpages.php');
-	$nested_pages = new NestedPages;
+if( !class_exists('Bootstrap') ) :
+    require_once('vendor/autoload.php');
+	require_once('app/Bootstrap.php');
+	$nested_pages = new NestedPages\Bootstrap;
 endif;
