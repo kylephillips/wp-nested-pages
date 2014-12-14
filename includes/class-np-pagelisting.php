@@ -99,6 +99,32 @@ class NP_PageListing {
 		if ( get_option('nestedpages_hidedefault') !== 'hide' ){
 			$submenu['nestedpages'][70] = array( __('Default Pages','nestedpages'), 'publish_pages', $this->defaultPagesLink() );
 		}
+		$this->taxonomySubmenus();
+	}
+
+
+	/**
+	* Add Taxonomy Submenus
+	* @since 1.1.8
+	*/
+	public function taxonomySubmenus()
+	{
+		global $submenu;
+		$taxonomies = get_object_taxonomies($this->post_type->name, 'objects');
+		if ( $taxonomies ){
+			$c = 80;
+			foreach ( $taxonomies as $taxonomy ){
+				if ( $taxonomy->show_ui == true ){
+					$submenu['nestedpages'][$c] = array( 
+						$taxonomy->labels->name, 
+						'manage_categories', 
+						esc_url(admin_url('edit-tags.php?taxonomy=' . $taxonomy->name)) 
+					);
+					$c = $c + 10;
+				}
+			}
+		}
+		
 	}
 
 
