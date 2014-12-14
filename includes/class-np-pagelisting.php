@@ -230,12 +230,12 @@ class NP_PageListing {
 
 		if ( $count == 1 ) {
 			echo ( $this->user->canSortPages() ) 
-				? '<ol class="sortable nplist">' 
-				: '<ol class="sortable no-sort nplist">';
+				? '<ol class="sortable nplist visible">' 
+				: '<ol class="sortable no-sort nplist" visible>';
 		} else {
-			echo '<ol class="nplist"';
-			if ( count($compared) > 0 ) echo ' style="display:block;"';
-			echo '>';	
+			echo '<ol class="nplist';
+			if ( count($compared) > 0 ) echo ' visible" style="display:block;';
+			echo '">';	
 		} 
 	}
 

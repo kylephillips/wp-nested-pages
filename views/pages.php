@@ -28,20 +28,23 @@
 
 	<img src="<?php echo plugins_url(); ?>/wp-nested-pages/assets/images/loading.gif" alt="loading" id="nested-loading" />
 
-	<ul class="subsubsub">
-		<li><a href="#all" class="np-toggle-publish active"><?php _e('All'); ?></a> | </li>
-		<li><a href="#published" class="np-toggle-publish"><?php _e('Published'); ?></a> | </li>
-		<li><a href="#show" class="np-toggle-hidden"><?php _e('Show Hidden', 'nestedpages'); ?> </a>
-			<span class="count">(<?php echo $this->post_repo->getHiddenCount(); ?>)</span> | </li>
-		<?php if ( current_user_can('delete_pages') ) : ?>
-		<li><a href="edit.php?post_status=trash&post_type=page"><?php _e('Trash'); ?> </a>
-			<span class="count">(<?php echo $this->post_repo->trashedPagesCount(); ?>)</span></li>
-		<?php endif; ?>
-		<?php if ( get_option('nestedpages_hidedefault') !== 'hide' ) : ?>
-		<li> | <a href="<?php echo $this->defaultPagesLink(); ?>"><?php _e('Default'); ?> <?php _e($this->post_type->labels->name); ?></a></li>
-		<?php endif; ?>
-	</ul>
+	<div class="nestedpages-tools">
 
+		<ul class="subsubsub">
+			<li><a href="#all" class="np-toggle-publish active"><?php _e('All'); ?></a> | </li>
+			<li><a href="#published" class="np-toggle-publish"><?php _e('Published'); ?></a> | </li>
+			<li><a href="#show" class="np-toggle-hidden"><?php _e('Show Hidden', 'nestedpages'); ?> </a>
+				<span class="count">(<?php echo $this->post_repo->getHiddenCount(); ?>)</span> | </li>
+			<?php if ( current_user_can('delete_pages') ) : ?>
+			<li><a href="edit.php?post_status=trash&post_type=page"><?php _e('Trash'); ?> </a>
+				<span class="count">(<?php echo $this->post_repo->trashedPagesCount(); ?>)</span></li>
+			<?php endif; ?>
+			<?php if ( get_option('nestedpages_hidedefault') !== 'hide' ) : ?>
+			<li> | <a href="<?php echo $this->defaultPagesLink(); ?>"><?php _e('Default'); ?> <?php _e($this->post_type->labels->name); ?></a></li>
+			<?php endif; ?>
+		</ul>
+
+	</div><!-- .nestedpages-tools -->
 
 	<div id="np-error" class="updated error" style="clear:both;display:none;"></div>
 
