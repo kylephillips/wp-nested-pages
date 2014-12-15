@@ -21,8 +21,8 @@ class Bootstrap {
 		new Activation\Dependencies;
 		new Entities\Redirects;
 		new Entities\PostTypes;
-		new Settings\Settings;
 		new Handlers\Actions;
+		new Settings\Settings;
 	}
 
 	/**

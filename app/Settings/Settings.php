@@ -2,6 +2,7 @@
 
 use NestedPages\Helpers;
 use NestedPages\Repositories\UserRepository;
+use NestedPages\Repositories\PostTypeRepository;
 
 /**
 * Plugin Settings
@@ -18,6 +19,11 @@ class Settings {
 	* User Repository
 	*/
 	private $user_repo;
+
+	/**
+	* Post Types
+	*/
+	private $post_types;
 
 
 	public function __construct()
@@ -85,6 +91,17 @@ class Settings {
 	{
 		$menu_id = get_option('nestedpages_menu');
 		$this->menu = get_term_by('id', $menu_id, 'nav_menu');
+	}
+
+
+	/**
+	* Get Post Types
+	* @since 1.2
+	*/
+	public function getPostTypes()
+	{
+		$post_repo = new PostTypeRepository;
+		return $post_repo->getPostTypeArray();
 	}
 
 
