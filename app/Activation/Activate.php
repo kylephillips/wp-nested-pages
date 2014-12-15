@@ -21,7 +21,7 @@ class Activate {
 	*/
 	public function install()
 	{
-		$this->version = '1.1.8';
+		$this->version = '1.2';
 		new ActivateUpgrades($this->version);
 		$this->setVersion();
 		$this->setOptions();
