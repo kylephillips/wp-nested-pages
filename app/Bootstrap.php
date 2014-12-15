@@ -5,27 +5,35 @@
 */
 class Bootstrap {
 
-
 	public function __construct()
 	{
-		$this->init();
-		$this->formActions();
-		add_action( 'init', array($this, 'listPages') );
-		add_action( 'init', array($this, 'addLocalization') );
+		$this->initializePlugin();
+		add_action( 'init', array($this, 'initializeWordPress') );
 		add_filter( 'plugin_action_links_' . 'wp-nested-pages/nestedpages.php', array($this, 'settingsLink' ) );
 	}
 
 	/**
 	* Initialize Plugin
 	*/
-	public function init()
+	private function initializePlugin()
 	{
 		new Activation\Activate;
 		new Activation\Dependencies;
 		new Entities\Redirects;
 		new Entities\PostTypes;
 		new Settings\Settings;
+		new Handlers\Actions;
 	}
+
+	/**
+	* Wordpress Initialization Actions
+	*/
+	public function initializeWordPress()
+	{
+		$this->listPages();
+		$this->addLocalization();
+	}
+
 
 	/**
 	* Page Listing
@@ -36,15 +44,6 @@ class Bootstrap {
 		new Controllers\AdminMenuController;
 		new Controllers\AdminSubmenuController;
 		new Controllers\PageListingController;
-	}
-
-
-	/**
-	* Set Form Actions & Handlers
-	*/
-	public function formActions()
-	{
-		new Handlers\Actions;
 	}
 
 
