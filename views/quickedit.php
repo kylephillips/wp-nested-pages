@@ -108,7 +108,7 @@
 		<?php endif; // Edit theme options?>
 
 
-		<?php if ( current_user_can('edit_theme_options') ) : // Menu Options Button ?>
+		<?php if ( $this->user->canSortPages() ) : // Menu Options Button ?>
 		<div class="form-control np-toggle-options">
 			<a href="#" class="np-btn np-btn-half np-toggle-menuoptions"><?php _e('Menu Options', 'nestedpages'); ?></a>
 			<?php if ( !empty($this->h_taxonomies) ) : ?>
@@ -141,7 +141,7 @@
 	<?php endif; // if taxonomies ?>
 
 
-	<?php if ( current_user_can('edit_theme_options') ) : // Menu Options?>
+	<?php if ( $this->user->canSortPages() ) : // Menu Options?>
 	<div class="np-menuoptions">
 		<div class="menuoptions-left">
 			<div class="form-control">
