@@ -303,7 +303,7 @@ class PostRepository {
 			'post_content' => sanitize_text_field($data['post_content']),
 			'post_parent' => sanitize_text_field($data['parent_id'])
 		);
-		wp_update_post($updated_post);
+		$this->new_id = wp_update_post($updated_post);
 
 		$this->updateNavStatus($data);
 		$this->updateNestedPagesStatus($data);
@@ -311,7 +311,7 @@ class PostRepository {
 		$this->updateTitleAttribute($data);
 		$this->updateNavCSS($data);
 
-		return true;
+		return $this->new_id;
 	}
 
 

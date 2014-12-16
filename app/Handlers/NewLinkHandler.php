@@ -50,6 +50,7 @@ class NewLinkHandler extends BaseHandler {
 	*/
 	private function addData()
 	{
+		$this->data['delete_link'] = get_delete_post_link($this->data['id'],'', true);
 		$this->data['nav_status'] = ( isset($this->data['nav_status']) ) ? 'hide' : 'show';
 		$this->data['np_status'] = ( isset($this->data['nested_pages_status']) ) ? 'hide' : 'show';
 		$this->data['link_target'] = ( isset($this->data['link_target']) ) ? '_blank' : 'none';

@@ -1028,6 +1028,7 @@ jQuery(function($){
 			datatype: 'json',
 			data: data + '&action=npnewredirect&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
 			success: function(data){
+				console.log(data);
 				if (data.status === 'error'){
 					np_remove_link_loading();
 					$('.np-new-link-error').text(data.message).show();
@@ -1082,6 +1083,10 @@ jQuery(function($){
 		html += 'data-navstatus="' + data.nav_status + '" ';
 		html += 'data-linktarget="' + data.link_target + '">'
 		html += 'Quick Edit</a>';
+
+		// Delete Link
+		html += '<a href="' + data.delete_link + '" class="np-btn np-btn-trash"><i class="np-icon-remove"></i></a>';
+
 		html += '</div></div></div></li>';
 
 		if ( data.parent_id === "0" ){
