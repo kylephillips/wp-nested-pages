@@ -24,7 +24,7 @@ Nested Pages provides an intuitive drag and drop interface for managing pages in
 
 For more information visit [nestedpages.com](http://nestedpages.com).
 
-**Nested Pages requires Wordpress version 3.8 or higher, and PHP version 5.3.2 or higher.**
+**Nested Pages requires Wordpress version 3.8 or higher, and PHP version 5.3 or higher.**
 
 **Languages:**
 
@@ -33,6 +33,7 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 * Finnish (Roni Laukkarinen)
 * French (Nico Mollet)
 * German/Swiss German (Bartosz Podlewski)
+* Italian (Francesco Canovi)
 
 == Installation ==
 
@@ -75,6 +76,10 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 5. Quickly add child pages without leaving the page tree
 
 == Changelog ==
+
+= 1.1.9 =
+* Minor bug fixes in editor capabilities
+* Italian translation (Provided by Francesco Canovi)
 
 = 1.1.8 =
 * New Child Pages Interface - Add child pages more efficiently with the new add child pages dialog. Add a single child page without leaving the Nested Pages view, or add multiple pages with one click. Reorder multiple child pages before saving with the drag and drop interface you're accustomed to.
@@ -124,6 +129,9 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 * Nested Pages
 
 == Upgrade Notice ==
+
+= 1.1.9 =
+Italian translation included along with minor bug fixes.
 
 = 1.1.8 =
 New Child Pages Interface, various UI enhancements
