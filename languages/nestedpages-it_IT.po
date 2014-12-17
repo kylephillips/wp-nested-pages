@@ -1,0 +1,343 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Nested Pages\n"
+"POT-Creation-Date: 2014-11-20 20:17-0500\n"
+"PO-Revision-Date: 2014-12-16 18:44+0100\n"
+"Last-Translator: Francesco Canovi <francesco@blackstudio.it>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: it_IT\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/class-nestedpages.php:85
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: includes/class-np-confirmation.php:58
+msgid "pages moved to the Trash"
+msgstr "pagine spostate nel Cestino"
+
+#: includes/class-np-confirmation.php:60
+msgid "page moved to the Trash"
+msgstr "pagina spostata del Cestino"
+
+#: includes/class-np-confirmation.php:65
+msgid "Undo"
+msgstr "Annulla"
+
+#: includes/class-np-confirmation.php:80
+msgid "pages"
+msgstr "pagine"
+
+#: includes/class-np-confirmation.php:80
+msgid "page"
+msgstr "pagina"
+
+#: includes/class-np-confirmation.php:81
+msgid "restored from trash"
+msgstr "recuperata dal Cestino"
+
+#: includes/class-np-confirmation.php:90
+msgid "Link successfully deleted."
+msgstr "Collegamento eliminato con successo."
+
+#: includes/class-np-dependencies.php:77 views/pages.php:18
+msgid "Expand Pages"
+msgstr "Espandi Pagine"
+
+#: includes/class-np-dependencies.php:78
+msgid "Collapse Pages"
+msgstr "Collassa Pagine"
+
+#: includes/class-np-dependencies.php:79 views/pages.php:34
+msgid "Show Hidden"
+msgstr "Mostra Nascoste"
+
+#: includes/class-np-dependencies.php:80
+msgid "Hide Hidden"
+msgstr "Nascondi Nascoste"
+
+#: includes/class-np-dependencies.php:81 views/link-form.php:14
+#: views/pages.php:9 views/pages.php:10
+msgid "Add Link"
+msgstr "Aggiungi Collegamento"
+
+#: includes/class-np-dependencies.php:82
+msgid "Add Child Link"
+msgstr "Aggiungi Collegamento Figlio"
+
+#: includes/class-np-handler-base.php:64
+msgid "Incorrect Form Field"
+msgstr "Campo del modulo non corretto"
+
+#: includes/class-np-handler-base.php:94
+msgid "There was an error updating the page."
+msgstr "Si è verificato un errore durante l'aggiornamento della pagina."
+
+#: includes/class-np-handler-newredirect.php:40
+#: includes/class-np-handler-quickedit-redirect.php:36
+msgid "Link successfully updated"
+msgstr "Collegamento aggiornato con successo"
+
+#: includes/class-np-handler-quickedit.php:38
+msgid "Post successfully updated"
+msgstr "Post aggiornato con successo"
+
+#: includes/class-np-handler-sort.php:36
+msgid "Page order successfully updated."
+msgstr "Ordine pagine aggiornato con successo."
+
+#: includes/class-np-handler-sort.php:38
+msgid "There was an order updating the page order."
+msgstr ""
+"Si è verificato un errore durante l'aggiornamento dell'ordine delle pagine."
+
+#: includes/class-np-handler-syncmenu.php:32
+msgid "Menu sync enabled."
+msgstr "Sincronizzazione Menu abilitata."
+
+#: includes/class-np-handler-syncmenu.php:35
+msgid "Menu sync disabled."
+msgstr "Sincronizzazione Menu disabilitata."
+
+#: includes/class-np-newpage.php:42
+msgid "Adding child page under:"
+msgstr "Aggiungendo Pagina Figlia sotto:"
+
+#: includes/class-np-pagelisting.php:79
+msgid "All Pages"
+msgstr "Tutte le Pagine"
+
+#: includes/class-np-pagelisting.php:80
+msgid "Add New"
+msgstr "Aggiungi nuova"
+
+#: includes/class-np-pagelisting.php:81
+msgid "Default Pages"
+msgstr "Pagine (Default)"
+
+#: includes/class-np-posttypes.php:21
+msgid "Redirects"
+msgstr "Redirects"
+
+#: includes/class-np-posttypes.php:22
+msgid "Redirect"
+msgstr "Redirect"
+
+#: includes/class-np-redirects.php:65
+msgid "Nested Pages"
+msgstr "Nested Pages"
+
+#: includes/class-np-repository-post.php:58 views/quickedit.php:20
+msgid "Title"
+msgstr "Titolo"
+
+#: includes/class-np-repository-post.php:298
+msgid "Label"
+msgstr "Etichetta"
+
+#: includes/class-np-validation.php:49 includes/class-np-validation.php:64
+msgid "Please provide a valid date."
+msgstr "Si prega di inserire una data valida."
+
+#: includes/class-np-validation.php:76
+msgid "Please provide a menu title."
+msgstr "Si prega di inserire un titolo per il menu."
+
+#: includes/class-np-validation.php:79
+msgid "Please provide a valid URL."
+msgstr "Si prega di inserire una URL valida."
+
+#: includes/class-np-validation.php:90
+msgid "Please provide a "
+msgstr "Si prega di fornire"
+
+#: views/link-form.php:31 views/quickedit-redirect.php:17
+#: views/quickedit.php:148
+msgid "Navigation Label"
+msgstr "Etichetta di navigazione"
+
+#: views/link-form.php:36 views/quickedit-redirect.php:22
+msgid "URL"
+msgstr "URL"
+
+#: views/link-form.php:41 views/quickedit-redirect.php:27
+#: views/quickedit.php:58
+msgid "Status"
+msgstr "Stato"
+
+#: views/link-form.php:44 views/pages.php:33 views/quickedit-redirect.php:30
+#: views/quickedit.php:61
+msgid "Published"
+msgstr "Pubblicato"
+
+#: views/link-form.php:45 views/quickedit-redirect.php:31
+#: views/quickedit.php:62
+msgid "Scheduled"
+msgstr "Programmato"
+
+#: views/link-form.php:47 views/quickedit-redirect.php:33
+#: views/quickedit.php:64
+msgid "Pending Review"
+msgstr "In attesa di Revisione"
+
+#: views/link-form.php:48 views/quickedit-redirect.php:34
+#: views/quickedit.php:65
+msgid "Draft"
+msgstr "Bozza"
+
+#: views/link-form.php:59 views/quickedit-redirect.php:54
+#: views/quickedit.php:164
+msgid "Hide in Nav Menu"
+msgstr "Nascondi nel Menu di Navigazione"
+
+#: views/link-form.php:64 views/quickedit-redirect.php:60
+#: views/quickedit.php:105
+msgid "Hide in Nested Pages"
+msgstr "Nascondi in Nested Pages"
+
+#: views/link-form.php:69 views/quickedit-redirect.php:66
+#: views/quickedit.php:170
+msgid "Open link in a new window/tab"
+msgstr "Apri collegamento in una nuova finestra/scheda"
+
+#: views/link-form.php:80
+msgid "Close"
+msgstr "Chiudi"
+
+#: views/link-form.php:83
+msgid "Save Link"
+msgstr "Salva Collegamento"
+
+#: views/pages.php:24
+msgid "Sync Menu"
+msgstr "Sincronizza Menu"
+
+#: views/pages.php:32
+msgid "All"
+msgstr "Tutto"
+
+#: views/pages.php:37
+msgid "Trash"
+msgstr "Cestino"
+
+#: views/pages.php:40
+msgid "Default"
+msgstr "Predefinito"
+
+#: views/quickedit-redirect.php:8
+msgid "Link"
+msgstr "Collegamento"
+
+#: views/quickedit-redirect.php:44 views/quickedit.php:152
+msgid "Title Attribute"
+msgstr "Attributo Titolo"
+
+#: views/quickedit-redirect.php:48 views/quickedit.php:156
+msgid "CSS Classes"
+msgstr "Classi CSS"
+
+#: views/quickedit-redirect.php:81 views/quickedit.php:184
+msgid "Cancel"
+msgstr "Annulla"
+
+#: views/quickedit-redirect.php:84 views/quickedit.php:187
+msgid "Update"
+msgstr "Aggiorna"
+
+#: views/quickedit.php:11 views/row-redirect.php:53 views/row.php:94
+msgid "Quick Edit"
+msgstr "Modifica Rapida"
+
+#: views/quickedit.php:24
+msgid "Slug"
+msgstr "Slug"
+
+#: views/quickedit.php:28
+msgid "Date"
+msgstr "Data"
+
+#: views/quickedit.php:49
+msgid "Author"
+msgstr "Autore"
+
+#: views/quickedit.php:73
+msgid "Template"
+msgstr "Modello"
+
+#: views/quickedit.php:75
+msgid "Default Template"
+msgstr "Modello di Default"
+
+#: views/quickedit.php:82
+msgid "Password"
+msgstr "Password"
+
+#: views/quickedit.php:85
+msgid "&ndash;OR&ndash;"
+msgstr "&ndash;OR&ndash;"
+
+#: views/quickedit.php:88
+msgid "Private"
+msgstr "Privato"
+
+#: views/quickedit.php:97
+msgid "Allow Comments"
+msgstr "Permetti Commenti"
+
+#: views/quickedit.php:113
+msgid "Menu Options"
+msgstr "Opzioni Menu"
+
+#: views/quickedit.php:115
+msgid "Taxonomies"
+msgstr "Tassonomie"
+
+#: views/row-redirect.php:30 views/row.php:33
+msgid "Hidden"
+msgstr "Nascosto"
+
+#: views/row.php:41
+msgid "currently editing"
+msgstr "modifica in corso"
+
+#: views/row.php:43
+msgid "Edit"
+msgstr "Modifica"
+
+#: views/row.php:66
+msgid "Add Child"
+msgstr "Aggiungi figlio"
+
+#: views/row.php:98
+msgid "View"
+msgstr "Mostra"
+
+#: views/settings.php:2
+msgid "Nested Pages Settings"
+msgstr "Nested Pages Settings"
+
+#: views/settings.php:8
+msgid "Nested Pages Version"
+msgstr "Nested Pages Version"
+
+#: views/settings.php:12
+msgid "Menu Name"
+msgstr "Nome Menu"
+
+#: views/settings.php:15
+msgid ""
+"Important: Once the menu name has changed, theme files should be updated to "
+"reference the new name."
+msgstr ""
+"Importante: una volta cambiato il nome del Menu, i file del tema devono "
+"essere aggiornati per rispecchiare il nuovo nome."
