@@ -53,7 +53,7 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 
 					<div class="right">
 
-					<?php if ( current_user_can('edit_theme_options') ) : ?>
+					<?php if ( $this->user->canSortPages() ) : // Menu Options Button ?>
 					<label class="checkbox">
 						<input type="checkbox" name="nav_status" class="np_link_nav_status" value="hide" />
 						<span class="checkbox-title"><?php _e( 'Hide in Nav Menu', 'nestedpages' ); ?></span>

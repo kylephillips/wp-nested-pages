@@ -39,7 +39,7 @@
 
 	<div class="right">
 
-		<?php if ( current_user_can('edit_theme_options') ) : ?>
+		<?php if ( $this->user->canSortPages() ) : // Menu Options Button ?>
 		<div class="form-control">
 			<label><?php _e( 'Title Attribute' ); ?></label>
 			<input type="text" name="np_title_attribute" class="np_title_attribute" value="" />
