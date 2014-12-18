@@ -24,7 +24,7 @@ Nested Pages provides an intuitive drag and drop interface for managing pages in
 
 For more information visit [nestedpages.com](http://nestedpages.com).
 
-**Nested Pages requires Wordpress version 3.8 or higher, and PHP version 5.3 or higher.**
+**Nested Pages requires Wordpress version 3.8 or higher, and PHP version 5.3.2 or higher.**
 
 **Languages:**
 
