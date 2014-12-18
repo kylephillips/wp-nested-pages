@@ -17,6 +17,7 @@ jQuery(function($){
 	$(document).ready(function(){
 		add_remove_submenu_toggles();
 		np_set_borders();
+		set_nested_margins();
 	});
 	
 	/**
@@ -29,6 +30,7 @@ jQuery(function($){
 		$(submenu).toggle();
 		np_set_borders();
 		np_sync_user_toggles();
+		set_nested_margins();
 	});
 
 	/**
@@ -101,6 +103,27 @@ jQuery(function($){
 	}
 
 	/**
+	* Adjust nested margins
+	* @since 1.1.10
+	*/
+	function set_nested_margins()
+	{
+		var lists = $('.nestedpages').find('.nplist');
+		$.each(lists, function(i, v){
+			
+				var parent_count = $(this).parents('.nplist').length;
+				var padding = 86;
+				if ( parent_count > 0 ){
+					var padding = ( parent_count * 20 ) + padding;
+					$(this).find('.row-inner').css('padding-left', padding + 'px');
+				} else {
+					$(this).find('.row-inner').css('padding-left', '0px');
+				}
+			
+		});
+	}
+
+	/**
 	* Toggle between showing published pages and all
 	*/
 	$(document).on('click', '.np-toggle-publish', function(e){
@@ -157,6 +180,7 @@ jQuery(function($){
 			toleranceElement: '> .row',
 			handle: '.handle',
 			placeholder: "ui-sortable-placeholder",
+			maxLevels: 0,
 			start: function(e, ui){
         		ui.placeholder.height(ui.item.height());
     		},
@@ -168,6 +192,7 @@ jQuery(function($){
     				function(){
     					add_remove_submenu_toggles();
     					np_set_borders();
+    					set_nested_margins();
     			}, 100
     			);
     			submit_sortable_form();
@@ -197,6 +222,7 @@ jQuery(function($){
 	{
 		var parentList = $(ui.placeholder).parent('ol');
 		if ( !$(parentList).is(':visible') ){
+			$(parentList).addClass('nplist');
 			$(parentList).show();
 		}
 	}
