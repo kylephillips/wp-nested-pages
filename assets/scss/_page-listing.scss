@@ -239,15 +239,15 @@
 	// Inner row element gets padding to give visual indicator of nested depth
 	ol li ol {
 		.row-inner {
-			padding-left: 86px;
+			padding-left: 76px;
 		}
 		li ol {
 			.row-inner {
-				padding-left: 116px;
+				padding-left: 96px;
 			}
 			li ol {
 				.row-inner {
-					padding-left: 156px;
+					padding-left: 106px;
 				}
 			}
 		}
