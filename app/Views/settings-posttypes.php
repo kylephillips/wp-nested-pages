@@ -1,5 +1,5 @@
 <?php 
 
 
-var_dump($this->getPostTypes());
+//var_dump($this->getPostTypes());
 ?>
