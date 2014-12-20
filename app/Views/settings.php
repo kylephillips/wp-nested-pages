@@ -4,7 +4,9 @@
 	<h2 class="nav-tab-wrapper">
 		<a class="nav-tab <?php if ( $tab == 'general' ) echo 'nav-tab-active'; ?>" href="options-general.php?page=nested-pages-settings"><?php _e('General', 'nestedpages'); ?></a>
 		<?php if ( count($this->getPostTypes()) > 0 ) : ?>
+		<?php /*
 		<a class="nav-tab <?php if ( $tab == 'posttypes' ) echo 'nav-tab-active'; ?>" href="options-general.php?page=nested-pages-settings&tab=posttypes"><?php _e('Post Types', 'nestedpages'); ?></a>
+		*/ ?>
 		<?php endif; ?>
 	</h2>
 
