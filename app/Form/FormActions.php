@@ -12,7 +12,7 @@ class FormActions {
 			add_action( 'wp_ajax_npquickEdit', array($this, 'quickEdit') );
 			add_action( 'wp_ajax_npsyncMenu', array($this, 'syncMenu') );
 			add_action( 'wp_ajax_npnestToggle', array($this, 'nestToggle') );
-			add_action( 'wp_ajax_npquickEditRedirect', array($this, 'quickEditRedirect') );
+			add_action( 'wp_ajax_npquickEditLink', array($this, 'quickEditLink') );
 			add_action( 'wp_ajax_npnewLink', array($this, 'newLink') );
 			add_action( 'wp_ajax_npgetTaxonomies', array($this, 'getTaxonomies') );
 			add_action( 'wp_ajax_npnewChild', array($this, 'newChild') );
@@ -39,9 +39,9 @@ class FormActions {
 		new Handlers\NestToggleHandler;
 	}
 
-	public function quickEditRedirect()
+	public function quickEditLink()
 	{
-		new Handlers\QuickEditRedirectHandler;
+		new Handlers\QuickEditLinkHandler;
 	}
 
 	public function newLink()

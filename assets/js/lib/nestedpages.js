@@ -933,7 +933,7 @@ jQuery(function($){
 			url: ajaxurl,
 			type: 'post',
 			datatype: 'json',
-			data: $(form).serialize() + '&action=npquickEditRedirect&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
+			data: $(form).serialize() + '&action=npquickEditLink&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
 			success: function(data){
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);

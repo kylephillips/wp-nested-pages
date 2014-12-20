@@ -3,7 +3,7 @@
 * Handles processing the quick edit form for redirects
 * @return json response
 */
-class QuickEditRedirectHandler extends BaseHandler {
+class QuickEditLinkHandler extends BaseHandler {
 
 
 	public function __construct()
