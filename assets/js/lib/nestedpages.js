@@ -417,6 +417,7 @@ jQuery(function($){
 		// Add Array of Taxonomies to the data object
 		data.h_taxonomies = [];
 		data.f_taxonomies = [];
+		
 		var classes = $(parent_li).attr('class').split(/\s+/);
 		for ( i = 0; i < classes.length; i++ ){
 			if ( classes[i].substring(0, 3) === 'in-'){
@@ -572,10 +573,12 @@ jQuery(function($){
 	*/
 	function populate_flat_taxonomies(terms)
 	{
-		$.each(terms, function(i, v){
-			var textarea = $('#' + i);
-			$(textarea).val(v.join(','));
-		});
+		if ( terms ){
+			$.each(terms, function(i, v){
+				var textarea = $('#' + i);
+				$(textarea).val(v.join(','));
+			});
+		}
 	}
 
 
