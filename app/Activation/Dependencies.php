@@ -27,7 +27,7 @@ class Dependencies {
 			'nestedpages', 
 			$this->plugin_dir . '/assets/css/nestedpages.css', 
 			array(), 
-			'1.2'
+			'1.2.0'
 		);
 	}
 

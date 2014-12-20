@@ -24,7 +24,7 @@ Nested Pages provides an intuitive drag and drop interface for managing pages in
 
 For more information visit [nestedpages.com](http://nestedpages.com).
 
-**Nested Pages requires WordPress version 3.8 or higher, and PHP version 5.3.2 or higher.**
+**Important: Nested Pages requires WordPress version 3.8 or higher, and PHP version 5.3.2 or higher.**
 
 **Languages:**
 
@@ -78,7 +78,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
-= 1.2 =
+= 1.2.0 =
 * PHP 5.3.2+ is now required to run Nested Pages. Will not run or install on older versions of PHP.
 * Visual nesting indication limit removed
 * Portuguese Translation (Provided by Luis Martins)

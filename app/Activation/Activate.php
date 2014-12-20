@@ -21,10 +21,11 @@ class Activate {
 	*/
 	public function install()
 	{
-		$this->version = '1.2';
+		$this->version = '1.2.0';
 		new PerformUpgrades($this->version);
 		$this->setVersion();
 		$this->setOptions();
+		new Dependencies;
 	}
 
 
