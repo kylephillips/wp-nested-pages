@@ -1,6 +1,6 @@
-<?php namespace NestedPages\Factories;
+<?php namespace NestedPages\Entities\Post;
 
-use NestedPages\Repositories\PostRepository;
+use NestedPages\Entities\Post\PostRepository;
 
 /**
 * Factory class for adding new posts

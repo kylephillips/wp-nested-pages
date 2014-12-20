@@ -1,8 +1,8 @@
 <?php namespace NestedPages\Config;
 
 use NestedPages\Helpers;
-use NestedPages\Repositories\UserRepository;
-use NestedPages\Repositories\PostTypeRepository;
+use NestedPages\Entities\User\UserRepository;
+use NestedPages\Entities\PostType\PostTypeRepository;
 
 /**
 * Plugin Settings

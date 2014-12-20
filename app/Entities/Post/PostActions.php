@@ -1,45 +1,15 @@
-<?php namespace NestedPages\Entities;
-
+<?php namespace NestedPages\Entities\Post;
 /**
-* Post Types required by Nested Pages
+* WP Actions tied to a Post
 */
-class PostTypes {
+class PostActions {
 
 	public function __construct()
 	{
-		add_action( 'init', array( $this, 'registerRedirects') );
 		add_action( 'trashed_post', array( $this, 'trashHook' ) );
 	}
 
-
-	/**
-	* Redirects Post Type
-	*/
-	public function registerRedirects()
-	{
-		$labels = array(
-			'name' => __('Redirects', 'nestedpages'),  
-			'singular_name' => __('Redirect', 'nestedpages'),
-			'add_new_item'=> 'Add Redirect',
-			'edit_item' => 'Edit Redirect',
-			'view_item' => 'View Redirect'
-		);
-		$args = array(
-			'labels' => $labels,
-			'public' => false,  
-			'show_ui' => false,
-			'menu_position' => 5,
-			'capability_type' => 'post',  
-			'hierarchical' => true,  
-			'has_archive' => true,
-			'supports' => array('title','editor'),
-			'rewrite' => array('slug' => 'np-redirect', 'with_front' => false)
-		);
-		register_post_type( 'np-redirect' , $args );
-	}
-
-
-
+	
 	/**
 	* Trash hook - make sure child pages of trashed page are visible
 	*/

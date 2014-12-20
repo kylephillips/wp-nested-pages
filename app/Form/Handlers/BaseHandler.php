@@ -1,7 +1,7 @@
 <?php namespace NestedPages\Form\Handlers;
 
 use NestedPages\Entities\NavMenu;
-use NestedPages\Repositories\PostRepository;
+use NestedPages\Entities\Post\PostRepository;
 
 /**
 * Base Form Handler Class

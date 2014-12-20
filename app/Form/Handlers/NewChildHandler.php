@@ -1,7 +1,7 @@
 <?php namespace NestedPages\Form\Handlers;
 
 use NestedPages\Form\Validation\Validation;
-use NestedPages\Factories\PostFactory;
+use NestedPages\Entities\Post\PostFactory;
 
 /**
 * Handles processing the quick edit form

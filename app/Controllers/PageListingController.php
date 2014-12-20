@@ -2,8 +2,8 @@
 
 use NestedPages\Helpers;
 use NestedPages\Entities\Confirmation\ConfirmationFactory;
-use NestedPages\Repositories\PostRepository;
-use NestedPages\Repositories\UserRepository;
+use NestedPages\Entities\Post\PostRepository;
+use NestedPages\Entities\User\UserRepository;
 
 /**
 * Primary Listing

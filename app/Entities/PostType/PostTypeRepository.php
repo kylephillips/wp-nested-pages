@@ -1,4 +1,4 @@
-<?php namespace NestedPages\Repositories;
+<?php namespace NestedPages\Entities\PostType;
 
 class PostTypeRepository {
 

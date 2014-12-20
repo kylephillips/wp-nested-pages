@@ -1,4 +1,4 @@
-<?php namespace NestedPages\Repositories;
+<?php namespace NestedPages\Entities\User;
 /**
 * User Repository
 * @since 1.1.7
