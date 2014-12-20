@@ -9,7 +9,7 @@ Stable tag: 1.1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Nested Pages provides an intuitive drag and drop interface for managing pages in the Wordpress admin, while maintaining quick edit functionality.
+Nested Pages provides an intuitive drag and drop interface for managing pages in the WordPress admin, while maintaining quick edit functionality.
 
 == Description ==
 
@@ -18,13 +18,13 @@ Nested Pages provides an intuitive drag and drop interface for managing pages in
 * A drag and drop interface for managing your pages - simple and intuitive
 * Quick edit functionality
 * An expandable, sortable tree view of your site's page structure
-* A native Wordpress menu, automatically generated to match your Nested Pages screen
+* A native WordPress menu, automatically generated to match your Nested Pages screen
 * A way to quickly add child pages (ideal for development)
 * A touch-friendly interface
 
 For more information visit [nestedpages.com](http://nestedpages.com).
 
-**Nested Pages requires Wordpress version 3.8 or higher, and PHP version 5.3.2 or higher.**
+**Nested Pages requires WordPress version 3.8 or higher, and PHP version 5.3.2 or higher.**
 
 **Languages:**
 
@@ -61,7 +61,7 @@ Bulk quick edits are not currently supported by Nested Pages. To edit in bulk, c
 Custom columns are not currently supported by Nested Pages. To view custom columns, click on “Default Pages” to view the native interface. If you are using WordPress SEO by Yoast, a page analysis indicator is shown.
 
 = What are those dots in my page rows? =
-If you have Wordpress SEO by Yoast installed, your page score indicators are shown along with the pages.
+If you have WordPress SEO by Yoast installed, your page score indicators are shown along with the pages.
 
 
 == Screenshots ==
@@ -79,7 +79,7 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 == Changelog ==
 
 = 1.2 =
-* PHP 5.3.2 or better is now required to run Nested Pages. Will not run or install on older versions of PHP.
+* PHP 5.3.2+ is now required to run Nested Pages. Will not run or install on older versions of PHP.
 * Visual nesting indication limit removed
 * Portuguese Translation (Provided by Luis Martins)
 

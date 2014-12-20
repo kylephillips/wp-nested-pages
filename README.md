@@ -1,4 +1,4 @@
-# Nested Pages for Wordpress
+# Nested Pages for WordPress
 
 Nested Pages provides an intuitive drag and drop interface for managing pages in the WordPress admin, while maintaining quick edit functionality.
 
