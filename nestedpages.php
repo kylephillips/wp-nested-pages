@@ -36,10 +36,12 @@ function nestedpages_check_versions( $wp = '3.9', $php = '5.3.2' ) {
     global $wp_version;
     if ( version_compare( PHP_VERSION, $php, '<' ) ) $flag = 'PHP';
     elseif ( version_compare( $wp_version, $wp, '<' ) ) $flag = 'WordPress';
-    elseif ( !get_post_type_object( 'page' ) ) $flag = 'Page Post Type';
     else return;
     $version = 'PHP' == $flag ? $php : $wp;
-    deactivate_plugins( basename( __FILE__ ) );
+    
+    if (function_exists('deactivate_plugins')){
+        deactivate_plugins( basename( __FILE__ ) );
+    }
     
     wp_die('<p>The <strong>Nested Pages</strong> plugin requires'.$flag.'  version '.$version.' or greater.</p>','Plugin Activation Error',  array( 'response'=>200, 'back_link'=>TRUE ) );
 }

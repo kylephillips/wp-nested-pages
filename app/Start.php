@@ -7,6 +7,9 @@ class Start {
 
 	public static function init()
 	{
+		global $np_env;
+		$np_env = 'dev';
+		
 		new NestedPages\Bootstrap;
 	}
 }

@@ -39,6 +39,7 @@ class Dependencies {
 	public function scripts()
 	{
 		$screen = get_current_screen();
+		global $np_env;
 		if ( strpos( $screen->id, 'nestedpages' ) ) :
 			wp_enqueue_script('suggest');
 			wp_enqueue_script('jquery-ui-core');
@@ -61,12 +62,21 @@ class Dependencies {
 				array('jquery', 'jquery-ui-sortable'), 
 				'1.0'
 			);
-			wp_enqueue_script(
-				'nestedpages', 
-				$this->plugin_dir . '/assets/js/nestedpages.min.js', 
-				array('jquery'), 
-				'1.2'
-			);
+			if ( $np_env == 'dev' ){
+				wp_enqueue_script(
+					'nestedpages', 
+					$this->plugin_dir . '/assets/js/lib/nestedpages.js', 
+					array('jquery'), 
+					'1.2'
+				);
+			} else {
+				wp_enqueue_script(
+					'nestedpages', 
+					$this->plugin_dir . '/assets/js/nestedpages.min.js', 
+					array('jquery'), 
+					'1.2'
+				);
+			}
 			$localized_data = array(
 				'np_nonce' => wp_create_nonce( 'nestedpages-nonce' ),
 				'expand_text' => __('Expand Pages', 'nestedpages'),
