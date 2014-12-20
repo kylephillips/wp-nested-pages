@@ -1,6 +1,6 @@
 <?php namespace NestedPages\Repositories;
 
-use NestedPages\Validation\Validation;
+use NestedPages\Form\Validation\Validation;
 
 class PostRepository {
 

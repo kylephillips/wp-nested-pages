@@ -1,6 +1,6 @@
-<?php namespace NestedPages\Handlers;
+<?php namespace NestedPages\Form\Handlers;
 
-use NestedPages\Validation\Validation;
+use NestedPages\Form\Validation\Validation;
 use NestedPages\Factories\PostFactory;
 
 /**

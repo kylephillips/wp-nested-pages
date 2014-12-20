@@ -21,7 +21,7 @@ class Bootstrap {
 		new Activation\Dependencies;
 		new Entities\Redirects;
 		new Entities\PostTypes;
-		new Handlers\Actions;
+		new Form\FormActions;
 		new Config\Settings;
 	}
 

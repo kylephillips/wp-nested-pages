@@ -311,7 +311,7 @@ jQuery(function($){
 			type: 'post',
 			datatype: 'json',
 			data: {
-				action : 'npsyncmenu',
+				action : 'npsyncMenu',
 				nonce : nestedpages.np_nonce,
 				syncmenu : setting
 			},
@@ -556,7 +556,7 @@ jQuery(function($){
 			type: 'post',
 			datatype: 'json',
 			data : {
-				action : 'gettax',
+				action : 'npgetTaxonomies',
 				nonce : nestedpages.np_nonce,
 				terms : taxonomies
 			},
@@ -635,7 +635,7 @@ jQuery(function($){
 			url: ajaxurl,
 			type: 'post',
 			datatype: 'json',
-			data: $(form).serialize() + '&action=npquickedit&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
+			data: $(form).serialize() + '&action=npquickEdit&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
 			success: function(data){
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);
@@ -933,7 +933,7 @@ jQuery(function($){
 			url: ajaxurl,
 			type: 'post',
 			datatype: 'json',
-			data: $(form).serialize() + '&action=npquickeditredirect&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
+			data: $(form).serialize() + '&action=npquickEditRedirect&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
 			success: function(data){
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);
@@ -1050,7 +1050,7 @@ jQuery(function($){
 			url: ajaxurl,
 			type: 'post',
 			datatype: 'json',
-			data: data + '&action=npnewredirect&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
+			data: data + '&action=npnewLink&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
 			success: function(data){
 				if (data.status === 'error'){
 					np_remove_link_loading();
@@ -1190,7 +1190,7 @@ jQuery(function($){
 			type: 'post',
 			datatype: 'json',
 			data: {
-				action : 'npnesttoggle',
+				action : 'npnestToggle',
 				nonce : nestedpages.np_nonce,
 				ids : ids
 			},
@@ -1336,7 +1336,7 @@ jQuery(function($){
 			url: ajaxurl,
 			type: 'post',
 			datatype: 'json',
-			data: $(form).serialize() + '&action=npnewchild&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
+			data: $(form).serialize() + '&action=npnewChild&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
 			success: function(data){
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);

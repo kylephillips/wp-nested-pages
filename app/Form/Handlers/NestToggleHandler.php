@@ -1,4 +1,4 @@
-<?php namespace NestedPages\Handlers;
+<?php namespace NestedPages\Form\Handlers;
 /**
 * Syncs User's Visible/Toggled Pages
 */

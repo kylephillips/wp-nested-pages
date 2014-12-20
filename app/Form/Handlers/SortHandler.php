@@ -1,4 +1,4 @@
-<?php namespace NestedPages\Handlers;
+<?php namespace NestedPages\Form\Handlers;
 
 /**
 * Handles processing sortable pages

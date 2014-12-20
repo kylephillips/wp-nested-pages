@@ -1,4 +1,4 @@
-<?php namespace NestedPages\Validation;
+<?php namespace NestedPages\Form\Validation;
 /**
 * Nested Pages Form Validation
 */

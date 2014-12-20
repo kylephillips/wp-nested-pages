@@ -1,4 +1,4 @@
-<?php namespace NestedPages\Handlers;
+<?php namespace NestedPages\Form\Handlers;
 
 use NestedPages\Entities\NavMenu;
 use NestedPages\Repositories\PostRepository;
