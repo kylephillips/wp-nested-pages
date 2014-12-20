@@ -1,0 +1,12 @@
+{
+	"name": "kylephillips/nestedpages",
+	"description": "Nested Pages plugin for WordPress",
+	"keywords": ["framework", "laravel"],
+	"license": "GPLv2",
+	"type": "project",
+	"autoload": {
+		"psr-4" : {
+			"NestedPages\\" : "app/"
+		}
+	}
+}

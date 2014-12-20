@@ -1106,6 +1106,10 @@ jQuery(function($){
 		html += 'data-navstatus="' + data.nav_status + '" ';
 		html += 'data-linktarget="' + data.link_target + '">'
 		html += 'Quick Edit</a>';
+
+		// Delete Link
+		html += '<a href="' + data.delete_link + '" class="np-btn np-btn-trash"><i class="np-icon-remove"></i></a>';
+
 		html += '</div></div></div></li>';
 
 		if ( data.parent_id === "0" ){
