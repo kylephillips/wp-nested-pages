@@ -8,8 +8,11 @@ class Start {
 	public static function init()
 	{
 		global $np_env;
-		$np_env = 'dev';
-		
+		$np_env = 'live';
+
+		global $np_version;
+		$np_version = '1.2.0';
+
 		new NestedPages\Bootstrap;
 	}
 }

@@ -8,13 +8,29 @@ class Dependencies {
 	* Plugin Directory
 	*/
 	private $plugin_dir;
+
+	/**
+	* Plugin Version
+	*/
+	private $plugin_version;
 	
 
 	public function __construct()
 	{
+		$this->setPluginVersion();
 		add_action( 'admin_enqueue_scripts', array($this, 'styles') );
 		add_action( 'admin_enqueue_scripts', array($this, 'scripts') );
 		$this->plugin_dir = plugins_url() . '/wp-nested-pages';
+	}
+
+
+	/**
+	* Set the Plugin Version
+	*/
+	private function setPluginVersion()
+	{
+		global $np_version;
+		$this->plugin_version = $np_version;
 	}
 
 
@@ -27,7 +43,7 @@ class Dependencies {
 			'nestedpages', 
 			$this->plugin_dir . '/assets/css/nestedpages.css', 
 			array(), 
-			'1.2.0'
+			$this->plugin_version
 		);
 	}
 
@@ -67,14 +83,14 @@ class Dependencies {
 					'nestedpages', 
 					$this->plugin_dir . '/assets/js/lib/nestedpages.js', 
 					array('jquery'), 
-					'1.2'
+					$this->plugin_version
 				);
 			} else {
 				wp_enqueue_script(
 					'nestedpages', 
 					$this->plugin_dir . '/assets/js/nestedpages.min.js', 
 					array('jquery'), 
-					'1.2'
+					$this->plugin_version
 				);
 			}
 			$localized_data = array(

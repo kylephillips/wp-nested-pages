@@ -12,6 +12,7 @@ class Activate {
 
 	public function __construct()
 	{
+		$this->setVersion();
 		$this->install();
 	}
 
@@ -21,18 +22,26 @@ class Activate {
 	*/
 	public function install()
 	{
-		$this->version = '1.2.0';
 		new PerformUpgrades($this->version);
-		$this->setVersion();
+		$this->saveVersion();
 		$this->setOptions();
 		new Dependencies;
+	}
+
+	/**
+	* Set the Plugin Version
+	*/
+	private function setVersion()
+	{
+		global $np_version;
+		$this->version = $np_version;
 	}
 
 
 	/**
 	* Set the Plugin Version
 	*/
-	private function setVersion()
+	private function saveVersion()
 	{
 		update_option('nestedpages_version', $this->version);
 	}
