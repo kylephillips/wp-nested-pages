@@ -112,7 +112,7 @@ jQuery(function($){
 		$.each(lists, function(i, v){
 			
 				var parent_count = $(this).parents('.nplist').length;
-				var padding = 86;
+				var padding = 56;
 				if ( parent_count > 0 ){
 					var padding = ( parent_count * 20 ) + padding;
 					$(this).find('.row-inner').css('padding-left', padding + 'px');

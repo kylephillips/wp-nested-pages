@@ -247,7 +247,17 @@
 			}
 			li ol {
 				.row-inner {
-					padding-left: 106px;
+					padding-left: 116px;
+				}
+				li ol {
+					.row-inner {
+						padding-left: 136px;
+					}
+					li ol {
+						.row-inner {
+							padding-left: 156px;
+						}
+					}
 				}
 			}
 		}
