@@ -1,7 +1,7 @@
 <?php namespace NestedPages\Controllers;
 
 use NestedPages\Helpers;
-use NestedPages\Entities\Confirmations;
+use NestedPages\Entities\Confirmation\ConfirmationFactory;
 use NestedPages\Repositories\PostRepository;
 use NestedPages\Repositories\UserRepository;
 
@@ -46,6 +46,12 @@ class PageListingController {
 
 
 	/**
+	* Confirmation Factory
+	*/
+	private $confirmation;
+
+
+	/**
 	* User Repository
 	*/
 	private $user;
@@ -55,6 +61,7 @@ class PageListingController {
 	{
 		$this->post_repo = new PostRepository;
 		$this->user = new UserRepository;
+		$this->confirmation = new ConfirmationFactory;
 		$this->setPostType();
 		
 	}
@@ -168,17 +175,6 @@ class PageListingController {
 			}
 		}
 		return $out;
-	}
-
-
-	/**
-	* Display Confirmation Message
-	* @todo add styling to clear floats
-	*/
-	private function confirmation()
-	{
-		$confirmation = new Confirmations;
-		return $confirmation->getMessage();
 	}
 
 

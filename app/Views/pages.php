@@ -12,14 +12,16 @@
 		<?php endif; ?>
 	</h2>
 
-	<?php if ( $this->confirmation() ) echo $this->confirmation() . '<div style="clear:both;"></div>'; ?>
+	<?php if ( $this->confirmation->getMessage() ) : ?>
+		<div id="message" class="updated below-h2"><p><?php echo $this->confirmation->getMessage(); ?></p></div>
+	<?php endif; ?>
 
-	<ul class="nestedpages-toggleall" <?php if ( $this->confirmation() ) echo 'style="margin-top:0"';?>>
+	<ul class="nestedpages-toggleall" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:0"';?>>
 		<li><a href="#" class="np-btn" data-toggle="closed"><?php _e('Expand Pages', 'nestedpages'); ?></a></li>
 	</ul>
 
 	<?php if ( current_user_can('edit_theme_options') ) : ?>
-	<div class="np-sync-menu-cont" <?php if ( $this->confirmation() ) echo 'style="margin-top:2px;"';?>>
+	<div class="np-sync-menu-cont" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:2px;"';?>>
 		<label>
 			<input type="checkbox" name="np_sync_menu" class="np-sync-menu" value="sync" <?php if ( get_option('nestedpages_menusync') == 'sync' ) echo 'checked'; ?>/> <?php _e('Sync Menu', 'nestedpages'); ?>
 		</label>
