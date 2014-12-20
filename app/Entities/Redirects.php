@@ -28,6 +28,7 @@ class Redirects {
 		}
 	}
 
+
 	/**
 	* Redirect to nested pages after page moved out of trash
 	*/

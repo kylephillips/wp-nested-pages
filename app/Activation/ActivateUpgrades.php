@@ -23,6 +23,7 @@ class ActivateUpgrades {
 		$this->convertMenuToID();
 	}
 
+
 	/**
 	* Set the plugin version
 	*/

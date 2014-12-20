@@ -8,6 +8,7 @@ class Dependencies {
 	* Plugin Directory
 	*/
 	private $plugin_dir;
+	
 
 	public function __construct()
 	{

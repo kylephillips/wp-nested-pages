@@ -53,6 +53,7 @@ class NavMenu {
 		}
 	}
 
+
 	/**
 	* Create Empty Menu if one doesn't exist
 	*/

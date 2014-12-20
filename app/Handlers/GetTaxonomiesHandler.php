@@ -47,6 +47,7 @@ class GetTaxonomiesHandler extends BaseHandler {
 		}
 	}
 
+
 	/**
 	* Prepare Response
 	*/

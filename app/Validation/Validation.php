@@ -1,10 +1,8 @@
 <?php namespace NestedPages\Validation;
-
 /**
 * Nested Pages Form Validation
 */
 class Validation {
-
 
 	/**
 	* Validate Post IDs in an array of posts
@@ -18,6 +16,7 @@ class Validation {
 			}
 		}
 	}
+
 
 	/**
 	* Validate IDs in an array (tax ids)

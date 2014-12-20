@@ -37,7 +37,6 @@ class Activate {
 	}
 	
 
-
 	/**
 	* Set Default Options
 	*/

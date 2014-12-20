@@ -25,6 +25,7 @@ class Bootstrap {
 		new Settings\Settings;
 	}
 
+
 	/**
 	* Wordpress Initialization Actions
 	*/
@@ -36,7 +37,7 @@ class Bootstrap {
 
 
 	/**
-	* Page Listing
+	* Page Listing & Menus
 	* @since 1.1.6 - Moved into init due to Multisite bug
 	*/
 	public function listPages()
@@ -61,9 +62,9 @@ class Bootstrap {
 	*/
 	public function settingsLink($links)
 	{ 
-  		$settings_link = '<a href="options-general.php?page=nested-pages-settings">' . __('Settings') . '</a>'; 
-  		array_unshift($links, $settings_link); 
-  		return $links; 
+		$settings_link = '<a href="options-general.php?page=nested-pages-settings">' . __('Settings') . '</a>'; 
+		array_unshift($links, $settings_link); 
+		return $links; 
 	}
 
 

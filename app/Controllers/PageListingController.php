@@ -59,15 +59,16 @@ class PageListingController {
 		
 	}
 
+
 	/**
 	* Called by Menu Class
 	* @since 1.2
 	*/
 	public static function admin_menu() {
-        $class_name = get_class();
-        $classinstance = new $class_name();
-        return array(&$classinstance, "pageListing");
-    }
+		$class_name = get_class();
+		$classinstance = new $class_name();
+		return array(&$classinstance, "pageListing");
+	}
 
 
 	/**
@@ -168,6 +169,7 @@ class PageListingController {
 		}
 		return $out;
 	}
+
 
 	/**
 	* Display Confirmation Message

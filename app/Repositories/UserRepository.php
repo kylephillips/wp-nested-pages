@@ -5,7 +5,6 @@
 */
 class UserRepository {
 
-
 	/**
 	* Return Current User's Roles
 	* @return array

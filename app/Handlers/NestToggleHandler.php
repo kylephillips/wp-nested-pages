@@ -4,11 +4,13 @@
 */
 class NestToggleHandler extends BaseHandler {
 
+
 	public function __construct()
 	{
 		parent::__construct();
 		$this->updateUserMeta();
 	}
+
 
 	/**
 	* Make sure this is an array of integers
@@ -20,6 +22,7 @@ class NestToggleHandler extends BaseHandler {
 			if ( !is_numeric($id) ) $this->sendErrorResponse();
 		}
 	}
+
 
 	/**
 	* Update the user meta with the array of IDs

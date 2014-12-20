@@ -2,6 +2,7 @@
 
 class PostTypeRepository {
 
+
 	/**
 	* Get Available Post Types
 	* @return array
@@ -15,6 +16,7 @@ class PostTypeRepository {
 		);
 		return get_post_types($args, $return);
 	}
+
 
 	/**
 	* Get an array of post types in name=>label format

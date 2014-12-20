@@ -40,14 +40,6 @@ abstract class BaseHandler {
 		$this->validateNonce();
 	}
 
-	/**
-	* Add the WP Action
-	*/
-	protected function addAction()
-	{
-
-	}
-
 
 	/**
 	* Set the Form Data
