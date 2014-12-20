@@ -34,6 +34,7 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 * French (Nico Mollet)
 * German/Swiss German (Bartosz Podlewski)
 * Italian (Francesco Canovi)
+* Portuguese (Luis Martins)
 
 == Installation ==
 
@@ -76,6 +77,11 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 5. Quickly add child pages without leaving the page tree
 
 == Changelog ==
+
+= 1.2 =
+* PHP 5.3.2 or better is now required to run Nested Pages. Will not run or install on older versions of PHP.
+* Visual nesting indication limit removed
+* Portuguese Translation (Provided by Luis Martins)
 
 = 1.1.9 =
 * Minor bug fixes in editor capabilities
@@ -129,6 +135,9 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 * Nested Pages
 
 == Upgrade Notice ==
+
+= 1.2 =
+PHP 5.3.2 now required – Nested Pages will not install on older versions of PHP.
 
 = 1.1.9 =
 Italian translation included along with minor bug fixes.
