@@ -22,7 +22,7 @@ class Bootstrap {
 		new Entities\Redirects;
 		new Entities\PostTypes;
 		new Handlers\Actions;
-		new Settings\Settings;
+		new Config\Settings;
 	}
 
 

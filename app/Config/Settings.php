@@ -1,4 +1,4 @@
-<?php namespace NestedPages\Settings;
+<?php namespace NestedPages\Config;
 
 use NestedPages\Helpers;
 use NestedPages\Repositories\UserRepository;
