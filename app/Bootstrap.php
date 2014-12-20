@@ -18,8 +18,7 @@ class Bootstrap {
 	private function initializePlugin()
 	{
 		new Activation\Activate;
-		new Activation\Dependencies;
-		new Entities\Redirects;
+		new Redirects;
 		new Entities\PostType\RegisterPostTypes;
 		new Entities\Post\PostActions;
 		new Form\FormActionFactory;
