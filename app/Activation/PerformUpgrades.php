@@ -2,7 +2,7 @@
 /**
 * Required Version Upgrades
 */
-class ActivateUpgrades {
+class PerformUpgrades {
 
 	/**
 	* New Version

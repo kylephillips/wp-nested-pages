@@ -22,7 +22,7 @@ class Activate {
 	public function install()
 	{
 		$this->version = '1.2';
-		new ActivateUpgrades($this->version);
+		new PerformUpgrades($this->version);
 		$this->setVersion();
 		$this->setOptions();
 	}
