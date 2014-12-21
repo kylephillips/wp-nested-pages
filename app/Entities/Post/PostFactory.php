@@ -42,7 +42,6 @@ class PostFactory {
 		foreach($data['post_title'] as $key => $title){
 			$post = array(
 				'post_title' => sanitize_text_field($title),
-				'post_type' => 'page',
 				'post_status' => sanitize_text_field($data['_status']),
 				'post_author' => sanitize_text_field($data['post_author']),
 				'post_parent' => sanitize_text_field($data['parent_id']),
