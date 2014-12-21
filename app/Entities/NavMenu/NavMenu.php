@@ -1,4 +1,4 @@
-<?php namespace NestedPages\Entities;
+<?php namespace NestedPages\Entities\NavMenu;
 
 use NestedPages\Helpers;
 

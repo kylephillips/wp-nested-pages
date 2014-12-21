@@ -1,15 +1,17 @@
-<?php namespace NestedPages\Controllers;
+<?php namespace NestedPages\Entities\Listing;
 
 use NestedPages\Helpers;
 use NestedPages\Entities\Confirmation\ConfirmationFactory;
 use NestedPages\Entities\Post\PostRepository;
 use NestedPages\Entities\User\UserRepository;
+use NestedPages\Entities\PostType\PostTypeRepository;
+use NestedPages\Entities\Listing\ListingRepository;
 
 /**
 * Primary Listing
 * Initiates Page Listing screen (overwriting default), and displays primary plugin view.
 */
-class PageListingController {
+class ListingController {
 
 	/**
 	* Post Type
@@ -17,13 +19,11 @@ class PageListingController {
 	*/
 	private $post_type;
 
-
 	/**
 	* Hierarchical Taxonomies
 	* @var array
 	*/
 	private $h_taxonomies;
-
 
 	/**
 	* Flat Taxonomies
@@ -31,25 +31,31 @@ class PageListingController {
 	*/
 	private $f_taxonomies;
 
-
 	/**
 	* Post Data
 	* @var array
 	*/
 	private $post_data;
 
-
 	/**
 	* Post Repository
 	*/
 	private $post_repo;
 
+	/**
+	* Post Type Repository
+	*/
+	private $post_type_repo;
+
+	/**
+	* Listing Repository
+	*/
+	private $listing_repo;
 
 	/**
 	* Confirmation Factory
 	*/
 	private $confirmation;
-
 
 	/**
 	* User Repository
@@ -62,6 +68,8 @@ class PageListingController {
 		$this->post_repo = new PostRepository;
 		$this->user = new UserRepository;
 		$this->confirmation = new ConfirmationFactory;
+		$this->post_type_repo = new PostTypeRepository;
+		$this->listing_repo = new ListingRepository;
 		$this->setPostType();
 		
 	}
@@ -74,12 +82,12 @@ class PageListingController {
 	public static function admin_menu() {
 		$class_name = get_class();
 		$classinstance = new $class_name();
-		return array(&$classinstance, "pageListing");
+		return array(&$classinstance, "listing");
 	}
 
 
 	/**
-	* Set the Post Type & verify it exists
+	* Set the Post Type
 	* @since 1.1.16
 	*/
 	private function setPostType()
@@ -89,38 +97,17 @@ class PageListingController {
 
 
 	/**
-	* Add New Page Link
-	* @return string
-	*/
-	private function addNewPageLink()
-	{
-		return esc_url( admin_url('post-new.php?post_type=page') );
-	}
-
-
-	/**
-	* User's Toggled Pages
-	*/
-	private function visiblePages()
-	{
-		$visible = unserialize(get_user_meta(get_current_user_id(), 'np_visible_pages', true));
-		if ( !$visible ) $visible = array();
-		return $visible;
-	}
-
-
-	/**
 	* The Main View
-	* Replaces Default Pages Listing
+	* Replaces Default Post Listing
 	*/
-	public function pageListing()
+	public function listing()
 	{
 		include( Helpers::view('pages') );
 	}
 
 
 	/**
-	* Set the Taxonomies for Pages
+	* Set the Taxonomies for Post Type
 	*/
 	private function setTaxonomies()
 	{
@@ -192,7 +179,7 @@ class PageListingController {
 			array_push($children, $child->ID);
 		}
 		// Compare child pages with user's toggled pages
-		$compared = array_intersect($this->visiblePages(), $children);
+		$compared = array_intersect($this->listing_repo->visiblePages(), $children);
 
 		if ( $count == 1 ) {
 			echo ( $this->user->canSortPages() ) 

@@ -2,14 +2,17 @@
 
 	<h2>
 		<?php _e($this->post_type->labels->name); ?>
-		<a href="<?php echo $this->addNewPageLink(); ?>" class="add-new-h2">
+		
+		<a href="<?php echo $this->post_type_repo->addNewPostLink($this->post_type->name); ?>" class="add-new-h2">
 			<?php _e($this->post_type->labels->add_new_item); ?>
 		</a>
+		
 		<?php if ( current_user_can('publish_pages') ) : ?>
 		<a href="#" class="add-new-h2 open-redirect-modal" title="<?php _e('Add Link', 'nestedpages'); ?>" data-parentid="0">
 			<?php _e('Add Link', 'nestedpages'); ?>
 		</a>
 		<?php endif; ?>
+
 	</h2>
 
 	<?php if ( $this->confirmation->getMessage() ) : ?>
@@ -39,7 +42,7 @@
 				<span class="count">(<?php echo $this->post_repo->getHiddenCount(); ?>)</span> | </li>
 			<?php if ( current_user_can('delete_pages') ) : ?>
 			<li><a href="edit.php?post_status=trash&post_type=page"><?php _e('Trash'); ?> </a>
-				<span class="count">(<?php echo $this->post_repo->trashedPagesCount(); ?>)</span></li>
+				<span class="count">(<?php echo $this->post_repo->trashedCount($this->post_type->name); ?>)</span></li>
 			<?php endif; ?>
 			<?php if ( get_option('nestedpages_hidedefault') !== 'hide' ) : ?>
 			<li> | <a href="<?php echo NestedPages\Helpers::defaultPagesLink(); ?>"><?php _e('Default'); ?> <?php _e($this->post_type->labels->name); ?></a></li>

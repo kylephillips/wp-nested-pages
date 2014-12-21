@@ -343,10 +343,10 @@ class PostRepository {
 	* Get count of hidden pages
 	* @since 1.1.4
 	*/
-	public function getHiddenCount()
+	public function getHiddenCount($type = array('page', 'np-redirect'))
 	{
 		$hidden = new \WP_Query(array(
-			'post_type' => array('page', 'np-redirect'),
+			'post_type' => $type,
 			'meta_key' => 'nested_pages_status',
 			'meta_value' => 'hide',
 			'perm' => 'readable'));
@@ -358,9 +358,9 @@ class PostRepository {
 	* Get Trash Count (pages)
 	* @since 1.1.4
 	*/
-	public function trashedPagesCount()
+	public function trashedCount($post_type)
 	{
-		$trashed = new \WP_Query(array('post_type'=>'page','post_status'=>'trash','posts_per_page'=>-1));
+		$trashed = new \WP_Query(array('post_type'=>$post_type,'post_status'=>'trash','posts_per_page'=>-1));
 		return $trashed->found_posts;
 	}
 

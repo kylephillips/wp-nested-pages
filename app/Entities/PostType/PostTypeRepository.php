@@ -14,8 +14,7 @@ class PostTypeRepository {
 			'public' => true,
 			'show_ui' => true
 		);
-		$types = get_post_types($args, $return);
-		return $types;
+		return get_post_types($args, $return);
 	}
 
 
@@ -52,6 +51,18 @@ class PostTypeRepository {
 		$types = get_option('nestedpages_posttypes');
 		if ( !$types ) $types = array();
 		return $types;
+	}
+
+
+	/**
+	* Add New Post Link
+	* @since 1.2.1
+	* @param string post_type
+	* @return string
+	*/
+	public function addNewPostLink($post_type)
+	{
+		return esc_url( admin_url('post-new.php?post_type=page') );
 	}
 
 }
