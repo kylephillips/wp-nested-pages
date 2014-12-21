@@ -1,4 +1,7 @@
 <?php namespace NestedPages\Activation;
+
+use NestedPages\Activation\Updates\Updates;
+
 /**
 * Plugin Activation
 */
@@ -9,10 +12,17 @@ class Activate {
 	*/
 	private $version;
 
+	/**
+	* Updates
+	* @var object
+	*/
+	private $updates;
+
 
 	public function __construct()
 	{
 		$this->setVersion();
+		$this->updates = new Updates;
 		$this->install();
 	}
 
@@ -22,7 +32,7 @@ class Activate {
 	*/
 	public function install()
 	{
-		new PerformUpgrades($this->version);
+		$this->updates->run($this->version);
 		$this->saveVersion();
 		$this->setOptions();
 		new Dependencies;

@@ -53,7 +53,10 @@ class Bootstrap {
 	*/
 	public function addLocalization()
 	{
-		load_plugin_textdomain('nestedpages', false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages' );
+		load_plugin_textdomain(
+			'nestedpages', 
+			false, 
+			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages' );
 	}
 
 

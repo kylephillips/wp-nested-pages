@@ -1,8 +1,8 @@
-<?php namespace NestedPages\Activation;
+<?php namespace NestedPages\Activation\Updates;
 /**
 * Required Version Upgrades
 */
-class PerformUpgrades {
+class Updates {
 
 	/**
 	* New Version
@@ -14,8 +14,11 @@ class PerformUpgrades {
 	*/
 	private $current_version;
 
-
-	public function __construct($new_version)
+	/**
+	* Run the Updates
+	* @var string
+	*/
+	public function run($new_version)
 	{
 		$this->new_version = $new_version;
 		$this->setCurrentVersion();
