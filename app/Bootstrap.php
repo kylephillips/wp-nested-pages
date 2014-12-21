@@ -44,7 +44,7 @@ class Bootstrap {
 	{
 		new Controllers\AdminMenuController;
 		new Controllers\AdminSubmenuController;
-		new Entities\Listing\ListingController;
+		//new Entities\Listing\ListingController;
 	}
 
 

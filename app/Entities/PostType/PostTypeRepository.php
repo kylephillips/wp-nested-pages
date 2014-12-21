@@ -77,4 +77,36 @@ class PostTypeRepository {
 		return esc_url( admin_url('edit.php?post_status=trash&post_type=' . $post_type) );
 	}
 
+
+	/**
+	* Get Taxonomies enabled for post type
+	* @since 1.2.1
+	* @return array of taxonomy objects
+	* @param string post_type name
+	* @param boolean hierarchical
+	*/
+	public function getTaxonomies($post_type, $hierarchical = true)
+	{
+		$taxonomy_names = get_object_taxonomies( $post_type );
+		$hierarchical_taxonomies = array();
+		$flat_taxonomies = array();
+		foreach ( $taxonomy_names as $taxonomy_name ) {
+			$taxonomy = get_taxonomy( $taxonomy_name );
+			if ( !$taxonomy->show_ui )
+				continue;
+
+			if ( $taxonomy->hierarchical )
+				$hierarchical_taxonomies[] = $taxonomy;
+			else
+				$flat_taxonomies[] = $taxonomy;
+		}
+		return ($hierarchical) ? $hierarchical_taxonomies : $flat_taxonomies;
+	}
+
+
+
+
+
+
+
 }

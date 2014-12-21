@@ -1,6 +1,6 @@
 <?php namespace NestedPages\Controllers;
 
-use NestedPages\Entities\Listing\ListingController;
+use NestedPages\Entities\Listing\Listing;
 use NestedPages\Helpers;
 
 /**
@@ -43,7 +43,7 @@ class AdminMenuController {
 				__($this->post_type->labels->name),
 				'delete_pages',
 				'nestedpages', 
-				ListingController::admin_menu(),
+				Listing::admin_menu('page'),
 				'dashicons-admin-page',
 				20
 			);

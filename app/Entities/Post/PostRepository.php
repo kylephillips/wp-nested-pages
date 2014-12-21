@@ -44,6 +44,29 @@ class PostRepository {
 
 
 	/**
+	* Return css class string of taxonomies
+	* @param int post_id
+	* @return string
+	*/
+	public function getTaxonomyCSS($post_id, $taxonomies, $hierarchical = true)
+	{
+		$out = '';
+		if ( count($taxonomies) > 0 ) {
+			foreach ( $taxonomies as $taxonomy ){
+				$terms = wp_get_post_terms($post_id, $taxonomy->name);
+				foreach ( $terms as $term ){
+					$out .= ( $hierarchical ) ? 'in-' : 'inf-';
+					$out .= $taxonomy->name;
+					$out .= ( $hierarchical ) ? '-' : '-nps-';
+					$out .= $term->term_id . ' ';
+				}
+			}
+		}
+		return $out;
+	}
+
+
+	/**
 	* Get an array of pages given an array of IDs
 	* @since 1.1.8 (used in creation of new pages)
 	* @param ids array
