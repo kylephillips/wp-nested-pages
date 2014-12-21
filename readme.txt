@@ -82,6 +82,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * PHP 5.3.2+ is now required to run Nested Pages. Will not run or install on older versions of PHP.
 * Visual nesting indication limit removed
 * Portuguese Translation (Provided by Luis Martins)
+* Various bug fixes
 
 = 1.1.9 =
 * Minor bug fixes in editor capabilities
@@ -137,7 +138,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 == Upgrade Notice ==
 
 = 1.2 =
-PHP 5.3.2 now required – Nested Pages will not install on older versions of PHP.
+PHP 5.3.2 now required – Nested Pages will not install on older versions of PHP. If you are running less than 5.3.2, continue to use Nested Pages version 1.1.9.
 
 = 1.1.9 =
 Italian translation included along with minor bug fixes.
