@@ -27,9 +27,10 @@ class PostTypeRepository {
 	public function getPostTypesObject($pages = false)
 	{
 		$all_types = $this->getPostTypes('objects');
+		$post_types = array();
 		$i = 0;
 		foreach($all_types as $key => $type){
-			if ( (!$pages) && ($key == 'page') || ($key == 'attachment') ) continue;
+			if ( (!$pages) && ($key == 'attachment') ) continue;
 			$post_types[$i] = new \stdClass();
 			$post_types[$i]->name = $type->name;
 			$post_types[$i]->label = $type->labels->name;
@@ -49,6 +50,7 @@ class PostTypeRepository {
 	public function enabledPostTypes()
 	{
 		$types = get_option('nestedpages_posttypes');
+		if ( !$types ) $types = array();
 		return $types;
 	}
 
