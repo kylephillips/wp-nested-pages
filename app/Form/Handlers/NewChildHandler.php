@@ -46,7 +46,7 @@ class NewChildHandler extends BaseHandler {
 	private function savePages()
 	{
 		if ( $this->validates() ){
-			$this->data['new_pages'] = $this->factory->createChildPages($this->data);
+			$this->data['new_pages'] = $this->factory->createChildPosts($this->data);
 			$this->setResponse();
 			return;
 		}

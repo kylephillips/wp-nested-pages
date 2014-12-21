@@ -72,11 +72,11 @@ class PostRepository {
 	* @param ids array
 	* @return array
 	*/
-	public function pageArray($ids)
+	public function postArray($ids, $post_type)
 	{
 		$pages = array();
 		$page_query = new \WP_Query(array(
-			'post_type' => 'page',
+			'post_type' => $post_type,
 			'posts_per_page' => -1,
 			'post__in' => $ids,
 			'post_status' => array('publish', 'draft')
