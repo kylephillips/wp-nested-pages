@@ -83,6 +83,7 @@
 
 	<div class="buttons">
 		<input type="hidden" name="parent_id" class="page_parent_id" />
+		<input type="hidden" name="post_type" value="<?php echo $this->post_type->name; ?>" />
 		<a accesskey="c" href="#" class="button-secondary alignleft np-cancel-newchild">
 			<?php _e( 'Cancel' ); ?>
 		</a>
