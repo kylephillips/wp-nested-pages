@@ -23,7 +23,7 @@ class SortHandler extends BaseHandler {
 	private function updateOrder()
 	{
 		$posts = $this->data['list'];
-		$order = $this->post_repo->updateOrder($posts);
+		$order = $this->post_update_repo->updateOrder($posts);
 		if ( $order ){
 			$this->response = array('status' => 'success', 'message' => __('Page order successfully updated.','nestedpages') );
 		} else {
