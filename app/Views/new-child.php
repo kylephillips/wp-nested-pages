@@ -66,6 +66,14 @@
 		endif;
 		?>
 
+		<div class="form-control">
+			<label><?php _e( 'Template' ); ?></label>
+			<select name="page_template" class="np_template">
+				<option value="default"><?php _e( 'Default Template' ); ?></option>
+				<?php page_template_dropdown() ?>
+			</select>
+		</div>
+
 	</div><!-- .right -->
 
 	</div><!-- .fields -->

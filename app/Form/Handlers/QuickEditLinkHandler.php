@@ -20,7 +20,7 @@ class QuickEditLinkHandler extends BaseHandler {
 	*/
 	private function updatePost()
 	{
-		$updated = $this->post_repo->updateRedirect($this->data);
+		$updated = $this->post_update_repo->updateRedirect($this->data);
 		if ( !$updated ) $this->sendErrorResponse();
 		$this->addData();
 		$this->response = array(

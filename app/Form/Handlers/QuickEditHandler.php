@@ -22,7 +22,7 @@ class QuickEditHandler extends BaseHandler {
 	*/
 	private function updatePost()
 	{
-		$updated = $this->post_repo->updatePost($this->data);
+		$updated = $this->post_update_repo->updatePost($this->data);
 		if ( !$updated ) $this->sendErrorResponse();
 		if ( isset($this->data['tax_input']) ) $this->addFlatTaxonomies();
 		$this->addData();

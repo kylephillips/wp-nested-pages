@@ -23,7 +23,7 @@ class NewLinkHandler extends BaseHandler {
 	*/
 	private function saveRedirect()
 	{
-		$updated = $this->post_repo->saveRedirect($this->data);
+		$updated = $this->post_update_repo->saveRedirect($this->data);
 		if ( !$updated ) $this->sendErrorResponse();
 		$this->data['id'] = $updated;
 		$this->addData();

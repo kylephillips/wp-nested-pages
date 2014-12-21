@@ -451,13 +451,18 @@ jQuery(function($){
 		$(form).find('.np_title').val(data.title);
 		$(form).find('.np_slug').val(data.slug);
 		$(form).find('.np_author select').val(data.author);
-		$(form).find('.np_template').val(data.template);
 		$(form).find('.np_status').val(data.status);
 		$(form).find('.np_nav_title').val(data.navtitle);
 		$(form).find('.np_title_attribute').val(data.navtitleattr);
 		$(form).find('.np_nav_css_classes').val(data.navcss);
 		$(form).find('.post_password').val(data.password);
 		if ( data.cs === 'open' ) $(form).find('.np_cs').prop('checked', 'checked');
+
+		if ( data.template !== '' ){
+			$(form).find('.np_template').val(data.template);
+		} else {
+			$(form).find('.np_template').val('default');
+		}
 
 		if ( data.status === 'private' ){
 			$(form).find('.post_password').prop('readonly', true);
@@ -1341,6 +1346,7 @@ jQuery(function($){
 			datatype: 'json',
 			data: $(form).serialize() + '&action=npnewChild&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
 			success: function(data){
+				console.log(data);
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);
 					$(form).find('.np-quickedit-error').text(data.message).show();
@@ -1413,7 +1419,7 @@ jQuery(function($){
 		html += '<a href="#" class="np-btn add-new-child" data-id="' + page.id + '" data-parentname="' + page.title + '">' + nestedpages.add_child_short + '</a>';
 		
 		// Quick Edit (data attrs)
-		html += '<a href="#" class="np-btn np-quick-edit" data-id="' + page.id + '" data-template="' + page.template + '" data-title="' + page.title + '" data-slug="' + page.slug + '" data-commentstatus="closed" data-status="' + page.status.toLowerCase() + '" data-np-status="show"	data-navstatus="show" data-author="' + page.author + '" data-month="' + page.month + '" data-day="' + page.day + '" data-year="' + page.year + '" data-hour="' + page.hour + '" data-minute="' + page.minute + '">' + nestedpages.quick_edit + '</a>';
+		html += '<a href="#" class="np-btn np-quick-edit" data-id="' + page.id + '" data-template="' + page.page_template + '" data-title="' + page.title + '" data-slug="' + page.slug + '" data-commentstatus="closed" data-status="' + page.status.toLowerCase() + '" data-np-status="show"	data-navstatus="show" data-author="' + page.author + '" data-template="' + page.template + '" data-month="' + page.month + '" data-day="' + page.day + '" data-year="' + page.year + '" data-hour="' + page.hour + '" data-minute="' + page.minute + '">' + nestedpages.quick_edit + '</a>';
 
 		html += '<a href="' + page.view_link + '" class="np-btn" target="_blank">' + nestedpages.view + '</a>';
 		html += '<a href="' + page.delete_link + '" class="np-btn np-btn-trash"><i class="np-icon-remove"></i></a>';
