@@ -68,7 +68,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 1. Expandable tree view of your page structure
 
-2. Retains most quick edit functionality
+2. Retains quick edit functionality while adding additional options and a cleaner interface
 
 3. Sortable page nesting updates in real time
 
