@@ -1,4 +1,4 @@
-<?php namespace NestedPages\Controllers;
+<?php namespace NestedPages\Entities\AdminMenu;
 /**
 * Opens the Submenu on child admin pages and highlights the current item
 */

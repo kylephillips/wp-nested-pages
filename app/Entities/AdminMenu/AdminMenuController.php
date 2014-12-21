@@ -1,4 +1,4 @@
-<?php namespace NestedPages\Controllers;
+<?php namespace NestedPages\Entities\AdminMenu;
 
 use NestedPages\Entities\Listing\Listing;
 use NestedPages\Helpers;

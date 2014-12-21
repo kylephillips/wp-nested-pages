@@ -42,9 +42,8 @@ class Bootstrap {
 	*/
 	public function listPages()
 	{
-		new Controllers\AdminMenuController;
-		new Controllers\AdminSubmenuController;
-		//new Entities\Listing\ListingController;
+		new Entities\AdminMenu\AdminMenuController;
+		new Entities\AdminMenu\AdminSubmenuController;
 	}
 
 

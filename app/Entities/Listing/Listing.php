@@ -15,7 +15,7 @@ class Listing {
 
 	/**
 	* Post Type
-	* @var object
+	* @var object WP Post Type Object
 	*/
 	private $post_type;
 
