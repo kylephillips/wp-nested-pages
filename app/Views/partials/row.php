@@ -60,7 +60,7 @@
 			<?php else : $cs = 'closed'; endif; ?>
 
 
-			<?php if ( current_user_can('publish_pages') ) : ?>
+			<?php if ( current_user_can('publish_pages') && $this->post_type->hierarchical ) : ?>
 		
 			<a href="#" class="np-btn open-redirect-modal" data-parentid="<?php echo get_the_id(); ?>"><i class="np-icon-link"></i></a>
 			

@@ -3,11 +3,12 @@
 class PostRepository {
 
 	/**
-	* Get count of hidden pages
+	* Get count of hidden posts
 	* @since 1.1.4
 	*/
-	public function getHiddenCount($type = array('page', 'np-redirect'))
+	public function getHiddenCount($type)
 	{
+		if ( in_array('page', $type) ) array_push($type, 'np-redirect');
 		$hidden = new \WP_Query(array(
 			'post_type' => $type,
 			'meta_key' => 'nested_pages_status',

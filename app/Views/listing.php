@@ -7,7 +7,7 @@
 			<?php _e($this->post_type->labels->add_new_item); ?>
 		</a>
 		
-		<?php if ( current_user_can('publish_pages') ) : ?>
+		<?php if ( current_user_can('publish_pages') && $this->post_type->name == 'page' ) : ?>
 		<a href="#" class="add-new-h2 open-redirect-modal" title="<?php _e('Add Link', 'nestedpages'); ?>" data-parentid="0">
 			<?php _e('Add Link', 'nestedpages'); ?>
 		</a>
@@ -39,7 +39,7 @@
 			<li><a href="#all" class="np-toggle-publish active"><?php _e('All'); ?></a> | </li>
 			<li><a href="#published" class="np-toggle-publish"><?php _e('Published'); ?></a> | </li>
 			<li><a href="#show" class="np-toggle-hidden"><?php _e('Show Hidden', 'nestedpages'); ?> </a>
-				<span class="count">(<?php echo $this->post_repo->getHiddenCount(); ?>)</span> | </li>
+				<span class="count">(<?php echo $this->post_repo->getHiddenCount(array($this->post_type->name)); ?>)</span> | </li>
 			<?php if ( current_user_can('delete_pages') ) : ?>
 			<li><a href="edit.php?post_status=trash&post_type=page"><?php _e('Trash'); ?> </a>
 				<span class="count">(<?php echo $this->post_repo->trashedCount($this->post_type->name); ?>)</span></li>
@@ -55,23 +55,23 @@
 
 
 	<div class="nestedpages">
-		<?php $this->loopPages(); ?>
+		<?php $this->loopPosts(); ?>
 		
 		<div class="quick-edit quick-edit-form np-inline-modal" style="display:none;">
-			<?php include( NestedPages\Helpers::view('quickedit') ); ?>
+			<?php include( NestedPages\Helpers::view('forms/quickedit-post') ); ?>
 		</div>
 
 		<?php if ( current_user_can('publish_pages') ) : ?>
 		<div class="quick-edit quick-edit-form-redirect np-inline-modal" style="display:none;">
-			<?php include( NestedPages\Helpers::view('quickedit-redirect') ); ?>
+			<?php include( NestedPages\Helpers::view('forms/quickedit-link') ); ?>
 		</div>
 
 		<div class="new-child new-child-form np-inline-modal" style="display:none;">
-			<?php include( NestedPages\Helpers::view('new-child') ); ?>
+			<?php include( NestedPages\Helpers::view('forms/new-child') ); ?>
 		</div>
 		<?php endif; ?>
 	</div>
 
 </div><!-- .wrap -->
 
-<?php include( NestedPages\Helpers::view('link-form') ); ?>
+<?php include( NestedPages\Helpers::view('forms/link-form') ); ?>

@@ -14,7 +14,7 @@
 
 	<form method="post" enctype="multipart/form-data" action="options.php">
 		<table class="form-table">
-			<?php include(NestedPages\Helpers::view('settings-' . $tab)); ?>
+			<?php include(NestedPages\Helpers::view('settings/settings-' . $tab)); ?>
 		</table>
 		<?php submit_button(); ?>
 	</form>

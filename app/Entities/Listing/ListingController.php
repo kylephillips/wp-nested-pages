@@ -102,7 +102,7 @@ class ListingController {
 	*/
 	public function listing()
 	{
-		include( Helpers::view('pages') );
+		include( Helpers::view('listing') );
 	}
 
 
@@ -259,7 +259,7 @@ class ListingController {
 	* Loop through all the pages and create the nested / sortable list
 	* Recursive Method, called in page.php view
 	*/
-	private function loopPages($parent_id = 0, $count = 0)
+	private function loopPosts($parent_id = 0, $count = 0)
 	{
 		$this->setTaxonomies();
 		$query_args = array(
@@ -301,15 +301,12 @@ class ListingController {
 					
 					$count++;
 
-					if ( get_post_type() == 'page' ){
-						include( Helpers::view('row') );
-					} else {
-						include( Helpers::view('row-redirect') );
-					}
+					$row_view = ( get_post_type() !== 'np-redirect' ) ? 'partials/row' : 'partials/row-link';
+					include( Helpers::view($row_view) );
 
 				endif; // trash status
 				
-				$this->loopPages(get_the_id(), $count);
+				$this->loopPosts(get_the_id(), $count);
 
 				if ( get_post_status(get_the_id()) !== 'trash' ) {
 					echo '</li>';

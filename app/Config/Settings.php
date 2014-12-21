@@ -117,7 +117,7 @@ class Settings {
 	{
 		$this->setMenu();
 		$tab = ( isset($_GET['tab']) ) ? $_GET['tab'] : 'general';
-		include( Helpers::view('settings') );
+		include( Helpers::view('settings/settings') );
 	}	
 
 }
