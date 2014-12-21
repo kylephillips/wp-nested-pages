@@ -37,6 +37,7 @@ class Settings {
 
 	/**
 	* Register the settings page
+	* @see admin_menu
 	*/
 	public function registerSettingsPage()
 	{
@@ -52,6 +53,7 @@ class Settings {
 
 	/**
 	* Register the settings
+	* @see admin_init
 	*/
 	public function registerSettings()
 	{
@@ -59,11 +61,13 @@ class Settings {
 		register_setting( 'nestedpages-general', 'nestedpages_menusync' );
 		register_setting( 'nestedpages-general', 'nestedpages_hidedefault' );
 		register_setting( 'nestedpages-general', 'nestedpages_allowsorting' );
+		register_setting( 'nestedpages-posttypes', 'nestedpages_posttypes' );
 	}
 
 
 	/**
 	* Update the menu name if option is updated
+	* @see updated_option in wp-includes/option.php
 	* @since 1.1.5
 	*/
 	public function updateMenuName($option, $old_value, $value)
@@ -96,17 +100,18 @@ class Settings {
 
 	/**
 	* Get Post Types
-	* @since 1.2
+	* @since 1.2.0
 	*/
-	public function getPostTypes()
+	private function getPostTypes()
 	{
 		$post_repo = new PostTypeRepository;
-		return $post_repo->getPostTypeArray();
+		return $post_repo->getPostTypesObject();
 	}
 
 
 	/**
 	* Display the Settings Page
+	* Callback for registerSettingsPage method
 	*/
 	public function settingsPage()
 	{

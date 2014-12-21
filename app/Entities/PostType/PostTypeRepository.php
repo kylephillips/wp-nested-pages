@@ -14,20 +14,26 @@ class PostTypeRepository {
 			'show_ui' => true,
 			'hierarchical' => true
 		);
-		return get_post_types($args, $return);
+		$types = get_post_types($args, $return);
+		return $types;
 	}
 
 
 	/**
-	* Get an array of post types in name=>label format
+	* Get an object of non-page post types
+	* @return object
 	*/
-	public function getPostTypeArray($pages = false)
+	public function getPostTypesObject($pages = false)
 	{
 		$all_types = $this->getPostTypes('objects');
-		$post_types = array();
+		$i = 0;
 		foreach($all_types as $key => $type){
 			if ( (!$pages) && ($key == 'page') ) continue;
-			$post_types[$key] = $type->labels->name;
+			$post_types[$i] = new \stdClass();
+			$post_types[$i]->name = $type->name;
+			$post_types[$i]->label = $type->labels->name;
+			$post_types[$i]->hierarchical = $type->hierarchical;
+			$i++;
 		}
 		return $post_types;
 	}
