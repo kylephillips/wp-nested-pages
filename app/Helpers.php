@@ -40,9 +40,9 @@ class Helpers {
 	* @since 1.2
 	* @return string
 	*/
-	public static function defaultPagesLink()
+	public static function defaultPagesLink($type = 'page')
 	{
-		$link = esc_url( admin_url('edit.php?post_type=page') );
+		$link = esc_url( admin_url('edit.php?post_type=' . $type ) );
 		return $link;
 	}
 

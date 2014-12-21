@@ -95,8 +95,8 @@ class Dependencies {
 			}
 			$localized_data = array(
 				'np_nonce' => wp_create_nonce( 'nestedpages-nonce' ),
-				'expand_text' => __('Expand Pages', 'nestedpages'),
-				'collapse_text' => __('Collapse Pages', 'nestedpages'),
+				'expand_text' => __('Expand All', 'nestedpages'),
+				'collapse_text' => __('Collapse All', 'nestedpages'),
 				'show_hidden' => __('Show Hidden', 'nestedpages'),
 				'hide_hidden' => __('Hide Hidden', 'nestedpages'),
 				'add_link' => __('Add Link', 'nestedpages'),

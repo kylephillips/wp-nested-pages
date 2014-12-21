@@ -62,7 +62,19 @@ class PostTypeRepository {
 	*/
 	public function addNewPostLink($post_type)
 	{
-		return esc_url( admin_url('post-new.php?post_type=page') );
+		return esc_url( admin_url('post-new.php?post_type=' . $post_type) );
+	}
+
+
+	/**
+	* Trash Link
+	* @since 1.2.1
+	* @param string post_type
+	* @return string
+	*/
+	public function trashLink($post_type)
+	{
+		return esc_url( admin_url('edit.php?post_status=trash&post_type=' . $post_type) );
 	}
 
 }

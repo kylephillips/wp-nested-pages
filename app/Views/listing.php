@@ -20,7 +20,7 @@
 	<?php endif; ?>
 
 	<ul class="nestedpages-toggleall" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:0"';?>>
-		<li><a href="#" class="np-btn" data-toggle="closed"><?php _e('Expand Pages', 'nestedpages'); ?></a></li>
+		<li><a href="#" class="np-btn" data-toggle="closed"><?php _e('Expand All', 'nestedpages'); ?></a></li>
 	</ul>
 
 	<?php if ( current_user_can('edit_theme_options') ) : ?>
@@ -33,23 +33,7 @@
 
 	<img src="<?php echo plugins_url(); ?>/wp-nested-pages/assets/images/loading.gif" alt="loading" id="nested-loading" />
 
-	<div class="nestedpages-tools">
-
-		<ul class="subsubsub">
-			<li><a href="#all" class="np-toggle-publish active"><?php _e('All'); ?></a> | </li>
-			<li><a href="#published" class="np-toggle-publish"><?php _e('Published'); ?></a> | </li>
-			<li><a href="#show" class="np-toggle-hidden"><?php _e('Show Hidden', 'nestedpages'); ?> </a>
-				<span class="count">(<?php echo $this->post_repo->getHiddenCount(array($this->post_type->name)); ?>)</span> | </li>
-			<?php if ( current_user_can('delete_pages') ) : ?>
-			<li><a href="edit.php?post_status=trash&post_type=page"><?php _e('Trash'); ?> </a>
-				<span class="count">(<?php echo $this->post_repo->trashedCount($this->post_type->name); ?>)</span></li>
-			<?php endif; ?>
-			<?php if ( get_option('nestedpages_hidedefault') !== 'hide' ) : ?>
-			<li> | <a href="<?php echo NestedPages\Helpers::defaultPagesLink(); ?>"><?php _e('Default'); ?> <?php _e($this->post_type->labels->name); ?></a></li>
-			<?php endif; ?>
-		</ul>
-
-	</div><!-- .nestedpages-tools -->
+	<?php include(NestedPages\Helpers::view('partials/tool-list')); ?>
 
 	<div id="np-error" class="updated error" style="clear:both;display:none;"></div>
 
