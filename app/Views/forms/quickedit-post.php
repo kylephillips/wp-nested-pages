@@ -111,14 +111,16 @@
 		<?php endif; // Edit theme options?>
 
 
-		<?php if ( $this->user->canSortPages() ) : ?>
+		
 		<div class="form-control np-toggle-options">
+			<?php if ( $this->user->canSortPages() && $this->post_type->name == 'page' ) : ?>
 			<a href="#" class="np-btn np-btn-half np-toggle-menuoptions"><?php _e('Menu Options', 'nestedpages'); ?></a>
+			<?php endif; ?>
+
 			<?php if ( !empty($this->h_taxonomies) ) : ?>
 			<a href="#" class="np-btn np-btn-half btn-right np-toggle-taxonomies"><?php _e('Taxonomies', 'nestedpages'); ?></a>
 			<?php endif; ?>
 		</div>
-		<?php endif; ?>
 
 	</div><!-- .right -->
 

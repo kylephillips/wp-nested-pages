@@ -233,6 +233,10 @@
 			background-color: $white;
 			transition: background-color 400ms ease;	
 		}
+		// No Toggle Area
+		&.non-hierarchical {
+			padding-left: 15px;
+		}
 	} // .row
 
 

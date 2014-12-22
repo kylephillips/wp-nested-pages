@@ -3,8 +3,12 @@
 * Row represents a single page
 */
 ?>
-<div class="row">
+<div class="row<?php if ( !$this->post_type->hierarchical ) echo ' non-hierarchical'; ?>">
+	
+	<?php if ( $this->post_type->hierarchical ) : ?>
 	<div class="child-toggle"></div>
+	<?php endif; ?>
+
 	<div class="row-inner">
 		<i class="np-icon-sub-menu"></i>
 		
