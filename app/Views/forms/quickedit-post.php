@@ -69,6 +69,8 @@
 	</div><!-- .left -->
 
 	<div class="right">
+		
+		<?php if ( $this->post_type->hierarchical ) : ?>
 		<div class="form-control">
 			<label><?php _e( 'Template' ); ?></label>
 			<select name="page_template" class="np_template">
@@ -76,6 +78,7 @@
 				<?php page_template_dropdown() ?>
 			</select>
 		</div>
+		<?php endif; ?>
 
 		<?php if ( $can_publish ) : ?>
 		<div class="form-control password">

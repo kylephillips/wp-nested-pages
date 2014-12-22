@@ -79,6 +79,18 @@ class PostTypeRepository {
 
 
 	/**
+	* Edit Post Link
+	* @since 1.2.1
+	* @param string post_type
+	* @return string
+	*/
+	public function editSlug($post_type)
+	{
+		return ( $post_type->name == 'post' ) ? 'edit.php' : 'edit.php?post_type=' . $post_type->name;
+	}
+
+
+	/**
 	* Get Taxonomies enabled for post type
 	* @since 1.2.1
 	* @return array of taxonomy objects
@@ -104,6 +116,14 @@ class PostTypeRepository {
 	}
 
 
+	/**
+	* Get the NP menu slug for a post type
+	* @param object WP Post Type Object
+	*/
+	public function getMenuSlug($post_type)
+	{
+		return ( $post_type->name == 'page' ) ? 'nestedpages' : 'nestedpages-' . $post_type->name;
+	}
 
 
 

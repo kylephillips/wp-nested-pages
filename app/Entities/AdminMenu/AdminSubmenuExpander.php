@@ -2,7 +2,7 @@
 /**
 * Opens the Submenu on child admin pages and highlights the current item
 */
-class AdminSubmenuController {
+class AdminSubmenuExpander {
 
 	/**
 	* Current Page Object
