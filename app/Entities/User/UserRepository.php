@@ -17,6 +17,7 @@ class UserRepository {
 	}
 
 
+	
 	/**
 	* Get all roles that arent admin, contributor or subscriber
 	* @return array
@@ -29,9 +30,13 @@ class UserRepository {
 		$editable_roles = apply_filters('editable_roles', $all_roles);
 		$roles = array();
 		$exclude = array('Administrator', 'Contributor', 'Subscriber', 'Author');
-		foreach($editable_roles as $editable_role){
+		foreach($editable_roles as $key=>$editable_role){
 			if ( !in_array($editable_role['name'], $exclude) ){
-				array_push($roles, $editable_role['name']);
+				$role = array(
+					'name' => $key,
+					'label' => $editable_role['name']
+				);
+				array_push($roles, $role);
 			}
 		}
 		return $roles;
@@ -51,7 +56,7 @@ class UserRepository {
 		
 		if ( current_user_can('edit_theme_options') ) return true;
 		foreach($roles as $role){
-			if ( in_array(ucfirst($role), $cansort) ) return true;
+			if ( in_array($role, $cansort) ) return true;
 		}
 		return false;
 	}

@@ -30,12 +30,12 @@ settings_fields( 'nestedpages-general' );
 	<td>
 		<?php foreach ( $this->user_repo->allRoles() as $role ) : ?>
 		<label>
-			<input type="checkbox" name="nestedpages_allowsorting[]" value="<?php echo $role; ?>" <?php if ( in_array($role, $allowsorting) ) echo 'checked'; ?> >
-			<?php echo $role; ?>
+			<input type="checkbox" name="nestedpages_allowsorting[]" value="<?php echo $role['name']; ?>" <?php if ( in_array($role['name'], $allowsorting) ) echo 'checked'; ?> >
+			<?php echo $role['label']; ?>
 		</label>
-		<input type="hidden" name="nestedpages_menusync" value="<?php echo get_option('nestedpages_menusync'); ?>">
 		<br />
 		<?php endforeach; ?>
+		<input type="hidden" name="nestedpages_menusync" value="<?php echo get_option('nestedpages_menusync'); ?>">
 		<p><em><?php _e('Admins always have sorting ability.', 'nestedpages'); ?></em></p>
 	</td>
 </tr>

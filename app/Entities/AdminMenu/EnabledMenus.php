@@ -3,6 +3,7 @@
 use NestedPages\Entities\PostType\PostTypeRepository;
 use NestedPages\Entities\Listing\Listing;
 use NestedPages\Entities\AdminMenu\AdminSubmenu;
+use NestedPages\Entities\User\UserRepository;
 
 /**
 * Other User-Enabled Post Types
@@ -25,10 +26,16 @@ class EnabledMenus {
 	*/
 	private $enabled_types;
 
+	/**
+	* User Repository
+	*/
+	private $user;
+
 
 	public function __construct()
 	{
 		$this->post_type_repo = new PostTypeRepository;
+		$this->user = new UserRepository;
 		$this->setEnabled();
 		$this->loopEnabledTypes();
 	}

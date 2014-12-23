@@ -4,7 +4,7 @@ Donate link: http://nestedpages.com/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -78,6 +78,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.2.1 =
+* Bug fixes when using custom roles (Thanks to Luis Martins for troubleshooting help)
+
 = 1.2.0 =
 * PHP 5.3.2+ is now required to run Nested Pages. Will not run or install on older versions of PHP.
 * Visual nesting indication limit removed
@@ -136,6 +139,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Nested Pages
 
 == Upgrade Notice ==
+
+= 1.2.1 =
+Bug fix when using custom roles. 
 
 = 1.2 =
 PHP 5.3.2 now required – Nested Pages will not install on older versions of PHP. If you are running less than 5.3.2, continue to use Nested Pages version 1.1.9.
