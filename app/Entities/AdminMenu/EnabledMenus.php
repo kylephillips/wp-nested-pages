@@ -55,8 +55,9 @@ class EnabledMenus {
 	private function loopEnabledTypes()
 	{
 		$c = 1; // Counter for position
-		foreach($this->enabled_types as $type){			
-			$this->post_type = get_post_type_object($type);
+		foreach($this->enabled_types as $key => $type){	
+
+			$this->post_type = get_post_type_object($key);
 			if ( (current_user_can($this->post_type->cap->edit_posts)) || ($this->user->canSortPages()) ){
 				$this->addMenu($c);
 				$this->addSubmenu();

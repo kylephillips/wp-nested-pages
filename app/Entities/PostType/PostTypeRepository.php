@@ -27,17 +27,34 @@ class PostTypeRepository {
 	{
 		$all_types = $this->getPostTypes('objects');
 		$post_types = array();
-		$i = 0;
+		$enabled_types = $this->enabledPostTypes();
 		foreach($all_types as $key => $type){
 			if ( (!$pages) && ($key == 'attachment') ) continue;
-			$post_types[$i] = new \stdClass();
-			$post_types[$i]->name = $type->name;
-			$post_types[$i]->label = $type->labels->name;
-			$post_types[$i]->hierarchical = $type->hierarchical;
-			$post_types[$i]->np_enabled = ( in_array($type->name, $this->enabledPostTypes()) ) ? true : false;
-			$i++;
+			$post_types[$type->name] = new \stdClass();
+			$post_types[$type->name]->name = $type->name;
+			$post_types[$type->name]->label = $type->labels->name;
+			$post_types[$type->name]->hierarchical = $type->hierarchical;
+			$post_types[$type->name]->np_enabled = ( array_key_exists($type->name, $this->enabledPostTypes()) ) ? true : false;
+			$post_types[$type->name]->replace_menu = $this->overrideMenu($type->name);
 		}
 		return $post_types;
+	}
+
+
+	/**
+	* Is the specified post type set to override the default menu?
+	* @param string post type name
+	* @return boolean
+	*/
+	private function overrideMenu($post_type)
+	{
+		foreach($this->enabledPostTypes() as $key => $type){
+			if ( $key == $post_type ){
+				return ( isset($type['replace_menu']) && $type['replace_menu'] == 'true' )
+					? true
+					: false;
+			}
+		}
 	}
 
 
@@ -50,6 +67,7 @@ class PostTypeRepository {
 	{
 		$types = get_option('nestedpages_posttypes');
 		if ( !$types ) $types = array();
+		
 		return $types;
 	}
 

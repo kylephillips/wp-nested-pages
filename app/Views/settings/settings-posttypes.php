@@ -14,6 +14,7 @@ settings_fields( 'nestedpages-posttypes' );
 				<th><?php _e('Post Type', 'nestedpages'); ?></th>
 				<th><?php _e('Hierarchical', 'nestedpages'); ?></th>
 				<th><?php _e('Enabled', 'nestedpages'); ?></th>
+				<th><?php _e('Replace Existing Menu', 'nestedpages'); ?>*</th>
 			</thead>
 			<?php foreach ($types as $type) : ?>
 			<tr>
@@ -24,7 +25,10 @@ settings_fields( 'nestedpages-posttypes' );
 					<?php endif; ?>
 				</td>
 				<td>
-					<input type="checkbox" name="nestedpages_posttypes[]" value="<?php echo $type->name; ?>" <?php if ( $type->np_enabled ) echo 'checked'; ?> />
+					<input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>]" value="<?php echo $type->name; ?>" <?php if ( $type->np_enabled ) echo 'checked'; ?> />
+				</td>
+				<td>
+					<input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][replace_menu]" value="true" <?php if ( $type->replace_menu ) echo 'checked'; ?> />
 				</td>
 			</tr>
 			<?php endforeach; ?>
@@ -33,8 +37,11 @@ settings_fields( 'nestedpages-posttypes' );
 </tr>
 <tr valign="top">
 	<td colspan="2" style="padding:10px 0px;">
-		<p style="font-style:oblique;">
+		<p style="font-style:oblique;font-size:13px;">
 			<?php _e('Note: Nesting features not enabled for non-hierarchical post types.', 'nestedpages'); ?>
+		</p>
+		<p style="font-style:oblique;font-size:13px;">
+			*<?php _e('If existing menu is not replaced, an additional submenu item will be added titled "Nested View"', 'nestedpages'); ?>
 		</p>
 	</td>
 </tr>
