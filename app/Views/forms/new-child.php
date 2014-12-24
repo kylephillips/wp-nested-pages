@@ -2,7 +2,7 @@
 	$post_type_object = get_post_type_object( 'page' );
 	$can_publish = current_user_can( $post_type_object->cap->publish_posts );
 ?>
-<form method="get" action="">
+<form method="get" action="" class="np-new-child-form">
 	<div class="form-interior">
 	<h3><strong><?php _e('Add Child Page'); ?></strong><span class="parent_name"></span></h3>
 

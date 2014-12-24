@@ -1345,6 +1345,14 @@ jQuery(function($){
 
 
 	/**
+	* Prevent New Child Page form Submission
+	*/
+	$(document).on('submit', '.np-new-child-form', function(e){
+		e.preventDefault();
+	});
+
+
+	/**
 	* Submit the new child page form
 	*/
 	$(document).on('click', '.np-save-newchild', function(e){
