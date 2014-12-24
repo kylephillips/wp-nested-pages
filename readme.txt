@@ -9,17 +9,18 @@ Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Nested Pages provides an intuitive drag and drop interface for managing pages in the WordPress admin, while maintaining quick edit functionality.
+Nested Pages provides a drag and drop interface for managing pages & posts in the WordPress admin, while maintaining quick edit functionality.
 
 == Description ==
 
 **Nested Pages offers**
 
-* A drag and drop interface for managing your pages - simple and intuitive
+* A drag and drop interface for managing your pages & posts - simple and intuitive
 * Quick edit functionality
 * An expandable, sortable tree view of your site's page structure
-* A native WordPress menu, automatically generated to match your Nested Pages screen
-* A way to quickly add child pages (ideal for development)
+* A way to add custom sorting for any post type
+* A native WordPress menu, automatically generated to match your page structure
+* A way to quickly add pages & posts (ideal for development)
 * A touch-friendly interface
 
 For more information visit [nestedpages.com](http://nestedpages.com).
@@ -29,6 +30,7 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 **Languages:**
 
 * Danish (Thomas Blomberg)
+* Dutch ()
 * English
 * Finnish (Roni Laukkarinen)
 * French (Nico Mollet)
@@ -46,7 +48,7 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 == Frequently Asked Questions ==
 
 = Can I use Nested Pages with other post types? =
-Nested Pages is currently limited to the WordPress “Page” post type.
+As of Nested Pages version 1.3.0, all post types are supported. To enable the Nested Pages interface for post types, update your settings under Settings > Nested Pages.
 
 = How do I access the WordPress “Pages” screen? =
 Click the “Default Pages” link in the page subnav, or on the Nested Pages screen. This item may be optionally hidden under the Nested Pages settings.
