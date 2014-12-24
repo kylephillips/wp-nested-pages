@@ -61,4 +61,19 @@ class UserRepository {
 		return false;
 	}
 
+
+	/**
+	* Get an array of all users/ids
+	* @since 1.3.0
+	* @return array
+	*/ 
+	public function allUsers()
+	{
+		$users = get_users(array(
+			'fields' => array('ID', 'display_name')
+		));
+		return $users;
+	}
+
+
 }

@@ -39,6 +39,20 @@
 			<input type="hidden" name="action" value="npListingSort">
 			<input type="hidden" name="page" value="<?php echo $this->pageURL(); ?>">
 			<div class="select">
+				<select id="np_sortauthor" name="np_author" class="nestedpages-sort">
+					<?php
+						$out = '<option value="all">' . __('All Authors', 'nestedpages') . '</option>';
+						$users = $this->user->allUsers();
+						foreach( $users as $user ){
+							$out .= '<option value="' . $user->ID . '"';
+							if ( isset($_GET['author']) && ($_GET['author'] == $user->ID) ) $out .= ' selected';
+							$out .= '>' . $user->display_name . '</option>';
+						}
+						echo $out;
+					?>
+				</select>
+			</div>
+			<div class="select">
 				<select id="np_orderby" name="np_orderby" class="nestedpages-sort">
 					<?php
 						$options = array(

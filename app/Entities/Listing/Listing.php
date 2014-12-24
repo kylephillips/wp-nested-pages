@@ -110,6 +110,9 @@ class Listing {
 		$this->sort_options->order = isset($_GET['order'])
 			? sanitize_text_field($_GET['order'])
 			: 'ASC';
+		$this->sort_options->author = isset($_GET['author'])
+			? sanitize_text_field($_GET['author'])
+			: null;
 	}
 
 
@@ -217,6 +220,7 @@ class Listing {
 		$query_args = array(
 			'post_type' => $post_type,
 			'posts_per_page' => -1,
+			'author' => $this->sort_options->author,
 			'orderby' => $this->sort_options->orderby,
 			'post_status' => array('publish', 'pending', 'draft', 'private', 'future', 'trash'),
 			'post_parent' => $parent_id,
