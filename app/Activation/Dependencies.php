@@ -1,4 +1,6 @@
 <?php namespace NestedPages\Activation;
+
+use NestedPages\Entities\PostType\PostTypeRepository;
 /**
 * Plugin JS & CSS Dependencies
 */
@@ -13,10 +15,16 @@ class Dependencies {
 	* Plugin Version
 	*/
 	private $plugin_version;
+
+	/**
+	* Post Type Repository
+	*/
+	private $post_type_repo;
 	
 
 	public function __construct()
 	{
+		$this->post_type_repo = new PostTypeRepository;
 		$this->setPluginVersion();
 		add_action( 'admin_enqueue_scripts', array($this, 'styles') );
 		add_action( 'admin_enqueue_scripts', array($this, 'scripts') );
@@ -113,6 +121,7 @@ class Dependencies {
 			);
 			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;
 			$localized_data['syncmenu'] = $syncmenu;
+			$localized_data['post_types'] = $this->post_type_repo->getPostTypesObject();
 			wp_localize_script( 
 				'nestedpages', 
 				'nestedpages', 
@@ -120,5 +129,6 @@ class Dependencies {
 			);
 		endif;
 	}
+
 
 }

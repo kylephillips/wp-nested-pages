@@ -175,12 +175,16 @@ jQuery(function($){
 	* Make the Menu sortable
 	*/
 	$(document).ready(function(){
+		var sortableID = $('.sortable').attr('id');
+		var type = sortableID.substring(3);
+		var levels = max_levels(type);
+
 		$('.sortable').not('.no-sort').nestedSortable({
 			items : 'li',
 			toleranceElement: '> .row',
 			handle: '.handle',
 			placeholder: "ui-sortable-placeholder",
-			maxLevels: 0,
+			maxLevels: levels,
 			start: function(e, ui){
         		ui.placeholder.height(ui.item.height());
     		},
@@ -197,10 +201,22 @@ jQuery(function($){
     			);
     			submit_sortable_form();
     		},
-    		update: function(e, ui){
-    		}
 		});
 	});
+
+	/**
+	* Is Post Type Nestable?
+	*/
+	function max_levels(post_type)
+	{
+		var levels = 1;
+		$.each(nestedpages.post_types, function(i, v){
+			if ( v.name === post_type ){
+				if ( v.hierarchical === true ) levels = 0;
+			}
+		});
+		return levels;
+	}
 
 	/**
 	* Update the width of the placeholder

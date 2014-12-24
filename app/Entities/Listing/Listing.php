@@ -140,12 +140,12 @@ class Listing {
 
 		if ( $count == 1 ) {
 			echo ( $this->user->canSortPages() ) 
-				? '<ol class="sortable nplist visible">' 
-				: '<ol class="sortable no-sort nplist" visible>';
+				? '<ol class="sortable nplist visible" id="np-' . $this->post_type->name . '">' 
+				: '<ol class="sortable no-sort nplist" visible" id="np-' . $this->post_type->name . '">';
 		} else {
 			echo '<ol class="nplist';
 			if ( count($compared) > 0 ) echo ' visible" style="display:block;';
-			echo '">';	
+			echo '" id="np-' . $this->post_type->name . '">';	
 		} 
 	}
 
