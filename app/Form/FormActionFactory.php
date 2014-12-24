@@ -36,7 +36,8 @@ class FormActionFactory {
 			'wp_ajax_npquickEditLink',
 			'wp_ajax_npnewLink',
 			'wp_ajax_npgetTaxonomies',
-			'wp_ajax_npnewChild'
+			'wp_ajax_npnewChild',
+			'admin_post_npListingSort'
 		);
 		$this->setHandlers();
 	}
@@ -47,7 +48,8 @@ class FormActionFactory {
 	public function setHandlers()
 	{
 		foreach($this->actions as $key => $action){
-			$class = ucfirst(str_replace('wp_ajax_np', '', $action)) . 'Handler';
+			$class = str_replace('admin_post_np', '', $action); // Non-AJAX forms
+			$class = ucfirst(str_replace('wp_ajax_np', '', $class)) . 'Handler'; // AJAX forms
 			$this->handlers[$key] = new \stdClass();
 			$this->handlers[$key]->action = $action;
 			$this->handlers[$key]->class = 'NestedPages\Form\Handlers\\' . $class;

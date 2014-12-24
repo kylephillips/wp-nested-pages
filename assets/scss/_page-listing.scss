@@ -282,15 +282,7 @@
 
 } // .nestedpages
 
-// Page Search Form
-.nestedpages-tools {
-	@include clearfix;
-	clear: both;
-	margin-bottom: 10px;
-	.subsubsub {
-		margin: 0;
-	}
-}
+
 .np-search {
 	float: right;
 }

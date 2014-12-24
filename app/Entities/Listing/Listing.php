@@ -67,6 +67,12 @@ class Listing {
 	*/
 	private $user;
 
+	/**
+	* Sorting Options
+	* @var array
+	*/
+	private $sort_options;
+
 
 	public function __construct($post_type)
 	{
@@ -93,6 +99,31 @@ class Listing {
 
 
 	/**
+	* Set the Sort Options
+	*/
+	private function setSortOptions()
+	{
+		$this->sort_options = new \StdClass();
+		$this->sort_options->orderby = isset($_GET['orderby'])
+			? sanitize_text_field($_GET['orderby'])
+			: 'menu_order';
+		$this->sort_options->order = isset($_GET['order'])
+			? sanitize_text_field($_GET['order'])
+			: 'ASC';
+	}
+
+
+	/**
+	* Get the Current Page URL
+	*/
+	private function pageURL()
+	{
+		global $current_screen;
+		return admin_url() . 'admin.php?page=' . $current_screen->parent_file;
+	}
+
+
+	/**
 	* Set the Post Type
 	* @since 1.1.16
 	*/
@@ -108,6 +139,7 @@ class Listing {
 	*/
 	public function listPosts()
 	{
+		$this->setSortOptions();
 		include( Helpers::view('listing') );
 	}
 
@@ -185,10 +217,10 @@ class Listing {
 		$query_args = array(
 			'post_type' => $post_type,
 			'posts_per_page' => -1,
-			'orderby' => 'menu_order',
+			'orderby' => $this->sort_options->orderby,
 			'post_status' => array('publish', 'pending', 'draft', 'private', 'future', 'trash'),
 			'post_parent' => $parent_id,
-			'order' => 'ASC'
+			'order' => $this->sort_options->order
 		);
 		$pages = new \WP_Query(apply_filters('nestedpages_page_listing', $query_args));
 		

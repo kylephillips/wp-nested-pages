@@ -1,10 +1,19 @@
 //
 // Links/Tools Above the Page Listing
 // --------------------------------------------------
-.wppages-top-tools {
-	margin-bottom: 20px;
-	padding-top: 10px;
-	a {
-		text-decoration: none;
+
+.nestedpages-tools {
+	@include clearfix;
+	clear: both;
+	margin-bottom: 10px;
+	.subsubsub {
+		margin: 0;
+	}
+	.tools-right {
+		float: right;
+	}
+	.select {
+		float: left;
+		margin-left: 10px;
 	}
 }

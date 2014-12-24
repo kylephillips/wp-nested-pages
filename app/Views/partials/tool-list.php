@@ -32,4 +32,52 @@
 		<?php endif; ?>
 	</ul>
 
+
+	<?php if ( !$this->post_type->hierarchical ) : ?>
+	<div class="tools-right">
+		<form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
+			<input type="hidden" name="action" value="npListingSort">
+			<input type="hidden" name="page" value="<?php echo $this->pageURL(); ?>">
+			<div class="select">
+				<select id="np_orderby" name="np_orderby" class="nestedpages-sort">
+					<?php
+						$options = array(
+							'menu_order' => __('Menu Order', 'nestedpages'), 
+							'date' => __('Date', 'nestedpages'),
+							'title' => __('Title', 'nestedpages')
+						);
+						$out = '<option value="">' . __('Order By', 'nestedpages') . '</option>';
+						foreach ( $options as $key => $option ){
+							$out .= '<option value="' . $key . '"';
+							if ( isset($_GET['orderby']) && ($_GET['orderby'] == $key) ) $out .= ' selected';
+							$out .= '>' . $option . '</option>';
+						}
+						echo $out;
+					?>
+				</select>
+			</div>
+			<div class="select">
+				<select id="np_order" name="np_order" class="nestedpages-sort">
+					<?php
+						$options = array(
+							'ASC' => __('Ascending', 'nestedpages'), 
+							'DESC' => __('Decending', 'nestedpages')
+						);
+						$out = '';
+						foreach ( $options as $key => $option ){
+							$out .= '<option value="' . $key . '"';
+							if ( isset($_GET['order']) && ($_GET['order'] == $key) ) $out .= ' selected';
+							$out .= '>' . $option . '</option>';
+						}
+						echo $out;
+					?>
+				</select>
+			</div>
+			<div class="select">
+				<input type="submit" id="nestedpages-sort" class="button" value="Apply">
+			</div>
+		</form>
+	</div>
+	<?php endif; ?>
+
 </div><!-- .nestedpages-tools -->
