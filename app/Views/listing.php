@@ -19,9 +19,11 @@
 		<div id="message" class="updated below-h2"><p><?php echo $this->confirmation->getMessage(); ?></p></div>
 	<?php endif; ?>
 
+	<?php if ( $this->post_type->hierarchical ) : ?>
 	<ul class="nestedpages-toggleall" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:0"';?>>
 		<li><a href="#" class="np-btn" data-toggle="closed"><?php _e('Expand All', 'nestedpages'); ?></a></li>
 	</ul>
+	<?php endif; ?>
 
 	<?php if ( current_user_can('edit_theme_options') && $this->post_type->name == 'page' ) : ?>
 	<div class="np-sync-menu-cont" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:2px;"';?>>
