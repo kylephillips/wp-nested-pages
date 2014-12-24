@@ -45,7 +45,7 @@ class EnabledMenus {
 	*/
 	private function setEnabled()
 	{
-		$this->enabled_types = $this->post_type_repo->enabledPostTypes();
+		$this->enabled_types = $this->post_type_repo->getPostTypesObject();
 	}
 
 
@@ -56,13 +56,14 @@ class EnabledMenus {
 	{
 		$c = 1; // Counter for position
 		foreach($this->enabled_types as $key => $type){	
-
-			$this->post_type = get_post_type_object($key);
-			if ( (current_user_can($this->post_type->cap->edit_posts)) || ($this->user->canSortPages()) ){
-				$this->addMenu($c);
-				$this->addSubmenu();
-				$this->removeExistingMenu();
-			}
+			if ( $type->replace_menu ) :
+				$this->post_type = get_post_type_object($key);
+				if ( (current_user_can($this->post_type->cap->edit_posts)) || ($this->user->canSortPages()) ){
+					$this->addMenu($c);
+					$this->addSubmenu();
+					$this->removeExistingMenu();
+				}
+			endif;
 			$c++;
 		}		
 	}
