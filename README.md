@@ -4,7 +4,12 @@ Nested Pages provides an intuitive drag and drop interface for managing pages in
 
 For installation and usage information visit [nestedpages.com](http://nestedpages.com). Available for download/installation in the [WordPress Plugin Directory](https://wordpress.org/plugins/wp-nested-pages).
 
-**Nested Pages requires PHP v5.3.2+ and WordPress v3.8+**
+## Compatibility
+**Nested Pages requires PHP v5.3.2+ and WordPress v3.8+.**
+
+**PHP Requirement:** Nested Pages takes advantage of [Composer](https://getcomposer.org), specifically its PSR-4 auto-loading component. Because of this, the minimum version of PHP supported is 5.3.2.
+
+**WordPress Requirement:** Nested Pages depends on admin theme changes introduced in WordPress 3.8.
 
 ![Screenshot](https://raw.githubusercontent.com/kylephillips/wp-nested-pages/master/assets/screenshot-1.png)
 
