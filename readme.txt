@@ -79,7 +79,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 == Changelog ==
 
 = 1.3.0 =
-* Other post types now supported. To enabled the Nested Pages interface for additional post types, visit Settings > Nested Pages and select the "Post Types" tab.
+* All public post types are now supported, both hierarchical and non-hierarchical. To enabled the Nested Pages interface for additional post types, visit Settings > Nested Pages and select the "Post Types" tab. The generated nav menu is tied to the pages type, which is enabled by default.
 * New interface for adding top-level posts/pages in bulk
 
 = 1.2.1 =

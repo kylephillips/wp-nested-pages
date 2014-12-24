@@ -228,11 +228,13 @@ jQuery(function($){
 	*/
 	function update_placeholder_width(ui)
 	{
-		var parentCount = $(ui.placeholder).parents('ol').length;
-		var listWidth = $('.sortable').width();
-		var offset = ( parentCount * 40 ) - 40;
-		var newWidth = listWidth - offset;
-		$(ui.placeholder).width(newWidth).css('margin-left', offset + 'px');
+		if ( max_levels(np_get_post_type()) === 0 ){
+			var parentCount = $(ui.placeholder).parents('ol').length;
+			var listWidth = $('.sortable').width();
+			var offset = ( parentCount * 40 ) - 40;
+			var newWidth = listWidth - offset;
+			$(ui.placeholder).width(newWidth).css('margin-left', offset + 'px');
+		}
 		update_list_visibility(ui);
 	}
 
@@ -469,7 +471,7 @@ jQuery(function($){
 	*/
 	function populate_quick_edit(form, data)
 	{
-		$(form).find('.page_id').html('<em>Page ID:</em> ' + data.id);
+		$(form).find('.page_id').html('<em>ID:</em> ' + data.id);
 		$(form).find('.np_id').val(data.id);
 		$(form).find('.np_title').val(data.title);
 		$(form).find('.np_slug').val(data.slug);
