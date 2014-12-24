@@ -116,8 +116,10 @@ class Dependencies {
 				'add_child_short' => __('Add Child', 'nestedpages'),
 				'add_child'  => __('Add Child Page', 'nestedpages'),
 				'add_child_pages' => __('Add Child Pages', 'nestedpages'),
+				'add' => __('Add', 'nestedpages'),
 				'add_page' => __('Add Page', 'nestedpages'),
-				'add_pages' => __('Add Pages', 'nestedpages')
+				'add_pages' => __('Add Pages', 'nestedpages'),
+				'add_multiple' => __('Add Multiple', 'nestedpages')
 			);
 			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;
 			$localized_data['syncmenu'] = $syncmenu;

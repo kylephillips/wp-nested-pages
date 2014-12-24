@@ -6,6 +6,12 @@
 		<a href="<?php echo $this->post_type_repo->addNewPostLink($this->post_type->name); ?>" class="add-new-h2">
 			<?php _e($this->post_type->labels->add_new_item); ?>
 		</a>
+
+		<?php if ( current_user_can('publish_pages') ) : ?>
+		<a href="#" class="add-new-h2 open-bulk-modal" title="<?php _e('Add Multiple', 'nestedpages'); ?>" data-parentid="0">
+			<?php _e('Add Multiple', 'nestedpages'); ?>
+		</a>
+		<?php endif; ?>
 		
 		<?php if ( current_user_can('publish_pages') && $this->post_type->name == 'page' ) : ?>
 		<a href="#" class="add-new-h2 open-redirect-modal" title="<?php _e('Add Link', 'nestedpages'); ?>" data-parentid="0">
@@ -61,3 +67,4 @@
 </div><!-- .wrap -->
 
 <?php include( NestedPages\Helpers::view('forms/link-form') ); ?>
+<?php include( NestedPages\Helpers::view('forms/bulk-add') ); ?>

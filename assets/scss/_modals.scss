@@ -76,6 +76,9 @@
 	.modal-body {
 		position: relative;
 		padding: 10px;
+		&.new-child {
+			padding: 0;
+		}
 	}
 
 	// Footer (for actions)

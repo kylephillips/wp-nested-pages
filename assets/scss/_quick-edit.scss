@@ -210,6 +210,34 @@
 			}
 		} // .new-child-row
 	} // .new-page-titles
+
+}
+
+// Overrides for Modal Form
+.np-modal.nestedpages .new-child .right {
+	.form-control {
+		input[type='text'],
+		input[type='password'],
+		select {
+			float: none;
+			width: 100%;
+		}
+		label {
+			float: none;
+			width: 100%;
+		}
+	}
+}
+.np-modal.nestedpages .new-child .new-page-titles .form-control {
+	width: 85%;
+	div {
+		width: 100%;
+	}
+}
+.np-modal.nestedpages .new-child .left {
+	label {
+		display: none;
+	}
 }
 
 .np-qe-loading {

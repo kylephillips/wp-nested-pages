@@ -4,7 +4,7 @@
 ?>
 <form method="get" action="" class="np-new-child-form">
 	<div class="form-interior">
-	<h3><strong><?php _e('Add Child Page'); ?></strong><span class="parent_name"></span></h3>
+	<h3><strong><?php _e('Add Child', 'nestedpages'); ?></strong><span class="parent_name"></span></h3>
 
 	<div class="np-quickedit-error" style="clear:both;display:none;"></div>
 	
@@ -18,7 +18,7 @@
 				<div class="form-control new-child-row">
 					<label><?php _e( 'Title' ); ?></label>
 					<div>
-						<input type="text" name="post_title[]" class="np_title" placeholder="<?php _e('Page Title', 'nestedpages'); ?>" value="" />
+						<input type="text" name="post_title[]" class="np_title" placeholder="<?php _e('Title', 'nestedpages'); ?>" value="" />
 						<a href="#" class="button-secondary np-remove-child">-</a>
 					</div>
 				</div>
@@ -66,6 +66,7 @@
 		endif;
 		?>
 
+		<?php if ( $this->post_type->hierarchical ) : ?>
 		<div class="form-control">
 			<label><?php _e( 'Template' ); ?></label>
 			<select name="page_template" class="np_template">
@@ -73,6 +74,7 @@
 				<?php page_template_dropdown() ?>
 			</select>
 		</div>
+		<?php endif; ?>
 
 	</div><!-- .right -->
 
