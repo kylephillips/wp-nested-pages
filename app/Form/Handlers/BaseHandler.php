@@ -80,13 +80,15 @@ abstract class BaseHandler {
 	*/
 	protected function syncMenu()
 	{
-		if ( $_POST['syncmenu'] == 'sync' ){
-			$menu = new NavMenu;
-			$menu->clearMenu();
-			$menu->sync();
-			update_option('nestedpages_menusync', 'sync');
-		} else {
-			update_option('nestedpages_menusync', 'nosync');
+		if ( $_POST['post_type'] == 'page' ) {
+			if ( $_POST['syncmenu'] == 'sync' ){
+				$menu = new NavMenu;
+				$menu->clearMenu();
+				$menu->sync();
+				update_option('nestedpages_menusync', 'sync');
+			} else {
+				update_option('nestedpages_menusync', 'nosync');
+			}
 		}
 	}
 

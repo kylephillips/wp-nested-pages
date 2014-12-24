@@ -124,6 +124,15 @@ jQuery(function($){
 	}
 
 	/**
+	* Get Post Type from List ID
+	*/
+	function np_get_post_type()
+	{
+		var sortableID = $('.sortable').attr('id');
+		return sortableID.substring(3);
+	}
+
+	/**
 	* Toggle between showing published pages and all
 	*/
 	$(document).on('click', '.np-toggle-publish', function(e){
@@ -175,16 +184,12 @@ jQuery(function($){
 	* Make the Menu sortable
 	*/
 	$(document).ready(function(){
-		var sortableID = $('.sortable').attr('id');
-		var type = sortableID.substring(3);
-		var levels = max_levels(type);
-
 		$('.sortable').not('.no-sort').nestedSortable({
 			items : 'li',
 			toleranceElement: '> .row',
 			handle: '.handle',
 			placeholder: "ui-sortable-placeholder",
-			maxLevels: levels,
+			maxLevels: max_levels(np_get_post_type()),
 			start: function(e, ui){
         		ui.placeholder.height(ui.item.height());
     		},
@@ -282,6 +287,7 @@ jQuery(function($){
 				action : 'npsort',
 				nonce : nestedpages.np_nonce,
 				list : list,
+				post_type : np_get_post_type(),
 				syncmenu : syncmenu
 			},
 			success: function(data){
@@ -329,6 +335,7 @@ jQuery(function($){
 			data: {
 				action : 'npsyncMenu',
 				nonce : nestedpages.np_nonce,
+				post_type : np_get_post_type(),
 				syncmenu : setting
 			},
 			success: function(data){
@@ -659,7 +666,7 @@ jQuery(function($){
 			url: ajaxurl,
 			type: 'post',
 			datatype: 'json',
-			data: $(form).serialize() + '&action=npquickEdit&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
+			data: $(form).serialize() + '&action=npquickEdit&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu + '&post_type=' + np_get_post_type(),
 			success: function(data){
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);
@@ -957,7 +964,7 @@ jQuery(function($){
 			url: ajaxurl,
 			type: 'post',
 			datatype: 'json',
-			data: $(form).serialize() + '&action=npquickEditLink&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
+			data: $(form).serialize() + '&action=npquickEditLink&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu + '&post_type=' + np_get_post_type(),
 			success: function(data){
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);
@@ -1074,7 +1081,7 @@ jQuery(function($){
 			url: ajaxurl,
 			type: 'post',
 			datatype: 'json',
-			data: data + '&action=npnewLink&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
+			data: data + '&action=npnewLink&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu + '&post_type=' + np_get_post_type(),
 			success: function(data){
 				if (data.status === 'error'){
 					np_remove_link_loading();
@@ -1360,7 +1367,7 @@ jQuery(function($){
 			url: ajaxurl,
 			type: 'post',
 			datatype: 'json',
-			data: $(form).serialize() + '&action=npnewChild&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu,
+			data: $(form).serialize() + '&action=npnewChild&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu + '&post_type=' + np_get_post_type(),
 			success: function(data){
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);
