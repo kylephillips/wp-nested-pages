@@ -87,8 +87,11 @@
 		<a accesskey="c" href="#" class="button-secondary alignleft np-cancel-newchild">
 			<?php _e( 'Cancel' ); ?>
 		</a>
-		<a accesskey="s" href="#" class="button-primary np-save-newchild alignright">
-			<?php _e( 'Add Page' ); ?>
+		<a accesskey="s" href="#" class="button-primary np-save-newchild alignright" style="margin-left:10px;">
+			<?php _e( 'Add', 'nestedpages' ); ?>
+		</a>
+		<a href="#" class="button-secondary np-save-newchild add-edit alignright">
+			<?php _e( 'Add & Edit', 'nestedpages' ); ?>
 		</a>
 		<span class="np-qe-loading"></span>
 	</div>
