@@ -36,6 +36,7 @@ class PostTypeRepository {
 			$post_types[$type->name]->hierarchical = $type->hierarchical;
 			$post_types[$type->name]->np_enabled = ( array_key_exists($type->name, $this->enabledPostTypes()) ) ? true : false;
 			$post_types[$type->name]->replace_menu = $this->overrideMenu($type->name);
+			$post_types[$type->name]->hide_default = $this->hideDefault($type->name);
 		}
 		return $post_types;
 	}
@@ -51,6 +52,23 @@ class PostTypeRepository {
 		foreach($this->enabledPostTypes() as $key => $type){
 			if ( $key == $post_type ){
 				return ( isset($type['replace_menu']) && $type['replace_menu'] == 'true' )
+					? true
+					: false;
+			}
+		}
+	}
+
+
+	/**
+	* Is the specified post type set to hide the default link?
+	* @param string post type name
+	* @return boolean
+	*/
+	public function hideDefault($post_type)
+	{
+		foreach($this->enabledPostTypes() as $key => $type){
+			if ( $key == $post_type ){
+				return ( isset($type['hide_default']) && $type['hide_default'] == 'true' )
 					? true
 					: false;
 			}

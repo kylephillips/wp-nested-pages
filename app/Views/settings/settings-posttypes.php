@@ -15,6 +15,7 @@ settings_fields( 'nestedpages-posttypes' );
 				<th><?php _e('Hierarchical', 'nestedpages'); ?></th>
 				<th><?php _e('Enabled', 'nestedpages'); ?></th>
 				<th><?php _e('Replace Existing Menu', 'nestedpages'); ?>*</th>
+				<th><?php _e('Hide Default Link', 'nestedpages'); ?>*</th>
 			</thead>
 			<?php foreach ($types as $type) : ?>
 			<tr>
@@ -29,6 +30,9 @@ settings_fields( 'nestedpages-posttypes' );
 				</td>
 				<td>
 					<input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][replace_menu]" value="true" <?php if ( $type->replace_menu ) echo 'checked'; ?> />
+				</td>
+				<td>
+					<input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][hide_default]" value="true" <?php if ( $type->hide_default ) echo 'checked'; ?> />
 				</td>
 			</tr>
 			<?php endforeach; ?>
