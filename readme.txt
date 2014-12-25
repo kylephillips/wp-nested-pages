@@ -30,7 +30,7 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 **Languages:**
 
 * Danish (Thomas Blomberg)
-* Dutch ()
+* Dutch (Arno Vije)
 * English
 * Finnish (Roni Laukkarinen)
 * French (Nico Mollet)

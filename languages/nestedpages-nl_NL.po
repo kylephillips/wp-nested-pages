@@ -1,0 +1,342 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Nested Pages\n"
+"POT-Creation-Date: 2014-11-20 20:17-0500\n"
+"PO-Revision-Date: 2014-12-23 08:44+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nl\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/class-nestedpages.php:85
+msgid "Settings"
+msgstr "Instellingen"
+
+#: includes/class-np-confirmation.php:58
+msgid "pages moved to the Trash"
+msgstr "Pagina's verwijderd naar de prullenbak"
+
+#: includes/class-np-confirmation.php:60
+msgid "page moved to the Trash"
+msgstr "Pagina verplaatst naar de prullenbak"
+
+#: includes/class-np-confirmation.php:65
+msgid "Undo"
+msgstr "Ongedaan maken"
+
+#: includes/class-np-confirmation.php:80
+msgid "pages"
+msgstr "pagina's"
+
+#: includes/class-np-confirmation.php:80
+msgid "page"
+msgstr "pagina"
+
+#: includes/class-np-confirmation.php:81
+msgid "restored from trash"
+msgstr "teruggezet uit de prullenbak"
+
+#: includes/class-np-confirmation.php:90
+msgid "Link successfully deleted."
+msgstr "Link succesvol verwijderd."
+
+#: includes/class-np-dependencies.php:77 views/pages.php:18
+msgid "Expand Pages"
+msgstr "Pagina's uitklappen"
+
+#: includes/class-np-dependencies.php:78
+msgid "Collapse Pages"
+msgstr "Pagina's inklappen"
+
+#: includes/class-np-dependencies.php:79 views/pages.php:34
+msgid "Show Hidden"
+msgstr "Toon verborgen"
+
+#: includes/class-np-dependencies.php:80
+msgid "Hide Hidden"
+msgstr "Verberg verborgen"
+
+#: includes/class-np-dependencies.php:81 views/link-form.php:14
+#: views/pages.php:9 views/pages.php:10
+msgid "Add Link"
+msgstr "Link toevoegen"
+
+#: includes/class-np-dependencies.php:82
+msgid "Add Child Link"
+msgstr "Onderliggende link toevoegen"
+
+#: includes/class-np-handler-base.php:64
+msgid "Incorrect Form Field"
+msgstr "Veld niet correct"
+
+#: includes/class-np-handler-base.php:94
+msgid "There was an error updating the page."
+msgstr "Er is een probleem opgetreden bij het bijwerken van de pagina."
+
+#: includes/class-np-handler-newredirect.php:40
+#: includes/class-np-handler-quickedit-redirect.php:36
+msgid "Link successfully updated"
+msgstr "Link succesvol bijgewerkt"
+
+#: includes/class-np-handler-quickedit.php:38
+msgid "Post successfully updated"
+msgstr "Bericht succesvol bijgewerkt"
+
+#: includes/class-np-handler-sort.php:36
+msgid "Page order successfully updated."
+msgstr "Pagina volgorde succesvol aangepast"
+
+#: includes/class-np-handler-sort.php:38
+msgid "There was an order updating the page order."
+msgstr "Er is een fout opgetreden bij het bijwerken van de paginavolgorde"
+
+#: includes/class-np-handler-syncmenu.php:32
+msgid "Menu sync enabled."
+msgstr "Menu synchronisatie ingeschakeld."
+
+#: includes/class-np-handler-syncmenu.php:35
+msgid "Menu sync disabled."
+msgstr "Menu synchronisatie uitgeschakeld."
+
+#: includes/class-np-newpage.php:42
+msgid "Adding child page under:"
+msgstr "Pagina toevoegen onder:"
+
+#: includes/class-np-pagelisting.php:79
+msgid "All Pages"
+msgstr "Alle pagina's"
+
+#: includes/class-np-pagelisting.php:80
+msgid "Add New"
+msgstr "Nieuwe toevoegen"
+
+#: includes/class-np-pagelisting.php:81
+msgid "Default Pages"
+msgstr "Standaard pagina's"
+
+#: includes/class-np-posttypes.php:21
+msgid "Redirects"
+msgstr "Doorverwijzingen"
+
+#: includes/class-np-posttypes.php:22
+msgid "Redirect"
+msgstr "Doorverwijzing"
+
+#: includes/class-np-redirects.php:65
+msgid "Nested Pages"
+msgstr "Nested Pages"
+
+#: includes/class-np-repository-post.php:58 views/quickedit.php:20
+msgid "Title"
+msgstr "Titel"
+
+#: includes/class-np-repository-post.php:298
+msgid "Label"
+msgstr "Label"
+
+#: includes/class-np-validation.php:49 includes/class-np-validation.php:64
+msgid "Please provide a valid date."
+msgstr "Graag een geldige datum invullen."
+
+#: includes/class-np-validation.php:76
+msgid "Please provide a menu title."
+msgstr "Graag een menutitel invullen."
+
+#: includes/class-np-validation.php:79
+msgid "Please provide a valid URL."
+msgstr "Graag een geldige URL invullen."
+
+#: includes/class-np-validation.php:90
+msgid "Please provide a "
+msgstr "Vul een "
+
+#: views/link-form.php:31 views/quickedit-redirect.php:17
+#: views/quickedit.php:148
+msgid "Navigation Label"
+msgstr "Navigatie label"
+
+#: views/link-form.php:36 views/quickedit-redirect.php:22
+msgid "URL"
+msgstr "URL"
+
+#: views/link-form.php:41 views/quickedit-redirect.php:27
+#: views/quickedit.php:58
+msgid "Status"
+msgstr "Status"
+
+#: views/link-form.php:44 views/pages.php:33 views/quickedit-redirect.php:30
+#: views/quickedit.php:61
+msgid "Published"
+msgstr "Gepubliceerd"
+
+#: views/link-form.php:45 views/quickedit-redirect.php:31
+#: views/quickedit.php:62
+msgid "Scheduled"
+msgstr "Ingepland"
+
+#: views/link-form.php:47 views/quickedit-redirect.php:33
+#: views/quickedit.php:64
+msgid "Pending Review"
+msgstr "Wacht op beoordeling"
+
+#: views/link-form.php:48 views/quickedit-redirect.php:34
+#: views/quickedit.php:65
+msgid "Draft"
+msgstr "Concept"
+
+#: views/link-form.php:59 views/quickedit-redirect.php:54
+#: views/quickedit.php:164
+msgid "Hide in Nav Menu"
+msgstr "Verbergen in navigatie menu"
+
+#: views/link-form.php:64 views/quickedit-redirect.php:60
+#: views/quickedit.php:105
+msgid "Hide in Nested Pages"
+msgstr "Verbergen in Nested Pages"
+
+#: views/link-form.php:69 views/quickedit-redirect.php:66
+#: views/quickedit.php:170
+msgid "Open link in a new window/tab"
+msgstr "Open link in een nieuw venster/tab"
+
+#: views/link-form.php:80
+msgid "Close"
+msgstr "Sluiten"
+
+#: views/link-form.php:83
+msgid "Save Link"
+msgstr "Link opslaan"
+
+#: views/pages.php:24
+msgid "Sync Menu"
+msgstr "Menu synchroniseren"
+
+#: views/pages.php:32
+msgid "All"
+msgstr "Alles"
+
+#: views/pages.php:37
+msgid "Trash"
+msgstr "Prullenbak"
+
+#: views/pages.php:40
+msgid "Default"
+msgstr "Standaard"
+
+#: views/quickedit-redirect.php:8
+msgid "Link"
+msgstr "Link"
+
+#: views/quickedit-redirect.php:44 views/quickedit.php:152
+msgid "Title Attribute"
+msgstr "Titel attribuut"
+
+#: views/quickedit-redirect.php:48 views/quickedit.php:156
+msgid "CSS Classes"
+msgstr "CSS classes"
+
+#: views/quickedit-redirect.php:81 views/quickedit.php:184
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: views/quickedit-redirect.php:84 views/quickedit.php:187
+msgid "Update"
+msgstr "Bijwerken"
+
+#: views/quickedit.php:11 views/row-redirect.php:53 views/row.php:94
+msgid "Quick Edit"
+msgstr "Snel bewerken"
+
+#: views/quickedit.php:24
+msgid "Slug"
+msgstr "Slug"
+
+#: views/quickedit.php:28
+msgid "Date"
+msgstr "Datum"
+
+#: views/quickedit.php:49
+msgid "Author"
+msgstr "Auteur"
+
+#: views/quickedit.php:73
+msgid "Template"
+msgstr "Sjabloon"
+
+#: views/quickedit.php:75
+msgid "Default Template"
+msgstr "Standaard sjabloon"
+
+#: views/quickedit.php:82
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: views/quickedit.php:85
+msgid "&ndash;OR&ndash;"
+msgstr "&ndash;OF&ndash;"
+
+#: views/quickedit.php:88
+msgid "Private"
+msgstr "Privé"
+
+#: views/quickedit.php:97
+msgid "Allow Comments"
+msgstr "Reactie's toestaan"
+
+#: views/quickedit.php:113
+msgid "Menu Options"
+msgstr "Menu opties"
+
+#: views/quickedit.php:115
+msgid "Taxonomies"
+msgstr "Taxanomieën"
+
+#: views/row-redirect.php:30 views/row.php:33
+msgid "Hidden"
+msgstr "Verborgen"
+
+#: views/row.php:41
+msgid "currently editing"
+msgstr "nu aan het bewerken"
+
+#: views/row.php:43
+msgid "Edit"
+msgstr "Bewerken"
+
+#: views/row.php:66
+msgid "Add Child"
+msgstr "Onderliggende pagina toevoegen"
+
+#: views/row.php:98
+msgid "View"
+msgstr "Bekijken"
+
+#: views/settings.php:2
+msgid "Nested Pages Settings"
+msgstr "Nested Pages Instellingen"
+
+#: views/settings.php:8
+msgid "Nested Pages Version"
+msgstr "Nested Pages Versie"
+
+#: views/settings.php:12
+msgid "Menu Name"
+msgstr "Menu naam"
+
+#: views/settings.php:15
+msgid ""
+"Important: Once the menu name has changed, theme files should be updated to "
+"reference the new name."
+msgstr ""
+"Belangrijk: Wanneer de menu naam is gewijzigd moeten thema-bestanden "
+"bijgewerkt worden met een verwijzing naar de nieuwe naam."
