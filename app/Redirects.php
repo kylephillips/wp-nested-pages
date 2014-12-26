@@ -9,8 +9,6 @@ class Redirects {
 	{
 		add_action('load-edit.php', array($this, 'pageTrashed'));
 		add_action('load-edit.php', array($this, 'pageRestored'));
-		add_action('load-edit.php', array($this, 'addNPLink'));
-		add_filter( "views_edit-page", array($this, 'addNPLink' ));
 		add_action('deleted_post', array($this, 'linkDeleted'), 10, 1);
 	}
 
@@ -56,17 +54,6 @@ class Redirects {
 	}
 
 
-	/**
-	* Add a nested pages link to the subsub list (WP_List_Table class)
-	*/
-	public function addNPLink($views)
-	{
-		$screen = get_current_screen();
-		if ( $screen->parent_file == 'edit.php?post_type=page' ){
-			$link = array('Nested Pages' => '<a href="' . esc_url(admin_url('admin.php?page=nestedpages')) . '">' . __('Nested Pages', 'nestedpages') . '</a>');
-			$views = array_merge($views, $link);
-		}
-		return $views;
-	}
+	
 
 }

@@ -162,4 +162,15 @@ class PostTypeRepository {
 	}
 
 
+	/**
+	* Set the Submenu Text
+	* "Nested View" for Hierarchical Post Types
+	* "Sort View" for Non-Hierarchical Post Types
+	*/
+	public function getSubmenuText($post_type)
+	{
+		return ( $post_type->hierarchical ) ? __('Nested View', 'nestedpages') : __('Sort View', 'nestedpages');
+	}
+
+
 }

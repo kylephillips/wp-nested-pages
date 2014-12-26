@@ -29,17 +29,6 @@ class AdminSubmenuDefault {
 
 
 	/**
-	* Set the Submenu Text
-	* "Nested View" for Hierarchical Post Types
-	* "Sort View" for Non-Hierarchical Post Types
-	*/
-	private function getSubmenuText()
-	{
-		return ( $this->post_type->hierarchical ) ? __('Nested View', 'nestedpages') : __('Sort View', 'nestedpages');
-	}
-
-
-	/**
 	* Add the submenu
 	*/
 	public function findMenu()
@@ -61,8 +50,8 @@ class AdminSubmenuDefault {
 	{
 		add_submenu_page( 
 			$parent_slug,
-			$this->getSubmenuText(),
-			$this->getSubmenuText(),
+			$this->post_type_repo->getSubmenuText($this->post_type),
+			$this->post_type_repo->getSubmenuText($this->post_type),
 			'edit_posts',
 			$this->post_type_repo->getMenuSlug($this->post_type),
 			Listing::admin_menu($this->post_type->name)
