@@ -171,7 +171,7 @@ class Listing {
 			array_push($children, $child->ID);
 		}
 		// Compare child pages with user's toggled pages
-		$compared = array_intersect($this->listing_repo->visiblePages(), $children);
+		$compared = array_intersect($this->listing_repo->visiblePages($this->post_type->name), $children);
 
 		if ( $count == 1 ) {
 			echo ( $this->user->canSortPages() ) 

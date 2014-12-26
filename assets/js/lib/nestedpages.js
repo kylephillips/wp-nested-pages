@@ -1221,6 +1221,7 @@ jQuery(function($){
 	function np_sync_user_toggles()
 	{
 		var ids = np_get_visible_rows();
+		var posttype = np_get_post_type();
 		$.ajax({
 			url: ajaxurl,
 			type: 'post',
@@ -1228,7 +1229,8 @@ jQuery(function($){
 			data: {
 				action : 'npnestToggle',
 				nonce : nestedpages.np_nonce,
-				ids : ids
+				ids : ids,
+				posttype : posttype
 			},
 			success: function(data){
 				if ( data.status !== 'success' ){

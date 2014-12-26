@@ -76,4 +76,19 @@ class UserRepository {
 	}
 
 
+	/**
+	* Update User's Visible Pages
+	*/
+	public function updateVisiblePages($post_type, $ids)
+	{
+		$visible = unserialize(get_user_meta(get_current_user_id(), 'np_visible_posts', true));
+		$visible[$post_type] = $ids;
+		update_user_meta(
+			get_current_user_id(),
+			'np_visible_posts',
+			serialize($visible)
+		);
+	}
+
+
 }

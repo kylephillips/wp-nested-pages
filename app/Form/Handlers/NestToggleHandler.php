@@ -1,9 +1,11 @@
 <?php namespace NestedPages\Form\Handlers;
+
+use NestedPages\Entities\User\UserRepository;
+
 /**
 * Syncs User's Visible/Toggled Pages
 */
 class NestToggleHandler extends BaseHandler {
-
 
 	public function __construct()
 	{
@@ -29,11 +31,7 @@ class NestToggleHandler extends BaseHandler {
 	*/
 	private function updateUserMeta()
 	{
-		update_user_meta(
-			get_current_user_id(),
-			'np_visible_pages',
-			serialize($this->data['ids'])
-		);
+		$this->user->updateVisiblePages($this->data['posttype'], $this->data['ids']);
 		$this->response = array('status'=>'success', 'data'=>$this->data);
 		$this->sendResponse();
 	}

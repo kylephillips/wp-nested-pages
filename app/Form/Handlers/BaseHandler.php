@@ -3,6 +3,7 @@
 use NestedPages\Entities\NavMenu\NavMenu;
 use NestedPages\Entities\Post\PostRepository;
 use NestedPages\Entities\Post\PostUpdateRepository;
+use NestedPages\Entities\User\UserRepository;
 
 /**
 * Base Form Handler Class
@@ -28,6 +29,12 @@ abstract class BaseHandler {
 	protected $post_repo;
 
 	/**
+	* User Repo
+	* @var object
+	*/
+	protected $user;
+
+	/**
 	* Post Update Repo
 	*/
 	protected $post_update_repo;
@@ -43,6 +50,7 @@ abstract class BaseHandler {
 	{
 		$this->post_repo = new PostRepository;
 		$this->post_update_repo = new PostUpdateRepository;
+		$this->user = new UserRepository;
 		$this->setData();
 		$this->validateNonce();
 	}
