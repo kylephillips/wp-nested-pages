@@ -78,9 +78,12 @@ class Updates {
 	*/
 	private function enablePagePostType()
 	{
-		if ( version_compare( $this->current_version, '1.2.1', '<' ) ){
+		if ( version_compare( $this->current_version, '1.3.0', '<' ) ){
 			$enabled = get_option('nestedpages_posttypes');
-			if ( !$enabled ) update_option('nestedpages_posttypes', array('page'));
+			$default = array('page' => array(
+				'replace_menu' => true
+			));
+			if ( !$enabled ) update_option('nestedpages_posttypes', $default);
 		}
 	}
 

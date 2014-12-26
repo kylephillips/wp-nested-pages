@@ -13,15 +13,15 @@ Nested Pages provides a drag and drop interface for managing pages & posts in th
 
 == Description ==
 
-**Nested Pages offers**
+**Why use Nested Pages?**
 
-* A drag and drop interface for managing your pages & posts - simple and intuitive
-* Quick edit functionality
-* An expandable, sortable tree view of your site's page structure
-* A way to add custom sorting for any post type
-* A native WordPress menu, automatically generated to match your page structure
-* A way to quickly add pages & posts (ideal for development)
-* A touch-friendly interface
+* Provides a simple & intuitive drag and drop interface for managing your page structure and post ordering
+* Maintains quick edit functionality
+* Adds an editable, sortable tree view of your site's page structure
+* Automatically generates a native WordPress menu that matches your page structure
+* A way to quickly add multiple pages & posts (ideal for development)
+* Works with any post type
+* Works on touch-enabled devices
 
 For more information visit [nestedpages.com](http://nestedpages.com).
 
@@ -51,16 +51,16 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 As of Nested Pages version 1.3.0, all post types are supported. To enable the Nested Pages interface for post types, update your settings under Settings > Nested Pages.
 
 = How do I access the WordPress “Pages” screen? =
-Click the “Default Pages” link in the page subnav, or on the Nested Pages screen. This item may be optionally hidden under the Nested Pages settings.
+Click the “Default link in the page subnav, or on the Nested Pages screen. This item may be optionally hidden under the Nested Pages settings.
 
 = How do I save the order I create? =
-Page sorting and nesting is saved in the background after changes are made to the structure.
+Post sorting and nesting is saved in the background after changes are made to the structure.
 
 = How do I edit in bulk? =
-Bulk quick edits are not currently supported by Nested Pages. To edit in bulk, click on “Default Pages” to use the native interface.
+Bulk quick edits are not currently supported by Nested Pages. To edit in bulk, click on the "Default" link to use the native interface.
 
 = What about custom columns? =
-Custom columns are not currently supported by Nested Pages. To view custom columns, click on “Default Pages” to view the native interface. If you are using WordPress SEO by Yoast, a page analysis indicator is shown.
+Custom columns are not currently supported by Nested Pages. To view custom columns, click on the "Default" link to view the native interface. If you are using WordPress SEO by Yoast, a page analysis indicator is shown.
 
 = What are those dots in my page rows? =
 If you have WordPress SEO by Yoast installed, your page score indicators are shown along with the pages.
