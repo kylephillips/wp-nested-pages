@@ -162,7 +162,4 @@ class PostTypeRepository {
 	}
 
 
-
-
-
 }

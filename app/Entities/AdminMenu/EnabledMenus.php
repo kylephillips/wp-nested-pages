@@ -3,6 +3,7 @@
 use NestedPages\Entities\PostType\PostTypeRepository;
 use NestedPages\Entities\Listing\Listing;
 use NestedPages\Entities\AdminMenu\AdminSubmenu;
+use NestedPages\Entities\AdminMenu\AdminSubmenuDefault;
 use NestedPages\Entities\User\UserRepository;
 
 /**
@@ -56,14 +57,18 @@ class EnabledMenus {
 	{
 		$c = 1; // Counter for position
 		foreach($this->enabled_types as $key => $type){	
-			if ( $type->replace_menu ) :
+			//var_dump($type);
+			if ( $type->np_enabled !== true ) continue;
+			if ( $type->replace_menu ) {
 				$this->post_type = get_post_type_object($key);
 				if ( (current_user_can($this->post_type->cap->edit_posts)) || ($this->user->canSortPages()) ){
 					$this->addMenu($c);
 					$this->addSubmenu();
 					$this->removeExistingMenu();
 				}
-			endif;
+			} else {
+				$default = new AdminSubmenuDefault($type);
+			}
 			$c++;
 		}		
 	}

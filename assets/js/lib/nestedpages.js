@@ -185,7 +185,7 @@ jQuery(function($){
 	*/
 	$(document).ready(function(){
 		$('.sortable').not('.no-sort').nestedSortable({
-			items : 'li',
+			items : '.page-row',
 			toleranceElement: '> .row',
 			handle: '.handle',
 			placeholder: "ui-sortable-placeholder",
