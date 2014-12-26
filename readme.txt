@@ -76,13 +76,14 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 4. Toggle nested child pages for a clutter-free tree
 
-5. Quickly add child pages without leaving the page tree
+5. Quickly add posts without leaving the page tree
 
 == Changelog ==
 
 = 1.3.0 =
 * All public post types are now supported, both hierarchical and non-hierarchical. To enabled the Nested Pages interface for additional post types, visit Settings > Nested Pages and select the "Post Types" tab. The generated nav menu is tied to the pages type, which is enabled by default.
 * New interface for adding top-level posts/pages in bulk
+* New "Empty Trash" link for quickly emptying trash on enabled post types
 * Dutch translation (Provided by Arno Vije)
 
 = 1.2.1 =
@@ -146,6 +147,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Nested Pages
 
 == Upgrade Notice ==
+
+= 1.3.0 =
+All post types are now supported. Also includes minor bug fixes and UI improvements.
 
 = 1.2.1 =
 Bug fix when using custom roles. 
