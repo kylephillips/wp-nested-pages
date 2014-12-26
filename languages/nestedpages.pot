@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nested Pages\n"
-"POT-Creation-Date: 2014-12-24 19:05-0500\n"
-"PO-Revision-Date: 2014-12-24 19:05-0500\n"
+"POT-Creation-Date: 2014-12-26 14:28-0500\n"
+"PO-Revision-Date: 2014-12-26 14:28-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgid "Title"
 msgstr ""
 
 #: app/Activation/Dependencies.php:113 app/Views/forms/quickedit-post.php:11
-#: app/Views/partials/row-link.php:53 app/Views/partials/row.php:101
+#: app/Views/partials/row-link.php:53 app/Views/partials/row.php:113
 msgid "Quick Edit"
 msgstr ""
 
@@ -57,12 +57,12 @@ msgstr ""
 msgid "Page Title"
 msgstr ""
 
-#: app/Activation/Dependencies.php:115 app/Views/partials/row.php:105
+#: app/Activation/Dependencies.php:115 app/Views/partials/row.php:117
 msgid "View"
 msgstr ""
 
 #: app/Activation/Dependencies.php:116 app/Views/forms/new-child.php:7
-#: app/Views/partials/row.php:73
+#: app/Views/partials/row.php:85
 msgid "Add Child"
 msgstr ""
 
@@ -91,7 +91,13 @@ msgstr ""
 msgid "Add Multiple"
 msgstr ""
 
-#: app/Bootstrap.php:57
+#: app/Activation/Dependencies.php:123
+msgid ""
+"Are you sure you would like to empty the trash? This action is not "
+"reversable."
+msgstr ""
+
+#: app/Bootstrap.php:59
 msgid "Settings"
 msgstr ""
 
@@ -99,7 +105,7 @@ msgstr ""
 msgid "Nested Pages Settings"
 msgstr ""
 
-#: app/Config/Settings.php:46 app/Redirects.php:66
+#: app/Config/Settings.php:46
 msgid "Nested Pages"
 msgstr ""
 
@@ -117,7 +123,7 @@ msgid "pages moved to the Trash"
 msgstr ""
 
 #: app/Entities/Confirmation/TrashConfirmation.php:14
-msgid "page moved to the Trash"
+msgid "moved to the Trash"
 msgstr ""
 
 #: app/Entities/Confirmation/TrashConfirmation.php:19
@@ -136,8 +142,16 @@ msgstr ""
 msgid "restored from trash"
 msgstr ""
 
-#: app/Entities/Post/PostUpdateRepository.php:299
+#: app/Entities/Post/PostUpdateRepository.php:301
 msgid "Label"
+msgstr ""
+
+#: app/Entities/PostType/PostTypeRepository.php:172
+msgid "Nested View"
+msgstr ""
+
+#: app/Entities/PostType/PostTypeRepository.php:172
+msgid "Sort View"
 msgstr ""
 
 #: app/Entities/PostType/RegisterPostTypes.php:20
@@ -148,12 +162,16 @@ msgstr ""
 msgid "Redirect"
 msgstr ""
 
-#: app/Form/Handlers/BaseHandler.php:71
+#: app/Form/Handlers/BaseHandler.php:79
 msgid "Incorrect Form Field"
 msgstr ""
 
-#: app/Form/Handlers/BaseHandler.php:103
+#: app/Form/Handlers/BaseHandler.php:111
 msgid "There was an error updating the page."
+msgstr ""
+
+#: app/Form/Handlers/EmptyTrashHandler.php:16
+msgid "Trash successfully emptied."
 msgstr ""
 
 #: app/Form/Handlers/NewLinkHandler.php:33
@@ -367,6 +385,10 @@ msgstr ""
 msgid "Trash"
 msgstr ""
 
+#: app/Views/partials/tool-list.php:21
+msgid "Empty"
+msgstr ""
+
 #: app/Views/partials/tool-list.php:44
 msgid "All Authors"
 msgstr ""
@@ -387,30 +409,25 @@ msgstr ""
 msgid "Decending"
 msgstr ""
 
-#: app/Views/settings/settings-general.php:9
+#: app/Views/settings/settings-general.php:7
 msgid "Nested Pages Version"
 msgstr ""
 
-#: app/Views/settings/settings-general.php:13
+#: app/Views/settings/settings-general.php:11
 msgid "Menu Name"
 msgstr ""
 
-#: app/Views/settings/settings-general.php:16
+#: app/Views/settings/settings-general.php:14
 msgid ""
 "Important: Once the menu name has changed, theme files should be updated to "
 "reference the new name."
 msgstr ""
 
-#: app/Views/settings/settings-general.php:20
-#: app/Views/settings/settings-general.php:24
-msgid "Hide Default Pages"
-msgstr ""
-
-#: app/Views/settings/settings-general.php:29
+#: app/Views/settings/settings-general.php:18
 msgid "Allow Page Sorting"
 msgstr ""
 
-#: app/Views/settings/settings-general.php:39
+#: app/Views/settings/settings-general.php:28
 msgid "Admins always have sorting ability."
 msgstr ""
 
@@ -431,17 +448,21 @@ msgid "Enabled"
 msgstr ""
 
 #: app/Views/settings/settings-posttypes.php:17
-msgid "Replace Existing Menu"
+msgid "Replace Default Menu"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:41
+#: app/Views/settings/settings-posttypes.php:18
+msgid "Hide Default Link"
+msgstr ""
+
+#: app/Views/settings/settings-posttypes.php:45
 msgid "Note: Nesting features not enabled for non-hierarchical post types."
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:44
+#: app/Views/settings/settings-posttypes.php:48
 msgid ""
-"If existing menu is not replaced, an additional submenu item will be added "
-"titled \"Nested View\""
+"If default menu is not replaced, an additional submenu item will be added "
+"for \"Nested/Sort View\""
 msgstr ""
 
 #: app/Views/settings/settings.php:6
