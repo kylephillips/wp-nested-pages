@@ -11,7 +11,7 @@ class TrashConfirmation implements ConfirmationInterface {
 		if ( count($trashed) > 1 ){
 			$out .= count($trashed) . ' ' . __('pages moved to the Trash', 'nestedpages');
 		} else {
-			$out .= '<strong>' . get_the_title($trashed[0]) . ' </strong>' . __('page moved to the Trash', 'nestedpages');
+			$out .= '<strong>' . get_the_title($trashed[0]) . ' </strong>' . __('moved to the Trash', 'nestedpages');
 
 			// Undo Link
 			if ( current_user_can('delete_pages') ) {
