@@ -4,7 +4,7 @@
 		<?php _e($this->post_type->labels->name); ?>
 		
 		<a href="<?php echo $this->post_type_repo->addNewPostLink($this->post_type->name); ?>" class="add-new-h2">
-			<?php _e($this->post_type->labels->add_new_item); ?>
+			<?php _e($this->post_type->labels->add_new); ?>
 		</a>
 
 		<?php if ( current_user_can('publish_pages') ) : ?>

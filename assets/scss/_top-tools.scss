@@ -5,15 +5,25 @@
 .nestedpages-tools {
 	@include clearfix;
 	clear: both;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 	.subsubsub {
 		margin: 0;
 	}
-	.tools-right {
-		float: right;
+	.np-tools-primary {
+		clear: left;
+		padding-top: 8px;
 	}
 	.select {
 		float: left;
-		margin-left: 10px;
+		margin-left: 5px;
+		&.first {
+			margin-left: 0;
+		}
+	}
+	.np-tools-sort {
+		float: left;
+	}
+	.np-tools-search {
+		float: right;
 	}
 }

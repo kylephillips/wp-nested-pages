@@ -34,11 +34,11 @@
 
 
 	<?php if ( !$this->post_type->hierarchical ) : ?>
-	<div class="tools-right">
-		<form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
+	<div class="np-tools-primary">
+		<form action="<?php echo admin_url('admin-post.php'); ?>" method="post" class="np-tools-sort">
 			<input type="hidden" name="action" value="npListingSort">
 			<input type="hidden" name="page" value="<?php echo $this->pageURL(); ?>">
-			<div class="select">
+			<div class="select first">
 				<select id="np_sortauthor" name="np_author" class="nestedpages-sort">
 					<?php
 						$out = '<option value="all">' . __('All Authors', 'nestedpages') . '</option>';
@@ -91,6 +91,9 @@
 				<input type="submit" id="nestedpages-sort" class="button" value="Apply">
 			</div>
 		</form>
+		<div class="np-tools-search">
+			<input type="search" id="nestedpages-search" placeholder="<?php echo $this->post_type->labels->search_items; ?>">
+		</div><!-- .np-tools-search -->
 	</div>
 	<?php endif; ?>
 
