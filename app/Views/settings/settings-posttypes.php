@@ -45,7 +45,7 @@ settings_fields( 'nestedpages-posttypes' );
 			<?php _e('Note: Nesting features not enabled for non-hierarchical post types.', 'nestedpages'); ?>
 		</p>
 		<p style="font-style:oblique;font-size:13px;">
-			*<?php _e('If existing menu is not replaced, an additional submenu item will be added titled "Nested View"', 'nestedpages'); ?>
+			*<?php _e('If default menu is not replaced, an additional submenu item will be added for "Nested/Sort View"', 'nestedpages'); ?>
 		</p>
 	</td>
 </tr>

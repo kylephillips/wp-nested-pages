@@ -121,8 +121,8 @@ class Listing {
 	*/
 	private function pageURL()
 	{
-		global $current_screen;
-		return admin_url() . 'admin.php?page=' . $current_screen->parent_file;
+		$base = ( $this->post_type->name == 'post' ) ? admin_url('edit.php') : admin_url('admin.php');
+		return $base . '?page=' . $_GET['page'];
 	}
 
 
