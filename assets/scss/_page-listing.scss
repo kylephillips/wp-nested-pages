@@ -267,6 +267,27 @@
 		}
 	}
 
+	// Post Data Columns
+	.np-post-columns {
+		float: right;
+		margin: 3px 20px 0px 0px;
+		@include clearfix;
+		ul li {
+			background: transparent;
+			color: darken($white, 50%);
+			border: 0;
+			float: left;
+			margin-left: 8px;
+			padding-left: 8px;
+			border-left: 1px solid darken($white, 20%);
+			&:first-child {
+				margin-left: 0;
+				padding-left: 0;
+				border: 0;
+			}
+		}
+	}
+
 	// Action Buttons
 	.action-buttons {
 		display: none;
@@ -291,6 +312,9 @@
 {
 	.nestedpages .row:hover .action-buttons {
 		display: block;
+	}
+	.nestedpages .row:hover .np-post-columns {
+		display: none;
 	}
 }
 

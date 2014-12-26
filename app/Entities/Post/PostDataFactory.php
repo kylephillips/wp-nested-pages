@@ -19,7 +19,8 @@ class PostDataFactory {
 		$this->addPostVars($post);
 		$this->addPostMeta($post);
 		$this->addMenuOptions($post);
-		$this->addDate($post);		
+		$this->addDate($post);
+		$this->author($post);
 
 		return $this->post_data;
 	}
@@ -38,6 +39,7 @@ class PostDataFactory {
 		$this->post_data->type = $post->post_type;
 		$this->post_data->comment_status = $post->comment_status;
 		$this->post_data->content = $post->post_content;
+		$this->post_data->hierarchical = is_post_type_hierarchical($post->post_type);
 	}
 
 	/**
@@ -80,6 +82,15 @@ class PostDataFactory {
 		$this->post_data->date->y = get_the_time('Y', $post->ID);
 		$this->post_data->date->h = get_the_time('H', $post->ID);
 		$this->post_data->date->m = get_the_time('i', $post->ID);
+	}
+
+	/**
+	* Add Author Info
+	*/
+	private function author($post)
+	{
+		$this->post_data->author = get_the_author_meta('display_name', $post->post_author);
+		$this->post_data->author_link = admin_url('edit.php?post_type=' . $post->post_type . '&author=' . $post->post_author);
 	}
 
 }

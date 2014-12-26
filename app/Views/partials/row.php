@@ -51,8 +51,20 @@
 			?>
 		</a>
 
+
 		<!-- Responsive Toggle Button -->
 		<a href="#" class="np-toggle-edit"><i class="np-icon-pencil"></i></a>
+
+
+		<?php if ( !$this->post->hierarchical ) : echo $this->post->hierarchical; ?>
+		<div class="np-post-columns">
+			<ul class="np-post-info">
+				<li><?php echo $this->post->author; ?></li>
+				<li><?php echo get_the_date(); ?></li>
+			</ul>
+		</div>
+		<?php endif; ?>
+
 
 		<div class="action-buttons">
 
