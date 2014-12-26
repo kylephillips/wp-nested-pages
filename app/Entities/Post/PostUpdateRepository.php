@@ -103,12 +103,14 @@ class PostUpdateRepository {
 	*/
 	public function updateTemplate($data)
 	{
-		$template = sanitize_text_field($data['page_template']);
-		update_post_meta( 
-			$data['post_id'], 
-			'_wp_page_template', 
-			$template
-		);
+		if ( isset($data['page_template']) ){
+			$template = sanitize_text_field($data['page_template']);
+			update_post_meta( 
+				$data['post_id'], 
+				'_wp_page_template', 
+				$template
+			);
+		}
 	}
 
 

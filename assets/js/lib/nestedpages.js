@@ -355,7 +355,7 @@ jQuery(function($){
 
 	/**
 	* ------------------------------------------------------------------------
-	* Quick Edit - Pages
+	* Quick Edit - Posts
 	* ------------------------------------------------------------------------
 	**/
 
@@ -678,6 +678,9 @@ jQuery(function($){
 					np_update_qe_data(form, data.post_data);
 					np_qe_update_animate(form);
 				}
+			},
+			error: function(data){
+				console.log(data);
 			}
 		});
 	}
