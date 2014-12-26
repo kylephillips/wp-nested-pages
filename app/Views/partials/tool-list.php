@@ -23,7 +23,7 @@
 		</li>
 		<?php endif; ?>
 
-		<?php if ( get_option('nestedpages_hidedefault') !== 'hide' ) : ?>
+		<?php if ( !$this->post_type_repo->hideDefault($this->post_type->name) ) : ?>
 		<li>
 			<a href="<?php echo NestedPages\Helpers::defaultPagesLink($this->post_type->name); ?>">
 				<?php _e('Default'); ?> <?php _e($this->post_type->labels->name); ?>
