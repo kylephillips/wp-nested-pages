@@ -109,4 +109,18 @@ class PostRepository {
 		return $pages;
 	}
 
+
+	/**
+	* Empty the Trash for a given post type
+	* @since 1.3.1
+	*/
+	public function emptyTrash($post_type)
+	{
+		$posts_q = new \WP_Query(array('post_type'=>$post_type, 'post_status'=>'trash', 'posts_per_page'=>-1));
+		if ( $posts_q->have_posts() ) : while ( $posts_q->have_posts() ) : $posts_q->the_post();
+			wp_delete_post(get_the_id(), true);
+		endwhile; endif; wp_reset_postdata();
+		return true;
+	}
+
 }

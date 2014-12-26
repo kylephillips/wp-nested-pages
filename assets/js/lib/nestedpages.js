@@ -1510,4 +1510,49 @@ jQuery(function($){
 
 
 
+
+
+	/**
+	* ------------------------------------------------------------------------
+	* Empty Trash
+	* ------------------------------------------------------------------------
+	**/
+	$('.np-empty-trash').on('click', function(e){
+		e.preventDefault();
+		$('#nested-loading').show();
+		$('#np-error').hide();
+		var posttype = $(this).attr('data-posttype');
+		if (window.confirm(nestedpages.trash_confirm)){ 
+			empty_trash(posttype);
+		}
+	});
+
+	/**
+	* Empty the trash for a given post type
+	*/
+	function empty_trash(posttype)
+	{
+		$.ajax({
+			url: ajaxurl,
+			type: 'post',
+			datatype: 'json',
+			data: {
+				action : 'npEmptyTrash',
+				nonce : nestedpages.np_nonce,
+				posttype : posttype
+			},
+			success: function(data){
+				console.log(data);
+				$('#nested-loading').hide();
+				if (data.status === 'error'){
+					$('#np-error').text(data.message).show();
+				} else {
+					$('.np-trash-links').hide();
+				}
+			}
+		});
+	}
+
+
+
 }); //$

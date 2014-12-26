@@ -1,10 +1,8 @@
 <?php
 $allowsorting = get_option('nestedpages_allowsorting', array());
 if ( $allowsorting == "" ) $allowsorting = array();
-
 settings_fields( 'nestedpages-general' ); 
 ?>
-
 <tr valign="top">
 	<th scope="row"><?php _e('Nested Pages Version', 'nestedpages'); ?></th>
 	<td><strong><?php echo get_option('nestedpages_version'); ?></strong></td>
@@ -14,15 +12,6 @@ settings_fields( 'nestedpages-general' );
 	<td>
 		<input type="text" name="nestedpages_menu" id="nestedpages_menu" value="<?php echo $this->menu->name; ?>">
 		<p><em><?php _e('Important: Once the menu name has changed, theme files should be updated to reference the new name.', 'nestedpages'); ?></em></p>
-	</td>
-</tr>
-<tr valign="top">
-	<th scope="row"><?php _e('Hide Default Pages', 'nestedpages'); ?></th>
-	<td>
-		<label>
-			<input type="checkbox" id="nestedpages_hidedefault" name="nestedpages_hidedefault" <?php if ( get_option('nestedpages_hidedefault') == 'hide') echo 'checked'; ?> value="hide" >
-			<?php _e('Hide Default Pages', 'nestedpages'); ?>
-		</label>
 	</td>
 </tr>
 <tr valign="top">

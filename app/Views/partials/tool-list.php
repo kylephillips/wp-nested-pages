@@ -16,9 +16,9 @@
 		</li>
 		
 		<?php if ( current_user_can('delete_pages') && $trashedCount > 0) : ?>
-		<li>
+		<li class="np-trash-links">
 			<a href="<?php echo $this->post_type_repo->trashLink($this->post_type->name); ?>"><?php _e('Trash'); ?> </a>
-			<span class="count">(<?php echo $trashedCount; ?>)</span>
+			<span class="count">(<a href="#" class="np-empty-trash" data-posttype="<?php echo $this->post_type->name; ?>"><?php _e('Empty', 'nestedpages'); ?></a> <?php echo $trashedCount; ?>)</span>
 			 | 
 		</li>
 		<?php endif; ?>

@@ -14,7 +14,7 @@ settings_fields( 'nestedpages-posttypes' );
 				<th><?php _e('Post Type', 'nestedpages'); ?></th>
 				<th><?php _e('Hierarchical', 'nestedpages'); ?></th>
 				<th><?php _e('Enabled', 'nestedpages'); ?></th>
-				<th><?php _e('Replace Existing Menu', 'nestedpages'); ?>*</th>
+				<th><?php _e('Replace Default Menu', 'nestedpages'); ?>*</th>
 				<th><?php _e('Hide Default Link', 'nestedpages'); ?>*</th>
 			</thead>
 			<?php foreach ($types as $type) : ?>
