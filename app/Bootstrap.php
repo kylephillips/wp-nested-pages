@@ -32,8 +32,6 @@ class Bootstrap {
 	public function initializeWordPress()
 	{
 		new Entities\AdminMenu\AdminMenu;
-		new Entities\AdminMenu\AdminSubmenuExpander;
-		new Entities\AdminRedirect\AdminRedirectFactory;
 		new Entities\DefaultList\DefaultListFactory;
 		$this->addLocalization();
 	}

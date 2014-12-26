@@ -21,15 +21,6 @@ class AdminSubmenuExpander {
 	public function __construct()
 	{
 		$this->post_type_repo = new PostTypeRepository;
-		add_action('admin_head', array($this, 'expandPagesMenu'));
-	}
-
-
-	/**
-	* Expand the Pages submenu
-	*/
-	public function expandPagesMenu()
-	{
 		$this->page = get_current_screen();
 		$this->addHighlighting();
 	}
