@@ -2,7 +2,10 @@
 
 use NestedPages\Entities\PostType\PostTypeRepository;
 
-class DefaultListLink {
+/**
+* Adds "nested view/sort view" to default lists on enabled post types
+*/
+class NestedViewLink {
 
 	/**
 	* Post Type
