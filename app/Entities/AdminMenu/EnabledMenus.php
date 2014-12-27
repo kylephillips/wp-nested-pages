@@ -131,7 +131,7 @@ class EnabledMenus {
 		global $_wp_last_object_menu;
 		if ( $this->post_type->name == 'post' ) return 5;
 		if ( $this->post_type->name == 'page') return 20;
-		if ( $this->post_type->menu_position ) return $this->post_type->menu_position;
+		if ( $this->post_type->menu_position ) return $this->post_type->menu_position + 1;
 		return $_wp_last_object_menu + $c;
 	}
 
