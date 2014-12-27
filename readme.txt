@@ -16,7 +16,7 @@ Nested Pages provides a drag and drop interface for managing pages & posts in th
 **Why use Nested Pages?**
 
 * Provides a simple & intuitive drag and drop interface for managing your page structure and post ordering
-* Maintains quick edit functionality
+* Enhanced quick edit functionality
 * Adds an editable, sortable tree view of your site's page structure
 * Automatically generates a native WordPress menu that matches your page structure
 * A way to quickly add multiple pages & posts (ideal for development)
