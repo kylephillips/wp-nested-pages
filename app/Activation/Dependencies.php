@@ -68,6 +68,7 @@ class Dependencies {
 			wp_enqueue_script('suggest');
 			wp_enqueue_script('jquery-ui-core');
 			wp_enqueue_script('jquery-ui-sortable');
+			wp_enqueue_script('jquery-ui-datepicker');
 			wp_enqueue_script(
 				'bootstrap-modal', 
 				$this->plugin_dir . '/assets/js/lib/bs-modal.js', 

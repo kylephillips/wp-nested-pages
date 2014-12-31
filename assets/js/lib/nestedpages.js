@@ -535,6 +535,12 @@ jQuery(function($){
 		show_quick_edit_overlay();
 
 		$(form).show();
+		$(form).find('.np_datepicker').datepicker({
+			beforeShow: function(input, inst) {
+				$('#ui-datepicker-div').addClass('nestedpages-datepicker');
+			}
+		});
+
 
 		// Populate Flat Taxonomies (makes ajax request, so do this after showing form)
 		if ( data.hasOwnProperty('f_taxonomies') ){
@@ -955,6 +961,7 @@ jQuery(function($){
 		show_quick_edit_overlay();
 
 		$(form).show();
+		enable_datepicker();
 	}
 
 

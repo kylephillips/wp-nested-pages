@@ -28,6 +28,10 @@
 			<label><?php _e( 'Date' ); ?></label>
 			<div class="dates"><?php touch_time( 1, 1, 0, 1 ); ?></div>
 		</div>
+		<div class="form-control">
+			<label><?php _e( 'Date' ); ?></label>
+			<input type="text" name="np_date" class="np_datepicker" value="" />
+		</div>
 
 		<?php 
 		/*
