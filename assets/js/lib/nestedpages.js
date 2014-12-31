@@ -435,7 +435,8 @@ jQuery(function($){
 			navtitleattr : $(item).attr('data-navtitleattr'),
 			navcss : $(item).attr('data-navcss'),
 			linktarget : $(item).attr('data-linktarget'),
-			password : $(item).attr('data-password')
+			password : $(item).attr('data-password'),
+			datepicker : $(item).attr('data-datepicker')
 		};
 		var parent_li = $(item).closest('.row').parent('li');
 
@@ -481,6 +482,7 @@ jQuery(function($){
 		$(form).find('.np_title_attribute').val(data.navtitleattr);
 		$(form).find('.np_nav_css_classes').val(data.navcss);
 		$(form).find('.post_password').val(data.password);
+		$(form).find('.np_datepicker').val(data.datepicker);
 		if ( data.cs === 'open' ) $(form).find('.np_cs').prop('checked', 'checked');
 
 		if ( data.template !== '' ){
@@ -676,6 +678,7 @@ jQuery(function($){
 			datatype: 'json',
 			data: $(form).serialize() + '&action=npquickEdit&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu + '&post_type=' + np_get_post_type(),
 			success: function(data){
+				console.log(data);
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);
 					$(form).find('.np-quickedit-error').text(data.message).show();

@@ -74,6 +74,10 @@
 			width: 30px;
 			height: 30px;
 			line-height: 30px;
+			&.ui-state-active {
+				background-color: darken($white, 90%);
+				color: $white;
+			}
 			&:hover {
 				background-color: $black;
 				color: $white;
