@@ -4,7 +4,7 @@ Donate link: http://nestedpages.com/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -80,6 +80,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.3.1 =
+* UI enhancements in Quick Edits – default date fields replaced with datepicker and formatted time. 
+
 = 1.3.0 =
 * All public post types are now supported, both hierarchical and non-hierarchical. To enabled the Nested Pages interface for additional post types, visit Settings > Nested Pages and select the "Post Types" tab. The generated nav menu is tied to the pages type, which is enabled by default.
 * New interface for adding top-level posts/pages in bulk
@@ -147,6 +150,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Nested Pages
 
 == Upgrade Notice ==
+
+= 1.3.1 =
+Date fields in Quick Edit windows are now replaced with a date picker and formatted time. If the formatting conflicts with your specific locale, disable the datepicker under Settings > Nested Pages > General.
 
 = 1.3.0 =
 All post types are now supported. Also includes minor bug fixes and UI improvements.
