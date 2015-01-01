@@ -768,6 +768,8 @@ jQuery(function($){
 		$(button).attr('data-year', data.aa);
 		$(button).attr('data-hour', data.hh);
 		$(button).attr('data-minute', data.mn);
+		$(button).attr('data-datepicker', data.np_date);
+		$(button).attr('data-time', data.np_time);
 
 		np_remove_taxonomy_classes(li);
 		np_add_category_classes(li, data);
@@ -966,7 +968,6 @@ jQuery(function($){
 		show_quick_edit_overlay();
 
 		$(form).show();
-		enable_datepicker();
 	}
 
 

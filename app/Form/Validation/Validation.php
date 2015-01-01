@@ -1,8 +1,22 @@
 <?php namespace NestedPages\Form\Validation;
+
+use NestedPages\Config\SettingsRepository;
+
 /**
 * Nested Pages Form Validation
 */
 class Validation {
+
+	/**
+	* Settings Repository
+	*/
+	private $settings;
+
+	public function __construct()
+	{
+		$this->settings = new SettingsRepository;
+	}
+
 
 	/**
 	* Validate Post IDs in an array of posts
@@ -33,21 +47,40 @@ class Validation {
 
 
 	/**
-	* Validate Date Input
+	* Validate Date Input whether default WP or NP Datepicker
 	*/
 	public function validateDate($data)
 	{
-		// First validate that it is an actual date
-		if ( !wp_checkdate( 
-				intval($data['mm']), 
-				intval($data['jj']), 
-				intval($data['aa']),
-				$data['aa'] . '-' . $data['mm'] . '-' . $data['jj']
-				)
-			){
-			return wp_send_json(array('status' => 'error', 'message' => __('Please provide a valid date.', 'nestedpages') ));
-			die();
-		}
+		if ( $this->settings->datepickerEnabled() ) return $this->validateDatepicker($data);
+		return $this->validateWPDate($data);
+	}
+
+
+	/**
+	* Validate Datepicker date and time
+	* @since 1.3.1
+	* @return string - formatted date
+	*/
+	private function validateDatepicker($data)
+	{
+		// Make sure fields are filled out
+		if ( $data['np_date'] == "" || $data['np_time'] == "" ) return $this->sendDateError();
+		$this->checkValidTime($data['np_time']);
+		$date = date('Y-m-d H:i:s', strtotime($data['np_date'] . ' ' . $data{'np_time'}));
+		if ( $date ==  '1970-01-01 00:00:00' ) return $this->sendDateError();
+		return $date;
+	}
+
+
+	/**
+	* Validate Default WP Date Fields
+	* @since 1.3.1
+	* @return string - formatted date
+	*/
+	private function validateWPDate($data)
+	{
+		$this->checkValidDate($data['mm'], $data['jj'], $data['aa']);
+		$this->checkValidTime($data['hh'] . ':' . $data['mn']);
 
 		// Validate all the fields are there
 		if ( ($data['aa'] !== "") 
@@ -57,12 +90,44 @@ class Validation {
 			&& ( $data['mm'] !== "" )
 			&& ( $data['ss'] !== "" ) )
 		{
-			$date = strtotime($data['aa'] . '-' . $data['mm'] . '-' . $data['jj'] . ' ' . $data['hh'] . ':' . $data['mm'] . ':' . $data['ss']);
+			$date = strtotime($data['aa'] . '-' . $data['mm'] . '-' . $data['jj'] . ' ' . $data['hh'] . ':' . $data['mn'] . ':' . $data['ss']);
 			return date('Y-m-d H:i:s', $date);
-		} else {
-			return wp_send_json(array('status' => 'error', 'message' => __('Please provide a valid date.', 'nestedpages') ));
-			die();
 		}
+		
+		return $this->sendDateError();
+		
+	}
+
+
+	/**
+	* Check valid date
+	*/
+	private function checkValidDate($month, $day, $year)
+	{
+		if ( !wp_checkdate(intval($month), intval($day), intval($year),	$year . '-' . $month . '-' . $day))	return $this->sendDateError();
+	}
+
+
+	/**
+	* Check for Valid 24 hour Time
+	*/
+	private function checkValidTime($time)
+	{
+		if (!preg_match("/(2[0-3]|[01][0-9]):[0-5][0-9]/", $time)) return $this->sendDateError();
+	}
+
+
+	/**
+	* Send Date Error
+	* @return response
+	*/
+	private function sendDateError()
+	{
+		wp_send_json(array(
+			'status' => 'error', 
+			'message' => __('Please provide a valid date.', 'nestedpages') 
+		));
+		die();
 	}
 
 

@@ -1,5 +1,5 @@
 <div class="wrap">
-
+<?php $date = date_i18n('n/j/Y', get_the_time('U')); echo $date; ?>
 	<h2>
 		<?php _e($this->post_type->labels->name); ?>
 		
