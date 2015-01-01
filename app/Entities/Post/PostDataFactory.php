@@ -82,7 +82,7 @@ class PostDataFactory {
 		$this->post_data->date->y = get_the_time('Y', $post->ID);
 		$this->post_data->date->h = get_the_time('H', $post->ID);
 		$this->post_data->date->m = get_the_time('i', $post->ID);
-		$this->post_data->date->time = get_the_time('U', $post->ID);
+		$this->post_data->date->datepicker = get_the_time('U', $post->ID);
 	}
 
 	/**

@@ -75,7 +75,25 @@
 				}
 			}
 		}
-	}
+		&.np-datepicker-container {
+			.datetime {
+				float: right;
+				width: 75%;
+			}
+			input[type="text"]{
+				float: left;
+				width: 45%;
+				margin: 0;
+			}
+			span {
+				float: left;
+				width: 10%;
+				display: block;
+				text-align: center;
+				padding-top: 3px;
+			}
+		}
+	} // .form-control
 	.comments {
 		float: right;
 		width: 75%;

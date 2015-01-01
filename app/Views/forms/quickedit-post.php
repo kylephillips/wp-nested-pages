@@ -24,14 +24,22 @@
 			<label><?php _e( 'Slug' ); ?></label>
 			<input type="text" name="post_name" class="np_slug" value="" />
 		</div>
+
+		<?php if ( $this->settings->datepickerEnabled() ) : ?>
+		<div class="form-control np-datepicker-container">
+			<label><?php _e( 'Date' ); ?></label>
+			<div class="datetime">
+				<input type="text" name="np_date" class="np_datepicker" value="" />
+				<span><?php _e('@', 'nestedpages'); ?></span>
+				<input type="text" name="np_time" class="np_time" value="" />
+			</div>
+		</div>
+		<?php else : ?>
 		<div>
 			<label><?php _e( 'Date' ); ?></label>
 			<div class="dates"><?php touch_time( 1, 1, 0, 1 ); ?></div>
 		</div>
-		<div class="form-control">
-			<label><?php _e( 'Date' ); ?></label>
-			<input type="text" name="np_date" class="np_datepicker" value="" />
-		</div>
+		<?php endif; ?>
 
 		<?php 
 		/*

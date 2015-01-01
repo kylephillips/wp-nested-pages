@@ -436,7 +436,8 @@ jQuery(function($){
 			navcss : $(item).attr('data-navcss'),
 			linktarget : $(item).attr('data-linktarget'),
 			password : $(item).attr('data-password'),
-			datepicker : $(item).attr('data-datepicker')
+			datepicker : $(item).attr('data-datepicker'),
+			time: $(item).attr('data-time')
 		};
 		var parent_li = $(item).closest('.row').parent('li');
 
@@ -483,6 +484,7 @@ jQuery(function($){
 		$(form).find('.np_nav_css_classes').val(data.navcss);
 		$(form).find('.post_password').val(data.password);
 		$(form).find('.np_datepicker').val(data.datepicker);
+		$(form).find('.np_time').val(data.time);
 		if ( data.cs === 'open' ) $(form).find('.np_cs').prop('checked', 'checked');
 
 		if ( data.template !== '' ){
