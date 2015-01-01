@@ -105,6 +105,8 @@ class PostRepository {
 			$pages[$c]['minute'] = get_the_time('i');
 			$pages[$c]['datepicker'] = date_i18n('n/j/Y', get_the_time('U'));
 			$pages[$c]['time'] = date_i18n('H:i', get_the_time('U'));
+			$pages[$c]['formattedtime'] = date_i18n('g:i', get_the_time('U'));
+			$pages[$c]['ampm'] = get_the_time('a');
 
 
 		$c++; endwhile; endif; wp_reset_postdata();

@@ -111,7 +111,9 @@
 				data-hour="<?php echo $this->post->date->h; ?>" 
 				data-minute="<?php echo $this->post->date->m;?>"
 				data-datepicker="<?php echo date_i18n('n/j/Y', $this->post->date->datepicker); ?>"
-				data-time="<?php echo date_i18n('H:i', $this->post->date->datepicker); ?>">
+				data-time="<?php echo date_i18n('H:i', $this->post->date->datepicker); ?>"
+				data-formattedtime="<?php echo date_i18n('g:i', $this->post->date->datepicker); ?>"
+				data-ampm="<?php echo date('a', $this->post->date->datepicker); ?>">
 				<?php _e('Quick Edit'); ?>
 			</a>
 			<?php endif; ?>

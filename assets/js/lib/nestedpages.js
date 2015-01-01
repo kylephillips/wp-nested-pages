@@ -437,7 +437,8 @@ jQuery(function($){
 			linktarget : $(item).attr('data-linktarget'),
 			password : $(item).attr('data-password'),
 			datepicker : $(item).attr('data-datepicker'),
-			time: $(item).attr('data-time')
+			time: $(item).attr('data-formattedtime'),
+			ampm: $(item).attr('data-ampm')
 		};
 		var parent_li = $(item).closest('.row').parent('li');
 
@@ -485,6 +486,7 @@ jQuery(function($){
 		$(form).find('.post_password').val(data.password);
 		$(form).find('.np_datepicker').val(data.datepicker);
 		$(form).find('.np_time').val(data.time);
+		$(form).find('.np_ampm').val(data.ampm);
 		if ( data.cs === 'open' ) $(form).find('.np_cs').prop('checked', 'checked');
 
 		if ( data.template !== '' ){
@@ -770,6 +772,8 @@ jQuery(function($){
 		$(button).attr('data-minute', data.mn);
 		$(button).attr('data-datepicker', data.np_date);
 		$(button).attr('data-time', data.np_time);
+		$(button).attr('data-formattedtime', data.np_time);
+		$(button).attr('data-ampm', data.np_ampm);
 
 		np_remove_taxonomy_classes(li);
 		np_add_category_classes(li, data);
@@ -1513,7 +1517,7 @@ jQuery(function($){
 		html += '<a href="#" class="np-btn add-new-child" data-id="' + page.id + '" data-parentname="' + page.title + '">' + nestedpages.add_child_short + '</a>';
 		
 		// Quick Edit (data attrs)
-		html += '<a href="#" class="np-btn np-quick-edit" data-id="' + page.id + '" data-template="' + page.page_template + '" data-title="' + page.title + '" data-slug="' + page.slug + '" data-commentstatus="closed" data-status="' + page.status.toLowerCase() + '" data-np-status="show"	data-navstatus="show" data-author="' + page.author + '" data-template="' + page.template + '" data-month="' + page.month + '" data-day="' + page.day + '" data-year="' + page.year + '" data-hour="' + page.hour + '" data-minute="' + page.minute + '" data-datepicker="' + page.datepicker + '" data-time="' + page.time + '">' + nestedpages.quick_edit + '</a>';
+		html += '<a href="#" class="np-btn np-quick-edit" data-id="' + page.id + '" data-template="' + page.page_template + '" data-title="' + page.title + '" data-slug="' + page.slug + '" data-commentstatus="closed" data-status="' + page.status.toLowerCase() + '" data-np-status="show"	data-navstatus="show" data-author="' + page.author + '" data-template="' + page.template + '" data-month="' + page.month + '" data-day="' + page.day + '" data-year="' + page.year + '" data-hour="' + page.hour + '" data-minute="' + page.minute + '" data-datepicker="' + page.datepicker + '" data-time="' + page.time + '" data-formattedtime="' + page.formattedtime + '" data-ampm="' + page.ampm + '">' + nestedpages.quick_edit + '</a>';
 
 		html += '<a href="' + page.view_link + '" class="np-btn" target="_blank">' + nestedpages.view + '</a>';
 		html += '<a href="' + page.delete_link + '" class="np-btn np-btn-trash"><i class="np-icon-remove"></i></a>';
