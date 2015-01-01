@@ -7,6 +7,7 @@ use NestedPages\Entities\Post\PostRepository;
 use NestedPages\Entities\User\UserRepository;
 use NestedPages\Entities\PostType\PostTypeRepository;
 use NestedPages\Entities\Listing\ListingRepository;
+use NestedPages\Config\SettingsRepository;
 
 /**
 * Primary Post Listing
@@ -73,6 +74,11 @@ class Listing {
 	*/
 	private $sort_options;
 
+	/**
+	* Settings Repository
+	*/
+	private $settings;
+
 
 	public function __construct($post_type)
 	{
@@ -83,6 +89,7 @@ class Listing {
 		$this->post_type_repo = new PostTypeRepository;
 		$this->listing_repo = new ListingRepository;
 		$this->post_data_factory = new PostDataFactory;
+		$this->settings = new SettingsRepository;
 	}
 
 

@@ -25,6 +25,7 @@ class Updates {
 		$this->addMenu();
 		$this->convertMenuToID();
 		$this->enablePagePostType();
+		$this->enabledDatepicker();
 	}
 
 
@@ -86,6 +87,22 @@ class Updates {
 			if ( !$enabled ) update_option('nestedpages_posttypes', $default);
 		}
 	}
+
+
+	/**
+	* Enable the Datepicker
+	*/
+	private function enabledDatepicker()
+	{
+		if ( version_compare( $this->current_version, '1.3.1', '<' ) ){
+			$enabled = get_option('nestedpages_ui', false);
+			$default = array(
+				'datepicker' => 'true'
+			);
+			if ( !$enabled ) update_option('nestedpages_ui', $default);
+		}
+	}
+
 
 
 }

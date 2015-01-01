@@ -3,6 +3,7 @@
 use NestedPages\Helpers;
 use NestedPages\Entities\User\UserRepository;
 use NestedPages\Entities\PostType\PostTypeRepository;
+use NestedPages\Config\SettingsRepository;
 
 /**
 * Plugin Settings
@@ -25,6 +26,11 @@ class Settings {
 	*/
 	private $post_types;
 
+	/**
+	* Settings Repository
+	*/
+	private $settings;
+
 
 	public function __construct()
 	{
@@ -32,6 +38,7 @@ class Settings {
 		add_action( 'admin_init', array( $this, 'registerSettings' ) );
 		add_action( 'updated_option', array( $this, 'updateMenuName'), 10, 3);
 		$this->user_repo = new UserRepository;
+		$this->settings = new SettingsRepository;
 	}
 
 
@@ -59,6 +66,7 @@ class Settings {
 	{
 		register_setting( 'nestedpages-general', 'nestedpages_menu' );
 		register_setting( 'nestedpages-general', 'nestedpages_menusync' );
+		register_setting( 'nestedpages-general', 'nestedpages_ui' );
 		register_setting( 'nestedpages-general', 'nestedpages_allowsorting' );
 		register_setting( 'nestedpages-posttypes', 'nestedpages_posttypes' );
 	}

@@ -15,6 +15,15 @@ settings_fields( 'nestedpages-general' );
 	</td>
 </tr>
 <tr valign="top">
+	<th scope="row"><?php _e('Display Options', 'nestedpages'); ?></th>
+	<td>
+		<label>
+			<input type="checkbox" name="nestedpages_ui[datepicker]" value="true" <?php if ( $this->settings->datepickerEnabled() ) echo 'checked'; ?> />
+			<?php _e('Enable Date Picker in Quick Edit', 'nestedpages'); ?>
+		</label>
+	</td>
+</tr>
+<tr valign="top">
 	<th scope="row"><?php _e('Allow Page Sorting', 'nestedpages'); ?></th>
 	<td>
 		<?php foreach ( $this->user_repo->allRoles() as $role ) : ?>
