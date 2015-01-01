@@ -1421,7 +1421,6 @@ jQuery(function($){
 			datatype: 'json',
 			data: $(form).serialize() + '&action=npnewChild&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu + '&post_type=' + np_get_post_type(),
 			success: function(data){
-				console.log(data);
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);
 					$(form).find('.np-quickedit-error').text(data.message).show();
@@ -1513,7 +1512,7 @@ jQuery(function($){
 		html += '<a href="#" class="np-btn add-new-child" data-id="' + page.id + '" data-parentname="' + page.title + '">' + nestedpages.add_child_short + '</a>';
 		
 		// Quick Edit (data attrs)
-		html += '<a href="#" class="np-btn np-quick-edit" data-id="' + page.id + '" data-template="' + page.page_template + '" data-title="' + page.title + '" data-slug="' + page.slug + '" data-commentstatus="closed" data-status="' + page.status.toLowerCase() + '" data-np-status="show"	data-navstatus="show" data-author="' + page.author + '" data-template="' + page.template + '" data-month="' + page.month + '" data-day="' + page.day + '" data-year="' + page.year + '" data-hour="' + page.hour + '" data-minute="' + page.minute + '">' + nestedpages.quick_edit + '</a>';
+		html += '<a href="#" class="np-btn np-quick-edit" data-id="' + page.id + '" data-template="' + page.page_template + '" data-title="' + page.title + '" data-slug="' + page.slug + '" data-commentstatus="closed" data-status="' + page.status.toLowerCase() + '" data-np-status="show"	data-navstatus="show" data-author="' + page.author + '" data-template="' + page.template + '" data-month="' + page.month + '" data-day="' + page.day + '" data-year="' + page.year + '" data-hour="' + page.hour + '" data-minute="' + page.minute + '" data-datepicker="' + page.datepicker + '" data-time="' + page.time + '">' + nestedpages.quick_edit + '</a>';
 
 		html += '<a href="' + page.view_link + '" class="np-btn" target="_blank">' + nestedpages.view + '</a>';
 		html += '<a href="' + page.delete_link + '" class="np-btn np-btn-trash"><i class="np-icon-remove"></i></a>';

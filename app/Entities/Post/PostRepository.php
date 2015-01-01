@@ -103,6 +103,8 @@ class PostRepository {
 			$pages[$c]['year'] = get_the_time('Y');
 			$pages[$c]['hour'] = get_the_time('H');
 			$pages[$c]['minute'] = get_the_time('i');
+			$pages[$c]['datepicker'] = get_the_time('n/j/Y');
+			$pages[$c]['time'] = get_the_time('H:i');
 
 
 		$c++; endwhile; endif; wp_reset_postdata();
