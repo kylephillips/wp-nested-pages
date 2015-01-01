@@ -31,7 +31,13 @@
 			<div class="datetime">
 				<input type="text" name="np_date" class="np_datepicker" value="" />
 				<span><?php _e('@', 'nestedpages'); ?></span>
-				<input type="text" name="np_time" class="np_time" value="" />
+				<div class="np-time-container">
+					<select name="np_ampm" class="np_ampm">
+						<option value="am"><?php _e('am', 'nestedpages'); ?></option>
+						<option value="pm"><?php _e('pm', 'nestedpages'); ?></option>
+					</select>
+					<input type="text" name="np_time" class="np_time" value="" />
+				</div>
 			</div>
 		</div>
 		<?php else : ?>

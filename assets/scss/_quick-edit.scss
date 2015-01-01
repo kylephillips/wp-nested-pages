@@ -80,7 +80,21 @@
 				float: right;
 				width: 75%;
 			}
-			input[type="text"]{
+			.np-time-container {
+				float: left;
+				width: 45%;
+				margin: 0;
+				position: relative;
+				input[type="text"]{
+					float: left;
+					width: 55%;
+				}
+				select {
+					float: right;
+					width: 35%;
+				}
+			}
+			.np_datepicker {
 				float: left;
 				width: 45%;
 				margin: 0;
