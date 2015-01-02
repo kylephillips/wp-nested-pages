@@ -37,6 +37,7 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 * German/Swiss German (Bartosz Podlewski)
 * Italian (Francesco Canovi)
 * Portuguese (Luis Martins)
+* Russian (Алексей Катаев)
 
 == Installation ==
 
@@ -79,6 +80,10 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 5. Quickly add posts without leaving the page tree
 
 == Changelog ==
+
+= 1.3.3 =
+* Russian Translation (Provided by Алексей Катаев)
+* Minor bug fix in add child page functionality that effects display of appended pages.
 
 = 1.3.2 =
 * Bug fix in menu - pages now nestable under links.
@@ -153,6 +158,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Nested Pages
 
 == Upgrade Notice ==
+
+= 1.3.3 =
+Russian translation added along with minor bug fixes.
 
 = 1.3.2 =
 Minor bug fixes in menu.
