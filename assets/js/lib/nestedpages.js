@@ -682,7 +682,6 @@ jQuery(function($){
 			datatype: 'json',
 			data: $(form).serialize() + '&action=npquickEdit&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu + '&post_type=' + np_get_post_type(),
 			success: function(data){
-				console.log(data);
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);
 					$(form).find('.np-quickedit-error').text(data.message).show();
@@ -1455,7 +1454,6 @@ jQuery(function($){
 	{
 		var pages = data.new_pages;
 		var parent_li = $(form).parent('.new-child').parent('.page-row');
-		console.log(parent_li);
 		
 		// If parent li doesn't have a child ol, add one
 		if ( $(parent_li).children('ol').length === 0 ){
@@ -1564,7 +1562,6 @@ jQuery(function($){
 				posttype : posttype
 			},
 			success: function(data){
-				console.log(data);
 				$('#nested-loading').hide();
 				if (data.status === 'error'){
 					$('#np-error').text(data.message).show();
