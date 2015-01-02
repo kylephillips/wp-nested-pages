@@ -172,6 +172,7 @@ class NavMenu {
 			'menu-item-parent-id' => $menu_parent,
 			'menu-item-target' => $this->post['link_target']
 		));
+		return $menu;
 	}
 
 

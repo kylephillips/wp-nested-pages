@@ -80,6 +80,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.3.2 =
+* Bug fix in menu - pages now nestable under links.
+
 = 1.3.1 =
 * UI enhancements in Quick Edits – default date fields replaced with datepicker and formatted time. 
 
@@ -150,6 +153,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Nested Pages
 
 == Upgrade Notice ==
+
+= 1.3.2 =
+Minor bug fixes in menu.
 
 = 1.3.1 =
 Date fields in Quick Edit windows are now replaced with a date picker and formatted time. If the formatting conflicts with your specific locale, disable the datepicker under Settings > Nested Pages > General.
