@@ -1455,6 +1455,7 @@ jQuery(function($){
 	{
 		var pages = data.new_pages;
 		var parent_li = $(form).parent('.new-child').parent('.page-row');
+		console.log(parent_li);
 		
 		// If parent li doesn't have a child ol, add one
 		if ( $(parent_li).children('ol').length === 0 ){
@@ -1526,7 +1527,7 @@ jQuery(function($){
 		html += '</div><!-- .row-inner --></div><!-- .row -->';
 		html += '</li>';
 
-		$(appendto).after(html);
+		$(appendto).append(html);
 	}
 
 
