@@ -1,24 +1,13 @@
 <?php namespace NestedPages\Entities\NavMenu;
 
-use NestedPages\Entities\NavMenu\NavMenuRepository;
+use NestedPages\Entities\NavMenu\NavMenuSync;
 use NestedPages\Helpers;
 
 /**
 * Syncs the Generated Menu to Match the Listing
 */
-class NavMenuListingSync {
+class NavMenuSyncListing extends NavMenuSync implements NavMenuSyncInterface {
 
-	/**
-	* Nav Menu Repository
-	* @var object NavMenuRepository
-	*/
-	private $nav_menu_repo;
-
-	/**
-	* The Menu ID
-	* @var int
-	*/
-	private $id;
 
 	/**
 	* Individual Post
@@ -29,18 +18,7 @@ class NavMenuListingSync {
 
 	public function __construct()
 	{
-		$this->nav_menu_repo = new NavMenuRepository;
-		$this->setMenuID();
-		$this->nav_menu_repo->clearMenu($this->id);
-	}
-
-
-	/**
-	* Menu ID Setter
-	*/
-	private function setMenuID()
-	{
-		$this->id = $this->nav_menu_repo->getMenuID();
+		parent::__construct();
 	}
 
 
