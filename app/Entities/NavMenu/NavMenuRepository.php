@@ -41,4 +41,16 @@ class NavMenuRepository {
 		update_option('nestedpages_menu', $menu_id);
 	}
 
+
+	/**
+	* Clear out the menu
+	*/
+	public function clearMenu($menu_id)
+	{
+		$menu_items = wp_get_nav_menu_items($menu_id);
+		foreach ( $menu_items as $i ){
+			wp_delete_post($i->ID, true);
+		}
+	}
+
 }

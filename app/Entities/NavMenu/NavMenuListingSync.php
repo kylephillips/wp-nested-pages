@@ -4,9 +4,9 @@ use NestedPages\Entities\NavMenu\NavMenuRepository;
 use NestedPages\Helpers;
 
 /**
-* The generated nav menu that matches the nested pages structure
+* Syncs the Generated Menu to Match the Listing
 */
-class NavMenu {
+class NavMenuListingSync {
 
 	/**
 	* Nav Menu Repository
@@ -18,12 +18,7 @@ class NavMenu {
 	* The Menu ID
 	* @var int
 	*/
-	public $id;
-
-	/**
-	* The Menu Items
-	*/
-	public $items;
+	private $id;
 
 	/**
 	* Individual Post
@@ -36,7 +31,7 @@ class NavMenu {
 	{
 		$this->nav_menu_repo = new NavMenuRepository;
 		$this->setMenuID();
-		$this->setItems();
+		$this->nav_menu_repo->clearMenu($this->id);
 	}
 
 
@@ -46,21 +41,6 @@ class NavMenu {
 	private function setMenuID()
 	{
 		$this->id = $this->nav_menu_repo->getMenuID();
-	}
-
-
-	/**
-	* Set the Menu Items
-	*/
-	public function setItems()
-	{
-		$menu = get_term_by('id', $this->id, 'nav_menu');
-		if ( $menu ) {
-			$this->items = wp_get_nav_menu_items($this->id);
-		} else {
-			$this->createNewMenu();
-			$this->setItems();
-		}
 	}
 
 
@@ -149,18 +129,6 @@ class NavMenu {
 			'menu-item-target' => $this->post['link_target']
 		));
 		return $menu;
-	}
-
-
-	/**
-	* Clear out the menu
-	*/
-	public function clearMenu()
-	{
-		$menu_items = wp_get_nav_menu_items($this->id);
-		foreach ( $menu_items as $i ){
-			wp_delete_post($i->ID, true);
-		}
 	}
 
 

@@ -1,6 +1,6 @@
 <?php namespace NestedPages\Form\Handlers;
 
-use NestedPages\Entities\NavMenu\NavMenu;
+use NestedPages\Entities\NavMenu\NavMenuListingSync;
 use NestedPages\Entities\Post\PostRepository;
 use NestedPages\Entities\Post\PostUpdateRepository;
 use NestedPages\Entities\User\UserRepository;
@@ -90,8 +90,7 @@ abstract class BaseHandler {
 	{
 		if ( $_POST['post_type'] == 'page' ) {
 			if ( $_POST['syncmenu'] == 'sync' ){
-				$menu = new NavMenu;
-				$menu->clearMenu();
+				$menu = new NavMenuListingSync;
 				$menu->sync();
 				update_option('nestedpages_menusync', 'sync');
 			} else {
