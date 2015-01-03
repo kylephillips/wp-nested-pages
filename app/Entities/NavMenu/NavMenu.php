@@ -1,5 +1,6 @@
 <?php namespace NestedPages\Entities\NavMenu;
 
+use NestedPages\Entities\NavMenu\NavMenuRepository;
 use NestedPages\Helpers;
 
 /**
@@ -8,7 +9,14 @@ use NestedPages\Helpers;
 class NavMenu {
 
 	/**
+	* Nav Menu Repository
+	* @var object NavMenuRepository
+	*/
+	private $nav_menu_repo;
+
+	/**
 	* The Menu ID
+	* @var int
 	*/
 	public $id;
 
@@ -16,12 +24,6 @@ class NavMenu {
 	* The Menu Items
 	*/
 	public $items;
-
-	/**
-	* Menu Object
-	* @var object
-	*/
-	private $menu;
 
 	/**
 	* Individual Post
@@ -32,44 +34,18 @@ class NavMenu {
 
 	public function __construct()
 	{
-		$this->setMenu();
-		$this->setID();
+		$this->nav_menu_repo = new NavMenuRepository;
+		$this->setMenuID();
 		$this->setItems();
 	}
 
 
 	/**
-	* Get Optional custom menu name
-	* @since 1.1.5
+	* Menu ID Setter
 	*/
-	private function setMenu()
+	private function setMenuID()
 	{
-		if ( get_option('nestedpages_menu') ){
-			$menu_id = get_option('nestedpages_menu');
-			$this->menu = get_term_by('id', $menu_id, 'nav_menu');
-		} else {
-			$this->createNewMenu();
-			$this->setMenu();
-		}
-	}
-
-
-	/**
-	* Create Empty Menu if one doesn't exist
-	*/
-	private function createNewMenu()
-	{
-		$menu_id = wp_create_nav_menu('Nested Pages');
-		update_option('nestedpages_menu', $menu_id);
-	}
-
-
-	/**
-	* Set the Menu ID
-	*/
-	public function setID()
-	{
-		$this->id = $this->menu->term_id;
+		$this->id = $this->nav_menu_repo->getMenuID();
 	}
 
 
