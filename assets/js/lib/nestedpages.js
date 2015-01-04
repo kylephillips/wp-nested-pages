@@ -987,6 +987,7 @@ jQuery(function($){
 			datatype: 'json',
 			data: $(form).serialize() + '&action=npquickEditLink&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu + '&post_type=' + np_get_post_type(),
 			success: function(data){
+				console.log(data);
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);
 					$(form).find('.np-quickedit-error').text(data.message).show();

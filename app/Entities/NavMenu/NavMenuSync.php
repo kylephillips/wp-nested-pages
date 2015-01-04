@@ -36,4 +36,15 @@ abstract class NavMenuSync {
 	}
 
 
+	/**
+	* Remove a Menu Item
+	* @since 1.3.4
+	* @param int $id - ID of nav menu item
+	*/
+	protected function removeItem($id)
+	{
+		wp_delete_post($id, true);
+	}
+
+
 }

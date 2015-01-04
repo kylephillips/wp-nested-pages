@@ -17,7 +17,7 @@ class NavMenuRepository {
 	/**
 	* Get Menu Item ID
 	* @since 1.3.4
-	* @param int $id
+	* @param int $id - Post ID
 	* @return int
 	*/
 	public function getMenuItemID($id)
@@ -32,13 +32,32 @@ class NavMenuRepository {
 			return $meta_query->posts[0]->ID;
 		} else {
 			// it's a link
-			return $this->getLinkMenuItemID($id);
+			return $this->getLinkMenuItemXFN($id);
 		}
 	}
 
 
 	/**
-	* Get Link Nav Menu from post ID
+	* Get Link from XFN field
+	* Using XFN field to store original post ID
+	* Hack way of doing it, but no other way to tie custom menu items to post type and retain custom functionality
+	* @param int $id - Post ID
+	*/
+	public function getLinkMenuItemXFN($id)
+	{
+		$meta_query = new \WP_Query(array(
+			'post_type' => 'nav_menu_item',
+			'posts_per_page' => 1,
+			'meta_key' => '_menu_item_xfn',
+			'meta_value' => $id,
+		));
+		return ( $meta_query->have_posts() ) ? $meta_query->posts[0]->ID : $this->getLinkMenuItemID($id);
+	}
+
+
+	/**
+	* Get Link Nav Menu from post ID using title
+	* Supporting legacy NP versions before XFN was saved
 	* @since 1.3.4
 	* @param int $id
 	* @return int
@@ -46,8 +65,10 @@ class NavMenuRepository {
 	public function getLinkMenuItemID($id)
 	{
 		$post = get_page_by_title( get_the_title($id), OBJECT, 'nav_menu_item');
+		if ( !$post ) return 0;
 		return $post->ID;
 	}
+
 
 
 	/**

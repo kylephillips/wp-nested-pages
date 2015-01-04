@@ -63,16 +63,18 @@ class NavMenuSyncListing extends NavMenuSync implements NavMenuSyncInterface {
 	*/
 	private function syncItem($menu_parent)
 	{
-		if ( ($this->post->nav_status == 'show') || ($this->post->nav_status == '') ){
-			$menu_item_id = $this->nav_menu_repo->getMenuItemID($this->post->id);
+		// Get the Menu Item ID using the post ID
+		$menu_item_id = $this->nav_menu_repo->getMenuItemID($this->post->id);
 
-			$menu = ( $this->post->type == 'page' ) 
-				? $this->syncPageItem($menu_parent, $menu_item_id) 
-				: $this->syncLinkItem($menu_parent, $menu_item_id);
-				
-			$this->sync( $this->post->id, $menu );
-		}
+		if ( $this->post->nav_status == 'hide' ) return $this->removeItem($menu_item_id);
+
+		$menu = ( $this->post->type == 'page' ) 
+			? $this->syncPageItem($menu_parent, $menu_item_id) 
+			: $this->syncLinkItem($menu_parent, $menu_item_id);
+			
+		$this->sync( $this->post->id, $menu );
 	}
+
 
 
 	/**
@@ -115,6 +117,7 @@ class NavMenuSyncListing extends NavMenuSync implements NavMenuSyncInterface {
 			'menu-item-object' => 'np-redirect',
 			'menu-item-object-id' => $this->post->id,
 			'menu-item-parent-id' => $menu_parent,
+			'menu-item-xfn' => $this->post->id,
 			'menu-item-target' => $this->post->link_target
 		));
 		return $menu;
