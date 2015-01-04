@@ -27,7 +27,6 @@ class RegisterPostTypes {
 			'labels' => $labels,
 			'public' => false,  
 			'show_ui' => false,
-			'menu_position' => 5,
 			'capability_type' => 'post',  
 			'hierarchical' => true,  
 			'has_archive' => true,

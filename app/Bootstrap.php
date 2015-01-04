@@ -21,6 +21,7 @@ class Bootstrap {
 		new Redirects;
 		new Entities\PostType\RegisterPostTypes;
 		new Entities\Post\PostActions;
+		new Entities\NavMenu\NavMenuActions;
 		new Form\FormActionFactory;
 		new Config\Settings;
 	}

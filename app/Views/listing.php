@@ -1,5 +1,4 @@
 <div class="wrap">
-
 	<h2>
 		<?php _e($this->post_type->labels->name); ?>
 		

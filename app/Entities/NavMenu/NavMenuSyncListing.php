@@ -15,10 +15,17 @@ class NavMenuSyncListing extends NavMenuSync implements NavMenuSyncInterface {
 	*/
 	private $post;
 
+	/**
+	* Menu Position Count
+	* @var int
+	*/
+	private $count = 0;
+
 
 	public function __construct()
 	{
 		parent::__construct();
+		//$this->nav_menu_repo->clearMenu($this->id);
 	}
 
 
@@ -36,6 +43,7 @@ class NavMenuSyncListing extends NavMenuSync implements NavMenuSyncInterface {
 		$this->post['title_attribute'] = get_post_meta( $post->ID, 'np_title_attribute', true );
 		$this->post['css_classes'] = get_post_meta( $post->ID, 'np_nav_css_classes', true );
 		$this->post['permalink'] = get_the_permalink($post->ID);
+		$this->post['post_type'] = get_post_type($post->ID);
 
 		$nav_title = get_post_meta( $post->ID, 'np_nav_title', true );
 		$this->post['nav_title'] = ( $nav_title !== "" ) ? $nav_title : $post->post_title;
@@ -47,6 +55,7 @@ class NavMenuSyncListing extends NavMenuSync implements NavMenuSyncInterface {
 	*/
 	public function sync($parent = 0, $menu_parent = 0)
 	{
+		$this->count = $this->count + 1;
 		$page_q = new \WP_Query(array(
 			'post_type' => array('page','np-redirect'),
 			'posts_per_page' => -1,
@@ -59,8 +68,14 @@ class NavMenuSyncListing extends NavMenuSync implements NavMenuSyncInterface {
 			global $post;
 			$this->set_post($post);
 			if ( ($this->post['show_in_nav'] == 'show') || ($this->post['show_in_nav'] == '') ) {
-				$menu = ( get_post_type() == 'page' ) ? $this->syncPageItem($menu_parent) : $this->syncLinkItem($menu_parent);
-				$this->sync( get_the_id(), $menu );
+
+				$menu_item_id = $this->nav_menu_repo->getMenuItemID($this->post['ID']);
+
+				$menu = ( $this->post['post_type'] == 'page' ) 
+					? $this->syncPageItem($menu_parent, $menu_item_id) 
+					: $this->syncLinkItem($menu_parent, $menu_item_id);
+				
+				$this->sync( $this->post['ID'], $menu );
 			}
 		endwhile; endif; wp_reset_postdata();
 	}
@@ -70,10 +85,11 @@ class NavMenuSyncListing extends NavMenuSync implements NavMenuSyncInterface {
 	* Sync Page Menu Item
 	* @since 1.1.4
 	*/
-	private function syncPageItem($menu_parent)
+	private function syncPageItem($menu_parent, $menu_item_id)
 	{
-		$menu = wp_update_nav_menu_item($this->id, 0, array(
+		$menu = wp_update_nav_menu_item($this->id, $menu_item_id, array(
 			'menu-item-title' => $this->post['nav_title'],
+			'menu-item-position' => $this->count,
 			'menu-item-url' => $this->post['permalink'],
 			'menu-item-attr-title' => $this->post['title_attribute'],
 			'menu-item-status' => 'publish',
@@ -92,16 +108,17 @@ class NavMenuSyncListing extends NavMenuSync implements NavMenuSyncInterface {
 	* Sync Link Menu Item
 	* @since 1.1.4
 	*/
-	private function syncLinkItem($menu_parent)
+	private function syncLinkItem($menu_parent, $menu_item_id)
 	{
-		$menu = wp_update_nav_menu_item($this->id, 0, array(
+		$menu = wp_update_nav_menu_item($this->id, $menu_item_id, array(
 			'menu-item-title' => $this->post['nav_title'],
+			'menu-item-position' => $this->count,
 			'menu-item-url' => Helpers::check_url(get_the_content($this->post['ID'])),
 			'menu-item-attr-title' => $this->post['title_attribute'],
 			'menu-item-status' => 'publish',
 			'menu-item-classes' => $this->post['css_classes'],
 			'menu-item-type' => 'custom',
-			'menu-item-object' => 'page',
+			'menu-item-object' => 'np-redirect',
 			'menu-item-object-id' => $this->post['ID'],
 			'menu-item-parent-id' => $menu_parent,
 			'menu-item-target' => $this->post['link_target']

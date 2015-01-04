@@ -15,6 +15,42 @@ class NavMenuRepository {
 
 
 	/**
+	* Get Menu Item ID
+	* @since 1.3.4
+	* @param int $id
+	* @return int
+	*/
+	public function getMenuItemID($id)
+	{	
+		$meta_query = new \WP_Query(array(
+			'post_type' => 'nav_menu_item',
+			'posts_per_page' => 1,
+			'meta_key' => '_menu_item_object_id',
+			'meta_value' => $id,
+		));
+		if ( $meta_query->have_posts() ){
+			return $meta_query->posts[0]->ID;
+		} else {
+			// it's a link
+			return $this->getLinkMenuItemID($id);
+		}
+	}
+
+
+	/**
+	* Get Link Nav Menu from post ID
+	* @since 1.3.4
+	* @param int $id
+	* @return int
+	*/
+	public function getLinkMenuItemID($id)
+	{
+		$post = get_page_by_title( get_the_title($id), OBJECT, 'nav_menu_item');
+		return $post->ID;
+	}
+
+
+	/**
 	* Get the Menu Term Object
 	* @since 1.3.4
 	* @return object - WP Term Object

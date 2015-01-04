@@ -1,5 +1,7 @@
 <?php namespace NestedPages\Entities\NavMenu;
 
+use NestedPages\Entities\NavMenu\NavMenuRepository;
+
 /**
 * Base Nav Menu Sync class
 */
@@ -22,7 +24,6 @@ abstract class NavMenuSync {
 	{
 		$this->nav_menu_repo = new NavMenuRepository;
 		$this->setMenuID();
-		$this->nav_menu_repo->clearMenu($this->id);
 	}
 
 

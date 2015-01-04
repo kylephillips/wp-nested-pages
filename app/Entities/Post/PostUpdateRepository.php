@@ -331,7 +331,8 @@ class PostUpdateRepository {
 			'post_status' => sanitize_text_field($data['_status']),
 			'post_content' => sanitize_text_field($data['np_link_content']),
 			'post_parent' => sanitize_text_field($data['parent_id']),
-			'post_type' => 'np-redirect'
+			'post_type' => 'np-redirect',
+			'post_excerpt' => ''
 		);
 		$this->new_id = wp_insert_post($new_link);
 
@@ -339,6 +340,59 @@ class PostUpdateRepository {
 		$this->updateNestedPagesStatus($data);
 		$this->updateLinkTarget($data);
 		return $this->new_id;
+	}
+
+
+	/**
+	* Get the Link post id from a title
+	*/
+	public function getLinkfromTitle($title)
+	{
+		$post = get_page_by_title($title, OBJECT, 'np-redirect');
+		return $post->ID;
+	}
+
+
+	/**
+	* Is the provided post a link
+	* @return boolean
+	* @param int $id - post id
+	*/
+	public function isNavMenuItem($id)
+	{
+		if ( get_post_type($id) == 'nav_menu_item' ) return true;
+		return false;
+	}
+
+
+	/**
+	* Update a Post to Match Nav menu
+	* @since 1.3.4
+	* @param array of post data
+	*/
+	public function updateFromMenuItem($data)
+	{
+		$updated_post = array(
+			'ID' => sanitize_text_field($data['post_id']),
+			'menu_order' => sanitize_text_field($data['menu_order']),
+			'post_parent' => sanitize_text_field($data['post_parent'])
+		);
+		if ( isset($data['content']) ){
+			$updated_post['post_content'] = $data['content'];
+			$updated_post['post_title'] = $data['np_nav_title'];
+			$updated_post['ID'] = strval($this->getLinkfromTitle($data['np_nav_title']));
+		}
+		wp_update_post($updated_post);
+
+		// Menu Options
+		$this->updateLinkTarget($data);
+		$this->updateNavTitle($data);
+		$this->updateTitleAttribute($data);
+
+		if ( $data['np_nav_css_classes'][0] !== "" ){
+			$data['np_nav_css_classes'] = implode(' ', $data['np_nav_css_classes']);
+			$this->updateNavCSS($data);
+		}
 	}
 
 }
