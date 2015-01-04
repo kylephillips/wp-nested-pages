@@ -81,6 +81,10 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.3.4 =
+* Minor bug fixes
+* 2-way menu sync now enabled (relevant changes made in the menu under Appearance > Menus will be visible in the Nested Pages view).
+
 = 1.3.3 =
 * Russian Translation (Provided by Алексей Катаев)
 * Minor bug fix in add child page functionality that effects display of appended pages.
@@ -158,6 +162,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Nested Pages
 
 == Upgrade Notice ==
+
+= 1.3.4 =
+Minor bug fixes and expanded menu functionality.
 
 = 1.3.3 =
 Russian translation added along with minor bug fixes.
