@@ -20,7 +20,7 @@ class Bootstrap {
 		new Activation\Activate;
 		new Redirects;
 		new Entities\PostType\RegisterPostTypes;
-		new Entities\Post\PostActions;
+		new Entities\Post\PostTrashActions;
 		new Entities\NavMenu\NavMenuActions;
 		new Form\FormActionFactory;
 		new Config\Settings;

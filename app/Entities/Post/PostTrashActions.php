@@ -2,11 +2,13 @@
 
 use NestedPages\Entities\User\UserRepository;
 use NestedPages\Entities\NavMenu\NavMenuSyncListing;
+use NestedPages\Entities\NavMenu\NavMenuRemoveItem;
+use NestedPages\Entities\NavMenu\NavMenuRepository;
 
 /**
 * WP Actions tied to a Post
 */
-class PostActions {
+class PostTrashActions {
 
 	/**
 	* User Repository
@@ -14,10 +16,18 @@ class PostActions {
 	*/
 	private $user_repo;
 
+	/**
+	* Nav Menu Repository
+	*/
+	private $nav_menu_repo;
+
+
 	public function __construct()
 	{
 		$this->user_repo = new UserRepository;
+		$this->nav_menu_repo = new NavMenuRepository;
 		add_action( 'trashed_post', array( $this, 'trashHook' ) );
+		add_action( 'delete_post', array( $this, 'removeLinkNavItem'), 10 );
 	}
 
 	
@@ -27,12 +37,31 @@ class PostActions {
 	public function trashHook($post_id)
 	{
 		$post_type = get_post_type($post_id);
-		if ( ($post_type == 'page') || ($post_type == 'np-redirect') ) {
-			$post_type = 'page';
+		$this->resetToggles($post_id, $post_type);
+		$this->removeNavMenuItem($post_id);
+		if ( $post_type == 'page' ){
 			$sync = new NavMenuSyncListing;
 			$sync->sync();
 		}
-		$this->resetToggles($post_id, $post_type);
+	}
+
+	/**
+	* Link Post Types are immediately deleted, so trash hook isn't called
+	* Must remove nav menu items when they're deleted
+	*/
+	public function removeLinkNavItem($post_id)
+	{
+		if ( get_post_type($post_id) == 'np-redirect' ) $this->removeNavMenuItem($post_id);
+	}
+
+
+	/**
+	* Remove the nav menu item
+	*/
+	private function removeNavMenuItem($post_id)
+	{
+		$nav_item_id = $this->nav_menu_repo->getMenuItemID($post_id);
+		new NavMenuRemoveItem($nav_item_id);
 	}
 
 
@@ -41,7 +70,7 @@ class PostActions {
 	*/
 	private function resetToggles($post_id, $post_type)
 	{
-		$visible_pages = unserialize(get_user_meta(get_current_user_id(), 'np_visible_posts', true));
+		$visible_pages = $this->user_repo->getVisiblePages();
 		$visible_pages = $visible_pages[$post_type];
 		
 		$child_pages = array();
