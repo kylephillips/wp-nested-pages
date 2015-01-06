@@ -1,11 +1,13 @@
 //
 // JQuery UI Datepicker for Nested Pages
 // --------------------------------------------------
-.nestedpages-datepicker {
+.nestedpages-datepicker.ui-datepicker {
 	background-color: $white;
 	font-size: 90%;
 	box-shadow: 0px 0px 3px 0px rgba(0,0,0,.4);
 	border-radius: 3px;
+	padding: 0;
+	width: auto;
 
 	// Prev & Next
 	.ui-datepicker-next, .ui-datepicker-prev {
@@ -27,10 +29,19 @@
 			transition: opacity 200ms ease;
 		}
 	}
+
+	.ui-datepicker-calendar {
+		margin: 0;
+	}
+
 	.ui-datepicker-prev {
 		right: auto;
 		left: 0px;
 		background: url('../images/datepicker-arrow-prev.png');
+	}
+
+	.ui-datepicker-header {
+		padding: 0;
 	}
 
 	// Month & Year
@@ -41,11 +52,15 @@
 		height: 35px;
 		line-height: 35px;
 		border-radius: 3px 3px 0 0;
+		margin: 0;
 	}
 
 	// Calendar Table
 	.ui-datepicker-calendar {
 		border-collapse: collapse;
+		table {
+			width: auto;
+		}
 		th, td {
 			text-align: center;
 			width: 30px;
@@ -57,15 +72,19 @@
 			text-transform: uppercase;
 			font-size: 11px;
 			letter-spacing: 1px;
+			padding: 0;
 		}
 		td {
 			border-top: 1px solid darken($white, 8%);
 			border-left: 1px solid darken($white, 8%);
+			padding: 0;
 			&:first-child {
 				border-left: 0;
 			}
 		}
 		a {
+			text-align: center;
+			padding: 0;
 			text-decoration: none;
 			color: $black;
 			display: block;
