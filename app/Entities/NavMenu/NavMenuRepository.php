@@ -28,12 +28,7 @@ class NavMenuRepository {
 			'meta_key' => '_menu_item_object_id',
 			'meta_value' => $id,
 		));
-		if ( $meta_query->have_posts() ){
-			return $meta_query->posts[0]->ID;
-		} else {
-			// it's a link
-			return $this->getLinkMenuItemXFN($id);
-		}
+		return ( $meta_query->have_posts() ) ? $meta_query->posts[0]->ID : $this->getLinkMenuItemXFN($id);
 	}
 
 

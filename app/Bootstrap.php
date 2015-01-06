@@ -22,6 +22,7 @@ class Bootstrap {
 		new Entities\PostType\RegisterPostTypes;
 		new Entities\Post\PostTrashActions;
 		new Entities\NavMenu\NavMenuActions;
+		new Entities\NavMenu\NavMenuTrashActions;
 		new Form\FormActionFactory;
 		new Config\Settings;
 	}

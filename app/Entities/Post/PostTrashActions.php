@@ -33,6 +33,7 @@ class PostTrashActions {
 	
 	/**
 	* Trash hook - make sure child pages of trashed page are visible
+	* @since 1.3.4
 	*/
 	public function trashHook($post_id)
 	{
@@ -51,7 +52,9 @@ class PostTrashActions {
 	*/
 	public function removeLinkNavItem($post_id)
 	{
-		if ( get_post_type($post_id) == 'np-redirect' ) $this->removeNavMenuItem($post_id);
+		$post_type = get_post_type($post_id);
+		if ( $post_type == 'nav_menu_item' ) return;
+		if ( $post_type == 'np-redirect' ) $this->removeNavMenuItem($post_id);
 	}
 
 
@@ -60,8 +63,9 @@ class PostTrashActions {
 	*/
 	private function removeNavMenuItem($post_id)
 	{
+		remove_action('delete_post');
 		$nav_item_id = $this->nav_menu_repo->getMenuItemID($post_id);
-		new NavMenuRemoveItem($nav_item_id);
+		if ( $nav_item_id ) new NavMenuRemoveItem($nav_item_id);
 	}
 
 

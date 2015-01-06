@@ -9,7 +9,7 @@ class Redirects {
 	{
 		add_action('load-edit.php', array($this, 'pageTrashed'));
 		add_action('load-edit.php', array($this, 'pageRestored'));
-		add_action('deleted_post', array($this, 'linkDeleted'), 10, 1);
+		//add_action('deleted_post', array($this, 'linkDeleted'), 10, 1);
 	}
 
 
