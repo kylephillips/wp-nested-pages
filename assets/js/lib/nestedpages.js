@@ -134,6 +134,15 @@ jQuery(function($){
 	}
 
 	/**
+	* Is the Post Type Hierarchical
+	*/
+	function np_is_hierarchical()
+	{
+		var post_type = np_get_post_type();
+		return ( max_levels(post_type) === 0 ) ? true : false;
+	}
+
+	/**
 	* Toggle between showing published pages and all
 	*/
 	$(document).on('click', '.np-toggle-publish', function(e){
@@ -751,6 +760,11 @@ jQuery(function($){
 		} else {
 			$(li).removeClass('np-hide');
 			$(row).find('.np-icon-eye-blocked').remove();
+		}
+
+		// Author for Non-Hierarchical Types
+		if ( !np_is_hierarchical() ){
+			$(row).find('.np-author-display').text(data.author_name);
 		}
 
 		var button = $(row).find('.np-quick-edit');

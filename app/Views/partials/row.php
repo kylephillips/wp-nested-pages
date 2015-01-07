@@ -59,7 +59,7 @@
 		<?php if ( !$this->post->hierarchical ) : echo $this->post->hierarchical; ?>
 		<div class="np-post-columns">
 			<ul class="np-post-info">
-				<li><?php echo $this->post->author; ?></li>
+				<li><span class="np-author-display"><?php echo $this->post->author; ?></span></li>
 				<li><?php echo get_the_date(); ?></li>
 			</ul>
 		</div>
