@@ -18,6 +18,7 @@ jQuery(function($){
 		add_remove_submenu_toggles();
 		np_set_borders();
 		set_nested_margins();
+		np_make_nestable();
 	});
 	
 	/**
@@ -180,10 +181,12 @@ jQuery(function($){
 		}, 500);
 	});
 
+
 	/**
 	* Make the Menu sortable
 	*/
-	$(document).ready(function(){
+	function np_make_nestable()
+	{
 		$('.sortable').not('.no-sort').nestedSortable({
 			items : '.page-row',
 			toleranceElement: '> .row',
@@ -207,7 +210,15 @@ jQuery(function($){
     			submit_sortable_form();
     		},
 		});
-	});
+	}
+
+	/**
+	* Disable Nesting
+	*/
+	function np_disable_nesting()
+	{
+		$('.sortable').sortable('destroy');
+	}
 
 	/**
 	* Is Post Type Nestable?
@@ -280,6 +291,7 @@ jQuery(function($){
 		var syncmenu = ( $('.np-sync-menu').is(':checked') ) ? 'sync' : 'nosync';
 
 		list = $('ol.sortable').nestedSortable('toHierarchy', {startDepthCount: 0});
+		np_disable_nesting();
 
 		$.ajax({
 			url: ajaxurl,
@@ -293,6 +305,7 @@ jQuery(function($){
 				syncmenu : syncmenu
 			},
 			success: function(data){
+				np_make_nestable();
 				if (data.status === 'error'){
 					$('#np-error').text(data.message).show();
 					$('#nested-loading').hide();
