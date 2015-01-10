@@ -1568,19 +1568,24 @@ jQuery(function($){
 	**/
 	$('.np-empty-trash').on('click', function(e){
 		e.preventDefault();
+		$('#np-trash-modal').modal('show');
+	});
+
+	// Confirm
+	$('.np-trash-confirm').on('click', function(e){
+		e.preventDefault();
+		$('#np-trash-modal').hide();
 		$('#nested-loading').show();
 		$('#np-error').hide();
-		var posttype = $(this).attr('data-posttype');
-		if (window.confirm(nestedpages.trash_confirm)){ 
-			empty_trash(posttype);
-		}
+		empty_trash();
 	});
 
 	/**
-	* Empty the trash for a given post type
+	* Empty the trash
 	*/
-	function empty_trash(posttype)
+	function empty_trash()
 	{
+		var posttype = $('#np-trash-posttype').val();
 		$.ajax({
 			url: ajaxurl,
 			type: 'post',
