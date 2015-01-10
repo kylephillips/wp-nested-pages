@@ -238,6 +238,7 @@ jQuery(function($){
 		$.each(nestedpages.post_types, function(i, v){
 			if ( v.name === post_type ){
 				if ( v.hierarchical === true ) levels = 0;
+				if ( v.disable_nesting === true ) levels = 1;
 			}
 		});
 		return levels;
