@@ -1,7 +1,7 @@
 === Nested Pages ===
 Contributors: kylephillips
 Donate link: http://nestedpages.com/
-Tags: pages, admin, nested, tree view, page tree, sort, quick edit
+Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
 Tested up to: 4.1
 Stable tag: 1.3.3
@@ -83,7 +83,8 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 = 1.3.4 =
 * Minor bug fixes
-* 2-way menu sync now enabled (relevant changes made in the menu under Appearance > Menus will be visible in the Nested Pages view).
+* 2-way menu sync enabled (page/custom link changes made in the menu under Appearance > Menus will be visible in the Nested Pages view).
+* Updated Dutch Translation (Provided by Arno Vije)
 
 = 1.3.3 =
 * Russian Translation (Provided by Алексей Катаев)
