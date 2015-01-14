@@ -3,6 +3,7 @@
 use NestedPages\Entities\NavMenu\NavMenuSync;
 use NestedPages\Helpers;
 use NestedPages\Entities\Post\PostUpdateRepository;
+use NestedPages\Entities\NavMenu\NavMenuRepository;
 
 /**
 * Syncs the Listing to Match the Menu
@@ -54,6 +55,7 @@ class NavMenuSyncMenu extends NavMenuSync implements NavMenuSyncInterface {
 	{	
 		$this->setMenuIndex();
 		foreach($this->menu_items as $key => $item){
+			//var_dump($item);
 			$this->updatePost($item);
 		}
 	}
@@ -69,6 +71,7 @@ class NavMenuSyncMenu extends NavMenuSync implements NavMenuSyncInterface {
 				'title' => $item->title
 			);
 		}
+		//var_dump($this->index);
 	}
 
 
@@ -79,20 +82,28 @@ class NavMenuSyncMenu extends NavMenuSync implements NavMenuSyncInterface {
 	{
 		$parent_id = ( $item->menu_item_parent == '0' ) ? 0 : $this->index[$item->menu_item_parent]['ID'];
 		
-		if ( $this->post_update_repo->isNavMenuItem($parent_id) ) {
-			$parent_id = $this->post_update_repo->getLinkfromTitle($this->index[$item->menu_item_parent]['title']);
+		if ( $this->nav_menu_repo->isNavMenuItem($parent_id) ) {
+			$parent_id = $this->nav_menu_repo->getLinkfromTitle($this->index[$item->menu_item_parent]['title']);
 		}
 
+		$post_id = ( $item->object == 'custom' ) 
+			? get_post_meta($item->post_id, '_menu_item_xfn', true)
+			: $item->object_id;
+		
 		$post_data = array(
 			'menu_order' => $item->menu_order,
-			'post_id' => $item->object_id,
+			'post_id' => $post_id,
 			'link_target' => $item->target,
 			'np_nav_title' => $item->title,
 			'np_title_attribute' => $item->attr_title,
 			'post_parent' => $parent_id,
 			'np_nav_css_classes' => $item->classes
 		);
-		if ( $item->type == 'custom' ) $post_data['content'] = $item->url;
+		if ( $item->type == 'custom' ) {
+			$post_data['content'] = $item->url;
+			$post_data['post_id'] = $item->xfn;
+		}
+		
 		$this->post_update_repo->updateFromMenuItem($post_data);
 	}
 

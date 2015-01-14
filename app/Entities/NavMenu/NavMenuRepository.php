@@ -105,4 +105,25 @@ class NavMenuRepository {
 		}
 	}
 
+
+	/**
+	* Is the provided post a nav menu item
+	* @return boolean
+	* @param int $id - post id
+	*/
+	public function isNavMenuItem($id)
+	{
+		if ( get_post_type($id) == 'nav_menu_item' ) return true;
+		return false;
+	}
+
+	/**
+	* Get the Link post id from a title
+	*/
+	public function getLinkfromTitle($title)
+	{
+		$post = get_page_by_title($title, OBJECT, 'np-redirect');
+		return $post->ID;
+	}
+
 }

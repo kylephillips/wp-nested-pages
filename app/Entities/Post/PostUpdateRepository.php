@@ -1,6 +1,7 @@
 <?php namespace NestedPages\Entities\Post;
 
 use NestedPages\Form\Validation\Validation;
+use NestedPages\Entities\NavMenu\NavMenuRepository;
 /**
 * Post Create/Update Methods
 */
@@ -13,6 +14,11 @@ class PostUpdateRepository {
 	protected $validation;
 
 	/**
+	* Nav Menu Repository
+	*/
+	protected $nav_menu_repo;
+
+	/**
 	* New Post ID
 	* @var int
 	*/
@@ -22,6 +28,7 @@ class PostUpdateRepository {
 	public function __construct()
 	{
 		$this->validation = new Validation;
+		$this->nav_menu_repo = new NavMenuRepository;
 	}
 
 
@@ -343,27 +350,6 @@ class PostUpdateRepository {
 	}
 
 
-	/**
-	* Get the Link post id from a title
-	*/
-	public function getLinkfromTitle($title)
-	{
-		$post = get_page_by_title($title, OBJECT, 'np-redirect');
-		return $post->ID;
-	}
-
-
-	/**
-	* Is the provided post a link
-	* @return boolean
-	* @param int $id - post id
-	*/
-	public function isNavMenuItem($id)
-	{
-		if ( get_post_type($id) == 'nav_menu_item' ) return true;
-		return false;
-	}
-
 
 	/**
 	* Update a Post to Match Nav menu
@@ -380,7 +366,6 @@ class PostUpdateRepository {
 		if ( isset($data['content']) ){
 			$updated_post['post_content'] = $data['content'];
 			$updated_post['post_title'] = $data['np_nav_title'];
-			$updated_post['ID'] = strval($this->getLinkfromTitle($data['np_nav_title']));
 		}
 		wp_update_post($updated_post);
 
