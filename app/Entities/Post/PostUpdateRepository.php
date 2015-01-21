@@ -306,12 +306,14 @@ class PostUpdateRepository {
 	public function updateRedirect($data)
 	{
 		$this->validation->checkEmpty($data['post_title'], __('Label', 'nestedpages'));
+		$menu_order = isset($data['menu_order']) ? $data['menu_order'] : 0;
 		$updated_post = array(
 			'ID' => sanitize_text_field($data['post_id']),
 			'post_title' => sanitize_text_field($data['post_title']),
 			'post_status' => sanitize_text_field($data['_status']),
 			'post_content' => sanitize_text_field($data['post_content']),
-			'post_parent' => sanitize_text_field($data['parent_id'])
+			'post_parent' => sanitize_text_field($data['parent_id']),
+			'menu_order' => $menu_order
 		);
 		$this->new_id = wp_update_post($updated_post);
 
