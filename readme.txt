@@ -79,6 +79,10 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 5. Quickly add posts without leaving the page tree
 
+6. Set capabilities
+
+7. The Nested Pages interface can be enabled on a per-post-type basis, with customizable options for each type.
+
 == Changelog ==
 
 = 1.3.4 =
