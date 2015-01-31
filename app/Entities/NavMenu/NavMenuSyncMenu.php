@@ -63,8 +63,8 @@ class NavMenuSyncMenu extends NavMenuSync implements NavMenuSyncInterface {
 	{	
 		if ( get_option('nestedpages_menusync') !== 'sync' ) return;
 		$this->setMenuIndex();
+		// var_dump($this->menu_items); die();
 		foreach($this->menu_items as $key => $item){
-			//var_dump($item);
 			$this->updatePost($item);
 		}
 	}
@@ -94,9 +94,9 @@ class NavMenuSyncMenu extends NavMenuSync implements NavMenuSyncInterface {
 			$parent_id = $this->nav_menu_repo->getLinkfromTitle($this->index[$item->menu_item_parent]['title']);
 		}
 
-		$post_id = ( $item->object == 'page' ) 
-			? $item->object_id
-			: $item->xfn;
+		$post_id = ( $item->object == 'custom' ) 
+			? $item->xfn
+			: $item->object_id;
 		
 		$post_data = array(
 			'menu_order' => $item->menu_order,
