@@ -169,8 +169,10 @@ class Listing {
 	* @param array $pages - array of page objects from current query
 	* @param int $count - current count in loop
 	*/
-	private function listOpening($pages, $count)
+	private function listOpening($pages, $count, $sortable = true)
 	{
+		if ( $this->isSearch() ) $sortable = false;
+
 		// Get array of child pages
 		$children = array();
 		$all_children = $pages->posts;
@@ -180,15 +182,21 @@ class Listing {
 		// Compare child pages with user's toggled pages
 		$compared = array_intersect($this->listing_repo->visiblePages($this->post_type->name), $children);
 
+		// Primary List
 		if ( $count == 1 ) {
-			echo ( $this->user->canSortPages() ) 
+			echo ( $this->user->canSortPages() && $sortable ) 
 				? '<ol class="sortable nplist visible" id="np-' . $this->post_type->name . '">' 
 				: '<ol class="sortable no-sort nplist" visible" id="np-' . $this->post_type->name . '">';
-		} else {
-			echo '<ol class="nplist';
-			if ( count($compared) > 0 ) echo ' visible" style="display:block;';
-			echo '" id="np-' . $this->post_type->name . '">';	
-		} 
+			return;
+		}
+
+		// Don't create new list for child elements of posts in trash
+		if ( get_post_status($pages->query['post_parent']) == 'trash' ) return;
+
+		echo '<ol class="nplist';
+		if ( count($compared) > 0 ) echo ' visible" style="display:block;';
+		echo '" id="np-' . $this->post_type->name . '">';	
+		 
 	}
 
 
@@ -209,10 +217,21 @@ class Listing {
 	private function publishCount($pages)
 	{
 		$publish_count = 1;
+		if ( $this->parentTrashed($pages) ) return;
 		foreach ( $pages->posts as $p ){
 			if ( $p->post_status !== 'trash' ) $publish_count++;
 		}
 		return $publish_count;
+	}
+
+
+	/**
+	* Is this a search
+	* @return boolean
+	*/
+	private function isSearch()
+	{
+		return ( isset($_GET['search']) && $_GET['search'] !== "" ) ? true : false;
 	}
 
 
@@ -233,6 +252,9 @@ class Listing {
 			'post_parent' => $parent_id,
 			'order' => $this->sort_options->order
 		);
+		
+		if ( $this->isSearch() ) $query_args = $this->searchParams($query_args);
+
 		$pages = new \WP_Query(apply_filters('nestedpages_page_listing', $query_args));
 		
 		if ( $pages->have_posts() ) :
@@ -270,7 +292,7 @@ class Listing {
 
 				endif; // trash status
 				
-				$this->loopPosts($this->post->id, $count);
+				if ( !$this->isSearch() ) $this->loopPosts($this->post->id, $count);
 
 				if ( $this->post->status !== 'trash' ) {
 					echo '</li>';
@@ -283,6 +305,31 @@ class Listing {
 			}
 
 		endif; wp_reset_postdata();
+	}
+
+
+	/**
+	* Search Posts
+	*/
+	private function searchParams($query_args)
+	{
+		$query_args['post_title_like'] = sanitize_text_field($_GET['search']);
+		unset($query_args['post_parent']);
+		return $query_args;
+	}
+
+
+	/**
+	* Parent Trash Status
+	* @param WP Query object
+	* @return boolean
+	*/
+	private function parentTrashed($pages)
+	{
+		if ( !isset($pages->query['post_parent']) ) return false;
+		if ( get_post_status($pages->query['post_parent']) == 'trash' ) return true;
+		return false;
+
 	}
 
 

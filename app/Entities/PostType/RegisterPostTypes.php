@@ -27,10 +27,10 @@ class RegisterPostTypes {
 			'labels' => $labels,
 			'public' => false,  
 			'show_ui' => false,
-			'menu_position' => 5,
+			'exclude_from_search' => true,
 			'capability_type' => 'post',  
 			'hierarchical' => true,  
-			'has_archive' => true,
+			'has_archive' => false,
 			'supports' => array('title','editor'),
 			'rewrite' => array('slug' => 'np-redirect', 'with_front' => false)
 		);

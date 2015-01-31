@@ -37,6 +37,7 @@ class PostTypeRepository {
 			$post_types[$type->name]->np_enabled = ( array_key_exists($type->name, $this->enabledPostTypes()) ) ? true : false;
 			$post_types[$type->name]->replace_menu = $this->overrideMenu($type->name);
 			$post_types[$type->name]->hide_default = $this->hideDefault($type->name);
+			$post_types[$type->name]->disable_nesting = $this->disableNesting($type->name);
 		}
 		return $post_types;
 	}
@@ -69,6 +70,22 @@ class PostTypeRepository {
 		foreach($this->enabledPostTypes() as $key => $type){
 			if ( $key == $post_type ){
 				return ( isset($type['hide_default']) && $type['hide_default'] == 'true' )
+					? true
+					: false;
+			}
+		}
+	}
+
+	/**
+	* Is nesting disabled on the specified post type
+	* @param string post type name
+	* @return boolean
+	*/
+	public function disableNesting($post_type)
+	{
+		foreach($this->enabledPostTypes() as $key => $type){
+			if ( $key == $post_type ){
+				return ( isset($type['disable_nesting']) && $type['disable_nesting'] == 'true' )
 					? true
 					: false;
 			}

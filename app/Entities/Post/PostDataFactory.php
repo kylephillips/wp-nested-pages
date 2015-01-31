@@ -40,6 +40,7 @@ class PostDataFactory {
 		$this->post_data->comment_status = $post->comment_status;
 		$this->post_data->content = $post->post_content;
 		$this->post_data->hierarchical = is_post_type_hierarchical($post->post_type);
+		$this->post_data->link = get_the_permalink($post->ID);
 	}
 
 	/**

@@ -61,6 +61,7 @@ class QuickEditHandler extends BaseHandler {
 	*/
 	private function addData()
 	{
+		$this->data['author_name'] = get_the_author_meta('display_name', $this->data['post_author']);
 		$this->data['nav_status'] = ( isset($this->data['nav_status']) ) ? 'hide' : 'show';
 		$this->data['np_status'] = ( isset($this->data['nested_pages_status']) ) ? 'hide' : 'show';
 		$this->data['link_target'] = ( isset($this->data['link_target']) ) ? '_blank' : 'none';

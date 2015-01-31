@@ -46,7 +46,8 @@ class Redirects {
 	*/
 	public function linkDeleted($post_id)
 	{
-		if ( get_post_type($post_id) == 'np-redirect' ){
+		$screen = get_current_screen();
+		if ( (get_post_type($post_id) == 'np-redirect') && ($screen->id == 'np-redirect') ){
 			$redirect = add_query_arg(array('page'=>'nestedpages', 'linkdeleted' => true, '_wpnonce' => false, 'post' => false, 'action'=>false));
 			wp_redirect($redirect);
 			exit();

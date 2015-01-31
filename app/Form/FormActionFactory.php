@@ -38,7 +38,8 @@ class FormActionFactory {
 			'wp_ajax_npgetTaxonomies',
 			'wp_ajax_npnewChild',
 			'admin_post_npListingSort',
-			'wp_ajax_npEmptyTrash'
+			'wp_ajax_npEmptyTrash',
+			'admin_post_npSearch'
 		);
 		$this->setHandlers();
 	}

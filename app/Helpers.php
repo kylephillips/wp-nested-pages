@@ -11,9 +11,7 @@ class Helpers {
 	*/
 	public static function check_url($url)
 	{
-		$parsed = parse_url($url);
-		if (empty($parsed['scheme'])) $url = 'http://' . ltrim($url, '/');
-		return $url;
+		return esc_url($url);
 	}
 
 

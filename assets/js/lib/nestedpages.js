@@ -18,6 +18,7 @@ jQuery(function($){
 		add_remove_submenu_toggles();
 		np_set_borders();
 		set_nested_margins();
+		np_make_nestable();
 	});
 	
 	/**
@@ -133,6 +134,15 @@ jQuery(function($){
 	}
 
 	/**
+	* Is the Post Type Hierarchical
+	*/
+	function np_is_hierarchical()
+	{
+		var post_type = np_get_post_type();
+		return ( max_levels(post_type) === 0 ) ? true : false;
+	}
+
+	/**
 	* Toggle between showing published pages and all
 	*/
 	$(document).on('click', '.np-toggle-publish', function(e){
@@ -180,10 +190,12 @@ jQuery(function($){
 		}, 500);
 	});
 
+
 	/**
 	* Make the Menu sortable
 	*/
-	$(document).ready(function(){
+	function np_make_nestable()
+	{
 		$('.sortable').not('.no-sort').nestedSortable({
 			items : '.page-row',
 			toleranceElement: '> .row',
@@ -207,7 +219,15 @@ jQuery(function($){
     			submit_sortable_form();
     		},
 		});
-	});
+	}
+
+	/**
+	* Disable Nesting
+	*/
+	function np_disable_nesting()
+	{
+		$('.sortable').sortable('destroy');
+	}
 
 	/**
 	* Is Post Type Nestable?
@@ -218,6 +238,7 @@ jQuery(function($){
 		$.each(nestedpages.post_types, function(i, v){
 			if ( v.name === post_type ){
 				if ( v.hierarchical === true ) levels = 0;
+				if ( v.disable_nesting === true ) levels = 1;
 			}
 		});
 		return levels;
@@ -280,6 +301,7 @@ jQuery(function($){
 		var syncmenu = ( $('.np-sync-menu').is(':checked') ) ? 'sync' : 'nosync';
 
 		list = $('ol.sortable').nestedSortable('toHierarchy', {startDepthCount: 0});
+		np_disable_nesting();
 
 		$.ajax({
 			url: ajaxurl,
@@ -293,6 +315,7 @@ jQuery(function($){
 				syncmenu : syncmenu
 			},
 			success: function(data){
+				np_make_nestable();
 				if (data.status === 'error'){
 					$('#np-error').text(data.message).show();
 					$('#nested-loading').hide();
@@ -740,6 +763,11 @@ jQuery(function($){
 			$(row).find('.np-icon-eye-blocked').remove();
 		}
 
+		// Author for Non-Hierarchical Types
+		if ( !np_is_hierarchical() ){
+			$(row).find('.np-author-display').text(data.author_name);
+		}
+
 		var button = $(row).find('.np-quick-edit');
 
 		$(button).attr('data-id', data.post_id);
@@ -987,6 +1015,7 @@ jQuery(function($){
 			datatype: 'json',
 			data: $(form).serialize() + '&action=npquickEditLink&nonce=' + nestedpages.np_nonce + '&syncmenu=' + syncmenu + '&post_type=' + np_get_post_type(),
 			success: function(data){
+				console.log(data);
 				if (data.status === 'error'){
 					np_remove_qe_loading(form);
 					$(form).find('.np-quickedit-error').text(data.message).show();
@@ -1539,19 +1568,24 @@ jQuery(function($){
 	**/
 	$('.np-empty-trash').on('click', function(e){
 		e.preventDefault();
+		$('#np-trash-modal').modal('show');
+	});
+
+	// Confirm
+	$('.np-trash-confirm').on('click', function(e){
+		e.preventDefault();
+		$('#np-trash-modal').hide();
 		$('#nested-loading').show();
 		$('#np-error').hide();
-		var posttype = $(this).attr('data-posttype');
-		if (window.confirm(nestedpages.trash_confirm)){ 
-			empty_trash(posttype);
-		}
+		empty_trash();
 	});
 
 	/**
-	* Empty the trash for a given post type
+	* Empty the trash
 	*/
-	function empty_trash(posttype)
+	function empty_trash()
 	{
+		var posttype = $('#np-trash-posttype').val();
 		$.ajax({
 			url: ajaxurl,
 			type: 'post',
@@ -1570,46 +1604,6 @@ jQuery(function($){
 				}
 			}
 		});
-	}
-
-
-
-
-	/**
-	* ------------------------------------------------------------------------
-	* Search Filter (Non-Hierarchical)
-	* ------------------------------------------------------------------------
-	**/
-	$(document).on('keyup', '#nestedpages-search', function(){
-		var search = $(this).val().toLowerCase();
-		if ( search.length > 2 ){
-			search_filter_list(search);
-			return;
-		}
-		reset_search_filter();
-	});
-
-	/**
-	* Filter the list based on search input
-	*/
-	function search_filter_list(value)
-	{
-		var titles = $('.page-row .title');
-		$('.page-row').hide();
-		$.each(titles, function(i, v){
-			var text = $(this).text().toLowerCase();
-			if ( text.indexOf(value) > -1 ){
-				$(this).parents('.page-row').show();
-			}
-		});
-	}
-
-	/**
-	* Reset the list back to show all
-	*/
-	function reset_search_filter()
-	{
-		$('.page-row').show();
 	}
 
 

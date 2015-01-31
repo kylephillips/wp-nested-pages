@@ -131,7 +131,7 @@
 
 		
 		<div class="form-control np-toggle-options">
-			<?php if ( $this->user->canSortPages() && $this->post_type->name == 'page' ) : ?>
+			<?php if ( $this->user->canSortPages() && $this->post_type->name == 'page' && !$this->isSearch() ) : ?>
 			<a href="#" class="np-btn np-btn-half np-toggle-menuoptions"><?php _e('Menu Options', 'nestedpages'); ?></a>
 			<?php endif; ?>
 
@@ -164,7 +164,7 @@
 	<?php endif; // if taxonomies ?>
 
 
-	<?php if ( $this->user->canSortPages() ) : ?>
+	<?php if ( $this->user->canSortPages() && !$this->isSearch() ) : ?>
 	<div class="np-menuoptions">
 		<div class="menuoptions-left">
 			<div class="form-control">

@@ -77,11 +77,22 @@ class UserRepository {
 
 
 	/**
+	* Get User's Visible Pages
+	* @since 1.3.4
+	* @return array - array of pages user has toggled visible
+	*/
+	public function getVisiblePages()
+	{
+		return unserialize(get_user_meta(get_current_user_id(), 'np_visible_posts', true));
+	}
+
+
+	/**
 	* Update User's Visible Pages
 	*/
 	public function updateVisiblePages($post_type, $ids)
 	{
-		$visible = unserialize(get_user_meta(get_current_user_id(), 'np_visible_posts', true));
+		$visible = $this->getVisiblePages();
 		$visible[$post_type] = $ids;
 		update_user_meta(
 			get_current_user_id(),

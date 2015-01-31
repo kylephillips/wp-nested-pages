@@ -1,7 +1,7 @@
 === Nested Pages ===
 Contributors: kylephillips
 Donate link: http://nestedpages.com/
-Tags: pages, admin, nested, tree view, page tree, sort, quick edit
+Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
 Tested up to: 4.1
 Stable tag: 1.3.3
@@ -81,6 +81,15 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.3.4 =
+* Minor bug fixes
+* Minor UI enhancements
+* Changes to page and link menu items under appearance > menu now sync the Nested Pages listing when menu sync is enabled (other custom menu item types not yet supported).
+* Option added to disable nesting on hierarchical post types while maintaining sort functionality (ideal for live sites where link structures need to remain intact)
+* Updated Dutch Translation (Provided by Arno Vije)
+* Search capabilities added
+* Hash/Empty URLs no longer appended with http://
+
 = 1.3.3 =
 * Russian Translation (Provided by Алексей Катаев)
 * Minor bug fix in add child page functionality that effects display of appended pages.
@@ -158,6 +167,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Nested Pages
 
 == Upgrade Notice ==
+
+= 1.3.4 =
+Minor bug fixes and expanded menu functionality.
 
 = 1.3.3 =
 Russian translation added along with minor bug fixes.
