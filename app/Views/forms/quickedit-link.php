@@ -39,7 +39,7 @@
 
 	<div class="right">
 
-		<?php if ( $this->user->canSortPages() ) : // Menu Options Button ?>
+		<?php if ( $this->user->canSortPages() && !$this->isSearch() ) : // Menu Options Button ?>
 		<div class="form-control">
 			<label><?php _e( 'Title Attribute' ); ?></label>
 			<input type="text" name="np_title_attribute" class="np_title_attribute" value="" />
