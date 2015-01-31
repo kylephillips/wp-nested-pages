@@ -182,15 +182,21 @@ class Listing {
 		// Compare child pages with user's toggled pages
 		$compared = array_intersect($this->listing_repo->visiblePages($this->post_type->name), $children);
 
+		// Primary List
 		if ( $count == 1 ) {
 			echo ( $this->user->canSortPages() && $sortable ) 
 				? '<ol class="sortable nplist visible" id="np-' . $this->post_type->name . '">' 
 				: '<ol class="sortable no-sort nplist" visible" id="np-' . $this->post_type->name . '">';
-		} else {
-			echo '<ol class="nplist';
-			if ( count($compared) > 0 ) echo ' visible" style="display:block;';
-			echo '" id="np-' . $this->post_type->name . '">';	
-		} 
+			return;
+		}
+
+		// Don't create new list for child elements of posts in trash
+		if ( get_post_status($pages->query['post_parent']) == 'trash' ) return;
+
+		echo '<ol class="nplist';
+		if ( count($compared) > 0 ) echo ' visible" style="display:block;';
+		echo '" id="np-' . $this->post_type->name . '">';	
+		 
 	}
 
 
@@ -211,6 +217,7 @@ class Listing {
 	private function publishCount($pages)
 	{
 		$publish_count = 1;
+		if ( get_post_status($pages->query['post_parent']) == 'trash' ) return;
 		foreach ( $pages->posts as $p ){
 			if ( $p->post_status !== 'trash' ) $publish_count++;
 		}
