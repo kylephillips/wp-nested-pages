@@ -36,7 +36,7 @@ class NavMenuSyncListing extends NavMenuSync implements NavMenuSyncInterface {
 
 
 	/**
-	* Create the menu with nested pages (Recursive function)
+	* Create the menu with nested pages
 	*/
 	public function sync($parent = 0, $menu_parent = 0)
 	{

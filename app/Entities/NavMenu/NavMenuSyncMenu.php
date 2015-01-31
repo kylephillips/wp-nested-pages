@@ -61,6 +61,7 @@ class NavMenuSyncMenu extends NavMenuSync implements NavMenuSyncInterface {
 	*/
 	public function sync()
 	{	
+		if ( get_option('nestedpages_menusync') !== 'sync' ) return;
 		$this->setMenuIndex();
 		foreach($this->menu_items as $key => $item){
 			//var_dump($item);
