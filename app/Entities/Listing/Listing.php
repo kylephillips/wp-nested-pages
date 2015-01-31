@@ -217,7 +217,7 @@ class Listing {
 	private function publishCount($pages)
 	{
 		$publish_count = 1;
-		if ( get_post_status($pages->query['post_parent']) == 'trash' ) return;
+		if ( $this->parentTrashed($pages) ) return;
 		foreach ( $pages->posts as $p ){
 			if ( $p->post_status !== 'trash' ) $publish_count++;
 		}
@@ -316,6 +316,20 @@ class Listing {
 		$query_args['post_title_like'] = sanitize_text_field($_GET['search']);
 		unset($query_args['post_parent']);
 		return $query_args;
+	}
+
+
+	/**
+	* Parent Trash Status
+	* @param WP Query object
+	* @return boolean
+	*/
+	private function parentTrashed($pages)
+	{
+		if ( !isset($pages->query['post_parent']) ) return false;
+		if ( get_post_status($pages->query['post_parent']) == 'trash' ) return true;
+		return false;
+
 	}
 
 
