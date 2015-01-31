@@ -126,4 +126,22 @@ class NavMenuRepository {
 		return $post->ID;
 	}
 
+	/**
+	* Get an array of pages not hidden in nav menu
+	* @return array
+	*/
+	public function getPagesInMenu()
+	{
+		$q = new \WP_Query(array(
+			'post_type' => 'page',
+			'posts_per_page' => -1,
+			'meta_key' =>  'np_nav_status',
+			'meta_value' => 'show',
+			'meta_compare' => '=',
+			'fields' => 'ids'
+		));
+		if ( !$q->have_posts() ) return;
+		return $q->posts;
+	}
+
 }

@@ -126,7 +126,7 @@ class PostUpdateRepository {
 	* @since 1.0
 	* @param array data
 	*/
-	private function updateNavStatus($data)
+	public function updateNavStatus($data)
 	{
 		$status = ( isset($data['nav_status']) ) ? 'hide' : 'show';
 		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;

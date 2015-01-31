@@ -63,6 +63,7 @@ class NavMenuSyncMenu extends NavMenuSync implements NavMenuSyncInterface {
 	{	
 		if ( get_option('nestedpages_menusync') !== 'sync' ) return;
 		$this->setMenuIndex();
+		$this->updatePagesNavStatus();
 		// var_dump($this->menu_items); die();
 		foreach($this->menu_items as $key => $item){
 			$this->updatePost($item);
@@ -135,6 +136,26 @@ class NavMenuSyncMenu extends NavMenuSync implements NavMenuSyncInterface {
 			'menu_order'=> $item->menu_order
 		);
 		$this->post_update_repo->saveRedirect($post_data);
+	}
+
+
+	/**
+	* Update NP Nav Status for Pages
+	* If a menu item is removed, it's nav status needs to be set to hide
+	*/
+	private function updatePagesNavStatus()
+	{
+		$visible_pages = $this->nav_menu_repo->getPagesInMenu();
+		foreach($this->index as $key => $item){
+			$menu_items[$key] = $item['ID'];
+		}
+		foreach($visible_pages as $page){
+			if ( !in_array($page, $menu_items) ) {
+				$data['post_id'] = $page;
+				$data['nav_status'] = 'hide';
+				$this->post_update_repo->updateNavStatus($data);
+			}
+		}
 	}
 
 }
