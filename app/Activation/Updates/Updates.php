@@ -46,7 +46,8 @@ class Updates {
 	private function addMenu()
 	{
 		if ( !get_option('nestedpages_menu') ){
-			$menu_id = wp_create_nav_menu('Nested Pages');
+			$menu_id = $this->nav_menu_repo->getMenuIDFromTitle('Nested Pages');
+			if ( !$menu_id ) $menu_id = wp_create_nav_menu('Nested Pages');
 			update_option('nestedpages_menu', $menu_id);
 		}
 	}

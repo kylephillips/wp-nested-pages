@@ -84,6 +84,18 @@ class NavMenuRepository {
 
 
 	/**
+	* Get the Menu ID from the title
+	* @since 1.3.5
+	* @return int
+	*/
+	public function getMenuIDFromTitle($title)
+	{
+		$term = get_term_by('name', $title, 'nav_menu');
+		return ( $term ) ? $term->term_id : false;
+	}
+
+
+	/**
 	* Create Empty Menu if one doesn't exist
 	* @since 1.3.4
 	*/
