@@ -1608,44 +1608,4 @@ jQuery(function($){
 
 
 
-
-	/**
-	* ------------------------------------------------------------------------
-	* Search Filter (Non-Hierarchical)
-	* ------------------------------------------------------------------------
-	**/
-	$(document).on('keyup', '#nestedpages-search', function(){
-		var search = $(this).val().toLowerCase();
-		if ( search.length > 2 ){
-			search_filter_list(search);
-			return;
-		}
-		reset_search_filter();
-	});
-
-	/**
-	* Filter the list based on search input
-	*/
-	function search_filter_list(value)
-	{
-		var titles = $('.page-row .title');
-		$('.page-row').hide();
-		$.each(titles, function(i, v){
-			var text = $(this).text().toLowerCase();
-			if ( text.indexOf(value) > -1 ){
-				$(this).parents('.page-row').show();
-			}
-		});
-	}
-
-	/**
-	* Reset the list back to show all
-	*/
-	function reset_search_filter()
-	{
-		$('.page-row').show();
-	}
-
-
-
 }); //$

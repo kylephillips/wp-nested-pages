@@ -87,6 +87,8 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * 2-way menu sync enabled (page/custom link changes made in the menu under Appearance > Menus will be visible in the Nested Pages view).
 * Option added to disable nesting on hierarchical post types while maintaining sort functionality (ideal for live sites where link structures need to remain intact)
 * Updated Dutch Translation (Provided by Arno Vije)
+* Search capabilities added
+* Hash/Empty URLs no longer appended with http://
 
 = 1.3.3 =
 * Russian Translation (Provided by Алексей Катаев)

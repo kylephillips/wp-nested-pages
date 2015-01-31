@@ -32,7 +32,6 @@
 		<?php endif; ?>
 	</ul>
 
-
 	<?php if ( !$this->post_type->hierarchical ) : ?>
 	<div class="np-tools-primary">
 		<form action="<?php echo admin_url('admin-post.php'); ?>" method="post" class="np-tools-sort">
@@ -91,10 +90,20 @@
 				<input type="submit" id="nestedpages-sort" class="button" value="Apply">
 			</div>
 		</form>
-		<div class="np-tools-search">
-			<input type="search" id="nestedpages-search" placeholder="<?php echo $this->post_type->labels->search_items; ?>">
-		</div><!-- .np-tools-search -->
 	</div>
 	<?php endif; ?>
+
+
+	<div class="np-tools-search">
+		<form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
+			<input type="hidden" name="action" value="npSearch">
+			<input type="hidden" name="posttype" value="<?php echo $this->post_type->name; ?>">
+			<input type="hidden" name="page" value="<?php echo $this->pageURL(); ?>">
+			<?php wp_nonce_field('nestedpages-nonce', 'nonce'); ?>
+			<input type="search" name="search_term" id="nestedpages-search" placeholder="<?php echo $this->post_type->labels->search_items; ?>" <?php if ( $this->isSearch() ) echo ' value="' . sanitize_text_field($_GET['search']) . '"'; ?>>
+			<input type="submit" name="" class="button" value="<?php echo $this->post_type->labels->search_items;?>">
+		</form>
+	</div><!-- .np-tools-search -->
+
 
 </div><!-- .nestedpages-tools -->

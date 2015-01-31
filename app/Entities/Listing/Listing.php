@@ -169,8 +169,10 @@ class Listing {
 	* @param array $pages - array of page objects from current query
 	* @param int $count - current count in loop
 	*/
-	private function listOpening($pages, $count)
+	private function listOpening($pages, $count, $sortable = true)
 	{
+		if ( $this->isSearch() ) $sortable = false;
+
 		// Get array of child pages
 		$children = array();
 		$all_children = $pages->posts;
@@ -181,7 +183,7 @@ class Listing {
 		$compared = array_intersect($this->listing_repo->visiblePages($this->post_type->name), $children);
 
 		if ( $count == 1 ) {
-			echo ( $this->user->canSortPages() ) 
+			echo ( $this->user->canSortPages() && $sortable ) 
 				? '<ol class="sortable nplist visible" id="np-' . $this->post_type->name . '">' 
 				: '<ol class="sortable no-sort nplist" visible" id="np-' . $this->post_type->name . '">';
 		} else {
@@ -217,6 +219,16 @@ class Listing {
 
 
 	/**
+	* Is this a search
+	* @return boolean
+	*/
+	private function isSearch()
+	{
+		return ( isset($_GET['search']) && $_GET['search'] !== "" ) ? true : false;
+	}
+
+
+	/**
 	* Loop through all the pages and create the nested / sortable list
 	* Recursive Method, called in page.php view
 	*/
@@ -233,6 +245,9 @@ class Listing {
 			'post_parent' => $parent_id,
 			'order' => $this->sort_options->order
 		);
+		
+		if ( $this->isSearch() ) $query_args = $this->searchParams($query_args);
+
 		$pages = new \WP_Query(apply_filters('nestedpages_page_listing', $query_args));
 		
 		if ( $pages->have_posts() ) :
@@ -270,7 +285,7 @@ class Listing {
 
 				endif; // trash status
 				
-				$this->loopPosts($this->post->id, $count);
+				if ( !$this->isSearch() ) $this->loopPosts($this->post->id, $count);
 
 				if ( $this->post->status !== 'trash' ) {
 					echo '</li>';
@@ -283,6 +298,17 @@ class Listing {
 			}
 
 		endif; wp_reset_postdata();
+	}
+
+
+	/**
+	* Search Posts
+	*/
+	private function searchParams($query_args)
+	{
+		$query_args['post_title_like'] = sanitize_text_field($_GET['search']);
+		unset($query_args['post_parent']);
+		return $query_args;
 	}
 
 

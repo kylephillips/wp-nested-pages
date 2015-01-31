@@ -3,16 +3,16 @@
 * Row represents a single page
 */
 ?>
-<div class="row<?php if ( !$this->post_type->hierarchical ) echo ' non-hierarchical'; ?>">
+<div class="row<?php if ( !$this->post_type->hierarchical ) echo ' non-hierarchical'; ?>" <?php if ( $this->isSearch() ) echo 'style="padding-left:10px;"';?>>
 	
-	<?php if ( $this->post_type->hierarchical ) : ?>
+	<?php if ( $this->post_type->hierarchical && !$this->isSearch() ) : ?>
 	<div class="child-toggle"></div>
 	<?php endif; ?>
 
 	<div class="row-inner">
 		<i class="np-icon-sub-menu"></i>
 		
-		<?php if ( $this->user->canSortPages() ) : ?>
+		<?php if ( $this->user->canSortPages() && !$this->isSearch() ) : ?>
 		<i class="handle np-icon-menu"></i>
 		<?php endif; ?>
 
