@@ -85,6 +85,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.3.5 =
+* Minor bug fixes
+
 = 1.3.4 =
 * Minor bug fixes
 * Minor UI enhancements
