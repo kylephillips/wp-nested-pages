@@ -45,9 +45,12 @@
 				if ( $user = wp_check_post_lock($this->post->id) ){
 					$u = get_userdata($user);
 					echo '<span class="locked"><i class="np-icon-lock"></i><em> ' . $u->display_name . ' ' . __('currently editing', 'nestedpages') . '</em></span>';
+				} elseif ( !$this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ){
+					echo '<span class="locked"><i class="np-icon-lock"></i></span>';
 				} else {
 					echo '<span class="edit-indicator"><i class="np-icon-pencil"></i>' . __('Edit') . '</span>';
 				}
+				
 			?>
 		</a>
 
@@ -86,7 +89,7 @@
 
 			<?php endif; ?>
 
-			<?php if ( !$user = wp_check_post_lock($this->post->id) ) : ?>
+			<?php if ( !$user = wp_check_post_lock($this->post->id) || !$this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ) : ?>
 			<a href="#" 
 				class="np-btn np-quick-edit" 
 				data-id="<?php echo $this->post->id; ?>" 
@@ -120,7 +123,7 @@
 
 			<a href="<?php echo get_the_permalink(); ?>" class="np-btn" target="_blank"><?php _e('View'); ?></a>
 			
-			<?php if ( current_user_can('delete_pages') ) : ?>
+			<?php if ( current_user_can('delete_pages') && $this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ) : ?>
 			<a href="<?php echo get_delete_post_link(get_the_id()); ?>" class="np-btn np-btn-trash">
 				<i class="np-icon-remove"></i>
 			</a>

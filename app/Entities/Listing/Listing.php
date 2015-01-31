@@ -8,6 +8,7 @@ use NestedPages\Entities\User\UserRepository;
 use NestedPages\Entities\PostType\PostTypeRepository;
 use NestedPages\Entities\Listing\ListingRepository;
 use NestedPages\Config\SettingsRepository;
+use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 
 /**
 * Primary Post Listing
@@ -79,10 +80,16 @@ class Listing {
 	*/
 	private $settings;
 
+	/**
+	* Plugin Integrations
+	*/
+	private $integrations;
+
 
 	public function __construct($post_type)
 	{
 		$this->setPostType($post_type);
+		$this->integrations = new IntegrationFactory;
 		$this->post_repo = new PostRepository;
 		$this->user = new UserRepository;
 		$this->confirmation = new ConfirmationFactory;
