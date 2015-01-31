@@ -78,7 +78,7 @@
 			<?php else : $cs = 'closed'; endif; ?>
 
 
-			<?php if ( current_user_can('publish_pages') && $this->post_type->hierarchical ) : ?>
+			<?php if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->isSearch() ) : ?>
 		
 			<a href="#" class="np-btn open-redirect-modal" data-parentid="<?php echo $this->post->id; ?>"><i class="np-icon-link"></i></a>
 			

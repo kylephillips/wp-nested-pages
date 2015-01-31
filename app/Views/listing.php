@@ -6,13 +6,13 @@
 			<?php _e($this->post_type->labels->add_new); ?>
 		</a>
 
-		<?php if ( current_user_can('publish_pages') ) : ?>
+		<?php if ( current_user_can('publish_pages') && !$this->isSearch() ) : ?>
 		<a href="#" class="add-new-h2 open-bulk-modal" title="<?php _e('Add Multiple', 'nestedpages'); ?>" data-parentid="0">
 			<?php _e('Add Multiple', 'nestedpages'); ?>
 		</a>
 		<?php endif; ?>
 		
-		<?php if ( current_user_can('publish_pages') && $this->post_type->name == 'page' ) : ?>
+		<?php if ( current_user_can('publish_pages') && $this->post_type->name == 'page' && !$this->isSearch() ) : ?>
 		<a href="#" class="add-new-h2 open-redirect-modal" title="<?php _e('Add Link', 'nestedpages'); ?>" data-parentid="0">
 			<?php _e('Add Link', 'nestedpages'); ?>
 		</a>
@@ -24,13 +24,13 @@
 		<div id="message" class="updated below-h2"><p><?php echo $this->confirmation->getMessage(); ?></p></div>
 	<?php endif; ?>
 
-	<?php if ( $this->post_type->hierarchical ) : ?>
+	<?php if ( $this->post_type->hierarchical && !$this->isSearch() ) : ?>
 	<ul class="nestedpages-toggleall" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:0"';?>>
 		<li><a href="#" class="np-btn" data-toggle="closed"><?php _e('Expand All', 'nestedpages'); ?></a></li>
 	</ul>
 	<?php endif; ?>
 
-	<?php if ( current_user_can('edit_theme_options') && $this->post_type->name == 'page' ) : ?>
+	<?php if ( current_user_can('edit_theme_options') && $this->post_type->name == 'page' && !$this->isSearch() ) : ?>
 	<div class="np-sync-menu-cont" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:2px;"';?>>
 		<label>
 			<input type="checkbox" name="np_sync_menu" class="np-sync-menu" value="sync" <?php if ( get_option('nestedpages_menusync') == 'sync' ) echo 'checked'; ?>/> <?php _e('Sync Menu', 'nestedpages'); ?>
