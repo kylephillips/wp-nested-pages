@@ -288,7 +288,7 @@ class PostUpdateRepository {
 	*/
 	private function updateLinkTarget($data)
 	{
-		$link_target = ( isset($data['link_target']) ) ? "_blank" : "";
+		$link_target = ( isset($data['link_target']) && $data['link_target'] == "_blank" ) ? "_blank" : "";
 		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
 		update_post_meta( 
 			$id, 
