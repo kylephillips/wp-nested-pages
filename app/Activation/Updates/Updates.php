@@ -76,17 +76,21 @@ class Updates {
 
 	/**
 	* Make Page Post Type Enabled by Default
-	* @since 1.2.1
+	* Option can be blank, using get_option returns false if blank
+	* @since 1.3.5
 	*/
 	private function enablePagePostType()
-	{
-		if ( version_compare( $this->current_version, '1.3.0', '<' ) ){
-			$enabled = get_option('nestedpages_posttypes');
-			$default = array('page' => array(
+	{	
+		global $wpdb;
+		$options_table = $wpdb->prefix . 'options';
+		$sql = "SELECT * FROM wp_options WHERE option_name = 'nestedpages_posttypes'";
+		$results = $wpdb->get_results($sql);
+		if ( $results ) return;
+		update_option('nestedpages_posttypes', array(
+			'page' => array(
 				'replace_menu' => true
-			));
-			if ( !$enabled ) update_option('nestedpages_posttypes', $default);
-		}
+			)
+		));
 	}
 
 
