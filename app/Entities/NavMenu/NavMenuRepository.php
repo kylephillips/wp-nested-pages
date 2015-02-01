@@ -150,7 +150,7 @@ class NavMenuRepository {
 		global $wpdb;
 		$post_table = $wpdb->prefix . 'posts';
 		$meta_table = $wpdb->prefix . 'postmeta';
-		$sql = "SELECT p.ID AS nav_status FROM wp_posts AS p LEFT JOIN wp_postmeta AS m ON p.ID = m.post_id AND m.meta_key = 'np_nav_status' WHERE p.post_type = 'page' AND (m.meta_value = 'show' OR m.meta_value IS NULL)";
+		$sql = "SELECT p.ID AS nav_status FROM $post_table AS p LEFT JOIN $meta_table AS m ON p.ID = m.post_id AND m.meta_key = 'np_nav_status' WHERE p.post_type = 'page' AND (m.meta_value = 'show' OR m.meta_value IS NULL)";
 		$results = $wpdb->get_results($sql, ARRAY_N);
 		if ( !$results ) return;
 		foreach($results as $key => $result){

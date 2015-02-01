@@ -85,6 +85,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.3.6 =
+* Bug fix – error preventing new install resolved
+
 = 1.3.5 =
 * Minor bug fixes
 * Editorial Access Manager Plugin Integration

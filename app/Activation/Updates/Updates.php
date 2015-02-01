@@ -1,4 +1,7 @@
 <?php namespace NestedPages\Activation\Updates;
+
+use NestedPages\Entities\NavMenu\NavMenuRepository;
+
 /**
 * Required Version Upgrades
 */
@@ -15,12 +18,18 @@ class Updates {
 	private $current_version;
 
 	/**
+	* Nav Menu Repository
+	*/
+	private $nav_menu_repo;
+
+	/**
 	* Run the Updates
 	* @var string
 	*/
 	public function run($new_version)
 	{
 		$this->new_version = $new_version;
+		$this->nav_menu_repo = new NavMenuRepository;
 		$this->setCurrentVersion();
 		$this->addMenu();
 		$this->convertMenuToID();
@@ -83,7 +92,7 @@ class Updates {
 	{	
 		global $wpdb;
 		$options_table = $wpdb->prefix . 'options';
-		$sql = "SELECT * FROM wp_options WHERE option_name = 'nestedpages_posttypes'";
+		$sql = "SELECT * FROM $options_table WHERE option_name = 'nestedpages_posttypes'";
 		$results = $wpdb->get_results($sql);
 		if ( $results ) return;
 		update_option('nestedpages_posttypes', array(
