@@ -73,13 +73,13 @@ class NavMenuRepository {
 	*/
 	public function getMenuTermObject()
 	{
-		if ( get_option('nestedpages_menu') ){
-			$menu_id = get_option('nestedpages_menu');
-			return get_term_by('id', $menu_id, 'nav_menu');
-		} else {
-			$this->createNewMenu();
-			$this->getMenuTermObject();
-		}
+		$menu_id = get_option('nestedpages_menu');
+		$term = get_term_by('id', $menu_id, 'nav_menu');
+		if ( $term ) return get_term_by('id', $menu_id, 'nav_menu');
+		
+		// No Menu Yet		
+		$this->createNewMenu();
+		return $this->getMenuTermObject();
 	}
 
 
