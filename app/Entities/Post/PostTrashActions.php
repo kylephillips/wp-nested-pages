@@ -39,6 +39,7 @@ class PostTrashActions {
 	{
 		$post_type = get_post_type($post_id);
 		$this->resetToggles($post_id, $post_type);
+		if ( get_option('nestedpages_menusync') !== 'sync' ) return;
 		$this->removeNavMenuItem($post_id);
 		if ( $post_type == 'page' ){
 			$sync = new NavMenuSyncListing;
