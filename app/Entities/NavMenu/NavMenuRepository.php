@@ -27,8 +27,17 @@ class NavMenuRepository {
 			'posts_per_page' => 1,
 			'meta_key' => '_menu_item_object_id',
 			'meta_value' => $id,
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'nav_menu',
+					'field'    => 'id',
+					'terms'    => $this->getMenuID(),
+				),
+			),
 		));
-		return ( $meta_query->have_posts() ) ? $meta_query->posts[0]->ID : $this->getLinkMenuItemXFN($id);
+		return ( $meta_query->have_posts() ) ? 
+			$meta_query->posts[0]->ID : 
+			$this->getLinkMenuItemXFN($id);
 	}
 
 
