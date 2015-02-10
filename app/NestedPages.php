@@ -12,7 +12,7 @@ class NestedPages {
 		$np_env = 'live';
 
 		global $np_version;
-		$np_version = '1.3.8';
+		$np_version = '1.3.9';
 
 		if ( is_admin() ) $app = new NestedPages\Bootstrap;
 	}
