@@ -63,7 +63,7 @@ class Activate {
 	private function setOptions()
 	{
 		if ( !get_option('nestedpages_menusync') ){
-			update_option('nestedpages_menusync', 'sync');
+			update_option('nestedpages_menusync', 'nosync');
 		}
 	}
 
