@@ -85,6 +85,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.3.8 =
+* Bug fix – Critical error that was overriding existing menu items outside of the Nested Pages generated menu. Other menus are now unaltered on save.
+
 = 1.3.7 =
 * Bug fix - error when deleting the generated menu
 
@@ -181,6 +184,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Nested Pages
 
 == Upgrade Notice ==
+
+= 1.3.8 =
+Critical bug fix in saving menus. Existing menus outside of the generated menu now unaltered.
 
 = 1.3.4 =
 Minor bug fixes and expanded menu functionality.
