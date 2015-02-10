@@ -51,7 +51,10 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 = Can I use Nested Pages with other post types? =
 As of Nested Pages version 1.3.0, all post types are supported. To enable the Nested Pages interface for post types, update your settings under Settings > Nested Pages.
 
-= How do I access the WordPress “Pages” screen? =
+= Is this plugin compatible with the WPML plugin? =
+Nested Pages is not currently compatible with WPML. 
+
+= How do I access the WordPress "Pages" screen? =
 Click the “Default link in the page subnav, or on the Nested Pages screen. This item may be optionally hidden under the Nested Pages settings.
 
 = How do I save the order I create? =
