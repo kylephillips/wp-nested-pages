@@ -1,4 +1,6 @@
 <?php namespace NestedPages\Entities\Post;
+
+
 /**
 * Build Post Data Object
 */
@@ -53,9 +55,9 @@ class PostDataFactory {
 		$this->post_data->np_status = ( $np_status == 'hide' ) ? 'hide' : 'show';
 
 		// Yoast Score
-		if ( function_exists('wpseo_translate_score') ) {
+		if ( function_exists('wpseo_auto_load') ) {
 			$yoast_score = get_post_meta($post->ID, '_yoast_wpseo_linkdex', true);
-			$this->post_data->score = wpseo_translate_score($yoast_score);
+			$this->post_data->score = \WPSEO_Utils::translate_score($yoast_score);
 		};
 	}
 

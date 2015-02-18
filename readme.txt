@@ -88,6 +88,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.3.10 =
+* Bug fix - resolves deprecated function issue with SEO by Yoast update v1.7.3. Critical for sites running both Nested Pages and WordPress SEO by Yoast
+
 = 1.3.9 =
 * Bug fix - error when deleting a page from the nested view with menu sync disabled
 
@@ -190,6 +193,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Nested Pages
 
 == Upgrade Notice ==
+
+= 1.3.10 =
+Resolves deprecated function issue with SEO by Yoast update v1.7.3. Critical for sites running both Nested Pages and WordPress SEO by Yoast
 
 = 1.3.8 =
 Critical bug fix in saving menus. Existing menus outside of the generated menu now unaltered.

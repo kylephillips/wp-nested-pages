@@ -20,7 +20,7 @@
 			<span class="title"><?php echo $this->post->title; ?></span>
 			<?php 
 				
-				if ( function_exists('wpseo_translate_score') ){
+				if ( function_exists('wpseo_auto_load') ){
 					echo '<span class="np-seo-indicator ' . $this->post->score . '"></span>';
 				}
 
