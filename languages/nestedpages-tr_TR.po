@@ -1,0 +1,342 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Nested Pages\n"
+"POT-Creation-Date: 2014-11-20 20:17-0500\n"
+"PO-Revision-Date: 2015-02-18 20:09+0100\n"
+"Last-Translator: Bartosz Podlewski <b.podlewski@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: tr_TR\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/class-nestedpages.php:85
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: includes/class-np-confirmation.php:58
+msgid "pages moved to the Trash"
+msgstr "sayfalar çöpe taşındı"
+
+#: includes/class-np-confirmation.php:60
+msgid "page moved to the Trash"
+msgstr "sayfa çöpe taşındı"
+
+#: includes/class-np-confirmation.php:65
+msgid "Undo"
+msgstr "Geri Al"
+
+#: includes/class-np-confirmation.php:80
+msgid "pages"
+msgstr "sayfalar"
+
+#: includes/class-np-confirmation.php:80
+msgid "page"
+msgstr "sayfa"
+
+#: includes/class-np-confirmation.php:81
+msgid "restored from trash"
+msgstr "çöpten geri yüklendi"
+
+#: includes/class-np-confirmation.php:90
+msgid "Link successfully deleted."
+msgstr "Bağlantı başarıyla silindi."
+
+#: includes/class-np-dependencies.php:77 views/pages.php:18
+msgid "Expand Pages"
+msgstr "Sayfaları Genişlet"
+
+#: includes/class-np-dependencies.php:78
+msgid "Collapse Pages"
+msgstr "Sayfaları Daralt"
+
+#: includes/class-np-dependencies.php:79 views/pages.php:34
+msgid "Show Hidden"
+msgstr "Görünmezleri Göster"
+
+#: includes/class-np-dependencies.php:80
+msgid "Hide Hidden"
+msgstr "Görünmezleri Gizle"
+
+#: includes/class-np-dependencies.php:81 views/link-form.php:14
+#: views/pages.php:9 views/pages.php:10
+msgid "Add Link"
+msgstr "Bağlantı Ekle"
+
+#: includes/class-np-dependencies.php:82
+msgid "Add Child Link"
+msgstr "Alt Bağlantı Ekle"
+
+#: includes/class-np-handler-base.php:64
+msgid "Incorrect Form Field"
+msgstr "Geçersiz Form Alanı"
+
+#: includes/class-np-handler-base.php:94
+msgid "There was an error updating the page."
+msgstr "Sayfa güncellenirken bir hata oluştu."
+
+#: includes/class-np-handler-newredirect.php:40
+#: includes/class-np-handler-quickedit-redirect.php:36
+msgid "Link successfully updated"
+msgstr "Bağlantı başarıyla güncellendi"
+
+#: includes/class-np-handler-quickedit.php:38
+msgid "Post successfully updated"
+msgstr "Yazı başarıyla güncellendi"
+
+#: includes/class-np-handler-sort.php:36
+msgid "Page order successfully updated."
+msgstr "Sayfa sırası başarıyla güncellendi."
+
+#: includes/class-np-handler-sort.php:38
+msgid "There was an order updating the page order."
+msgstr "Sayfa sırası güncellenirken bir hata oluştu."
+
+#: includes/class-np-handler-syncmenu.php:32
+msgid "Menu sync enabled."
+msgstr "Menü senkronizasyonu aktif edildi."
+
+#: includes/class-np-handler-syncmenu.php:35
+msgid "Menu sync disabled."
+msgstr "Menü senkronizasyonu pasif edildi."
+
+#: includes/class-np-newpage.php:42
+msgid "Adding child page under:"
+msgstr "Sayfasına alt sayfa ekle:"
+
+#: includes/class-np-pagelisting.php:79
+msgid "All Pages"
+msgstr "Tüm Sayfalar"
+
+#: includes/class-np-pagelisting.php:80
+msgid "Add New"
+msgstr "Yeni Ekle"
+
+#: includes/class-np-pagelisting.php:81
+msgid "Default Pages"
+msgstr "Varsayılan Sayfalar"
+
+#: includes/class-np-posttypes.php:21
+msgid "Redirects"
+msgstr "Yönlendirmeler"
+
+#: includes/class-np-posttypes.php:22
+msgid "Redirect"
+msgstr "Yönlendirme"
+
+#: includes/class-np-redirects.php:65
+msgid "Nested Pages"
+msgstr "İç İçe Sayfalar"
+
+#: includes/class-np-repository-post.php:58 views/quickedit.php:20
+msgid "Title"
+msgstr "Başlık"
+
+#: includes/class-np-repository-post.php:298
+msgid "Label"
+msgstr "Etiket"
+
+#: includes/class-np-validation.php:49 includes/class-np-validation.php:64
+msgid "Please provide a valid date."
+msgstr "Lütfen geçerli bir tarih girin."
+
+#: includes/class-np-validation.php:76
+msgid "Please provide a menu title."
+msgstr "Lütfen geçerli bir menü başlığı girin."
+
+#: includes/class-np-validation.php:79
+msgid "Please provide a valid URL."
+msgstr "Lütfen geçerli bir URL girin."
+
+#: includes/class-np-validation.php:90
+msgid "Please provide a "
+msgstr "Lütfen girin"
+
+#: views/link-form.php:31 views/quickedit-redirect.php:17
+#: views/quickedit.php:148
+msgid "Navigation Label"
+msgstr "Navigasyon Etiketi"
+
+#: views/link-form.php:36 views/quickedit-redirect.php:22
+msgid "URL"
+msgstr "URL"
+
+#: views/link-form.php:41 views/quickedit-redirect.php:27
+#: views/quickedit.php:58
+msgid "Status"
+msgstr "Durum"
+
+#: views/link-form.php:44 views/pages.php:33 views/quickedit-redirect.php:30
+#: views/quickedit.php:61
+msgid "Published"
+msgstr "Yayınlanmış"
+
+#: views/link-form.php:45 views/quickedit-redirect.php:31
+#: views/quickedit.php:62
+msgid "Scheduled"
+msgstr "Zamanlanmış"
+
+#: views/link-form.php:47 views/quickedit-redirect.php:33
+#: views/quickedit.php:64
+msgid "Pending Review"
+msgstr "İnceleme Bekliyor"
+
+#: views/link-form.php:48 views/quickedit-redirect.php:34
+#: views/quickedit.php:65
+msgid "Draft"
+msgstr "Taslak"
+
+#: views/link-form.php:59 views/quickedit-redirect.php:54
+#: views/quickedit.php:164
+msgid "Hide in Nav Menu"
+msgstr "Menü İçinde Gizle"
+
+#: views/link-form.php:64 views/quickedit-redirect.php:60
+#: views/quickedit.php:105
+msgid "Hide in Nested Pages"
+msgstr "İç İçe Sayfalarda Gizle"
+
+#: views/link-form.php:69 views/quickedit-redirect.php:66
+#: views/quickedit.php:170
+msgid "Open link in a new window/tab"
+msgstr "Bağlantıyı yeni pencere/tab'da aç"
+
+#: views/link-form.php:80
+msgid "Close"
+msgstr "Kapat"
+
+#: views/link-form.php:83
+msgid "Save Link"
+msgstr "Baplantıyı Kaydet"
+
+#: views/pages.php:24
+msgid "Sync Menu"
+msgstr "Menüyü Senkronize Et"
+
+#: views/pages.php:32
+msgid "All"
+msgstr "Hepsi"
+
+#: views/pages.php:37
+msgid "Trash"
+msgstr "Çöp"
+
+#: views/pages.php:40
+msgid "Default"
+msgstr "Varsayılan"
+
+#: views/quickedit-redirect.php:8
+msgid "Link"
+msgstr "Bağlantı"
+
+#: views/quickedit-redirect.php:44 views/quickedit.php:152
+msgid "Title Attribute"
+msgstr "Başlık Özelliği"
+
+#: views/quickedit-redirect.php:48 views/quickedit.php:156
+msgid "CSS Classes"
+msgstr "CSS Sınıfı"
+
+#: views/quickedit-redirect.php:81 views/quickedit.php:184
+msgid "Cancel"
+msgstr "İptal"
+
+#: views/quickedit-redirect.php:84 views/quickedit.php:187
+msgid "Update"
+msgstr "Güncelle"
+
+#: views/quickedit.php:11 views/row-redirect.php:53 views/row.php:94
+msgid "Quick Edit"
+msgstr "Hızlı Düzenle"
+
+#: views/quickedit.php:24
+msgid "Slug"
+msgstr "Slug"
+
+#: views/quickedit.php:28
+msgid "Date"
+msgstr "Tarih"
+
+#: views/quickedit.php:49
+msgid "Author"
+msgstr "Yazar"
+
+#: views/quickedit.php:73
+msgid "Template"
+msgstr "Şablon"
+
+#: views/quickedit.php:75
+msgid "Default Template"
+msgstr "Varsayılan Şablon"
+
+#: views/quickedit.php:82
+msgid "Password"
+msgstr "Şifre"
+
+#: views/quickedit.php:85
+msgid "&ndash;OR&ndash;"
+msgstr "&ndash;VEYA&ndash;"
+
+#: views/quickedit.php:88
+msgid "Private"
+msgstr "Özel"
+
+#: views/quickedit.php:97
+msgid "Allow Comments"
+msgstr "Yorumlara İzin Ver"
+
+#: views/quickedit.php:113
+msgid "Menu Options"
+msgstr "Menü Seçenekleri"
+
+#: views/quickedit.php:115
+msgid "Taxonomies"
+msgstr "Sınıflandırmalar"
+
+#: views/row-redirect.php:30 views/row.php:33
+msgid "Hidden"
+msgstr "Gizli"
+
+#: views/row.php:41
+msgid "currently editing"
+msgstr "şuanda düzenleniyor"
+
+#: views/row.php:43
+msgid "Edit"
+msgstr "Düzenle"
+
+#: views/row.php:66
+msgid "Add Child"
+msgstr "Alt Ekle"
+
+#: views/row.php:98
+msgid "View"
+msgstr "Görüntüle"
+
+#: views/settings.php:2
+msgid "Nested Pages Settings"
+msgstr "İç İçe Sayfalar Ayarları"
+
+#: views/settings.php:8
+msgid "Nested Pages Version"
+msgstr "İç İçe Sayfalar Sürümü"
+
+#: views/settings.php:12
+msgid "Menu Name"
+msgstr "Menü Adı"
+
+#: views/settings.php:15
+msgid ""
+"Important: Once the menu name has changed, theme files should be updated to "
+"reference the new name."
+msgstr ""
+"Önemli: Menü adı değiştirildiğinde, tema dosyaları yeni menü ismine göre "
+"düzenlenmeli."
