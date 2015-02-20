@@ -4,7 +4,7 @@ Donate link: http://nestedpages.com/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.3.10
+Stable tag: 1.3.11
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -38,6 +38,7 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 * Italian (Francesco Canovi)
 * Portuguese (Luis Martins)
 * Russian (Алексей Катаев)
+* Turkish (Yuksel Beyti)
 
 == Installation ==
 
@@ -87,6 +88,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 7. The Nested Pages interface can be enabled on a per-post-type basis, with customizable options for each type.
 
 == Changelog ==
+
+= 1.3.11 =
+* Turkish Translation (Provided by Yuksel Beyti)
 
 = 1.3.10 =
 * Bug fix - resolves deprecated function issue with SEO by Yoast update v1.7.3. Critical for sites running both Nested Pages and WordPress SEO by Yoast
