@@ -1,5 +1,5 @@
-<div class="wrap">
-	<h2>
+<div class="wrap nestedpages">
+	<h2 class="nestedpages-listing-title">
 		<?php _e($this->post_type->labels->name); ?>
 		
 		<a href="<?php echo $this->post_type_repo->addNewPostLink($this->post_type->name); ?>" class="add-new-h2">
@@ -21,24 +21,24 @@
 	</h2>
 
 	<?php if ( $this->confirmation->getMessage() ) : ?>
-		<div id="message" class="updated below-h2"><p><?php echo $this->confirmation->getMessage(); ?></p></div>
+		<div id="message" class="updated"><p><?php echo $this->confirmation->getMessage(); ?></p></div>
 	<?php endif; ?>
 
-	<?php if ( $this->post_type->hierarchical && !$this->isSearch() ) : ?>
-	<ul class="nestedpages-toggleall" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:0"';?>>
-		<li><a href="#" class="np-btn" data-toggle="closed"><?php _e('Expand All', 'nestedpages'); ?></a></li>
-	</ul>
-	<?php endif; ?>
+	<div class="nestedpages-top-toggles">
+		<?php if ( $this->post_type->hierarchical && !$this->isSearch() ) : ?>
+		<a href="#" class="np-btn nestedpages-toggleall" data-toggle="closed"><?php _e('Expand All', 'nestedpages'); ?></a>
+		<?php endif; ?>
 
-	<?php if ( current_user_can('edit_theme_options') && $this->post_type->name == 'page' && !$this->isSearch() ) : ?>
-	<div class="np-sync-menu-cont" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:2px;"';?>>
-		<label>
-			<input type="checkbox" name="np_sync_menu" class="np-sync-menu" value="sync" <?php if ( get_option('nestedpages_menusync') == 'sync' ) echo 'checked'; ?>/> <?php _e('Sync Menu', 'nestedpages'); ?>
-		</label>
-	</div>
-	<?php endif; ?>
+		<?php if ( current_user_can('edit_theme_options') && $this->post_type->name == 'page' && !$this->isSearch() ) : ?>
+		<div class="np-sync-menu-cont" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:2px;"';?>>
+			<label>
+				<input type="checkbox" name="np_sync_menu" class="np-sync-menu" value="sync" <?php if ( get_option('nestedpages_menusync') == 'sync' ) echo 'checked'; ?>/> <?php _e('Sync Menu', 'nestedpages'); ?>
+			</label>
+		</div>
+		<?php endif; ?>
 
-	<img src="<?php echo plugins_url(); ?>/wp-nested-pages/assets/images/spinner-2x.gif" alt="loading" id="nested-loading" />
+		<img src="<?php echo plugins_url(); ?>/wp-nested-pages/assets/images/spinner-2x.gif" alt="loading" id="nested-loading" />
+	</div><!-- .nestedpages-top-toggles -->
 
 	<?php include(NestedPages\Helpers::view('partials/tool-list')); ?>
 

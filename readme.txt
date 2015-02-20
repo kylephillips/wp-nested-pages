@@ -90,6 +90,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 == Changelog ==
 
 = 1.3.11 =
+* Minor UI bug fixes
 * Turkish Translation (Provided by Yuksel Beyti)
 
 = 1.3.10 =
