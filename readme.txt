@@ -92,6 +92,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 = 1.3.11 =
 * Minor UI bug fixes
 * Turkish Translation (Provided by Yuksel Beyti)
+* Updated French Translation (Provided by @Inovagora)
 
 = 1.3.10 =
 * Bug fix - resolves deprecated function issue with SEO by Yoast update v1.7.3. Critical for sites running both Nested Pages and WordPress SEO by Yoast
