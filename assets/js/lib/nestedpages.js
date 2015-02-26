@@ -1505,6 +1505,7 @@ jQuery(function($){
 		revert_new_child();
 		$('#np-bulk-modal').modal('hide');
 		np_qe_update_animate(form);
+		submit_sortable_form();
 	}
 
 
