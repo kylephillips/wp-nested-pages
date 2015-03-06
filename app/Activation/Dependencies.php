@@ -70,22 +70,22 @@ class Dependencies {
 			wp_enqueue_script('jquery-ui-sortable');
 			wp_enqueue_script('jquery-ui-datepicker');
 			wp_enqueue_script(
-				'bootstrap-modal', 
-				$this->plugin_dir . '/assets/js/lib/bs-modal.js', 
+				'bootstrap', 
+				$this->plugin_dir . '/assets/js/lib/bootstrap.min.js', 
 				array('jquery'), 
-				'1.0'
+				'3.3.2'
 			);
 			wp_enqueue_script(
 				'ui-touch-punch', 
 				$this->plugin_dir . '/assets/js/lib/jquery.ui.touch-punch.min.js', 
 				array('jquery', 'jquery-ui-sortable'), 
-				'1.0'
+				$this->plugin_version
 			);
 			wp_enqueue_script(
 				'nested-sortable', 
 				$this->plugin_dir . '/assets/js/lib/jquery.mjs.nestedSortable.js', 
 				array('jquery', 'jquery-ui-sortable'), 
-				'1.0'
+				$this->plugin_version
 			);
 			if ( $np_env == 'dev' ){
 				wp_enqueue_script(
