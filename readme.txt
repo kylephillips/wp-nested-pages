@@ -91,6 +91,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 = 1.3.11 =
 * Minor UI bug fixes
+* Javascript Modal error bug fix
 * Turkish Translation (Provided by Yuksel Beyti)
 * Updated French Translation (Provided by @Inovagora)
 
