@@ -4,7 +4,7 @@ Donate link: http://nestedpages.com/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.3.11
+Stable tag: 1.3.12
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -203,6 +203,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Nested Pages
 
 == Upgrade Notice ==
+
+= 1.3.12 =
+Resolves issue with custom user roles/permissions and deleting posts. Important patch for sites using custom user roles. Thanks to Yuksel Beyti for finding/patching.
 
 = 1.3.10 =
 Resolves deprecated function issue with SEO by Yoast update v1.7.3. Critical for sites running both Nested Pages and WordPress SEO by Yoast
