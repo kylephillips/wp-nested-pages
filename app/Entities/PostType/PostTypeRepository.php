@@ -11,7 +11,6 @@ class PostTypeRepository {
 	public function getPostTypes($return = 'names')
 	{
 		$args = array(
-			'public' => true,
 			'show_ui' => true
 		);
 		return get_post_types($args, $return);
