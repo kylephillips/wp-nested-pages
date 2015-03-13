@@ -10,10 +10,7 @@ class PostTypeRepository {
 	*/
 	public function getPostTypes($return = 'names')
 	{
-		$args = array(
-			'show_ui' => true
-		);
-		return get_post_types($args, $return);
+		return get_post_types(array('show_ui'=>true), $return);
 	}
 
 
@@ -100,9 +97,7 @@ class PostTypeRepository {
 	public function enabledPostTypes()
 	{
 		$types = get_option('nestedpages_posttypes');
-		if ( !$types ) $types = array();
-		
-		return $types;
+		return ( !$types ) ? array() : $types;
 	}
 
 
@@ -156,8 +151,7 @@ class PostTypeRepository {
 		$flat_taxonomies = array();
 		foreach ( $taxonomy_names as $taxonomy_name ) {
 			$taxonomy = get_taxonomy( $taxonomy_name );
-			if ( !$taxonomy->show_ui )
-				continue;
+			if ( !$taxonomy->show_ui )continue;
 
 			if ( $taxonomy->hierarchical )
 				$hierarchical_taxonomies[] = $taxonomy;
