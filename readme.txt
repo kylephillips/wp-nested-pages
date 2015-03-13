@@ -89,6 +89,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.3.13 =
+* Bug fix preventing some custom post types from being enabled
+
 = 1.3.12 =
 * Permissions Bug fix in emptying trash (Thanks to Yuksel Beyti)
 
