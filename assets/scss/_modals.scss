@@ -3,15 +3,6 @@
 // --------------------------------------------------
 
 // Modal background
-.modal-backdrop {
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background-color: #000;
-	opacity: .85;
-}
 
 .modal-open {
 	overflow: hidden;
@@ -28,6 +19,17 @@
 	z-index: 99999;
 	-webkit-overflow-scrolling: touch;
 	outline: 0;
+
+	.modal-backdrop {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-color: #000;
+		opacity: .85;
+		z-index: 9999;
+	}
 	&.fade .modal-dialog {
 		@include translate(0, -25%);
 		@include transition-transform(0.3s ease-out);
@@ -45,7 +47,7 @@
 		width: auto;
 		margin: 10px auto 0px auto;
 		max-width: 500px;
-		z-index: 999;
+		z-index: 9999;
 	}
 
 	// Actual modal
