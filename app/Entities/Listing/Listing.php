@@ -333,7 +333,7 @@ class Listing {
 	*/
 	private function parentTrashed($pages)
 	{
-		if ( !isset($pages->query['post_parent']) ) return false;
+		if ( !isset($pages->query['post_parent']) || $pages->query['post_parent'] == 0 ) return false;
 		if ( get_post_status($pages->query['post_parent']) == 'trash' ) return true;
 		return false;
 
