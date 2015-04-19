@@ -89,6 +89,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.3.14 =
+* Minor bug fix – modal not appearing when last item in the trash (provided by ClementRoy)
+
 = 1.3.13 =
 * Bug fix preventing some custom post types from being enabled
 * Bug fix - editors with sort capabilities menu sync enabled
