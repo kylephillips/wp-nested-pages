@@ -1,9 +1,19 @@
 //
 // Toggle Visibility of pages
 // --------------------------------------------------
+
+.nestedpages-listing-title {
+	float: left;
+}
+
+// Clear fix for admin notices
+.nestedpages .updated {
+	clear: both;
+}
+
+// Toggle Button
 .nestedpages-toggleall {
 	float: right;
-	margin-top: -30px;
 }
 
 // Publish Toggle
@@ -18,12 +28,17 @@
 // Sync Menu
 .np-sync-menu-cont {
 	float: right;
-	margin: -27px 15px 0px 0px;
+	margin: 5px 15px 0px 0px;
 }
 
 #nested-loading {
 	display: none;
 	float: right;
 	width: 30px;
-	margin: -31px 120px 0 0;
+	margin: 0px 20px 0 0;
+}
+
+.nestedpages-top-toggles {
+	@include clearfix;
+	padding-top: 10px;
 }

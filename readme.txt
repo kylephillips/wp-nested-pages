@@ -1,34 +1,44 @@
 === Nested Pages ===
 Contributors: kylephillips
 Donate link: http://nestedpages.com/
-Tags: pages, admin, nested, tree view, page tree, sort, quick edit
+Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
-Tested up to: 4.0.1
-Stable tag: 1.1.6
+Tested up to: 4.1
+Stable tag: 1.3.13
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Nested Pages provides an intuitive drag and drop interface for managing pages in the Wordpress admin, while maintaining quick edit functionality.
+Nested Pages provides a drag and drop interface for managing pages & posts in the WordPress admin, while maintaining quick edit functionality.
 
 == Description ==
 
-**Nested Pages offers**
+**Why use Nested Pages?**
 
-* A drag and drop interface for managing your pages - simple and intuitive
-* Quick edit functionality
-* An expandable, sortable tree view of your site's page structure
-* A native Wordpress menu, automatically generated to match your Nested Pages screen
-* A touch-friendly interface
+* Provides a simple & intuitive drag and drop interface for managing your page structure and post ordering
+* Enhanced quick edit functionality
+* Adds an editable, sortable tree view of your site's page structure
+* Automatically generates a native WordPress menu that matches your page structure
+* A way to quickly add multiple pages & posts (ideal for development)
+* Works with any post type
+* Works on touch-enabled devices
 
 For more information visit [nestedpages.com](http://nestedpages.com).
 
-**Nested Pages requires Wordpress version 3.8 or higher, and PHP version 5.3 or higher.**
+**Important: Nested Pages requires WordPress version 3.8 or higher, and PHP version 5.3.2 or higher.**
 
 **Languages:**
 
+* Danish (Thomas Blomberg)
+* Dutch (Arno Vije)
 * English
-* Français (Nico Mollet)
+* Finnish (Roni Laukkarinen)
+* French (Nico Mollet)
+* German/Swiss German (Bartosz Podlewski)
+* Italian (Francesco Canovi)
+* Portuguese (Luis Martins)
+* Russian (Алексей Катаев)
+* Turkish (Yuksel Beyti)
 
 == Installation ==
 
@@ -40,35 +50,132 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 == Frequently Asked Questions ==
 
 = Can I use Nested Pages with other post types? =
-Nested Pages is currently limited to the WordPress “Page” post type.
+As of Nested Pages version 1.3.0, all post types are supported. To enable the Nested Pages interface for post types, update your settings under Settings > Nested Pages.
 
-= How do I access the WordPress “Pages” screen? =
-Click the “Default Pages” link in the page subnav, or on the Nested Pages screen.
+= Is this plugin compatible with the WPML plugin? =
+Nested Pages is not currently compatible with WPML. 
+
+= How do I access the WordPress "Pages" screen? =
+Click the “Default link in the page subnav, or on the Nested Pages screen. This item may be optionally hidden under the Nested Pages settings.
 
 = How do I save the order I create? =
-Page sorting and nesting is saved in the background after changes are made to the structure.
+Post sorting and nesting is saved in the background after changes are made to the structure.
 
 = How do I edit in bulk? =
-Bulk quick edits are not currently supported by Nested Pages. To edit in bulk, click on “Default Pages” to use the native interface.
+Bulk quick edits are not currently supported by Nested Pages. To edit in bulk, click on the "Default" link to use the native interface.
 
 = What about custom columns? =
-Custom columns are not currently supported by Nested Pages. To view custom columns, click on “Default Pages” to view the native interface. If you are using WordPress SEO by Yoast, a page analysis indicator is shown.
+Custom columns are not currently supported by Nested Pages. To view custom columns, click on the "Default" link to view the native interface. If you are using WordPress SEO by Yoast, a page analysis indicator is shown.
 
 = What are those dots in my page rows? =
-If you have Wordpress SEO by Yoast installed, your page score indicators are shown along with the pages.
+If you have WordPress SEO by Yoast installed, your page score indicators are shown along with the pages.
 
 
 == Screenshots ==
 
 1. Expandable tree view of your page structure
 
-2. Retains most quick edit functionality
+2. Retains quick edit functionality while adding additional options and a cleaner interface
 
 3. Sortable page nesting updates in real time
 
 4. Toggle nested child pages for a clutter-free tree
 
+5. Quickly add posts without leaving the page tree
+
+6. Set capabilities
+
+7. The Nested Pages interface can be enabled on a per-post-type basis, with customizable options for each type.
+
 == Changelog ==
+
+= 1.3.14 =
+* Minor bug fix – modal not appearing when last item in the trash (provided by ClementRoy)
+
+= 1.3.13 =
+* Bug fix preventing some custom post types from being enabled
+* Bug fix - editors with sort capabilities menu sync enabled
+* WP Engine modal z-index fix
+
+= 1.3.12 =
+* Permissions Bug fix in emptying trash (Thanks to Yuksel Beyti)
+
+= 1.3.11 =
+* Minor UI bug fixes
+* Javascript Modal error bug fix
+* Turkish Translation (Provided by Yuksel Beyti)
+* Updated French Translation (Provided by @Inovagora)
+
+= 1.3.10 =
+* Bug fix - resolves deprecated function issue with SEO by Yoast update v1.7.3. Critical for sites running both Nested Pages and WordPress SEO by Yoast
+
+= 1.3.9 =
+* Bug fix - error when deleting a page from the nested view with menu sync disabled
+
+= 1.3.8 =
+* Bug fix – Critical error that was overriding existing menu items outside of the Nested Pages generated menu. Other menus are now unaltered on save.
+
+= 1.3.7 =
+* Bug fix - error when deleting the generated menu
+
+= 1.3.6 =
+* Bug fix – error preventing new install resolved
+
+= 1.3.5 =
+* Minor bug fixes
+* Editorial Access Manager Plugin Integration
+
+= 1.3.4 =
+* Minor bug fixes
+* Minor UI enhancements
+* Changes to page and link menu items under appearance > menu now sync the Nested Pages listing when menu sync is enabled (other custom menu item types not yet supported).
+* Option added to disable nesting on hierarchical post types while maintaining sort functionality (ideal for live sites where link structures need to remain intact)
+* Updated Dutch Translation (Provided by Arno Vije)
+* Search capabilities added
+* Hash/Empty URLs no longer appended with http://
+
+= 1.3.3 =
+* Russian Translation (Provided by Алексей Катаев)
+* Minor bug fix in add child page functionality that effects display of appended pages.
+
+= 1.3.2 =
+* Bug fix in menu - pages now nestable under links.
+
+= 1.3.1 =
+* UI enhancements in Quick Edits – default date fields replaced with datepicker and formatted time. 
+
+= 1.3.0 =
+* All public post types are now supported, both hierarchical and non-hierarchical. To enabled the Nested Pages interface for additional post types, visit Settings > Nested Pages and select the "Post Types" tab. The generated nav menu is tied to the pages type, which is enabled by default.
+* New interface for adding top-level posts/pages in bulk
+* New "Empty Trash" link for quickly emptying trash on enabled post types
+* Dutch translation (Provided by Arno Vije)
+
+= 1.2.1 =
+* Bug fixes when using custom roles (Thanks to Luis Martins for troubleshooting help)
+
+= 1.2.0 =
+* PHP 5.3.2+ is now required to run Nested Pages. Will not run or install on older versions of PHP.
+* Visual nesting indication limit removed
+* Portuguese Translation (Provided by Luis Martins)
+* Various bug fixes
+
+= 1.1.9 =
+* Minor bug fixes in editor capabilities
+* Italian translation (Provided by Francesco Canovi)
+
+= 1.1.8 =
+* New Child Pages Interface - Add child pages more efficiently with the new add child pages dialog. Add a single child page without leaving the Nested Pages view, or add multiple pages with one click. Reorder multiple child pages before saving with the drag and drop interface you're accustomed to.
+* Tested for 4.1 compatibility
+* Page ID indicator added to Quick Edit dialog
+* Taxonomies & other custom menu items now visible in pages admin menu
+
+= 1.1.7 =
+* Danish Translation (Provided by Thomas Blomberg)
+* Finnish Translation (Provided by Roni Laukkarinen)
+* German/Swiss German Translation (Provided by Bartosz Podlewski)
+* Added option to hide default pages
+* Added option to give editors ability to sort pages
+* Query filter added to main page listing
 
 = 1.1.6 =
 * Minor UI Improvements - Current admin page now highlighted
@@ -104,6 +211,42 @@ If you have Wordpress SEO by Yoast installed, your page score indicators are sho
 * Nested Pages
 
 == Upgrade Notice ==
+
+= 1.3.12 =
+Resolves issue with custom user roles/permissions and deleting posts. Important patch for sites using custom user roles. Thanks to Yuksel Beyti for finding/patching.
+
+= 1.3.10 =
+Resolves deprecated function issue with SEO by Yoast update v1.7.3. Critical for sites running both Nested Pages and WordPress SEO by Yoast
+
+= 1.3.8 =
+Critical bug fix in saving menus. Existing menus outside of the generated menu now unaltered.
+
+= 1.3.4 =
+Minor bug fixes and expanded menu functionality.
+
+= 1.3.3 =
+Russian translation added along with minor bug fixes.
+
+= 1.3.2 =
+Minor bug fixes in menu.
+
+= 1.3.1 =
+Date fields in Quick Edit windows are now replaced with a date picker and formatted time. If the formatting conflicts with your specific locale, disable the datepicker under Settings > Nested Pages > General.
+
+= 1.3.0 =
+All post types are now supported. Also includes minor bug fixes and UI improvements.
+
+= 1.2.1 =
+Bug fix when using custom roles. 
+
+= 1.2 =
+PHP 5.3.2 now required – Nested Pages will not install on older versions of PHP. If you are running less than 5.3.2, continue to use Nested Pages version 1.1.9.
+
+= 1.1.9 =
+Italian translation included along with minor bug fixes.
+
+= 1.1.8 =
+New Child Pages Interface, various UI enhancements
 
 = 1.1.6 = 
 Minor UI enhancements and bug fixes.

@@ -1,35 +1,24 @@
 //
 // Quick Edit Form
 // --------------------------------------------------
-.np-quick-edit-overlay {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0,0,0,.4);
-	z-index: 998;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	opacity: 0;
-	transition: opacity 200ms ease;
-	&.active {
-		opacity: 1;
-		transition: opacity 200ms ease;
-	}
-}
-.nestedpages .quick-edit {
-	position: relative;
-	z-index: 999;
-	background-color: $white;
-	border-radius: 0;
-	box-shadow: 0px 0px 4px 0px rgba(0,0,0,.5);
+
+.nestedpages .quick-edit, .nestedpages .new-child {
 	.form-interior {
 		padding: 10px;
 	}
 	h3 {
 		margin: 0 0 8px 0;
 		font-size: 14px;
+		// Page ID
+		span {
+			float: right;
+			font-size: 12px;
+			em {
+				font-weight: normal;
+				font-style: normal;
+				color: darken($white, 50%);
+			}
+		}
 	}
 	.fields {
 		margin-bottom: 10px;
@@ -86,7 +75,39 @@
 				}
 			}
 		}
-	}
+		&.np-datepicker-container {
+			.datetime {
+				float: right;
+				width: 75%;
+			}
+			.np-time-container {
+				float: left;
+				width: 45%;
+				margin: 0;
+				position: relative;
+				input[type="text"]{
+					float: left;
+					width: 55%;
+				}
+				select {
+					float: right;
+					width: 35%;
+				}
+			}
+			.np_datepicker {
+				float: left;
+				width: 45%;
+				margin: 0;
+			}
+			span {
+				float: left;
+				width: 10%;
+				display: block;
+				text-align: center;
+				padding-top: 3px;
+			}
+		}
+	} // .form-control
 	.comments {
 		float: right;
 		width: 75%;
@@ -177,6 +198,78 @@
 			font-style: normal;
 		}
 	}
+
+	// Sortable New Page Titles
+	.new-page-titles {
+		display: block;
+		border: 0;
+		li {
+			background: transparent;
+			border: 0;
+			padding: 4px;
+			@include clearfix;
+			&:nth-child(even){
+				background-color: darken($white, 6%);
+			}
+			label {
+				margin-top: 7px;
+			}
+		}
+		.form-control {
+			float: right;
+			width: 90%;
+			clear: none;
+		}
+		.np-icon-menu {
+			float: left;
+			margin-top: 0px;
+			height: auto;
+			line-height: 26px;
+		}
+		.new-child-row {
+			div {
+				float: right;
+				width: 75%;
+				margin: 2px;
+				@include clearfix;
+				input[type='text']{
+					float: left;
+					width: 80%;
+				}
+				a {
+					float: right;
+				}
+			}
+		} // .new-child-row
+	} // .new-page-titles
+
+}
+
+// Overrides for Modal Form
+.np-modal.nestedpages .new-child .right {
+	.form-control {
+		input[type='text'],
+		input[type='password'],
+		select {
+			float: none;
+			width: 100%;
+		}
+		label {
+			float: none;
+			width: 100%;
+		}
+	}
+}
+.np-modal.nestedpages .new-child .new-page-titles .form-control {
+	width: 85%;
+	div {
+		width: 100%;
+	}
+}
+.np-modal.nestedpages .new-child .left {
+	label {
+		display: none;
+	}
 }
 
 .np-qe-loading {
@@ -211,6 +304,10 @@
 				float: none;
 				width: 100%;
 				margin-bottom: 4px;
+			}
+			&.np-datepicker-container .datetime {
+				float: none;
+				width: 100%;
 			}
 		}
 		.comments {

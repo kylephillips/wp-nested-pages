@@ -1,0 +1,108 @@
+//
+// JQuery UI Datepicker for Nested Pages
+// --------------------------------------------------
+.nestedpages-datepicker.ui-datepicker {
+	background-color: $white;
+	font-size: 90%;
+	box-shadow: 0px 0px 3px 0px rgba(0,0,0,.4);
+	border-radius: 3px;
+	padding: 0;
+	width: auto;
+
+	// Prev & Next
+	.ui-datepicker-next, .ui-datepicker-prev {
+		position: absolute;
+		color: $white;
+		top: 0px;
+		right: 0px;
+		cursor: pointer;
+		display: block;
+		width: 35px;
+		height: 35px;
+		font-size: 0;
+		background: url('../images/datepicker-arrow-next.png');
+		background-position: center;
+		opacity: 1;
+		transition: opacity 200ms ease;
+		&:hover {
+			opacity: .5;
+			transition: opacity 200ms ease;
+		}
+	}
+
+	.ui-datepicker-calendar {
+		margin: 0;
+	}
+
+	.ui-datepicker-prev {
+		right: auto;
+		left: 0px;
+		background: url('../images/datepicker-arrow-prev.png');
+	}
+
+	.ui-datepicker-header {
+		padding: 0;
+	}
+
+	// Month & Year
+	.ui-datepicker-title {
+		background-color: darken($white, 90%);
+		text-align: center;
+		color: $white;
+		height: 35px;
+		line-height: 35px;
+		border-radius: 3px 3px 0 0;
+		margin: 0;
+	}
+
+	// Calendar Table
+	.ui-datepicker-calendar {
+		border-collapse: collapse;
+		table {
+			width: auto;
+		}
+		th, td {
+			text-align: center;
+			width: 30px;
+			height: 30px;
+		}
+		// Days
+		th {
+			background-color: darken($white, 10%);
+			text-transform: uppercase;
+			font-size: 11px;
+			letter-spacing: 1px;
+			padding: 0;
+		}
+		td {
+			border-top: 1px solid darken($white, 8%);
+			border-left: 1px solid darken($white, 8%);
+			padding: 0;
+			&:first-child {
+				border-left: 0;
+			}
+		}
+		a {
+			text-align: center;
+			padding: 0;
+			text-decoration: none;
+			color: $black;
+			display: block;
+			background-color: $white;
+			transition: all 200ms ease;
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			&.ui-state-active {
+				background-color: darken($white, 90%);
+				color: $white;
+			}
+			&:hover {
+				background-color: $black;
+				color: $white;
+				transition: all 200ms ease;
+			}
+		}
+	}
+
+}

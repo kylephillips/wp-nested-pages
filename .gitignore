@@ -1,4 +1,4 @@
 /node_modules/*
-notes.txt
+/vendor/*
 .DS_Store
 Thumbs.db

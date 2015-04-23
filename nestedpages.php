@@ -3,7 +3,7 @@
 Plugin Name: Nested Pages
 Plugin URI: http://nestedpages.com
 Description: Provides an intuitive drag and drop interface for managing pages in the Wordpress admin, while maintaining quick edit functionality.
-Version: 1.1.6
+Version: 1.3.13
 Author: Kyle Phillips
 Author URI: https://github.com/kylephillips
 Text Domain: nestedpages
@@ -32,20 +32,23 @@ Copyright: Kyle Phillips
 * Check Wordpress and PHP versions before instantiating plugin
 */
 register_activation_hook( __FILE__, 'nestedpages_check_versions' );
-function nestedpages_check_versions( $wp = '3.9', $php = '5.3.0' ) {
+function nestedpages_check_versions( $wp = '3.9', $php = '5.3.2' ) {
     global $wp_version;
     if ( version_compare( PHP_VERSION, $php, '<' ) ) $flag = 'PHP';
     elseif ( version_compare( $wp_version, $wp, '<' ) ) $flag = 'WordPress';
-    elseif ( !get_post_type_object( 'page' ) ) $flag = 'Page Post Type';
     else return;
     $version = 'PHP' == $flag ? $php : $wp;
-    deactivate_plugins( basename( __FILE__ ) );
+    
+    if (function_exists('deactivate_plugins')){
+        deactivate_plugins( basename( __FILE__ ) );
+    }
     
     wp_die('<p>The <strong>Nested Pages</strong> plugin requires'.$flag.'  version '.$version.' or greater.</p>','Plugin Activation Error',  array( 'response'=>200, 'back_link'=>TRUE ) );
 }
 
-
-if( !class_exists('NestedPages') ) :
-	require_once('includes/class-nestedpages.php');
-	$nested_pages = new NestedPages;
+if( !class_exists('Bootstrap') ) :
+    nestedpages_check_versions();
+    require_once('vendor/autoload.php');
+    require_once('app/NestedPages.php');
+    NestedPages::init();
 endif;

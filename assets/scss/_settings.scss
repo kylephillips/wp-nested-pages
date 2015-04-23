@@ -1,0 +1,26 @@
+//
+// Settings styles
+// --------------------------------------------------
+
+// Settings Table
+.nestedpages-settings-table {
+	border: 1px solid darken($white, 15%);
+	border-collapse: collapse;
+	thead th {
+		background-color: darken($white, 15%);
+		padding: 5px;
+	}
+	tbody tr td {
+		padding: 5px;
+		border-left: 1px solid darken($white, 12%);
+		&:first-child {
+			border: 0;
+		}
+	}
+	tbody tr:nth-child(odd) td {
+		background-color: $white;
+	}
+	i {
+		font-size: 20px;
+	}
+}

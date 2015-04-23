@@ -157,6 +157,7 @@
 			font-size: 20px;
 			line-height: 30px;
 			color: $black;
+			box-shadow: none;
 			transition: all 200ms ease;
 			i {
 				line-height: 26px;
@@ -232,22 +233,57 @@
 			background-color: $white;
 			transition: background-color 400ms ease;	
 		}
+		// No Toggle Area
+		&.non-hierarchical {
+			padding-left: 15px;
+		}
 	} // .row
 
 
 	// Inner row element gets padding to give visual indicator of nested depth
 	ol li ol {
 		.row-inner {
-			padding-left: 86px;
+			padding-left: 76px;
 		}
 		li ol {
 			.row-inner {
-				padding-left: 116px;
+				padding-left: 96px;
 			}
 			li ol {
 				.row-inner {
-					padding-left: 156px;
+					padding-left: 116px;
 				}
+				li ol {
+					.row-inner {
+						padding-left: 136px;
+					}
+					li ol {
+						.row-inner {
+							padding-left: 156px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// Post Data Columns
+	.np-post-columns {
+		float: right;
+		margin: 3px 20px 0px 0px;
+		@include clearfix;
+		ul li {
+			background: transparent;
+			color: darken($white, 50%);
+			border: 0;
+			float: left;
+			margin-left: 8px;
+			padding-left: 8px;
+			border-left: 1px solid darken($white, 20%);
+			&:first-child {
+				margin-left: 0;
+				padding-left: 0;
+				border: 0;
 			}
 		}
 	}
@@ -265,13 +301,20 @@
 		}
 	}
 
-
 } // .nestedpages
+
+
+.np-search {
+	float: right;
+}
 
 @media (min-width: 768px)
 {
 	.nestedpages .row:hover .action-buttons {
 		display: block;
+	}
+	.nestedpages .row:hover .np-post-columns {
+		display: none;
 	}
 }
 
