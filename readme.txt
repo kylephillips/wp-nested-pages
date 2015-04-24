@@ -3,7 +3,7 @@ Contributors: kylephillips
 Donate link: http://nestedpages.com/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
-Tested up to: 4.1
+Tested up to: 4.2
 Stable tag: 1.3.13
 
 License: GPLv2 or later
@@ -91,7 +91,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 = 1.3.14 =
 * Minor bug fix – modal not appearing when last item in the trash (provided by ClementRoy)
+* Option added to hide the "Sync Menu" checkbox (visit Settings > Nested Pages > General to hide)
 * Updated Danish Translation (Thomas Blomberg)
+* Confirmed compatibility with WordPress v4.2
 
 = 1.3.13 =
 * Bug fix preventing some custom post types from being enabled

@@ -29,7 +29,7 @@
 		<a href="#" class="np-btn nestedpages-toggleall" data-toggle="closed"><?php _e('Expand All', 'nestedpages'); ?></a>
 		<?php endif; ?>
 
-		<?php if ( $this->user->canSortPages() && $this->post_type->name == 'page' && !$this->isSearch() ) : ?>
+		<?php if ( $this->user->canSortPages() && $this->post_type->name == 'page' && !$this->isSearch() && !$this->settings->hideMenuSync() ) : ?>
 		<div class="np-sync-menu-cont" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:2px;"';?>>
 			<label>
 				<input type="checkbox" name="np_sync_menu" class="np-sync-menu" value="sync" <?php if ( get_option('nestedpages_menusync') == 'sync' ) echo 'checked'; ?>/> <?php _e('Sync Menu', 'nestedpages'); ?>
