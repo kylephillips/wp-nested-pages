@@ -4,7 +4,7 @@ Donate link: http://nestedpages.com/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 1.3.13
+Stable tag: 1.3.14
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
