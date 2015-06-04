@@ -56,9 +56,14 @@ class PostDataFactory {
 
 		// Yoast Score
 		if ( function_exists('wpseo_auto_load') ) {
-			$yoast_score = get_post_meta($post->ID, '_yoast_wpseo_linkdex', true);
-			$this->post_data->score = \WPSEO_Utils::translate_score($yoast_score);
-		};
+			$yoast_score = get_post_meta($post->ID, '_yoast_wpseo_meta-robots-noindex', true);
+			if ( ! $yoast_score ) {
+				$yoast_score = get_post_meta($post->ID, '_yoast_wpseo_linkdex', true);
+				$this->post_data->score = \WPSEO_Utils::translate_score($yoast_score);
+			} else {
+				$this->post_data->score = 'noindex';
+			}
+		}
 	}
 
 	/**
