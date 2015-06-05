@@ -37,7 +37,7 @@ jQuery(function($){
 	/**
 	* Toggle all pages (Expand All)
 	*/
-	$(document).on('click', '.nestedpages-toggleall a', function(e){
+	$(document).on('click', '.nestedpages-toggleall', function(e){
 		e.preventDefault();
 		if ( $(this).attr('data-toggle') == 'closed' )
 		{
