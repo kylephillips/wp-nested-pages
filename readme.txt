@@ -89,6 +89,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.3.15 =
+* Support added for page that are noindexed in WordPress SEO (Thanks to Joost de Valk)
+
 = 1.3.14 =
 * Minor bug fix – modal not appearing when last item in the trash (provided by ClementRoy)
 * Option added to hide the "Sync Menu" checkbox (visit Settings > Nested Pages > General to hide)
