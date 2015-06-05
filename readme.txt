@@ -90,6 +90,8 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 == Changelog ==
 
 = 1.3.15 =
+* Minor Bug fixes and optimizations
+* Bug fix in expand all button
 * Support added for page that are noindexed in WordPress SEO (Thanks to Joost de Valk)
 
 = 1.3.14 =

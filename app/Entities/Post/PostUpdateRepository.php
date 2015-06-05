@@ -2,6 +2,8 @@
 
 use NestedPages\Form\Validation\Validation;
 use NestedPages\Entities\NavMenu\NavMenuRepository;
+use NestedPages\Helpers;
+
 /**
 * Post Create/Update Methods
 */
@@ -311,7 +313,7 @@ class PostUpdateRepository {
 			'ID' => sanitize_text_field($data['post_id']),
 			'post_title' => sanitize_text_field($data['post_title']),
 			'post_status' => sanitize_text_field($data['_status']),
-			'post_content' => sanitize_text_field($data['post_content']),
+			'post_content' => Helpers::check_url($data['post_content']),
 			'post_parent' => sanitize_text_field($data['parent_id']),
 			'menu_order' => $menu_order
 		);
@@ -338,7 +340,7 @@ class PostUpdateRepository {
 		$new_link = array(
 			'post_title' => sanitize_text_field($data['np_link_title']),
 			'post_status' => sanitize_text_field($data['_status']),
-			'post_content' => sanitize_text_field($data['np_link_content']),
+			'post_content' => Helpers::check_url($data['np_link_content']),
 			'post_parent' => sanitize_text_field($data['parent_id']),
 			'post_type' => 'np-redirect',
 			'post_excerpt' => ''
