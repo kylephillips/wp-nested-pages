@@ -13,7 +13,8 @@ var scss = 'assets/scss/**/*';
 var css = 'assets/css/';
 
 var js_source = [
-	'assets/js/lib/nestedpages.js'
+	'assets/js/lib/nestedpages.js',
+	'assets/js/lib/nestedpages-trash.js'
 ];
 var js_compiled = 'assets/js/';
 
