@@ -89,6 +89,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.3.16 =
+* Bug fix when attempting to trash Advanced Custom Field field groups (Thanks to Ben Plum)
+
 = 1.3.15 =
 * Minor Bug fixes and optimizations
 * Bug fix in expand all button

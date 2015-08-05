@@ -76,7 +76,9 @@ class PostTrashActions {
 	{
 		$visible_pages = $this->user_repo->getVisiblePages();
 		$visible_pages = $visible_pages[$post_type];
-		
+
+		if ( !isset($visible_pages[$post_type]) ) return;
+
 		$child_pages = array();
 		
 		$children = new \WP_Query(array('post_type'=>$post_type, 'posts_per_page'=>-1, 'post_parent'=>$post_id));
