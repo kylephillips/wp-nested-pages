@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nested Pages v1.1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-26 14:28-0500\n"
-"PO-Revision-Date: 2015-04-23 14:53+0100\n"
+"POT-Creation-Date: 2015-08-12 18:47+0100\n"
+"PO-Revision-Date: 2015-08-12 18:49+0100\n"
 "Last-Translator: Thomas Blomberg Hansen <thomas@blomberg.it>\n"
 "Language-Team: \n"
 "Language: da_DK\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.8.1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
@@ -19,116 +19,122 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: app/Activation/Dependencies.php:106 app/Views/listing.php:30
+#: app/Activation/Dependencies.php:107 app/Views/listing.php:29
 msgid "Expand All"
 msgstr "Udvid alle"
 
-#: app/Activation/Dependencies.php:107
+#: app/Activation/Dependencies.php:108
 msgid "Collapse All"
 msgstr "Skjul alle"
 
 # @ nestedpages
-#: app/Activation/Dependencies.php:108 app/Views/partials/tool-list.php:14
+#: app/Activation/Dependencies.php:109 app/Views/partials/tool-list.php:18
 msgid "Show Hidden"
 msgstr "Vis skjulte"
 
 # @ nestedpages
-#: app/Activation/Dependencies.php:109
+#: app/Activation/Dependencies.php:110
 msgid "Hide Hidden"
 msgstr "Skjul skjulte"
 
 # @ nestedpages
 # @ default
-#: app/Activation/Dependencies.php:110 app/Views/forms/link-form.php:14
-#: app/Views/listing.php:17 app/Views/listing.php:18
+#: app/Activation/Dependencies.php:111 app/Views/forms/link-form.php:14
+#: app/Views/listing.php:16 app/Views/listing.php:17
 msgid "Add Link"
 msgstr "Tilføj link"
 
 # @ nestedpages
-#: app/Activation/Dependencies.php:111
+#: app/Activation/Dependencies.php:112
 msgid "Add Child Link"
 msgstr "Tilføj link under"
 
 # @ nestedpages
 # @ default
-#: app/Activation/Dependencies.php:112
-#: app/Entities/Post/PostUpdateRepository.php:59
+#: app/Activation/Dependencies.php:113
+#: app/Entities/Post/PostUpdateRepository.php:68
 #: app/Views/forms/new-child.php:19 app/Views/forms/new-child.php:21
-#: app/Views/forms/quickedit-post.php:20 app/Views/partials/tool-list.php:61
+#: app/Views/forms/quickedit-post.php:20 app/Views/partials/tool-list.php:64
 msgid "Title"
 msgstr "Titel"
 
 # @ default
-#: app/Activation/Dependencies.php:113 app/Views/forms/quickedit-post.php:11
-#: app/Views/partials/row-link.php:53 app/Views/partials/row.php:113
+#: app/Activation/Dependencies.php:114 app/Views/forms/quickedit-post.php:11
+#: app/Views/partials/row-link.php:60 app/Views/partials/row.php:120
 msgid "Quick Edit"
 msgstr "Lynrediger"
 
-#: app/Activation/Dependencies.php:114
+#: app/Activation/Dependencies.php:115
 msgid "Page Title"
 msgstr "Sidetitel"
 
 # @ default
-#: app/Activation/Dependencies.php:115 app/Views/partials/row.php:117
+#: app/Activation/Dependencies.php:116 app/Views/partials/row.php:124
 msgid "View"
 msgstr "Vis"
 
 # @ nestedpages
-#: app/Activation/Dependencies.php:116 app/Views/forms/new-child.php:7
-#: app/Views/partials/row.php:85
+#: app/Activation/Dependencies.php:117 app/Views/forms/new-child.php:7
+#: app/Views/partials/row.php:88
 msgid "Add Child"
 msgstr "Tilføj underside"
 
-#: app/Activation/Dependencies.php:117
+#: app/Activation/Dependencies.php:118
 msgid "Add Child Page"
 msgstr "Tilføj undersider"
 
-#: app/Activation/Dependencies.php:118
+#: app/Activation/Dependencies.php:119
 msgid "Add Child Pages"
 msgstr "Tilføj undersider"
 
-#: app/Activation/Dependencies.php:119 app/Views/forms/new-child.php:93
+#: app/Activation/Dependencies.php:120 app/Views/forms/new-child.php:93
 msgid "Add"
 msgstr "Tilføj"
 
-#: app/Activation/Dependencies.php:120
+#: app/Activation/Dependencies.php:121
 msgid "Add Page"
 msgstr "Tilføj Side"
 
-#: app/Activation/Dependencies.php:121
+#: app/Activation/Dependencies.php:122
 msgid "Add Pages"
 msgstr "Tilføj Sider"
 
-#: app/Activation/Dependencies.php:122 app/Views/listing.php:11
-#: app/Views/listing.php:12
+#: app/Activation/Dependencies.php:123 app/Views/listing.php:10
+#: app/Views/listing.php:11
 msgid "Add Multiple"
 msgstr "Tilføj flere"
 
-#: app/Activation/Dependencies.php:123
+#: app/Activation/Dependencies.php:124
 msgid ""
 "Are you sure you would like to empty the trash? This action is not "
 "reversable."
 msgstr ""
 "Er du sikker på, at du vil tømme papirkurven? Dette kan ikke fortrydes."
 
+# @ nestedpages
+#: app/Activation/Dependencies.php:125 app/Views/partials/row-link.php:37
+#: app/Views/partials/row.php:39
+msgid "Hidden"
+msgstr "Skjult"
+
 # @ default
-#: app/Bootstrap.php:59
+#: app/Bootstrap.php:60
 msgid "Settings"
 msgstr "Indstillinger"
 
 # @ nestedpages
-#: app/Config/Settings.php:45 app/Views/settings/settings.php:2
+#: app/Config/Settings.php:52 app/Views/settings/settings.php:2
 msgid "Nested Pages Settings"
 msgstr "Nested Pages Indstillinger"
 
 # @ nestedpages
-#: app/Config/Settings.php:46
+#: app/Config/Settings.php:53
 msgid "Nested Pages"
 msgstr "Nested Pages"
 
 # @ default
 #: app/Entities/AdminMenu/AdminSubmenu.php:73
-#: app/Views/partials/tool-list.php:29
+#: app/Views/partials/tool-list.php:33
 msgid "Default"
 msgstr "Standard"
 
@@ -167,15 +173,15 @@ msgid "restored from trash"
 msgstr "gendannet fra papirkurven"
 
 # @ nestedpages
-#: app/Entities/Post/PostUpdateRepository.php:301
+#: app/Entities/Post/PostUpdateRepository.php:310
 msgid "Label"
 msgstr "Label"
 
-#: app/Entities/PostType/PostTypeRepository.php:172
+#: app/Entities/PostType/PostTypeRepository.php:182
 msgid "Nested View"
 msgstr "Hierarkisk visning"
 
-#: app/Entities/PostType/PostTypeRepository.php:172
+#: app/Entities/PostType/PostTypeRepository.php:182
 #, fuzzy
 msgid "Sort View"
 msgstr "Sorterings visning"
@@ -196,7 +202,7 @@ msgid "Incorrect Form Field"
 msgstr "Ukorrekt formular felt"
 
 # @ nestedpages
-#: app/Form/Handlers/BaseHandler.php:111
+#: app/Form/Handlers/BaseHandler.php:110
 msgid "There was an error updating the page."
 msgstr "Der skete en fejl under opdateringen af siden."
 
@@ -236,41 +242,51 @@ msgid "Menu sync disabled."
 msgstr "Menu synkronisering deaktiveret."
 
 # @ nestedpages
-#: app/Form/Validation/Validation.php:48
-#: app/Form/Validation/Validation.php:63
+#: app/Form/Validation/Validation.php:139
 msgid "Please provide a valid date."
 msgstr "Vælg venligst en gyldig dato."
 
 # @ nestedpages
-#: app/Form/Validation/Validation.php:75
+#: app/Form/Validation/Validation.php:151
 msgid "Please provide a menu title."
 msgstr "Angiv venligst en menu titel."
 
 # @ nestedpages
-#: app/Form/Validation/Validation.php:78
+#: app/Form/Validation/Validation.php:154
 msgid "Please provide a valid URL."
 msgstr "Indtast venligst en gyldig URL."
 
 # @ nestedpages
-#: app/Form/Validation/Validation.php:89
+#: app/Form/Validation/Validation.php:165
 msgid "Please provide a "
 msgstr "Angiv venligst"
 
-#: app/Form/Validation/Validation.php:103
+#: app/Form/Validation/Validation.php:179
 msgid "A valid parent page was not provided."
 msgstr "En gyldig forældre side blev ikke angivet."
 
-#: app/Form/Validation/Validation.php:110
+#: app/Form/Validation/Validation.php:186
 msgid "Please provide at least one page title."
 msgstr "Angiv venligst én sidetitel."
 
-#: app/Form/Validation/Validation.php:118
+#: app/Form/Validation/Validation.php:194
 msgid "Page titles cannot be blank."
 msgstr "Sidetitler kan ikke være blanke."
 
 # @ default
+#: app/Views/forms/empty-trash-modal.php:11 app/Views/forms/new-child.php:90
+#: app/Views/forms/quickedit-link.php:81
+#: app/Views/forms/quickedit-post.php:207
+msgid "Cancel"
+msgstr "Annullere"
+
+#: app/Views/forms/empty-trash-modal.php:12
+msgid "Empty Trash"
+msgstr "Tøm papirkurv"
+
+# @ default
 #: app/Views/forms/link-form.php:31 app/Views/forms/quickedit-link.php:17
-#: app/Views/forms/quickedit-post.php:153
+#: app/Views/forms/quickedit-post.php:171
 msgid "Navigation Label"
 msgstr "Navigation label"
 
@@ -283,51 +299,51 @@ msgstr "URL"
 # @ default
 #: app/Views/forms/link-form.php:41 app/Views/forms/new-child.php:35
 #: app/Views/forms/quickedit-link.php:27
-#: app/Views/forms/quickedit-post.php:58
+#: app/Views/forms/quickedit-post.php:76
 msgid "Status"
 msgstr "Status"
 
 # @ default
 #: app/Views/forms/link-form.php:44 app/Views/forms/new-child.php:38
 #: app/Views/forms/quickedit-link.php:30
-#: app/Views/forms/quickedit-post.php:61 app/Views/partials/tool-list.php:10
+#: app/Views/forms/quickedit-post.php:79 app/Views/partials/tool-list.php:10
 msgid "Published"
 msgstr "Udgivet"
 
 # @ default
 #: app/Views/forms/link-form.php:45 app/Views/forms/quickedit-link.php:31
-#: app/Views/forms/quickedit-post.php:62
+#: app/Views/forms/quickedit-post.php:80
 msgid "Scheduled"
 msgstr "Planlagt"
 
 # @ default
 #: app/Views/forms/link-form.php:47 app/Views/forms/quickedit-link.php:33
-#: app/Views/forms/quickedit-post.php:64
+#: app/Views/forms/quickedit-post.php:82
 msgid "Pending Review"
 msgstr "Afventer godkendelse"
 
 # @ default
 #: app/Views/forms/link-form.php:48 app/Views/forms/new-child.php:40
 #: app/Views/forms/quickedit-link.php:34
-#: app/Views/forms/quickedit-post.php:65
+#: app/Views/forms/quickedit-post.php:83 app/Views/partials/tool-list.php:14
 msgid "Draft"
 msgstr "Kladde"
 
 # @ nestedpages
 #: app/Views/forms/link-form.php:59 app/Views/forms/quickedit-link.php:54
-#: app/Views/forms/quickedit-post.php:169
+#: app/Views/forms/quickedit-post.php:187
 msgid "Hide in Nav Menu"
 msgstr "Skjul i Menuer"
 
 # @ nestedpages
 #: app/Views/forms/link-form.php:64 app/Views/forms/quickedit-link.php:60
-#: app/Views/forms/quickedit-post.php:108
+#: app/Views/forms/quickedit-post.php:126
 msgid "Hide in Nested Pages"
 msgstr "Skjul i denne oversigt"
 
 # @ default
 #: app/Views/forms/link-form.php:69 app/Views/forms/quickedit-link.php:66
-#: app/Views/forms/quickedit-post.php:175
+#: app/Views/forms/quickedit-post.php:193
 msgid "Open link in a new window/tab"
 msgstr "Åben link i nyt vindue/faneblad"
 
@@ -346,25 +362,19 @@ msgid "+"
 msgstr "+"
 
 # @ default
-#: app/Views/forms/new-child.php:61 app/Views/forms/quickedit-post.php:49
+#: app/Views/forms/new-child.php:61 app/Views/forms/quickedit-post.php:67
 msgid "Author"
 msgstr "Forfatter"
 
 # @ default
-#: app/Views/forms/new-child.php:71 app/Views/forms/quickedit-post.php:75
+#: app/Views/forms/new-child.php:71 app/Views/forms/quickedit-post.php:93
 msgid "Template"
 msgstr "Skabelon"
 
 # @ default
-#: app/Views/forms/new-child.php:73 app/Views/forms/quickedit-post.php:77
+#: app/Views/forms/new-child.php:73 app/Views/forms/quickedit-post.php:95
 msgid "Default Template"
 msgstr "Standard skabelon"
-
-# @ default
-#: app/Views/forms/new-child.php:90 app/Views/forms/quickedit-link.php:81
-#: app/Views/forms/quickedit-post.php:189
-msgid "Cancel"
-msgstr "Annullere"
 
 #: app/Views/forms/new-child.php:96
 msgid "Add & Edit"
@@ -377,19 +387,19 @@ msgstr "Link"
 
 # @ default
 #: app/Views/forms/quickedit-link.php:44
-#: app/Views/forms/quickedit-post.php:157
+#: app/Views/forms/quickedit-post.php:175
 msgid "Title Attribute"
 msgstr "Titel attribut"
 
 # @ default
 #: app/Views/forms/quickedit-link.php:48
-#: app/Views/forms/quickedit-post.php:161
+#: app/Views/forms/quickedit-post.php:179
 msgid "CSS Classes"
 msgstr "CSS Klasser"
 
 # @ default
 #: app/Views/forms/quickedit-link.php:84
-#: app/Views/forms/quickedit-post.php:192
+#: app/Views/forms/quickedit-post.php:210
 msgid "Update"
 msgstr "Opdater"
 
@@ -399,49 +409,57 @@ msgid "Slug"
 msgstr "Korttitel"
 
 # @ default
-#: app/Views/forms/quickedit-post.php:28 app/Views/partials/tool-list.php:60
+#: app/Views/forms/quickedit-post.php:30
+#: app/Views/forms/quickedit-post.php:45 app/Views/partials/tool-list.php:63
 msgid "Date"
 msgstr "Dato"
 
+#: app/Views/forms/quickedit-post.php:33
+msgid "@"
+msgstr "@"
+
+#: app/Views/forms/quickedit-post.php:36
+msgid "am"
+msgstr "am"
+
+#: app/Views/forms/quickedit-post.php:37
+msgid "pm"
+msgstr "pm"
+
 # @ default
-#: app/Views/forms/quickedit-post.php:85
+#: app/Views/forms/quickedit-post.php:103
 msgid "Password"
 msgstr "Kodeord"
 
 # @ default
-#: app/Views/forms/quickedit-post.php:88
+#: app/Views/forms/quickedit-post.php:106
 msgid "&ndash;OR&ndash;"
 msgstr "&ndash;ELLER&ndash;"
 
 # @ default
-#: app/Views/forms/quickedit-post.php:91
+#: app/Views/forms/quickedit-post.php:109
 msgid "Private"
 msgstr "Privat"
 
 # @ default
-#: app/Views/forms/quickedit-post.php:100
+#: app/Views/forms/quickedit-post.php:118
 msgid "Allow Comments"
 msgstr "Tillad kommentarer"
 
 # @ nestedpages
-#: app/Views/forms/quickedit-post.php:117
+#: app/Views/forms/quickedit-post.php:135
 msgid "Menu Options"
 msgstr "Menuer indstilinger"
 
 # @ nestedpages
-#: app/Views/forms/quickedit-post.php:121
+#: app/Views/forms/quickedit-post.php:139
 msgid "Taxonomies"
 msgstr "Taxonomier"
 
 # @ nestedpages
-#: app/Views/listing.php:37
+#: app/Views/listing.php:35
 msgid "Sync Menu"
 msgstr "Synkronisere til Menuer"
-
-# @ nestedpages
-#: app/Views/partials/row-link.php:30 app/Views/partials/row.php:39
-msgid "Hidden"
-msgstr "Skjult"
 
 # @ nestedpages
 #: app/Views/partials/row.php:47
@@ -449,7 +467,7 @@ msgid "currently editing"
 msgstr "redigere siden"
 
 # @ default
-#: app/Views/partials/row.php:49
+#: app/Views/partials/row.php:51
 msgid "Edit"
 msgstr "Rediger"
 
@@ -459,46 +477,54 @@ msgid "All"
 msgstr "Alle"
 
 # @ default
-#: app/Views/partials/tool-list.php:20
+#: app/Views/partials/tool-list.php:24
 msgid "Trash"
 msgstr "Papirkurv"
 
-#: app/Views/partials/tool-list.php:21
+#: app/Views/partials/tool-list.php:25
 msgid "Empty"
 msgstr "Tom"
 
-#: app/Views/partials/tool-list.php:44
+#: app/Views/partials/tool-list.php:47
 msgid "All Authors"
 msgstr "Alle forfattere"
 
-#: app/Views/partials/tool-list.php:59
+#: app/Views/partials/tool-list.php:62
 msgid "Menu Order"
 msgstr "Menu rækkefølge"
 
-#: app/Views/partials/tool-list.php:63
+#: app/Views/partials/tool-list.php:66
 msgid "Order By"
 msgstr "Sorter efter"
 
-#: app/Views/partials/tool-list.php:77
+#: app/Views/partials/tool-list.php:80
 msgid "Ascending"
 msgstr "Stigende"
 
-#: app/Views/partials/tool-list.php:78
+#: app/Views/partials/tool-list.php:81
 msgid "Decending"
 msgstr "Faldende"
 
+#: app/Views/settings/settings-general.php:4
+msgid "Currently Enabled"
+msgstr "Aktiveret"
+
+#: app/Views/settings/settings-general.php:4
+msgid "Currently Disabled"
+msgstr "Deaktiveret"
+
 # @ nestedpages
-#: app/Views/settings/settings-general.php:7
+#: app/Views/settings/settings-general.php:8
 msgid "Nested Pages Version"
 msgstr "Plugin version"
 
 # @ nestedpages
-#: app/Views/settings/settings-general.php:11
+#: app/Views/settings/settings-general.php:12
 msgid "Menu Name"
 msgstr "Menunavn"
 
 # @ nestedpages
-#: app/Views/settings/settings-general.php:14
+#: app/Views/settings/settings-general.php:15
 msgid ""
 "Important: Once the menu name has changed, theme files should be updated to "
 "reference the new name."
@@ -506,11 +532,27 @@ msgstr ""
 "Vigtig: Når menunavnet ændret, skal dette ajourføres i temaet, så temaet "
 "bruger det nye navn."
 
-#: app/Views/settings/settings-general.php:18
+#: app/Views/settings/settings-general.php:19
+msgid "Display Options"
+msgstr "Visning"
+
+#: app/Views/settings/settings-general.php:23
+msgid "Enable Date Picker in Quick Edit"
+msgstr "Aktiver \"dato-vælger\" under \"Lynrediger\""
+
+#: app/Views/settings/settings-general.php:28
+msgid "Menu Sync"
+msgstr "Menu synkronisering"
+
+#: app/Views/settings/settings-general.php:32
+msgid "Hide Menu Sync Checkbox"
+msgstr "Skjul menu synkronisering afkrydsningsfeltet"
+
+#: app/Views/settings/settings-general.php:37
 msgid "Allow Page Sorting"
 msgstr "Tillad Side sortering"
 
-#: app/Views/settings/settings-general.php:28
+#: app/Views/settings/settings-general.php:47
 msgid "Admins always have sorting ability."
 msgstr "Admins har altid tilladelse til Side sortering"
 
@@ -538,18 +580,36 @@ msgstr "Erstat standard menu"
 msgid "Hide Default Link"
 msgstr "Skjul Standard link"
 
-#: app/Views/settings/settings-posttypes.php:45
+#: app/Views/settings/settings-posttypes.php:19
+msgid "Disable Nesting"
+msgstr "Deaktiver nesting"
+
+#: app/Views/settings/settings-posttypes.php:51
 msgid "Note: Nesting features not enabled for non-hierarchical post types."
 msgstr ""
 "Note: Indlægstyper, der ikke tillader hierarki, vil have færre muligheder."
 
-#: app/Views/settings/settings-posttypes.php:48
+#: app/Views/settings/settings-posttypes.php:54
 msgid ""
 "If default menu is not replaced, an additional submenu item will be added "
 "for \"Nested/Sort View\""
 msgstr ""
 "Hvis Sider menupunktet ikke erstattes, vil der blive dannet et "
 "undermenupunkt til denne visning"
+
+#: app/Views/settings/settings-posttypes.php:57
+msgid ""
+"<strong>Important:</strong> Changing page structures on live sites may "
+"effect SEO and existing inbound links. Limit URL structure changes on live "
+"sites by disabling nesting. Sorting within the current nesting structure "
+"will still be available. If nesting changes are made to a live site, it may "
+"help to add a 301 redirect from the old location to the new one."
+msgstr ""
+"<strong>Vigtig:</strong> Changing page structures on live sites may effect "
+"SEO and existing inbound links. Limit URL structure changes on live sites "
+"by disabling nesting. Sorting within the current nesting structure will "
+"still be available. If nesting changes are made to a live site, it may help "
+"to add a 301 redirect from the old location to the new one."
 
 #: app/Views/settings/settings.php:6
 msgid "General"
