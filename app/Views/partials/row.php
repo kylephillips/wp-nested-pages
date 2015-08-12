@@ -89,6 +89,10 @@
 
 			<?php endif; ?>
 
+			<?php if ( current_user_can('edit_pages') && current_user_can('edit_posts') ) : ?>
+			<a href="#" class="np-btn clone-post" data-id="<?php echo get_the_id(); ?>" data-parentname="<?php echo $this->post->title; ?>"><?php _e('Clone', 'nestedpages'); ?></a>
+			<?php endif; ?>
+
 			<?php if ( !$user = wp_check_post_lock($this->post->id) || !$this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ) : ?>
 			<a href="#" 
 				class="np-btn np-quick-edit" 
