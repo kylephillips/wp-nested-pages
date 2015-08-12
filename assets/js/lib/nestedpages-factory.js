@@ -70,6 +70,9 @@ NestedPages.selectors = {
 	addChildButton : '.add-new-child', // Button to add child page(s)
 	newChildError : '.np-newchild-error', // Error div in new child quick edit
 	cancelNewChildButton : '.np-cancel-newchild', // Cancel button in new child quick edit
+
+	// Clone
+	cloneButton : '.clone-post', // Button to clone a post
 }
 
 
@@ -130,6 +133,7 @@ NestedPages.Factory = function()
 	plugin.newPage = new NestedPages.NewPage;
 	plugin.quickEditLink = new NestedPages.QuickEditLink;
 	plugin.quickEditPost = new NestedPages.QuickEditPost;
+	plugin.clone = new NestedPages.Clone;
 
 	plugin.init = function()
 	{
