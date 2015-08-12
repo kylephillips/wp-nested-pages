@@ -92,6 +92,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 = 1.4.0 =
 * Bug fix when attempting to trash Advanced Custom Field field groups (Thanks to Ben Plum)
 * Javascript rewritten for more future-friendly updates and feature builds
+* Draft filter added to list
 * Tested and confirmed WordPress 4.3 compatibility
 
 = 1.3.15 =
