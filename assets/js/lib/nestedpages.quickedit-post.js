@@ -405,9 +405,22 @@ NestedPages.QuickEditPost = function()
 		plugin.addCategoryClasses();
 		plugin.addHierarchicalClasses();
 		plugin.addFlatClasses();
+		plugin.addStatusClass();
 
 		plugin.formatter.removeQuickEdit();
 		plugin.formatter.flashRow(plugin.row);
+	}
+
+
+	// Add Status Class
+	plugin.addStatusClass = function()
+	{
+		var taxonomies = ['published', 'draft', 'pending', 'future'];
+		for ( i = 0; i < taxonomies.length; i++ ){
+			$(plugin.row).removeClass(taxonomies[i]);
+		}
+		console.log(plugin.newData);
+		$(plugin.row).addClass(plugin.newData._status);
 	}
 
 

@@ -282,6 +282,7 @@ class Listing {
 
 					// Published?
 					if ( $this->post->status == 'publish' ) echo ' published';
+					if ( $this->post->status == 'draft' ) echo ' draft';
 					
 					// Hidden in Nested Pages?
 					if ( $this->post->np_status == 'hide' ) echo ' np-hide';

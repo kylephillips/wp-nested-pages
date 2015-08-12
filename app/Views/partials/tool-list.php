@@ -9,6 +9,10 @@
 		<li>
 			<a href="#published" class="np-toggle-publish"><?php _e('Published'); ?></a> | 
 		</li>
+
+		<li>
+			<a href="#draft" class="np-toggle-publish"><?php _e('Draft'); ?></a> | 
+		</li>
 		
 		<li>
 			<a href="#show" class="np-toggle-hidden"><?php _e('Show Hidden', 'nestedpages'); ?> </a>

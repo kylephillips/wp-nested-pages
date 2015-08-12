@@ -51,14 +51,17 @@ NestedPages.PageToggle = function()
 	plugin.toggleStatus = function(button)
 	{
 		var target = $(button).attr('href');
+		target = target.substring(1);
 		$(NestedPages.selectors.toggleStatus).removeClass('active');
 		$(button).addClass('active');
-		if ( target == '#published' ){
-			$(NestedPages.selectors.rows).hide();
-			$(NestedPages.selectors.published).show();
+		if ( target == 'all' ){
+			$(NestedPages.selectors.rows).show();
 			return;
 		}
-		$(NestedPages.selectors.rows).show();
+		$(NestedPages.selectors.rows).hide();
+		$('.' + target).show();
+		return;
+		
 	}
 
 
