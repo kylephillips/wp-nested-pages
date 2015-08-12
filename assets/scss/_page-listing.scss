@@ -89,7 +89,7 @@
 			float: right;
 			width: 12px;
 			height: 12px;
-			border-radius: 8px;
+			border-radius: 50%;
 			background-color: darken($white, 40%);
 			margin: 6px 10px 0 0;
 			&.good {
@@ -144,7 +144,7 @@
 	// Block that holds the toggle child arrow
 	.child-toggle {
 		float: left;
-		margin: -10px 10px 0 0;
+		margin: 0px 10px 0 0;
 		width: 46px;
 		height: 46px;
 		background-color: darken($white, 6%);
@@ -202,7 +202,6 @@
 	// Normalize the submenu and handle icons
 	.handle, .np-icon-sub-menu {
 		width: 30px;
-		height: 46px;
 		line-height: 36px;
 		margin-top: -10px;
 	}
@@ -222,8 +221,6 @@
 	.row {
 		background-color: $white;
 		display: block;
-		padding: 10px 0px 0px 0px;
-		height: 36px;
 		@include clearfix;
 		&:hover {
 			background-color: darken($white, 6%);
@@ -241,6 +238,10 @@
 			padding-left: 15px;
 		}
 	} // .row
+
+	.row-inner {
+		padding-top: 10px;
+	}
 
 
 	// Inner row element gets padding to give visual indicator of nested depth

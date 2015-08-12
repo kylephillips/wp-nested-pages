@@ -121,7 +121,8 @@ class Dependencies {
 				'add_page' => __('Add Page', 'nestedpages'),
 				'add_pages' => __('Add Pages', 'nestedpages'),
 				'add_multiple' => __('Add Multiple', 'nestedpages'),
-				'trash_confirm' => __('Are you sure you would like to empty the trash? This action is not reversable.', 'nestedpages')
+				'trash_confirm' => __('Are you sure you would like to empty the trash? This action is not reversable.', 'nestedpages'),
+				'hidden' => __('Hidden', 'nestedpages')
 			);
 			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;
 			$localized_data['syncmenu'] = $syncmenu;

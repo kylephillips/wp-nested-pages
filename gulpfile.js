@@ -13,8 +13,18 @@ var scss = 'assets/scss/**/*';
 var css = 'assets/css/';
 
 var js_source = [
-	'assets/js/lib/nestedpages.js',
-	'assets/js/lib/nestedpages-trash.js'
+	'assets/js/lib/nestedpages-responsive.js',
+	'assets/js/lib/nestedpages.formatter.js',
+	'assets/js/lib/nestedpages.menu-toggle.js',
+	'assets/js/lib/nestedpages.page-toggle.js',
+	'assets/js/lib/nestedpages.nesting.js',
+	'assets/js/lib/nestedpages.sync-menu-setting.js',
+	'assets/js/lib/nestedpages.new-link.js',
+	'assets/js/lib/nestedpages.new-page.js',
+	'assets/js/lib/nestedpages.quickedit-post.js',
+	'assets/js/lib/nestedpages.quickedit-link.js',
+	'assets/js/lib/nestedpages-factory.js',
+	'assets/js/lib/nestedpages.trash.js'
 ];
 var js_compiled = 'assets/js/';
 
@@ -38,7 +48,7 @@ gulp.task('scripts', function(){
 	return gulp.src(js_source)
 		.pipe(concat('nestedpages.min.js'))
 		.pipe(gulp.dest(js_compiled))
-		.pipe(uglify())
+		// .pipe(uglify())
 		.pipe(gulp.dest(js_compiled))
 		.pipe(notify('Nested Pages scripts compiles & compressed.'));
 });
