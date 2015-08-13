@@ -39,7 +39,8 @@ class FormActionFactory {
 			'wp_ajax_npnewChild',
 			'admin_post_npListingSort',
 			'wp_ajax_npEmptyTrash',
-			'admin_post_npSearch'
+			'admin_post_npSearch',
+			'wp_ajax_npclonePost'
 		);
 		$this->setHandlers();
 	}

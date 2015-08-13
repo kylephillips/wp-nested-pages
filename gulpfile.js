@@ -23,6 +23,7 @@ var js_source = [
 	'assets/js/lib/nestedpages.new-page.js',
 	'assets/js/lib/nestedpages.quickedit-post.js',
 	'assets/js/lib/nestedpages.quickedit-link.js',
+	'assets/js/lib/nestedpages.clone.js',
 	'assets/js/lib/nestedpages-factory.js',
 	'assets/js/lib/nestedpages.trash.js'
 ];
