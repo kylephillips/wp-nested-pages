@@ -27,7 +27,6 @@
 				<select name="_status" data-clone-status>
 				<?php if ( $can_publish ) : ?>
 					<option value="publish"><?php _e( 'Published' ); ?></option>
-					<option value="future"><?php _e( 'Scheduled' ); ?></option>
 				<?php endif; ?>
 					<option value="pending"><?php _e( 'Pending Review' ); ?></option>
 					<option value="draft"><?php _e( 'Draft' ); ?></option>
