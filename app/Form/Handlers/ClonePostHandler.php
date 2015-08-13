@@ -10,9 +10,9 @@ use NestedPages\Entities\Post\PostCloner;
 class ClonePostHandler extends BaseHandler
 {
 	/**
-	* Post ID to Clone
+	* Post ID/status/author to Clone
 	*/
-	private $post_id;
+	protected $data;
 
 	/**
 	* Cloner Object
@@ -35,7 +35,10 @@ class ClonePostHandler extends BaseHandler
 		if ( !isset($_POST['parent_id']) ){
 			return $this->sendResponse(array('status' => 'error', 'message' => __('Post Not Found', 'nestedapges')));
 		}
-		$this->post_id = intval(sanitize_text_field($_POST['parent_id']));
+		$this->data['post_id'] = intval(sanitize_text_field($_POST['parent_id']));
+		$this->data['status'] = sanitize_text_field($_POST['status']);
+		$this->data['author'] = intval(sanitize_text_field($_POST['author']));
+		$this->data['quantity'] = intval(sanitize_text_field($_POST['quantity']));
 	}
 
 	/**
@@ -43,7 +46,7 @@ class ClonePostHandler extends BaseHandler
 	*/
 	private function clonePost()
 	{
-		$new_post = $this->cloner->clonePost($this->post_id);
+		$new_post = $this->cloner->clonePost($this->data['post_id'], $this->data['quantity'], $this->data['status'], $this->data['author']);
 		return wp_send_json(array('status' => 'success', 'post' => $new_post));
 	}
 }

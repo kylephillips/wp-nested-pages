@@ -73,7 +73,11 @@ NestedPages.selectors = {
 
 	// Clone
 	cloneButton : '.clone-post', // Button to clone a post
+	confirmClone : '[data-confirm-clone]', // Button in modal to confirm clone
 	cloneModal : '#np-clone-modal', // Modal with clone options
+	cloneQuantity : '[data-clone-quantity]', // Quantity to Clone
+	cloneStatus : '[data-clone-status]', // Clone Status
+	cloneAuthor : '[data-clone-author]', // Clone Author
 }
 
 

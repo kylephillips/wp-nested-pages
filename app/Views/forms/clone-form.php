@@ -65,7 +65,7 @@
 			<a accesskey="s" class="button-primary alignright" data-confirm-clone>
 				<?php _e( 'Clone', 'nestedpages' ); ?>
 			</a>
-			<span class="np-qe-loading np-link-loading"></span>
+			<span class="np-qe-loading np-link-loading" data-clone-loading></span>
 		</div>
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
