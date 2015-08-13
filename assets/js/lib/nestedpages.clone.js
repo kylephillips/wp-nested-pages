@@ -11,6 +11,7 @@ NestedPages.Clone = function()
 	var $ = jQuery;
 
 	plugin.parent_id = ''; // The parent/source post ID
+	plugin.parent_title = ''; // The parent title
 
 	plugin.formatter = new NestedPages.Formatter;
 
@@ -25,8 +26,17 @@ NestedPages.Clone = function()
 		$(document).on('click', NestedPages.selectors.cloneButton, function(e){
 			e.preventDefault();
 			plugin.parent_id = $(this).attr('data-id');
-			plugin.clone();
+			plugin.parent_title = $(this).attr('data-parentname');
+			plugin.openModal();
 		});
+	}
+
+	// Open the modal with clone options
+	plugin.openModal = function()
+	{
+		console.log(plugin.parent_title);
+		$(NestedPages.selectors.cloneModal).find('[data-clone-parent]').text(plugin.parent_title);
+		$(NestedPages.selectors.cloneModal).modal('show');
 	}
 
 

@@ -66,5 +66,6 @@
 </div><!-- .wrap -->
 
 <?php include( NestedPages\Helpers::view('forms/empty-trash-modal') ); ?>
+<?php include( NestedPages\Helpers::view('forms/clone-form') ); ?>
 <?php include( NestedPages\Helpers::view('forms/link-form') ); ?>
 <?php include( NestedPages\Helpers::view('forms/bulk-add') ); ?>

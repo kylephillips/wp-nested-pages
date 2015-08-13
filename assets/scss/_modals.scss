@@ -107,6 +107,19 @@
 }
 
 
+.clone-modal {
+	h3 {
+		margin: 0;
+		padding: 8px;
+		background-color: $border-light;
+	}
+	.form-control {
+		margin: 0 !important;
+		padding: 5px 10px;
+	}
+}
+
+
 .np-trash-modal {
 	text-align: center;
 	.modal-body {
