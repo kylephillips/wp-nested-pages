@@ -39,6 +39,7 @@ class ClonePostHandler extends BaseHandler
 		$this->data['status'] = sanitize_text_field($_POST['status']);
 		$this->data['author'] = intval(sanitize_text_field($_POST['author']));
 		$this->data['quantity'] = intval(sanitize_text_field($_POST['quantity']));
+		$this->data['post_type'] = sanitize_text_field($_POST['posttype']);
 	}
 
 	/**
@@ -46,7 +47,10 @@ class ClonePostHandler extends BaseHandler
 	*/
 	private function clonePost()
 	{
-		$new_post = $this->cloner->clonePost($this->data['post_id'], $this->data['quantity'], $this->data['status'], $this->data['author']);
-		return wp_send_json(array('status' => 'success', 'post' => $new_post));
+		$new_posts = $this->cloner->clonePost($this->data['post_id'], $this->data['quantity'], $this->data['status'], $this->data['author']);
+		return wp_send_json(array(
+			'status' => 'success', 
+			'posts' => $this->post_repo->postArray($new_posts, $this->data['post_type'])
+		));
 	}
 }
