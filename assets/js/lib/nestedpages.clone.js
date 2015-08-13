@@ -31,6 +31,7 @@ NestedPages.Clone = function()
 
 
 	// Clone the post
+	// TODO: show modal with optional title and status, pass to handler/cloner
 	plugin.clone = function()
 	{
 		plugin.toggleLoading(true);
@@ -43,6 +44,7 @@ NestedPages.Clone = function()
 				nonce : NestedPages.jsData.nonce
 			},
 			success : function(data){
+				console.log(data);
 				plugin.toggleLoading(false);
 			}
 		});
