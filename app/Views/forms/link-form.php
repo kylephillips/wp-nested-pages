@@ -9,14 +9,14 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 	<div class="modal-dialog">
 		<div class="modal-content">
 			
-			<div class="np-tabs">
+			<div class="np-tabs" data-np-tabs>
 				<ul>
-					<li><a href="#nplink" class="active"><?php _e('Add Link'); ?></a></li>
-					<?php /* <li><a href="#npmenuitems"><?php _e('Add Menu Item', 'nestedpages'); ?></a></li> */ ?>
+					<li><a href="#nplink" class="active" data-np-tab><?php _e('Add Link'); ?></a></li>
+					<li><a href="#npmenuitems" data-np-tab><?php _e('Add Menu Item', 'nestedpages'); ?></a></li>
 				</ul>
 			</div>
 
-			<div id="nplink" class="np-tabbed-content">
+			<div id="nplink" class="np-tabbed-content" data-np-tab-pane>
 
 				<div class="modal-body">
 
@@ -87,8 +87,8 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 				</form>
 			</div><!-- #nplink -->
 
-			<?php /*
-			<div id="npmenuitems" class="np-tabbed-content" style="display:none;">
+			
+			<div id="npmenuitems" class="np-tabbed-content" style="display:none;" data-np-tab-pane>
 				<div class="modal-body">
 					adf
 				</div><!-- .modal-body -->
@@ -103,7 +103,7 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 					<span class="np-qe-loading np-link-loading"></span>
 				</div><!-- .modal-footer -->
 			</div><!-- #npmenuitems -->
-			*/ ?>
+			
 
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->

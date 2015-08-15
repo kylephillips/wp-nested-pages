@@ -78,6 +78,11 @@ NestedPages.selectors = {
 	cloneQuantity : '[data-clone-quantity]', // Quantity to Clone
 	cloneStatus : '[data-clone-status]', // Clone Status
 	cloneAuthor : '[data-clone-author]', // Clone Author
+
+	// Tabs
+	tabButtonParent : '[data-np-tabs]', // Tab Parent
+	tabButton : '[data-np-tab]', // Tab Link
+	tabContent : '[data-np-tab-pane]', // Tab Pane
 }
 
 
@@ -140,6 +145,7 @@ NestedPages.Factory = function()
 	plugin.quickEditLink = new NestedPages.QuickEditLink;
 	plugin.quickEditPost = new NestedPages.QuickEditPost;
 	plugin.clone = new NestedPages.Clone;
+	plugin.tabs = new NestedPages.Tabs;
 
 	plugin.init = function()
 	{
