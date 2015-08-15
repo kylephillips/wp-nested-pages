@@ -89,16 +89,42 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 
 			
 			<div id="npmenuitems" class="np-tabbed-content" style="display:none;" data-np-tab-pane>
-				<div class="modal-body">
-					adf
+				<div class="modal-body np-menu-item-form">
+					<div class="np-menu-type-selection">
+						<ul data-np-menu-accordion>
+							<?php 
+								// Taxonomies
+								foreach ( $this->listing_repo->taxonomies() as $name => $taxonomy ) {
+									$terms = $this->listing_repo->terms($name);
+									if ( !$terms ){
+										$out = '<li><a href="#" class="no-terms">' . $taxonomy->labels->name;
+										$out .= '<span>' . __('No Items', 'nestedpages') . '</span></a>';
+									} else {
+										$out = '<li><a href="#" data-np-menu-accordion-item>' . $taxonomy->labels->name . '</a>';
+										$out .= '<ul>';
+										foreach ( $terms as $term ){
+											$out .= '<li><a href="#" data-np-menu-object="' . $name . '" data-np-menu-type="taxonomy" data-np-menu-objectid="' . $term->term_id . '">' . $term->name . '</a></li>';
+										}
+										$out .= '</ul>';
+									}
+									$out .= '</li>';
+									echo $out;
+								}
+							?>
+						</ul>
+					</div><!-- .np-menu-type-selection -->
+					<div class="np-menu-link-object">
+
+					</div>
 				</div><!-- .modal-body -->
+
 				<div class="modal-footer">
 					<input type="hidden" name="parent_id" class="parent_id" value="">
 					<button type="button" class="button modal-close" data-dismiss="modal">
-						<?php _e('Close'); ?>
+						<?php _e('Cancel'); ?>
 					</button>
 					<a accesskey="s" class="button-primary np-save-link alignright">
-						<?php _e( 'Add Item', 'nestedpages' ); ?>
+						<?php _e( 'Add', 'nestedpages' ); ?>
 					</a>
 					<span class="np-qe-loading np-link-loading"></span>
 				</div><!-- .modal-footer -->

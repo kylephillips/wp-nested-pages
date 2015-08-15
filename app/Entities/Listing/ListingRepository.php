@@ -12,4 +12,23 @@ class ListingRepository {
 		return $visible[$post_type];
 	}
 
+	/**
+	* Taxonomies
+	*/
+	public function taxonomies()
+	{
+		$taxonomies = get_taxonomies(array(
+			'public' => true,
+		), 'objects');
+		return $taxonomies;
+	}
+
+	/**
+	* Get all non-empty Terms for a given taxonomy
+	*/
+	public function terms($taxonomy)
+	{
+		return get_terms($taxonomy);
+	}
+
 }

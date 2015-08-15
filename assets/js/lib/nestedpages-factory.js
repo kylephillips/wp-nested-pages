@@ -146,6 +146,7 @@ NestedPages.Factory = function()
 	plugin.quickEditPost = new NestedPages.QuickEditPost;
 	plugin.clone = new NestedPages.Clone;
 	plugin.tabs = new NestedPages.Tabs;
+	plugin.menuLinks = new NestedPages.MenuLinks;
 
 	plugin.init = function()
 	{

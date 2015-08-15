@@ -1,0 +1,99 @@
+//
+// Link/Menu Item Form
+// --------------------------------------------------
+
+// Menu Item Form (In link modal)
+.modal-body.np-menu-item-form {
+	height: 400px;
+	padding: 0;
+	border-top: 1px solid $border;
+}
+
+// Left Type Selection
+.np-menu-type-selection {
+	height: 100%;
+	overflow: auto;
+	width: 35%;
+	padding: 15px;
+	background-color: $gray-lighter;
+	border-right: 1px solid $border;
+	box-sizing: border-box;
+	ul {
+		@include unstyled;
+		@include wptable;
+		border: 0;
+		li {
+			margin: 0;
+			border: 1px solid $border-light;
+			border-top: 0;
+			a {
+				background-color: $white;
+				display: block;
+				text-decoration: none;
+				padding: 15px 10px;
+				position: relative;
+				color: darken($white, 80%);
+				font-weight: bold;
+				transition: all 200ms ease;
+				&:hover {
+					background-color: darken($white, 8%);
+					transition: all 200ms ease;
+				}
+				&:after {
+					position: absolute;
+					font-family: "dashicons";
+					content: "\f140";
+					font-size: 18px;
+					right: 10px;
+					top: 15px;
+					color: darken($white, 50%);
+				}
+				&.active {
+					&:after {
+						content: "\f142";
+					}
+				}
+				&:active, &:focus {
+					box-shadow: none;
+				}
+				&.no-terms {
+					color: darken($white, 30%);
+					span {
+						float: right;
+						font-weight: normal;
+						font-style: oblique;
+					}
+					&:after {
+						content: '';
+					}
+					&:hover {
+						background-color: $white;
+						cursor: default;
+					}
+				} // .no-terms
+			} // a
+			&:first-child {
+				border-top: 1px solid $border-light;
+			}
+			ul {
+				display: none;
+				box-shadow: none;
+				padding: 10px;
+				background-color: $white;
+				li {
+					border-color: darken($white, 12%);
+					a {
+						padding: 8px;
+						background-color: darken($white, 6%);
+						font-weight: normal;
+						&:after {
+							content: "\f139";
+							top: 8px;
+							right: 5px;
+						}
+					}
+				} // li 2
+			} // ul 2
+		} // li 1
+	} // ul 1
+} // .np-menu-type-selection
