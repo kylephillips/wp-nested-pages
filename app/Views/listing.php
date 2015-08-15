@@ -21,7 +21,7 @@
 	</h2>
 
 	<?php if ( $this->confirmation->getMessage() ) : ?>
-		<div id="message" class="updated"><p><?php echo $this->confirmation->getMessage(); ?></p></div>
+		<div id="message" class="updated notice is-dismissible"><p><?php echo $this->confirmation->getMessage(); ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>
 	<?php endif; ?>
 
 	<div class="nestedpages-top-toggles">
