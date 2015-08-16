@@ -23,6 +23,7 @@ NestedPages.MenuLinks = function()
 		defaultResults : '[data-default-result]', // Default results,
 		originalLink : '[data-np-original-link]', // Original Link Preview
 		saveButton : '[data-np-save-link]', // The Form Submit Button
+		urlInputCont : '[data-np-menu-url-cont]', // Container for URL input (only for custom links)
 	}
 
 	plugin.fields = {
@@ -86,7 +87,14 @@ NestedPages.MenuLinks = function()
 		$(plugin.typeButton).addClass('active');
 		$(plugin.selectors.form).find('h3').find('span').text($(plugin.typeButton).text());
 		$(plugin.selectors.form).find('h3').find('em').text($(plugin.typeButton).attr('data-np-object-name'));
-		$(plugin.selectors.form).find(plugin.selectors.originalLink).html('<a href="' + $(plugin.typeButton).attr('data-np-permalink') + '">' + $(plugin.typeButton).text() + '</a>');
+		if ( $(plugin.typeButton).attr('data-np-permalink') !== "" ){
+			$(plugin.selectors.form).find(plugin.selectors.urlInputCont).hide();
+			$(plugin.selectors.form).find(plugin.selectors.originalLink).html('<a href="' + $(plugin.typeButton).attr('data-np-permalink') + '">' + $(plugin.typeButton).text() + '</a>');
+			$(plugin.selectors.form).find(plugin.selectors.originalLink).parent('.original-link').show();
+		} else {
+			$(plugin.selectors.form).find(plugin.selectors.urlInputCont).show();
+			$(plugin.selectors.form).find(plugin.selectors.originalLink).parent('.original-link').hide();
+		}
 		$(plugin.fields.object).val($(plugin.typeButton).attr('data-np-menu-object'));
 		$(plugin.fields.objectid).val($(plugin.typeButton).attr('data-np-menu-objectid'));
 		$(plugin.fields.itemType).val($(plugin.typeButton).attr('data-np-menu-type'));

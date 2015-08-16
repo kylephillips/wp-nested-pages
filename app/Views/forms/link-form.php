@@ -93,6 +93,8 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 				<div class="modal-body np-menu-item-form">
 					<div class="np-menu-type-selection">
 						<ul data-np-menu-accordion>
+
+							<li><a href="#" class="np-custom-link" data-np-menu-object="custom" data-np-menu-type="custom" data-np-menu-objectid="" data-np-permalink="" data-np-menu-selection><?php _e('Custom Link', 'nestedpages'); ?></a></li>
 							
 							<?php 
 								// Taxonomies
@@ -147,6 +149,10 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 								<?php _e('Original', 'nestedpages'); ?>: <span data-np-original-link></span>
 							</div>
 							<div class="fields">
+								<p data-np-menu-url-cont style="display:none;">
+									<label><?php _e('URL', 'nestedpages'); ?></label>
+									<input type="text" data-np-menu-url />
+								</p>
 								<p>
 									<label><?php _e('Navigation Label', 'nestedpages'); ?></label>
 									<input type="text" data-np-menu-navigation-label />
