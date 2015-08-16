@@ -20,7 +20,9 @@ NestedPages.MenuLinks = function()
 		formPlaceholder : '.np-menu-link-object-placeholder', // Placeholder element
 		formDetails : '.np-menu-link-details', // Right pane form details
 		searchResults : '[data-np-search-result]', // Appended search result rows
-		defaultResults : '[data-default-result]', // Default results
+		defaultResults : '[data-default-result]', // Default results,
+		originalLink : '[data-np-original-link]', // Original Link Preview
+		saveButton : '[data-np-save-link]', // The Form Submit Button
 	}
 
 	plugin.fields = {
@@ -79,8 +81,12 @@ NestedPages.MenuLinks = function()
 	// Populate the form
 	plugin.populateForm = function()
 	{
+		$(plugin.selectors.saveButton).show();
 		$(plugin.selectors.typeSelect).removeClass('active');
 		$(plugin.typeButton).addClass('active');
+		$(plugin.selectors.form).find('h3').find('span').text($(plugin.typeButton).text());
+		$(plugin.selectors.form).find('h3').find('em').text($(plugin.typeButton).attr('data-np-object-name'));
+		$(plugin.selectors.form).find(plugin.selectors.originalLink).html('<a href="' + $(plugin.typeButton).attr('data-np-permalink') + '">' + $(plugin.typeButton).text() + '</a>');
 		$(plugin.fields.object).val($(plugin.typeButton).attr('data-np-menu-object'));
 		$(plugin.fields.objectid).val($(plugin.typeButton).attr('data-np-menu-objectid'));
 		$(plugin.fields.itemType).val($(plugin.typeButton).attr('data-np-menu-type'));
@@ -90,6 +96,7 @@ NestedPages.MenuLinks = function()
 	// Clear the form
 	plugin.clearForm = function()
 	{
+		$(plugin.selectors.saveButton).hide();
 		$(plugin.selectors.formDetails).hide();
 		$(plugin.selectors.formPlaceholder).show();
 		$(plugin.selectors.form).find('input').val('');

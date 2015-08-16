@@ -153,6 +153,39 @@
 // Details form
 .np-menu-link-details {
 	padding: 20px;
+	h3 {
+		margin-top: 0;
+		em {
+			float: right;
+			font-size: 13px;
+			font-weight: normal;
+			font-style: normal;
+			color: darken($white, 50%);
+		}
+	}
+	.original-link {
+		border: 1px solid $border-light;
+		font-size: 12px;
+		margin-bottom: 15px;
+		padding: 5px;
+		font-style: oblique;
+	}
+	.fields {
+		background-color: $gray-lighter;
+		padding: 15px;
+	}
+	p {
+		margin-top: 0;
+	}
+	.checkbox {
+		margin-bottom: 10px;
+	}
+	label {
+		display: block;
+	}
+	input[type="text"]{
+		width: 100%;
+	}
 }
 
 

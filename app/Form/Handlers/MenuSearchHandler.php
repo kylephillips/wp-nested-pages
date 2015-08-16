@@ -52,8 +52,11 @@ class MenuSearchHandler extends BaseHandler
 		));
 		if ( $sq->have_posts() ) :
 			$this->results = $sq->posts;
+			$pt = get_post_type_object($this->data['searchObject']);
+
 			foreach($sq->posts as $key => $post){
 				$this->results[$key]->permalink = get_the_permalink($post->ID);
+				$this->results[$key]->singular_name = $pt->labels->singular_name;
 			}
 		else :
 			$this->results = null;

@@ -96,7 +96,7 @@ NestedPages.MenuSearch = function()
 	{
 		var html = "";
 		$.each(plugin.results, function(i, v){
-			html += '<li data-np-search-result><a href="#" data-np-menu-object="' + plugin.searchObject + '" data-np-menu-type="post_type" data-np-menu-objectid="' + v.ID + '" data-np-permalink="' + v.permalink + '" data-np-menu-selection>' + v.post_title + '</a></li>';
+			html += '<li data-np-search-result><a href="#" data-np-menu-object="' + plugin.searchObject + '" data-np-menu-type="post_type" data-np-menu-objectid="' + v.ID + '" data-np-permalink="' + v.permalink + '" data-np-object-name="' + v.singular_name + '" data-np-menu-selection>' + v.post_title + '</a></li>';
 		});
 		$(html).insertAfter($(plugin.activeForm).parent('li'));
 		plugin.toggleLoading(false);
@@ -108,7 +108,7 @@ NestedPages.MenuSearch = function()
 	{
 		var html = "";
 		$.each(plugin.results, function(i, v){
-			html += '<li data-np-search-result><a href="#" data-np-menu-object="' + plugin.searchObject + '" data-np-menu-type="post_type" data-np-menu-objectid="' + v.term_id + '" data-np-permalink="' + v.permalink + '" data-np-menu-selection>' + v.name + '</a></li>';
+			html += '<li data-np-search-result><a href="#" data-np-menu-object="' + plugin.searchObject + '" data-np-menu-type="post_type" data-np-menu-objectid="' + v.term_id + '" data-np-permalink="' + v.permalink + '" data-np-object-name="' + v.taxonomy + '" data-np-menu-selection>' + v.name + '</a></li>';
 		});
 		$(html).insertAfter($(plugin.activeForm).parent('li'));
 		plugin.toggleLoading(false);
