@@ -301,6 +301,33 @@ class PostUpdateRepository {
 
 
 	/**
+	* Update Menu Related Meta
+	* @since 1.4.1
+	* @param array $data
+	*/
+	private function updateMenuMeta($data)
+	{
+		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
+		$link_target = ( isset($data['linkTarget']) ) ? "_blank" : "";
+		update_post_meta($id, 'np_link_target', $link_target);
+		update_post_meta($id, 'np_nav_menu_item_type', sanitize_text_field($data['menuType']));
+		update_post_meta($id, 'np_nav_menu_item_object', sanitize_text_field($data['objectType']));
+		update_post_meta($id, 'np_nav_menu_item_object_id', sanitize_text_field($data['objectId']));
+		if ( isset($data['cssClasses']) ){
+			update_post_meta($id, 'np_nav_css_classes', sanitize_text_field($data['cssClasses']));
+		}
+		if ( isset($data['titleAttribute']) ){
+			$title_attr = sanitize_text_field($data['titleAttribute']);
+			update_post_meta($id, 'np_title_attribute', $title_attr);
+		}
+		if ( isset($data['navigationLabel']) ){
+			$title = sanitize_text_field($data['navigationLabel']);
+			update_post_meta($id, 'np_nav_title', $title);
+		}
+	}
+
+
+	/**
 	* Update a Redirect
 	* @since 1.1
 	* @param array data
@@ -318,9 +345,8 @@ class PostUpdateRepository {
 			'menu_order' => $menu_order
 		);
 		$this->new_id = wp_update_post($updated_post);
+		// $this->updateMenuMeta($data);
 
-		$this->updateNavStatus($data);
-		$this->updateNestedPagesStatus($data);
 		$this->updateLinkTarget($data);
 		$this->updateTitleAttribute($data);
 		$this->updateNavCSS($data);
@@ -336,20 +362,18 @@ class PostUpdateRepository {
 	*/
 	public function saveRedirect($data)
 	{
-		$this->validation->validateRedirect($data);
 		$new_link = array(
-			'post_title' => sanitize_text_field($data['np_link_title']),
-			'post_status' => sanitize_text_field($data['_status']),
-			'post_content' => Helpers::check_url($data['np_link_content']),
+			'post_title' => sanitize_text_field($data['menuTitle']),
+			'post_status' => sanitize_text_field('publish'),
 			'post_parent' => sanitize_text_field($data['parent_id']),
 			'post_type' => 'np-redirect',
 			'post_excerpt' => ''
 		);
+		if ( isset($data['url']) && $data['url'] !== "" ){
+			$new_link['post_content'] = esc_url($data['url']);
+		}
 		$this->new_id = wp_insert_post($new_link);
-
-		$this->updateNavStatus($data);
-		$this->updateNestedPagesStatus($data);
-		$this->updateLinkTarget($data);
+		$this->updateMenuMeta($data);
 		return $this->new_id;
 	}
 

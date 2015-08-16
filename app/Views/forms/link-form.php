@@ -9,86 +9,7 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 	<div class="modal-dialog">
 		<div class="modal-content">
 			
-			<div class="np-tabs" data-np-tabs>
-				<ul>
-					<li><a href="#nplink" class="active" data-np-tab><?php _e('Add Link'); ?></a></li>
-					<li><a href="#npmenuitems" data-np-tab><?php _e('Add Menu Item', 'nestedpages'); ?></a></li>
-				</ul>
-			</div>
-
-			<div id="nplink" class="np-tabbed-content" data-np-tab-pane>
-
-				<div class="modal-body">
-
-					<form method="get" action="" class="np-modal-form np-new-link-form">
-					<div class="form-interior">
-
-					<div class="np-quickedit-error np-new-link-error" style="clear:both;display:none;"></div>
-						
-					<div class="left">
-
-					<div class="form-control">
-						<label><?php _e( 'Navigation Label' ); ?></label>
-						<input type="text" name="np_link_title" class="np_link_title" value="" />
-					</div>
-
-					<div class="form-control">
-						<label><?php _e( 'URL', 'nestedpages' ); ?></label>
-						<input type="text" name="np_link_content" class="np_link_content" value="" />
-					</div>
-
-					<div class="form-control">
-						<label><?php _e( 'Status' ); ?></label>
-						<select name="_status" class="np_link_status">
-						<?php if ( $can_publish ) : ?>
-							<option value="publish"><?php _e( 'Published' ); ?></option>
-							<option value="future"><?php _e( 'Scheduled' ); ?></option>
-						<?php endif; ?>
-							<option value="pending"><?php _e( 'Pending Review' ); ?></option>
-							<option value="draft"><?php _e( 'Draft' ); ?></option>
-						</select>
-					</div>
-
-					</div><!-- .left -->
-
-					<div class="right">
-
-					<?php if ( $this->user->canSortPages() ) : // Menu Options Button ?>
-					<label class="checkbox">
-						<input type="checkbox" name="nav_status" class="np_link_nav_status" value="hide" />
-						<span class="checkbox-title"><?php _e( 'Hide in Nav Menu', 'nestedpages' ); ?></span>
-					</label>
-
-					<label class="checkbox">
-						<input type="checkbox" name="nested_pages_status" class="np_link_status" value="hide" />
-						<span class="checkbox-title"><?php _e( 'Hide in Nested Pages', 'nestedpages' ); ?></span>
-					</label>
-
-					<label class="checkbox">
-						<input type="checkbox" name="link_target" class="new_link_target" value="_blank" />
-						<span class="checkbox-title"><?php _e( 'Open link in a new window/tab' ); ?></span>
-					</label>
-					<?php endif; // Edit theme options ?>
-
-					</div><!-- .right -->
-
-					</div><!-- .form-interior -->
-				</div>
-				<div class="modal-footer">
-					<input type="hidden" name="parent_id" class="parent_id" value="">
-					<button type="button" class="button modal-close" data-dismiss="modal">
-						<?php _e('Close'); ?>
-					</button>
-					<a accesskey="s" class="button-primary np-save-link alignright">
-						<?php _e( 'Save Link', 'nestedpages' ); ?>
-					</a>
-					<span class="np-qe-loading np-link-loading"></span>
-				</div>
-				</form>
-			</div><!-- #nplink -->
-
-			
-			<div id="npmenuitems" class="np-tabbed-content" style="display:none;" data-np-tab-pane>
+			<div id="npmenuitems" class="np-tabbed-content" data-np-tab-pane>
 				<form data-np-menu-item-form action="">
 				<div class="modal-body np-menu-item-form">
 					<div class="np-menu-type-selection">
@@ -144,35 +65,31 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 							<?php _e('Select an item', 'nestedpages'); ?>
 						</div>
 						<div class="np-menu-link-details" style="display:none;">
-							<h3><span></span> <em></em></h3>
+							<h3><span data-np-menu-title></span> <em></em></h3>
 							<div class="original-link">
 								<?php _e('Original', 'nestedpages'); ?>: <span data-np-original-link></span>
 							</div>
+							<div class="np-quickedit-error" data-np-error style="clear:both;display:none;"></div>
 							<div class="fields">
 								<p data-np-menu-url-cont style="display:none;">
 									<label><?php _e('URL', 'nestedpages'); ?></label>
-									<input type="text" data-np-menu-url />
+									<input type="text" name="url" data-np-menu-url />
 								</p>
 								<p>
 									<label><?php _e('Navigation Label', 'nestedpages'); ?></label>
-									<input type="text" data-np-menu-navigation-label />
+									<input type="text" name="navigationLabel" data-np-menu-navigation-label />
 								</p>
 								<p>
 									<label><?php _e('Title Attribute', 'nestedpages'); ?></label>
-									<input type="text" data-np-menu-title-attr />
+									<input type="text" name="titleAttribute" data-np-menu-title-attr />
 								</p>
 								<p>
 									<label><?php _e('CSS Classes (optional)', 'nestedpages'); ?></label>
-									<input type="text" data-np-menu-css-classes />
+									<input type="text" name="cssClasses" data-np-menu-css-classes />
 								</p>
 								<?php if ( $this->user->canSortPages() ) : // Menu Options Button ?>
 								<label class="checkbox">
-									<input type="checkbox" data-np-menu-np-status value="hide" />
-									<span class="checkbox-title"><?php _e( 'Hide in Nested Pages', 'nestedpages' ); ?></span>
-								</label>
-
-								<label class="checkbox">
-									<input type="checkbox" data-np-menu-link-target />
+									<input type="checkbox" name="linkTarget" data-np-menu-link-target />
 									<span class="checkbox-title"><?php _e( 'Open link in a new window/tab' ); ?></span>
 								</label>
 								<?php endif; ?>
@@ -182,22 +99,24 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 				</div><!-- .modal-body -->
 
 				<div class="modal-footer">
-					<input type="hidden" data-np-menu-object-input value="">
-					<input type="hidden" data-np-menu-objectid-input value="">
-					<input type="hidden" data-np-menu-type-input value="">
+					<input type="hidden" name="menuTitle" data-np-menu-title value="">
+					<input type="hidden" name="objectType" data-np-menu-object-input value="">
+					<input type="hidden" name="objectId" data-np-menu-objectid-input value="">
+					<input type="hidden" name="menuType" data-np-menu-type-input value="">
 					<input type="hidden" name="parent_id" class="parent_id" value="">
 					<button type="button" class="button modal-close" data-dismiss="modal">
 						<?php _e('Cancel'); ?>
 					</button>
-					<a accesskey="s" class="button-primary" data-np-save-link style="display:none;">
+
+					<a accesskey="s" class="button-primary" data-np-save-link style="display:none;float:right;">
 						<?php _e( 'Add', 'nestedpages' ); ?>
 					</a>
-					<span class="np-qe-loading np-link-loading"></span>
+					<span class="np-qe-loading"></span>
+
 				</div><!-- .modal-footer -->
 				</form>
 			</div><!-- #npmenuitems -->
 			
-
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
