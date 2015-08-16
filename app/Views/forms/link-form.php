@@ -106,7 +106,7 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 										$out .= '<ul>';
 										$out .= '<li class="np-menu-search"><input type="text" data-np-menu-search data-search-type="taxonomy" data-search-object="' . $name . '" placeholder="' . __('Search', 'nestedpages') . ' ' . $taxonomy->labels->name . '" /><div class="np-menu-search-loading"></div><div class="np-menu-search-noresults">' . __('No Results', 'nestedpages') . '</div></li>';
 										foreach ( $terms as $term ){
-											$out .= '<li data-default-result><a href="#" data-np-menu-object="' . $name . '" data-np-menu-type="taxonomy" data-np-menu-objectid="' . $term->term_id . '" data-np-menu-selection>' . $term->name . '</a></li>';
+											$out .= '<li data-default-result><a href="#" data-np-menu-object="' . $name . '" data-np-menu-type="taxonomy" data-np-menu-objectid="' . $term->term_id . '" data-np-permalink="' . get_term_link($term) . '" data-np-menu-selection>' . $term->name . '</a></li>';
 										}
 										$out .= '</ul>';
 									}
@@ -127,7 +127,7 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 										$out .= '<ul>';
 										$out .= '<li class="np-menu-search"><input type="text" data-np-menu-search data-search-type="post_type" data-search-object="' . $name . '" placeholder="' . __('Search', 'nestedpages') . ' ' . $type->labels->name . '" /><div class="np-menu-search-loading"></div><div class="np-menu-search-noresults">' . __('No Results', 'nestedpages') . '</div></li>';
 										foreach ( $recent_posts as $post ){
-											$out .= '<li data-default-result><a href="#" data-np-menu-object="' . $name . '" data-np-menu-type="post_type" data-np-menu-objectid="' . $post->ID . '" data-np-menu-selection>' . $post->post_title . '</a></li>';
+											$out .= '<li data-default-result><a href="#" data-np-menu-object="' . $name . '" data-np-menu-type="post_type" data-np-menu-objectid="' . $post->ID . '" data-np-permalink="' . get_the_permalink($post->ID) . '" data-np-menu-selection>' . $post->post_title . '</a></li>';
 										}
 										$out .= '</ul>';
 									}

@@ -52,6 +52,9 @@ class MenuSearchHandler extends BaseHandler
 		));
 		if ( $sq->have_posts() ) :
 			$this->results = $sq->posts;
+			foreach($sq->posts as $key => $post){
+				$this->results[$key]->permalink = get_the_permalink($post->ID);
+			}
 		else :
 			$this->results = null;
 		endif; wp_reset_postdata();
@@ -67,6 +70,9 @@ class MenuSearchHandler extends BaseHandler
 		));
 		if ( $terms ){
 			$this->results = $terms;
+			foreach($terms as $key => $term){
+				$this->results[$key]->permalink = get_term_link($term);
+			}
 			return;
 		}
 		$this->results = null;
