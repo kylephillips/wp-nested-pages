@@ -59,6 +59,10 @@ NestedPages.MenuLinks = function()
 		$(document).on('keyup', plugin.fields.navigationLabel, function(){
 			plugin.updateTitle();
 		});
+		$(document).on('click', plugin.selectors.saveButton, function(e){
+			e.preventDefault();
+			plugin.submitForm();
+		});
 	}
 
 	// Accordion Menu
@@ -134,6 +138,25 @@ NestedPages.MenuLinks = function()
 		} else {
 			$(title).text($(plugin.typeButton).text());
 		}
+	}
+
+	// Submit the Form
+	plugin.submitForm = function()
+	{
+		$.ajax({
+			url : NestedPages.jsData.ajaxurl,
+			type : 'post',
+			data : {
+				action : NestedPages.formActions.newMenuItem,
+				nonce : NestedPages.jsData.nonce
+			},
+			success : function(data){
+				console.log(data);
+			},
+			error : function(data){
+				console.log(data);
+			}
+		});
 	}
 
 

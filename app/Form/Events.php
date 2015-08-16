@@ -3,7 +3,7 @@
 /**
 * Registers the WP Actions/Handlers
 */
-class FormActionFactory {
+class Events {
 
 	/**
 	* Actions
@@ -41,7 +41,8 @@ class FormActionFactory {
 			'wp_ajax_npEmptyTrash',
 			'admin_post_npSearch',
 			'wp_ajax_npclonePost',
-			'wp_ajax_npmenuSearch'
+			'wp_ajax_npmenuSearch',
+			'wp_ajax_npnewMenuItem'
 		);
 		$this->setHandlers();
 	}
