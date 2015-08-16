@@ -1,13 +1,13 @@
 <?php 
 
-namespace NestedPages\Form\Handlers;
+namespace NestedPages\Form\Listeners;
 
 use NestedPages\Entities\Post\PostCloner;
 
 /**
 * Clone an existing post
 */
-class ClonePostHandler extends BaseHandler
+class ClonePost extends BaseHandler
 {
 	/**
 	* Post ID/status/author to Clone

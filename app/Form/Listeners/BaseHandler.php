@@ -1,4 +1,6 @@
-<?php namespace NestedPages\Form\Handlers;
+<?php 
+
+namespace NestedPages\Form\Listeners;
 
 use NestedPages\Entities\NavMenu\NavMenuSyncListing;
 use NestedPages\Entities\Post\PostRepository;
@@ -8,7 +10,8 @@ use NestedPages\Entities\User\UserRepository;
 /**
 * Base Form Handler Class
 */
-abstract class BaseHandler {
+abstract class BaseHandler 
+{
 
 	/**
 	* Nonce

@@ -1,8 +1,8 @@
 <?php 
 
-namespace NestedPages\Form\Handlers;
+namespace NestedPages\Form\Listeners;
 
-class MenuSearchHandler extends BaseHandler 
+class MenuSearch extends BaseHandler 
 {
 	/**
 	* Form Data

@@ -1,18 +1,20 @@
-<?php namespace NestedPages\Form\Handlers;
+<?php 
+
+namespace NestedPages\Form\Listeners;
 
 use NestedPages\Entities\User\UserRepository;
 
 /**
 * Syncs User's Visible/Toggled Pages
 */
-class NestToggleHandler extends BaseHandler {
+class NestToggle extends BaseHandler 
+{
 
 	public function __construct()
 	{
 		parent::__construct();
 		$this->updateUserMeta();
 	}
-
 
 	/**
 	* Make sure this is an array of integers
@@ -24,7 +26,6 @@ class NestToggleHandler extends BaseHandler {
 			if ( !is_numeric($id) ) $this->sendErrorResponse();
 		}
 	}
-
 
 	/**
 	* Update the user meta with the array of IDs

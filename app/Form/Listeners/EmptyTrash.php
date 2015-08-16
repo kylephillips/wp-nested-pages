@@ -1,6 +1,9 @@
-<?php namespace NestedPages\Form\Handlers;
+<?php 
 
-class EmptyTrashHandler extends BaseHandler {
+namespace NestedPages\Form\Listeners;
+
+class EmptyTrash extends BaseHandler 
+{
 
 	public function __construct()
 	{

@@ -54,10 +54,10 @@ class Events {
 	{
 		foreach($this->actions as $key => $action){
 			$class = str_replace('admin_post_np', '', $action); // Non-AJAX forms
-			$class = ucfirst(str_replace('wp_ajax_np', '', $class)) . 'Handler'; // AJAX forms
+			$class = ucfirst(str_replace('wp_ajax_np', '', $class)); // AJAX forms
 			$this->handlers[$key] = new \stdClass();
 			$this->handlers[$key]->action = $action;
-			$this->handlers[$key]->class = 'NestedPages\Form\Handlers\\' . $class;
+			$this->handlers[$key]->class = 'NestedPages\Form\Listeners\\' . $class;
 		}
 		$this->build();
 	}

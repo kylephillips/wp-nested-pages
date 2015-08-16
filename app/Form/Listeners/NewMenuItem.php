@@ -1,6 +1,6 @@
 <?php 
 
-namespace NestedPages\Form\Handlers;
+namespace NestedPages\Form\Listeners;
 
 use NestedPages\Helpers;
 
@@ -8,9 +8,8 @@ use NestedPages\Helpers;
 * Creates new Menu item and saves redirect post
 * @return json response
 */
-class NewMenuItemHandler extends BaseHandler {
-
-
+class NewMenuItem extends BaseHandler 
+{
 	public function __construct()
 	{
 		parent::__construct();

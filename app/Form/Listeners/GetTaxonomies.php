@@ -1,17 +1,19 @@
-<?php namespace NestedPages\Form\Handlers;
+<?php 
+
+namespace NestedPages\Form\Listeners;
 
 /**
 * Gets term names
 * @return json response
 */
-class GetTaxonomiesHandler extends BaseHandler {
+class GetTaxonomies extends BaseHandler 
+{
 
 	/**
 	* Terms to return
 	* @var object
 	*/
 	private $terms;
-
 
 	public function __construct()
 	{
@@ -20,7 +22,6 @@ class GetTaxonomiesHandler extends BaseHandler {
 		$this->setResponse();
 		$this->sendResponse();
 	}
-
 
 	/**
 	* Loop through the taxonomies
@@ -32,7 +33,6 @@ class GetTaxonomiesHandler extends BaseHandler {
 			$this->setTermNames($taxonomy, $tax_terms);
 		}
 	}
-
 
 	/**
 	* Get the Term names for each taxonomy 
@@ -46,7 +46,6 @@ class GetTaxonomiesHandler extends BaseHandler {
 			$this->terms[$taxonomy][$key] = $term_name;
 		}
 	}
-
 
 	/**
 	* Prepare Response

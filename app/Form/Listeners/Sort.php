@@ -1,12 +1,14 @@
-<?php namespace NestedPages\Form\Handlers;
+<?php 
+
+namespace NestedPages\Form\Listeners;
 
 /**
 * Handles processing sortable pages
 * updates menu order & page parents
 * @return json response
 */
-class SortHandler extends BaseHandler {
-
+class Sort extends BaseHandler 
+{
 
 	public function __construct()
 	{
@@ -15,7 +17,6 @@ class SortHandler extends BaseHandler {
 		$this->syncMenu();
 		$this->sendResponse();
 	}
-
 
 	/**
 	* Update Post Order
@@ -30,6 +31,5 @@ class SortHandler extends BaseHandler {
 			$this->response = array('status'=>'error', 'message'=> __('There was an error updating the page order.','nestedpages') );
 		}
 	}
-
 
 }
