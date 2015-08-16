@@ -30,6 +30,12 @@ NestedPages.MenuLinks = function()
 		object : '[data-np-menu-object-input]', // The object (ex: post/category)
 		objectid : '[data-np-menu-objectid-input]', // ex: term id, post id
 		itemType : '[data-np-menu-type-input]', // ex: post_type, taxonomy
+		url : '[data-np-menu-url]', // custom url
+		navigationLabel : '[data-np-menu-navigation-label]',
+		titleAttribute : '[data-np-menu-title-attr]',
+		cssClasses : '[data-np-menu-css-classes]',
+		npStatus : '[data-np-menu-np-status]',
+		linkTarget : '[data-np-menu-link-target]',
 	}
 
 	plugin.search = new NestedPages.MenuSearch;
@@ -49,6 +55,9 @@ NestedPages.MenuLinks = function()
 			e.preventDefault();
 			plugin.typeButton = $(this);
 			plugin.setLinkType();
+		});
+		$(document).on('keyup', plugin.fields.navigationLabel, function(){
+			plugin.updateTitle();
 		});
 	}
 
@@ -108,10 +117,23 @@ NestedPages.MenuLinks = function()
 		$(plugin.selectors.formDetails).hide();
 		$(plugin.selectors.formPlaceholder).show();
 		$(plugin.selectors.form).find('input').val('');
+		$(plugin.selectors.form).find('input[type="checkbox"]').attr('checked', false);
 		$(plugin.selectors.typeSelect).removeClass('active');
 		plugin.search.toggleLoading(false);
 		$(plugin.selectors.searchResults).remove();
 		$(plugin.selectors.defaultResults).show();
+	}
+
+	// Update the title text
+	plugin.updateTitle = function()
+	{
+		var value = $(plugin.fields.navigationLabel).val();
+		var title = $(plugin.selectors.form).find('h3').find('span');
+		if ( value !== "" ){
+			$(title).text(value);
+		} else {
+			$(title).text($(plugin.typeButton).text());
+		}
 	}
 
 
