@@ -40,7 +40,8 @@ class FormActionFactory {
 			'admin_post_npListingSort',
 			'wp_ajax_npEmptyTrash',
 			'admin_post_npSearch',
-			'wp_ajax_npclonePost'
+			'wp_ajax_npclonePost',
+			'wp_ajax_npmenuSearch'
 		);
 		$this->setHandlers();
 	}

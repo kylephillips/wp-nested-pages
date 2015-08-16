@@ -11,6 +11,7 @@
 
 // Left Type Selection
 .np-menu-type-selection {
+	float: left;
 	height: 100%;
 	overflow: auto;
 	width: 35%;
@@ -70,6 +71,11 @@
 						background-color: $white;
 						cursor: default;
 					}
+					&.section {
+						padding: 8px 10px;
+						background-color: $black;
+						color: $white;
+					}
 				} // .no-terms
 			} // a
 			&:first-child {
@@ -84,12 +90,20 @@
 					border-color: darken($white, 12%);
 					a {
 						padding: 8px;
-						background-color: darken($white, 6%);
+						background-color: $gray-lighter;
 						font-weight: normal;
 						&:after {
 							content: "\f139";
 							top: 8px;
 							right: 5px;
+						}
+						&.active {
+							background-color: $blue;
+							color: $white;
+							&:after {
+								content: "\f335";
+								color: $white;
+							}
 						}
 					}
 				} // li 2
@@ -97,3 +111,48 @@
 		} // li 1
 	} // ul 1
 } // .np-menu-type-selection
+
+// Right Pane
+.np-menu-link-object {
+	width: 65%;
+	float: right;
+	height: 100%;
+} // .np-menu-link-object
+
+// Placeholder / Inactive Text
+.np-menu-link-object-placeholder {
+	text-align: center;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	color: darken($white, 30%);
+}
+
+// Search Filter in menu type selection
+.np-menu-search {
+	padding: 10px;
+	background-color: $gray-lighter;
+	input[type="text"]{
+		width: 100%;
+		height: 35px;
+	}
+	.np-menu-search-loading {
+		display: none;
+		height: 30px;
+		background: url('../images/spinner.gif') no-repeat;
+		background-position: center;
+	}
+	.np-menu-search-noresults {
+		display: none;
+		text-align: center;
+		padding-top: 8px;
+		font-style: oblique;
+	}
+}
+
+// Details form
+.np-menu-link-details {
+	padding: 20px;
+}
+
+

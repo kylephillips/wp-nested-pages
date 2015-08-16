@@ -31,4 +31,31 @@ class ListingRepository {
 		return get_terms($taxonomy);
 	}
 
+	/**
+	* Post Types
+	*/
+	public function postTypes()
+	{
+		$types = get_post_types(array(
+			'public' => true
+		), 'objects');
+		return $types;
+	}
+
+	/**
+	* Recent Posts for a given post type
+	*/
+	public function recentPosts($post_type)
+	{
+		$pq = new \WP_Query(array(
+			'post_type' => $post_type,
+			'posts_per_page' => 10
+		));
+		if ( $pq->have_posts() ) :
+			return $pq->posts;
+		else : 
+			return false;
+		endif; wp_reset_postdata();
+	}
+
 }

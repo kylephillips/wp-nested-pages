@@ -122,7 +122,8 @@ NestedPages.formActions = {
 	quickEditLink : 'npquickEditLink',
 	getTaxonomies : 'npgetTaxonomies',
 	quickEditPost : 'npquickEdit',
-	clonePost : 'npclonePost'
+	clonePost : 'npclonePost',
+	search : 'npmenuSearch'
 }
 
 

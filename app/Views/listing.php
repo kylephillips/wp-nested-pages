@@ -1,5 +1,4 @@
 <div class="wrap nestedpages">
-<?php //var_dump($this->listing_repo->taxonomies()); ?>
 	<h2 class="nestedpages-listing-title">
 		<?php _e($this->post_type->labels->name); ?>
 		
