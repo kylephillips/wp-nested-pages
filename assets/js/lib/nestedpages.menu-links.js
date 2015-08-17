@@ -49,6 +49,11 @@ NestedPages.MenuLinks = function()
 
 	plugin.bindEvents = function()
 	{
+		$('#np-link-modal').on('show.bs.modal', function(){
+			plugin.clearForm();
+			$(plugin.selectors.accordion).find('ul').hide();
+			$(plugin.selectors.typeSelect).removeClass('active');
+		});
 		$(document).on('click', plugin.selectors.accordionItem, function(e){
 			e.preventDefault();
 			plugin.accordion($(this));
