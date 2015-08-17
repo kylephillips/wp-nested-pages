@@ -18,7 +18,7 @@
 			<input type="text" name="post_title" class="np_title" value="" />
 		</div>
 
-		<div class="form-control">
+		<div class="form-control" data-url-field>
 			<label><?php _e( 'URL' ); ?></label>
 			<input type="text" name="post_content" class="np_content" value="" />
 		</div>

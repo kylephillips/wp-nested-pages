@@ -90,6 +90,10 @@ NestedPages.MenuLinks = function()
 			plugin.clearForm();
 			return;
 		}
+		if ( $(plugin.typeButton).hasClass('np-custom-link') ){
+			$(plugin.selectors.accordionItem).removeClass('active');
+			$(plugin.selectors.accordion).find('ul').slideUp('fast');
+		}
 		$(plugin.selectors.formPlaceholder).hide();
 		plugin.populateForm();
 	}
