@@ -170,7 +170,6 @@ NestedPages.MenuLinks = function()
 					$(plugin.selectors.form).find(plugin.selectors.errorDiv).text(data.message).show();
 					return;
 				}
-				// console.log(data);
 			},
 			error : function(data){
 				console.log(data);

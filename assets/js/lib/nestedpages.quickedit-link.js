@@ -60,7 +60,12 @@ NestedPages.QuickEditLink = function()
 			linktarget : $(plugin.button).attr('data-linktarget'),
 			parentid : $(plugin.button).attr('data-parentid'),
 			navtitleattr : $(plugin.button).attr('data-navtitleattr'),
-			navcss : $(plugin.button).attr('data-navcss')
+			navcss : $(plugin.button).attr('data-navcss'),
+			navtype : $(plugin.button).attr('data-nav-type'),
+			navobject : $(plugin.button).attr('data-nav-object'),
+			navobjectid : $(plugin.button).attr('data-nav-object-id'),
+			navoriginallink : $(plugin.button).attr('data-nav-original-link'),
+			navoriginaltitle : $(plugin.button).attr('data-nav-original-title')
 		};
 	}
 
@@ -113,6 +118,19 @@ NestedPages.QuickEditLink = function()
 			$(plugin.form).find('.link_target').removeAttr('checked');
 		}
 
+		// Relationship Links
+		if ( plugin.postData.navobject !== 'custom' && plugin.postData.navobject !== '' ){
+			var html = '<div class="form-control original-link">Original: <a href="' + plugin.postData.navoriginallink + '" target="_blank">' + plugin.postData.navoriginaltitle + '</a></div>';
+			$(plugin.form).find('[data-url-field]').remove();
+			$(html).insertAfter($(plugin.form).find('h3'));
+			$(plugin.form).find('[data-np-menu-object-input]').val(plugin.postData.navobject);
+			$(plugin.form).find('[data-np-menu-objectid-input]').val(plugin.postData.navobjectid);
+			$(plugin.form).find('[data-np-menu-type-input]').val(plugin.postData.navtype);
+		} else {
+			$(plugin.form).find('[data-np-menu-object-input]').val('custom');
+			$(plugin.form).find('[data-np-menu-type-input]').val('custom');
+		}
+
 		plugin.formatter.showQuickEdit();
 		$(plugin.form).show();
 	}
@@ -150,11 +168,12 @@ NestedPages.QuickEditLink = function()
 	// Update the row after successfully saving quick edit data
 	plugin.updateRow = function()
 	{
+		console.log(plugin.newPostData);
 		var row = $(plugin.form).siblings('.row');
 		$(row).find('.title').html(plugin.newPostData.post_title + ' <i class="np-icon-link"></i>');
 		
 		var status = $(row).find('.status');
-		if ( (plugin.newPostData._status !== 'publish') && (data._status !== 'future') ){
+		if ( (plugin.newPostData._status !== 'publish') && (plugin.newPostData._status !== 'future') ){
 			$(status).text('(' + plugin.newPostData._status + ')');
 		} else {
 			$(status).text('');
@@ -186,9 +205,9 @@ NestedPages.QuickEditLink = function()
 		$(button).attr('data-status', plugin.newPostData._status);
 		$(button).attr('data-navstatus', plugin.newPostData.nav_status);
 		$(button).attr('data-np-status', plugin.newPostData.np_status);
-		$(button).attr('data-linktarget', plugin.newPostData.link_target);
-		$(button).attr('data-navtitleattr', plugin.newPostData.np_title_attribute);
-		$(button).attr('data-navcss', plugin.newPostData.np_nav_css_classes);
+		$(button).attr('data-linkTarget', plugin.newPostData.linkTarget);
+		$(button).attr('data-navtitleattr', plugin.newPostData.titleAttribute);
+		$(button).attr('data-navcss', plugin.newPostData.cssClasses);
 
 		plugin.formatter.removeQuickEdit();
 		plugin.formatter.flashRow(row);

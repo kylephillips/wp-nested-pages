@@ -21,6 +21,7 @@ class PostDataFactory {
 		$this->addPostVars($post);
 		$this->addPostMeta($post);
 		$this->addMenuOptions($post);
+		$this->addOriginalLink($post);
 		$this->addDate($post);
 		$this->author($post);
 
@@ -75,8 +76,34 @@ class PostDataFactory {
 		$this->post_data->link_target = get_post_meta($post->ID, 'np_link_target', true);
 		$this->post_data->nav_title_attr = get_post_meta($post->ID, 'np_title_attribute', true);
 		$this->post_data->nav_css = get_post_meta($post->ID, 'np_nav_css_classes', true);
+		$this->post_data->nav_object = get_post_meta($post->ID, 'np_nav_menu_item_object', true);
+		$this->post_data->nav_object_id = get_post_meta($post->ID, 'np_nav_menu_item_object_id', true);
+		$this->post_data->nav_type = get_post_meta($post->ID, 'np_nav_menu_item_type', true);
 		$nav_status = get_post_meta( $post->ID, 'np_nav_status', true);
 		$this->post_data->nav_status = ( $nav_status == 'hide' ) ? 'hide' : 'show';
+	}
+
+	/**
+	* Add original item/link to link
+	*/
+	private function addOriginalLink($post)
+	{
+		if ( $post->post_type !== 'np-redirect' ) {
+			$this->post_data->nav_original_link = null;
+			$this->post_data->nav_original_type = null;
+			return;
+		}
+
+		if ( $this->post_data->nav_type && $this->post_data->nav_type == 'taxonomy' ){
+			$term = get_term_by('id', $this->post_data->nav_object_id, $this->post_data->nav_object);
+			$this->post_data->nav_original_link = get_term_link($term);
+			$this->post_data->nav_original_title = $term->name;
+			return;
+		}
+
+		$id = $this->post_data->nav_object_id;
+		$this->post_data->nav_original_link = get_the_permalink($id);
+		$this->post_data->nav_original_title = get_the_title($id);
 	}
 
 	/**

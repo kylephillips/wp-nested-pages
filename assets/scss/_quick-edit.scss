@@ -57,6 +57,13 @@
 			float: left;
 			width: 20%;
 		}
+		&.original-link {
+			background-color: $gray-lighter;
+			border: 1px solid $border;
+			padding: 5px;
+			font-style: oblique;
+			margin-bottom: 8px;
+		}
 		&.password {
 			label {
 				width: 25%;

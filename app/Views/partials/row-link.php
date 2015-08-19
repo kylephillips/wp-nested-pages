@@ -56,6 +56,11 @@
 				data-navstatus="<?php echo $this->post->nav_status; ?>"
 				data-navtitleattr="<?php echo $this->post->nav_title_attr; ?>"
 				data-navcss="<?php echo $this->post->nav_css; ?>"
+				data-nav-type="<?php echo $this->post->nav_type; ?>"
+				data-nav-object="<?php echo $this->post->nav_object; ?>"
+				data-nav-object-id="<?php echo $this->post->nav_object_id; ?>"
+				data-nav-original-link="<?php echo $this->post->nav_original_link; ?>"
+				data-nav-original-title="<?php echo $this->post->nav_original_title; ?>"
 				data-linktarget="<?php echo $this->post->link_target; ?>">
 				<?php _e('Quick Edit'); ?>
 			</a>
