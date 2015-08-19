@@ -89,6 +89,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.4.1 =
+* Bug fix in quick edit where child pages display parent row data on update.
+
 = 1.4.0 =
 * Clone/Duplicate functionality added - click the "clone" button in a row to clone/duplicate a post or page
 * Bug fix when attempting to trash Advanced Custom Field field groups (Thanks to Ben Plum)
