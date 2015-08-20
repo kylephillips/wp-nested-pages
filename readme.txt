@@ -89,6 +89,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.4.2 =
+* Escape key closing of modal windows added.
+
 = 1.4.1 =
 * Bug fix in quick edit where child pages display parent row data on update.
 
