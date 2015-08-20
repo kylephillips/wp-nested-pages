@@ -70,6 +70,9 @@ NestedPages.MenuLinks = function()
 			e.preventDefault();
 			plugin.submitForm();
 		});
+		$(document).on('keydown', function(e){
+			if ( e.keyCode === 27 ) $('#np-link-modal').modal('hide');
+		});
 	}
 
 	// Accordion Menu
