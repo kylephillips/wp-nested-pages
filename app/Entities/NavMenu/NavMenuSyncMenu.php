@@ -9,7 +9,7 @@ use NestedPages\Entities\NavMenu\NavMenuRepository;
 /**
 * Syncs the Listing to Match the Menu
 */
-class NavMenuSyncMenu extends NavMenuSync implements NavMenuSyncInterface {
+class NavMenuSyncMenu extends NavMenuSync {
 
 	/**
 	* Menu Items

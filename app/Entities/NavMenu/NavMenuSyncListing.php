@@ -7,7 +7,7 @@ use NestedPages\Entities\Post\PostDataFactory;
 /**
 * Syncs the Generated Menu to Match the Listing
 */
-class NavMenuSyncListing extends NavMenuSync implements NavMenuSyncInterface {
+class NavMenuSyncListing extends NavMenuSync {
 
 
 	/**
