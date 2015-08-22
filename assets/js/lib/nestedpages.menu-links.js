@@ -172,7 +172,7 @@ NestedPages.MenuLinks = function()
 		$.ajax({
 			url : NestedPages.jsData.ajaxurl,
 			type : 'post',
-			data: $(plugin.selectors.form).serialize() + '&action=' + NestedPages.formActions.newMenuItem + '&nonce=' + NestedPages.jsData.nonce + '&syncmenu=' + syncmenu,
+			data: $(plugin.selectors.form).serialize() + '&action=' + NestedPages.formActions.newMenuItem + '&nonce=' + NestedPages.jsData.nonce + '&post_type=' + NestedPages.jsData.posttype + '&syncmenu=' + syncmenu,
 			success : function(data){
 				plugin.toggleLoading(false);
 				if ( data.status === 'error' ){

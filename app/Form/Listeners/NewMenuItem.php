@@ -15,7 +15,7 @@ class NewMenuItem extends BaseHandler
 		parent::__construct();
 		$this->validateFields();
 		$this->saveRedirect();
-		//$this->syncMenu();
+		$this->syncMenu();
 		$this->sendResponse();
 	}
 
