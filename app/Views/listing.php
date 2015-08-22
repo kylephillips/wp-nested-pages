@@ -1,14 +1,4 @@
 <div class="wrap nestedpages">
-<?php
-$meta = get_metadata('post', 69555);
-$type = ( isset($meta['np_nav_menu_item_type'][0]) ) ? $meta['np_nav_menu_item_type'] : 'custom';
-$object = ( isset($meta['np_nav_menu_item_object'][0]) ) ? $meta['np_nav_menu_item_object'] : 'custom';
-$object_id = ( isset($meta['np_nav_menu_item_object_id'][0]) ) ? $meta['np_nav_menu_item_object_id'] : 'np-redirect-ID';
-// var_dump($type);
-// var_dump($object);
-// var_dump($object_id);
-// var_dump($meta);
-?>
 	<h2 class="nestedpages-listing-title">
 		<?php _e($this->post_type->labels->name); ?>
 		
