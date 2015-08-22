@@ -75,11 +75,10 @@ class NavMenuSyncListing extends NavMenuSync implements NavMenuSyncInterface {
 	*/
 	private function syncLinkItem($menu_parent, $menu_item_id)
 	{
-		$meta = get_metadata('post', $this->post->id);
-		$type = ( isset($meta['np_nav_menu_item_type'][0]) ) ? $meta['np_nav_menu_item_type'][0] : 'custom';
-		$object = ( isset($meta['np_nav_menu_item_object'][0]) ) ? $meta['np_nav_menu_item_object'][0] : 'custom';
-		$object_id = ( isset($meta['np_nav_menu_item_object_id'][0]) ) ? $meta['np_nav_menu_item_object_id'][0] : $this->post->id;
-		$url = ( $type == 'custom' ) ? esc_url(get_the_content($this->post->id)) : null;
+		$type = ( $this->post->nav_type ) ? $this->post->nav_type : 'custom';
+		$object = ( $this->post->nav_object ) ? $this->post->nav_object : 'custom';
+		$object_id = ( $this->post->nav_object_id  ) ? $this->post->nav_object_id : $this->post->id;
+		$url = ( $type == 'custom' ) ? esc_url($this->post->content) : null;
 		
 		// Compatibility for 1.4.1 - Reset Page links
 		if ( $type == 'custom' && $this->post->type == 'page' ){
