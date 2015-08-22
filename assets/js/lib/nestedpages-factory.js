@@ -117,7 +117,6 @@ NestedPages.formActions = {
 	syncToggles : 'npnestToggle',
 	syncNesting : 'npsort',
 	syncMenu : 'npsyncMenu',
-	newLink : 'npnewLink',
 	newPage : 'npnewChild',
 	quickEditLink : 'npquickEditLink',
 	getTaxonomies : 'npgetTaxonomies',

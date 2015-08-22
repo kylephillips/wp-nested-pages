@@ -27,16 +27,15 @@ class NavMenuSyncListing extends NavMenuSync implements NavMenuSyncInterface {
 	*/
 	private $post_factory;
 
-
 	public function __construct()
 	{
 		parent::__construct();
 		$this->post_factory = new PostDataFactory;
 	}
 
-
 	/**
 	* Create the menu with nested pages
+	* Recursive function loops through child posts
 	*/
 	public function sync($parent = 0, $menu_parent = 0)
 	{
@@ -56,7 +55,6 @@ class NavMenuSyncListing extends NavMenuSync implements NavMenuSyncInterface {
 		endwhile; endif; wp_reset_postdata();
 	}
 
-
 	/**
 	* Sync an individual item
 	* @since 1.3.4
@@ -67,38 +65,9 @@ class NavMenuSyncListing extends NavMenuSync implements NavMenuSyncInterface {
 		$menu_item_id = $this->nav_menu_repo->getMenuItemID($this->post->id);
 
 		if ( $this->post->nav_status == 'hide' ) return $this->removeItem($menu_item_id);
-
-		$menu = ( $this->post->type == 'page' ) 
-			? $this->syncPageItem($menu_parent, $menu_item_id) 
-			: $this->syncLinkItem($menu_parent, $menu_item_id);
-			
+		$menu = $this->syncLinkItem($menu_parent, $menu_item_id);
 		$this->sync( $this->post->id, $menu );
 	}
-
-
-
-	/**
-	* Sync Page Menu Item
-	* @since 1.1.4
-	*/
-	private function syncPageItem($menu_parent, $menu_item_id)
-	{
-		$menu = wp_update_nav_menu_item($this->id, $menu_item_id, array(
-			'menu-item-title' => $this->post->nav_title,
-			'menu-item-position' => $this->count,
-			'menu-item-url' => $this->post->link,
-			'menu-item-attr-title' => $this->post->nav_title_attr,
-			'menu-item-status' => 'publish',
-			'menu-item-classes' => $this->post->nav_css,
-			'menu-item-type' => 'post_type',
-			'menu-item-object' => 'page',
-			'menu-item-object-id' => $this->post->id,
-			'menu-item-parent-id' => $menu_parent,
-			'menu-item-target' => $this->post->link_target
-		));
-		return $menu;
-	}
-
 
 	/**
 	* Sync Link Menu Item
@@ -106,16 +75,29 @@ class NavMenuSyncListing extends NavMenuSync implements NavMenuSyncInterface {
 	*/
 	private function syncLinkItem($menu_parent, $menu_item_id)
 	{
+		$meta = get_metadata('post', $this->post->id);
+		$type = ( isset($meta['np_nav_menu_item_type'][0]) ) ? $meta['np_nav_menu_item_type'][0] : 'custom';
+		$object = ( isset($meta['np_nav_menu_item_object'][0]) ) ? $meta['np_nav_menu_item_object'][0] : 'custom';
+		$object_id = ( isset($meta['np_nav_menu_item_object_id'][0]) ) ? $meta['np_nav_menu_item_object_id'][0] : $this->post->id;
+		$url = ( $type == 'custom' ) ? esc_url(get_the_content($this->post->id)) : null;
+		
+		// Compatibility for 1.4.1 - Reset Page links
+		if ( $type == 'custom' && $this->post->type == 'page' ){
+			$type = 'post_type';
+			$object = 'page';
+			$object_id = $this->post->id;
+		}
+
 		$menu = wp_update_nav_menu_item($this->id, $menu_item_id, array(
 			'menu-item-title' => $this->post->title,
 			'menu-item-position' => $this->count,
-			'menu-item-url' => Helpers::check_url(get_the_content($this->post->id)),
+			'menu-item-url' => $url,
 			'menu-item-attr-title' => $this->post->nav_title_attr,
 			'menu-item-status' => 'publish',
 			'menu-item-classes' => $this->post->nav_css,
-			'menu-item-type' => 'custom',
-			'menu-item-object' => 'np-redirect',
-			'menu-item-object-id' => $this->post->id,
+			'menu-item-type' => $type,
+			'menu-item-object' => $object,
+			'menu-item-object-id' => $object_id,
 			'menu-item-parent-id' => $menu_parent,
 			'menu-item-xfn' => $this->post->id,
 			'menu-item-target' => $this->post->link_target

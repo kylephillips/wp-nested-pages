@@ -15,6 +15,8 @@ class NewMenuItem extends BaseHandler
 		parent::__construct();
 		$this->validateFields();
 		$this->saveRedirect();
+		//$this->syncMenu();
+		$this->sendResponse();
 	}
 
 	/**
@@ -38,10 +40,10 @@ class NewMenuItem extends BaseHandler
 		$this->data['post']['id'] = $new_link;
 		$this->data['post']['content'] = esc_url($_POST['url']);
 		
-		return wp_send_json(array(
+		$this->response = array(
 			'status' => 'success', 
 			'message' => __('Link successfully updated', 'nestedpages'),
 			'post_data' => $this->data['post']
-		));
+		);
 	}
 }

@@ -129,7 +129,9 @@ NestedPages.QuickEditLink = function()
 			$(plugin.form).find('[data-np-menu-object-input]').val(plugin.postData.navobject);
 			$(plugin.form).find('[data-np-menu-objectid-input]').val(plugin.postData.navobjectid);
 			$(plugin.form).find('[data-np-menu-type-input]').val(plugin.postData.navtype);
+			$(plugin.form).find('h3').text('Link: ' + plugin.postData.navoriginaltitle);
 		} else {
+			$(plugin.form).find('h3').text('Link');
 			$(plugin.form).find('[data-np-menu-object-input]').val('custom');
 			$(plugin.form).find('[data-np-menu-type-input]').val('custom');
 		}
