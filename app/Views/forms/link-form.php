@@ -16,48 +16,41 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 						<ul data-np-menu-accordion>
 
 							<li><a href="#" class="np-custom-link" data-np-menu-object="custom" data-np-menu-type="custom" data-np-menu-objectid="" data-np-permalink="" data-np-menu-selection><?php _e('Custom Link', 'nestedpages'); ?></a></li>
+
+							<?php
+								// Post Types
+								foreach ( $this->listing_repo->postTypes() as $name => $type ) {
+									$recent_posts = $this->listing_repo->recentPosts($name);
+									if ( !$recent_posts ) continue;
+									$out = '<li><a href="#" data-np-menu-accordion-item>' . $type->labels->name . '</a>';
+									$out .= '<ul>';
+									$out .= '<li class="np-menu-search"><input type="text" data-np-menu-search data-search-type="post_type" data-search-object="' . $name . '" placeholder="' . __('Search', 'nestedpages') . ' ' . $type->labels->name . '" /><div class="np-menu-search-loading"></div><div class="np-menu-search-noresults">' . __('No Results', 'nestedpages') . '</div></li>';
+									foreach ( $recent_posts as $post ){
+										$out .= '<li data-default-result><a href="#" data-np-menu-object="' . $name . '" data-np-menu-type="post_type" data-np-menu-objectid="' . $post->ID . '" data-np-permalink="' . get_the_permalink($post->ID) . '" data-np-object-name="' . $type->labels->singular_name . '" data-np-menu-selection>' . $post->post_title . '</a></li>';
+									}
+									$out .= '</ul>';
+									$out .= '</li>';
+									echo $out;
+								}
+							?>
 							
 							<?php 
 								// Taxonomies
 								foreach ( $this->listing_repo->taxonomies() as $name => $taxonomy ) {
 									$terms = $this->listing_repo->terms($name);
-									if ( !$terms ){
-										$out = '<li><a href="#" class="no-terms">' . $taxonomy->labels->name;
-										$out .= '<span>' . __('No Items', 'nestedpages') . '</span></a>';
-									} else {
-										$out = '<li><a href="#" data-np-menu-accordion-item>' . $taxonomy->labels->name . '</a>';
-										$out .= '<ul>';
-										$out .= '<li class="np-menu-search"><input type="text" data-np-menu-search data-search-type="taxonomy" data-search-object="' . $name . '" placeholder="' . __('Search', 'nestedpages') . ' ' . $taxonomy->labels->name . '" /><div class="np-menu-search-loading"></div><div class="np-menu-search-noresults">' . __('No Results', 'nestedpages') . '</div></li>';
-										foreach ( $terms as $term ){
-											$out .= '<li data-default-result><a href="#" data-np-menu-object="' . $name . '" data-np-menu-type="taxonomy" data-np-menu-objectid="' . $term->term_id . '" data-np-permalink="' . get_term_link($term) . '" data-np-object-name="' . $taxonomy->labels->name . '" data-np-menu-selection>' . $term->name . '</a></li>';
-										}
-										$out .= '</ul>';
+									if ( !$terms ) continue;
+									$out = '<li><a href="#" data-np-menu-accordion-item>' . $taxonomy->labels->name . '</a>';
+									$out .= '<ul>';
+									$out .= '<li class="np-menu-search"><input type="text" data-np-menu-search data-search-type="taxonomy" data-search-object="' . $name . '" placeholder="' . __('Search', 'nestedpages') . ' ' . $taxonomy->labels->name . '" /><div class="np-menu-search-loading"></div><div class="np-menu-search-noresults">' . __('No Results', 'nestedpages') . '</div></li>';
+									foreach ( $terms as $term ){
+										$out .= '<li data-default-result><a href="#" data-np-menu-object="' . $name . '" data-np-menu-type="taxonomy" data-np-menu-objectid="' . $term->term_id . '" data-np-permalink="' . get_term_link($term) . '" data-np-object-name="' . $taxonomy->labels->name . '" data-np-menu-selection>' . $term->name . '</a></li>';
 									}
+									$out .= '</ul>';
 									$out .= '</li>';
 									echo $out;
 								}
 							?>
 							
-							<?php
-								// Post Types
-								foreach ( $this->listing_repo->postTypes() as $name => $type ) {
-									$recent_posts = $this->listing_repo->recentPosts($name);
-									if ( !$recent_posts ){
-										$out = '<li><a href="#" class="no-terms">' . $type->labels->name;
-										$out .= '<span>' . __('No Items', 'nestedpages') . '</span></a>';
-									} else {
-										$out = '<li><a href="#" data-np-menu-accordion-item>' . $type->labels->name . '</a>';
-										$out .= '<ul>';
-										$out .= '<li class="np-menu-search"><input type="text" data-np-menu-search data-search-type="post_type" data-search-object="' . $name . '" placeholder="' . __('Search', 'nestedpages') . ' ' . $type->labels->name . '" /><div class="np-menu-search-loading"></div><div class="np-menu-search-noresults">' . __('No Results', 'nestedpages') . '</div></li>';
-										foreach ( $recent_posts as $post ){
-											$out .= '<li data-default-result><a href="#" data-np-menu-object="' . $name . '" data-np-menu-type="post_type" data-np-menu-objectid="' . $post->ID . '" data-np-permalink="' . get_the_permalink($post->ID) . '" data-np-object-name="' . $type->labels->singular_name . '" data-np-menu-selection>' . $post->post_title . '</a></li>';
-										}
-										$out .= '</ul>';
-									}
-									$out .= '</li>';
-									echo $out;
-								}
-							?>
 						</ul>
 					</div><!-- .np-menu-type-selection -->
 					<div class="np-menu-link-object">
