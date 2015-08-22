@@ -39,6 +39,8 @@ class NewMenuItem extends BaseHandler
 		$this->data['post'] = $_POST;
 		$this->data['post']['id'] = $new_link;
 		$this->data['post']['content'] = esc_url($_POST['url']);
+		$this->data['post']['delete_link'] = get_delete_post_link($new_link);
+		$this->addExtras($new_link);
 		
 		$this->response = array(
 			'status' => 'success', 
@@ -46,4 +48,30 @@ class NewMenuItem extends BaseHandler
 			'post_data' => $this->data['post']
 		);
 	}
+
+	/**
+	* Add extra post data
+	*/
+	private function addExtras($post)
+	{
+		$this->data['post']['link_target'] = ( isset($_POST['linkTarget']) && $_POST['linkTarget'] == "_blank" ) ? "_blank" : "";
+
+		// Add custom menu data
+		$type = $this->data['post']['menuType'];
+		if ( $type == 'custom' ){
+			$this->data['post']['original_link'] = null;
+			$this->data['post']['original_title'] = null;
+			return;	
+		}
+		if ( $type == 'taxonomy' ){
+			$term = get_term_by('id', $this->data['post']['objectId'], $this->data['post']['objectType']);
+			$this->data['post']['original_link'] = get_term_link($term);
+			$this->data['post']['original_title'] = $term->name;
+			return;
+		}
+		$id = $this->data['post']['objectId'];
+		$this->data['post']['original_link'] = get_the_permalink($id);
+		$this->data['post']['original_title'] = get_the_title($id);
+	}
+
 }

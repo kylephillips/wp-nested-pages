@@ -89,7 +89,7 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 								</p>
 								<?php if ( $this->user->canSortPages() ) : // Menu Options Button ?>
 								<label class="checkbox">
-									<input type="checkbox" name="linkTarget" data-np-menu-link-target />
+									<input type="checkbox" name="linkTarget" class="link_target" data-np-menu-link-target />
 									<span class="checkbox-title"><?php _e( 'Open link in a new window/tab' ); ?></span>
 								</label>
 								<?php endif; ?>
