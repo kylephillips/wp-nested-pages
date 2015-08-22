@@ -28,6 +28,7 @@ class GetTaxonomies extends BaseHandler
 	*/
 	private function loopTaxonomies()
 	{
+		if ( !isset($this->data['terms']) ) return;
 		$terms = $this->data['terms'];
 		foreach ($terms as $taxonomy => $tax_terms){
 			$this->setTermNames($taxonomy, $tax_terms);
