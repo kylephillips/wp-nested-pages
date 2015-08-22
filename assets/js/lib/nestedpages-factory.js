@@ -141,7 +141,6 @@ NestedPages.Factory = function()
 	plugin.pageToggle = new NestedPages.PageToggle;
 	plugin.nesting = new NestedPages.Nesting;
 	plugin.syncMenuSetting = new NestedPages.SyncMenuSetting;
-	plugin.newLink = new NestedPages.NewLink;
 	plugin.newPage = new NestedPages.NewPage;
 	plugin.quickEditLink = new NestedPages.QuickEditLink;
 	plugin.quickEditPost = new NestedPages.QuickEditPost;

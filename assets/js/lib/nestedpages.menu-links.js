@@ -52,13 +52,11 @@ NestedPages.MenuLinks = function()
 
 	plugin.bindEvents = function()
 	{
-		$(document).on('click', '.open-redirect-modal', function(e){
+		$(document).on('click', NestedPages.selectors.openLinkModal, function(e){
+			e.preventDefault();
+			plugin.postParent = $(this).attr('data-parentid');
 			$(plugin.selectors.form).find('.parent_id').val($(this).attr('data-parentid'));
-		});
-		$('#np-link-modal').on('show.bs.modal', function(){
-			plugin.clearForm();
-			$(plugin.selectors.accordion).find('ul').hide();
-			$(plugin.selectors.typeSelect).removeClass('active');
+			plugin.openModal();
 		});
 		$(document).on('click', plugin.selectors.accordionItem, function(e){
 			e.preventDefault();
@@ -79,6 +77,18 @@ NestedPages.MenuLinks = function()
 		$(document).on('keydown', function(e){
 			if ( e.keyCode === 27 ) $('#np-link-modal').modal('hide');
 		});
+	}
+
+	// Open the Modal and Clear/Populate hidden fields
+	plugin.openModal = function()
+	{
+		$(NestedPages.selectors.linkErrorDiv).hide();
+		$(NestedPages.selectors.linkModal).find('input').val('');
+		$(NestedPages.selectors.linkModal).find('.parent_id').val(plugin.postParent);
+		plugin.clearForm();
+		$(plugin.selectors.accordion).find('ul').hide();
+		$(plugin.selectors.typeSelect).removeClass('active');
+		$(NestedPages.selectors.linkModal).modal('show');
 	}
 
 	// Accordion Menu

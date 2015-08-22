@@ -34,7 +34,6 @@ class Events {
 			'wp_ajax_npsyncMenu',
 			'wp_ajax_npnestToggle',
 			'wp_ajax_npquickEditLink',
-			'wp_ajax_npnewLink',
 			'wp_ajax_npgetTaxonomies',
 			'wp_ajax_npnewChild',
 			'admin_post_npListingSort',
