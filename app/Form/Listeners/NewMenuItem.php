@@ -39,7 +39,7 @@ class NewMenuItem extends BaseHandler
 		$this->data['post'] = $_POST;
 		$this->data['post']['id'] = $new_link;
 		$this->data['post']['content'] = esc_url($_POST['url']);
-		$this->data['post']['delete_link'] = get_delete_post_link($new_link);
+		$this->data['post']['delete_link'] = get_delete_post_link($new_link, '', true);
 		$this->addExtras($new_link);
 		
 		$this->response = array(
