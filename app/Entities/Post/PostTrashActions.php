@@ -64,7 +64,7 @@ class PostTrashActions {
 	*/
 	private function removeNavMenuItem($post_id)
 	{
-		$nav_item_id = $this->nav_menu_repo->getMenuItemID($post_id);
+		$nav_item_id = $this->nav_menu_repo->getMenuItem($post_id);
 		if ( $nav_item_id ) new NavMenuRemoveItem($nav_item_id);
 	}
 
