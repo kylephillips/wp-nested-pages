@@ -25,8 +25,12 @@ class PostTypeRepository
 		$all_types = $this->getPostTypes('objects');
 		$post_types = array();
 		$enabled_types = $this->enabledPostTypes();
+		$invalid_types = array(
+			'acf-field-group'
+		);
 		foreach($all_types as $key => $type){
 			if ( (!$pages) && ($key == 'attachment') ) continue;
+			if ( in_array($type->name, $invalid_types) ) continue;
 			$post_types[$type->name] = new \stdClass();
 			$post_types[$type->name]->name = $type->name;
 			$post_types[$type->name]->label = $type->labels->name;
