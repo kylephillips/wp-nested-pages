@@ -21,6 +21,7 @@
 				<?php 
 					echo $this->post->title; 
 					if ( $this->post->id == get_option('page_on_front') ) echo ' <em class="np-page-type"><strong>&ndash; ' . __('Front Page', 'nestedpages') . '</strong></em>';
+					if ( $this->post->id == get_option('page_for_posts') ) echo ' <em class="np-page-type"><strong>&ndash; ' . __('Posts Page', 'nestedpages') . '</strong></em>';
 				?>
 			</span>
 			<?php 
