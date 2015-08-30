@@ -65,7 +65,8 @@ class PostTrashActions
 	*/
 	private function removeNavMenuItem($post_id)
 	{
-		$nav_item_id = $this->nav_menu_repo->getMenuItem($post_id);
+		$query_type = ( get_post_type($post_id) == 'np-redirect' ) ? 'xfn' : 'object_id';
+		$nav_item_id = $this->nav_menu_repo->getMenuItem($post_id, $query_type);
 		if ( $nav_item_id ) new NavMenuRemoveItem($nav_item_id);
 	}
 
