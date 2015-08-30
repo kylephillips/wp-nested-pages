@@ -78,6 +78,11 @@ NestedPages.selectors = {
 	cloneQuantity : '[data-clone-quantity]', // Quantity to Clone
 	cloneStatus : '[data-clone-status]', // Clone Status
 	cloneAuthor : '[data-clone-author]', // Clone Author
+
+	// Tabs
+	tabButtonParent : '[data-np-tabs]', // Tab Parent
+	tabButton : '[data-np-tab]', // Tab Link
+	tabContent : '[data-np-tab-pane]', // Tab Pane
 }
 
 
@@ -112,12 +117,13 @@ NestedPages.formActions = {
 	syncToggles : 'npnestToggle',
 	syncNesting : 'npsort',
 	syncMenu : 'npsyncMenu',
-	newLink : 'npnewLink',
 	newPage : 'npnewChild',
 	quickEditLink : 'npquickEditLink',
 	getTaxonomies : 'npgetTaxonomies',
 	quickEditPost : 'npquickEdit',
-	clonePost : 'npclonePost'
+	clonePost : 'npclonePost',
+	search : 'npmenuSearch',
+	newMenuItem : 'npnewMenuItem'
 }
 
 
@@ -135,11 +141,12 @@ NestedPages.Factory = function()
 	plugin.pageToggle = new NestedPages.PageToggle;
 	plugin.nesting = new NestedPages.Nesting;
 	plugin.syncMenuSetting = new NestedPages.SyncMenuSetting;
-	plugin.newLink = new NestedPages.NewLink;
 	plugin.newPage = new NestedPages.NewPage;
 	plugin.quickEditLink = new NestedPages.QuickEditLink;
 	plugin.quickEditPost = new NestedPages.QuickEditPost;
 	plugin.clone = new NestedPages.Clone;
+	plugin.tabs = new NestedPages.Tabs;
+	plugin.menuLinks = new NestedPages.MenuLinks;
 
 	plugin.init = function()
 	{

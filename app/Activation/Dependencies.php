@@ -1,10 +1,13 @@
-<?php namespace NestedPages\Activation;
+<?php 
+
+namespace NestedPages\Activation;
 
 use NestedPages\Entities\PostType\PostTypeRepository;
 /**
 * Plugin JS & CSS Dependencies
 */
-class Dependencies {
+class Dependencies 
+{
 
 	/**
 	* Plugin Directory
@@ -21,7 +24,6 @@ class Dependencies {
 	*/
 	private $post_type_repo;
 	
-
 	public function __construct()
 	{
 		$this->post_type_repo = new PostTypeRepository;
@@ -31,7 +33,6 @@ class Dependencies {
 		$this->plugin_dir = plugins_url() . '/wp-nested-pages';
 	}
 
-
 	/**
 	* Set the Plugin Version
 	*/
@@ -40,7 +41,6 @@ class Dependencies {
 		global $np_version;
 		$this->plugin_version = $np_version;
 	}
-
 
 	/**
 	* Admin Styles
@@ -54,7 +54,6 @@ class Dependencies {
 			$this->plugin_version
 		);
 	}
-
 
 	/**
 	* Admin Scripts required by plugin
@@ -134,6 +133,5 @@ class Dependencies {
 			);
 		endif;
 	}
-
 
 }

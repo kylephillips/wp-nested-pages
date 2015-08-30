@@ -1,8 +1,11 @@
-<?php namespace NestedPages\Entities\PluginIntegration;
+<?php 
+
+namespace NestedPages\Entities\PluginIntegration;
 
 use NestedPages\Entities\PluginIntegration\EditorialAccessManager;
 
-class IntegrationFactory {
+class IntegrationFactory 
+{
 
 	/**
 	* Integration Classes

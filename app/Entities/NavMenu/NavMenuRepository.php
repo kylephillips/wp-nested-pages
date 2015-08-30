@@ -1,6 +1,9 @@
-<?php namespace NestedPages\Entities\NavMenu;
+<?php 
 
-class NavMenuRepository {
+namespace NestedPages\Entities\NavMenu;
+
+class NavMenuRepository 
+{
 
 	/**
 	* Get the Menu ID
@@ -13,67 +16,26 @@ class NavMenuRepository {
 		return $term->term_id;
 	}
 
-
 	/**
 	* Get Menu Item ID
 	* @since 1.3.4
 	* @param int $id - Post ID
+	* @param string $query - xfn/object_id
 	* @return int
 	*/
-	public function getMenuItemID($id)
+	public function getMenuItem($id, $query = 'xfn')
 	{	
-		$meta_query = new \WP_Query(array(
-			'post_type' => 'nav_menu_item',
-			'posts_per_page' => 1,
-			'meta_key' => '_menu_item_object_id',
-			'meta_value' => $id,
-			'tax_query' => array(
-				array(
-					'taxonomy' => 'nav_menu',
-					'field'    => 'id',
-					'terms'    => $this->getMenuID(),
-				),
-			),
-		));
-		return ( $meta_query->have_posts() ) ? 
-			$meta_query->posts[0]->ID : 
-			$this->getLinkMenuItemXFN($id);
+		global $wpdb;
+		$prefix = $wpdb->prefix;
+		$meta_table = $prefix . 'postmeta';
+		if ( $query == 'xfn' ){
+			$sql = "SELECT post_id FROM $meta_table WHERE meta_value = $id AND meta_key = '_menu_item_xfn'";
+		} else {
+			$sql = "SELECT post_id FROM $meta_table WHERE meta_value = $id AND meta_key = '_menu_item_object_id'";
+		}
+		$post_id = $wpdb->get_var($sql);
+		return $post_id;
 	}
-
-
-	/**
-	* Get Link from XFN field
-	* Using XFN field to store original post ID
-	* Hack way of doing it, but no other way to tie custom menu items to post type and retain custom functionality
-	* @param int $id - Post ID
-	*/
-	public function getLinkMenuItemXFN($id)
-	{
-		$meta_query = new \WP_Query(array(
-			'post_type' => 'nav_menu_item',
-			'posts_per_page' => 1,
-			'meta_key' => '_menu_item_xfn',
-			'meta_value' => $id,
-		));
-		return ( $meta_query->have_posts() ) ? $meta_query->posts[0]->ID : $this->getLinkMenuItemID($id);
-	}
-
-
-	/**
-	* Get Link Nav Menu from post ID using title
-	* Supporting legacy NP versions before XFN was saved
-	* @since 1.3.4
-	* @param int $id
-	* @return int
-	*/
-	public function getLinkMenuItemID($id)
-	{
-		$post = get_page_by_title( get_the_title($id), OBJECT, 'nav_menu_item');
-		if ( !$post ) return 0;
-		return $post->ID;
-	}
-
-
 
 	/**
 	* Get the Menu Term Object
@@ -91,7 +53,6 @@ class NavMenuRepository {
 		return $this->getMenuTermObject();
 	}
 
-
 	/**
 	* Get the Menu ID from the title
 	* @since 1.3.5
@@ -103,7 +64,6 @@ class NavMenuRepository {
 		return ( $term ) ? $term->term_id : false;
 	}
 
-
 	/**
 	* Create Empty Menu if one doesn't exist
 	* @since 1.3.4
@@ -113,7 +73,6 @@ class NavMenuRepository {
 		$menu_id = wp_create_nav_menu('Nested Pages');
 		update_option('nestedpages_menu', $menu_id);
 	}
-
 
 	/**
 	* Clear out the menu
@@ -126,7 +85,6 @@ class NavMenuRepository {
 		}
 	}
 
-
 	/**
 	* Is the provided post a nav menu item
 	* @return boolean
@@ -138,7 +96,6 @@ class NavMenuRepository {
 		return false;
 	}
 
-
 	/**
 	* Get the Link post id from a title
 	*/
@@ -147,7 +104,6 @@ class NavMenuRepository {
 		$post = get_page_by_title($title, OBJECT, 'np-redirect');
 		return $post->ID;
 	}
-
 
 	/**
 	* Get an array of pages not hidden in nav menu

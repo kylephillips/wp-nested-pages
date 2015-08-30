@@ -1,4 +1,6 @@
-<?php namespace NestedPages\Entities\Post;
+<?php 
+
+namespace NestedPages\Entities\Post;
 
 use NestedPages\Entities\Post\PostRepository;
 use NestedPages\Entities\Post\PostUpdateRepository;
@@ -6,7 +8,8 @@ use NestedPages\Entities\Post\PostUpdateRepository;
 /**
 * Factory class for adding new posts
 */
-class PostFactory {
+class PostFactory 
+{
 
 	/**
 	* Post Repository
@@ -32,7 +35,6 @@ class PostFactory {
 		$this->post_repo = new PostRepository;
 		$this->post_update_repo = new PostUpdateRepository;
 	}
-	
 
 	/**
 	* Create New Child Pages
@@ -58,7 +60,6 @@ class PostFactory {
 		return $this->getNewPosts($post_type);
 	}
 
-
 	/**
 	* Get Array of New Pages
 	*/
@@ -67,6 +68,5 @@ class PostFactory {
 		$new_posts = $this->post_repo->postArray($this->new_ids, $post_type);
 		return $new_posts;
 	}
-
 
 }

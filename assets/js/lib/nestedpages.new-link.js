@@ -4,6 +4,7 @@ var NestedPages = NestedPages || {};
 * Add a new Link (top level and child)
 * @package Nested Pages
 * @author Kyle Phillips - https://github.com/kylephillips/wp-nested-pages
+* @todo - remove in 1.4.1
 */
 NestedPages.NewLink = function()
 {

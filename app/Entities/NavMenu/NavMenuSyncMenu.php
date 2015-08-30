@@ -1,4 +1,6 @@
-<?php namespace NestedPages\Entities\NavMenu;
+<?php 
+
+namespace NestedPages\Entities\NavMenu;
 
 use NestedPages\Entities\NavMenu\NavMenuSync;
 use NestedPages\Helpers;
@@ -9,7 +11,8 @@ use NestedPages\Entities\NavMenu\NavMenuRepository;
 /**
 * Syncs the Listing to Match the Menu
 */
-class NavMenuSyncMenu extends NavMenuSync implements NavMenuSyncInterface {
+class NavMenuSyncMenu extends NavMenuSync 
+{
 
 	/**
 	* Menu Items
@@ -46,7 +49,6 @@ class NavMenuSyncMenu extends NavMenuSync implements NavMenuSyncInterface {
 		return true;
 	}
 
-
 	/**
 	* Get the menu items from menu and set them
 	*/
@@ -54,7 +56,6 @@ class NavMenuSyncMenu extends NavMenuSync implements NavMenuSyncInterface {
 	{
 		$this->menu_items = wp_get_nav_menu_items($this->id);
 	}
-
 
 	/**
 	* Loop through the menu items and sync depending on type
@@ -64,7 +65,6 @@ class NavMenuSyncMenu extends NavMenuSync implements NavMenuSyncInterface {
 		if ( get_option('nestedpages_menusync') !== 'sync' ) return;
 		$this->setMenuIndex();
 		$this->updatePagesNavStatus();
-		// var_dump($this->menu_items); die();
 		foreach($this->menu_items as $key => $item){
 			$this->updatePost($item);
 		}
@@ -83,7 +83,6 @@ class NavMenuSyncMenu extends NavMenuSync implements NavMenuSyncInterface {
 		}
 	}
 
-
 	/**
 	* Update the WP Post with Menu Data
 	*/
@@ -95,7 +94,7 @@ class NavMenuSyncMenu extends NavMenuSync implements NavMenuSyncInterface {
 			$parent_id = $this->nav_menu_repo->getLinkfromTitle($this->index[$item->menu_item_parent]['title']);
 		}
 
-		$post_id = ( $item->object == 'custom' ) 
+		$post_id = ( $item->xfn !== 'page' )
 			? $item->xfn
 			: $item->object_id;
 		
@@ -120,24 +119,28 @@ class NavMenuSyncMenu extends NavMenuSync implements NavMenuSyncInterface {
 		}
 	}
 
-
 	/**
 	* Sync a new Link
 	*/
 	private function syncNewLink($item, $parent_id)
 	{
 		$post_data = array(
+			'menuTitle' => $item->title,
 			'np_link_title' => $item->title,
 			'_status' => 'publish',
 			'np_link_content' => $item->url,
 			'parent_id' => $parent_id,
 			'post_type' => 'np-redirect',
 			'link_target' => $item->target,
-			'menu_order'=> $item->menu_order
+			'menu_order'=> $item->menu_order,
+			'menuType' => $item->type,
+			'objectType' => $item->object,
+			'objectId' => $item->object_id,
+			'titleAttribute' => $item->attr_title
 		);
-		$this->post_update_repo->saveRedirect($post_data);
+		$post_id = $this->post_update_repo->saveRedirect($post_data);
+		update_post_meta($item->ID, '_menu_item_xfn', $post_id);
 	}
-
 
 	/**
 	* Update NP Nav Status for Pages

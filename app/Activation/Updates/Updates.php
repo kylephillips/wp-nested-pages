@@ -1,11 +1,14 @@
-<?php namespace NestedPages\Activation\Updates;
+<?php 
+
+namespace NestedPages\Activation\Updates;
 
 use NestedPages\Entities\NavMenu\NavMenuRepository;
 
 /**
 * Required Version Upgrades
 */
-class Updates {
+class Updates 
+{
 
 	/**
 	* New Version
@@ -37,7 +40,6 @@ class Updates {
 		$this->enabledDatepicker();
 	}
 
-
 	/**
 	* Set the plugin version
 	*/
@@ -46,7 +48,6 @@ class Updates {
 		$this->current_version = ( get_option('nestedpages_version') )
 			? get_option('nestedpages_version') : $this->new_version;
 	}
-
 
 	/**
 	* Add an empty Nested Pages menu if there isn't one
@@ -60,7 +61,6 @@ class Updates {
 			update_option('nestedpages_menu', $menu_id);
 		}
 	}
-
 	
 	/**
 	* Convert existing nestedpages_menu option to menu ID rather than string/name
@@ -82,7 +82,6 @@ class Updates {
 		}
 	}
 
-
 	/**
 	* Make Page Post Type Enabled by Default
 	* Option can be blank, using get_option returns false if blank
@@ -102,7 +101,6 @@ class Updates {
 		));
 	}
 
-
 	/**
 	* Enable the Datepicker
 	*/
@@ -116,7 +114,5 @@ class Updates {
 			if ( !$enabled ) update_option('nestedpages_ui', $default);
 		}
 	}
-
-
 
 }

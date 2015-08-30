@@ -1,6 +1,9 @@
-<?php namespace NestedPages\Config;
+<?php 
 
-class SettingsRepository {
+namespace NestedPages\Config;
+
+class SettingsRepository 
+{
 
 	/**
 	* Is the Datepicker UI option enabled

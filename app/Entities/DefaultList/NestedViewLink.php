@@ -1,11 +1,14 @@
-<?php namespace NestedPages\Entities\DefaultList;
+<?php 
+
+namespace NestedPages\Entities\DefaultList;
 
 use NestedPages\Entities\PostType\PostTypeRepository;
 
 /**
 * Adds "nested view/sort view" to default lists on enabled post types
 */
-class NestedViewLink {
+class NestedViewLink 
+{
 
 	/**
 	* Post Type
@@ -25,7 +28,6 @@ class NestedViewLink {
 		$this->addFilter();
 	}
 
-
 	/**
 	* Add the WP Filter
 	*/
@@ -33,7 +35,6 @@ class NestedViewLink {
 	{
 		add_filter( 'views_edit-' . $this->post_type->name, array($this, 'addLink' ) );
 	}
-
 
 	/**
 	* Add a nested pages link to the subsub list (WP_List_Table class)

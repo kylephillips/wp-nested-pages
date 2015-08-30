@@ -1,8 +1,12 @@
-<?php namespace NestedPages\Form\Handlers;
+<?php 
+
+namespace NestedPages\Form\Listeners;
+
 /**
 * Redirect to Listing with Specified Sorting Options Applied
 */
-class ListingSortHandler {
+class ListingSort 
+{
 
 	/**
 	* URL to redirect to
@@ -10,13 +14,11 @@ class ListingSortHandler {
 	*/
 	private $url;
 
-
 	public function __construct()
 	{
 		$this->setURL();
 		$this->redirect();
 	}
-
 
 	/**
 	* Build the URL to Redirect to
@@ -29,7 +31,6 @@ class ListingSortHandler {
 		$this->setAuthor();
 	}
 
-
 	/**
 	* Set Order by parameters
 	*/
@@ -39,7 +40,6 @@ class ListingSortHandler {
 		if ( ($_POST['np_orderby'] !== "") && (!in_array($_POST['np_orderby'], $allowed)) ) $this->url .= '&orderby=menu_order';
 		$this->url .= '&orderby=' . sanitize_text_field($_POST['np_orderby']);
 	}
-
 
 	/**
 	* Set Order parameters
@@ -51,7 +51,6 @@ class ListingSortHandler {
 		$this->url .= '&order=' . sanitize_text_field($_POST['np_order']);
 	}
 
-
 	/**
 	* Set Author parameters
 	*/
@@ -61,7 +60,6 @@ class ListingSortHandler {
 			$this->url .= '&author=' . sanitize_text_field($_POST['np_author']);
 		}
 	}
-
 
 	/**
 	* Redirect to new URL

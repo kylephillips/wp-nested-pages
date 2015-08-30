@@ -1,11 +1,13 @@
-<?php namespace NestedPages\Form\Handlers;
+<?php 
+
+namespace NestedPages\Form\Listeners;
 
 /**
 * Handles processing the quick edit form
 * @return json response
 */
-class QuickEditHandler extends BaseHandler {
-
+class QuickEdit extends BaseHandler 
+{
 
 	public function __construct()
 	{
@@ -14,7 +16,6 @@ class QuickEditHandler extends BaseHandler {
 		$this->syncMenu();
 		$this->sendResponse();
 	}
-
 
 	/**
 	* Update the Post
@@ -32,7 +33,6 @@ class QuickEditHandler extends BaseHandler {
 			'post_data' => $this->data
 		);
 	}
-
 
 	/**
 	* Add Flat Taxonomy IDs
@@ -54,7 +54,6 @@ class QuickEditHandler extends BaseHandler {
 			}
 		}
 	}
-
 
 	/**
 	* Add additional data to the response object

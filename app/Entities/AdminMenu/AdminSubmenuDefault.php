@@ -1,4 +1,6 @@
-<?php namespace NestedPages\Entities\AdminMenu;
+<?php 
+
+namespace NestedPages\Entities\AdminMenu;
 
 use NestedPages\Entities\PostType\PostTypeRepository;
 use NestedPages\Entities\Listing\Listing;
@@ -6,7 +8,8 @@ use NestedPages\Entities\Listing\Listing;
 /**
 * Add a link to the default menu
 */
-class AdminSubmenuDefault {
+class AdminSubmenuDefault 
+{
 
 	/**
 	* Post Type
@@ -19,14 +22,12 @@ class AdminSubmenuDefault {
 	*/
 	private $post_type_repo;
 
-
 	public function __construct($post_type)
 	{
 		$this->post_type = $post_type;
 		$this->post_type_repo = new PostTypeRepository;
 		$this->findMenu();
 	}
-
 
 	/**
 	* Add the submenu
@@ -40,7 +41,6 @@ class AdminSubmenuDefault {
 			}
 		}
 	}
-
 
 	/**
 	* Add the submenu item

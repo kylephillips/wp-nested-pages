@@ -1,10 +1,13 @@
-<?php namespace NestedPages\Form\Handlers;
+<?php 
+
+namespace NestedPages\Form\Listeners;
 
 /**
 * Turn on/off menu sync
 * @return json response
 */
-class SyncMenuHandler extends BaseHandler {
+class SyncMenu extends BaseHandler 
+{
 
 	public function __construct()
 	{
@@ -12,7 +15,6 @@ class SyncMenuHandler extends BaseHandler {
 		$this->updateSync();
 		$this->sendResponse();
 	}
-
 
 	/**
 	* Update the sync setting

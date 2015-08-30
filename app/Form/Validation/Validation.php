@@ -1,11 +1,14 @@
-<?php namespace NestedPages\Form\Validation;
+<?php 
+
+namespace NestedPages\Form\Validation;
 
 use NestedPages\Config\SettingsRepository;
 
 /**
 * Nested Pages Form Validation
 */
-class Validation {
+class Validation 
+{
 
 	/**
 	* Settings Repository
@@ -16,7 +19,6 @@ class Validation {
 	{
 		$this->settings = new SettingsRepository;
 	}
-
 
 	/**
 	* Validate Post IDs in an array of posts
@@ -31,7 +33,6 @@ class Validation {
 		}
 	}
 
-
 	/**
 	* Validate IDs in an array (tax ids)
 	*/
@@ -45,7 +46,6 @@ class Validation {
 		}
 	}
 
-
 	/**
 	* Validate Date Input whether default WP or NP Datepicker
 	*/
@@ -54,7 +54,6 @@ class Validation {
 		if ( $this->settings->datepickerEnabled() ) return $this->validateDatepicker($data);
 		return $this->validateWPDate($data);
 	}
-
 
 	/**
 	* Validate Datepicker date and time
@@ -73,7 +72,6 @@ class Validation {
 		if ( $date ==  '1970-01-01 00:00:00' ) return $this->sendDateError();
 		return $date;
 	}
-
 
 	/**
 	* Validate Default WP Date Fields
@@ -101,7 +99,6 @@ class Validation {
 		
 	}
 
-
 	/**
 	* Check valid date
 	*/
@@ -109,7 +106,6 @@ class Validation {
 	{
 		if ( !wp_checkdate(intval($month), intval($day), intval($year),	$year . '-' . $month . '-' . $day))	return $this->sendDateError();
 	}
-
 
 	/**
 	* Check for Valid 24 hour Time
@@ -127,7 +123,6 @@ class Validation {
 		if (!preg_match("/^(1[0-2]|0?[1-9]):[0-5][0-9]/", $time)) return $this->sendDateError();
 	}
 
-
 	/**
 	* Send Date Error
 	* @return response
@@ -140,7 +135,6 @@ class Validation {
 		));
 		die();
 	}
-
 
 	/**
 	* Validate new redirect/link fields
@@ -155,7 +149,6 @@ class Validation {
 		}
 	}
 
-
 	/**
 	* Validate a string isn't empty
 	*/
@@ -167,7 +160,6 @@ class Validation {
 			die();
 		}
 	}
-
 
 	/**
 	* Validate New Pages
@@ -199,6 +191,5 @@ class Validation {
 
 		return true;
 	}
-
 
 }

@@ -1,11 +1,14 @@
-<?php namespace NestedPages\Entities\AdminMenu;
+<?php 
+
+namespace NestedPages\Entities\AdminMenu;
 
 use NestedPages\Entities\PostType\PostTypeRepository;
 
 /**
 * Adds the submenu for a given menu
 */
-class AdminSubmenu {
+class AdminSubmenu 
+{
 
 	/**
 	* Post Type
@@ -60,7 +63,6 @@ class AdminSubmenu {
 		
 	}
 
-
 	/**
 	* Show the default link if set to show
 	* @param int $c Menu Position Counter
@@ -76,7 +78,6 @@ class AdminSubmenu {
 			);
 		}
 	}
-
 
 	/**
 	* Set the Menu Slug

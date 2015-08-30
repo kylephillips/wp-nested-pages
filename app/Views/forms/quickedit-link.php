@@ -18,7 +18,7 @@
 			<input type="text" name="post_title" class="np_title" value="" />
 		</div>
 
-		<div class="form-control">
+		<div class="form-control" data-url-field>
 			<label><?php _e( 'URL' ); ?></label>
 			<input type="text" name="post_content" class="np_content" value="" />
 		</div>
@@ -42,11 +42,11 @@
 		<?php if ( $this->user->canSortPages() && !$this->isSearch() ) : // Menu Options Button ?>
 		<div class="form-control">
 			<label><?php _e( 'Title Attribute' ); ?></label>
-			<input type="text" name="np_title_attribute" class="np_title_attribute" value="" />
+			<input type="text" name="titleAttribute" class="np_title_attribute" value="" />
 		</div>
 		<div class="form-control">
 			<label><?php _e( 'CSS Classes' ); ?></label>
-			<input type="text" name="np_nav_css_classes" class="np_nav_css_classes" value="" />
+			<input type="text" name="cssClasses" class="np_nav_css_classes" value="" />
 		</div>
 		<div class="comments">
 			<label>
@@ -62,7 +62,7 @@
 		</div>
 		<div class="comments">
 			<label>
-				<input type="checkbox" name="link_target" class="link_target" value="_blank" />
+				<input type="checkbox" name="linkTarget" class="link_target" value="_blank" />
 				<span class="checkbox-title"><?php _e( 'Open link in a new window/tab' ); ?></span>
 			</label>
 		</div>			
@@ -75,6 +75,9 @@
 	</div><!-- .form-interior -->
 
 	<div class="buttons">
+		<input type="hidden" name="objectType" data-np-menu-object-input value="">
+		<input type="hidden" name="objectId" data-np-menu-objectid-input value="">
+		<input type="hidden" name="menuType" data-np-menu-type-input value="">
 		<input type="hidden" name="post_id" class="np_id" value="<?php echo get_the_id(); ?>">
 		<input type="hidden" name="parent_id" class="np_parent_id" value="">
 		<a accesskey="c" href="#inline-edit" class="button-secondary alignleft np-cancel-quickedit">

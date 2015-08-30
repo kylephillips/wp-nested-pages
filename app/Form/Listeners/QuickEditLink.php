@@ -1,10 +1,13 @@
-<?php namespace NestedPages\Form\Handlers;
+<?php 
+
+namespace NestedPages\Form\Listeners;
+
 /**
 * Handles processing the quick edit form for redirects
 * @return json response
 */
-class QuickEditLinkHandler extends BaseHandler {
-
+class QuickEditLink extends BaseHandler 
+{
 
 	public function __construct()
 	{
@@ -13,7 +16,6 @@ class QuickEditLinkHandler extends BaseHandler {
 		$this->syncMenu();
 		$this->sendResponse();
 	}
-
 
 	/**
 	* Update the Post
@@ -30,7 +32,6 @@ class QuickEditLinkHandler extends BaseHandler {
 		);
 	}
 
-
 	/**
 	* Add additional data to the response object
 	*/
@@ -38,7 +39,7 @@ class QuickEditLinkHandler extends BaseHandler {
 	{
 		$this->data['nav_status'] = ( isset($this->data['nav_status']) ) ? 'hide' : 'show';
 		$this->data['np_status'] = ( isset($this->data['nested_pages_status']) ) ? 'hide' : 'show';
-		$this->data['link_target'] = ( isset($this->data['link_target']) ) ? '_blank' : 'none';
+		$this->data['linkTarget'] = ( isset($this->data['linkTarget']) ) ? '_blank' : 'none';
 	}
 
 }

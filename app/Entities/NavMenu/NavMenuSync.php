@@ -1,11 +1,14 @@
-<?php namespace NestedPages\Entities\NavMenu;
+<?php 
+
+namespace NestedPages\Entities\NavMenu;
 
 use NestedPages\Entities\NavMenu\NavMenuRepository;
 
 /**
 * Base Nav Menu Sync class
 */
-abstract class NavMenuSync {
+abstract class NavMenuSync 
+{
 
 	/**
 	* Nav Menu Repository
@@ -19,14 +22,12 @@ abstract class NavMenuSync {
 	*/
 	protected $id;
 
-
 	public function __construct()
 	{
 		if ( get_option('nestedpages_menusync') !== 'sync' ) return;
 		$this->nav_menu_repo = new NavMenuRepository;
 		$this->setMenuID();
 	}
-
 
 	/**
 	* Menu ID Setter
@@ -35,7 +36,6 @@ abstract class NavMenuSync {
 	{
 		$this->id = $this->nav_menu_repo->getMenuID();
 	}
-
 
 	/**
 	* Remove a Menu Item
@@ -46,6 +46,5 @@ abstract class NavMenuSync {
 	{
 		wp_delete_post($id, true);
 	}
-
 
 }

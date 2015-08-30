@@ -1,9 +1,13 @@
-<?php namespace NestedPages\Entities\User;
+<?php 
+
+namespace NestedPages\Entities\User;
+
 /**
 * User Repository
 * @since 1.1.7
 */
-class UserRepository {
+class UserRepository 
+{
 
 	/**
 	* Return Current User's Roles
@@ -16,8 +20,6 @@ class UserRepository {
 		return $current_user->roles;
 	}
 
-
-	
 	/**
 	* Get all roles that arent admin, contributor or subscriber
 	* @return array
@@ -42,7 +44,6 @@ class UserRepository {
 		return $roles;
 	}
 
-
 	/**
 	* Can current user sort pages
 	* @return boolean
@@ -61,7 +62,6 @@ class UserRepository {
 		return false;
 	}
 
-
 	/**
 	* Get an array of all users/ids
 	* @since 1.3.0
@@ -75,7 +75,6 @@ class UserRepository {
 		return $users;
 	}
 
-
 	/**
 	* Get User's Visible Pages
 	* @since 1.3.4
@@ -85,7 +84,6 @@ class UserRepository {
 	{
 		return unserialize(get_user_meta(get_current_user_id(), 'np_visible_posts', true));
 	}
-
 
 	/**
 	* Update User's Visible Pages
@@ -100,6 +98,5 @@ class UserRepository {
 			serialize($visible)
 		);
 	}
-
 
 }

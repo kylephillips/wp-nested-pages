@@ -1,12 +1,14 @@
-<?php namespace NestedPages\Activation;
+<?php 
+
+namespace NestedPages\Activation;
 
 use NestedPages\Activation\Updates\Updates;
 
 /**
 * Plugin Activation
 */
-class Activate {
-
+class Activate 
+{
 	/**
 	* Plugin Version
 	*/
@@ -18,14 +20,12 @@ class Activate {
 	*/
 	private $updates;
 
-
 	public function __construct()
 	{
 		$this->setVersion();
 		$this->updates = new Updates;
 		$this->install();
 	}
-
 
 	/**
 	* Activation Hook
@@ -47,7 +47,6 @@ class Activate {
 		$this->version = $np_version;
 	}
 
-
 	/**
 	* Set the Plugin Version
 	*/
@@ -56,7 +55,6 @@ class Activate {
 		update_option('nestedpages_version', $this->version);
 	}
 	
-
 	/**
 	* Set Default Options
 	*/
@@ -66,7 +64,5 @@ class Activate {
 			update_option('nestedpages_menusync', 'nosync');
 		}
 	}
-
-
 
 }
