@@ -66,6 +66,7 @@ class Settings
 	{
 		register_setting( 'nestedpages-general', 'nestedpages_menu' );
 		register_setting( 'nestedpages-general', 'nestedpages_menusync' );
+		register_setting( 'nestedpages-general', 'nestedpages_disable_menu' );
 		register_setting( 'nestedpages-general', 'nestedpages_ui' );
 		register_setting( 'nestedpages-general', 'nestedpages_allowsorting' );
 		register_setting( 'nestedpages-posttypes', 'nestedpages_posttypes' );

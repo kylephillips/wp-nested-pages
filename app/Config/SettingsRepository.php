@@ -35,4 +35,15 @@ class SettingsRepository
 		return ( $option == 'sync' ) ? true : false;
 	}
 
+	/**
+	* Are menus completely disabled?
+	* @return boolean
+	*/
+	public function menusDisabled()
+	{
+		$option = get_option('nestedpages_disable_menu');
+		if ( $option && $option == 'true' ) return true;
+		return false;
+	}
+
 }

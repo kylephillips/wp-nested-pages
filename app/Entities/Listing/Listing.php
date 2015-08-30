@@ -250,7 +250,14 @@ class Listing
 	private function loopPosts($parent_id = 0, $count = 0)
 	{
 		$this->setTaxonomies();
-		$post_type = ( $this->post_type->name == 'page' ) ? array('page', 'np-redirect') : array($this->post_type->name);
+		
+		if ( $this->post_type->name == 'page' ) {
+			$post_type = array('page');
+			if ( !$this->settings->menusDisabled() ) $post_type[] = 'np-redirect';
+		} else {
+			array($this->post_type->name);
+		}
+		
 		$query_args = array(
 			'post_type' => $post_type,
 			'posts_per_page' => -1,
