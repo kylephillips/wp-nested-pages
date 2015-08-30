@@ -236,6 +236,14 @@ class Listing
 	}
 
 	/**
+	* Is the list filtered?
+	*/ 
+	private function isFiltered()
+	{
+		return ( isset($_GET['category']) && $_GET['category'] !== "all" ) ? true : false;
+	}
+
+	/**
 	* Loop through all the pages and create the nested / sortable list
 	* Recursive Method, called in page.php view
 	*/
@@ -254,6 +262,7 @@ class Listing
 		);
 		
 		if ( $this->isSearch() ) $query_args = $this->searchParams($query_args);
+		if ( $this->isFiltered() ) $query_args = $this->filterParams($query_args);
 
 		$pages = new \WP_Query(apply_filters('nestedpages_page_listing', $query_args));
 		
@@ -315,6 +324,16 @@ class Listing
 	{
 		$query_args['post_title_like'] = sanitize_text_field($_GET['search']);
 		unset($query_args['post_parent']);
+		return $query_args;
+	}
+
+	/**
+	* Filter Posts
+	*/
+	private function filterParams($query_args)
+	{
+		if ( !isset($_GET['category']) ) return $query_args;
+		$query_args['cat'] = sanitize_text_field($_GET['category']);
 		return $query_args;
 	}
 

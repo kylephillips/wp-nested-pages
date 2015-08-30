@@ -156,6 +156,21 @@ class PostTypeRepository
 	}
 
 	/**
+	* Are Categories Enabled for a post type?
+	* @since 1.5.0
+	* @return boolean
+	*/
+	public function categoriesEnabled($post_type)
+	{
+		$taxonomies = $this->getTaxonomies($post_type, true);
+		$enabled = false;
+		foreach($taxonomies as $taxonomy){
+			if ( $taxonomy->name == 'category' ) $enabled = true;
+		}
+		return $enabled;
+	}
+
+	/**
 	* Get the NP menu slug for a post type
 	* @param object WP Post Type Object
 	*/

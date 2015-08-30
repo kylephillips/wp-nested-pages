@@ -43,7 +43,8 @@ class Events
 			'admin_post_npSearch',
 			'wp_ajax_npclonePost',
 			'wp_ajax_npmenuSearch',
-			'wp_ajax_npnewMenuItem'
+			'wp_ajax_npnewMenuItem',
+			'admin_post_npCategoryFilter'
 		);
 		$this->setHandlers();
 	}
