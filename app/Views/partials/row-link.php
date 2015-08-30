@@ -2,6 +2,9 @@
 /**
 * Redirect Page
 */
+$link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' ) 
+	? $this->post->nav_original_link
+	: esc_url($this->post->content);
 ?>
 <div class="row" <?php if ( $this->isSearch() ) echo 'style="padding-left:10px;"';?>>
 	
@@ -17,7 +20,7 @@
 		<i class="handle np-icon-menu"></i>
 		<?php endif; ?>
 
-		<a href="<?php echo NestedPages\Helpers::check_url($this->post->content); ?>" class="page-link page-title" target="_blank">
+		<a href="<?php echo $link; ?>" class="page-link page-title" target="_blank">
 			<span class="title"><?php echo $this->post->title ?> <i class="np-icon-link"></i></span>
 			<?php 
 
