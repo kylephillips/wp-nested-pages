@@ -17,7 +17,12 @@
 		<?php endif; ?>
 
 		<a href="<?php echo get_edit_post_link(); ?>" class="page-link page-title">
-			<span class="title"><?php echo $this->post->title; ?></span>
+			<span class="title">
+				<?php 
+					echo $this->post->title; 
+					if ( $this->post->id == get_option('page_on_front') ) echo ' <em class="np-page-type"><strong>&ndash; ' . __('Front Page', 'nestedpages') . '</strong></em>';
+				?>
+			</span>
 			<?php 
 				
 				if ( function_exists('wpseo_auto_load') ){
