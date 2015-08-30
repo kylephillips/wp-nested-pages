@@ -255,7 +255,7 @@ class Listing
 			$post_type = array('page');
 			if ( !$this->settings->menusDisabled() ) $post_type[] = 'np-redirect';
 		} else {
-			array($this->post_type->name);
+			$post_type = array($this->post_type->name);
 		}
 		
 		$query_args = array(
