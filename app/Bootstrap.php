@@ -1,9 +1,12 @@
-<?php namespace NestedPages;
+<?php 
+
+namespace NestedPages;
 
 /**
 * Primary Plugin Bootstrap
 */
-class Bootstrap {
+class Bootstrap 
+{
 
 	public function __construct()
 	{
@@ -28,7 +31,6 @@ class Bootstrap {
 		new Config\Settings;
 	}
 
-
 	/**
 	* Wordpress Initialization Actions
 	*/
@@ -38,7 +40,6 @@ class Bootstrap {
 		new Entities\DefaultList\DefaultListFactory;
 		$this->addLocalization();
 	}
-
 
 	/**
 	* Localization Domain
@@ -51,7 +52,6 @@ class Bootstrap {
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages' );
 	}
 
-
 	/**
 	* Add a link to the settings on the plugin page
 	*/
@@ -61,6 +61,5 @@ class Bootstrap {
 		array_unshift($links, $settings_link); 
 		return $links; 
 	}
-
 
 }

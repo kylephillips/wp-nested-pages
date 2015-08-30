@@ -1,13 +1,14 @@
-<?php namespace NestedPages\Entities\Listing;
+<?php 
 
-class ListingActions {
+namespace NestedPages\Entities\Listing;
 
+class ListingActions 
+{
 
 	public function __construct()
 	{
 		add_filter( 'posts_where', array($this, 'titleSearch'), 10, 2 );
 	}
-
 
 	/**
 	* For performing search query on titles

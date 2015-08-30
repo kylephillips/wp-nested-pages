@@ -1,4 +1,6 @@
-<?php namespace NestedPages\Entities\Post;
+<?php 
+
+namespace NestedPages\Entities\Post;
 
 use NestedPages\Form\Validation\Validation;
 use NestedPages\Entities\NavMenu\NavMenuRepository;
@@ -6,7 +8,8 @@ use NestedPages\Entities\NavMenu\NavMenuRepository;
 /**
 * Post Create/Update Methods
 */
-class PostUpdateRepository {
+class PostUpdateRepository 
+{
 
 	/**
 	* Validation Class
@@ -31,7 +34,6 @@ class PostUpdateRepository {
 		$this->validation = new Validation;
 		$this->nav_menu_repo = new NavMenuRepository;
 	}
-
 
 	/**
 	* Update Order
@@ -103,7 +105,6 @@ class PostUpdateRepository {
 		return true;
 	}
 
-
 	/**
 	* Update Page Template
 	* @param array data
@@ -121,7 +122,6 @@ class PostUpdateRepository {
 		}
 	}
 
-
 	/**
 	* Update Nav Status (show/hide in nav menu)
 	* @since 1.0
@@ -138,7 +138,6 @@ class PostUpdateRepository {
 		);
 	}
 
-
 	/**
 	* Update Nested Pages Visibility (how/hide in Nested Pages interface)
 	* @since 1.0
@@ -154,7 +153,6 @@ class PostUpdateRepository {
 			$status
 		);
 	}
-
 
 	/**
 	* Update Nested Pages Menu Navigation Label
@@ -173,7 +171,6 @@ class PostUpdateRepository {
 		}
 	}
 
-
 	/**
 	* Update Nested Pages Menu Navigation CSS Classes
 	* @since 1.0
@@ -190,7 +187,6 @@ class PostUpdateRepository {
 			);
 		}
 	}
-
 
 	/**
 	* Update Nested Pages Menu Title Attribute
@@ -209,7 +205,6 @@ class PostUpdateRepository {
 		}
 	}
 
-
 	/**
 	* Update Categories
 	* @since 1.0
@@ -227,7 +222,6 @@ class PostUpdateRepository {
 			wp_set_post_terms($data['post_id'], $cats, 'category');
 		}
 	}
-
 
 	/**
 	* Update Hierarchical Taxonomy Terms
@@ -249,7 +243,6 @@ class PostUpdateRepository {
 		}
 	}
 
-
 	/**
 	* Update Hierarchical Taxonomy Terms
 	* @since 1.1.4
@@ -263,7 +256,6 @@ class PostUpdateRepository {
 		}
 		wp_set_post_terms($data['post_id'], $terms, $taxonomy);
 	}
-
 
 	/**
 	* Update Flat Taxonomy Terms
@@ -281,7 +273,6 @@ class PostUpdateRepository {
 		wp_set_post_terms($data['post_id'], $new_terms, $taxonomy);
 	}
 
-
 	/**
 	* Update Link Target for Redirects
 	* @since 1.1
@@ -297,7 +288,6 @@ class PostUpdateRepository {
 			$link_target
 		);
 	}
-
 
 	/**
 	* Update Menu Related Meta
@@ -325,7 +315,6 @@ class PostUpdateRepository {
 		}
 	}
 
-
 	/**
 	* Update a Redirect
 	* @since 1.1
@@ -351,7 +340,6 @@ class PostUpdateRepository {
 		return $this->new_id;
 	}
 
-
 	/**
 	* Save a new Redirect
 	* @since 1.1
@@ -373,8 +361,6 @@ class PostUpdateRepository {
 		$this->updateMenuMeta($data);
 		return $this->new_id;
 	}
-
-
 
 	/**
 	* Update a Post to Match Nav menu

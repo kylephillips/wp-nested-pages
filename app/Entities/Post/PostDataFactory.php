@@ -1,10 +1,12 @@
-<?php namespace NestedPages\Entities\Post;
+<?php 
 
+namespace NestedPages\Entities\Post;
 
 /**
 * Build Post Data Object
 */
-class PostDataFactory {
+class PostDataFactory 
+{
 
 	/**
 	* Post Data
@@ -71,7 +73,6 @@ class PostDataFactory {
 			}
 		}
 	}
-
 
 	/**
 	* Add original item/link to link

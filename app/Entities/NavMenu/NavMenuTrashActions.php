@@ -1,11 +1,14 @@
-<?php namespace NestedPages\Entities\NavMenu;
+<?php 
+
+namespace NestedPages\Entities\NavMenu;
 
 use NestedPages\Entities\NavMenu\NavMenuRepository;
 
 /**
 * Performs necessary actions when a menu item is trashed
 */
-class NavMenuTrashActions {
+class NavMenuTrashActions 
+{
 
 	/**
 	* Nav Menu Repository

@@ -81,5 +81,4 @@ class MenuSearch extends BaseHandler
 		$this->results = null;
 	}
 
-
 }

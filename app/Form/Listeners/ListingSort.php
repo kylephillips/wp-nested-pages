@@ -5,14 +5,14 @@ namespace NestedPages\Form\Listeners;
 /**
 * Redirect to Listing with Specified Sorting Options Applied
 */
-class ListingSort {
+class ListingSort 
+{
 
 	/**
 	* URL to redirect to
 	* @var string
 	*/
 	private $url;
-
 
 	public function __construct()
 	{

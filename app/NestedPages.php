@@ -3,8 +3,8 @@
 * Static Wrapper for Bootstrap Class
 * Prevents T_STRING error when checking for 5.3.2
 */
-class NestedPages {
-
+class NestedPages 
+{
 	public static function init()
 	{
 		// dev/live

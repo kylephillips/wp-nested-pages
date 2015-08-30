@@ -1,6 +1,9 @@
-<?php namespace NestedPages\Entities\Listing;
+<?php 
 
-class ListingRepository {
+namespace NestedPages\Entities\Listing;
+
+class ListingRepository 
+{
 
 	/**
 	* User's Toggled Pages

@@ -1,9 +1,12 @@
-<?php namespace NestedPages\Entities\NavMenu;
+<?php 
+
+namespace NestedPages\Entities\NavMenu;
 
 /**
 * Service Class for removing a single menu item
 */
-class NavMenuRemoveItem {
+class NavMenuRemoveItem 
+{
 
 	/**
 	* Item ID to Remove

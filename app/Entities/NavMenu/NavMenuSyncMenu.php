@@ -1,4 +1,6 @@
-<?php namespace NestedPages\Entities\NavMenu;
+<?php 
+
+namespace NestedPages\Entities\NavMenu;
 
 use NestedPages\Entities\NavMenu\NavMenuSync;
 use NestedPages\Helpers;
@@ -9,7 +11,8 @@ use NestedPages\Entities\NavMenu\NavMenuRepository;
 /**
 * Syncs the Listing to Match the Menu
 */
-class NavMenuSyncMenu extends NavMenuSync {
+class NavMenuSyncMenu extends NavMenuSync 
+{
 
 	/**
 	* Menu Items
@@ -46,7 +49,6 @@ class NavMenuSyncMenu extends NavMenuSync {
 		return true;
 	}
 
-
 	/**
 	* Get the menu items from menu and set them
 	*/
@@ -54,7 +56,6 @@ class NavMenuSyncMenu extends NavMenuSync {
 	{
 		$this->menu_items = wp_get_nav_menu_items($this->id);
 	}
-
 
 	/**
 	* Loop through the menu items and sync depending on type
@@ -81,7 +82,6 @@ class NavMenuSyncMenu extends NavMenuSync {
 			);
 		}
 	}
-
 
 	/**
 	* Update the WP Post with Menu Data
@@ -119,7 +119,6 @@ class NavMenuSyncMenu extends NavMenuSync {
 		}
 	}
 
-
 	/**
 	* Sync a new Link
 	*/
@@ -142,7 +141,6 @@ class NavMenuSyncMenu extends NavMenuSync {
 		$post_id = $this->post_update_repo->saveRedirect($post_data);
 		update_post_meta($item->ID, '_menu_item_xfn', $post_id);
 	}
-
 
 	/**
 	* Update NP Nav Status for Pages

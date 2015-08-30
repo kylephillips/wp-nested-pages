@@ -1,6 +1,9 @@
-<?php namespace NestedPages\Entities\NavMenu;
+<?php 
 
-class NavMenuRepository {
+namespace NestedPages\Entities\NavMenu;
+
+class NavMenuRepository 
+{
 
 	/**
 	* Get the Menu ID

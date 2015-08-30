@@ -1,4 +1,6 @@
-<?php namespace NestedPages\Entities\AdminMenu;
+<?php 
+
+namespace NestedPages\Entities\AdminMenu;
 
 use NestedPages\Entities\PostType\PostTypeRepository;
 use NestedPages\Entities\Listing\Listing;
@@ -9,7 +11,8 @@ use NestedPages\Entities\User\UserRepository;
 /**
 * Other User-Enabled Post Types
 */
-class EnabledMenus {
+class EnabledMenus 
+{
 
 	/**
 	* Post Type
@@ -49,7 +52,6 @@ class EnabledMenus {
 		$this->enabled_types = $this->post_type_repo->getPostTypesObject();
 	}
 
-
 	/**
 	* Set the Menus for each of the enabled post types
 	*/
@@ -72,7 +74,6 @@ class EnabledMenus {
 			$c++;
 		}		
 	}
-
 
 	/**
 	* Add the primary top-level menu item
@@ -109,7 +110,6 @@ class EnabledMenus {
 		if (in_array('post', $this->enabled_types)) remove_menu_page('edit.php');
 	}
 
-
 	/**
 	* Get the correct icon to use in menu
 	* @return string
@@ -120,7 +120,6 @@ class EnabledMenus {
 		if ( $this->post_type->menu_icon ) return $this->post_type->menu_icon;
 		return 'dashicons-admin-post';
 	}
-
 
 	/**
 	* Get the correct menu position for item
@@ -135,7 +134,6 @@ class EnabledMenus {
 		return $_wp_last_object_menu + $c;
 	}
 
-
 	/**
 	* Get the Edit Slug for post type
 	*/
@@ -143,6 +141,5 @@ class EnabledMenus {
 	{
 		return $this->post_type_repo->getMenuSlug($this->post_type);
 	}
-
 
 }

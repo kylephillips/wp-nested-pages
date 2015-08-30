@@ -1,11 +1,14 @@
-<?php namespace NestedPages\Entities\AdminMenu;
+<?php 
+
+namespace NestedPages\Entities\AdminMenu;
 
 use NestedPages\Entities\PostType\PostTypeRepository;
 
 /**
 * Opens the Submenu on child admin pages and highlights the current item
 */
-class AdminSubmenuExpander {
+class AdminSubmenuExpander 
+{
 
 	/**
 	* Current Page Object
@@ -25,7 +28,6 @@ class AdminSubmenuExpander {
 		$this->addHighlighting();
 	}
 
-
 	/**
 	* Add Highlighting to enabled Post Types who's menus are being overwritten
 	*/
@@ -42,7 +44,6 @@ class AdminSubmenuExpander {
 		}
 	}
 
-
 	/**
 	* New Page Screen
 	*/
@@ -54,7 +55,6 @@ class AdminSubmenuExpander {
 		}
 	}
 
-
 	/**
 	* Nested Pages View
 	*/
@@ -64,7 +64,6 @@ class AdminSubmenuExpander {
 			echo '<script>jQuery(document).ready(function(){jQuery("#toplevel_page_nestedpages").removeClass("wp-not-current-submenu").addClass("wp-has-current-submenu").addClass("wp-menu-open");jQuery("#toplevel_page_nestedpages a:first").addClass("wp-has-current-submenu");var addnew = jQuery("#toplevel_page_nestedpages ul li:nth-child(2)");jQuery(addnew).addClass("current");jQuery(addnew).children("a").addClass("current");});</script>';
 		}
 	}
-
 
 	/**
 	* Top Level Page for Post Type
@@ -76,7 +75,6 @@ class AdminSubmenuExpander {
 		}
 	}
 
-
 	/**
 	* Default Link
 	*/
@@ -86,7 +84,6 @@ class AdminSubmenuExpander {
 			echo '<script>jQuery(document).ready(function(){jQuery("#toplevel_page_nestedpages-' . $type->name . '").removeClass("wp-not-current-submenu").addClass("wp-has-current-submenu").addClass("wp-menu-open");jQuery("#toplevel_page_nestedpages-' . $type->name . ' a:first").addClass("wp-has-current-submenu");});</script>';
 		}
 	}
-
 
 	/**
 	* Default Pages Link

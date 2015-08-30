@@ -1,4 +1,6 @@
-<?php namespace NestedPages\Entities\NavMenu;
+<?php 
+
+namespace NestedPages\Entities\NavMenu;
 
 use NestedPages\Entities\NavMenu\NavMenuSync;
 use NestedPages\Helpers;
@@ -7,8 +9,8 @@ use NestedPages\Entities\Post\PostDataFactory;
 /**
 * Syncs the Generated Menu to Match the Listing
 */
-class NavMenuSyncListing extends NavMenuSync {
-
+class NavMenuSyncListing extends NavMenuSync 
+{
 
 	/**
 	* Individual Post
@@ -104,9 +106,7 @@ class NavMenuSyncListing extends NavMenuSync {
 			'menu-item-target' => $this->post->link_target
 		);
 		$menu = wp_update_nav_menu_item($this->id, $menu_item_id, $args);
-		// var_dump($args);
 		return $menu;
 	}
-
 
 }

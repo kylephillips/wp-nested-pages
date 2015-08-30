@@ -1,8 +1,12 @@
-<?php namespace NestedPages\Entities\Confirmation;
+<?php 
+
+namespace NestedPages\Entities\Confirmation;
+
 /**
 * Confirm page(s) moved to trash
 */
-class TrashConfirmation implements ConfirmationInterface {
+class TrashConfirmation implements ConfirmationInterface 
+{
 
 	public function setMessage()
 	{

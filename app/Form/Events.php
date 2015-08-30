@@ -1,9 +1,12 @@
-<?php namespace NestedPages\Form;
+<?php 
+
+namespace NestedPages\Form;
 
 /**
 * Registers the WP Actions/Handlers
 */
-class Events {
+class Events 
+{
 
 	/**
 	* Actions
@@ -17,16 +20,15 @@ class Events {
 	*/
 	private $handlers;
 
-
 	public function __construct()
 	{
-		$this->setActions();
+		$this->registerEvents();
 	}
 
 	/**
 	* Set the Form Actions
 	*/
-	public function setActions()
+	public function registerEvents()
 	{
 		$this->actions = array(
 			'wp_ajax_npsort',

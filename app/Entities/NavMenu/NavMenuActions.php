@@ -1,10 +1,13 @@
-<?php namespace NestedPages\Entities\NavMenu;
+<?php 
+
+namespace NestedPages\Entities\NavMenu;
 
 use NestedPages\Entities\NavMenu\NavMenuSyncMenu;
 /**
 * Hook into WP actions for necessary tasks related to nav menus
 */
-class NavMenuActions {
+class NavMenuActions 
+{
 
 	public function __construct()
 	{

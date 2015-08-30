@@ -58,7 +58,6 @@ abstract class BaseHandler
 		$this->validateNonce();
 	}
 
-
 	/**
 	* Set the Form Data
 	*/
@@ -72,7 +71,6 @@ abstract class BaseHandler
 		$this->data = $data;
 	}
 
-
 	/**
 	* Validate the Nonce
 	*/
@@ -84,7 +82,6 @@ abstract class BaseHandler
 			die();
 		}
 	}
-
 
 	/**
 	* Sync the Nav Menu
@@ -102,7 +99,6 @@ abstract class BaseHandler
 		}
 	}
 
-
 	/**
 	* Send a Generic Success Message
 	*/
@@ -114,7 +110,6 @@ abstract class BaseHandler
 		);
 		$this->sendResponse();
 	}
-
 
 	/**
 	* Return Response
