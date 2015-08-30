@@ -99,6 +99,7 @@ NestedPages.jsData = {
 	ajaxurl : ajaxurl,
 	nonce : nestedpages.np_nonce,
 	allPostTypes : nestedpages.post_types, // Localized data with all post types
+	syncmenu : 'nosync', // Whether to sync the menu
 	posttype : '', // current Screen's post type
 	nestable : true, // boolean - whether post type is nestable
 	hierarchical : true, // boolean - whether post type is hierarchical
@@ -152,6 +153,7 @@ NestedPages.Factory = function()
 	{
 		plugin.bindEvents();
 		plugin.setPostType();
+		plugin.setMenuSync();
 		plugin.setNestable();
 		plugin.formatter.updateSubMenuToggle();
 		plugin.formatter.setBorders();
@@ -187,6 +189,13 @@ NestedPages.Factory = function()
 	{
 		NestedPages.jsData.posttype = $(NestedPages.selectors.sortable).attr('id').substring(3);
 		NestedPages.jsData.hierarchical = NestedPages.jsData.allPostTypes[NestedPages.jsData.posttype].hierarchical;
+	}
+
+
+	// Set menu sync
+	plugin.setMenuSync = function()
+	{
+		NestedPages.jsData.syncmenu = ( nestedpages.syncmenu === '1' ) ? 'sync' : 'nosync';
 	}
 
 

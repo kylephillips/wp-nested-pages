@@ -178,11 +178,10 @@ NestedPages.MenuLinks = function()
 	plugin.submitForm = function()
 	{
 		plugin.toggleLoading(true);
-		var syncmenu = ( $(NestedPages.selectors.syncCheckbox).is(':checked') ) ? 'sync' : 'nosync';
 		$.ajax({
 			url : NestedPages.jsData.ajaxurl,
 			type : 'post',
-			data: $(plugin.selectors.form).serialize() + '&action=' + NestedPages.formActions.newMenuItem + '&nonce=' + NestedPages.jsData.nonce + '&post_type=' + NestedPages.jsData.posttype + '&syncmenu=' + syncmenu,
+			data: $(plugin.selectors.form).serialize() + '&action=' + NestedPages.formActions.newMenuItem + '&nonce=' + NestedPages.jsData.nonce + '&post_type=' + NestedPages.jsData.posttype + '&syncmenu=' + NestedPages.jsData.syncmenu,
 			success : function(data){
 				plugin.toggleLoading(false);
 				if ( data.status === 'error' ){

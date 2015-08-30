@@ -131,13 +131,12 @@ NestedPages.NewPage = function()
 		plugin.form = $(button).parents('form');
 
 		var addedit = ( $(button).hasClass('add-edit') ) ? true : false;
-		var syncmenu = ( $(NestedPages.selectors.syncCheckbox).is(':checked') ) ? 'sync' : 'nosync';
 
 		$.ajax({
 			url: NestedPages.jsData.ajaxurl,
 			type: 'post',
 			datatype: 'json',
-			data: $(plugin.form).serialize() + '&action=' + NestedPages.formActions.newPage + '&nonce=' + NestedPages.jsData.nonce + '&syncmenu=' + syncmenu + '&post_type=' + NestedPages.jsData.posttype,
+			data: $(plugin.form).serialize() + '&action=' + NestedPages.formActions.newPage + '&nonce=' + NestedPages.jsData.nonce + '&syncmenu=' + NestedPages.jsData.syncmenu + '&post_type=' + NestedPages.jsData.posttype,
 			success: function(data){
 				if (data.status === 'error'){
 					plugin.toggleLoading(false);

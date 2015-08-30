@@ -57,8 +57,6 @@ NestedPages.Nesting = function()
 		$(NestedPages.selectors.errorDiv).hide();
 		$(NestedPages.selectors.loadingIndicator).show();
 
-		var syncmenu = ( $(NestedPages.selectors.syncCheckbox).is(':checked') ) ? 'sync' : 'nosync';
-
 		list = $(NestedPages.selectors.sortable).nestedSortable('toHierarchy', {startDepthCount: 0});
 		plugin.disableNesting();
 
@@ -71,7 +69,7 @@ NestedPages.Nesting = function()
 				nonce : NestedPages.jsData.nonce,
 				list : list,
 				post_type : NestedPages.jsData.posttype,
-				syncmenu : syncmenu
+				syncmenu : NestedPages.jsData.syncmenu
 			},
 			success: function(data){
 				plugin.initializeSortable();

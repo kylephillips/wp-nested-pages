@@ -92,6 +92,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 = 1.5.0 =
 * Links now include all taxonomies/post types, enabling full control over the primary site menu from the Nested Pages interface. Start adding menu items by selecting "Add Link" from the top, or the link button on a specific row to add a child item.
 * Escape key closing of modal windows added.
+* Category filtering added to pages if categories enabled
 
 = 1.4.1 =
 * Bug fix in quick edit where child pages display parent row data on update.
