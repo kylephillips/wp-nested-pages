@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nested Pages v1.1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12 18:47+0100\n"
-"PO-Revision-Date: 2015-08-12 18:49+0100\n"
+"POT-Creation-Date: 2015-08-31 10:47+0200\n"
+"PO-Revision-Date: 2015-08-31 10:48+0200\n"
 "Last-Translator: Thomas Blomberg Hansen <thomas@blomberg.it>\n"
 "Language-Team: \n"
 "Language: da_DK\n"
@@ -11,11 +11,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.8.4\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
-"X-Poedit-Basepath: ../\n"
+"X-Poedit-Basepath: ..\n"
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -60,7 +60,7 @@ msgstr "Titel"
 
 # @ default
 #: app/Activation/Dependencies.php:114 app/Views/forms/quickedit-post.php:11
-#: app/Views/partials/row-link.php:60 app/Views/partials/row.php:120
+#: app/Views/partials/row-link.php:60 app/Views/partials/row.php:124
 msgid "Quick Edit"
 msgstr "Lynrediger"
 
@@ -69,7 +69,7 @@ msgid "Page Title"
 msgstr "Sidetitel"
 
 # @ default
-#: app/Activation/Dependencies.php:116 app/Views/partials/row.php:124
+#: app/Activation/Dependencies.php:116 app/Views/partials/row.php:128
 msgid "View"
 msgstr "Vis"
 
@@ -206,6 +206,10 @@ msgstr "Ukorrekt formular felt"
 msgid "There was an error updating the page."
 msgstr "Der skete en fejl under opdateringen af siden."
 
+#: app/Form/Handlers/ClonePostHandler.php:36
+msgid "Post Not Found"
+msgstr "Indlæg ikke fundet"
+
 #: app/Form/Handlers/EmptyTrashHandler.php:16
 msgid "Trash successfully emptied."
 msgstr "Papirkurven blev tømt."
@@ -273,9 +277,51 @@ msgstr "Angiv venligst én sidetitel."
 msgid "Page titles cannot be blank."
 msgstr "Sidetitler kan ikke være blanke."
 
+#: app/Views/forms/clone-form.php:9 app/Views/forms/clone-form.php:65
+#: app/Views/partials/row.php:93
+msgid "Clone"
+msgstr "Klon"
+
+#: app/Views/forms/clone-form.php:14
+msgid "Number of Copies"
+msgstr "Antal kopier"
+
 # @ default
-#: app/Views/forms/empty-trash-modal.php:11 app/Views/forms/new-child.php:90
-#: app/Views/forms/quickedit-link.php:81
+#: app/Views/forms/clone-form.php:26 app/Views/forms/link-form.php:41
+#: app/Views/forms/new-child.php:35 app/Views/forms/quickedit-link.php:27
+#: app/Views/forms/quickedit-post.php:76
+msgid "Status"
+msgstr "Status"
+
+# @ default
+#: app/Views/forms/clone-form.php:29 app/Views/forms/link-form.php:44
+#: app/Views/forms/new-child.php:38 app/Views/forms/quickedit-link.php:30
+#: app/Views/forms/quickedit-post.php:79 app/Views/partials/tool-list.php:10
+msgid "Published"
+msgstr "Udgivet"
+
+# @ default
+#: app/Views/forms/clone-form.php:31 app/Views/forms/link-form.php:47
+#: app/Views/forms/quickedit-link.php:33 app/Views/forms/quickedit-post.php:82
+msgid "Pending Review"
+msgstr "Afventer godkendelse"
+
+# @ default
+#: app/Views/forms/clone-form.php:32 app/Views/forms/link-form.php:48
+#: app/Views/forms/new-child.php:40 app/Views/forms/quickedit-link.php:34
+#: app/Views/forms/quickedit-post.php:83 app/Views/partials/tool-list.php:14
+msgid "Draft"
+msgstr "Kladde"
+
+# @ default
+#: app/Views/forms/clone-form.php:50 app/Views/forms/new-child.php:61
+#: app/Views/forms/quickedit-post.php:67
+msgid "Author"
+msgstr "Forfatter"
+
+# @ default
+#: app/Views/forms/clone-form.php:62 app/Views/forms/empty-trash-modal.php:11
+#: app/Views/forms/new-child.php:90 app/Views/forms/quickedit-link.php:81
 #: app/Views/forms/quickedit-post.php:207
 msgid "Cancel"
 msgstr "Annullere"
@@ -297,37 +343,10 @@ msgid "URL"
 msgstr "URL"
 
 # @ default
-#: app/Views/forms/link-form.php:41 app/Views/forms/new-child.php:35
-#: app/Views/forms/quickedit-link.php:27
-#: app/Views/forms/quickedit-post.php:76
-msgid "Status"
-msgstr "Status"
-
-# @ default
-#: app/Views/forms/link-form.php:44 app/Views/forms/new-child.php:38
-#: app/Views/forms/quickedit-link.php:30
-#: app/Views/forms/quickedit-post.php:79 app/Views/partials/tool-list.php:10
-msgid "Published"
-msgstr "Udgivet"
-
-# @ default
 #: app/Views/forms/link-form.php:45 app/Views/forms/quickedit-link.php:31
 #: app/Views/forms/quickedit-post.php:80
 msgid "Scheduled"
 msgstr "Planlagt"
-
-# @ default
-#: app/Views/forms/link-form.php:47 app/Views/forms/quickedit-link.php:33
-#: app/Views/forms/quickedit-post.php:82
-msgid "Pending Review"
-msgstr "Afventer godkendelse"
-
-# @ default
-#: app/Views/forms/link-form.php:48 app/Views/forms/new-child.php:40
-#: app/Views/forms/quickedit-link.php:34
-#: app/Views/forms/quickedit-post.php:83 app/Views/partials/tool-list.php:14
-msgid "Draft"
-msgstr "Kladde"
 
 # @ nestedpages
 #: app/Views/forms/link-form.php:59 app/Views/forms/quickedit-link.php:54
@@ -362,11 +381,6 @@ msgid "+"
 msgstr "+"
 
 # @ default
-#: app/Views/forms/new-child.php:61 app/Views/forms/quickedit-post.php:67
-msgid "Author"
-msgstr "Forfatter"
-
-# @ default
 #: app/Views/forms/new-child.php:71 app/Views/forms/quickedit-post.php:93
 msgid "Template"
 msgstr "Skabelon"
@@ -386,20 +400,17 @@ msgid "Link"
 msgstr "Link"
 
 # @ default
-#: app/Views/forms/quickedit-link.php:44
-#: app/Views/forms/quickedit-post.php:175
+#: app/Views/forms/quickedit-link.php:44 app/Views/forms/quickedit-post.php:175
 msgid "Title Attribute"
 msgstr "Titel attribut"
 
 # @ default
-#: app/Views/forms/quickedit-link.php:48
-#: app/Views/forms/quickedit-post.php:179
+#: app/Views/forms/quickedit-link.php:48 app/Views/forms/quickedit-post.php:179
 msgid "CSS Classes"
 msgstr "CSS Klasser"
 
 # @ default
-#: app/Views/forms/quickedit-link.php:84
-#: app/Views/forms/quickedit-post.php:210
+#: app/Views/forms/quickedit-link.php:84 app/Views/forms/quickedit-post.php:210
 msgid "Update"
 msgstr "Opdater"
 
@@ -409,8 +420,8 @@ msgid "Slug"
 msgstr "Korttitel"
 
 # @ default
-#: app/Views/forms/quickedit-post.php:30
-#: app/Views/forms/quickedit-post.php:45 app/Views/partials/tool-list.php:63
+#: app/Views/forms/quickedit-post.php:30 app/Views/forms/quickedit-post.php:45
+#: app/Views/partials/tool-list.php:63
 msgid "Date"
 msgstr "Dato"
 
@@ -606,10 +617,10 @@ msgid ""
 "help to add a 301 redirect from the old location to the new one."
 msgstr ""
 "<strong>Vigtig:</strong> Changing page structures on live sites may effect "
-"SEO and existing inbound links. Limit URL structure changes on live sites "
-"by disabling nesting. Sorting within the current nesting structure will "
-"still be available. If nesting changes are made to a live site, it may help "
-"to add a 301 redirect from the old location to the new one."
+"SEO and existing inbound links. Limit URL structure changes on live sites by "
+"disabling nesting. Sorting within the current nesting structure will still "
+"be available. If nesting changes are made to a live site, it may help to add "
+"a 301 redirect from the old location to the new one."
 
 #: app/Views/settings/settings.php:6
 msgid "General"
