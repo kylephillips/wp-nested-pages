@@ -70,6 +70,14 @@ NestedPages.selectors = {
 	addChildButton : '.add-new-child', // Button to add child page(s)
 	newChildError : '.np-newchild-error', // Error div in new child quick edit
 	cancelNewChildButton : '.np-cancel-newchild', // Cancel button in new child quick edit
+
+	// Clone
+	cloneButton : '.clone-post', // Button to clone a post
+	confirmClone : '[data-confirm-clone]', // Button in modal to confirm clone
+	cloneModal : '#np-clone-modal', // Modal with clone options
+	cloneQuantity : '[data-clone-quantity]', // Quantity to Clone
+	cloneStatus : '[data-clone-status]', // Clone Status
+	cloneAuthor : '[data-clone-author]', // Clone Author
 }
 
 
@@ -108,7 +116,8 @@ NestedPages.formActions = {
 	newPage : 'npnewChild',
 	quickEditLink : 'npquickEditLink',
 	getTaxonomies : 'npgetTaxonomies',
-	quickEditPost : 'npquickEdit'
+	quickEditPost : 'npquickEdit',
+	clonePost : 'npclonePost'
 }
 
 
@@ -130,6 +139,7 @@ NestedPages.Factory = function()
 	plugin.newPage = new NestedPages.NewPage;
 	plugin.quickEditLink = new NestedPages.QuickEditLink;
 	plugin.quickEditPost = new NestedPages.QuickEditPost;
+	plugin.clone = new NestedPages.Clone;
 
 	plugin.init = function()
 	{
