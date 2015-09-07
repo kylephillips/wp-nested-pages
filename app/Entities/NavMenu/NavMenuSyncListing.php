@@ -42,7 +42,7 @@ class NavMenuSyncListing extends NavMenuSync
 	{
 		$this->count = $this->count + 1;
 		$page_q = new \WP_Query(array(
-			'post_type' => array('page','np-redirect'),
+			'post_type' => array('page', 'np-redirect'),
 			'posts_per_page' => -1,
 			'post_status' => 'publish',
 			'orderby' => 'menu_order',
@@ -52,7 +52,7 @@ class NavMenuSyncListing extends NavMenuSync
 		if ( $page_q->have_posts() ) : while ( $page_q->have_posts() ) : $page_q->the_post();
 			global $post;
 			$this->post = $this->post_factory->build($post);
-			$this->syncPost($menu_parent);			
+			$this->syncPost($menu_parent);
 		endwhile; endif; wp_reset_postdata();
 	}
 
@@ -65,7 +65,6 @@ class NavMenuSyncListing extends NavMenuSync
 		// Get the Menu Item
 		$query_type = ( $this->post->type == 'np-redirect' ) ? 'xfn' : 'object_id';
 		$menu_item_id = $this->nav_menu_repo->getMenuItem($this->post->id, $query_type);
-		
 		if ( $this->post->nav_status == 'hide' ) return $this->removeItem($menu_item_id);
 		$menu = $this->syncMenuItem($menu_parent, $menu_item_id);
 		$this->sync( $this->post->id, $menu );
