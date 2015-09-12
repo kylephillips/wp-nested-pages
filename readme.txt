@@ -91,6 +91,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 = 1.5.1 =
 * Bug fix where hidden nav items in the nested view were deleting nav items from other menus.
+* Updated German Translation (Thanks to Martin Wecke)
 
 = 1.5.0 =
 * Links now include all taxonomies/post types, enabling full control over the primary site menu from the Nested Pages interface. Start adding menu items by selecting "Add Link" from the top, or the link button on a specific row to add a child item.
