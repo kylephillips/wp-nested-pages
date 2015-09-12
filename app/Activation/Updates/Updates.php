@@ -3,6 +3,7 @@
 namespace NestedPages\Activation\Updates;
 
 use NestedPages\Entities\NavMenu\NavMenuRepository;
+use NestedPages\Entities\NavMenu\NavMenuSyncListing;
 
 /**
 * Required Version Upgrades
@@ -34,6 +35,7 @@ class Updates
 		$this->new_version = $new_version;
 		$this->nav_menu_repo = new NavMenuRepository;
 		$this->setCurrentVersion();
+		$this->clearMenu();
 		$this->addMenu();
 		$this->convertMenuToID();
 		$this->enablePagePostType();
@@ -112,6 +114,19 @@ class Updates
 				'datepicker' => 'true'
 			);
 			if ( !$enabled ) update_option('nestedpages_ui', $default);
+		}
+	}
+
+	/**
+	* Regenerate the synced menu
+	*/
+	private function clearMenu()
+	{
+		if ( version_compare( $this->current_version, '1.5.1', '<' ) ){
+			$menu_id = $this->nav_menu_repo->getMenuID();
+			$this->nav_menu_repo->clearMenu($menu_id);
+			$syncer = new NavMenuSyncListing;
+			$syncer->sync();
 		}
 	}
 

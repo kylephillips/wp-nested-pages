@@ -11,8 +11,18 @@ class Bootstrap
 	public function __construct()
 	{
 		$this->initializePlugin();
+		add_action( 'wp_loaded', array($this, 'wpLoaded'));
 		add_action( 'init', array($this, 'initializeWordPress') );
 		add_filter( 'plugin_action_links_' . 'wp-nested-pages/nestedpages.php', array($this, 'settingsLink' ) );
+	}
+
+	/**
+	* WP Loaded
+	*/
+	public function wpLoaded()
+	{
+		new Activation\Activate;
+		new Redirects;
 	}
 
 	/**
@@ -20,8 +30,6 @@ class Bootstrap
 	*/
 	private function initializePlugin()
 	{
-		new Activation\Activate;
-		new Redirects;
 		new Entities\PostType\RegisterPostTypes;
 		new Entities\Post\PostTrashActions;
 		new Entities\Listing\ListingActions;
