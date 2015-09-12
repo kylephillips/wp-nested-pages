@@ -50,6 +50,5 @@ if( !class_exists('Bootstrap') ) :
     nestedpages_check_versions();
     require_once('vendor/autoload.php');
     require_once('app/NestedPages.php');
-    require_once('app/functions.php');
     NestedPages::init();
 endif;
