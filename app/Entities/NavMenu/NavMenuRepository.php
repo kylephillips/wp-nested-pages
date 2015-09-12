@@ -26,34 +26,54 @@ class NavMenuRepository
 	public function getMenuItem($id, $query = 'xfn')
 	{	
 		global $wpdb;
-		$prefix = $wpdb->prefix;
-		$meta_table = $prefix . 'postmeta';
-		$term_relationships_table = $prefix . 'term_relationships';
-		$terms_table = $prefix . 'terms';
+		$post_id = 0;
 		
 		if ( $query == 'xfn' ){
-			$sql = "SELECT post_id FROM $meta_table WHERE meta_value = $id AND meta_key = '_menu_item_xfn'";
-			return $wpdb->get_var($sql);
+			$prefix = $wpdb->prefix;
+			$meta_table = $prefix . 'postmeta';
+			$sql = "SELECT post_id FROM `$meta_table` WHERE meta_value = '$id' AND meta_key = '_menu_item_xfn'";
+			$post_id = $wpdb->get_var($sql);
+			return ( $post_id ) ? $post_id : 0;
 		}
 
-		$post_id = null;
-		$menu_id = $this->getMenuID();
-		$sql = "SELECT 
-			pm.post_id,
-			t.term_id,
-			t.name 
-			FROM $meta_table AS pm
-			LEFT JOIN $term_relationships_table AS tr
-			ON tr.object_id = pm.post_id
-			LEFT JOIN $terms_table AS t
-			ON t.term_id = tr.term_taxonomy_id
-			WHERE pm.meta_value = $id AND pm.meta_key = '_menu_item_object_id'
-		";
-		$results = $wpdb->get_results($sql);
-		foreach($results as $result){
-			if ( $result->term_id == $menu_id ) $post_id = $result->post_id;
+		if ( $query == 'object_id' ){
+			$menu_id = $this->getMenuID();
+			$prefix = $wpdb->prefix;
+			$meta_table = $prefix . 'postmeta';
+			$term_relationships_table = $prefix . 'term_relationships';
+			$terms_table = $prefix . 'terms';
+			$sql = "SELECT 
+				pm.post_id,
+				t.term_id,
+				t.name,
+				pmx.meta_value AS xfn_type
+				FROM $meta_table AS pm
+				LEFT JOIN $term_relationships_table AS tr
+				ON tr.object_id = pm.post_id
+				LEFT JOIN $terms_table AS t
+				ON t.term_id = tr.term_taxonomy_id
+				LEFT JOIN $meta_table AS pmx
+				ON pmx.post_id = pm.post_id AND pmx.meta_key = '_menu_item_xfn'
+				WHERE pm.meta_value = $id AND pm.meta_key = '_menu_item_object_id'
+			";
+			$results = $wpdb->get_results($sql);
+			foreach($results as $result){
+				if ( $result->term_id == $menu_id && $result->xfn_type == 'page' ) $post_id = $result->post_id;
+			}
+			return $post_id;
 		}
-		return $post_id;
+	}
+
+	private function getMenuItemFromXFN($id)
+	{
+		global $wpdb;
+		$prefix = $wpdb->prefix;
+			$meta_table = $prefix . 'postmeta';
+			$sql = "SELECT post_id FROM `$meta_table` WHERE meta_value = $id AND meta_key = '_menu_item_xfn'";
+			$post_id = $wpdb->get_var($sql);
+			
+			$wpdb = $original_wpdb;
+			return ( $post_id ) ? $post_id : 0;
 	}
 
 	/**

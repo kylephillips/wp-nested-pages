@@ -78,8 +78,8 @@ class NavMenuSyncListing extends NavMenuSync
 	{
 		$type = ( $this->post->nav_type ) ? $this->post->nav_type : 'custom';
 		$object = ( $this->post->nav_object ) ? $this->post->nav_object : 'custom';
-		$object_id = ( $this->post->nav_object_id  ) ? $this->post->nav_object_id : null;
-		$url = ( $type == 'custom' ) ? esc_url($this->post->content) : null;
+		$object_id = ( $this->post->nav_object_id  ) ? intval($this->post->nav_object_id) : null;
+		$url = ( $type == 'custom' ) ? esc_url($this->post->content) : '';
 		$xfn = $this->post->id;
 		
 		// Compatibility for 1.4.1 - Reset Page links
