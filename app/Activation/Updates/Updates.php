@@ -122,7 +122,7 @@ class Updates
 	*/
 	private function clearMenu()
 	{
-		if ( version_compare( $this->current_version, '1.5.1', '<' ) ){
+		if ( version_compare( $this->current_version, '1.5.2', '<' ) ){
 			$menu_id = $this->nav_menu_repo->getMenuID();
 			if ( $menu_id ) $this->nav_menu_repo->clearMenu($menu_id);
 			if ( get_option('nestedpages_menusync') !== 'sync' ) return;
