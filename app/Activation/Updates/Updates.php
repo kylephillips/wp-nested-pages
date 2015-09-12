@@ -124,7 +124,8 @@ class Updates
 	{
 		if ( version_compare( $this->current_version, '1.5.1', '<' ) ){
 			$menu_id = $this->nav_menu_repo->getMenuID();
-			$this->nav_menu_repo->clearMenu($menu_id);
+			if ( $menu_id ) $this->nav_menu_repo->clearMenu($menu_id);
+			if ( get_option('nestedpages_menusync') !== 'sync' ) return;
 			$syncer = new NavMenuSyncListing;
 			$syncer->sync();
 		}
