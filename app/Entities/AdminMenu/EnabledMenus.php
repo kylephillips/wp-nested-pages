@@ -59,7 +59,6 @@ class EnabledMenus
 	{
 		$c = 1; // Counter for position
 		foreach($this->enabled_types as $key => $type){	
-			//var_dump($type);
 			if ( $type->np_enabled !== true ) continue;
 			if ( $type->replace_menu ) {
 				$this->post_type = get_post_type_object($key);

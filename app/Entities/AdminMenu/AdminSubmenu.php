@@ -41,9 +41,9 @@ class AdminSubmenu
 	public function addSubmenu()
 	{
 		global $submenu;
-
 		// Get the right submenu and remove all pages link
 		foreach($submenu as $key => $sub){
+
 			if ($key == $this->post_type_repo->editSlug($this->post_type)){
 				// Add the "All Link"
 				$submenu[$this->slug][50] = array( $sub[5][0], 'publish_pages', esc_url(admin_url('admin.php?page=' . $this->slug)) );
@@ -51,16 +51,16 @@ class AdminSubmenu
 				$menu_items = $sub;
 			}
 		}
-
 		if ( isset($menu_items) ){
 			$c = 60;
 			foreach($menu_items as $item){
-				$submenu[$this->slug][$c] = array( $item[0], $item[1], $item[2]);
+				// Make sure URLs for custom menu items are correct
+				$url = ( isset($item[3]) ) ? 'edit.php?post_type=' . $this->post_type->name . '&page=' . $item[2] : $item[2];
+				$submenu[$this->slug][$c] = array( $item[0], $item[1], esc_url(admin_url($url)) );
 				$c = $c + 10;
 			}
 		}
 		$this->defaultLink($c);
-		
 	}
 
 	/**
