@@ -18,7 +18,7 @@
 				<div class="form-control new-child-row">
 					<label><?php _e( 'Title' ); ?></label>
 					<div>
-						<input type="text" name="post_title[]" class="np_title" placeholder="<?php _e('Title', 'nestedpages'); ?>" value="" />
+						<input type="text" name="post_title[]" class="np_title" placeholder="<?php _e('Title', 'nestedpages'); ?>" value="" tabindex="1" />
 						<a href="#" class="button-secondary np-remove-child">-</a>
 					</div>
 				</div>
