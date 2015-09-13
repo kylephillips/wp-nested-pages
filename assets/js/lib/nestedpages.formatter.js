@@ -20,10 +20,19 @@ NestedPages.Formatter = function()
 			var button = allButtons[i];
 			var row = $(button).parent('.row').parent('li');
 			if ( $(row).children('ol').length > 0 ){ // Row has a child menu
+				
 				var icon = ( $(row).children('ol:visible').length > 0 ) 
 					? NestedPages.cssClasses.iconToggleDown 
 					: NestedPages.cssClasses.iconToggleRight;
+
 				$(button).html('<a href="#"><i class="' + icon + '"></i></a>');
+
+				if ( ($(row).children('ol').children('.np-hide').length > 0) && ($(row).children('ol').children('.np-hide.shown').length === 0) ){
+					$(button).find('a').hide();
+				} else if ( ($(row).children('ol').children('.np-hide').length > 0) && ($(row).children('ol').children('.np-hide.shown').length > 0) ){
+					$(button).find('a').show();
+				}
+
 				continue;
 			}
 			$(button).empty(); // No Child Menu

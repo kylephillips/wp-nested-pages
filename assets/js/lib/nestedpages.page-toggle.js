@@ -38,11 +38,13 @@ NestedPages.PageToggle = function()
 		if ( action === 'show' ){
 			$(button).attr('href', 'hide').text(NestedPages.jsData.showHiddenText);
 			$(NestedPages.selectors.hiddenRows).removeClass('shown').hide();
+			plugin.formatter.updateSubMenuToggle();
 			plugin.formatter.setBorders();
 			return;
 		}
 		$(button).attr('href', 'show').text(NestedPages.jsData.hideHiddenText);
 		$(NestedPages.selectors.hiddenRows).addClass('shown').show();
+		plugin.formatter.updateSubMenuToggle();
 		plugin.formatter.setBorders();
 	}
 

@@ -52,7 +52,7 @@ gulp.task('scripts', function(){
 	return gulp.src(js_source)
 		.pipe(concat('nestedpages.min.js'))
 		.pipe(gulp.dest(js_compiled))
-		// .pipe(uglify())
+		.pipe(uglify())
 		.pipe(gulp.dest(js_compiled))
 		.pipe(notify('Nested Pages scripts compiles & compressed.'));
 });
