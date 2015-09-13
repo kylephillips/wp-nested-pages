@@ -69,7 +69,7 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 			</a>
 
 			<?php if ( current_user_can('delete_pages') ) : ?>
-			<a href="<?php echo get_delete_post_link($this->post->id, '', true); ?>" class="np-btn np-btn-trash">
+			<a href="<?php echo get_delete_post_link($this->post->id, '', true); ?>" class="np-btn np-btn-trash" data-np-confirm-delete>
 				<i class="np-icon-remove"></i>
 			</a>
 			<?php endif; ?>

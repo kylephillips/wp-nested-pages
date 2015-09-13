@@ -27,7 +27,8 @@ var js_source = [
 	'assets/js/lib/nestedpages-factory.js',
 	'assets/js/lib/nestedpages.menu-links.js',
 	'assets/js/lib/nestedpages.menu-search.js',
-	'assets/js/lib/nestedpages.trash.js'
+	'assets/js/lib/nestedpages.trash.js',
+	'assets/js/lib/nestedpages.confirm-delete.js'
 ];
 var js_compiled = 'assets/js/';
 

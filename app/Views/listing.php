@@ -65,7 +65,9 @@
 
 </div><!-- .wrap -->
 
-<?php include( NestedPages\Helpers::view('forms/empty-trash-modal') ); ?>
-<?php include( NestedPages\Helpers::view('forms/clone-form') ); ?>
-<?php include( NestedPages\Helpers::view('forms/link-form') ); ?>
-<?php include( NestedPages\Helpers::view('forms/bulk-add') ); ?>
+<?php 
+include( NestedPages\Helpers::view('forms/empty-trash-modal') );
+include( NestedPages\Helpers::view('forms/clone-form') );
+include( NestedPages\Helpers::view('forms/link-form') );
+include( NestedPages\Helpers::view('forms/bulk-add') );
+include( NestedPages\Helpers::view('forms/delete-confirmation-modal') ); 
