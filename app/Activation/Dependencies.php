@@ -3,6 +3,8 @@
 namespace NestedPages\Activation;
 
 use NestedPages\Entities\PostType\PostTypeRepository;
+use NestedPages\Helpers;
+
 /**
 * Plugin JS & CSS Dependencies
 */
@@ -30,7 +32,7 @@ class Dependencies
 		$this->setPluginVersion();
 		add_action( 'admin_enqueue_scripts', array($this, 'styles') );
 		add_action( 'admin_enqueue_scripts', array($this, 'scripts') );
-		$this->plugin_dir = plugins_url() . '/wp-nested-pages';
+		$this->plugin_dir = Helpers::plugin_url();
 	}
 
 	/**

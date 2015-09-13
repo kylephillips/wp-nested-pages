@@ -37,7 +37,7 @@
 		</div>
 		<?php endif; ?>
 
-		<img src="<?php echo plugins_url(); ?>/wp-nested-pages/assets/images/spinner-2x.gif" alt="loading" id="nested-loading" />
+		<img src="<?php echo NestedPages\Helpers::plugin_url(); ?>/assets/images/spinner-2x.gif" alt="loading" id="nested-loading" />
 	</div><!-- .nestedpages-top-toggles -->
 
 	<?php include(NestedPages\Helpers::view('partials/tool-list')); ?>
