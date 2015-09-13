@@ -23,6 +23,7 @@ class Bootstrap
 	{
 		new Activation\Activate;
 		new Redirects;
+		new RedirectsFrontEnd;
 	}
 
 	/**

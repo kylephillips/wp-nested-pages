@@ -91,6 +91,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 = 1.5.3 =
 * Confirmation modal added when deleting a link item.
+* Broken links fixed when nesting pages under link items.
 
 = 1.5.2 =
 * Fixed bug when upgrading in an install with sync disabled.
