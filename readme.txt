@@ -92,6 +92,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 = 1.5.3 =
 * Confirmation modal added when deleting a link item.
 * Broken links fixed when nesting pages under link items.
+* Bug fix where custom nav titles were not being saved.
 * Bug fix where replacing the default menus was breaking custom admin submenu links.
 * Minor interface enhancements.
 
