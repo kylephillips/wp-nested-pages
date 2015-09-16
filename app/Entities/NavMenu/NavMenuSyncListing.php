@@ -81,6 +81,7 @@ class NavMenuSyncListing extends NavMenuSync
 		$object_id = ( $this->post->nav_object_id  ) ? intval($this->post->nav_object_id) : null;
 		$url = ( $type == 'custom' ) ? esc_url($this->post->content) : '';
 		$xfn = $this->post->id;
+		$title = ( $this->post->nav_title ) ? $this->post->nav_title : $this->post->title;
 		
 		// Compatibility for 1.4.1 - Reset Page links
 		if ( $this->post->type == 'page' ){
@@ -91,7 +92,7 @@ class NavMenuSyncListing extends NavMenuSync
 		}
 
 		$args = array(
-			'menu-item-title' => $this->post->title,
+			'menu-item-title' => $title,
 			'menu-item-position' => $this->count,
 			'menu-item-url' => $url,
 			'menu-item-attr-title' => $this->post->nav_title_attr,
