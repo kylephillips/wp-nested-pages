@@ -121,4 +121,19 @@ NestedPages.Formatter = function()
 	}
 
 
+	// Show an error message
+	plugin.showAjaxError = function(message)
+	{
+		$(NestedPages.selectors.ajaxError).find('p').text(message);
+		$(NestedPages.selectors.ajaxError).show();
+	}
+
+
+	// Hide the error message
+	plugin.hideAjaxError = function(message)
+	{
+		$(NestedPages.selectors.ajaxError).hide();
+	}
+
+
 }

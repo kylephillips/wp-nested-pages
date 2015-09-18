@@ -29,6 +29,7 @@ NestedPages.selectors = {
 	errorDiv : '#np-error', // Error Alert
 	loadingIndicator : '#nested-loading', // Loading Indicator,
 	syncCheckbox : '.np-sync-menu', // Sync menu checkbox
+	ajaxError : '[data-nestedpages-error]', // AJAX error notification
 
 	// Responsive Toggle
 	toggleEditButtons : '.np-toggle-edit', // Button that toggles responsive buttons
@@ -167,6 +168,9 @@ NestedPages.Factory = function()
 		$(document).on('click', NestedPages.selectors.quickEditOverlay, function(e){
 			plugin.formatter.removeQuickEdit();
 			plugin.newPage.cancelNewPage();
+		});
+		$(document).ready(function(){
+			plugin.formatter.hideAjaxError();
 		});
 	}
 

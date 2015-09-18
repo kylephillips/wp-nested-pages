@@ -10,6 +10,8 @@ NestedPages.SyncMenuSetting = function()
 	var plugin = this;
 	var $ = jQuery;
 
+	plugin.formatter = new NestedPages.Formatter;
+
 	plugin.init = function()
 	{
 		plugin.bindEvents();
@@ -46,7 +48,7 @@ NestedPages.SyncMenuSetting = function()
 			},
 			success: function(data){
 				if (data.status === 'error'){
-					alert('There was an error saving the sync setting.')
+					plugin.formatter.showAjaxError(data.message);
 				}
 			},
 		});

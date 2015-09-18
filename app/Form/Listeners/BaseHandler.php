@@ -89,13 +89,17 @@ abstract class BaseHandler
 	protected function syncMenu()
 	{
 		if ( $_POST['post_type'] == 'page' ) {
-			if ( $_POST['syncmenu'] == 'sync' ){
+			if ( $_POST['syncmenu'] !== 'sync' ){
+				return update_option('nestedpages_menusync', 'nosync');
+			}
+			update_option('nestedpages_menusync', 'sync');
+			try {
 				$menu = new NavMenuSyncListing;
 				$menu->sync();
-				update_option('nestedpages_menusync', 'sync');
-			} else {
-				update_option('nestedpages_menusync', 'nosync');
+			} catch ( \Exception $e ){
+				return $this->exception($e->getMessage());
 			}
+			return;
 		}
 	}
 
@@ -109,6 +113,17 @@ abstract class BaseHandler
 			'message' => __('There was an error updating the page.', 'nestedpages') 
 		);
 		$this->sendResponse();
+	}
+
+	/**
+	* Send Error from Exception
+	*/
+	protected function exception($message)
+	{
+		return wp_send_json(array(
+			'status' => 'error',
+			'message' => $message
+		));
 	}
 
 	/**

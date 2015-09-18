@@ -39,21 +39,25 @@ class NavMenuSyncListing extends NavMenuSync
 	* Recursive function loops through pages/links and their children
 	*/
 	public function sync($parent = 0, $menu_parent = 0)
-	{
-		$this->count = $this->count + 1;
-		$page_q = new \WP_Query(array(
-			'post_type' => array('page', 'np-redirect'),
-			'posts_per_page' => -1,
-			'post_status' => 'publish',
-			'orderby' => 'menu_order',
-			'order' => 'ASC',
-			'post_parent' => $parent
-		));
-		if ( $page_q->have_posts() ) : while ( $page_q->have_posts() ) : $page_q->the_post();
-			global $post;
-			$this->post = $this->post_factory->build($post);
-			$this->syncPost($menu_parent);
-		endwhile; endif; wp_reset_postdata();
+	{	
+		try {
+			$this->count = $this->count + 1;
+			$page_q = new \WP_Query(array(
+				'post_type' => array('page', 'np-redirect'),
+				'posts_per_page' => -1,
+				'post_status' => 'publish',
+				'orderby' => 'menu_order',
+				'order' => 'ASC',
+				'post_parent' => $parent
+			));
+			if ( $page_q->have_posts() ) : while ( $page_q->have_posts() ) : $page_q->the_post();
+				global $post;
+				$this->post = $this->post_factory->build($post);
+				$this->syncPost($menu_parent);
+			endwhile; endif; wp_reset_postdata();
+		} catch ( \Exception $e ){
+			throw new \Exception($e->getMessage());
+		}
 	}
 
 	/**
