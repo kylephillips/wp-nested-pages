@@ -38,22 +38,24 @@ class NavMenuSyncListing extends NavMenuSync
 	/**
 	* Recursive function loops through pages/links and their children
 	*/
-	public function sync($parent = 0, $menu_parent = 0)
+	public function sync($parent = 0, $menu_parent = 0, $nest_level = 0)
 	{	
 		try {
 			$this->count = $this->count + 1;
-			$page_q = new \WP_Query(array(
+			$args = array(
 				'post_type' => array('page', 'np-redirect'),
 				'posts_per_page' => -1,
 				'post_status' => 'publish',
 				'orderby' => 'menu_order',
 				'order' => 'ASC',
 				'post_parent' => $parent
-			));
+			);
+			$page_q = new \WP_Query(apply_filters('nestedpages_menu_sync', $args, $nest_level));
 			if ( $page_q->have_posts() ) : while ( $page_q->have_posts() ) : $page_q->the_post();
+				$nest_level++;
 				global $post;
 				$this->post = $this->post_factory->build($post);
-				$this->syncPost($menu_parent);
+				$this->syncPost($menu_parent, $nest_level);
 			endwhile; endif; wp_reset_postdata();
 		} catch ( \Exception $e ){
 			throw new \Exception($e->getMessage());
@@ -64,14 +66,14 @@ class NavMenuSyncListing extends NavMenuSync
 	* Sync an individual item
 	* @since 1.3.4
 	*/
-	private function syncPost($menu_parent)
+	private function syncPost($menu_parent, $nest_level)
 	{
 		// Get the Menu Item
 		$query_type = ( $this->post->type == 'np-redirect' ) ? 'xfn' : 'object_id';
 		$menu_item_id = $this->nav_menu_repo->getMenuItem($this->post->id, $query_type);
 		if ( $this->post->nav_status == 'hide' ) return $this->removeItem($menu_item_id);
 		$menu = $this->syncMenuItem($menu_parent, $menu_item_id);
-		$this->sync( $this->post->id, $menu );
+		$this->sync( $this->post->id, $menu, $nest_level );
 	}
 
 	/**
