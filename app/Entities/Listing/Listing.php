@@ -247,7 +247,7 @@ class Listing
 	* Loop through all the pages and create the nested / sortable list
 	* Recursive Method, called in page.php view
 	*/
-	private function loopPosts($parent_id = 0, $count = 0)
+	private function loopPosts($parent_id = 0, $count = 0, $nest_count = 0)
 	{
 		$this->setTaxonomies();
 		
@@ -271,10 +271,11 @@ class Listing
 		if ( $this->isSearch() ) $query_args = $this->searchParams($query_args);
 		if ( $this->isFiltered() ) $query_args = $this->filterParams($query_args);
 
-		$pages = new \WP_Query(apply_filters('nestedpages_page_listing', $query_args));
+		$pages = new \WP_Query(apply_filters('nestedpages_page_listing', $query_args, $nest_count));
 		
 		if ( $pages->have_posts() ) :
 			$count++;
+			$nest_count++;
 
 			if ( $this->publishCount($pages) > 1 ){
 				$this->listOpening($pages, $count);			
@@ -309,7 +310,7 @@ class Listing
 
 				endif; // trash status
 				
-				if ( !$this->isSearch() ) $this->loopPosts($this->post->id, $count);
+				if ( !$this->isSearch() ) $this->loopPosts($this->post->id, $count, $nest_count);
 
 				if ( $this->post->status !== 'trash' ) {
 					echo '</li>';

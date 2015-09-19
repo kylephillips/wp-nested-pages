@@ -89,6 +89,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.5.4 = 
+* Added Nested Level parameter to listing filter.
+
 = 1.5.3 =
 * Confirmation modal added when deleting a link item.
 * Bug fix where custom nav titles were not being saved.
