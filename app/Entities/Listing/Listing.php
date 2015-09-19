@@ -199,7 +199,7 @@ class Listing
 
 		echo '<ol class="nplist';
 		if ( count($compared) > 0 ) echo ' visible" style="display:block;';
-		echo '" id="np-' . $this->post_type->name . '">';	
+		echo '" id="np-' . $this->post_type->name . '">';
 		 
 	}
 
@@ -240,14 +240,27 @@ class Listing
 	*/ 
 	private function isFiltered()
 	{
-		return ( isset($_GET['category']) && $_GET['category'] !== "all" ) ? true : false;
+
+		if(isset($_GET['category']) && $_GET['category'] !== "all")
+		{
+			return true;
+		}
+		else if($associated_taxonomy = $this->post_type_repo->selectedTaxonomy($this->post_type->name))
+		{
+			return ( isset($_GET[$associated_taxonomy]) && $_GET[$associated_taxonomy] !== "all" ) ? true : false;	
+		}
+		else
+		{
+			return false;
+		}
+		
 	}
 
 	/**
 	* Loop through all the pages and create the nested / sortable list
 	* Recursive Method, called in page.php view
 	*/
-	private function loopPosts($parent_id = 0, $count = 0, $nest_count = 0)
+	private function loopPosts($parent_id = 0, $count = 0)
 	{
 		$this->setTaxonomies();
 		
@@ -256,6 +269,7 @@ class Listing
 			if ( !$this->settings->menusDisabled() ) $post_type[] = 'np-redirect';
 		} else {
 			$post_type = array($this->post_type->name);
+			$post_type[] = 'np-redirect';
 		}
 		
 		$query_args = array(
@@ -267,15 +281,14 @@ class Listing
 			'post_parent' => $parent_id,
 			'order' => $this->sort_options->order
 		);
-		
+
 		if ( $this->isSearch() ) $query_args = $this->searchParams($query_args);
 		if ( $this->isFiltered() ) $query_args = $this->filterParams($query_args);
 
-		$pages = new \WP_Query(apply_filters('nestedpages_page_listing', $query_args, $nest_count));
+		$pages = new \WP_Query(apply_filters('nestedpages_page_listing', $query_args));
 		
 		if ( $pages->have_posts() ) :
 			$count++;
-			$nest_count++;
 
 			if ( $this->publishCount($pages) > 1 ){
 				$this->listOpening($pages, $count);			
@@ -310,7 +323,7 @@ class Listing
 
 				endif; // trash status
 				
-				if ( !$this->isSearch() ) $this->loopPosts($this->post->id, $count, $nest_count);
+				if ( !$this->isSearch() ) $this->loopPosts($this->post->id, $count);
 
 				if ( $this->post->status !== 'trash' ) {
 					echo '</li>';
@@ -340,9 +353,30 @@ class Listing
 	*/
 	private function filterParams($query_args)
 	{
-		if ( !isset($_GET['category']) ) return $query_args;
-		$query_args['cat'] = sanitize_text_field($_GET['category']);
-		return $query_args;
+
+		$associated_taxonomy = $this->post_type_repo->selectedTaxonomy($this->post_type->name);
+
+		// Here we are looking for the taxonomy
+		if(isset($_GET[$associated_taxonomy]))
+		{
+			$term = get_term($_GET[$associated_taxonomy] , $associated_taxonomy);
+
+			// !NOTE This adds the 'tax_query' to the WP_Query
+			$query_args['tax_query'] = array(
+				array(
+					'taxonomy' => $term->taxonomy,
+					'field'    => 'slug',
+					'terms'    => $term->slug,
+				)
+			);		
+
+			return $query_args;
+		}
+		else if( isset($_GET['category']))
+		{
+			return $query_args;
+		}
+
 	}
 
 	/**
