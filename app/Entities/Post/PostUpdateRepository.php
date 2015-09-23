@@ -1,13 +1,15 @@
-<?php namespace NestedPages\Entities\Post;
+<?php 
+
+namespace NestedPages\Entities\Post;
 
 use NestedPages\Form\Validation\Validation;
 use NestedPages\Entities\NavMenu\NavMenuRepository;
-use NestedPages\Helpers;
 
 /**
 * Post Create/Update Methods
 */
-class PostUpdateRepository {
+class PostUpdateRepository 
+{
 
 	/**
 	* Validation Class
@@ -32,7 +34,6 @@ class PostUpdateRepository {
 		$this->validation = new Validation;
 		$this->nav_menu_repo = new NavMenuRepository;
 	}
-
 
 	/**
 	* Update Order
@@ -104,7 +105,6 @@ class PostUpdateRepository {
 		return true;
 	}
 
-
 	/**
 	* Update Page Template
 	* @param array data
@@ -122,7 +122,6 @@ class PostUpdateRepository {
 		}
 	}
 
-
 	/**
 	* Update Nav Status (show/hide in nav menu)
 	* @since 1.0
@@ -139,7 +138,6 @@ class PostUpdateRepository {
 		);
 	}
 
-
 	/**
 	* Update Nested Pages Visibility (how/hide in Nested Pages interface)
 	* @since 1.0
@@ -155,7 +153,6 @@ class PostUpdateRepository {
 			$status
 		);
 	}
-
 
 	/**
 	* Update Nested Pages Menu Navigation Label
@@ -174,7 +171,6 @@ class PostUpdateRepository {
 		}
 	}
 
-
 	/**
 	* Update Nested Pages Menu Navigation CSS Classes
 	* @since 1.0
@@ -191,7 +187,6 @@ class PostUpdateRepository {
 			);
 		}
 	}
-
 
 	/**
 	* Update Nested Pages Menu Title Attribute
@@ -210,7 +205,6 @@ class PostUpdateRepository {
 		}
 	}
 
-
 	/**
 	* Update Categories
 	* @since 1.0
@@ -228,7 +222,6 @@ class PostUpdateRepository {
 			wp_set_post_terms($data['post_id'], $cats, 'category');
 		}
 	}
-
 
 	/**
 	* Update Hierarchical Taxonomy Terms
@@ -250,7 +243,6 @@ class PostUpdateRepository {
 		}
 	}
 
-
 	/**
 	* Update Hierarchical Taxonomy Terms
 	* @since 1.1.4
@@ -264,7 +256,6 @@ class PostUpdateRepository {
 		}
 		wp_set_post_terms($data['post_id'], $terms, $taxonomy);
 	}
-
 
 	/**
 	* Update Flat Taxonomy Terms
@@ -282,7 +273,6 @@ class PostUpdateRepository {
 		wp_set_post_terms($data['post_id'], $new_terms, $taxonomy);
 	}
 
-
 	/**
 	* Update Link Target for Redirects
 	* @since 1.1
@@ -299,6 +289,31 @@ class PostUpdateRepository {
 		);
 	}
 
+	/**
+	* Update Menu Related Meta
+	* @since 1.4.1
+	* @param array $data
+	*/
+	private function updateMenuMeta($data)
+	{
+		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
+		$link_target = ( isset($data['linkTarget']) ) ? "_blank" : "";
+		update_post_meta($id, 'np_link_target', $link_target);
+		update_post_meta($id, 'np_nav_menu_item_type', sanitize_text_field($data['menuType']));
+		update_post_meta($id, 'np_nav_menu_item_object', sanitize_text_field($data['objectType']));
+		update_post_meta($id, 'np_nav_menu_item_object_id', sanitize_text_field($data['objectId']));
+		if ( isset($data['cssClasses']) ){
+			update_post_meta($id, 'np_nav_css_classes', sanitize_text_field($data['cssClasses']));
+		}
+		if ( isset($data['titleAttribute']) ){
+			$title_attr = sanitize_text_field($data['titleAttribute']);
+			update_post_meta($id, 'np_title_attribute', $title_attr);
+		}
+		if ( isset($data['navigationLabel']) ){
+			$title = sanitize_text_field($data['navigationLabel']);
+			update_post_meta($id, 'np_nav_title', $title);
+		}
+	}
 
 	/**
 	* Update a Redirect
@@ -307,27 +322,23 @@ class PostUpdateRepository {
 	*/
 	public function updateRedirect($data)
 	{
-		$this->validation->checkEmpty($data['post_title'], __('Label', 'nestedpages'));
 		$menu_order = isset($data['menu_order']) ? $data['menu_order'] : 0;
 		$updated_post = array(
 			'ID' => sanitize_text_field($data['post_id']),
 			'post_title' => sanitize_text_field($data['post_title']),
 			'post_status' => sanitize_text_field($data['_status']),
-			'post_content' => Helpers::check_url($data['post_content']),
 			'post_parent' => sanitize_text_field($data['parent_id']),
 			'menu_order' => $menu_order
 		);
+
+		if ( isset($data['post_content']) && $data['post_content'] !== "" ){
+			$updated_post['post_content'] = esc_url($data['post_content']);
+		}
+
 		$this->new_id = wp_update_post($updated_post);
-
-		$this->updateNavStatus($data);
-		$this->updateNestedPagesStatus($data);
-		$this->updateLinkTarget($data);
-		$this->updateTitleAttribute($data);
-		$this->updateNavCSS($data);
-
+		$this->updateMenuMeta($data);
 		return $this->new_id;
 	}
-
 
 	/**
 	* Save a new Redirect
@@ -336,24 +347,20 @@ class PostUpdateRepository {
 	*/
 	public function saveRedirect($data)
 	{
-		$this->validation->validateRedirect($data);
 		$new_link = array(
-			'post_title' => sanitize_text_field($data['np_link_title']),
-			'post_status' => sanitize_text_field($data['_status']),
-			'post_content' => Helpers::check_url($data['np_link_content']),
+			'post_title' => sanitize_text_field($data['menuTitle']),
+			'post_status' => sanitize_text_field('publish'),
 			'post_parent' => sanitize_text_field($data['parent_id']),
 			'post_type' => 'np-redirect',
 			'post_excerpt' => ''
 		);
+		if ( isset($data['url']) && $data['url'] !== "" ){
+			$new_link['post_content'] = esc_url($data['url']);
+		}
 		$this->new_id = wp_insert_post($new_link);
-
-		$this->updateNavStatus($data);
-		$this->updateNestedPagesStatus($data);
-		$this->updateLinkTarget($data);
+		$this->updateMenuMeta($data);
 		return $this->new_id;
 	}
-
-
 
 	/**
 	* Update a Post to Match Nav menu

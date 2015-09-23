@@ -29,6 +29,7 @@ NestedPages.selectors = {
 	errorDiv : '#np-error', // Error Alert
 	loadingIndicator : '#nested-loading', // Loading Indicator,
 	syncCheckbox : '.np-sync-menu', // Sync menu checkbox
+	ajaxError : '[data-nestedpages-error]', // AJAX error notification
 
 	// Responsive Toggle
 	toggleEditButtons : '.np-toggle-edit', // Button that toggles responsive buttons
@@ -78,6 +79,11 @@ NestedPages.selectors = {
 	cloneQuantity : '[data-clone-quantity]', // Quantity to Clone
 	cloneStatus : '[data-clone-status]', // Clone Status
 	cloneAuthor : '[data-clone-author]', // Clone Author
+
+	// Tabs
+	tabButtonParent : '[data-np-tabs]', // Tab Parent
+	tabButton : '[data-np-tab]', // Tab Link
+	tabContent : '[data-np-tab-pane]', // Tab Pane
 }
 
 
@@ -94,6 +100,7 @@ NestedPages.jsData = {
 	ajaxurl : ajaxurl,
 	nonce : nestedpages.np_nonce,
 	allPostTypes : nestedpages.post_types, // Localized data with all post types
+	syncmenu : 'nosync', // Whether to sync the menu
 	posttype : '', // current Screen's post type
 	nestable : true, // boolean - whether post type is nestable
 	hierarchical : true, // boolean - whether post type is hierarchical
@@ -112,12 +119,13 @@ NestedPages.formActions = {
 	syncToggles : 'npnestToggle',
 	syncNesting : 'npsort',
 	syncMenu : 'npsyncMenu',
-	newLink : 'npnewLink',
 	newPage : 'npnewChild',
 	quickEditLink : 'npquickEditLink',
 	getTaxonomies : 'npgetTaxonomies',
 	quickEditPost : 'npquickEdit',
-	clonePost : 'npclonePost'
+	clonePost : 'npclonePost',
+	search : 'npmenuSearch',
+	newMenuItem : 'npnewMenuItem'
 }
 
 
@@ -135,16 +143,18 @@ NestedPages.Factory = function()
 	plugin.pageToggle = new NestedPages.PageToggle;
 	plugin.nesting = new NestedPages.Nesting;
 	plugin.syncMenuSetting = new NestedPages.SyncMenuSetting;
-	plugin.newLink = new NestedPages.NewLink;
 	plugin.newPage = new NestedPages.NewPage;
 	plugin.quickEditLink = new NestedPages.QuickEditLink;
 	plugin.quickEditPost = new NestedPages.QuickEditPost;
 	plugin.clone = new NestedPages.Clone;
+	plugin.tabs = new NestedPages.Tabs;
+	plugin.menuLinks = new NestedPages.MenuLinks;
 
 	plugin.init = function()
 	{
 		plugin.bindEvents();
 		plugin.setPostType();
+		plugin.setMenuSync();
 		plugin.setNestable();
 		plugin.formatter.updateSubMenuToggle();
 		plugin.formatter.setBorders();
@@ -158,6 +168,9 @@ NestedPages.Factory = function()
 		$(document).on('click', NestedPages.selectors.quickEditOverlay, function(e){
 			plugin.formatter.removeQuickEdit();
 			plugin.newPage.cancelNewPage();
+		});
+		$(document).ready(function(){
+			plugin.formatter.hideAjaxError();
 		});
 	}
 
@@ -180,6 +193,13 @@ NestedPages.Factory = function()
 	{
 		NestedPages.jsData.posttype = $(NestedPages.selectors.sortable).attr('id').substring(3);
 		NestedPages.jsData.hierarchical = NestedPages.jsData.allPostTypes[NestedPages.jsData.posttype].hierarchical;
+	}
+
+
+	// Set menu sync
+	plugin.setMenuSync = function()
+	{
+		NestedPages.jsData.syncmenu = ( nestedpages.syncmenu === '1' ) ? 'sync' : 'nosync';
 	}
 
 

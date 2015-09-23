@@ -1,10 +1,12 @@
-<?php namespace NestedPages\Entities\Post;
+<?php 
 
+namespace NestedPages\Entities\Post;
 
 /**
 * Build Post Data Object
 */
-class PostDataFactory {
+class PostDataFactory 
+{
 
 	/**
 	* Post Data
@@ -20,10 +22,9 @@ class PostDataFactory {
 		$this->post_data = new \stdClass();
 		$this->addPostVars($post);
 		$this->addPostMeta($post);
-		$this->addMenuOptions($post);
+		$this->addOriginalLink($post);
 		$this->addDate($post);
 		$this->author($post);
-
 		return $this->post_data;
 	}
 
@@ -35,7 +36,6 @@ class PostDataFactory {
 		$this->post_data->id = $post->ID;
 		$this->post_data->parent_id = $post->post_parent;
 		$this->post_data->title = $post->post_title;
-		$this->post_data->template = get_post_meta($post->ID, '_wp_page_template', true);
 		$this->post_data->password = $post->post_password;
 		$this->post_data->status = $post->post_status;
 		$this->post_data->type = $post->post_type;
@@ -50,9 +50,17 @@ class PostDataFactory {
 	*/
 	public function addPostMeta($post)
 	{
-		// Hidden in Nested Pages?
-		$np_status = get_post_meta( $post->ID, 'nested_pages_status', true );
-		$this->post_data->np_status = ( $np_status == 'hide' ) ? 'hide' : 'show';
+		$meta = get_metadata('post', $post->ID);
+		$this->post_data->nav_title = ( isset($meta['np_nav_title'][0]) ) ? $meta['np_nav_title'][0] : null;
+		$this->post_data->link_target = ( isset($meta['np_link_target'][0]) ) ? $meta['np_link_target'][0] : null;
+		$this->post_data->nav_title_attr = ( isset($meta['np_title_attribute'][0]) ) ? $meta['np_title_attribute'][0] : null;
+		$this->post_data->nav_css = ( isset($meta['np_nav_css_classes'][0]) ) ? $meta['np_nav_css_classes'][0] : null;
+		$this->post_data->nav_object = ( isset($meta['np_nav_menu_item_object'][0]) ) ? $meta['np_nav_menu_item_object'][0] : null;
+		$this->post_data->nav_object_id = ( isset($meta['np_nav_menu_item_object_id'][0]) ) ? $meta['np_nav_menu_item_object_id'][0] : null;
+		$this->post_data->nav_type = ( isset($meta['np_nav_menu_item_type'][0]) ) ? $meta['np_nav_menu_item_type'][0] : null;
+		$this->post_data->nav_status = ( isset($meta['np_nav_status'][0]) && $meta['np_nav_status'][0] == 'hide' ) ? 'hide' : 'show';
+		$this->post_data->np_status = ( isset($meta['nested_pages_status'][0]) && $meta['nested_pages_status'][0] == 'hide' ) ? 'hide' : 'show';
+		$this->post_data->template = ( isset($meta['_wp_page_template'][0]) ) ? $meta['_wp_page_template'][0] : false;
 
 		// Yoast Score
 		if ( function_exists('wpseo_auto_load') ) {
@@ -67,16 +75,26 @@ class PostDataFactory {
 	}
 
 	/**
-	* Menu Options
+	* Add original item/link to link
 	*/
-	private function addMenuOptions($post)
+	private function addOriginalLink($post)
 	{
-		$this->post_data->nav_title = get_post_meta($post->ID, 'np_nav_title', true);
-		$this->post_data->link_target = get_post_meta($post->ID, 'np_link_target', true);
-		$this->post_data->nav_title_attr = get_post_meta($post->ID, 'np_title_attribute', true);
-		$this->post_data->nav_css = get_post_meta($post->ID, 'np_nav_css_classes', true);
-		$nav_status = get_post_meta( $post->ID, 'np_nav_status', true);
-		$this->post_data->nav_status = ( $nav_status == 'hide' ) ? 'hide' : 'show';
+		if ( $post->post_type !== 'np-redirect' ) {
+			$this->post_data->nav_original_link = null;
+			$this->post_data->nav_original_type = null;
+			return;
+		}
+
+		if ( $this->post_data->nav_type && $this->post_data->nav_type == 'taxonomy' ){
+			$term = get_term_by('id', $this->post_data->nav_object_id, $this->post_data->nav_object);
+			$this->post_data->nav_original_link = get_term_link($term);
+			$this->post_data->nav_original_title = $term->name;
+			return;
+		}
+
+		$id = $this->post_data->nav_object_id;
+		$this->post_data->nav_original_link = get_the_permalink($id);
+		$this->post_data->nav_original_title = get_the_title($id);
 	}
 
 	/**
@@ -85,12 +103,13 @@ class PostDataFactory {
 	private function addDate($post)
 	{
 		$this->post_data->date = new \stdClass();
-		$this->post_data->date->d = get_the_time('d', $post->ID);
-		$this->post_data->date->month = get_the_time('m', $post->ID);
-		$this->post_data->date->y = get_the_time('Y', $post->ID);
-		$this->post_data->date->h = get_the_time('H', $post->ID);
-		$this->post_data->date->m = get_the_time('i', $post->ID);
-		$this->post_data->date->datepicker = get_the_time('U', $post->ID);
+		$time = get_the_time('U', $post->ID);
+		$this->post_data->date->d = date('d', $time);
+		$this->post_data->date->month = date('m', $time);
+		$this->post_data->date->y = date('Y', $time);
+		$this->post_data->date->h = date('H', $time);
+		$this->post_data->date->m = date('i', $time);
+		$this->post_data->date->datepicker = $time;
 	}
 
 	/**

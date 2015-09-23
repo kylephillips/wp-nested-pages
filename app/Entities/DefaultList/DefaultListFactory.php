@@ -1,4 +1,6 @@
-<?php namespace NestedPages\Entities\DefaultList;
+<?php 
+
+namespace NestedPages\Entities\DefaultList;
 
 use NestedPages\Entities\PostType\PostTypeRepository;
 use NestedPages\Entities\DefaultList\NestedViewLink;
@@ -6,7 +8,8 @@ use NestedPages\Entities\DefaultList\NestedViewLink;
 /**
 * Add the Nested Pages link to default table subsubsub
 */
-class DefaultListFactory {
+class DefaultListFactory 
+{
 
 	/**
 	* Post Type Repository

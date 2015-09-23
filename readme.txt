@@ -4,7 +4,7 @@ Donate link: http://nestedpages.com/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
 Tested up to: 4.3
-Stable tag: 1.4.1
+Stable tag: 1.5.3
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -89,6 +89,27 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.5.4 = 
+* Added Nested Level parameter to listing filter.
+
+= 1.5.3 =
+* Confirmation modal added when deleting a link item.
+* Bug fix where custom nav titles were not being saved.
+* Bug fix where replacing the default menus was breaking custom admin submenu links.
+* Minor interface enhancements.
+
+= 1.5.2 =
+* Fixed bug when upgrading in an install with sync disabled.
+
+= 1.5.1 =
+* Bug fix where hidden nav items in the nested view were deleting nav items from other menus.
+* Updated German Translation (Thanks to Martin Wecke)
+
+= 1.5.0 =
+* Links now include all taxonomies/post types, enabling full control over the primary site menu from the Nested Pages interface. Start adding menu items by selecting "Add Link" from the top, or the link button on a specific row to add a child item.
+* Escape key closing of modal windows added.
+* Category filtering added to pages if categories enabled
+
 = 1.4.1 =
 * Bug fix in quick edit where child pages display parent row data on update.
 
@@ -105,7 +126,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Support added for page that are noindexed in WordPress SEO (Thanks to Joost de Valk)
 
 = 1.3.14 =
-* Minor bug fix – modal not appearing when last item in the trash (provided by ClementRoy)
+* Minor bug fix – modal not appearing when last item in the trash (provided by ClementRoy)
 * Option added to hide the "Sync Menu" checkbox (visit Settings > Nested Pages > General to hide)
 * Updated Danish Translation (Thomas Blomberg)
 * Confirmed compatibility with WordPress v4.2
@@ -160,7 +181,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Bug fix in menu - pages now nestable under links.
 
 = 1.3.1 =
-* UI enhancements in Quick Edits – default date fields replaced with datepicker and formatted time. 
+* UI enhancements in Quick Edits – default date fields replaced with datepicker and formatted time. 
 
 = 1.3.0 =
 * All public post types are now supported, both hierarchical and non-hierarchical. To enabled the Nested Pages interface for additional post types, visit Settings > Nested Pages and select the "Post Types" tab. The generated nav menu is tied to the pages type, which is enabled by default.
@@ -258,7 +279,7 @@ All post types are now supported. Also includes minor bug fixes and UI improveme
 Bug fix when using custom roles. 
 
 = 1.2 =
-PHP 5.3.2 now required – Nested Pages will not install on older versions of PHP. If you are running less than 5.3.2, continue to use Nested Pages version 1.1.9.
+PHP 5.3.2 now required – Nested Pages will not install on older versions of PHP. If you are running less than 5.3.2, continue to use Nested Pages version 1.1.9.
 
 = 1.1.9 =
 Italian translation included along with minor bug fixes.

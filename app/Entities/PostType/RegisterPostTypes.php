@@ -1,15 +1,17 @@
-<?php namespace NestedPages\Entities\PostType;
+<?php 
+
+namespace NestedPages\Entities\PostType;
 
 /**
 * Post Types required by Nested Pages
 */
-class RegisterPostTypes {
+class RegisterPostTypes 
+{
 
 	public function __construct()
 	{
 		add_action( 'init', array( $this, 'registerRedirects') );
 	}
-
 
 	/**
 	* Redirects Post Type

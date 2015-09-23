@@ -1,6 +1,9 @@
-<?php namespace NestedPages\Config;
+<?php 
 
-class SettingsRepository {
+namespace NestedPages\Config;
+
+class SettingsRepository 
+{
 
 	/**
 	* Is the Datepicker UI option enabled
@@ -30,6 +33,17 @@ class SettingsRepository {
 	{
 		$option = get_option('nestedpages_menusync');
 		return ( $option == 'sync' ) ? true : false;
+	}
+
+	/**
+	* Are menus completely disabled?
+	* @return boolean
+	*/
+	public function menusDisabled()
+	{
+		$option = get_option('nestedpages_disable_menu');
+		if ( $option && $option == 'true' ) return true;
+		return false;
 	}
 
 }

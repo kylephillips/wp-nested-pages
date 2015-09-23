@@ -65,7 +65,7 @@ NestedPages.NewPage = function()
 		$(NestedPages.selectors.newPageModal).find('.modal-body').html(newform);
 		$(NestedPages.selectors.newPageModal).find('h3').text(nestedpages.add_multiple);
 		$(NestedPages.selectors.newPageModal).find('.page_parent_id').val(plugin.parent_id);
-		$(NestedPages.selectors.newPageModal).modal('show');
+		$(NestedPages.selectors.newPageModal).modal('show');		
 	}
 
 
@@ -90,6 +90,7 @@ NestedPages.NewPage = function()
 		$(newform).find('.parent_name').html('<em>Parent:</em> ' + $(button).attr('data-parentname'));
 		$(newform).find('.page_parent_id').val($(button).attr('data-id'));
 		$(newform).show();
+		$(newform).find('.np_title').focus();
 	}
 
 
@@ -107,9 +108,11 @@ NestedPages.NewPage = function()
 	// Add a page title field to the form
 	plugin.addTitleField = function(button)
 	{		
-		var form = $(button).parents('form');	
-		var html = '<li><i class="handle np-icon-menu"></i><div class="form-control new-child-row"><label>' + NestedPages.jsData.titleText + '</label><div><input type="text" name="post_title[]" class="np_title" placeholder="' + NestedPages.jsData.titleText + '" value="" /><a href="#" class="button-secondary np-remove-child">-</a></div></div></li>';
+		var form = $(button).parents('form');
+		var fieldcount = $(button).siblings('.new-page-titles').children('li').length + 1;
+		var html = '<li><i class="handle np-icon-menu"></i><div class="form-control new-child-row"><label>' + NestedPages.jsData.titleText + '</label><div><input type="text" name="post_title[]" class="np_title" placeholder="' + NestedPages.jsData.titleText + '" value="" tabindex="' + fieldcount + '" /><a href="#" class="button-secondary np-remove-child">-</a></div></div></li>';
 		var container = $(button).siblings('.new-page-titles').append(html);
+		$(form).find('.np_title').last().focus();
 		$('.new-page-titles').sortable({
 			items : 'li',
 			handle: '.handle',
@@ -131,13 +134,12 @@ NestedPages.NewPage = function()
 		plugin.form = $(button).parents('form');
 
 		var addedit = ( $(button).hasClass('add-edit') ) ? true : false;
-		var syncmenu = ( $(NestedPages.selectors.syncCheckbox).is(':checked') ) ? 'sync' : 'nosync';
 
 		$.ajax({
 			url: NestedPages.jsData.ajaxurl,
 			type: 'post',
 			datatype: 'json',
-			data: $(plugin.form).serialize() + '&action=' + NestedPages.formActions.newPage + '&nonce=' + NestedPages.jsData.nonce + '&syncmenu=' + syncmenu + '&post_type=' + NestedPages.jsData.posttype,
+			data: $(plugin.form).serialize() + '&action=' + NestedPages.formActions.newPage + '&nonce=' + NestedPages.jsData.nonce + '&syncmenu=' + NestedPages.jsData.syncmenu + '&post_type=' + NestedPages.jsData.posttype,
 			success: function(data){
 				if (data.status === 'error'){
 					plugin.toggleLoading(false);

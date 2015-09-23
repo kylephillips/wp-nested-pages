@@ -1,11 +1,15 @@
-<?php namespace NestedPages\Activation\Updates;
+<?php 
+
+namespace NestedPages\Activation\Updates;
 
 use NestedPages\Entities\NavMenu\NavMenuRepository;
+use NestedPages\Entities\NavMenu\NavMenuSyncListing;
 
 /**
 * Required Version Upgrades
 */
-class Updates {
+class Updates 
+{
 
 	/**
 	* New Version
@@ -31,12 +35,12 @@ class Updates {
 		$this->new_version = $new_version;
 		$this->nav_menu_repo = new NavMenuRepository;
 		$this->setCurrentVersion();
+		$this->clearMenu();
 		$this->addMenu();
 		$this->convertMenuToID();
 		$this->enablePagePostType();
 		$this->enabledDatepicker();
 	}
-
 
 	/**
 	* Set the plugin version
@@ -46,7 +50,6 @@ class Updates {
 		$this->current_version = ( get_option('nestedpages_version') )
 			? get_option('nestedpages_version') : $this->new_version;
 	}
-
 
 	/**
 	* Add an empty Nested Pages menu if there isn't one
@@ -60,7 +63,6 @@ class Updates {
 			update_option('nestedpages_menu', $menu_id);
 		}
 	}
-
 	
 	/**
 	* Convert existing nestedpages_menu option to menu ID rather than string/name
@@ -82,7 +84,6 @@ class Updates {
 		}
 	}
 
-
 	/**
 	* Make Page Post Type Enabled by Default
 	* Option can be blank, using get_option returns false if blank
@@ -102,7 +103,6 @@ class Updates {
 		));
 	}
 
-
 	/**
 	* Enable the Datepicker
 	*/
@@ -117,6 +117,18 @@ class Updates {
 		}
 	}
 
-
+	/**
+	* Regenerate the synced menu
+	*/
+	private function clearMenu()
+	{
+		if ( version_compare( $this->current_version, '1.5.2', '<' ) ){
+			$menu_id = $this->nav_menu_repo->getMenuID();
+			if ( $menu_id ) $this->nav_menu_repo->clearMenu($menu_id);
+			if ( get_option('nestedpages_menusync') !== 'sync' ) return;
+			$syncer = new NavMenuSyncListing;
+			$syncer->sync();
+		}
+	}
 
 }

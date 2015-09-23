@@ -1,10 +1,13 @@
-<?php namespace NestedPages\Entities\Confirmation;
+<?php 
+
+namespace NestedPages\Entities\Confirmation;
 
 /**
 * Confirmation Message
 * @since 1.2
 */
-class ConfirmationFactory {
+class ConfirmationFactory 
+{
 
 	/**
 	* Message Output
@@ -18,12 +21,10 @@ class ConfirmationFactory {
 	*/
 	private $type;
 
-
 	public function __construct()
 	{
 		$this->build();
 	}
-
 
 	/**
 	* Set the Type of confirmation
@@ -36,7 +37,6 @@ class ConfirmationFactory {
 		if ( $this->type ) $this->createClass();
 	}
 
-
 	/**
 	* Set the confirmation message
 	*/
@@ -46,7 +46,6 @@ class ConfirmationFactory {
 		$confirm = new $class;
 		$this->message = $confirm->setMessage();
 	}
-
 
 	/**
 	* Get the Message

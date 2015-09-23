@@ -1,15 +1,29 @@
-<?php namespace NestedPages;
+<?php 
+
+namespace NestedPages;
 
 /**
 * Primary Plugin Bootstrap
 */
-class Bootstrap {
+class Bootstrap 
+{
 
 	public function __construct()
 	{
 		$this->initializePlugin();
+		add_action( 'wp_loaded', array($this, 'wpLoaded'));
 		add_action( 'init', array($this, 'initializeWordPress') );
 		add_filter( 'plugin_action_links_' . 'wp-nested-pages/nestedpages.php', array($this, 'settingsLink' ) );
+	}
+
+	/**
+	* WP Loaded
+	*/
+	public function wpLoaded()
+	{
+		new Activation\Activate;
+		new Redirects;
+		new RedirectsFrontEnd;
 	}
 
 	/**
@@ -17,17 +31,14 @@ class Bootstrap {
 	*/
 	private function initializePlugin()
 	{
-		new Activation\Activate;
-		new Redirects;
 		new Entities\PostType\RegisterPostTypes;
 		new Entities\Post\PostTrashActions;
 		new Entities\Listing\ListingActions;
 		new Entities\NavMenu\NavMenuActions;
 		new Entities\NavMenu\NavMenuTrashActions;
-		new Form\FormActionFactory;
+		new Form\Events;
 		new Config\Settings;
 	}
-
 
 	/**
 	* Wordpress Initialization Actions
@@ -38,7 +49,6 @@ class Bootstrap {
 		new Entities\DefaultList\DefaultListFactory;
 		$this->addLocalization();
 	}
-
 
 	/**
 	* Localization Domain
@@ -51,7 +61,6 @@ class Bootstrap {
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages' );
 	}
 
-
 	/**
 	* Add a link to the settings on the plugin page
 	*/
@@ -61,6 +70,5 @@ class Bootstrap {
 		array_unshift($links, $settings_link); 
 		return $links; 
 	}
-
 
 }

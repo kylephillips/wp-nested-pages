@@ -8,6 +8,7 @@ settings_fields( 'nestedpages-general' );
 	<th scope="row"><?php _e('Nested Pages Version', 'nestedpages'); ?></th>
 	<td><strong><?php echo get_option('nestedpages_version'); ?></strong></td>
 </tr>
+<?php if ( !$this->settings->menusDisabled() ) : ?>
 <tr valign="top">
 	<th scope="row"><?php _e('Menu Name', 'nestedpages'); ?></th>
 	<td>
@@ -15,6 +16,7 @@ settings_fields( 'nestedpages-general' );
 		<p><em><?php _e('Important: Once the menu name has changed, theme files should be updated to reference the new name.', 'nestedpages'); ?></em></p>
 	</td>
 </tr>
+<?php endif; ?>
 <tr valign="top">
 	<th scope="row"><?php _e('Display Options', 'nestedpages'); ?></th>
 	<td>
@@ -27,10 +29,20 @@ settings_fields( 'nestedpages-general' );
 <tr valign="top">
 	<th scope="row"><?php _e('Menu Sync', 'nestedpages'); ?></th>
 	<td>
+		<?php if ( !$this->settings->menusDisabled() ) : ?>
+		<p>
 		<label>
 			<input type="checkbox" name="nestedpages_ui[hide_menu_sync]" value="true" <?php if ( $this->settings->hideMenuSync() ) echo 'checked'; ?> />
 			<?php _e('Hide Menu Sync Checkbox', 'nestedpages'); ?> (<?php echo $sync_status; ?>)
 		</label>
+		</p>
+		<?php endif; ?>
+		<p>
+		<label>
+			<input type="checkbox" name="nestedpages_disable_menu" value="true" <?php if ( $this->settings->menusDisabled() ) echo 'checked'; ?> />
+			<?php _e('Disable Menu Sync Completely', 'nestedpages'); ?>
+		</label>
+		</p>
 	</td>
 </tr>
 <tr valign="top">

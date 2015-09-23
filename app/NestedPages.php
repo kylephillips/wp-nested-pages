@@ -3,8 +3,8 @@
 * Static Wrapper for Bootstrap Class
 * Prevents T_STRING error when checking for 5.3.2
 */
-class NestedPages {
-
+class NestedPages 
+{
 	public static function init()
 	{
 		// dev/live
@@ -12,8 +12,9 @@ class NestedPages {
 		$np_env = 'live';
 
 		global $np_version;
-		$np_version = '1.4.1';
+		$np_version = '1.5.3';
 
 		if ( is_admin() ) $app = new NestedPages\Bootstrap;
+		//if ( !is_admin() ) $app = new NestedPages\FrontEndBootstrap;
 	}
 }

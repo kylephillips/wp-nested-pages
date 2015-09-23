@@ -1,9 +1,12 @@
-<?php namespace NestedPages;
+<?php 
+
+namespace NestedPages;
+
 /**
 * Page Redirects in admin
 */
-class Redirects {
-
+class Redirects 
+{
 
 	public function __construct()
 	{
@@ -11,7 +14,6 @@ class Redirects {
 		add_action('load-edit.php', array($this, 'pageRestored'));
 		add_action('deleted_post', array($this, 'linkDeleted'), 10, 1);
 	}
-
 
 	/**
 	* Redirect back to nested pages after pages moved to trashed
@@ -26,7 +28,6 @@ class Redirects {
 		}
 	}
 
-
 	/**
 	* Redirect to nested pages after page moved out of trash
 	*/
@@ -39,7 +40,6 @@ class Redirects {
 			exit();
 		}
 	}
-
 
 	/**
 	* Add link trashed param to URL after delete (for notification)
@@ -54,7 +54,5 @@ class Redirects {
 		}
 	}
 
-
-	
 
 }

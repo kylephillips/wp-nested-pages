@@ -1,6 +1,9 @@
-<?php namespace NestedPages\Entities\NavMenu;
+<?php 
 
-class NavMenuRepository {
+namespace NestedPages\Entities\NavMenu;
+
+class NavMenuRepository 
+{
 
 	/**
 	* Get the Menu ID
@@ -13,67 +16,65 @@ class NavMenuRepository {
 		return $term->term_id;
 	}
 
-
 	/**
 	* Get Menu Item ID
 	* @since 1.3.4
 	* @param int $id - Post ID
+	* @param string $query - xfn/object_id
 	* @return int
 	*/
-	public function getMenuItemID($id)
+	public function getMenuItem($id, $query = 'xfn')
 	{	
-		$meta_query = new \WP_Query(array(
-			'post_type' => 'nav_menu_item',
-			'posts_per_page' => 1,
-			'meta_key' => '_menu_item_object_id',
-			'meta_value' => $id,
-			'tax_query' => array(
-				array(
-					'taxonomy' => 'nav_menu',
-					'field'    => 'id',
-					'terms'    => $this->getMenuID(),
-				),
-			),
-		));
-		return ( $meta_query->have_posts() ) ? 
-			$meta_query->posts[0]->ID : 
-			$this->getLinkMenuItemXFN($id);
+		global $wpdb;
+		$post_id = 0;
+		
+		if ( $query == 'xfn' ){
+			$prefix = $wpdb->prefix;
+			$meta_table = $prefix . 'postmeta';
+			$sql = "SELECT post_id FROM `$meta_table` WHERE meta_value = '$id' AND meta_key = '_menu_item_xfn'";
+			$post_id = $wpdb->get_var($sql);
+			return ( $post_id ) ? $post_id : 0;
+		}
+
+		if ( $query == 'object_id' ){
+			$menu_id = $this->getMenuID();
+			$prefix = $wpdb->prefix;
+			$meta_table = $prefix . 'postmeta';
+			$term_relationships_table = $prefix . 'term_relationships';
+			$terms_table = $prefix . 'terms';
+			$sql = "SELECT 
+				pm.post_id,
+				t.term_id,
+				t.name,
+				pmx.meta_value AS xfn_type
+				FROM $meta_table AS pm
+				LEFT JOIN $term_relationships_table AS tr
+				ON tr.object_id = pm.post_id
+				LEFT JOIN $terms_table AS t
+				ON t.term_id = tr.term_taxonomy_id
+				LEFT JOIN $meta_table AS pmx
+				ON pmx.post_id = pm.post_id AND pmx.meta_key = '_menu_item_xfn'
+				WHERE pm.meta_value = $id AND pm.meta_key = '_menu_item_object_id'
+			";
+			$results = $wpdb->get_results($sql);
+			foreach($results as $result){
+				if ( $result->term_id == $menu_id && $result->xfn_type == 'page' ) $post_id = $result->post_id;
+			}
+			return $post_id;
+		}
 	}
 
-
-	/**
-	* Get Link from XFN field
-	* Using XFN field to store original post ID
-	* Hack way of doing it, but no other way to tie custom menu items to post type and retain custom functionality
-	* @param int $id - Post ID
-	*/
-	public function getLinkMenuItemXFN($id)
+	private function getMenuItemFromXFN($id)
 	{
-		$meta_query = new \WP_Query(array(
-			'post_type' => 'nav_menu_item',
-			'posts_per_page' => 1,
-			'meta_key' => '_menu_item_xfn',
-			'meta_value' => $id,
-		));
-		return ( $meta_query->have_posts() ) ? $meta_query->posts[0]->ID : $this->getLinkMenuItemID($id);
+		global $wpdb;
+		$prefix = $wpdb->prefix;
+			$meta_table = $prefix . 'postmeta';
+			$sql = "SELECT post_id FROM `$meta_table` WHERE meta_value = $id AND meta_key = '_menu_item_xfn'";
+			$post_id = $wpdb->get_var($sql);
+			
+			$wpdb = $original_wpdb;
+			return ( $post_id ) ? $post_id : 0;
 	}
-
-
-	/**
-	* Get Link Nav Menu from post ID using title
-	* Supporting legacy NP versions before XFN was saved
-	* @since 1.3.4
-	* @param int $id
-	* @return int
-	*/
-	public function getLinkMenuItemID($id)
-	{
-		$post = get_page_by_title( get_the_title($id), OBJECT, 'nav_menu_item');
-		if ( !$post ) return 0;
-		return $post->ID;
-	}
-
-
 
 	/**
 	* Get the Menu Term Object
@@ -91,7 +92,6 @@ class NavMenuRepository {
 		return $this->getMenuTermObject();
 	}
 
-
 	/**
 	* Get the Menu ID from the title
 	* @since 1.3.5
@@ -103,7 +103,6 @@ class NavMenuRepository {
 		return ( $term ) ? $term->term_id : false;
 	}
 
-
 	/**
 	* Create Empty Menu if one doesn't exist
 	* @since 1.3.4
@@ -113,7 +112,6 @@ class NavMenuRepository {
 		$menu_id = wp_create_nav_menu('Nested Pages');
 		update_option('nestedpages_menu', $menu_id);
 	}
-
 
 	/**
 	* Clear out the menu
@@ -126,7 +124,6 @@ class NavMenuRepository {
 		}
 	}
 
-
 	/**
 	* Is the provided post a nav menu item
 	* @return boolean
@@ -138,7 +135,6 @@ class NavMenuRepository {
 		return false;
 	}
 
-
 	/**
 	* Get the Link post id from a title
 	*/
@@ -147,7 +143,6 @@ class NavMenuRepository {
 		$post = get_page_by_title($title, OBJECT, 'np-redirect');
 		return $post->ID;
 	}
-
 
 	/**
 	* Get an array of pages not hidden in nav menu

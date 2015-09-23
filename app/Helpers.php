@@ -1,8 +1,12 @@
-<?php namespace NestedPages;
+<?php 
+
+namespace NestedPages;
+
 /**
 * Helper Functions
 */
-class Helpers {
+class Helpers 
+{
 
 	/**
 	* Verify URL Format
@@ -14,15 +18,13 @@ class Helpers {
 		return esc_url($url);
 	}
 
-
 	/**
 	* Plugin Root Directory
 	*/
 	public static function plugin_url()
 	{
-		return plugins_url() . '/wp-simple-locator';
+		return plugins_url('/', NESTEDPAGES_DIR);
 	}
-
 
 	/**
 	* View
@@ -31,7 +33,6 @@ class Helpers {
 	{
 		return dirname(__FILE__) . '/Views/' . $file . '.php';
 	}
-
 
 	/**
 	* Link to the default WP Pages listing

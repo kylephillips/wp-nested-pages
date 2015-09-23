@@ -4,6 +4,7 @@ var NestedPages = NestedPages || {};
 * Add a new Link (top level and child)
 * @package Nested Pages
 * @author Kyle Phillips - https://github.com/kylephillips/wp-nested-pages
+* @todo - remove in 1.4.1
 */
 NestedPages.NewLink = function()
 {
@@ -65,13 +66,12 @@ NestedPages.NewLink = function()
 	{
 		plugin.toggleLoading(true);
 		var data = $(NestedPages.selectors.linkForm).serialize();
-		var syncmenu = ( $(NestedPages.selectors.syncCheckbox).is(':checked') ) ? 'sync' : 'nosync';
 
 		$.ajax({
 			url: NestedPages.jsData.ajaxurl,
 			type: 'POST',
 			datatype: 'json',
-			data: data + '&action=' + NestedPages.formActions.newLink + '&nonce=' + NestedPages.jsData.nonce + '&syncmenu=' + syncmenu + '&post_type=' + NestedPages.jsData.posttype,
+			data: data + '&action=' + NestedPages.formActions.newLink + '&nonce=' + NestedPages.jsData.nonce + '&syncmenu=' + NestedPages.jsData.syncmenu + '&post_type=' + NestedPages.jsData.posttype,
 			success: function(data){
 				plugin.toggleLoading(false);
 				if (data.status === 'error'){

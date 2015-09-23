@@ -1,6 +1,9 @@
-<?php namespace NestedPages\Entities\Listing;
+<?php 
 
-class ListingRepository {
+namespace NestedPages\Entities\Listing;
+
+class ListingRepository 
+{
 
 	/**
 	* User's Toggled Pages
@@ -10,6 +13,52 @@ class ListingRepository {
 		$visible = unserialize(get_user_meta(get_current_user_id(), 'np_visible_posts', true));
 		if ( !isset($visible[$post_type]) ) $visible[$post_type] = array();
 		return $visible[$post_type];
+	}
+
+	/**
+	* Taxonomies
+	*/
+	public function taxonomies()
+	{
+		$taxonomies = get_taxonomies(array(
+			'public' => true,
+		), 'objects');
+		return $taxonomies;
+	}
+
+	/**
+	* Get all non-empty Terms for a given taxonomy
+	*/
+	public function terms($taxonomy)
+	{
+		return get_terms($taxonomy);
+	}
+
+	/**
+	* Post Types
+	*/
+	public function postTypes()
+	{
+		$types = get_post_types(array(
+			'public' => true
+		), 'objects');
+		return $types;
+	}
+
+	/**
+	* Recent Posts for a given post type
+	*/
+	public function recentPosts($post_type)
+	{
+		$pq = new \WP_Query(array(
+			'post_type' => $post_type,
+			'posts_per_page' => 10
+		));
+		if ( $pq->have_posts() ) :
+			return $pq->posts;
+		else : 
+			return false;
+		endif; wp_reset_postdata();
 	}
 
 }

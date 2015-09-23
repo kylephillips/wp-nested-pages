@@ -1,9 +1,12 @@
-<?php namespace NestedPages\Form;
+<?php 
+
+namespace NestedPages\Form;
 
 /**
 * Registers the WP Actions/Handlers
 */
-class FormActionFactory {
+class Events 
+{
 
 	/**
 	* Actions
@@ -17,16 +20,15 @@ class FormActionFactory {
 	*/
 	private $handlers;
 
-
 	public function __construct()
 	{
-		$this->setActions();
+		$this->registerEvents();
 	}
 
 	/**
 	* Set the Form Actions
 	*/
-	public function setActions()
+	public function registerEvents()
 	{
 		$this->actions = array(
 			'wp_ajax_npsort',
@@ -34,13 +36,15 @@ class FormActionFactory {
 			'wp_ajax_npsyncMenu',
 			'wp_ajax_npnestToggle',
 			'wp_ajax_npquickEditLink',
-			'wp_ajax_npnewLink',
 			'wp_ajax_npgetTaxonomies',
 			'wp_ajax_npnewChild',
 			'admin_post_npListingSort',
 			'wp_ajax_npEmptyTrash',
 			'admin_post_npSearch',
-			'wp_ajax_npclonePost'
+			'wp_ajax_npclonePost',
+			'wp_ajax_npmenuSearch',
+			'wp_ajax_npnewMenuItem',
+			'admin_post_npCategoryFilter'
 		);
 		$this->setHandlers();
 	}
@@ -52,10 +56,10 @@ class FormActionFactory {
 	{
 		foreach($this->actions as $key => $action){
 			$class = str_replace('admin_post_np', '', $action); // Non-AJAX forms
-			$class = ucfirst(str_replace('wp_ajax_np', '', $class)) . 'Handler'; // AJAX forms
+			$class = ucfirst(str_replace('wp_ajax_np', '', $class)); // AJAX forms
 			$this->handlers[$key] = new \stdClass();
 			$this->handlers[$key]->action = $action;
-			$this->handlers[$key]->class = 'NestedPages\Form\Handlers\\' . $class;
+			$this->handlers[$key]->class = 'NestedPages\Form\Listeners\\' . $class;
 		}
 		$this->build();
 	}

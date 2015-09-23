@@ -52,6 +52,11 @@
 			}
 		}
 
+		// Indicates front page/posts page
+		.np-page-type {
+			color: $black;
+		}
+
 		// Indicates post is being edited
 		.locked {
 			color: $black;

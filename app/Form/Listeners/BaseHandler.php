@@ -1,4 +1,6 @@
-<?php namespace NestedPages\Form\Handlers;
+<?php 
+
+namespace NestedPages\Form\Listeners;
 
 use NestedPages\Entities\NavMenu\NavMenuSyncListing;
 use NestedPages\Entities\Post\PostRepository;
@@ -8,7 +10,8 @@ use NestedPages\Entities\User\UserRepository;
 /**
 * Base Form Handler Class
 */
-abstract class BaseHandler {
+abstract class BaseHandler 
+{
 
 	/**
 	* Nonce
@@ -55,7 +58,6 @@ abstract class BaseHandler {
 		$this->validateNonce();
 	}
 
-
 	/**
 	* Set the Form Data
 	*/
@@ -69,7 +71,6 @@ abstract class BaseHandler {
 		$this->data = $data;
 	}
 
-
 	/**
 	* Validate the Nonce
 	*/
@@ -82,23 +83,25 @@ abstract class BaseHandler {
 		}
 	}
 
-
 	/**
 	* Sync the Nav Menu
 	*/
 	protected function syncMenu()
 	{
 		if ( $_POST['post_type'] == 'page' ) {
-			if ( $_POST['syncmenu'] == 'sync' ){
+			if ( $_POST['syncmenu'] !== 'sync' ){
+				return update_option('nestedpages_menusync', 'nosync');
+			}
+			update_option('nestedpages_menusync', 'sync');
+			try {
 				$menu = new NavMenuSyncListing;
 				$menu->sync();
-				update_option('nestedpages_menusync', 'sync');
-			} else {
-				update_option('nestedpages_menusync', 'nosync');
+			} catch ( \Exception $e ){
+				return $this->exception($e->getMessage());
 			}
+			return;
 		}
 	}
-
 
 	/**
 	* Send a Generic Success Message
@@ -112,6 +115,16 @@ abstract class BaseHandler {
 		$this->sendResponse();
 	}
 
+	/**
+	* Send Error from Exception
+	*/
+	protected function exception($message)
+	{
+		return wp_send_json(array(
+			'status' => 'error',
+			'message' => $message
+		));
+	}
 
 	/**
 	* Return Response

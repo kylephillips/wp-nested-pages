@@ -1,12 +1,14 @@
-<?php namespace NestedPages\Entities\PluginIntegration;
+<?php 
+
+namespace NestedPages\Entities\PluginIntegration;
 
 /**
 * Editorial Access Manager Integration
 * @link https://wordpress.org/plugins/editorial-access-manager/
 */
 
-class EditorialAccessManager {
-
+class EditorialAccessManager 
+{
 	/**
 	* Installed
 	* @var boolean
@@ -26,7 +28,6 @@ class EditorialAccessManager {
 			$this->user = wp_get_current_user();
 		} 
 	}
-
 
 	/**
 	* Does the current user have access to the specified post id?
@@ -51,7 +52,6 @@ class EditorialAccessManager {
 
 		return true;
 	}
-
 
 	/**
 	* Abort Role Check?

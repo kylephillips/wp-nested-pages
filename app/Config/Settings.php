@@ -1,4 +1,6 @@
-<?php namespace NestedPages\Config;
+<?php 
+
+namespace NestedPages\Config;
 
 use NestedPages\Helpers;
 use NestedPages\Entities\User\UserRepository;
@@ -8,7 +10,8 @@ use NestedPages\Config\SettingsRepository;
 /**
 * Plugin Settings
 */
-class Settings {
+class Settings 
+{
 
 	/**
 	* Nested Pages Menu
@@ -31,7 +34,6 @@ class Settings {
 	*/
 	private $settings;
 
-
 	public function __construct()
 	{
 		add_action( 'admin_menu', array( $this, 'registerSettingsPage' ) );
@@ -40,7 +42,6 @@ class Settings {
 		$this->user_repo = new UserRepository;
 		$this->settings = new SettingsRepository;
 	}
-
 
 	/**
 	* Register the settings page
@@ -57,7 +58,6 @@ class Settings {
 		);
 	}
 
-
 	/**
 	* Register the settings
 	* @see admin_init
@@ -66,11 +66,11 @@ class Settings {
 	{
 		register_setting( 'nestedpages-general', 'nestedpages_menu' );
 		register_setting( 'nestedpages-general', 'nestedpages_menusync' );
+		register_setting( 'nestedpages-general', 'nestedpages_disable_menu' );
 		register_setting( 'nestedpages-general', 'nestedpages_ui' );
 		register_setting( 'nestedpages-general', 'nestedpages_allowsorting' );
 		register_setting( 'nestedpages-posttypes', 'nestedpages_posttypes' );
 	}
-
 
 	/**
 	* Update the menu name if option is updated
@@ -93,7 +93,6 @@ class Settings {
 		}
 	}
 
-
 	/**
 	* Set the Menu Object
 	* @since 1.1.5
@@ -104,7 +103,6 @@ class Settings {
 		$this->menu = get_term_by('id', $menu_id, 'nav_menu');
 	}
 
-
 	/**
 	* Get Post Types
 	* @since 1.2.0
@@ -114,7 +112,6 @@ class Settings {
 		$post_repo = new PostTypeRepository;
 		return $post_repo->getPostTypesObject();
 	}
-
 
 	/**
 	* Display the Settings Page

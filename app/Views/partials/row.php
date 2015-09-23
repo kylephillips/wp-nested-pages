@@ -17,7 +17,13 @@
 		<?php endif; ?>
 
 		<a href="<?php echo get_edit_post_link(); ?>" class="page-link page-title">
-			<span class="title"><?php echo $this->post->title; ?></span>
+			<span class="title">
+				<?php 
+					echo $this->post->title; 
+					if ( $this->post->id == get_option('page_on_front') ) echo ' <em class="np-page-type"><strong>&ndash; ' . __('Front Page', 'nestedpages') . '</strong></em>';
+					if ( $this->post->id == get_option('page_for_posts') ) echo ' <em class="np-page-type"><strong>&ndash; ' . __('Posts Page', 'nestedpages') . '</strong></em>';
+				?>
+			</span>
 			<?php 
 				
 				if ( function_exists('wpseo_auto_load') ){
@@ -81,7 +87,7 @@
 			<?php else : $cs = 'closed'; endif; ?>
 
 
-			<?php if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->isSearch() ) : ?>
+			<?php if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->isSearch() && !$this->settings->menusDisabled() ) : ?>
 		
 			<a href="#" class="np-btn open-redirect-modal" data-parentid="<?php echo $this->post->id; ?>"><i class="np-icon-link"></i></a>
 			

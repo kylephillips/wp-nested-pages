@@ -59,6 +59,9 @@ NestedPages.QuickEditPost = function()
 			plugin.saveButton = $(this);
 			plugin.save();
 		});
+		$(document).on('keydown', function(e){
+			if ( e.keyCode === 27 ) plugin.formatter.removeQuickEdit();
+		});
 	}
 
 
@@ -298,13 +301,12 @@ NestedPages.QuickEditPost = function()
 	plugin.save = function()
 	{
 		plugin.toggleLoading(true);
-		var syncmenu = ( $(NestedPages.selectors.syncCheckbox).is(':checked') ) ? 'sync' : 'nosync';
 
 		$.ajax({
 			url: NestedPages.jsData.ajaxurl,
 			type: 'post',
 			datatype: 'json',
-			data: $(plugin.form).find('form').serialize() + '&action=' + NestedPages.formActions.quickEditPost + '&nonce=' + NestedPages.jsData.nonce + '&syncmenu=' + syncmenu + '&post_type=' + NestedPages.jsData.posttype,
+			data: $(plugin.form).find('form').serialize() + '&action=' + NestedPages.formActions.quickEditPost + '&nonce=' + NestedPages.jsData.nonce + '&syncmenu=' + NestedPages.jsData.syncmenu + '&post_type=' + NestedPages.jsData.posttype,
 			success: function(data){
 				if (data.status === 'error'){
 					plugin.toggleLoading(false);

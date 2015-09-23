@@ -1,4 +1,6 @@
-<?php namespace NestedPages\Entities\AdminMenu;
+<?php 
+
+namespace NestedPages\Entities\AdminMenu;
 
 use NestedPages\Entities\AdminMenu\EnabledMenus;
 use NestedPages\Entities\AdminMenu\AdminSubmenuExpander;
@@ -7,7 +9,8 @@ use NestedPages\Entities\AdminMenu\AdminSubmenuExpander;
 * Admin Menus
 * @since 1.2.1
 */
-class AdminMenu {
+class AdminMenu 
+{
 	
 	public function __construct()
 	{
@@ -30,6 +33,5 @@ class AdminMenu {
 	{
 		new AdminSubmenuExpander;
 	}
-
 
 }

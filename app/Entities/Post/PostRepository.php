@@ -1,6 +1,9 @@
-<?php namespace NestedPages\Entities\Post;
+<?php 
 
-class PostRepository {
+namespace NestedPages\Entities\Post;
+
+class PostRepository 
+{
 
 	/**
 	* Get count of hidden posts
@@ -17,7 +20,6 @@ class PostRepository {
 		return $hidden->found_posts;
 	}
 
-
 	/**
 	* Get Trash Count (pages)
 	* @since 1.1.4
@@ -27,7 +29,6 @@ class PostRepository {
 		$trashed = new \WP_Query(array('post_type'=>$post_type,'post_status'=>'trash','posts_per_page'=>-1));
 		return $trashed->found_posts;
 	}
-
 
 	/**
 	* Get count of published posts
@@ -41,7 +42,6 @@ class PostRepository {
 		}
 		return $publish_count;
 	}
-
 
 	/**
 	* Return css class string of taxonomies
@@ -64,7 +64,6 @@ class PostRepository {
 		}
 		return $out;
 	}
-
 
 	/**
 	* Get an array of pages given an array of IDs
@@ -112,7 +111,6 @@ class PostRepository {
 		$c++; endwhile; endif; wp_reset_postdata();
 		return $pages;
 	}
-
 
 	/**
 	* Empty the Trash for a given post type

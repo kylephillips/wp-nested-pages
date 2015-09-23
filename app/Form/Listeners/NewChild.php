@@ -1,4 +1,6 @@
-<?php namespace NestedPages\Form\Handlers;
+<?php 
+
+namespace NestedPages\Form\Listeners;
 
 use NestedPages\Form\Validation\Validation;
 use NestedPages\Entities\Post\PostFactory;
@@ -7,7 +9,8 @@ use NestedPages\Entities\Post\PostFactory;
 * Handles processing the quick edit form
 * @return json response
 */
-class NewChildHandler extends BaseHandler {
+class NewChild extends BaseHandler 
+{
 
 	/**
 	* Post Factory
@@ -19,7 +22,6 @@ class NewChildHandler extends BaseHandler {
 	*/
 	private $validation;
 
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -30,7 +32,6 @@ class NewChildHandler extends BaseHandler {
 		$this->sendResponse();
 	}
 
-
 	/**
 	* Run Validation
 	*/
@@ -38,7 +39,6 @@ class NewChildHandler extends BaseHandler {
 	{
 		return $this->validation->validateNewPages($this->data);
 	}
-
 
 	/**
 	* Save the new page(s)
@@ -53,7 +53,6 @@ class NewChildHandler extends BaseHandler {
 		$this->sendErrorResponse();
 	}
 
-
 	/**
 	* Set the Response
 	*/
@@ -66,4 +65,3 @@ class NewChildHandler extends BaseHandler {
 	}
 
 }
-

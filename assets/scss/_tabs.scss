@@ -19,6 +19,10 @@
 					color: $black;
 					background-color: $white;
 				}
+				&:focus, &:active {
+					outline: none;
+					box-shadow: none;
+				}
 			}
 		}
 	}

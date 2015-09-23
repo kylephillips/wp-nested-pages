@@ -10,6 +10,8 @@ NestedPages.SyncMenuSetting = function()
 	var plugin = this;
 	var $ = jQuery;
 
+	plugin.formatter = new NestedPages.Formatter;
+
 	plugin.init = function()
 	{
 		plugin.bindEvents();
@@ -28,7 +30,12 @@ NestedPages.SyncMenuSetting = function()
 	// Sync the "Sync menu" preference / setting
 	plugin.syncSetting = function()
 	{
-		var setting = ( $(NestedPages.selectors.syncCheckbox).is(':checked') ) ? 'sync' : 'nosync';
+
+		if ( NestedPages.jsData.posttype !== 'page' ) return;
+		if ($(NestedPages.selectors.syncCheckbox).length === 0) return;
+		
+		NestedPages.jsData.syncmenu = ( $(NestedPages.selectors.syncCheckbox).is(':checked') ) ? 'sync' : 'nosync';
+
 		$.ajax({
 			url: NestedPages.jsData.ajaxurl,
 			type: 'post',
@@ -37,13 +44,13 @@ NestedPages.SyncMenuSetting = function()
 				action : NestedPages.formActions.syncMenu,
 				nonce : NestedPages.jsData.nonce,
 				post_type : NestedPages.jsData.posttype,
-				syncmenu : setting
+				syncmenu : NestedPages.jsData.syncmenu
 			},
 			success: function(data){
 				if (data.status === 'error'){
-					alert('There was an error saving the sync setting.')
+					plugin.formatter.showAjaxError(data.message);
 				}
-			}
+			},
 		});
 	}
 

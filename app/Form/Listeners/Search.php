@@ -1,6 +1,9 @@
-<?php namespace NestedPages\Form\Handlers;
+<?php 
 
-class SearchHandler extends BaseHandler {
+namespace NestedPages\Form\Listeners;
+
+class Search extends BaseHandler 
+{
 
 	/**
 	* URL to redirect to
