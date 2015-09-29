@@ -17,6 +17,7 @@ settings_fields( 'nestedpages-posttypes' );
 				<th><?php _e('Replace Default Menu', 'nestedpages'); ?>*</th>
 				<th><?php _e('Hide Default Link', 'nestedpages'); ?>*</th>
 				<th><?php _e('Disable Nesting', 'nestedpages'); ?>**</th>
+				<th><?php _e('Associated Taxonomy', 'nestedpages'); ?></th>
 			</thead>
 			<?php foreach ($types as $type) : ?>
 			<tr>
@@ -39,6 +40,15 @@ settings_fields( 'nestedpages-posttypes' );
 					<?php if ( $type->hierarchical ) : ?>
 					<input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][disable_nesting]" value="true" <?php if ( $type->disable_nesting ) echo 'checked '; ?>/>
 					<?php endif; ?>
+				</td>
+				<td>
+					<?php if(!empty($type->associated_taxonomy)): ?>
+					<select name="nestedpages_posttypes[<?php echo $type->name; ?>][associated_taxonomy]">
+						<?php foreach($type->associated_taxonomy as $taxonomy):?>
+						<option <?php if($type->selected_taxonomy == $taxonomy){ echo "selected"; } ?> value="<?php echo $taxonomy; ?>"><?php echo $taxonomy; ?></option>
+						<?php endforeach; ?>
+					</select>
+					<?php endif ?>
 				</td>
 			</tr>
 			<?php endforeach; ?>

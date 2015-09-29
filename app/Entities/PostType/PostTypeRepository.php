@@ -39,6 +39,9 @@ class PostTypeRepository
 			$post_types[$type->name]->replace_menu = $this->overrideMenu($type->name);
 			$post_types[$type->name]->hide_default = $this->hideDefault($type->name);
 			$post_types[$type->name]->disable_nesting = $this->disableNesting($type->name);
+			// NOTES! Add new field for saving an associated taxonomy
+			$post_types[$type->name]->associated_taxonomy = $this->getTaxonomyName($type->name);
+			$post_types[$type->name]->selected_taxonomy = $this->selectedTaxonomy($type->name);
 		}
 		return $post_types;
 	}
@@ -169,10 +172,64 @@ class PostTypeRepository
 		$taxonomies = $this->getTaxonomies($post_type, true);
 		$enabled = false;
 		foreach($taxonomies as $taxonomy){
-			if ( $taxonomy->name == 'category' ) $enabled = true;
+			if ( $taxonomy->name == 'category' || $taxonomy->name == $this->selectedTaxonomy($post_type) ) $enabled = true;
 		}
 		return $enabled;
 	}
+
+
+	/**
+	* Is the current post type custom?
+	* @return boolean
+	*/
+	public function is_custom_post_type( $post = NULL )
+	{
+
+	    $all_custom_post_types = get_post_types( array ( '_builtin' => FALSE ) );
+
+	    // there are no custom post types
+	    if ( empty ( $all_custom_post_types ) )
+	        return FALSE;
+
+	    $custom_types = array_keys( $all_custom_post_types );
+
+	    // could not detect current type
+	    if(in_array( $post, $custom_types ))
+	    {
+	    	return ( in_array( $post, $custom_types ) ) ? TRUE : FALSE;
+	    }
+	    
+	}
+
+	/*
+	*
+	*  Get the Taxonomy Name
+	*  @param Post Type name
+	*  @return array of taxonomy slugs 
+	*  
+	*/
+	public function getTaxonomyName($post_type)
+	{
+		$taxonomy_names = get_object_taxonomies( $post_type );
+		return $taxonomy_names;
+	}
+
+	/*
+	*
+	*  Get the selected Taxonomy Name
+	*  @param Post Type name
+	*  @return slug of selected Taxonomy 
+	*  
+	*/
+	public function selectedTaxonomy($post_type)
+	{
+		foreach($this->enabledPostTypes() as $key => $type){
+			if ( $key == $post_type ){
+				return ( isset($type['associated_taxonomy']) ) ? $type['associated_taxonomy'] : NULL;
+			}
+		}		
+	}
+
 
 	/**
 	* Get the NP menu slug for a post type
