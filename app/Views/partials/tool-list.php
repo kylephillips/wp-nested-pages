@@ -97,8 +97,7 @@
 	</div>
 	<?php endif; ?>
 
-
-	<?php if ( $this->post_type->name == 'page' && $this->post_type_repo->categoriesEnabled($this->post_type->name) ) : ?>
+	<?php  if ( $this->post_type->name == 'page' && $this->post_type_repo->categoriesEnabled($this->post_type->name) ) : ?>
 	<div class="np-tools-primary">
 		<form action="<?php echo admin_url('admin-post.php'); ?>" method="post" class="np-tools-sort">
 			<input type="hidden" name="action" value="npCategoryFilter">
@@ -125,6 +124,36 @@
 	</div>
 	<?php endif; ?>
 
+	<!-- Added content for Custom Post Type -->
+	<?php if ( $this->post_type_repo->is_custom_post_type($this->post_type->name) && $this->post_type_repo->categoriesEnabled($this->post_type->name) ) : ?>
+	<div class="np-tools-primary">
+		<form action="<?php echo admin_url('admin-post.php'); ?>" method="post" class="np-tools-sort">
+			<input type="hidden" name="action" value="npCategoryFilter">
+			<input type="hidden" name="page" value="<?php echo $this->pageURL(); ?>">
+			<div class="select first">
+				<select id="np_category" name="np_category" class="nestedpages-sort">
+					<?php
+						// !NOTE This gets a taxonomy associated with the custom post type
+						$taxonomy_names = get_object_taxonomies( $this->post_type->name );
+						$taxonomy_get_name = $taxonomy_names[0];
+						$tax = get_taxonomy($taxonomy_names);
+						$out = '<option value="all">' . __('All ', 'nestedpages') . $tax->labels->name . '</option>';
+						$terms = get_terms($taxonomy_names);
+						foreach( $terms as $term ){
+							$out .= '<option value="' . $term->term_id . '"';
+							if ( isset($_GET[$taxonomy_get_name]) && ($_GET[$taxonomy_get_name] == $term->term_id) ) $out .= ' selected';
+							$out .= '>' . $term->name . '</option>';
+						}
+						echo $out;
+					?>
+				</select>
+			</div>
+			<div class="select">
+				<input type="submit" id="nestedpages-sort" class="button" value="Apply">
+			</div>
+		</form>
+	</div>
+	<?php endif; ?>
 
 	<div class="np-tools-search">
 		<form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
