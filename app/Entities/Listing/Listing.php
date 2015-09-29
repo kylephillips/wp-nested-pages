@@ -359,7 +359,7 @@ class Listing
 		// Here we are looking for the taxonomy
 		if(isset($_GET[$associated_taxonomy]))
 		{
-			$term = get_term($_GET[$associated_taxonomy] , $associated_taxonomy);
+			$term = get_term(sanitize_text_field($_GET[$associated_taxonomy]) , $associated_taxonomy);
 
 			// !NOTE This adds the 'tax_query' to the WP_Query
 			$query_args['tax_query'] = array(
@@ -373,6 +373,11 @@ class Listing
 			return $query_args;
 		}
 		else if( isset($_GET['category']))
+		{
+			$query_args['cat'] = sanitize_text_field($_GET['category']);
+			return $query_args;
+		}
+		else
 		{
 			return $query_args;
 		}
