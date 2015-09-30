@@ -43,6 +43,7 @@ class PostTypeRepository
 			$post_types[$type->name]->associated_taxonomy = $this->getTaxonomyName($type->name);
 			$post_types[$type->name]->selected_taxonomy = $this->selectedTaxonomy($type->name);
 		}
+		//print_r($post_types);
 		return $post_types;
 	}
 

@@ -70,7 +70,6 @@ class CategoryFilter
 	*/
 	private function redirect()
 	{
-		echo $this->url;
 		header('Location:' . $this->url);
 	}
 }
