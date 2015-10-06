@@ -1,0 +1,594 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Nested Pages\n"
+"POT-Creation-Date: 2015-08-30 10:36-0500\n"
+"PO-Revision-Date: 2015-10-06 10:27+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: app/Activation/Dependencies.php:106 app/Views/listing.php:29
+msgid "Expand All"
+msgstr "Expandir todo"
+
+#: app/Activation/Dependencies.php:107
+msgid "Collapse All"
+msgstr "Colapsar todo"
+
+#: app/Activation/Dependencies.php:108 app/Views/partials/tool-list.php:18
+msgid "Show Hidden"
+msgstr "Mostrar ocultos"
+
+#: app/Activation/Dependencies.php:109
+msgid "Hide Hidden"
+msgstr "Ocultar ocultos"
+
+#: app/Activation/Dependencies.php:110 app/Views/listing.php:16
+#: app/Views/listing.php:17
+msgid "Add Link"
+msgstr "Añadir enlace"
+
+#: app/Activation/Dependencies.php:111
+msgid "Add Child Link"
+msgstr "Añadir enlace hijo"
+
+#: app/Activation/Dependencies.php:112
+#: app/Entities/Post/PostUpdateRepository.php:69
+#: app/Views/forms/new-child.php:19 app/Views/forms/new-child.php:21
+#: app/Views/forms/quickedit-post.php:20 app/Views/partials/tool-list.php:64
+msgid "Title"
+msgstr "Título"
+
+#: app/Activation/Dependencies.php:113 app/Views/forms/quickedit-post.php:11
+#: app/Views/partials/row-link.php:68 app/Views/partials/row.php:130
+msgid "Quick Edit"
+msgstr "Edición rápida"
+
+#: app/Activation/Dependencies.php:114
+msgid "Page Title"
+msgstr "Título de la página"
+
+#: app/Activation/Dependencies.php:115 app/Views/partials/row.php:134
+msgid "View"
+msgstr "Ver"
+
+#: app/Activation/Dependencies.php:116 app/Views/forms/new-child.php:7
+#: app/Views/partials/row.php:94
+msgid "Add Child"
+msgstr "Añadir hijo"
+
+#: app/Activation/Dependencies.php:117
+msgid "Add Child Page"
+msgstr "Añadir página hijo"
+
+#: app/Activation/Dependencies.php:118
+msgid "Add Child Pages"
+msgstr "Añadir páginas hijo"
+
+#: app/Activation/Dependencies.php:119 app/Views/forms/link-form.php:105
+#: app/Views/forms/new-child.php:93
+msgid "Add"
+msgstr "Añadir"
+
+#: app/Activation/Dependencies.php:120
+msgid "Add Page"
+msgstr "Añadir página"
+
+#: app/Activation/Dependencies.php:121
+msgid "Add Pages"
+msgstr "Añadir páginas"
+
+#: app/Activation/Dependencies.php:122 app/Views/listing.php:10
+#: app/Views/listing.php:11
+msgid "Add Multiple"
+msgstr "Añadir múltiple"
+
+#: app/Activation/Dependencies.php:123
+msgid ""
+"Are you sure you would like to empty the trash? This action is not "
+"reversable."
+msgstr "¿Estás seguro que quieres vaciar la papelera? No se puede deshacer."
+
+#: app/Activation/Dependencies.php:124 app/Views/partials/row-link.php:40
+#: app/Views/partials/row.php:45
+msgid "Hidden"
+msgstr "Oculto"
+
+#: app/Bootstrap.php:60
+msgid "Settings"
+msgstr "Parámetros"
+
+#: app/Config/Settings.php:53 app/Views/settings/settings.php:2
+msgid "Nested Pages Settings"
+msgstr "Parámetros de páginas anidadas"
+
+#: app/Config/Settings.php:54
+msgid "Nested Pages"
+msgstr "Páginas anidadas"
+
+#: app/Entities/AdminMenu/AdminSubmenu.php:75
+#: app/Views/partials/tool-list.php:33
+msgid "Default"
+msgstr "Por defecto"
+
+#: app/Entities/Confirmation/LinkDeletedConfirmation.php:12
+msgid "Link successfully deleted."
+msgstr "Enlace eliminado correctamente."
+
+#: app/Entities/Confirmation/TrashConfirmation.php:16
+msgid "pages moved to the Trash"
+msgstr "páginas movidas a la Papelera"
+
+#: app/Entities/Confirmation/TrashConfirmation.php:18
+msgid "moved to the Trash"
+msgstr "movido a la Papelera"
+
+#: app/Entities/Confirmation/TrashConfirmation.php:23
+msgid "Undo"
+msgstr "Deshacer"
+
+#: app/Entities/Confirmation/TrashRestoredConfirmation.php:14
+msgid "pages"
+msgstr "páginas"
+
+#: app/Entities/Confirmation/TrashRestoredConfirmation.php:14
+msgid "page"
+msgstr "página"
+
+#: app/Entities/Confirmation/TrashRestoredConfirmation.php:15
+msgid "restored from trash"
+msgstr "restaurado de la papelera"
+
+#: app/Entities/PostType/PostTypeRepository.php:189
+msgid "Nested View"
+msgstr "Vista anidada"
+
+#: app/Entities/PostType/PostTypeRepository.php:189
+msgid "Sort View"
+msgstr "Ordenar vista"
+
+#: app/Entities/PostType/RegisterPostTypes.php:22
+msgid "Redirects"
+msgstr "Redirige"
+
+#: app/Entities/PostType/RegisterPostTypes.php:23
+msgid "Redirect"
+msgstr "Redirigir"
+
+#: app/Form/Listeners/BaseHandler.php:80
+msgid "Incorrect Form Field"
+msgstr "Campo del formulario incorrecto"
+
+#: app/Form/Listeners/BaseHandler.php:109
+msgid "There was an error updating the page."
+msgstr "Ha habido un error actualizando la página."
+
+#: app/Form/Listeners/ClonePost.php:36
+msgid "Post Not Found"
+msgstr "Entrada no encontrada"
+
+#: app/Form/Listeners/EmptyTrash.php:19
+msgid "Trash successfully emptied."
+msgstr "Papelera vaciada correctamente."
+
+#: app/Form/Listeners/NewMenuItem.php:27
+msgid "Custom Links must have a label"
+msgstr "Los enlaces personalizados deben tener una etiqueta"
+
+#: app/Form/Listeners/NewMenuItem.php:28
+msgid "Please provide a valid URL"
+msgstr "Por favor, escribe una URL válida"
+
+#: app/Form/Listeners/NewMenuItem.php:47
+#: app/Form/Listeners/QuickEditLink.php:30
+msgid "Link successfully updated"
+msgstr "Enlace actualizado correctamente"
+
+#: app/Form/Listeners/QuickEdit.php:32
+msgid "Post successfully updated"
+msgstr "Entrada actualizada correctamente"
+
+#: app/Form/Listeners/Sort.php:29
+msgid "Page order successfully updated."
+msgstr "Orden de página actualizado correctamente."
+
+#: app/Form/Listeners/Sort.php:31
+msgid "There was an error updating the page order."
+msgstr "Hubo un error actualizando el orden de la página"
+
+#: app/Form/Listeners/SyncMenu.php:27
+msgid "Menu sync enabled."
+msgstr "Sincronización de menú habilitada."
+
+#: app/Form/Listeners/SyncMenu.php:30
+msgid "Menu sync disabled."
+msgstr "Sincronización de menú deshabilitada."
+
+#: app/Form/Validation/Validation.php:134
+msgid "Please provide a valid date."
+msgstr "Por favor, escribe una fecha válida."
+
+#: app/Form/Validation/Validation.php:145
+msgid "Please provide a menu title."
+msgstr "Por favor, escribe un título para el menú."
+
+#: app/Form/Validation/Validation.php:148
+msgid "Please provide a valid URL."
+msgstr "Por favor, escribe una URL válida."
+
+#: app/Form/Validation/Validation.php:158
+msgid "Please provide a "
+msgstr "Por favor, escribe"
+
+#: app/Form/Validation/Validation.php:171
+msgid "A valid parent page was not provided."
+msgstr "No se proporcionó una página padre válida."
+
+#: app/Form/Validation/Validation.php:178
+msgid "Please provide at least one page title."
+msgstr "Por favor, escribe al menos un título de página."
+
+#: app/Form/Validation/Validation.php:186
+msgid "Page titles cannot be blank."
+msgstr "Los títulos de página no pueden estar vacíos."
+
+#: app/Views/forms/clone-form.php:9 app/Views/forms/clone-form.php:65
+#: app/Views/partials/row.php:99
+msgid "Clone"
+msgstr "Clonar"
+
+#: app/Views/forms/clone-form.php:14
+msgid "Number of Copies"
+msgstr "Número de copias"
+
+#: app/Views/forms/clone-form.php:26 app/Views/forms/new-child.php:35
+#: app/Views/forms/quickedit-link.php:27 app/Views/forms/quickedit-post.php:76
+msgid "Status"
+msgstr "Estado"
+
+#: app/Views/forms/clone-form.php:29 app/Views/forms/new-child.php:38
+#: app/Views/forms/quickedit-link.php:30 app/Views/forms/quickedit-post.php:79
+#: app/Views/partials/tool-list.php:10
+msgid "Published"
+msgstr "Publicado"
+
+#: app/Views/forms/clone-form.php:31 app/Views/forms/quickedit-link.php:33
+#: app/Views/forms/quickedit-post.php:82
+msgid "Pending Review"
+msgstr "Pendiente de revisión"
+
+#: app/Views/forms/clone-form.php:32 app/Views/forms/new-child.php:40
+#: app/Views/forms/quickedit-link.php:34 app/Views/forms/quickedit-post.php:83
+#: app/Views/partials/tool-list.php:14
+msgid "Draft"
+msgstr "Borrador"
+
+#: app/Views/forms/clone-form.php:50 app/Views/forms/new-child.php:61
+#: app/Views/forms/quickedit-post.php:67
+msgid "Author"
+msgstr "Autor"
+
+#: app/Views/forms/clone-form.php:62 app/Views/forms/empty-trash-modal.php:11
+#: app/Views/forms/link-form.php:101 app/Views/forms/new-child.php:90
+#: app/Views/forms/quickedit-link.php:84
+#: app/Views/forms/quickedit-post.php:207
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: app/Views/forms/empty-trash-modal.php:12
+msgid "Empty Trash"
+msgstr "Vaciar papelera"
+
+#: app/Views/forms/link-form.php:18
+msgid "Custom Link"
+msgstr "Enlace personalizado"
+
+#: app/Views/forms/link-form.php:27 app/Views/forms/link-form.php:44
+msgid "Search"
+msgstr "Buscar"
+
+#: app/Views/forms/link-form.php:27 app/Views/forms/link-form.php:44
+msgid "No Results"
+msgstr "Sin resultados"
+
+#: app/Views/forms/link-form.php:58
+msgid "Select an item"
+msgstr "Selecciona un elemento"
+
+#: app/Views/forms/link-form.php:63
+msgid "Original"
+msgstr "Original"
+
+#: app/Views/forms/link-form.php:68 app/Views/forms/quickedit-link.php:22
+msgid "URL"
+msgstr "URL"
+
+#: app/Views/forms/link-form.php:72 app/Views/forms/quickedit-link.php:17
+#: app/Views/forms/quickedit-post.php:171
+msgid "Navigation Label"
+msgstr "Etiqueta de navegación"
+
+#: app/Views/forms/link-form.php:76 app/Views/forms/quickedit-link.php:44
+#: app/Views/forms/quickedit-post.php:175
+msgid "Title Attribute"
+msgstr "Atributo del título"
+
+#: app/Views/forms/link-form.php:80
+msgid "CSS Classes (optional)"
+msgstr "Clases CSS (opcional)"
+
+#: app/Views/forms/link-form.php:86 app/Views/forms/quickedit-link.php:66
+#: app/Views/forms/quickedit-post.php:193
+msgid "Open link in a new window/tab"
+msgstr "Abrir enlace en una nueva ventana/pestaña"
+
+#: app/Views/forms/new-child.php:28
+msgid "+"
+msgstr "+"
+
+#: app/Views/forms/new-child.php:71 app/Views/forms/quickedit-post.php:93
+msgid "Template"
+msgstr "Plantilla"
+
+#: app/Views/forms/new-child.php:73 app/Views/forms/quickedit-post.php:95
+msgid "Default Template"
+msgstr "Plantilla por defecto"
+
+#: app/Views/forms/new-child.php:96
+msgid "Add & Edit"
+msgstr "Añadir y editar"
+
+#: app/Views/forms/quickedit-link.php:8
+msgid "Link"
+msgstr "Enlace"
+
+#: app/Views/forms/quickedit-link.php:31 app/Views/forms/quickedit-post.php:80
+msgid "Scheduled"
+msgstr "Programado"
+
+#: app/Views/forms/quickedit-link.php:48
+#: app/Views/forms/quickedit-post.php:179
+msgid "CSS Classes"
+msgstr "Clases CSS"
+
+#: app/Views/forms/quickedit-link.php:54
+#: app/Views/forms/quickedit-post.php:187
+msgid "Hide in Nav Menu"
+msgstr "Ocultar en el menú de navegación"
+
+#: app/Views/forms/quickedit-link.php:60
+#: app/Views/forms/quickedit-post.php:126
+msgid "Hide in Nested Pages"
+msgstr "Ocultar en páginas anidadas"
+
+#: app/Views/forms/quickedit-link.php:87
+#: app/Views/forms/quickedit-post.php:210
+msgid "Update"
+msgstr "Actualizar"
+
+#: app/Views/forms/quickedit-post.php:24
+msgid "Slug"
+msgstr "Slug"
+
+#: app/Views/forms/quickedit-post.php:30 app/Views/forms/quickedit-post.php:45
+#: app/Views/partials/tool-list.php:63
+msgid "Date"
+msgstr "Fecha"
+
+#: app/Views/forms/quickedit-post.php:33
+msgid "@"
+msgstr "@"
+
+#: app/Views/forms/quickedit-post.php:36
+msgid "am"
+msgstr "a.m."
+
+#: app/Views/forms/quickedit-post.php:37
+msgid "pm"
+msgstr "p.m."
+
+#: app/Views/forms/quickedit-post.php:103
+msgid "Password"
+msgstr "Contraseña"
+
+#: app/Views/forms/quickedit-post.php:106
+msgid "&ndash;OR&ndash;"
+msgstr "&ndash;O&ndash;"
+
+#: app/Views/forms/quickedit-post.php:109
+msgid "Private"
+msgstr "Privado"
+
+#: app/Views/forms/quickedit-post.php:118
+msgid "Allow Comments"
+msgstr "Permitir comentarios"
+
+#: app/Views/forms/quickedit-post.php:135
+msgid "Menu Options"
+msgstr "Opciones de menú"
+
+#: app/Views/forms/quickedit-post.php:139
+msgid "Taxonomies"
+msgstr "Taxonomías"
+
+#: app/Views/listing.php:35
+msgid "Sync Menu"
+msgstr "Menú de sincronización"
+
+#: app/Views/partials/row.php:23
+msgid "Front Page"
+msgstr "Página principal"
+
+#: app/Views/partials/row.php:24
+msgid "Posts Page"
+msgstr "Página de entradas"
+
+#: app/Views/partials/row.php:53
+msgid "currently editing"
+msgstr "editando en este momento"
+
+#: app/Views/partials/row.php:57
+msgid "Edit"
+msgstr "Editar"
+
+#: app/Views/partials/tool-list.php:6
+msgid "All"
+msgstr "Todo"
+
+#: app/Views/partials/tool-list.php:24
+msgid "Trash"
+msgstr "Papelera"
+
+#: app/Views/partials/tool-list.php:25
+msgid "Empty"
+msgstr "Vaciar"
+
+#: app/Views/partials/tool-list.php:47
+msgid "All Authors"
+msgstr "Todos los autores"
+
+#: app/Views/partials/tool-list.php:62
+msgid "Menu Order"
+msgstr "Orden del menú"
+
+#: app/Views/partials/tool-list.php:66
+msgid "Order By"
+msgstr "Ordenado por"
+
+#: app/Views/partials/tool-list.php:80
+msgid "Ascending"
+msgstr "Ascendente"
+
+#: app/Views/partials/tool-list.php:81
+msgid "Decending"
+msgstr "Descendente"
+
+#: app/Views/partials/tool-list.php:110
+msgid "All "
+msgstr "Todo"
+
+#: app/Views/settings/settings-general.php:4
+msgid "Currently Enabled"
+msgstr "Actualmente habilitado"
+
+#: app/Views/settings/settings-general.php:4
+msgid "Currently Disabled"
+msgstr "Actualmente deshabilitado"
+
+#: app/Views/settings/settings-general.php:8
+msgid "Nested Pages Version"
+msgstr "Versión de Nested Pages"
+
+#: app/Views/settings/settings-general.php:13
+msgid "Menu Name"
+msgstr "Nombre del menú"
+
+#: app/Views/settings/settings-general.php:16
+msgid ""
+"Important: Once the menu name has changed, theme files should be updated to "
+"reference the new name."
+msgstr ""
+"Importante: Una vez que el nombre de menú ha cambiado, los ficheros del tema "
+"deberían ser actualizados para referenciar al nuevo nombre."
+
+#: app/Views/settings/settings-general.php:21
+msgid "Display Options"
+msgstr "Opciones de visualización"
+
+#: app/Views/settings/settings-general.php:25
+msgid "Enable Date Picker in Quick Edit"
+msgstr "Permitir el selector de fecha en Edición rápida"
+
+#: app/Views/settings/settings-general.php:30
+msgid "Menu Sync"
+msgstr "Menú de sincronización"
+
+#: app/Views/settings/settings-general.php:36
+msgid "Hide Menu Sync Checkbox"
+msgstr "Ocultar el checkbox del menú de sincronización"
+
+#: app/Views/settings/settings-general.php:43
+msgid "Disable Menu Sync Completely"
+msgstr "Deshabilitar el menú de sincronización completamente"
+
+#: app/Views/settings/settings-general.php:49
+msgid "Allow Page Sorting"
+msgstr "Permitir la ordenación de páginas"
+
+#: app/Views/settings/settings-general.php:59
+msgid "Admins always have sorting ability."
+msgstr "Los administradores siempre tienen la opción de ordenación."
+
+#: app/Views/settings/settings-posttypes.php:7
+msgid "Enable Nested Pages for:"
+msgstr "Habilitar Nested Pages para:"
+
+#: app/Views/settings/settings-posttypes.php:14
+msgid "Post Type"
+msgstr "Tipo de entrada"
+
+#: app/Views/settings/settings-posttypes.php:15
+msgid "Hierarchical"
+msgstr "Jerárquico"
+
+#: app/Views/settings/settings-posttypes.php:16
+msgid "Enabled"
+msgstr "Habilitado"
+
+#: app/Views/settings/settings-posttypes.php:17
+msgid "Replace Default Menu"
+msgstr "Reemplazar menú por defecto"
+
+#: app/Views/settings/settings-posttypes.php:18
+msgid "Hide Default Link"
+msgstr "Ocultar el enlace por defecto"
+
+#: app/Views/settings/settings-posttypes.php:19
+msgid "Disable Nesting"
+msgstr "Desactivar anidado"
+
+#: app/Views/settings/settings-posttypes.php:51
+msgid "Note: Nesting features not enabled for non-hierarchical post types."
+msgstr ""
+"Nota: las funcionalidades de anidado no están habiltiadas para tipo de "
+"entrada no jerárquicas."
+
+#: app/Views/settings/settings-posttypes.php:54
+msgid ""
+"If default menu is not replaced, an additional submenu item will be added "
+"for \"Nested/Sort View\""
+msgstr ""
+"Si el menú por defecto no se reemplaza, el elemento adicional del submenú se "
+"añadirá para \"Nested/Sort View\""
+
+#: app/Views/settings/settings-posttypes.php:57
+msgid ""
+"<strong>Important:</strong> Changing page structures on live sites may "
+"effect SEO and existing inbound links. Limit URL structure changes on live "
+"sites by disabling nesting. Sorting within the current nesting structure "
+"will still be available. If nesting changes are made to a live site, it may "
+"help to add a 301 redirect from the old location to the new one."
+msgstr ""
+"<strong>Importante:</strong> Cambiar las estructuras de página en producción "
+"puede afectar a los enlaces de SEO. Limita los cambios de estructura "
+"desactivando el anidado. La ordenación con la actual estructura de anidado "
+"continuará estando disponible. Si los cambios de anidado se hacen en "
+"producción, una redirección 301 ayudará a redirigir a los visitantes desde "
+"el sitio antiguo al nuevo."
+
+#: app/Views/settings/settings.php:6
+msgid "General"
+msgstr "General"
+
+#: app/Views/settings/settings.php:10
+msgid "Post Types"
+msgstr "Tipos de entrada"
