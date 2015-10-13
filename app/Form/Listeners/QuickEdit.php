@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace NestedPages\Form\Listeners;
 
@@ -6,7 +6,7 @@ namespace NestedPages\Form\Listeners;
 * Handles processing the quick edit form
 * @return json response
 */
-class QuickEdit extends BaseHandler 
+class QuickEdit extends BaseHandler
 {
 
 	public function __construct()
@@ -28,8 +28,8 @@ class QuickEdit extends BaseHandler
 		if ( isset($this->data['tax_input']) ) $this->addFlatTaxonomies();
 		$this->addData();
 		$this->response = array(
-			'status' => 'success', 
-			'message' => __('Post successfully updated'), 
+			'status' => 'success',
+			'message' => __('Post successfully updated.'),
 			'post_data' => $this->data
 		);
 	}

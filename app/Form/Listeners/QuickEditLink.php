@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace NestedPages\Form\Listeners;
 
@@ -6,7 +6,7 @@ namespace NestedPages\Form\Listeners;
 * Handles processing the quick edit form for redirects
 * @return json response
 */
-class QuickEditLink extends BaseHandler 
+class QuickEditLink extends BaseHandler
 {
 
 	public function __construct()
@@ -26,8 +26,8 @@ class QuickEditLink extends BaseHandler
 		if ( !$updated ) $this->sendErrorResponse();
 		$this->addData();
 		$this->response = array(
-			'status' => 'success', 
-			'message' => __('Link successfully updated', 'nestedpages'),
+			'status' => 'success',
+			'message' => __('Link successfully updated.', 'nestedpages'),
 			'post_data' => $this->data
 		);
 	}

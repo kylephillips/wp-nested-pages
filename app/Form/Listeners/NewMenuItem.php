@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace NestedPages\Form\Listeners;
 
@@ -8,7 +8,7 @@ use NestedPages\Helpers;
 * Creates new Menu item and saves redirect post
 * @return json response
 */
-class NewMenuItem extends BaseHandler 
+class NewMenuItem extends BaseHandler
 {
 	public function __construct()
 	{
@@ -24,8 +24,8 @@ class NewMenuItem extends BaseHandler
 	*/
 	private function validateFields()
 	{
-		if ( $_POST['menuType'] == 'custom' && $_POST['navigationLabel'] == "" ) return wp_send_json(array('status' => 'error', 'message' => __('Custom Links must have a label', 'nestedpages')));
-		if ( $_POST['menuType'] == 'custom' && $_POST['url'] == "" ) return wp_send_json(array('status' => 'error', 'message' => __('Please provide a valid URL', 'nestedpages')));
+		if ( $_POST['menuType'] == 'custom' && $_POST['navigationLabel'] == "" ) return wp_send_json(array('status' => 'error', 'message' => __('Custom Links must have a label.', 'nestedpages')));
+		if ( $_POST['menuType'] == 'custom' && $_POST['url'] == "" ) return wp_send_json(array('status' => 'error', 'message' => __('Please provide a valid URL.', 'nestedpages')));
 	}
 
 	/**
@@ -35,16 +35,16 @@ class NewMenuItem extends BaseHandler
 	{
 		$new_link = $this->post_update_repo->saveRedirect($this->data);
 		if ( !$new_link ) $this->sendErrorResponse();
-		
+
 		$this->data['post'] = $_POST;
 		$this->data['post']['id'] = $new_link;
 		$this->data['post']['content'] = esc_url($_POST['url']);
 		$this->data['post']['delete_link'] = get_delete_post_link($new_link, '', true);
 		$this->addExtras($new_link);
-		
+
 		$this->response = array(
-			'status' => 'success', 
-			'message' => __('Link successfully updated', 'nestedpages'),
+			'status' => 'success',
+			'message' => __('Link successfully updated.', 'nestedpages'),
 			'post_data' => $this->data['post']
 		);
 	}
@@ -61,7 +61,7 @@ class NewMenuItem extends BaseHandler
 		if ( $type == 'custom' ){
 			$this->data['post']['original_link'] = null;
 			$this->data['post']['original_title'] = null;
-			return;	
+			return;
 		}
 		if ( $type == 'taxonomy' ){
 			$term = get_term_by('id', $this->data['post']['objectId'], $this->data['post']['objectType']);
