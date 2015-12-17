@@ -24,11 +24,13 @@ class RedirectsFrontEnd
 	*/
 	private function removeParentSlugs($post, $slug)
 	{
-		$parent_type = get_post_type($post->post_parent);
-		if ( $parent_type == 'np-redirect' ){
-			$parent_post = get_post($post->post_parent);
-			$slug = str_replace($parent_post->post_name . '/', '', $slug);
-			return $this->removeParentSlugs($parent_post, $slug);
+		if ( $post->post_parent > 0 ) {
+			$parent_type = get_post_type($post->post_parent);
+			if ( $parent_type == 'np-redirect' ){
+				$parent_post = get_post($post->post_parent);
+				$slug = str_replace($parent_post->post_name . '/', '', $slug);
+				return $this->removeParentSlugs($parent_post, $slug);
+			}
 		}
 		return $slug;
 	}
