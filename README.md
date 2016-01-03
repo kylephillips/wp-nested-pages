@@ -25,4 +25,4 @@ For installation and usage information visit [nestedpages.com](http://nestedpage
 
 ## Attribution
 
-This plugin wouldn't be possible with the [Nested Sortable](https://github.com/ilikenwf/nestedSortable) jQuery Plugin. It also makes use of the [jQuery UI Touch Punch](https://github.com/furf/jquery-ui-touch-punch) plugin for touch support.
+This plugin wouldn't be possible without the [Nested Sortable](https://github.com/ilikenwf/nestedSortable) jQuery Plugin. It also makes use of the [jQuery UI Touch Punch](https://github.com/furf/jquery-ui-touch-punch) plugin for touch support.

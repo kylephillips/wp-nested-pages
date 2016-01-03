@@ -3,27 +3,27 @@
 
 	<ul class="subsubsub">
 		<li>
-			<a href="#all" class="np-toggle-publish active"><?php _e('All'); ?></a> | 
-		</li>
-		
-		<li>
-			<a href="#published" class="np-toggle-publish"><?php _e('Published'); ?></a> | 
+			<a href="#all" class="np-toggle-publish active"><?php _e('All'); ?></a> |
 		</li>
 
 		<li>
-			<a href="#draft" class="np-toggle-publish"><?php _e('Draft'); ?></a> | 
+			<a href="#published" class="np-toggle-publish"><?php _e('Published'); ?></a> |
 		</li>
-		
+
+		<li>
+			<a href="#draft" class="np-toggle-publish"><?php _e('Draft'); ?></a> |
+		</li>
+
 		<li>
 			<a href="#show" class="np-toggle-hidden"><?php _e('Show Hidden', 'nestedpages'); ?> </a>
-			<span class="count">(<?php echo $this->post_repo->getHiddenCount(array($this->post_type->name)); ?>)</span> | 
+			<span class="count">(<?php echo $this->post_repo->getHiddenCount(array($this->post_type->name)); ?>)</span> |
 		</li>
-		
+
 		<?php if ( current_user_can('delete_pages') && $trashedCount > 0) : ?>
 		<li class="np-trash-links">
 			<a href="<?php echo $this->post_type_repo->trashLink($this->post_type->name); ?>"><?php _e('Trash'); ?> </a>
 			<span class="count">(<a href="#" class="np-empty-trash" data-posttype="<?php echo $this->post_type->name; ?>"><?php _e('Empty', 'nestedpages'); ?></a> <?php echo $trashedCount; ?>)</span>
-			 | 
+			 |
 		</li>
 		<?php endif; ?>
 
@@ -59,7 +59,7 @@
 				<select id="np_orderby" name="np_orderby" class="nestedpages-sort">
 					<?php
 						$options = array(
-							'menu_order' => __('Menu Order', 'nestedpages'), 
+							'menu_order' => __('Menu Order', 'nestedpages'),
 							'date' => __('Date', 'nestedpages'),
 							'title' => __('Title', 'nestedpages')
 						);
@@ -77,8 +77,8 @@
 				<select id="np_order" name="np_order" class="nestedpages-sort">
 					<?php
 						$options = array(
-							'ASC' => __('Ascending', 'nestedpages'), 
-							'DESC' => __('Decending', 'nestedpages')
+							'ASC' => __('Ascending', 'nestedpages'),
+							'DESC' => __('Descending', 'nestedpages')
 						);
 						$out = '';
 						foreach ( $options as $key => $option ){

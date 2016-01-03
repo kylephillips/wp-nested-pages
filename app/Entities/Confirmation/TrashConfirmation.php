@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 namespace NestedPages\Entities\Confirmation;
 
 /**
 * Confirm page(s) moved to trash
 */
-class TrashConfirmation implements ConfirmationInterface 
+class TrashConfirmation implements ConfirmationInterface
 {
 
 	public function setMessage()
@@ -13,9 +13,9 @@ class TrashConfirmation implements ConfirmationInterface
 		$out = '';
 		$trashed = ( explode(',', $_GET['ids']) );
 		if ( count($trashed) > 1 ){
-			$out .= count($trashed) . ' ' . __('pages moved to the Trash', 'nestedpages');
+			$out .= count($trashed) . ' ' . __('pages moved to the Trash.', 'nestedpages');
 		} else {
-			$out .= '<strong>' . get_the_title($trashed[0]) . ' </strong>' . __('moved to the Trash', 'nestedpages');
+			$out .= '<strong>' . get_the_title($trashed[0]) . ' </strong>' . __('moved to the Trash.', 'nestedpages');
 
 			// Undo Link
 			if ( current_user_can('delete_pages') ) {
