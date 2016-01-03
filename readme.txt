@@ -89,6 +89,9 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.5.5 =
+* Spanish translation added (Thanks to Raúl Martínez)
+
 = 1.5.4 = 
 * Added Nested Level parameter to listing filter.
 
