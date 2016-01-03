@@ -28,7 +28,7 @@ class RedirectsFrontEnd
 		if ( $parent_type == 'np-redirect' ){
 			$parent_post = get_post($post->post_parent);
 			$slug = str_replace($parent_post->post_name . '/', '', $slug);
-			return $this->removeParentSlugs($parent_post, $slug);
+			return $slug;
 		}
 		return $slug;
 	}
