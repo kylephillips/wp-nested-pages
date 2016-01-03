@@ -23,7 +23,7 @@ class Helpers
 	*/
 	public static function plugin_url()
 	{
-		return plugins_url('/', NESTEDPAGES_DIR);
+		return plugins_url('/', NESTEDPAGES_URI);
 	}
 
 	/**
