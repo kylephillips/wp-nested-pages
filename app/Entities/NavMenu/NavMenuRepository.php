@@ -42,7 +42,7 @@ class NavMenuRepository
 			$meta_table = $prefix . 'postmeta';
 			$term_relationships_table = $prefix . 'term_relationships';
 			$terms_table = $prefix . 'terms';
-			$sql = "SELECT 
+			$sql = "SELECT
 				pm.post_id,
 				t.term_id,
 				t.name,
@@ -50,8 +50,10 @@ class NavMenuRepository
 				FROM $meta_table AS pm
 				LEFT JOIN $term_relationships_table AS tr
 				ON tr.object_id = pm.post_id
+				LEFT JOIN $term_taxonomy_table AS tt
+				ON tt.term_taxonomy_id = tr.term_taxonomy_id
 				LEFT JOIN $terms_table AS t
-				ON t.term_id = tr.term_taxonomy_id
+				ON t.term_id = tt.term_id
 				LEFT JOIN $meta_table AS pmx
 				ON pmx.post_id = pm.post_id AND pmx.meta_key = '_menu_item_xfn'
 				WHERE pm.meta_value = $id AND pm.meta_key = '_menu_item_object_id'
