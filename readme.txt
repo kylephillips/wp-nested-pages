@@ -38,6 +38,7 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 * Italian (Francesco Canovi)
 * Portuguese (Luis Martins)
 * Russian (Алексей Катаев)
+* Spanish (Raúl Martínez)
 * Turkish (Yuksel Beyti)
 
 == Installation ==
