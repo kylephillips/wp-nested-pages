@@ -156,9 +156,10 @@ NestedPages.NewPage = function()
 				plugin.posts = data.new_pages;
 				plugin.addPosts();
 			},
-			error: function(){
+			error: function(data){
+				console.log(data);
 				plugin.toggleLoading(false);
-				$(form).find(NestedPages.selectors.quickEditErrorDiv).text('The form could not be saved at this time.').show();
+				$(plugin.form).find(NestedPages.selectors.quickEditErrorDiv).text('The form could not be saved at this time.').show();
 			}
 		});
 	}
