@@ -34,6 +34,7 @@ class RegisterPostTypes
 			'hierarchical' => true,  
 			'has_archive' => false,
 			'supports' => array('title','editor'),
+			'_edit_link' => 'post.php?post=%d',
 			'rewrite' => array('slug' => 'np-redirect', 'with_front' => false)
 		);
 		register_post_type( 'np-redirect' , $args );
