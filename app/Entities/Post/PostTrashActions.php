@@ -76,6 +76,7 @@ class PostTrashActions
 	private function resetToggles($post_id, $post_type)
 	{
 		$visible_pages = $this->user_repo->getVisiblePages();
+		if ( !isset($visible_pages[$post_type]) ) return;
 		$visible_pages = $visible_pages[$post_type];
 
 		if ( !isset($visible_pages[$post_type]) ) return;
