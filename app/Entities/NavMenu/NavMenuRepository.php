@@ -41,6 +41,7 @@ class NavMenuRepository
 			$prefix = $wpdb->prefix;
 			$meta_table = $prefix . 'postmeta';
 			$term_relationships_table = $prefix . 'term_relationships';
+			$term_taxonomy_table = $prefix . 'term_taxonomy';
 			$terms_table = $prefix . 'terms';
 			$sql = "SELECT
 				pm.post_id,
