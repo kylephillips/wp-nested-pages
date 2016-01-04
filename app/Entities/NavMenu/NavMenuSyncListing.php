@@ -97,11 +97,14 @@ class NavMenuSyncListing extends NavMenuSync
 			$xfn = 'page';
 		}
 
+		// WP 4.4 Fix, empty nav title attribute causing post_excerpt null error
+		$attr_title = ( $this->post->nav_title_attr ) ? $this->post->nav_title_attr : '';
+
 		$args = array(
 			'menu-item-title' => $title,
 			'menu-item-position' => $this->count,
 			'menu-item-url' => $url,
-			'menu-item-attr-title' => $this->post->nav_title_attr,
+			'menu-item-attr-title' => $attr_title,
 			'menu-item-status' => 'publish',
 			'menu-item-classes' => $this->post->nav_css,
 			'menu-item-type' => $type,
@@ -109,7 +112,8 @@ class NavMenuSyncListing extends NavMenuSync
 			'menu-item-object-id' => $object_id,
 			'menu-item-parent-id' => $menu_parent,
 			'menu-item-xfn' => $xfn,
-			'menu-item-target' => $this->post->link_target
+			'menu-item-target' => $this->post->link_target,
+			'menu-item-description' => ' '
 		);
 		$menu = wp_update_nav_menu_item($this->id, $menu_item_id, $args);
 		return $menu;
