@@ -1,0 +1,590 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Nested Pages\n"
+"POT-Creation-Date: 2016-01-06 13:29+0200\n"
+"PO-Revision-Date: 2016-01-06 13:47+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Last-Translator: Marcus Forsberg <marcus@marcusforsberg.net>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sv_SE\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: app/Activation/Dependencies.php:106 app/Views/listing.php:29
+msgid "Expand All"
+msgstr "Expandera alla"
+
+#: app/Activation/Dependencies.php:107
+msgid "Collapse All"
+msgstr "Kollapsa alla"
+
+#: app/Activation/Dependencies.php:108 app/Views/partials/tool-list.php:18
+msgid "Show Hidden"
+msgstr "Visa dolda"
+
+#: app/Activation/Dependencies.php:109
+msgid "Hide Hidden"
+msgstr "Visa ej dolda"
+
+#: app/Activation/Dependencies.php:110 app/Views/listing.php:16
+#: app/Views/listing.php:17
+msgid "Add Link"
+msgstr "Lägg till länk"
+
+#: app/Activation/Dependencies.php:111
+msgid "Add Child Link"
+msgstr "Lägg till underlänk"
+
+#: app/Activation/Dependencies.php:112
+#: app/Entities/Post/PostUpdateRepository.php:69
+#: app/Views/forms/new-child.php:19 app/Views/forms/new-child.php:21
+#: app/Views/forms/quickedit-post.php:20 app/Views/partials/tool-list.php:64
+msgid "Title"
+msgstr "Titel"
+
+#: app/Activation/Dependencies.php:113 app/Views/forms/quickedit-post.php:11
+#: app/Views/partials/row-link.php:68 app/Views/partials/row.php:130
+msgid "Quick Edit"
+msgstr "Snabbredigera"
+
+#: app/Activation/Dependencies.php:114
+msgid "Page Title"
+msgstr "Sidtitel"
+
+#: app/Activation/Dependencies.php:115 app/Views/partials/row.php:134
+msgid "View"
+msgstr "Visa"
+
+#: app/Activation/Dependencies.php:116 app/Views/forms/new-child.php:7
+#: app/Views/partials/row.php:94
+msgid "Add Child"
+msgstr "Skapa undersida"
+
+#: app/Activation/Dependencies.php:117
+msgid "Add Child Page"
+msgstr "Skapa undersida"
+
+#: app/Activation/Dependencies.php:118
+msgid "Add Child Pages"
+msgstr "Skapa undersidor"
+
+#: app/Activation/Dependencies.php:119 app/Views/forms/link-form.php:105
+#: app/Views/forms/new-child.php:93
+msgid "Add"
+msgstr "Lägg till"
+
+#: app/Activation/Dependencies.php:120
+msgid "Add Page"
+msgstr "Lägg till sida"
+
+#: app/Activation/Dependencies.php:121
+msgid "Add Pages"
+msgstr "Lägg till sidor"
+
+#: app/Activation/Dependencies.php:122 app/Views/listing.php:10
+#: app/Views/listing.php:11
+msgid "Add Multiple"
+msgstr "Lägg till flera"
+
+#: app/Activation/Dependencies.php:123
+msgid ""
+"Are you sure you would like to empty the trash? This action is not "
+"reversable."
+msgstr ""
+"Är du säker på att du vill tömma papperskorgen? Detta går inte att ångra."
+
+#: app/Activation/Dependencies.php:124 app/Views/partials/row-link.php:40
+#: app/Views/partials/row.php:45
+msgid "Hidden"
+msgstr "Dold"
+
+#: app/Bootstrap.php:60
+msgid "Settings"
+msgstr "Inställningar"
+
+#: app/Config/Settings.php:53 app/Views/settings/settings.php:2
+msgid "Nested Pages Settings"
+msgstr "Inställningar för Nested Pages"
+
+#: app/Config/Settings.php:54
+msgid "Nested Pages"
+msgstr "Nested Pages"
+
+#: app/Entities/AdminMenu/AdminSubmenu.php:75
+#: app/Views/partials/tool-list.php:33
+msgid "Default"
+msgstr "Standard"
+
+#: app/Entities/Confirmation/LinkDeletedConfirmation.php:12
+msgid "Link successfully deleted."
+msgstr "Länken raderades utan problem."
+
+#: app/Entities/Confirmation/TrashConfirmation.php:16
+msgid "pages moved to the Trash"
+msgstr "sidor flyttades till papperskorgen."
+
+#: app/Entities/Confirmation/TrashConfirmation.php:18
+msgid "moved to the Trash"
+msgstr "flyttades till papperskorgen."
+
+#: app/Entities/Confirmation/TrashConfirmation.php:23
+msgid "Undo"
+msgstr "Ångra"
+
+#: app/Entities/Confirmation/TrashRestoredConfirmation.php:14
+msgid "pages"
+msgstr "sidor"
+
+#: app/Entities/Confirmation/TrashRestoredConfirmation.php:14
+msgid "page"
+msgstr "sida"
+
+#: app/Entities/Confirmation/TrashRestoredConfirmation.php:15
+msgid "restored from trash"
+msgstr "återställt från papperskorgen"
+
+#: app/Entities/PostType/PostTypeRepository.php:189
+msgid "Nested View"
+msgstr "Flernivåsvy"
+
+#: app/Entities/PostType/PostTypeRepository.php:189
+msgid "Sort View"
+msgstr "Sortera vy"
+
+#: app/Entities/PostType/RegisterPostTypes.php:22
+msgid "Redirects"
+msgstr "Omdirigeringar"
+
+#: app/Entities/PostType/RegisterPostTypes.php:23
+msgid "Redirect"
+msgstr "Omdirigering"
+
+#: app/Form/Listeners/BaseHandler.php:80
+msgid "Incorrect Form Field"
+msgstr "Ogiltigt formulärfält"
+
+#: app/Form/Listeners/BaseHandler.php:109
+msgid "There was an error updating the page."
+msgstr "Ett fel uppstod när sidan skulle uppdateras."
+
+#: app/Form/Listeners/ClonePost.php:36
+msgid "Post Not Found"
+msgstr "Inlägget hittades inte."
+
+#: app/Form/Listeners/EmptyTrash.php:19
+msgid "Trash successfully emptied."
+msgstr "Papperskorgen tömdes utan problem."
+
+#: app/Form/Listeners/NewMenuItem.php:27
+msgid "Custom Links must have a label"
+msgstr "Anpassade länkar måste ha en etikett."
+
+#: app/Form/Listeners/NewMenuItem.php:28
+msgid "Please provide a valid URL"
+msgstr "Vänligen ange en giltig URL."
+
+#: app/Form/Listeners/NewMenuItem.php:47
+#: app/Form/Listeners/QuickEditLink.php:30
+msgid "Link successfully updated"
+msgstr "Länken uppdaterades utan problem."
+
+#: app/Form/Listeners/QuickEdit.php:32
+msgid "Post successfully updated"
+msgstr "Inlägget uppdaterades utan problem."
+
+#: app/Form/Listeners/Sort.php:29
+msgid "Page order successfully updated."
+msgstr "Sidordningen uppdaterades utan problem."
+
+#: app/Form/Listeners/Sort.php:31
+msgid "There was an error updating the page order."
+msgstr "Ett fel uppstod när sidordningen skulle uppdateras."
+
+#: app/Form/Listeners/SyncMenu.php:27
+msgid "Menu sync enabled."
+msgstr "Menysynk aktiverad."
+
+#: app/Form/Listeners/SyncMenu.php:30
+msgid "Menu sync disabled."
+msgstr "Menysynk inaktiverad."
+
+#: app/Form/Validation/Validation.php:134
+msgid "Please provide a valid date."
+msgstr "Vänligen ange ett giltigt datum."
+
+#: app/Form/Validation/Validation.php:145
+msgid "Please provide a menu title."
+msgstr "Vänligen ange ett namn på menyn."
+
+#: app/Form/Validation/Validation.php:148
+msgid "Please provide a valid URL."
+msgstr "Vänligen ange en giltig URL."
+
+#: app/Form/Validation/Validation.php:158
+msgid "Please provide a "
+msgstr "Vänligen ange en"
+
+#: app/Form/Validation/Validation.php:171
+msgid "A valid parent page was not provided."
+msgstr "En giltig förälder angavs ej."
+
+#: app/Form/Validation/Validation.php:178
+msgid "Please provide at least one page title."
+msgstr "Vänligen ange minst en sidtitel."
+
+#: app/Form/Validation/Validation.php:186
+msgid "Page titles cannot be blank."
+msgstr "Sidtitlar kan inte vara tomma."
+
+#: app/Views/forms/clone-form.php:9 app/Views/forms/clone-form.php:65
+#: app/Views/partials/row.php:99
+msgid "Clone"
+msgstr "Klona"
+
+#: app/Views/forms/clone-form.php:14
+msgid "Number of Copies"
+msgstr "Antal kopior"
+
+#: app/Views/forms/clone-form.php:26 app/Views/forms/new-child.php:35
+#: app/Views/forms/quickedit-link.php:27 app/Views/forms/quickedit-post.php:76
+msgid "Status"
+msgstr "Status"
+
+#: app/Views/forms/clone-form.php:29 app/Views/forms/new-child.php:38
+#: app/Views/forms/quickedit-link.php:30 app/Views/forms/quickedit-post.php:79
+#: app/Views/partials/tool-list.php:10
+msgid "Published"
+msgstr "Publiserad"
+
+#: app/Views/forms/clone-form.php:31 app/Views/forms/quickedit-link.php:33
+#: app/Views/forms/quickedit-post.php:82
+msgid "Pending Review"
+msgstr "Väntar på granskning"
+
+#: app/Views/forms/clone-form.php:32 app/Views/forms/new-child.php:40
+#: app/Views/forms/quickedit-link.php:34 app/Views/forms/quickedit-post.php:83
+#: app/Views/partials/tool-list.php:14
+msgid "Draft"
+msgstr "Utkast"
+
+#: app/Views/forms/clone-form.php:50 app/Views/forms/new-child.php:61
+#: app/Views/forms/quickedit-post.php:67
+msgid "Author"
+msgstr "Författare"
+
+#: app/Views/forms/clone-form.php:62 app/Views/forms/empty-trash-modal.php:11
+#: app/Views/forms/link-form.php:101 app/Views/forms/new-child.php:90
+#: app/Views/forms/quickedit-link.php:84 app/Views/forms/quickedit-post.php:207
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: app/Views/forms/empty-trash-modal.php:12
+msgid "Empty Trash"
+msgstr "Töm papperskorgen"
+
+#: app/Views/forms/link-form.php:18
+msgid "Custom Link"
+msgstr "Anpassad länk"
+
+#: app/Views/forms/link-form.php:27 app/Views/forms/link-form.php:44
+msgid "Search"
+msgstr "Sök"
+
+#: app/Views/forms/link-form.php:27 app/Views/forms/link-form.php:44
+msgid "No Results"
+msgstr "Inga resultat"
+
+#: app/Views/forms/link-form.php:58
+msgid "Select an item"
+msgstr "Välj ett objekt"
+
+#: app/Views/forms/link-form.php:63
+msgid "Original"
+msgstr "Original"
+
+#: app/Views/forms/link-form.php:68 app/Views/forms/quickedit-link.php:22
+msgid "URL"
+msgstr "URL"
+
+#: app/Views/forms/link-form.php:72 app/Views/forms/quickedit-link.php:17
+#: app/Views/forms/quickedit-post.php:171
+msgid "Navigation Label"
+msgstr "Navigationsetikett"
+
+#: app/Views/forms/link-form.php:76 app/Views/forms/quickedit-link.php:44
+#: app/Views/forms/quickedit-post.php:175
+msgid "Title Attribute"
+msgstr "Titelattribut"
+
+#: app/Views/forms/link-form.php:80
+msgid "CSS Classes (optional)"
+msgstr "CSS-klasser (frivilligt)"
+
+#: app/Views/forms/link-form.php:86 app/Views/forms/quickedit-link.php:66
+#: app/Views/forms/quickedit-post.php:193
+msgid "Open link in a new window/tab"
+msgstr "Öppna länk i nytt fönster/ny flik"
+
+#: app/Views/forms/new-child.php:28
+msgid "+"
+msgstr "+"
+
+#: app/Views/forms/new-child.php:71 app/Views/forms/quickedit-post.php:93
+msgid "Template"
+msgstr "Mall"
+
+#: app/Views/forms/new-child.php:73 app/Views/forms/quickedit-post.php:95
+msgid "Default Template"
+msgstr "Standardmall"
+
+#: app/Views/forms/new-child.php:96
+msgid "Add & Edit"
+msgstr "Skapa & Redigera"
+
+#: app/Views/forms/quickedit-link.php:8
+msgid "Link"
+msgstr "Länk"
+
+#: app/Views/forms/quickedit-link.php:31 app/Views/forms/quickedit-post.php:80
+msgid "Scheduled"
+msgstr "Schemalagd"
+
+#: app/Views/forms/quickedit-link.php:48 app/Views/forms/quickedit-post.php:179
+msgid "CSS Classes"
+msgstr "CSS-klasser"
+
+#: app/Views/forms/quickedit-link.php:54 app/Views/forms/quickedit-post.php:187
+msgid "Hide in Nav Menu"
+msgstr "Dölj i menyn"
+
+#: app/Views/forms/quickedit-link.php:60 app/Views/forms/quickedit-post.php:126
+msgid "Hide in Nested Pages"
+msgstr "Dölj i Nested Pages"
+
+#: app/Views/forms/quickedit-link.php:87 app/Views/forms/quickedit-post.php:210
+msgid "Update"
+msgstr "Uppdatera"
+
+#: app/Views/forms/quickedit-post.php:24
+msgid "Slug"
+msgstr "Permalänk"
+
+#: app/Views/forms/quickedit-post.php:30 app/Views/forms/quickedit-post.php:45
+#: app/Views/partials/tool-list.php:63
+msgid "Date"
+msgstr "Datum"
+
+#: app/Views/forms/quickedit-post.php:33
+msgid "@"
+msgstr "@"
+
+#: app/Views/forms/quickedit-post.php:36
+msgid "am"
+msgstr "am"
+
+#: app/Views/forms/quickedit-post.php:37
+msgid "pm"
+msgstr "pm"
+
+#: app/Views/forms/quickedit-post.php:103
+msgid "Password"
+msgstr "Lösenord"
+
+#: app/Views/forms/quickedit-post.php:106
+msgid "&ndash;OR&ndash;"
+msgstr "&ndash;ELLER&ndash;"
+
+#: app/Views/forms/quickedit-post.php:109
+msgid "Private"
+msgstr "Privat"
+
+#: app/Views/forms/quickedit-post.php:118
+msgid "Allow Comments"
+msgstr "Tillåt kommentarer"
+
+#: app/Views/forms/quickedit-post.php:135
+msgid "Menu Options"
+msgstr "Menyalternativ"
+
+#: app/Views/forms/quickedit-post.php:139
+msgid "Taxonomies"
+msgstr "Taxonomier"
+
+#: app/Views/listing.php:35
+msgid "Sync Menu"
+msgstr "Synka meny"
+
+#: app/Views/partials/row.php:23
+msgid "Front Page"
+msgstr "Startsida"
+
+#: app/Views/partials/row.php:24
+msgid "Posts Page"
+msgstr "Inläggssida"
+
+#: app/Views/partials/row.php:53
+msgid "currently editing"
+msgstr "redigerar just nu"
+
+#: app/Views/partials/row.php:57
+msgid "Edit"
+msgstr "Redigera"
+
+#: app/Views/partials/tool-list.php:6
+msgid "All"
+msgstr "Alla"
+
+#: app/Views/partials/tool-list.php:24
+msgid "Trash"
+msgstr "Papperskorgen"
+
+#: app/Views/partials/tool-list.php:25
+msgid "Empty"
+msgstr "Tom"
+
+#: app/Views/partials/tool-list.php:47
+msgid "All Authors"
+msgstr "Alla författare"
+
+#: app/Views/partials/tool-list.php:62
+msgid "Menu Order"
+msgstr "Menyordning"
+
+#: app/Views/partials/tool-list.php:66
+msgid "Order By"
+msgstr "Ordna efter"
+
+#: app/Views/partials/tool-list.php:80
+msgid "Ascending"
+msgstr "Stigande"
+
+#: app/Views/partials/tool-list.php:81
+msgid "Decending"
+msgstr "Fallande"
+
+#: app/Views/partials/tool-list.php:110
+msgid "All "
+msgstr "Alla"
+
+#: app/Views/settings/settings-general.php:4
+msgid "Currently Enabled"
+msgstr "Aktiverad"
+
+#: app/Views/settings/settings-general.php:4
+msgid "Currently Disabled"
+msgstr "Inaktiverad"
+
+#: app/Views/settings/settings-general.php:8
+msgid "Nested Pages Version"
+msgstr "Nested Pages-version"
+
+#: app/Views/settings/settings-general.php:13
+msgid "Menu Name"
+msgstr "Menynamn"
+
+#: app/Views/settings/settings-general.php:16
+msgid ""
+"Important: Once the menu name has changed, theme files should be updated to "
+"reference the new name."
+msgstr ""
+"Viktigt: När menynamnet har ändrats bör temafiler uppdateras för att "
+"referera till det nya namnet."
+
+#: app/Views/settings/settings-general.php:21
+msgid "Display Options"
+msgstr "Visningsalternativ"
+
+#: app/Views/settings/settings-general.php:25
+msgid "Enable Date Picker in Quick Edit"
+msgstr "Aktivera datumväljare vid snabbredigering"
+
+#: app/Views/settings/settings-general.php:30
+msgid "Menu Sync"
+msgstr "Menysynk"
+
+#: app/Views/settings/settings-general.php:36
+msgid "Hide Menu Sync Checkbox"
+msgstr "Dölj checkbox för menysynk"
+
+#: app/Views/settings/settings-general.php:43
+msgid "Disable Menu Sync Completely"
+msgstr "Inaktivera menysynk helt och hållet"
+
+#: app/Views/settings/settings-general.php:49
+msgid "Allow Page Sorting"
+msgstr "Tillåt sortering av sidor"
+
+#: app/Views/settings/settings-general.php:59
+msgid "Admins always have sorting ability."
+msgstr "Administratörer har alltid möjlighet att sortera."
+
+#: app/Views/settings/settings-posttypes.php:7
+msgid "Enable Nested Pages for:"
+msgstr "Aktivera Nested Pages för:"
+
+#: app/Views/settings/settings-posttypes.php:14
+msgid "Post Type"
+msgstr "Inläggstyp"
+
+#: app/Views/settings/settings-posttypes.php:15
+msgid "Hierarchical"
+msgstr "Hierarkisk"
+
+#: app/Views/settings/settings-posttypes.php:16
+msgid "Enabled"
+msgstr "Aktiverad"
+
+#: app/Views/settings/settings-posttypes.php:17
+msgid "Replace Default Menu"
+msgstr "Ersätt standardmeny"
+
+#: app/Views/settings/settings-posttypes.php:18
+msgid "Hide Default Link"
+msgstr "Dölj standardlänk"
+
+#: app/Views/settings/settings-posttypes.php:19
+msgid "Disable Nesting"
+msgstr "Inaktivera flernivåstöd"
+
+#: app/Views/settings/settings-posttypes.php:51
+msgid "Note: Nesting features not enabled for non-hierarchical post types."
+msgstr "Obs: Flernivåstöd är inte aktiverad för icke-hierarkiska inläggstyper."
+
+#: app/Views/settings/settings-posttypes.php:54
+msgid ""
+"If default menu is not replaced, an additional submenu item will be added "
+"for \"Nested/Sort View\""
+msgstr ""
+"Om standardmenyn inte ersätts kommer en ny undermeny skapas för \"Flernivå/"
+"Sorteringsvy\""
+
+#: app/Views/settings/settings-posttypes.php:57
+msgid ""
+"<strong>Important:</strong> Changing page structures on live sites may "
+"effect SEO and existing inbound links. Limit URL structure changes on live "
+"sites by disabling nesting. Sorting within the current nesting structure "
+"will still be available. If nesting changes are made to a live site, it may "
+"help to add a 301 redirect from the old location to the new one."
+msgstr ""
+"<strong>Viktigt:</strong> Ändringar i sidstrukturen på produktionssajter kan "
+"påverka sökmotoroptimering samt inkommande länkar. Minimera ändringar i URL-"
+"struktur på skarpa sajter genom att inaktivera flernivåstöd. Sortering i den "
+"nuvarande sidstrukturen kommer ändå att fungera. Om strukturändringar utförs "
+"på en produktionssajt kan det hjälpa att skapa en 301-omdirigering från den "
+"gamla platsen till den nya."
+
+#: app/Views/settings/settings.php:6
+msgid "General"
+msgstr "Allmänt"
+
+#: app/Views/settings/settings.php:10
+msgid "Post Types"
+msgstr "Inläggstyper"
