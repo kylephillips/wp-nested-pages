@@ -39,6 +39,7 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 * Portuguese (Luis Martins)
 * Russian (Алексей Катаев)
 * Spanish (Raúl Martínez)
+* Swedish (Marcus Forsberg)
 * Turkish (Yuksel Beyti)
 
 == Installation ==
@@ -90,6 +91,8 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 == Changelog ==
 
+= 1.5.5 =
+* Swedish translation added (Thanks to Marcus Forsberg)
 
 = 1.5.4 = 
 * Spanish translation added (Thanks to Raúl Martínez)
