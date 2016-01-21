@@ -70,10 +70,12 @@ class NavMenuSyncListing extends NavMenuSync
 	{
 		// Get the Menu Item
 		$query_type = ( $this->post->type == 'np-redirect' ) ? 'xfn' : 'object_id';
-		$menu_item_id = $this->nav_menu_repo->getMenuItem($this->post->id, $query_type);
-		if ( $this->post->nav_status == 'hide' ) return $this->removeItem($menu_item_id);
-		$menu = $this->syncMenuItem($menu_parent, $menu_item_id);
-		$this->sync( $this->post->id, $menu, $nest_level );
+		if ( $this->nav_menu_repo){
+			$menu_item_id = $this->nav_menu_repo->getMenuItem($this->post->id, $query_type);
+			if ( $this->post->nav_status == 'hide' ) return $this->removeItem($menu_item_id);
+			$menu = $this->syncMenuItem($menu_parent, $menu_item_id);
+			$this->sync( $this->post->id, $menu, $nest_level );
+		}
 	}
 
 	/**
