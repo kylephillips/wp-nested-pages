@@ -88,7 +88,7 @@ class NavMenuRepository
 	{
 		$menu_id = get_option('nestedpages_menu');
 		$term = get_term_by('id', $menu_id, 'nav_menu');
-		if ( $term ) return get_term_by('id', $menu_id, 'nav_menu');
+		if ( $term ) return $term;
 		
 		// No Menu Yet		
 		$this->createNewMenu();
