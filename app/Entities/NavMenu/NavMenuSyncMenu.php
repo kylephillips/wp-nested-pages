@@ -39,9 +39,9 @@ class NavMenuSyncMenu extends NavMenuSync
 	private $post_repo;
 
 
-	public function __construct()
+	public function __construct($menu_id)
 	{
-		parent::__construct();
+		parent::__construct($menu_id);
 		$this->post_update_repo = new PostUpdateRepository;
 		$this->post_repo = new PostRepository;
 		$this->setMenuItems();
@@ -88,7 +88,7 @@ class NavMenuSyncMenu extends NavMenuSync
 	*/
 	private function updatePost($item)
 	{
-		$parent_id = ( $item->menu_item_parent == '0' ) ? 0 : $this->index[$item->menu_item_parent]['ID'];
+		$parent_id = ( $item->menu_item_parent == '0' || !isset($this->index[$item->menu_item_parent]['ID']) ) ? 0 : $this->index[$item->menu_item_parent]['ID'];
 		
 		if ( $this->nav_menu_repo->isNavMenuItem($parent_id) ) {
 			$parent_id = $this->nav_menu_repo->getLinkfromTitle($this->index[$item->menu_item_parent]['title']);
@@ -152,6 +152,7 @@ class NavMenuSyncMenu extends NavMenuSync
 		foreach($this->index as $key => $item){
 			$menu_items[$key] = $item['ID'];
 		}
+
 		foreach($visible_pages as $page){
 			if ( !in_array($page, $menu_items) ) {
 				$data['post_id'] = $page;
