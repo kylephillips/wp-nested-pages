@@ -3,7 +3,6 @@ var sass = require('gulp-sass');
 var autoprefix = require('gulp-autoprefixer');
 var livereload = require('gulp-livereload');
 var notify = require('gulp-notify');
-var plumber = require('gulp-plumber');
 var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
@@ -40,7 +39,6 @@ gulp.task('scss', function(){
 		.pipe(sass({ outputStyle: 'compressed' }))
 		.pipe(autoprefix('last 15 version'))
 		.pipe(gulp.dest(css))
-		.pipe(plumber())
 		.pipe(livereload())
 		.pipe(notify('Nested Pages styles compiled & compressed.'));
 });
