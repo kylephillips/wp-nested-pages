@@ -6,6 +6,7 @@ use NestedPages\Helpers;
 use NestedPages\Entities\User\UserRepository;
 use NestedPages\Entities\PostType\PostTypeRepository;
 use NestedPages\Config\SettingsRepository;
+use NestedPages\Entities\PluginIntegration\ACFRepository;
 
 /**
 * Plugin Settings
@@ -25,6 +26,11 @@ class Settings
 	private $user_repo;
 
 	/**
+	* Post Type Repository
+	*/
+	private $post_type_repo;
+
+	/**
 	* Post Types
 	*/
 	private $post_types;
@@ -34,6 +40,11 @@ class Settings
 	*/
 	private $settings;
 
+	/**
+	* ACF Repository
+	*/
+	private $acf_repo;
+
 	public function __construct()
 	{
 		add_action( 'admin_menu', array( $this, 'registerSettingsPage' ) );
@@ -41,6 +52,8 @@ class Settings
 		add_action( 'updated_option', array( $this, 'updateMenuName'), 10, 3);
 		$this->user_repo = new UserRepository;
 		$this->settings = new SettingsRepository;
+		$this->post_type_repo = new PostTypeRepository;
+		$this->acf_repo = new ACFRepository;
 	}
 
 	/**
@@ -109,8 +122,7 @@ class Settings
 	*/
 	private function getPostTypes()
 	{
-		$post_repo = new PostTypeRepository;
-		return $post_repo->getPostTypesObject();
+		return $this->post_type_repo->getPostTypesObject();
 	}
 
 	/**

@@ -84,6 +84,7 @@ NestedPages.selectors = {
 	tabButtonParent : '[data-np-tabs]', // Tab Parent
 	tabButton : '[data-np-tab]', // Tab Link
 	tabContent : '[data-np-tab-pane]', // Tab Pane
+
 }
 
 

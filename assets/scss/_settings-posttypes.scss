@@ -1,0 +1,53 @@
+//
+// Post Types Settings Styles
+// --------------------------------------------------
+.nestedpages-settings-posttypes {
+	@include wptable;
+	.post-type {
+		background-color: $white;
+		border-top: 1px solid $border;
+		&:first-child {
+			border: 0;
+		}
+		.head {
+			@include clearfix;
+			line-height: 46px;
+			background-color: $white;
+			padding-right: 10px;
+			.checkbox {
+				float: left;
+				width: 46px;
+				height: 46px;
+				background-color: darken($white, 6%);
+				text-align: center;
+				line-height: 46px;
+				margin-right: 10px;
+			}
+			label {
+				float: left;
+				line-height: 46px;
+				margin: 0;
+				em {
+					color: darken($white, 40%);
+				}
+			}
+			.button {
+				float: right;
+				margin-top: 10px;
+			}
+		} // .head
+		.body {
+			display: none;
+			background-color: $gray-lighter;
+			border-top: 1px solid $border;
+			h4 {
+				margin: 0;
+				padding: 10px 0 0 10px;
+			}
+			.post-type-settings {
+				padding: 10px;
+				margin: 0;
+			}
+		}
+	} // .post-type
+} // .nestedpages-settings-posttypes

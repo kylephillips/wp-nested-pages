@@ -32,6 +32,7 @@ class Dependencies
 		$this->setPluginVersion();
 		add_action( 'admin_enqueue_scripts', array($this, 'styles') );
 		add_action( 'admin_enqueue_scripts', array($this, 'scripts') );
+		add_action( 'admin_enqueue_scripts', array($this, 'settingsScripts') );
 		$this->plugin_dir = Helpers::plugin_url();
 	}
 
@@ -55,6 +56,8 @@ class Dependencies
 			array(), 
 			$this->plugin_version
 		);
+		wp_enqueue_style('acf-input');
+
 	}
 
 	/**
@@ -63,6 +66,7 @@ class Dependencies
 	*/
 	public function scripts()
 	{
+		wp_enqueue_script('acf-input');
 		$screen = get_current_screen();
 		global $np_env;
 		if ( strpos( $screen->id, 'nestedpages' ) ) :
@@ -132,6 +136,22 @@ class Dependencies
 				'nestedpages', 
 				'nestedpages', 
 				$localized_data
+			);
+		endif;
+	}
+
+	/**
+	* Settings
+	*/
+	public function settingsScripts()
+	{
+		$screen = get_current_screen();
+		if ( strpos( $screen->id, 'nested-pages-settings' ) ) :
+			wp_enqueue_script(
+				'nestedpages-settings', 
+				$this->plugin_dir . '/assets/js/nestedpages.settings.min.js', 
+				array('jquery'), 
+				$this->plugin_version
 			);
 		endif;
 	}

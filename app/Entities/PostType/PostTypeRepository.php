@@ -39,6 +39,7 @@ class PostTypeRepository
 			$post_types[$type->name]->replace_menu = $this->overrideMenu($type->name);
 			$post_types[$type->name]->hide_default = $this->hideDefault($type->name);
 			$post_types[$type->name]->disable_nesting = $this->disableNesting($type->name);
+			$post_types[$type->name]->custom_fields_enabled = $this->customFieldsEnabled($type->name);
 		}
 		return $post_types;
 	}
@@ -85,6 +86,22 @@ class PostTypeRepository
 		foreach($this->enabledPostTypes() as $key => $type){
 			if ( $key == $post_type ){
 				return ( isset($type['disable_nesting']) && $type['disable_nesting'] == 'true' )
+					? true
+					: false;
+			}
+		}
+	}
+
+	/**
+	* Is custom field configuration enabled on the specified post type
+	* @param string post type name
+	* @return boolean
+	*/
+	public function customFieldsEnabled($post_type)
+	{
+		foreach($this->enabledPostTypes() as $key => $type){
+			if ( $key == $post_type ){
+				return ( isset($type['custom_fields_enabled']) && $type['custom_fields_enabled'] == 'true' )
 					? true
 					: false;
 			}
@@ -191,6 +208,41 @@ class PostTypeRepository
 	public function getSubmenuText($post_type)
 	{
 		return ( $post_type->hierarchical ) ? __('Nested View', 'nestedpages') : __('Sort View', 'nestedpages');
+	}
+
+	/**
+	* Get all custom fields associated with a post type
+	* @param string post_type
+	* @param boolean show_hidden
+	* @return array
+	*/
+	public function getCustomFields($post_type, $show_hidden = false)
+	{
+		global $wpdb;
+		$post_table = $wpdb->prefix . 'posts';
+		$meta_table = $wpdb->prefix . 'postmeta';
+		if ( $show_hidden ){
+			$sql = "SELECT DISTINCT meta_key FROM $post_table AS p LEFT JOIN $meta_table AS m ON m.post_id = p.id WHERE p.post_type = '$post_type' AND meta_key NOT LIKE ''";
+		} else {
+			$sql = "SELECT DISTINCT meta_key FROM $post_table AS p LEFT JOIN $meta_table AS m ON m.post_id = p.id WHERE p.post_type = '$post_type' AND meta_key NOT LIKE '\_%'";
+		}
+		$results = $wpdb->get_results($sql);
+		$fields = ( $results ) ? $this->fieldsArray($results) : array();
+		return $fields;
+	}
+
+	/**
+	* Format DB results into an array
+	*/
+	private function fieldsArray($results)
+	{
+		$fields = array();
+		$exclude = array('_wp_page_template', '_edit_lock', '_edit_last', '_wp_trash_meta_status', '_wp_trash_meta_time', 'layout', 'position', 'rule', 'hide_on_screen', 'np_link_target', 'np_nav_title', 'np_title_attribute', 'np_nav_status', 'nested_pages_status', 'np_nav_css_classes');
+		foreach ( $results as $field ){
+			if ( !in_array($field->meta_key, $exclude) ) 
+				array_push($fields, $field->meta_key);
+		}
+		return $fields;
 	}
 
 }

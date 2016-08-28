@@ -4,6 +4,7 @@ if ( $allowsorting == "" ) $allowsorting = array();
 $sync_status = ( $this->settings->menuSyncEnabled() ) ? __('Currently Enabled', 'nestedpages') : __('Currently Disabled', 'nestedpages');
 settings_fields( 'nestedpages-general' ); 
 ?>
+<table class="form-table">
 <tr valign="top">
 	<th scope="row"><?php _e('Nested Pages Version', 'nestedpages'); ?></th>
 	<td><strong><?php echo get_option('nestedpages_version'); ?></strong></td>
@@ -59,3 +60,4 @@ settings_fields( 'nestedpages-general' );
 		<p><em><?php _e('Admins always have sorting ability.', 'nestedpages'); ?></em></p>
 	</td>
 </tr>
+</table>

@@ -29,6 +29,9 @@ var js_source = [
 	'assets/js/lib/nestedpages.trash.js',
 	'assets/js/lib/nestedpages.confirm-delete.js'
 ];
+var js_source_settings = [
+	'assets/js/lib/nestedpages.settings.js'
+];
 var js_compiled = 'assets/js/';
 
 /**
@@ -55,17 +58,30 @@ gulp.task('scripts', function(){
 		.pipe(notify('Nested Pages scripts compiles & compressed.'));
 });
 
+/**
+* Smush the Settings JS and output
+*/
+gulp.task('settings-scripts', function(){
+	return gulp.src(js_source_settings)
+		.pipe(concat('nestedpages.settings.min.js'))
+		.pipe(gulp.dest(js_compiled))
+		.pipe(uglify())
+		.pipe(gulp.dest(js_compiled))
+		.pipe(notify('Nested Pages settings scripts compiles & compressed.'));
+});
+
 
 /**
 * Watch Task
 */
 gulp.task('watch', function(){
-	livereload.listen(35829);
+	livereload.listen();
 	gulp.watch(scss, ['scss']);
 	gulp.watch(js_source, ['scripts']);
+	gulp.watch(js_source_settings, ['settings-scripts']);
 });
 
 /**
 * Default
 */
-gulp.task('default', ['scss', 'scripts', 'watch']);
+gulp.task('default', ['scss', 'scripts', 'settings-scripts', 'watch']);
