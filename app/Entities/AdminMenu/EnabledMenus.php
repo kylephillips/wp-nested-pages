@@ -106,7 +106,9 @@ class EnabledMenus
 	private function removeExistingMenu()
 	{
 		remove_menu_page('edit.php?post_type=' . $this->post_type->name);
-		if (in_array('post', $this->enabled_types)) remove_menu_page('edit.php');
+		foreach ($this->enabled_types as $type => $options){
+			if ( $type == 'post' ) remove_menu_page('edit.php');
+		}
 	}
 
 	/**
