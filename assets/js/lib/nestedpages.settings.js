@@ -13,12 +13,14 @@ NestedPages.Settings = function()
 	plugin.selectors = {
 		postTypeToggle : '[data-toggle-nestedpages-pt-settings]', // Toggle Button for Post Type Settings
 		postTypeCheckbox : '[data-nestedpages-pt-checbox]', // Checkbox for enabling post type
+		customFieldsCheckbox : '[data-toggle-nestedpages-cf-settings]', // Checkbox for toggling custom fields settings
 	}
 
 	plugin.bindEvents = function()
 	{
 		$(document).ready(function(){
 			plugin.toggleAllSettingsButtons();
+			plugin.toggleAllCustomFields();
 		});
 		$(document).on('click', plugin.selectors.postTypeToggle, function(e){
 			e.preventDefault();
@@ -26,6 +28,9 @@ NestedPages.Settings = function()
 		});
 		$(document).on('change', plugin.selectors.postTypeCheckbox, function(){
 			plugin.toggleSettingsButton($(this));
+		});
+		$(document).on('change', plugin.selectors.customFieldsCheckbox, function(){
+			plugin.toggleCustomFields($(this));
 		});
 	}
 
@@ -60,6 +65,30 @@ NestedPages.Settings = function()
 		var checkboxes = $(plugin.selectors.postTypeCheckbox);
 		$.each(checkboxes, function(){
 			plugin.toggleSettingsButton($(this));
+		});
+	}
+
+	/**
+	* Toggle Custom Field Choices
+	*/
+	plugin.toggleCustomFields = function(checkbox)
+	{
+		var choices = $(checkbox).parents('.body').find('.custom-fields');
+		if ( $(checkbox).is(':checked') ){
+			$(choices).show();
+			return;
+		}
+		$(choices).hide();
+	}
+
+	/**
+	* Toggle All the Custom Field Choices
+	*/
+	plugin.toggleAllCustomFields = function()
+	{
+		var checkboxes = $(plugin.selectors.customFieldsCheckbox);
+		$.each(checkboxes, function(){
+			plugin.toggleCustomFields($(this));
 		});
 	}
 

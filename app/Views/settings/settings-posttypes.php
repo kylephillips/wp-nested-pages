@@ -35,9 +35,35 @@ settings_fields( 'nestedpages-posttypes' );
 				</li>
 				<?php endif; ?>
 				<li>
-					<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][custom_fields_enabled]" value="true" <?php if ( $type->custom_fields_enabled ) echo 'checked'; ?> /><?php _e('Configure Custom Fields', 'nestedpages'); ?></label>
+					<label><input type="checkbox" data-toggle-nestedpages-cf-settings name="nestedpages_posttypes[<?php echo $type->name; ?>][custom_fields_enabled]" value="true" <?php if ( $type->custom_fields_enabled ) echo 'checked'; ?> /><?php _e('Configure Custom Fields', 'nestedpages'); ?></label>
 				</li>
 			</ul>
+			<div class="custom-fields">
+				<?php
+					// Advanced Custom Fields
+					$acf_fields = $this->acf_repo->getFieldsForPostType($type->name);
+					if ( $acf_fields ) :
+						$out = '<h4>' . __('Choose custom fields to include in Quick Edit forms.', 'nestedpages') . '</h4>';
+						$out .= '<div class="custom-field-group">';
+						$out .= '<p>' . __('Advanced Custom Fields', 'nestedpages') . '</p>';
+						$out .= '<ul>';
+						foreach ($acf_fields as $field){
+							$out .= '<li>';
+							$out .= '<label>';
+							$out .= '<input type="checkbox" name="nestedpages_posttypes[' . $type->name . '][custom_fields][acf][' . $field['key'] . ']" value="' . $field['type'] . '"'; 
+							if ( $this->post_type_repo->fieldEnabled($type->custom_fields, 'acf', $field['key']) ) $out .= ' checked';
+							$out .= '/>' . $field['label'] . ' (' . $field['type'] . ')';
+							$out .= '</label>';
+							$out .= '</li>';
+						}
+						$out .= '</ul>';
+						$out .= '</div><!-- .custom-field-group -->';
+						echo $out;
+					else : 
+						echo __('No ACF Fields configured for this post type', 'nestedpages');
+					endif;
+					?>
+			</div><!-- .custom-fields -->
 		</div><!-- .body -->
 	</div><!-- .post-type -->
 	<?php endforeach; ?>

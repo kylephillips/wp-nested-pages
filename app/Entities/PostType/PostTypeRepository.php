@@ -40,6 +40,7 @@ class PostTypeRepository
 			$post_types[$type->name]->hide_default = $this->hideDefault($type->name);
 			$post_types[$type->name]->disable_nesting = $this->disableNesting($type->name);
 			$post_types[$type->name]->custom_fields_enabled = $this->customFieldsEnabled($type->name);
+			$post_types[$type->name]->custom_fields = $this->customFields($type->name);
 		}
 		return $post_types;
 	}
@@ -106,6 +107,42 @@ class PostTypeRepository
 					: false;
 			}
 		}
+	}
+
+	/**
+	* Custom Fields for a specific post type
+	* @param string post type name
+	* @return array
+	*/
+	public function customFields($post_type)
+	{
+		$custom_fields = array();
+		foreach($this->enabledPostTypes() as $key => $type){
+			if ( $key == $post_type ){
+				if ( isset($type['custom_fields']) ) $custom_fields = $type['custom_fields'];
+			}
+		}
+		return $custom_fields;
+	}
+
+	/**
+	* Is a custom field enabled?
+	* @param $custom_fields - array of enabled field groups/fields
+	* @param $field_group - key for field group (acf, other, etc)
+	* @param $field_key - field key to search for
+	* @return boolean
+	*/
+	public function fieldEnabled($custom_fields, $field_group, $field_key)
+	{
+		$enabled = false;
+		if ( !is_array($custom_fields) ) return $enabled;
+		foreach ( $custom_fields as $group => $fields ){
+			if ( $group !== $field_group ) continue;
+			foreach ( $fields as $key => $type ){
+				if ( $key == $field_key ) $enabled = true;
+			}
+		}
+		return $enabled;
 	}
 
 	/**

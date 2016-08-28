@@ -49,5 +49,25 @@
 				margin: 0;
 			}
 		}
+		.custom-fields {
+			display: none;
+			padding: 10px;
+			.custom-field-group {
+				background-color: darken($white, 8%);
+				padding: 10px;
+			}
+			h4 {
+				background-color: $black;
+				color: $white;
+				padding: 8px;
+			}
+			p {
+				margin: 0 0 10px 0;
+				font-weight: bold;
+			}
+			ul {
+				margin: 0;
+			}
+		} // .custom-fields
 	} // .post-type
 } // .nestedpages-settings-posttypes
