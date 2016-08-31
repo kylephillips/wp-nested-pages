@@ -35,7 +35,7 @@ settings_fields( 'nestedpages-posttypes' );
 				</li>
 				<?php endif; ?>
 				<li>
-					<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][standard_fields_enabled]" value="true" <?php if ( $type->standard_fields_enabled ) echo 'checked '; ?>/><?php _e('Configure Standard Fields', 'nestedpages'); ?></label>
+					<label><input type="checkbox" data-toggle-nestedpages-sf-settings name="nestedpages_posttypes[<?php echo $type->name; ?>][standard_fields_enabled]" value="true" <?php if ( $type->standard_fields_enabled ) echo 'checked '; ?>/><?php _e('Configure Standard Fields', 'nestedpages'); ?></label>
 				</li>
 				<li>
 					<label><input type="checkbox" data-toggle-nestedpages-cf-settings name="nestedpages_posttypes[<?php echo $type->name; ?>][custom_fields_enabled]" value="true" <?php if ( $type->custom_fields_enabled ) echo 'checked'; ?> /><?php _e('Configure Custom Fields', 'nestedpages'); ?></label>
@@ -54,7 +54,7 @@ settings_fields( 'nestedpages-posttypes' );
 							$out .= '<li>';
 							$out .= '<label>';
 							$out .= '<input type="checkbox" name="nestedpages_posttypes[' . $type->name . '][custom_fields][acf][' . $field['key'] . ']" value="' . $field['type'] . '"'; 
-							if ( $this->post_type_repo->fieldEnabled($type->custom_fields, 'acf', $field['key']) ) $out .= ' checked';
+							if ( $this->post_type_repo->fieldEnabled($type->name, 'acf', $field['key']) ) $out .= ' checked';
 							$out .= '/>' . $field['label'] . ' (' . $field['type'] . ')';
 							$out .= '</label>';
 							$out .= '</li>';
@@ -67,6 +67,26 @@ settings_fields( 'nestedpages-posttypes' );
 					endif;
 					?>
 			</div><!-- .custom-fields -->
+			<div class="standard-fields">
+				<h4><?php _e('Choose which standard fields to include in Quick Edit forms.', 'nestedpages'); ?></h4>
+				<div class="custom-field-group">
+				<ul>
+					<?php
+						$out = "";
+						foreach ( $this->settings->standardFields() as $name => $label ) :
+							$out .= '<li>';
+							$out .= '<label>';
+							$out .= '<input type="checkbox" name="nestedpages_posttypes[' . $type->name . '][standard_fields][standard][' . $name . ']" value="true"';
+							if ( $this->post_type_repo->fieldEnabled($type->name, 'standard', $name, 'standard_fields') ) $out .= ' checked';
+							$out .= ' />' . $label;
+							$out .= '</label>';
+							$out .= '</li>';
+						endforeach;
+						echo $out;
+					?>
+				</ul>
+				</div><!-- .custom-field-group -->
+			</div><!-- .standard-fields -->
 		</div><!-- .body -->
 	</div><!-- .post-type -->
 	<?php endforeach; ?>

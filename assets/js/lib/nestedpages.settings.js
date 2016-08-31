@@ -14,13 +14,15 @@ NestedPages.Settings = function()
 		postTypeToggle : '[data-toggle-nestedpages-pt-settings]', // Toggle Button for Post Type Settings
 		postTypeCheckbox : '[data-nestedpages-pt-checbox]', // Checkbox for enabling post type
 		customFieldsCheckbox : '[data-toggle-nestedpages-cf-settings]', // Checkbox for toggling custom fields settings
+		standardFieldsCheckbox : '[data-toggle-nestedpages-sf-settings]', // Checkbox for toggling standard field settings
 	}
 
 	plugin.bindEvents = function()
 	{
 		$(document).ready(function(){
 			plugin.toggleAllSettingsButtons();
-			plugin.toggleAllCustomFields();
+			plugin.toogleAllFieldSettings('.custom-fields');
+			plugin.toogleAllFieldSettings('.standard-fields');
 		});
 		$(document).on('click', plugin.selectors.postTypeToggle, function(e){
 			e.preventDefault();
@@ -30,7 +32,10 @@ NestedPages.Settings = function()
 			plugin.toggleSettingsButton($(this));
 		});
 		$(document).on('change', plugin.selectors.customFieldsCheckbox, function(){
-			plugin.toggleCustomFields($(this));
+			plugin.toogleFieldSettings($(this), '.custom-fields');
+		});
+		$(document).on('change', plugin.selectors.standardFieldsCheckbox, function(){
+			plugin.toogleFieldSettings($(this), '.standard-fields');
 		});
 	}
 
@@ -71,9 +76,9 @@ NestedPages.Settings = function()
 	/**
 	* Toggle Custom Field Choices
 	*/
-	plugin.toggleCustomFields = function(checkbox)
+	plugin.toogleFieldSettings = function(checkbox, fieldGroupClass)
 	{
-		var choices = $(checkbox).parents('.body').find('.custom-fields');
+		var choices = $(checkbox).parents('.body').find(fieldGroupClass);
 		if ( $(checkbox).is(':checked') ){
 			$(choices).show();
 			return;
@@ -84,11 +89,14 @@ NestedPages.Settings = function()
 	/**
 	* Toggle All the Custom Field Choices
 	*/
-	plugin.toggleAllCustomFields = function()
+	plugin.toogleAllFieldSettings = function(fieldGroupClass)
 	{
 		var checkboxes = $(plugin.selectors.customFieldsCheckbox);
+		if ( fieldGroupClass == '.standard-fields' ){
+			var checkboxes = $(plugin.selectors.standardFieldsCheckbox);
+		}
 		$.each(checkboxes, function(){
-			plugin.toggleCustomFields($(this));
+			plugin.toogleFieldSettings($(this), fieldGroupClass);
 		});
 	}
 

@@ -46,4 +46,25 @@ class SettingsRepository
 		return false;
 	}
 
+	/**
+	* Array of configurable standard fields
+	* @return array
+	*/
+	public function standardFields()
+	{
+		$fields = array(
+			'title' => 'Post Title', 
+			'slug' => 'Slug', 
+			'date' => 'Post Date', 
+			'author' => 'Author', 
+			'status' => 'Post Status', 
+			'template' => 'Page Template', 
+			'password' => 'Password/Private', 
+			'allow_comments' => 'Allow Comments', 
+			'hide_in_np' => 'Hide in Nested Pages',
+			'menu_options' => 'Menu Options'
+		);
+		return $fields;
+	}
+
 }

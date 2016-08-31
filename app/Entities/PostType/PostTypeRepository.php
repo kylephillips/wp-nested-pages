@@ -74,7 +74,8 @@ class PostTypeRepository
 			$post_types[$type->name]->disable_nesting = $this->postTypeSetting($type->name, 'disable_nesting');
 			$post_types[$type->name]->custom_fields_enabled = $this->postTypeSetting($type->name, 'custom_fields_enabled');
 			$post_types[$type->name]->standard_fields_enabled = $this->postTypeSetting($type->name, 'standard_fields_enabled');
-			$post_types[$type->name]->custom_fields = $this->customFields($type->name);
+			$post_types[$type->name]->custom_fields = $this->configuredFields($type->name, 'custom_fields');
+			$post_types[$type->name]->standard_fields = $this->configuredFields($type->name, 'standard_fields');
 		}
 		return $post_types;
 	}
@@ -99,33 +100,35 @@ class PostTypeRepository
 	}
 
 	/**
-	* Custom Fields for a specific post type
+	* Fields configured for a specific post type
 	* @param string post type name
+	* @param string field type (custom_fields|standard_fields)
 	* @return array
 	*/
-	public function customFields($post_type)
+	public function configuredFields($post_type, $field_type = 'custom_fields')
 	{
-		$custom_fields = array();
+		$fields = array();
 		foreach($this->enabled_post_types as $key => $type){
 			if ( $key == $post_type ){
-				if ( isset($type['custom_fields']) ) $custom_fields = $type['custom_fields'];
+				if ( isset($type[$field_type]) ) $fields = $type[$field_type];
 			}
 		}
-		return $custom_fields;
+		return $fields;
 	}
 
 	/**
 	* Is a custom field enabled?
-	* @param $custom_fields - array of enabled field groups/fields
+	* @param $post_type - post type name
 	* @param $field_group - key for field group (acf, other, etc)
 	* @param $field_key - field key to search for
 	* @return boolean
 	*/
-	public function fieldEnabled($custom_fields, $field_group, $field_key)
+	public function fieldEnabled($post_type, $field_group, $field_key, $field_type = 'custom_fields')
 	{
 		$enabled = false;
-		if ( !is_array($custom_fields) ) return $enabled;
-		foreach ( $custom_fields as $group => $fields ){
+		$fields = $this->configuredFields($post_type, $field_type);
+		if ( !is_array($fields) ) return $enabled;
+		foreach ( $fields as $group => $fields ){
 			if ( $group !== $field_group ) continue;
 			foreach ( $fields as $key => $type ){
 				if ( $key == $field_key ) $enabled = true;
