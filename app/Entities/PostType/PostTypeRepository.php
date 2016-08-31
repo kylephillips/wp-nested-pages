@@ -6,6 +6,39 @@ class PostTypeRepository
 {
 
 	/**
+	* Enabled Post Types
+	* @var array – the posttype setting
+	*/
+	public $enabled_post_types;
+
+	public function __construct()
+	{
+		$this->setEnabledPostTypes();
+	}
+
+	/**
+	* Set an array of NP enabled Post Types
+	* @since 1.2.1
+	* @return array
+	*/
+	public function setEnabledPostTypes()
+	{
+		$types = get_option('nestedpages_posttypes');
+		$this->enabled_post_types = ( !$types ) ? array() : $types;
+	}
+
+	/**
+	* Get an array of NP enabled Post Types
+	* @since 1.2.1
+	* @return array
+	*/
+	public function enabledPostTypes()
+	{
+		$types = get_option('nestedpages_posttypes');
+		return ( !$types ) ? array() : $types;
+	}
+
+	/**
 	* Get Available Post Types
 	* @since 1.2.1
 	* @return array
@@ -20,93 +53,49 @@ class PostTypeRepository
 	* @since 1.2.1
 	* @return object
 	*/
-	public function getPostTypesObject($pages = false)
+	public function getPostTypesObject()
 	{
 		$all_types = $this->getPostTypes('objects');
 		$post_types = array();
-		$enabled_types = $this->enabledPostTypes();
+		$enabled_types = $this->enabled_post_types;
 		$invalid_types = array(
-			'acf-field-group'
+			'acf-field-group',
+			'attachment'
 		);
 		foreach($all_types as $key => $type){
-			if ( (!$pages) && ($key == 'attachment') ) continue;
 			if ( in_array($type->name, $invalid_types) ) continue;
 			$post_types[$type->name] = new \stdClass();
 			$post_types[$type->name]->name = $type->name;
 			$post_types[$type->name]->label = $type->labels->name;
 			$post_types[$type->name]->hierarchical = $type->hierarchical;
-			$post_types[$type->name]->np_enabled = ( array_key_exists($type->name, $this->enabledPostTypes()) ) ? true : false;
-			$post_types[$type->name]->replace_menu = $this->overrideMenu($type->name);
-			$post_types[$type->name]->hide_default = $this->hideDefault($type->name);
-			$post_types[$type->name]->disable_nesting = $this->disableNesting($type->name);
-			$post_types[$type->name]->custom_fields_enabled = $this->customFieldsEnabled($type->name);
+			$post_types[$type->name]->np_enabled = ( array_key_exists($type->name, $this->enabled_post_types) ) ? true : false;
+			$post_types[$type->name]->replace_menu = $this->postTypeSetting($type->name, 'replace_menu');
+			$post_types[$type->name]->hide_default = $this->postTypeSetting($type->name, 'hide_default');
+			$post_types[$type->name]->disable_nesting = $this->postTypeSetting($type->name, 'disable_nesting');
+			$post_types[$type->name]->custom_fields_enabled = $this->postTypeSetting($type->name, 'custom_fields_enabled');
+			$post_types[$type->name]->standard_fields_enabled = $this->postTypeSetting($type->name, 'standard_fields_enabled');
 			$post_types[$type->name]->custom_fields = $this->customFields($type->name);
 		}
 		return $post_types;
 	}
 
 	/**
-	* Is the specified post type set to override the default menu?
-	* @param string post type name
+	* Get a Post Type Boolean Setting
+	* @param string $post_type post type name
+	* @param string $setting_key option key
 	* @return boolean
 	*/
-	private function overrideMenu($post_type)
+	public function postTypeSetting($post_type, $setting_key)
 	{
-		foreach($this->enabledPostTypes() as $key => $type){
-			if ( $key == $post_type ){
-				return ( isset($type['replace_menu']) && $type['replace_menu'] == 'true' )
-					? true
-					: false;
+		foreach($this->enabled_post_types as $key => $type_settings){
+			if ( $key !== $post_type ) continue;
+			if ( !is_array($type_settings) ) return false;
+			foreach ( $type_settings as $option_key => $setting ){
+				if ( $option_key !== $setting_key ) continue;
+				return $setting;
 			}
 		}
-	}
-
-	/**
-	* Is the specified post type set to hide the default link?
-	* @param string post type name
-	* @return boolean
-	*/
-	public function hideDefault($post_type)
-	{
-		foreach($this->enabledPostTypes() as $key => $type){
-			if ( $key == $post_type ){
-				return ( isset($type['hide_default']) && $type['hide_default'] == 'true' )
-					? true
-					: false;
-			}
-		}
-	}
-
-	/**
-	* Is nesting disabled on the specified post type
-	* @param string post type name
-	* @return boolean
-	*/
-	public function disableNesting($post_type)
-	{
-		foreach($this->enabledPostTypes() as $key => $type){
-			if ( $key == $post_type ){
-				return ( isset($type['disable_nesting']) && $type['disable_nesting'] == 'true' )
-					? true
-					: false;
-			}
-		}
-	}
-
-	/**
-	* Is custom field configuration enabled on the specified post type
-	* @param string post type name
-	* @return boolean
-	*/
-	public function customFieldsEnabled($post_type)
-	{
-		foreach($this->enabledPostTypes() as $key => $type){
-			if ( $key == $post_type ){
-				return ( isset($type['custom_fields_enabled']) && $type['custom_fields_enabled'] == 'true' )
-					? true
-					: false;
-			}
-		}
+		return false;
 	}
 
 	/**
@@ -117,7 +106,7 @@ class PostTypeRepository
 	public function customFields($post_type)
 	{
 		$custom_fields = array();
-		foreach($this->enabledPostTypes() as $key => $type){
+		foreach($this->enabled_post_types as $key => $type){
 			if ( $key == $post_type ){
 				if ( isset($type['custom_fields']) ) $custom_fields = $type['custom_fields'];
 			}
@@ -143,17 +132,6 @@ class PostTypeRepository
 			}
 		}
 		return $enabled;
-	}
-
-	/**
-	* Get an array of NP enabled Post Types
-	* @since 1.2.1
-	* @return array
-	*/
-	public function enabledPostTypes()
-	{
-		$types = get_option('nestedpages_posttypes');
-		return ( !$types ) ? array() : $types;
 	}
 
 	/**

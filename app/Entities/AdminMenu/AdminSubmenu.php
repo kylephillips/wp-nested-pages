@@ -70,7 +70,7 @@ class AdminSubmenu
 	private function defaultLink($c)
 	{
 		global $submenu;
-		if ( !$this->post_type_repo->hideDefault($this->post_type->name) ){
+		if ( !$this->post_type_repo->postTypeSetting($this->post_type->name, 'hide_default') ){
 			$submenu[$this->slug][$c] = array( 
 				__('Default','nestedpages') . ' ' . $this->post_type->labels->name, 
 				'publish_pages', 

@@ -27,7 +27,7 @@
 		</li>
 		<?php endif; ?>
 
-		<?php if ( !$this->post_type_repo->hideDefault($this->post_type->name) ) : ?>
+		<?php if ( !$this->post_type_repo->postTypeSetting($this->post_type->name, 'hide_default') ) : ?>
 		<li>
 			<a href="<?php echo NestedPages\Helpers::defaultPagesLink($this->post_type->name); ?>">
 				<?php _e('Default'); ?> <?php _e($this->post_type->labels->name); ?>
