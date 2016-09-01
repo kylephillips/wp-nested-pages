@@ -44,7 +44,8 @@ NestedPages.Settings = function()
 	*/
 	plugin.togglePostTypeSettings = function(button)
 	{
-		$(button).parent('.head').siblings('.body').toggle();
+		$(button).parent('.head').siblings('.body').slideToggle();
+		$(button).parents('.post-type').toggleClass('active');
 	}
 
 	/**
@@ -59,6 +60,7 @@ NestedPages.Settings = function()
 		}
 		$(button).hide();
 		$(button).parents('.head').siblings('.body').hide();
+		$(button).parents('.post-type').removeClass('active');
 		$(button).parents('.head').siblings('.body').find('input[type="checkbox"]').attr('checked', false);
 	}
 

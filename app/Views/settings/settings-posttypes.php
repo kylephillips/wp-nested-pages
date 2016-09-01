@@ -21,24 +21,63 @@ settings_fields( 'nestedpages-posttypes' );
 			<a href="#" class="button" data-toggle-nestedpages-pt-settings><?php _e('Settings', 'nestedpages'); ?></a>
 		</div><!-- .head -->
 		<div class="body">
-			<h4><?php echo $type->label . ' ' . __('Settings', 'nestedpages'); ?></h4>
 			<ul class="post-type-settings">
 				<li>
-					<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][replace_menu]" value="true" <?php if ( $type->replace_menu ) echo 'checked'; ?> /><?php _e('Replace Default Menu', 'nestedpages'); ?></label>
+					<div class="row">
+						<div class="description">
+							<p><strong><?php _e('Default Menu', 'nestedpages'); ?></strong><br />
+							<?php _e('Replace the default top-level item with the nested view link.', 'nestedpages'); ?></p>
+						</div>
+						<div class="field">
+							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][replace_menu]" value="true" <?php if ( $type->replace_menu ) echo 'checked'; ?> /><?php echo __('Replace Default') . ' ' . $type->label . ' ' . __('Menu', 'nestedpages'); ?></label>
+						</div><!-- .field -->
+					</div><!-- .row -->
 				</li>
 				<li>
-					<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][hide_default]" value="true" <?php if ( $type->hide_default ) echo 'checked'; ?> /><?php _e('Hide Default Link', 'nestedpages'); ?></label>
+					<div class="row">
+						<div class="description">
+							<p><strong><?php _e('Default Link', 'nestedpages'); ?></strong><br />
+							<?php _e('If the default menu is replaced, a link to the default view will be added. Select this to remove the link', 'nestedpages'); ?>
+						</div>
+						<div class="field">
+							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][hide_default]" value="true" <?php if ( $type->hide_default ) echo 'checked'; ?> /><?php echo __('Hide Default', 'nestedpages') . ' ' . $type->label . ' ' . __('Link', 'nestedpages'); ?></label>
+						</div>
+					</div><!-- .row -->
 				</li>
 				<?php if ( $type->hierarchical ) : ?>
 				<li>
-					<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][disable_nesting]" value="true" <?php if ( $type->disable_nesting ) echo 'checked '; ?>/><?php _e('Disable Nesting', 'nestedpages'); ?></label>
+					<div class="row">
+						<div class="description">
+							<p><strong><?php _e('Disable Nesting', 'nestedpages'); ?></strong><br>
+							<?php _e('To disable nesting on hierarchical post types, select this option.', 'nestedpages'); ?></p>
+						</div>
+						<div class="field">
+							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][disable_nesting]" value="true" <?php if ( $type->disable_nesting ) echo 'checked '; ?>/><?php echo __('Disable Nesting for', 'nestedpages') . ' ' . $type->label; ?></label>
+						</div>
+					</div><!-- .row -->
 				</li>
 				<?php endif; ?>
 				<li>
-					<label><input type="checkbox" data-toggle-nestedpages-sf-settings name="nestedpages_posttypes[<?php echo $type->name; ?>][standard_fields_enabled]" value="true" <?php if ( $type->standard_fields_enabled ) echo 'checked '; ?>/><?php _e('Configure Quick Edit Standard Fields', 'nestedpages'); ?></label>
+					<div class="row">
+						<div class="description">
+							<p><strong><?php _e('Configure Standard Fields', 'nestedpages'); ?></strong><br>
+							<?php _e('Set what standard post fields display in the quick edit form.', 'nestedpages'); ?></p>
+						</div>
+						<div class="field">
+							<label><input type="checkbox" data-toggle-nestedpages-sf-settings name="nestedpages_posttypes[<?php echo $type->name; ?>][standard_fields_enabled]" value="true" <?php if ( $type->standard_fields_enabled ) echo 'checked '; ?>/><?php _e('Configure Standard Fields', 'nestedpages'); ?></label>
+						</div>
+					</div><!-- .row -->
 				</li>
 				<li>
-					<label><input type="checkbox" data-toggle-nestedpages-cf-settings name="nestedpages_posttypes[<?php echo $type->name; ?>][custom_fields_enabled]" value="true" <?php if ( $type->custom_fields_enabled ) echo 'checked'; ?> /><?php _e('Configure Quick Edit Custom Fields', 'nestedpages'); ?></label>
+					<div class="row">
+						<div class="description">
+							<p><strong><?php _e('Configure Custom Fields', 'nestedpages'); ?></strong><br>
+							<?php _e('Set which custom fields display in the quick edit form.', 'nestedpages'); ?></p>
+						</div>
+						<div class="field">
+							<label><input type="checkbox" data-toggle-nestedpages-cf-settings name="nestedpages_posttypes[<?php echo $type->name; ?>][custom_fields_enabled]" value="true" <?php if ( $type->custom_fields_enabled ) echo 'checked'; ?> /><?php _e('Configure Quick Edit Custom Fields', 'nestedpages'); ?></label>
+						</div>
+					</div><!-- .row -->
 				</li>
 			</ul>
 			<div class="custom-fields">
