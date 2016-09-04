@@ -19,7 +19,7 @@
 		<a href="<?php echo get_edit_post_link(); ?>" class="page-link page-title">
 			<span class="title">
 				<?php 
-					echo $this->post->title; 
+					echo apply_filters( 'the_title', $this->post->title ); 
 					if ( $this->post->id == get_option('page_on_front') ) echo ' <em class="np-page-type"><strong>&ndash; ' . __('Front Page', 'nestedpages') . '</strong></em>';
 					if ( $this->post->id == get_option('page_for_posts') ) echo ' <em class="np-page-type"><strong>&ndash; ' . __('Posts Page', 'nestedpages') . '</strong></em>';
 				?>
