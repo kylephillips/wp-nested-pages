@@ -5,8 +5,8 @@
 	@include wptable;
 	.post-type {
 		background-color: $white;
-		border-top: 1px solid $border;
-		&:first-child {
+		border-bottom: 1px solid $border;
+		&:last-child {
 			border: 0;
 		}
 		.head {
@@ -64,15 +64,11 @@
 				background-color: $white;
 				border-bottom: 1px solid $border;
 				border-left: 1px solid $border;
-				// border-top: 0;
 				padding: 10px;
 			}
-
 		} // .row
 		.body {
 			display: none;
-			border: 1px solid $border;
-			border-bottom: 0;
 			h4 {
 				margin: 0;
 				padding: 10px 0 0 10px;
@@ -84,26 +80,39 @@
 				margin: 0;
 			}
 		}
+		.post-type-settings li:last-child .field,
+		.post-type-settings li:last-child .description {
+			border-bottom: 0;
+		}
 		.custom-fields, .standard-fields {
 			display: none;
-			padding: 10px;
+			padding-top: 20px;
 			.custom-field-group {
-				background-color: darken($white, 8%);
+				height: 150px;
+				overflow: auto;
+				background-color: $gray-lighter;
 				padding: 10px;
+				border: 1px solid $border;
 			}
-			h4 {
-				background-color: $black;
-				color: $white;
-				padding: 8px;
+			h5 {
+				padding: 0;
+				font-weight: normal;
+				font-style: oblique;
+				margin: 0;
+				color: darken($white, 40%);
+				margin-bottom: 6px;
 			}
 			p {
-				margin: 0 0 10px 0;
+				margin: 0 0 6px 0;
 				font-weight: bold;
 			}
 			ul {
 				margin: 0;
+				&.indented {
+					padding-left: 15px;
+				}
 				li {
-					margin: 0;
+					margin: 3px 0 0 0;
 				}
 			}
 		} // .custom-fields

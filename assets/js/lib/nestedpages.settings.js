@@ -44,7 +44,7 @@ NestedPages.Settings = function()
 	*/
 	plugin.togglePostTypeSettings = function(button)
 	{
-		$(button).parent('.head').siblings('.body').slideToggle();
+		$(button).parent('.head').siblings('.body').toggle();
 		$(button).parents('.post-type').toggleClass('active');
 	}
 
