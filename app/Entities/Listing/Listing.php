@@ -88,6 +88,16 @@ class Listing
 	*/
 	private $integrations;
 
+	/**
+	* Disabled Standard Fields
+	*/
+	private $disabled_standard_fields;
+
+	/**
+	* Enabled Custom Fields
+	*/
+	private $enabled_custom_fields;
+
 
 	public function __construct($post_type)
 	{
@@ -100,6 +110,7 @@ class Listing
 		$this->listing_repo = new ListingRepository;
 		$this->post_data_factory = new PostDataFactory;
 		$this->settings = new SettingsRepository;
+		$this->setFieldOptions();
 	}
 
 	/**
@@ -147,6 +158,26 @@ class Listing
 	private function setPostType($post_type)
 	{
 		$this->post_type = get_post_type_object($post_type);
+	}
+
+	/**
+	* Set the Quick Edit Field Options
+	*/
+	private function setFieldOptions()
+	{
+		$type_options = $this->post_type_repo->getSinglePostType($this->post_type->name);
+		$this->enabled_custom_fields = ( isset($type_options->custom_fields) && is_array($type_options->custom_fields) )
+			? $type_options->custom_fields : array();
+
+		if ( isset($type_options->standard_fields) && is_array($type_options->standard_fields) ){
+			$this->disabled_standard_fields = $type_options->standard_fields;
+			foreach ( $type_options->standard_fields as $key => $fields ){
+				if ( $key == 'standard' ) $this->disabled_standard_fields = $fields;
+			}
+			return;
+		}
+		$this->disabled_standard_fields = array();
+		return;
 	}
 
 	/**

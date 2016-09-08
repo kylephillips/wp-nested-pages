@@ -96,7 +96,7 @@ settings_fields( 'nestedpages-posttypes' );
 							<?php _e('Set which custom fields display in the quick edit form.', 'nestedpages'); ?></p>
 						</div>
 						<div class="field">
-							<label><input type="checkbox" data-toggle-nestedpages-cf-settings name="nestedpages_posttypes[<?php echo $type->name; ?>][custom_fields_enabled]" value="true" <?php if ( $type->custom_fields_enabled ) echo 'checked'; ?> /><?php _e('Configure Quick Edit Custom Fields', 'nestedpages'); ?></label>
+							<label><input type="checkbox" data-toggle-nestedpages-cf-settings name="nestedpages_posttypes[<?php echo $type->name; ?>][custom_fields_enabled]" value="true" <?php if ( $type->custom_fields_enabled ) echo 'checked'; ?> /><?php _e('Configure Custom Fields', 'nestedpages'); ?></label>
 
 							<div class="custom-fields">
 							<h5><?php _e('Check to Include in Quick Edit.', 'nestedpages'); ?></h5>

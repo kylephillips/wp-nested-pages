@@ -53,16 +53,17 @@ class SettingsRepository
 	public function standardFields()
 	{
 		$fields = array(
-			'title' => 'Post Title', 
-			'slug' => 'Slug', 
-			'date' => 'Post Date', 
-			'author' => 'Author', 
-			'status' => 'Post Status', 
-			'template' => 'Page Template', 
-			'password' => 'Password/Private', 
-			'allow_comments' => 'Allow Comments', 
-			'hide_in_np' => 'Hide in Nested Pages',
-			'menu_options' => 'Menu Options'
+			'title' => __('Post Title', 'nestedpages'), 
+			'slug' => __('Slug', 'nestedpages'), 
+			'date' => __('Post Date', 'nestedpages'), 
+			'author' => __('Author', 'nestedpages'),
+			'status' => __('Post Status', 'nestedpages'),
+			'template' => __('Template', 'nestedpages'),
+			'password' => __('Password/Private', 'nestedpages'),
+			'allow_comments' => __('Allow Comments', 'nestedpages'),
+			'hide_in_np' => __('Hide in Nested Pages', 'nestedpages'),
+			'menu_options' => __('Menu Options', 'nestedpages'),
+			'taxonomies' => __('Taxonomies', 'nestedpages')
 		);
 		return $fields;
 	}

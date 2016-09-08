@@ -81,6 +81,20 @@ class PostTypeRepository
 	}
 
 	/**
+	* Get a Single Enabled Post Type Object with settings
+	* @param $post_type string - post type name
+	*/
+	public function getSinglePostType($post_type)
+	{
+		$all_types = $this->getPostTypesObject();
+		$formatted_type = false;
+		foreach ( $all_types as $type ){
+			if ( $type->name == $post_type ) $formatted_type = $type;
+		}
+		return $formatted_type;
+	}
+
+	/**
 	* Get a Post Type Boolean Setting
 	* @param string $post_type post type name
 	* @param string $setting_key option key
