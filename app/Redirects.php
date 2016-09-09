@@ -21,7 +21,12 @@ class Redirects
 	public function pageTrashed()
 	{	
 		$screen = get_current_screen();
-		if ( ($screen->id == 'edit-page') && (isset($_GET['trashed'])) && (intval($_GET['trashed']) >0)){
+		if (
+			($screen->id == 'edit-page')   &&
+			(isset($_GET['trashed']))      &&
+			(intval($_GET['trashed']) > 0) &&
+			$this->arePagesNested()
+		){
 			$redirect = add_query_arg(array('page'=>'nestedpages', 'trashed' => true, 'ids' => $_GET['ids'] ));
 			wp_redirect($redirect);
 			exit();
@@ -34,7 +39,12 @@ class Redirects
 	public function pageRestored()
 	{
 		$screen = get_current_screen();
-		if ( ($screen->id == 'edit-page') && (isset($_GET['untrashed'])) && (intval($_GET['untrashed']) >0)){
+		if (
+			($screen->id == 'edit-page')     &&
+			(isset($_GET['untrashed']))      &&
+			(intval($_GET['untrashed']) > 0) &&
+			$this->arePagesNested()
+		){
 			$redirect = add_query_arg(array('page'=>'nestedpages', 'untrashed' => true, 'untrashed' => $_GET['untrashed'] ));
 			wp_redirect($redirect);
 			exit();
@@ -47,11 +57,24 @@ class Redirects
 	public function linkDeleted($post_id)
 	{
 		$screen = get_current_screen();
-		if ( (get_post_type($post_id) == 'np-redirect') && ($screen->id == 'np-redirect') ){
+		if (
+			(get_post_type($post_id) == 'np-redirect') &&
+			($screen->id == 'np-redirect')             &&
+			$this->arePagesNested()
+		){
 			$redirect = add_query_arg(array('page'=>'nestedpages', 'linkdeleted' => true, '_wpnonce' => false, 'post' => false, 'action'=>false));
 			wp_redirect($redirect);
 			exit();
 		}
+	}
+
+	/**
+	* Return true/false if nested pages are enabled for Page post types
+	*/
+	private function arePagesNested() {
+		$postTypeRepository = new \NestedPages\Entities\PostType\PostTypeRepository();
+		$enabledPostTypes   = $postTypeRepository->enabledPostTypes();
+		return array_key_exists( 'page', $enabledPostTypes );
 	}
 
 
