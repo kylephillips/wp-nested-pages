@@ -25,7 +25,7 @@ settings_fields( 'nestedpages-posttypes' );
 				<li>
 					<div class="row">
 						<div class="description">
-							<p><strong><?php _e('Default Menu', 'nestedpages'); ?></strong><br />
+							<p><strong><?php _e('Replace Default Menu', 'nestedpages'); ?>*</strong><br />
 							<?php _e('Replace the default top-level item with the nested view link.', 'nestedpages'); ?></p>
 						</div>
 						<div class="field">
@@ -36,7 +36,7 @@ settings_fields( 'nestedpages-posttypes' );
 				<li>
 					<div class="row">
 						<div class="description">
-							<p><strong><?php _e('Default Link', 'nestedpages'); ?></strong><br />
+							<p><strong><?php _e('Remove Default Link', 'nestedpages'); ?></strong><br />
 							<?php _e('If the default menu is replaced, a link to the default view will be added. Select this to remove the link', 'nestedpages'); ?>
 						</div>
 						<div class="field">
@@ -48,7 +48,7 @@ settings_fields( 'nestedpages-posttypes' );
 				<li>
 					<div class="row">
 						<div class="description">
-							<p><strong><?php _e('Disable Nesting', 'nestedpages'); ?></strong><br>
+							<p><strong><?php _e('Disable Nesting', 'nestedpages'); ?>**</strong><br>
 							<?php _e('To disable nesting on hierarchical post types, select this option.', 'nestedpages'); ?></p>
 						</div>
 						<div class="field">
@@ -61,18 +61,18 @@ settings_fields( 'nestedpages-posttypes' );
 					<div class="row">
 						<div class="description">
 							<p><strong><?php _e('Configure Standard Fields', 'nestedpages'); ?></strong><br>
-							<?php _e('Set what standard post fields display in the quick edit form.', 'nestedpages'); ?></p>
+							<?php _e('Remove standard fields from the quick edit form.', 'nestedpages'); ?></p>
 						</div>
 						<div class="field">
 							<label><input type="checkbox" data-toggle-nestedpages-sf-settings name="nestedpages_posttypes[<?php echo $type->name; ?>][standard_fields_enabled]" value="true" <?php if ( $type->standard_fields_enabled ) echo 'checked '; ?>/><?php _e('Configure Standard Fields', 'nestedpages'); ?></label>
 
 							<div class="standard-fields">
-								<h5><?php _e('Check to Exclude in Quick Edit.', 'nestedpages'); ?></h5>
+								<h5><?php _e('Check to remove from Quick Edit.', 'nestedpages'); ?></h5>
 								<div class="custom-field-group">
 								<ul>
 									<?php
 										$out = "";
-										foreach ( $this->settings->standardFields() as $name => $label ) :
+										foreach ( $this->settings->standardFields($type->name) as $name => $label ) :
 											$out .= '<li>';
 											$out .= '<label>';
 											$out .= '<input type="checkbox" name="nestedpages_posttypes[' . $type->name . '][standard_fields][standard][' . $name . ']" value="true"';

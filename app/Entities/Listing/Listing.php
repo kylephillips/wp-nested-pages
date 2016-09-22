@@ -110,7 +110,7 @@ class Listing
 		$this->listing_repo = new ListingRepository;
 		$this->post_data_factory = new PostDataFactory;
 		$this->settings = new SettingsRepository;
-		$this->setFieldOptions();
+		$this->setStandardFields();
 	}
 
 	/**
@@ -163,11 +163,15 @@ class Listing
 	/**
 	* Set the Quick Edit Field Options
 	*/
-	private function setFieldOptions()
+	private function setStandardFields()
 	{
 		$type_options = $this->post_type_repo->getSinglePostType($this->post_type->name);
-		$this->enabled_custom_fields = ( isset($type_options->custom_fields) && is_array($type_options->custom_fields) )
-			? $type_options->custom_fields : array();
+
+		// The standard fields checkbox is explicitly not set
+		if ( isset($type_options->standard_fields_enabled) && !$type_options->standard_fields_enabled ){
+			$this->disabled_standard_fields = array();
+			return;
+		}
 
 		if ( isset($type_options->standard_fields) && is_array($type_options->standard_fields) ){
 			$this->disabled_standard_fields = $type_options->standard_fields;

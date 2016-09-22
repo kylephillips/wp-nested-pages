@@ -50,7 +50,7 @@ class SettingsRepository
 	* Array of configurable standard fields
 	* @return array
 	*/
-	public function standardFields()
+	public function standardFields($post_type)
 	{
 		$fields = array(
 			'title' => __('Post Title', 'nestedpages'), 
@@ -58,13 +58,17 @@ class SettingsRepository
 			'date' => __('Post Date', 'nestedpages'), 
 			'author' => __('Author', 'nestedpages'),
 			'status' => __('Post Status', 'nestedpages'),
-			'template' => __('Template', 'nestedpages'),
 			'password' => __('Password/Private', 'nestedpages'),
-			'allow_comments' => __('Allow Comments', 'nestedpages'),
-			'hide_in_np' => __('Hide in Nested Pages', 'nestedpages'),
-			'menu_options' => __('Menu Options', 'nestedpages'),
-			'taxonomies' => __('Taxonomies', 'nestedpages')
+			'allow_comments' => __('Allow Comments', 'nestedpages')
 		);
+		if ( $post_type == 'page' ) {
+			$fields['template'] = __('Template', 'nestedpages');
+			$fields['menu_options'] = __('Menu Options', 'nestedpages');
+		}
+
+		$fields['hide_in_np'] = __('Hide in Nested Pages', 'nestedpages');
+		$fields['taxonomies'] = __('Taxonomies', 'nestedpages');
+
 		return $fields;
 	}
 

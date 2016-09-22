@@ -152,6 +152,23 @@ class PostTypeRepository
 	}
 
 	/**
+	* Is a standard field disabled?
+	* @param $field - The field key (title, slug, date, author, etc…)
+	* @param $post_type - The post type
+	* @return boolean
+	*/
+	public function standardFieldDisabled($field, $post_type)
+	{
+		$disabled = false;
+		$fields = $this->configuredFields($post_type, 'standard_fields');
+		if ( !isset($fields['standard']) ) return false;
+		foreach ( $fields['standard'] as $key => $value ){
+			if ( $key == $field && $value == 'true') return true;
+		}
+		return false;
+	}
+
+	/**
 	* Add New Post Link
 	* @since 1.2.1
 	* @param string post_type
