@@ -15,6 +15,7 @@ NestedPages.Settings = function()
 		postTypeCheckbox : '[data-nestedpages-pt-checbox]', // Checkbox for enabling post type
 		customFieldsCheckbox : '[data-toggle-nestedpages-cf-settings]', // Checkbox for toggling custom fields settings
 		standardFieldsCheckbox : '[data-toggle-nestedpages-sf-settings]', // Checkbox for toggling standard field settings
+		taxonomiesFieldCheckbox : '[data-hide-taxonomies]', // Checkbox for disabling taxonomies from quick edit
 	}
 
 	plugin.bindEvents = function()
@@ -36,6 +37,9 @@ NestedPages.Settings = function()
 		});
 		$(document).on('change', plugin.selectors.standardFieldsCheckbox, function(){
 			plugin.toogleFieldSettings($(this), '.standard-fields');
+		});
+		$(document).on('change', plugin.selectors.taxonomiesFieldCheckbox, function(){
+			plugin.toggleTaxonomyCheckboxes($(this));
 		});
 	}
 
@@ -100,6 +104,19 @@ NestedPages.Settings = function()
 		$.each(checkboxes, function(){
 			plugin.toogleFieldSettings($(this), fieldGroupClass);
 		});
+	}
+
+	/**
+	* Toggle Taxonomy Checkboxes
+	*/
+	plugin.toggleTaxonomyCheckboxes = function(checkbox)
+	{
+		var choices = $(checkbox).parents('ul').find($('*[data-taxonomy-single]'));
+		if ( $(checkbox).is(':checked') ){
+			$(choices).hide();
+			return;
+		}
+		$(choices).show();
 	}
 
 	plugin.init = function()

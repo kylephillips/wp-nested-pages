@@ -1,6 +1,7 @@
 <?php 
 
 namespace NestedPages\Config;
+use NestedPages\Entities\PostType\PostTypeRepository;
 
 class SettingsRepository 
 {
@@ -52,6 +53,8 @@ class SettingsRepository
 	*/
 	public function standardFields($post_type)
 	{
+		$post_type_repo = new PostTypeRepository;
+
 		$fields = array(
 			'title' => __('Post Title', 'nestedpages'), 
 			'slug' => __('Slug', 'nestedpages'), 
@@ -61,13 +64,23 @@ class SettingsRepository
 			'password' => __('Password/Private', 'nestedpages'),
 			'allow_comments' => __('Allow Comments', 'nestedpages')
 		);
+
 		if ( $post_type == 'page' ) {
 			$fields['template'] = __('Template', 'nestedpages');
 			$fields['menu_options'] = __('Menu Options', 'nestedpages');
 		}
 
 		$fields['hide_in_np'] = __('Hide in Nested Pages', 'nestedpages');
-		$fields['taxonomies'] = __('Taxonomies', 'nestedpages');
+		
+		$enabled_taxonomies = $post_type_repo->getTaxonomies($post_type);
+		
+		if ( !empty($enabled_taxonomies) ){
+			$fields['hide_taxonomies'] = __('Taxonomies', 'nestedpages');
+			$fields['taxonomies'] = array();
+			foreach($enabled_taxonomies as $taxonomy){
+				$fields['taxonomies'][$taxonomy->name] = $taxonomy->labels->name;
+			}
+		}
 
 		return $fields;
 	}
