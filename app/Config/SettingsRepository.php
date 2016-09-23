@@ -72,14 +72,16 @@ class SettingsRepository
 
 		$fields['hide_in_np'] = __('Hide in Nested Pages', 'nestedpages');
 		
-		$enabled_taxonomies = $post_type_repo->getTaxonomies($post_type);
+		// Taxonomies
+		$enabled_h_taxonomies = $post_type_repo->getTaxonomies($post_type);
+		$enabled_f_taxonomies = $post_type_repo->getTaxonomies($post_type, false);
+		$enabled_taxonomies = array_merge($enabled_h_taxonomies, $enabled_f_taxonomies);
+		if ( empty($enabled_taxonomies) ) return $fields;
 		
-		if ( !empty($enabled_taxonomies) ){
-			$fields['hide_taxonomies'] = __('Taxonomies', 'nestedpages');
-			$fields['taxonomies'] = array();
-			foreach($enabled_taxonomies as $taxonomy){
-				$fields['taxonomies'][$taxonomy->name] = $taxonomy->labels->name;
-			}
+		$fields['hide_taxonomies'] = __('Taxonomies', 'nestedpages');
+		$fields['taxonomies'] = array();
+		foreach($enabled_taxonomies as $taxonomy){
+			$fields['taxonomies'][$taxonomy->name] = $taxonomy->labels->name;
 		}
 
 		return $fields;
