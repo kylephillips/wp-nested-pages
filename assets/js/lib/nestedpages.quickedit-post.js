@@ -308,7 +308,6 @@ NestedPages.QuickEditPost = function()
 			datatype: 'json',
 			data: $(plugin.form).find('form').serialize() + '&action=' + NestedPages.formActions.quickEditPost + '&nonce=' + NestedPages.jsData.nonce + '&syncmenu=' + NestedPages.jsData.syncmenu + '&post_type=' + NestedPages.jsData.posttype,
 			success: function(data){
-				console.log(data);
 				if (data.status === 'error'){
 					plugin.toggleLoading(false);
 					$(plugin.form).find(NestedPages.selectors.quickEditErrorDiv).text(data.message).show();

@@ -152,7 +152,7 @@ class PostTypeRepository
 	}
 
 	/**
-	* Is a standard field disabled?
+	* Is a standard field disabled in Quick Edit?
 	* @param $field - The field key (title, slug, date, author, etc…)
 	* @param $post_type - The post type
 	* @return boolean
@@ -164,6 +164,25 @@ class PostTypeRepository
 		if ( !isset($fields['standard']) ) return false;
 		foreach ( $fields['standard'] as $key => $value ){
 			if ( $key == $field && $value == 'true') return true;
+		}
+		return false;
+	}
+
+	/**
+	* Is a taxonomy disabled in Quick Edit?
+	* @param $taxonomy - The taxonomy Name
+	* @param $post_type - The post type
+	* @return boolean
+	*/
+	public function taxonomyDisabled($taxonomy, $post_type)
+	{
+		$disabled = false;
+		$fields = $this->configuredFields($post_type, 'standard_fields');
+		if ( empty($fields) ) return false;
+		if ( !array_key_exists('taxonomies', $fields['standard']) ) return false;
+		if ( !is_array($fields['standard']['taxonomies']) ) return false;
+		foreach ( $fields['standard']['taxonomies'] as $tax => $value ){
+			if ( $tax == $taxonomy && $value == 'true') return true;
 		}
 		return false;
 	}

@@ -84,12 +84,13 @@ settings_fields( 'nestedpages-posttypes' );
 												$out .= '</li>';
 											else : // Taxonomies
 												foreach ( $label as $tax_name => $tax_label ) :
+													$disabled = $this->post_type_repo->taxonomyDisabled($tax_name, $type->name);
 													$out .= '<li data-taxonomy-single style="margin-left:20px;';
 													if ( $this->post_type_repo->fieldEnabled($type->name, 'standard', 'hide_taxonomies', 'standard_fields') ) $out .= 'display:none;';
 													$out .= '">';
 													$out .= '<label>';
 													$out .= '<input type="checkbox" name="nestedpages_posttypes[' . $type->name . '][standard_fields][standard][taxonomies][' . $tax_name . ']" value="true"';
-													// if ( $this->post_type_repo->fieldEnabled($type->name, 'standard', $name, 'standard_fields') ) $out .= ' checked';
+													if ( $disabled ) $out .= ' checked';
 													$out .= ' />' . $tax_label;
 													$out .= '</label>';
 													$out .= '</li>';
