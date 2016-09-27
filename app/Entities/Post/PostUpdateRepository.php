@@ -77,8 +77,11 @@ class PostUpdateRepository
 			'ID' => sanitize_text_field($data['post_id'])
 		);
 
-		if ( isset($data['post_title']) && $data['post_title'] !== "" ) 
-			$updated_post['post_title'] = sanitize_text_field($updated_post['post_title']);
+		if ( isset($data['post_title']) && $data['post_title'] == "" ){ 
+			$this->validation->checkEmpty($data['post_title'], __('Title', 'nestedpages'));
+		} elseif ( isset($data['post_title']) ){
+			$updated_post['post_title'] = sanitize_text_field($data['post_title']);
+		}
 
 		if ( isset($data['post_name']) ) 
 			$updated_post['post_name'] = sanitize_text_field($data['post_name']);
