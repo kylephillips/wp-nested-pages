@@ -96,6 +96,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Swedish translation added (Thanks to Marcus Forsberg)
 * Fixed bug where Post menu wasn't being replaced if option checked.
 * Issue of duplicate posts item in nav menu resolved.
+* Fix for invalid rel attribute in generated nav menus, resulting in W3C invalidation.
 
 = 1.5.4 = 
 * Spanish translation added (Thanks to Raúl Martínez)
