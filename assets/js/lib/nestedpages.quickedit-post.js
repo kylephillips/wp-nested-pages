@@ -341,7 +341,7 @@ NestedPages.QuickEditPost = function()
 		}
 
 		// Password Lock Icon
-		if ( plugin.newData.post_password !== "" ){
+		if ( plugin.newData.post_password !== "" && typeof plugin.newData.post_password !== 'undefined'){
 			var statustext = $(status).text();
 			statustext += ' <i class="np-icon-lock"></i>';
 			$(status).html(statustext);
@@ -418,9 +418,9 @@ NestedPages.QuickEditPost = function()
 	// Add Status Class
 	plugin.addStatusClass = function()
 	{
-		var taxonomies = ['published', 'draft', 'pending', 'future'];
-		for ( i = 0; i < taxonomies.length; i++ ){
-			$(plugin.row).removeClass(taxonomies[i]);
+		var statuses = ['published', 'draft', 'pending', 'future'];
+		for ( i = 0; i < statuses.length; i++ ){
+			$(plugin.row).removeClass(statuses[i]);
 		}
 		$(plugin.row).addClass(plugin.newData._status);
 	}

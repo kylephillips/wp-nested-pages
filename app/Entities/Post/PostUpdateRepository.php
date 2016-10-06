@@ -4,6 +4,7 @@ namespace NestedPages\Entities\Post;
 
 use NestedPages\Form\Validation\Validation;
 use NestedPages\Entities\NavMenu\NavMenuRepository;
+use NestedPages\Entities\PostType\PostTypeRepository;
 
 /**
 * Post Create/Update Methods
@@ -23,6 +24,11 @@ class PostUpdateRepository
 	protected $nav_menu_repo;
 
 	/**
+	* Post Type Repository
+	*/
+	protected $post_type_repo;
+
+	/**
 	* New Post ID
 	* @var int
 	*/
@@ -33,6 +39,7 @@ class PostUpdateRepository
 	{
 		$this->validation = new Validation;
 		$this->nav_menu_repo = new NavMenuRepository;
+		$this->post_type_repo = new PostTypeRepository;
 	}
 
 	/**
@@ -66,26 +73,40 @@ class PostUpdateRepository
 	*/
 	public function updatePost($data)
 	{
-		$this->validation->checkEmpty($data['post_title'], __('Title', 'nestedpages'));
-		$date = $this->validation->validateDate($data);
-		if ( !isset($_POST['comment_status']) ) $data['comment_status'] = 'closed';
+		$updated_post = array(
+			'ID' => sanitize_text_field($data['post_id'])
+		);
 
-		if ( isset($_POST['keep_private']) && $_POST['keep_private'] == 'private' ){
-			$status = 'private';
-		} else {
-			$status = ( isset($data['_status']) ) ? sanitize_text_field($data['_status']) : 'publish';
+		if ( isset($data['post_title']) && $data['post_title'] == "" ){ 
+			$this->validation->checkEmpty($data['post_title'], __('Title', 'nestedpages'));
+		} elseif ( isset($data['post_title']) ){
+			$updated_post['post_title'] = sanitize_text_field($data['post_title']);
 		}
 
-		$updated_post = array(
-			'ID' => sanitize_text_field($data['post_id']),
-			'post_title' => sanitize_text_field($data['post_title']),
-			'post_author' => sanitize_text_field($data['post_author']),
-			'post_name' => sanitize_text_field($data['post_name']),
-			'post_date' => $date,
-			'comment_status' => sanitize_text_field($data['comment_status']),
-			'post_status' => $status,
-			'post_password' => sanitize_text_field($data['post_password'])
-		);
+		if ( isset($data['post_name']) ) 
+			$updated_post['post_name'] = sanitize_text_field($data['post_name']);
+
+		if ( isset($data['post_author']) ) 
+			$updated_post['post_author'] = sanitize_text_field($data['post_author']);
+
+		if ( isset($data['post_password']) ) 
+			$updated_post['post_password'] = sanitize_text_field($data['post_password']);
+
+		if ( !$this->post_type_repo->standardFieldDisabled('allow_comments', sanitize_text_field($data['post_type'])) ){
+			$updated_post['comment_status'] = ( isset($data['comment_status']) ) ? 'open' : 'closed';
+		}
+
+		if ( isset($data['np_date']) ) {
+			$date = $this->validation->validateDate($data);
+			$updated_post['post_date'] = $date;
+		}
+
+		if ( isset($_POST['keep_private']) && $_POST['keep_private'] == 'private' ){
+			$updated_post['post_status'] = 'private';
+		} else {
+			if ( isset($data['_status']) ) $updated_post['post_status'] = sanitize_text_field($data['_status']);
+		}
+
 		wp_update_post($updated_post);
 
 		$this->updateTemplate($data);
@@ -145,11 +166,13 @@ class PostUpdateRepository
 	*/
 	private function updateNestedPagesStatus($data)
 	{
+		if ( $this->post_type_repo->standardFieldDisabled('hide_in_np', sanitize_text_field($data['post_type'])) ) return;
+		
 		$status = ( isset($data['nested_pages_status']) ) ? 'hide' : 'show';
 		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
-		update_post_meta( 
-			$id, 
-			'nested_pages_status', 
+		update_post_meta(
+			$id,
+			'nested_pages_status',
 			$status
 		);
 	}

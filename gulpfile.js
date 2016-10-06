@@ -3,7 +3,6 @@ var sass = require('gulp-sass');
 var autoprefix = require('gulp-autoprefixer');
 var livereload = require('gulp-livereload');
 var notify = require('gulp-notify');
-var plumber = require('gulp-plumber');
 var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
@@ -30,6 +29,9 @@ var js_source = [
 	'assets/js/lib/nestedpages.trash.js',
 	'assets/js/lib/nestedpages.confirm-delete.js'
 ];
+var js_source_settings = [
+	'assets/js/lib/nestedpages.settings.js'
+];
 var js_compiled = 'assets/js/';
 
 /**
@@ -40,7 +42,6 @@ gulp.task('scss', function(){
 		.pipe(sass({ outputStyle: 'compressed' }))
 		.pipe(autoprefix('last 15 version'))
 		.pipe(gulp.dest(css))
-		.pipe(plumber())
 		.pipe(livereload())
 		.pipe(notify('Nested Pages styles compiled & compressed.'));
 });
@@ -57,17 +58,30 @@ gulp.task('scripts', function(){
 		.pipe(notify('Nested Pages scripts compiles & compressed.'));
 });
 
+/**
+* Smush the Settings JS and output
+*/
+gulp.task('settings-scripts', function(){
+	return gulp.src(js_source_settings)
+		.pipe(concat('nestedpages.settings.min.js'))
+		.pipe(gulp.dest(js_compiled))
+		.pipe(uglify())
+		.pipe(gulp.dest(js_compiled))
+		.pipe(notify('Nested Pages settings scripts compiles & compressed.'));
+});
+
 
 /**
 * Watch Task
 */
 gulp.task('watch', function(){
-	livereload.listen(35829);
+	livereload.listen();
 	gulp.watch(scss, ['scss']);
 	gulp.watch(js_source, ['scripts']);
+	gulp.watch(js_source_settings, ['settings-scripts']);
 });
 
 /**
 * Default
 */
-gulp.task('default', ['scss', 'scripts', 'watch']);
+gulp.task('default', ['scss', 'scripts', 'settings-scripts', 'watch']);

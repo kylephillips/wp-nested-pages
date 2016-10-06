@@ -1,0 +1,120 @@
+//
+// Post Types Settings Styles
+// --------------------------------------------------
+.nestedpages-settings-posttypes {
+	@include wptable;
+	.post-type {
+		background-color: $white;
+		border-bottom: 1px solid $border;
+		&:last-child {
+			border: 0;
+		}
+		.head {
+			@include clearfix;
+			line-height: 46px;
+			background-color: $white;
+			padding-right: 10px;
+			.checkbox {
+				float: left;
+				width: 46px;
+				height: 46px;
+				background-color: rgba($black, .06);
+				text-align: center;
+				line-height: 46px;
+				margin-right: 10px;
+			}
+			label {
+				float: left;
+				line-height: 46px;
+				margin: 0;
+				em {
+					color: darken($white, 40%);
+				}
+			}
+			.button {
+				float: right;
+				margin-top: 10px;
+			}
+		} // .head
+		&.active .head {
+			background-color: $blue;
+			color: $white;
+		}
+		.row {
+			display: table;
+			width: 100%;
+			.description {
+				display: table-cell;
+				width: 25%;
+				border-bottom: 1px solid $border;
+				background-color: $gray-lighter;
+				padding: 10px;
+				p {
+					color: darken($white, 50%);
+					font-size: .9em;
+				}
+				strong {
+					color: $black;
+					font-size: 1.2em;
+				}
+			}
+			.field {
+				display: table-cell;
+				width: 75%;
+				background-color: $white;
+				border-bottom: 1px solid $border;
+				border-left: 1px solid $border;
+				padding: 10px;
+			}
+		} // .row
+		.body {
+			display: none;
+			h4 {
+				margin: 0;
+				padding: 10px 0 0 10px;
+			}
+			.post-type-settings {
+				margin: 0;
+			}
+			li {
+				margin: 0;
+			}
+		}
+		.post-type-settings li:last-child .field,
+		.post-type-settings li:last-child .description {
+			border-bottom: 0;
+		}
+		.custom-fields, .standard-fields {
+			display: none;
+			padding-top: 20px;
+			.custom-field-group {
+				height: 150px;
+				overflow: auto;
+				background-color: $gray-lighter;
+				padding: 10px;
+				border: 1px solid $border;
+			}
+			h5 {
+				padding: 0;
+				font-weight: normal;
+				font-style: oblique;
+				margin: 0;
+				color: darken($white, 40%);
+				margin-bottom: 6px;
+			}
+			p {
+				margin: 0 0 6px 0;
+				font-weight: bold;
+			}
+			ul {
+				margin: 0;
+				&.indented {
+					padding-left: 15px;
+				}
+				li {
+					margin: 3px 0 0 0;
+				}
+			}
+		} // .custom-fields
+	} // .post-type
+} // .nestedpages-settings-posttypes
