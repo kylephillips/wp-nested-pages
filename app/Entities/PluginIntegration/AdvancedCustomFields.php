@@ -1,14 +1,45 @@
-<?php
+<?php 
 
 namespace NestedPages\Entities\PluginIntegration;
 
 /**
-* Repository for ACF Integration
+* Advanced Custom Fields Integration
+* @link https://www.advancedcustomfields.com/
 */
-class ACFRepository
+
+class AdvancedCustomFields 
 {
-	// Unsupported Field Types
-	private $unsupported = array('relationship');
+	/**
+	* Installed
+	* @var boolean
+	*/
+	public $installed = false;
+
+	/**
+	* Unsupported Field Types
+	* @var array
+	*/
+	private $unsupported;
+
+	public function __construct()
+	{
+		return;
+		if ( class_exists('acf') ){
+			$this->installed = true;
+			$this->setUnsupportedFieldTypes();
+			return;
+		} 
+	}
+
+	/**
+	* Set the unsupported field types
+	*/
+	private function setUnsupportedFieldTypes()
+	{
+		$this->unsupported = array(
+			'relationship'
+		);
+	}
 
 	/**
 	* Get the ACF fields associated with a post type
@@ -37,4 +68,5 @@ class ACFRepository
 		}
 		return $all_fields;
 	}
+
 }

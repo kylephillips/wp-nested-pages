@@ -105,6 +105,7 @@ settings_fields( 'nestedpages-posttypes' );
 						</div><!-- .field -->
 					</div><!-- .row -->
 				</li>
+				<?php if ( $this->integrations->plugins->acf->installed ) : ?>
 				<li>
 					<div class="row">
 						<div class="description">
@@ -118,7 +119,7 @@ settings_fields( 'nestedpages-posttypes' );
 							<h5><?php _e('Check to Include in Quick Edit.', 'nestedpages'); ?></h5>
 							<?php
 								// Advanced Custom Fields
-								$acf_fields = $this->acf_repo->getFieldsForPostType($type->name);
+								$acf_fields = $this->integrations->plugins->acf->getFieldsForPostType($type->name);
 								if ( $acf_fields ) :
 									$out = '<div class="custom-field-group">';
 									$out .= '<p>' . __('Advanced Custom Fields', 'nestedpages') . '</p>';
@@ -143,6 +144,7 @@ settings_fields( 'nestedpages-posttypes' );
 						</div><!-- .field -->
 					</div><!-- .row -->
 				</li>
+			<?php  endif; ?>
 			</ul>
 		</div><!-- .body -->
 	</div><!-- .post-type -->

@@ -6,7 +6,7 @@ use NestedPages\Helpers;
 use NestedPages\Entities\User\UserRepository;
 use NestedPages\Entities\PostType\PostTypeRepository;
 use NestedPages\Config\SettingsRepository;
-use NestedPages\Entities\PluginIntegration\ACFRepository;
+use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 
 /**
 * Plugin Settings
@@ -41,9 +41,9 @@ class Settings
 	private $settings;
 
 	/**
-	* ACF Repository
+	* Plugin Integration
 	*/
-	private $acf_repo;
+	private $integrations;
 
 	public function __construct()
 	{
@@ -53,7 +53,7 @@ class Settings
 		$this->user_repo = new UserRepository;
 		$this->settings = new SettingsRepository;
 		$this->post_type_repo = new PostTypeRepository;
-		$this->acf_repo = new ACFRepository;
+		$this->integrations = new IntegrationFactory;
 	}
 
 	/**
