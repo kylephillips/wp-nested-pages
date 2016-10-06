@@ -3,7 +3,7 @@ Contributors: kylephillips
 Donate link: http://nestedpages.com/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
-Tested up to: 4.4
+Tested up to: 4.6
 Stable tag: 1.5.4
 
 License: GPLv2 or later
@@ -92,7 +92,10 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 == Changelog ==
 
 = 1.5.5 =
+* Redesign of post type settings page, with added capability to customize quick edit fields for each post type
 * Swedish translation added (Thanks to Marcus Forsberg)
+* Fixed bug where Post menu wasn't being replaced if option checked.
+* Issue of duplicate posts item in nav menu resolved.
 
 = 1.5.4 = 
 * Spanish translation added (Thanks to Raúl Martínez)
