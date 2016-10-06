@@ -51,17 +51,27 @@ class PostUpdateRepository
 	public function updateOrder($posts, $parent = 0)
 	{
 		$this->validation->validatePostIDs($posts);
+		global $wpdb;
 		foreach( $posts as $key => $post )
 		{
+			$post_id = sanitize_text_field($post['id']);
+			$original_modifed_date = get_post_modified_time('Y-m-d H:i:s', false, $post_id);
+			$original_modifed_date_gmt = get_post_modified_time('Y-m-d H:i:s', true, $post_id);
+			
 			wp_update_post(array(
-				'ID' => sanitize_text_field($post['id']),
+				'ID' => $post_id,
 				'menu_order' => $key,
 				'post_parent' => $parent
 			));
 
-			if ( isset($post['children']) ){
-				$this->updateOrder($post['children'], $post['id']);
-			}
+			// Reset the modified date to the last modified date
+			$query = "UPDATE $wpdb->posts SET post_modified = '$original_modifed_date' WHERE ID = '$post_id'";
+			$wpdb->query( $query );
+
+			$query_gmt = "UPDATE $wpdb->posts SET post_modified_gmt = '$original_modifed_date_gmt' WHERE ID = '$post_id'";
+    		$wpdb->query( $query_gmt );
+
+			if ( isset($post['children']) ) $this->updateOrder($post['children'], $post_id);
 		}
 		return true;
 	}
