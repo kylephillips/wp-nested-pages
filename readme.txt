@@ -95,6 +95,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Redesign of post type settings page, with added capability to customize quick edit fields for each post type
 * Swedish translation added (Thanks to Marcus Forsberg)
 * Fixed bug where Post menu wasn't being replaced if option checked.
+* Modified date set to not update when reordering post order through the nested view.
 * Issue of duplicate posts item in nav menu resolved.
 * Fix for invalid rel attribute in generated nav menus, resulting in W3C invalidation.
 
