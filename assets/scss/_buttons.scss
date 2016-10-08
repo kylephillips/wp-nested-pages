@@ -7,16 +7,13 @@
 	display: inline-block;
 	background-color: #f7f7f7;
 	border: 1px solid $border;
-	padding: 3px 8px;
-	box-shadow: inset 0 1px 0 #fff, 0 1px 0 rgba(0,0,0,.08);
+	padding: 5px 8px;
 	transition: all 200ms ease;
 	&:hover {
 		background-color: $blue;
 		color: $white;
 		transition: all 200ms ease;
-		box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25), 0 1px 0 rgba(0,0,0,.08);
 		border-color: $blue;
-		transition: all 200ms ease;
 	}
 }
 
@@ -34,7 +31,6 @@
 .np-btn-trash {
 	background-color: $red;
 	border-color: $red;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 1px 0 rgba(0,0,0,.08);
 	color: $white;
 	&:hover {
 		background-color: darken($red, 15%);
