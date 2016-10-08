@@ -116,5 +116,14 @@
 				}
 			}
 		} // .custom-fields
+		.thumbnail-options {
+			background-color: $gray-lighter;
+			padding: 10px;
+			border: 1px solid $border;
+			margin-top: 1em;
+			label {
+				display: block;
+			}
+		} // .thumbnail-options
 	} // .post-type
 } // .nestedpages-settings-posttypes

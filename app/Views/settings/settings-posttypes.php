@@ -1,5 +1,6 @@
 <?php
 $types = $this->getPostTypes();
+$thumbnail_sizes = get_intermediate_image_sizes();
 settings_fields( 'nestedpages-posttypes' ); 
 ?>
 
@@ -57,6 +58,31 @@ settings_fields( 'nestedpages-posttypes' );
 					</div><!-- .row -->
 				</li>
 				<?php endif; ?>
+				<li>
+					<?php $thumbnail = $this->post_type_repo->thumbnails($type->name); ?>
+					<div class="row">
+						<div class="description">
+							<p><strong><?php _e('Display Thumbnails', 'nestedpages'); ?></strong><br>
+							<?php _e('Display the thumbnail in the list sort view.', 'nestedpages'); ?></p>
+						</div>
+						<div class="field">
+							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][thumbnails][display]" value="true" <?php if ( $thumbnail ) echo 'checked'; ?> data-enable-thumbnails /><?php echo __('Display Thumbnails for', 'nestedpages') . ' ' . $type->label; ?></label>
+							
+							<div class="thumbnail-options" data-thumbnail-options <?php if ( !$thumbnail ) echo 'style="display:none;"'; ?>>
+								<label><?php _e('Thumbnail Size', 'nestedpages'); ?></label>
+								<select name="nestedpages_posttypes[<?php echo $type->name; ?>][thumbnails][size]">
+								<?php
+								foreach ( $thumbnail_sizes as $size ){
+									echo '<option value="' . $size . '"';
+									if ( $size == $thumbnail ) echo ' selected';
+									echo '>' . $size . '</option>';
+								}
+								?>
+								</select>
+							</div><!-- .thumbnail-options -->
+						</div>
+					</div><!-- .row -->
+				</li>
 				<li>
 					<div class="row">
 						<div class="description">

@@ -16,6 +16,7 @@ NestedPages.Settings = function()
 		customFieldsCheckbox : '[data-toggle-nestedpages-cf-settings]', // Checkbox for toggling custom fields settings
 		standardFieldsCheckbox : '[data-toggle-nestedpages-sf-settings]', // Checkbox for toggling standard field settings
 		taxonomiesFieldCheckbox : '[data-hide-taxonomies]', // Checkbox for disabling taxonomies from quick edit
+		thumbnailsCheckbox : '[data-enable-thumbnails]', // Checkbox for enabling thumbnails in sort view
 	}
 
 	plugin.bindEvents = function()
@@ -40,6 +41,9 @@ NestedPages.Settings = function()
 		});
 		$(document).on('change', plugin.selectors.taxonomiesFieldCheckbox, function(){
 			plugin.toggleTaxonomyCheckboxes($(this));
+		});
+		$(document).on('change', plugin.selectors.thumbnailsCheckbox, function(){
+			plugin.toggleThumbnailSettings($(this));
 		});
 	}
 
@@ -117,6 +121,19 @@ NestedPages.Settings = function()
 			return;
 		}
 		$(choices).show();
+	}
+
+	/**
+	* Toggle the Thumbnail Settings
+	*/
+	plugin.toggleThumbnailSettings = function(checkbox)
+	{
+		var settings = $(checkbox).parents('.field').find($('*[data-thumbnail-options]'));
+		if ( $(checkbox).is(':checked') ){
+			$(settings).show();
+			return;
+		}
+		$(settings).hide();
 	}
 
 	plugin.init = function()

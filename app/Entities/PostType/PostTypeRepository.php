@@ -49,7 +49,7 @@ class PostTypeRepository
 	}
 
 	/**
-	* Get an object of non-page post types
+	* Get an object of post types
 	* @since 1.2.1
 	* @return object
 	*/
@@ -149,6 +149,25 @@ class PostTypeRepository
 			}
 		}
 		return $enabled;
+	}
+
+	/**
+	* Are Thumbnails enabled for this post type? If not, return false, if so, return the thumbnail size
+	* @param $post_type - post type name
+	* @return boolean || string (thumbnail size)
+	*/
+	public function thumbnails($post_type)
+	{
+		$types = $this->enabled_post_types;
+		$type_settings = array();
+		foreach ( $types as $type => $settings ){
+			if ( $type !== $post_type ) continue;
+			$type_settings = $settings;
+		}
+		if ( !array_key_exists('thumbnails', $type_settings) ) return false;
+		if ( !isset($type_settings['thumbnails']['display']) ) return false;
+		if ( isset($type_settings['thumbnails']['size']) ) return $type_settings['thumbnails']['size'];
+		return true;
 	}
 
 	/**
