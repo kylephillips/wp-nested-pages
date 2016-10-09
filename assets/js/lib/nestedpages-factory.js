@@ -179,7 +179,7 @@ NestedPages.Factory = function()
 	// Set whether or not post type is nestable
 	plugin.setNestable = function()
 	{
-		var nestable = true;
+		var nestable = false;
 		$.each(NestedPages.jsData.allPostTypes, function(i, v){
 			if ( v.name !== NestedPages.jsData.posttype ) return;
 			if ( v.hierarchical === true ) nestable = true;

@@ -100,6 +100,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Issue of duplicate posts item in nav menu resolved.
 * Fix for invalid rel attribute in generated nav menus, resulting in W3C validation error.
 * When adding multiple pages, the option to set them as hidden in the nav menu is now available.
+* Bug fix where non-hierarchical post types were allowing nesting.
 * Swedish translation added (Thanks to Marcus Forsberg)
 
 = 1.5.4 = 
