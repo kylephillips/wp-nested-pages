@@ -203,7 +203,7 @@ NestedPages.MenuLinks = function()
 		var html = '<li id="menuItem_' + plugin.post.id + '" class="page-row published';
 		html += '">'
 
-		html += '<div class="row"><div class="child-toggle"></div><div class="row-inner"><i class="np-icon-sub-menu"></i><i class="handle np-icon-menu"></i><a href="' + plugin.post.np_link_content + '" class="page-link page-title" target="_blank"><span class="title">' + plugin.post.menuTitle + ' <i class="np-icon-link"></i></span>';
+		html += '<div class="row"><div class="child-toggle"><div class="child-toggle-spacer"></div></div><div class="row-inner"><i class="np-icon-sub-menu"></i><i class="handle np-icon-menu"></i><a href="' + plugin.post.np_link_content + '" class="page-link page-title" target="_blank"><span class="title">' + plugin.post.menuTitle + ' <i class="np-icon-link"></i></span>';
 
 		// Quick Edit Button
 		html += '</a><a href="#" class="np-toggle-edit"><i class="np-icon-pencil"></i></a><div class="action-buttons"><a href="#" class="np-btn np-quick-edit-redirect" ';

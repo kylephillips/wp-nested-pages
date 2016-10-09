@@ -92,7 +92,7 @@ NestedPages.NewLink = function()
 		if ( plugin.post._status === 'publish' ) html += ' published';
 		html += '">'
 
-		html += '<div class="row"><div class="child-toggle"></div><div class="row-inner"><i class="np-icon-sub-menu"></i><i class="handle np-icon-menu"></i><a href="' + plugin.post.np_link_content + '" class="page-link page-title" target="_blank"><span class="title">' + plugin.post.np_link_title + ' <i class="np-icon-link"></i></span>';
+		html += '<div class="row"><div class="child-toggle"><div class="child-toggle-spacer"></div></div><div class="row-inner"><i class="np-icon-sub-menu"></i><i class="handle np-icon-menu"></i><a href="' + plugin.post.np_link_content + '" class="page-link page-title" target="_blank"><span class="title">' + plugin.post.np_link_title + ' <i class="np-icon-link"></i></span>';
 
 		// Post Status
 		html += '<span class="status">';
