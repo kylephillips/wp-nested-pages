@@ -36,7 +36,6 @@
 
 
 		.page-link {
-			line-height: 26px;
 			.edit-indicator {
 				margin-left: 10px;
 				display: none;
@@ -47,7 +46,7 @@
 			}
 			&:hover {
 				.edit-indicator {
-					display: inline-block;
+					display: inline;
 				}
 			}
 		}
@@ -69,7 +68,6 @@
 		// Indicates status if not published
 		.status {
 			color: darken($white, 40%);
-			margin: 0px 10px;
 		}
 
 		// Indicates page is hidden from nested pages
@@ -91,12 +89,14 @@
 		// See Yoast's metabox-tabs.css
 		.np-seo-indicator {
 			display: block;
-			float: right;
+			position: absolute;
+			right: 10px;
+			top: 50%;
+			margin-top: -6px;
 			width: 12px;
 			height: 12px;
 			border-radius: 50%;
 			background-color: darken($white, 40%);
-			margin: 6px 10px 0 0;
 			&.good {
 				background-color: #7ad03a;
 			}
@@ -148,15 +148,20 @@
 
 	// Block that holds the toggle child arrow
 	.child-toggle {
-		float: left;
-		margin: 0px 10px 0 0;
+		display: table-cell;
 		width: 46px;
-		height: 46px;
 		background-color: darken($white, 6%);
 		text-align: center;
+		position: relative;
+		.child-toggle-spacer {
+			height: 46px;
+			width: 100%;
+		}
 		a { // Arrow Toggle
-			display: inline-block;
-			margin-top: 7px;
+			position: absolute;
+			top: 50%;
+			left: 8px;
+			margin-top: -16px;
 			width: 28px;
 			height: 28px;
 			background-color: $white;
@@ -186,8 +191,7 @@
 		font-size: 20px;
 		color: darken($white, 30%);
 		transition: all 200ms ease;
-		position: relative;
-		top: 3px;
+		
 		&:hover {
 			transition: all 200ms ease;
 			color: $blue;
@@ -199,16 +203,33 @@
 	.np-icon-sub-menu {
 		display: none;
 		color: darken($white, 40%);
-		position: relative;
-		left: 2px;
 	}
 
+	.page-title {
+		// display: inline-block;
+	}
+
+	.row.no-sort .page-title {
+		padding-left: 10px;
+	}
+
+	.np-thumbnail {
+		display: table-cell;
+		width: 80px;
+		vertical-align: middle;
+		@include clearfix;
+		img {
+			float: right;
+			width: 80px;
+			height: auto;
+		}
+	}
 
 	// Normalize the submenu and handle icons
 	.handle, .np-icon-sub-menu {
 		width: 30px;
-		line-height: 36px;
-		margin-top: -10px;
+		text-align: center;
+		vertical-align: middle;
 	}
 
 	// Hide/show the submenu indicator & handle on hover of the row
@@ -219,14 +240,17 @@
 			.np-icon-sub-menu {	display: none; }
 			.handle { display: inline-block; }
 		}
+		&.no-sort {
+			.np-icon-sub-menu { display: inline-block; }
+		}
 	}
 
 
 	// Main Row Element
 	.row {
 		background-color: $white;
-		display: block;
-		@include clearfix;
+		display: table;
+		width: 100%;
 		&:hover {
 			background-color: darken($white, 6%);
 		}
@@ -238,38 +262,39 @@
 			background-color: $white;
 			transition: background-color 400ms ease;	
 		}
-		// No Toggle Area
-		&.non-hierarchical {
-			padding-left: 15px;
-			padding-bottom: 10px;
-		}
 	} // .row
 
+	.non-hierarchical-spacer {
+		height: 47px;
+	}
+
 	.row-inner {
-		padding-top: 10px;
+		display: table-cell;
+		vertical-align: middle;
+		position: relative;
 	}
 
 
 	// Inner row element gets padding to give visual indicator of nested depth
 	ol li ol {
 		.row-inner {
-			padding-left: 76px;
+			padding-left: 0px;
 		}
 		li ol {
 			.row-inner {
-				padding-left: 96px;
+				padding-left: 20px;
 			}
 			li ol {
 				.row-inner {
-					padding-left: 116px;
+					padding-left: 40px;
 				}
 				li ol {
 					.row-inner {
-						padding-left: 136px;
+						padding-left: 60px;
 					}
 					li ol {
 						.row-inner {
-							padding-left: 156px;
+							padding-left: 80px;
 						}
 					}
 				}
@@ -297,12 +322,17 @@
 			}
 		}
 	}
+	.row.has-yoast .np-post-columns {
+		margin-right: 30px;
+	}
 
 	// Action Buttons
 	.action-buttons {
 		display: none;
-		float: right;
-		margin: -2px 10px 0 0;
+		position: absolute;
+		right: 10px;
+		top: 50%;
+		margin-top: -15px;
 		a {
 			margin: 0 0 0 -5px;
 			&.np-btn-trash {

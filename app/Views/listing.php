@@ -68,6 +68,7 @@
 </div><!-- .wrap -->
 
 <?php 
+include( NestedPages\Helpers::view('forms/more-options-modal') );
 include( NestedPages\Helpers::view('forms/empty-trash-modal') );
 include( NestedPages\Helpers::view('forms/clone-form') );
 include( NestedPages\Helpers::view('forms/link-form') );

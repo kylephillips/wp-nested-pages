@@ -2,12 +2,25 @@
 /**
 * Row represents a single page
 */
+$row_classes = '';
+if ( !$this->post_type->hierarchical ) $row_classes .= ' non-hierarchical';
+if ( !$this->user->canSortPages() ) $row_classes .= ' no-sort';
+
+$yoast = false;
+if ( function_exists('wpseo_auto_load') ){
+	$yoast = true;
+	$row_classes .= ' has-yoast';
+}
 ?>
-<div class="row<?php if ( !$this->post_type->hierarchical ) echo ' non-hierarchical'; ?>" <?php if ( $this->isSearch() ) echo 'style="padding-left:10px;"';?>>
+<div class="row<?php echo $row_classes; ?>" <?php if ( $this->isSearch() ) echo 'style="padding-left:10px;"';?>>
 	
 	<?php if ( $this->post_type->hierarchical && !$this->isSearch() ) : ?>
-	<div class="child-toggle"></div>
+	<div class="child-toggle">
+		<div class="child-toggle-spacer"></div>
+	</div>
 	<?php endif; ?>
+
+	<?php if ( !$this->post_type->hierarchical ) echo '<div class="non-hierarchical-spacer"></div>'; ?>
 
 	<div class="row-inner">
 		<i class="np-icon-sub-menu"></i>
@@ -25,11 +38,6 @@
 				?>
 			</span>
 			<?php 
-				
-				if ( function_exists('wpseo_auto_load') ){
-					echo '<span class="np-seo-indicator ' . $this->post->score . '"></span>';
-				}
-
 				// Post Status
 				echo '<span class="status">';
 				if ( $this->post->status !== 'publish' )	echo '(' . __(ucfirst($this->post->status)) . ')';
@@ -74,6 +82,11 @@
 		</div>
 		<?php endif; ?>
 
+		<?php
+		if ( function_exists('wpseo_auto_load') ){
+			echo '<span class="np-seo-indicator ' . $this->post->score . '"></span>';
+		}
+		?>
 
 		<div class="action-buttons">
 
@@ -133,6 +146,8 @@
 
 			<a href="<?php echo get_the_permalink(); ?>" class="np-btn" target="_blank"><?php _e('View'); ?></a>
 			
+			<a href="#" class="np-btn"><i class="np-icon-more_vert"></i></a>
+			
 			<?php if ( current_user_can('delete_pages') && $this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ) : ?>
 			<a href="<?php echo get_delete_post_link(get_the_id()); ?>" class="np-btn np-btn-trash">
 				<i class="np-icon-remove"></i>
@@ -141,4 +156,21 @@
 
 		</div><!-- .action-buttons -->
 	</div><!-- .row-inner -->
+
+	<?php
+	// Thumbnail
+	$thumbnail_size = $this->post_type_repo->thumbnails($this->post_type->name);
+	if ( $thumbnail_size ) :
+		$out = '<div class="np-thumbnail">';
+		if ( has_post_thumbnail($this->post->id) ) :
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $this->post->id ), $thumbnail_size );
+			$out .= '<img src="' . $image[0] . '" />';
+		else :
+			$image_fallback = '';
+			$out .= apply_filters('nestedpages_thumbnail_fallback', $image_fallback, $this->post_type->name);
+		endif;
+		$out .= '</div>';
+		echo $out;
+	endif;
+	?>
 </div><!-- .row -->

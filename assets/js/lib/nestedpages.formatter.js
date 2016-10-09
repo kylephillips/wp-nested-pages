@@ -25,7 +25,7 @@ NestedPages.Formatter = function()
 					? NestedPages.cssClasses.iconToggleDown 
 					: NestedPages.cssClasses.iconToggleRight;
 
-				$(button).html('<a href="#"><i class="' + icon + '"></i></a>');
+				$(button).html('<div class="child-toggle-spacer"></div><a href="#"><i class="' + icon + '"></i></a>');
 
 				if ( ($(row).children('ol').children('.np-hide').length > 0) && ($(row).children('ol').children('.np-hide.shown').length === 0) ){
 					$(button).find('a').hide();
@@ -35,7 +35,7 @@ NestedPages.Formatter = function()
 
 				continue;
 			}
-			$(button).empty(); // No Child Menu
+			$(button).empty().html('<div class="child-toggle-spacer"></div>'); // No Child Menu
 		}
 	}
 
@@ -55,7 +55,7 @@ NestedPages.Formatter = function()
 	{
 		$.each($(NestedPages.selectors.lists), function(i, v){
 			var parent_count = $(this).parents(NestedPages.selectors.lists).length;
-			var padding = 56;
+			var padding = 0;
 			if ( parent_count > 0 ){
 				var padding = ( parent_count * 20 ) + padding;
 				$(this).find('.row-inner').css('padding-left', padding + 'px');

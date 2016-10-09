@@ -63,7 +63,8 @@ settings_fields( 'nestedpages-posttypes' );
 					<div class="row">
 						<div class="description">
 							<p><strong><?php _e('Display Thumbnails', 'nestedpages'); ?></strong><br>
-							<?php _e('Display the thumbnail in the list sort view.', 'nestedpages'); ?></p>
+							<?php _e('Display the thumbnail in the list sort view.', 'nestedpages'); ?><br><br>
+							<?php _e('Note: Thumbnail width is displayed at a maximum of 80px in the nested pages view. The image is scaled proportionally.', 'nestedpages'); ?></p>
 						</div>
 						<div class="field">
 							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][thumbnails][display]" value="true" <?php if ( $thumbnail ) echo 'checked'; ?> data-enable-thumbnails /><?php echo __('Display Thumbnails for', 'nestedpages') . ' ' . $type->label; ?></label>
