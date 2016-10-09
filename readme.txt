@@ -99,6 +99,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Modified date set to not update when reordering post order through the nested view.
 * Issue of duplicate posts item in nav menu resolved.
 * Fix for invalid rel attribute in generated nav menus, resulting in W3C validation error.
+* When adding multiple pages, the option to set them as hidden in the nav menu is now available.
 * Swedish translation added (Thanks to Marcus Forsberg)
 
 = 1.5.4 = 

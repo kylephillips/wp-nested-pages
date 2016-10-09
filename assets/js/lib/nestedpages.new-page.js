@@ -141,6 +141,7 @@ NestedPages.NewPage = function()
 			datatype: 'json',
 			data: $(plugin.form).serialize() + '&action=' + NestedPages.formActions.newPage + '&nonce=' + NestedPages.jsData.nonce + '&syncmenu=' + NestedPages.jsData.syncmenu + '&post_type=' + NestedPages.jsData.posttype,
 			success: function(data){
+				console.log(data);
 				if (data.status === 'error'){
 					plugin.toggleLoading(false);
 					$(plugin.form).find(NestedPages.selectors.quickEditErrorDiv).text(data.message).show();
@@ -219,7 +220,14 @@ NestedPages.NewPage = function()
 			html += '<span class="status"></span>';
 		}
 
-		html += '<span class="nav-status"></span><span class="edit-indicator"><i class="np-icon-pencil"></i>Edit</span>';
+		// Nav Status
+		html += '<span class="nav-status">';
+		if ( post.np_nav_status === 'hide' ){
+			html += ' ' + nestedpages.hidden;
+		}
+		html += '</span>';
+
+		html += '<span class="edit-indicator"><i class="np-icon-pencil"></i>Edit</span>';
 		html += '</a>';
 
 		// Action Buttons

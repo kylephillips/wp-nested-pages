@@ -52,9 +52,8 @@ class PostFactory
 			);
 			$new_page_id = wp_insert_post($post);
 			$data['post_id'] = $new_page_id;
-			if ( isset($data['page_template']) ){
-				$this->post_update_repo->updateTemplate($data);
-			}
+			if ( isset($data['page_template']) ) $this->post_update_repo->updateTemplate($data);
+			if ( isset($data['nav_status']) ) $this->post_update_repo->updateNavStatus($data);
 			$this->new_ids[$key] = $new_page_id;
 		}
 		return $this->getNewPosts($post_type);

@@ -76,6 +76,15 @@
 		</div>
 		<?php endif; ?>
 
+		<?php if ( $this->post_type->name == 'page' && $this->user->canSortPages() && !$this->isSearch() ) : ?>
+		<div class="form-control full checkbox">
+			<label>
+				<input type="checkbox" name="nav_status" class="np_nav_status" value="hide" />
+				<span class="checkbox-title"><?php _e( 'Hide in Nav Menu', 'nestedpages' ); ?></span>
+			</label>
+		</div>
+		<?php endif; ?>
+
 	</div><!-- .right -->
 
 	</div><!-- .fields -->

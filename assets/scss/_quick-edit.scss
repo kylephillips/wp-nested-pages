@@ -114,6 +114,16 @@
 				padding-top: 3px;
 			}
 		}
+		&.full {
+			label {
+				width: 100%;
+			}
+			&.checkbox {
+				label {
+					padding: 5px 0 5px 25%;
+				}
+			}
+		}
 	} // .form-control
 	.comments {
 		float: right;
@@ -264,6 +274,11 @@
 		label {
 			float: none;
 			width: 100%;
+		}
+		&.full {
+			label {
+				padding-left: 0;
+			}
 		}
 	}
 }

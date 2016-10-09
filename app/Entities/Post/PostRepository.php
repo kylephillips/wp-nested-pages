@@ -107,6 +107,10 @@ class PostRepository
 			$pages[$c]['formattedtime'] = date_i18n('g:i', get_the_time('U'));
 			$pages[$c]['ampm'] = get_the_time('a');
 
+			// NP Variables
+			$all_meta = get_post_meta(get_the_id());
+			$pages[$c]['post_meta'] = $all_meta;
+			$pages[$c]['np_nav_status'] = ( isset($all_meta['np_nav_status']) && $all_meta['np_nav_status'][0] == 'hide' ) ? 'hide' : 'show';
 
 		$c++; endwhile; endif; wp_reset_postdata();
 		return $pages;
