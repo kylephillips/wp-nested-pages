@@ -1,6 +1,7 @@
 <?php 
 
 namespace NestedPages\Entities\Post;
+use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 
 /**
 * Build Post Data Object
@@ -15,10 +16,17 @@ class PostDataFactory
 	private $post_data;
 
 	/**
+	* Plugin Integrations
+	* @var object
+	*/
+	private $integrations;
+
+	/**
 	* Build the Object
 	*/
 	public function build($post)
 	{
+		$this->integrations = new IntegrationFactory;
 		$this->post_data = new \stdClass();
 		$this->addPostVars($post);
 		$this->addPostMeta($post);
@@ -63,14 +71,8 @@ class PostDataFactory
 		$this->post_data->template = ( isset($meta['_wp_page_template'][0]) ) ? $meta['_wp_page_template'][0] : false;
 
 		// Yoast Score
-		if ( function_exists('wpseo_auto_load') ) {
-			$yoast_score = get_post_meta($post->ID, '_yoast_wpseo_meta-robots-noindex', true);
-			if ( ! $yoast_score ) {
-				$yoast_score = get_post_meta($post->ID, '_yoast_wpseo_linkdex', true);
-				$this->post_data->score = \WPSEO_Utils::translate_score($yoast_score);
-			} else {
-				$this->post_data->score = 'noindex';
-			}
+		if ( $this->integrations->plugins->yoast->installed ) {
+			$this->post_data->score = $this->integrations->plugins->yoast->getScore($post->ID);
 		}
 	}
 

@@ -87,6 +87,7 @@ class PostRepository
 			$pages[$c]['title'] = get_the_title();
 			$pages[$c]['slug'] = $post->post_name;
 			$pages[$c]['author'] = get_the_author_meta('ID');
+			$pages[$c]['author_formatted'] = get_the_author();
 			$pages[$c]['status'] = ucfirst(get_post_status());
 			$pages[$c]['page_template'] = get_page_template_slug($post->ID);
 			$pages[$c]['post_parent'] = $post->post_parent;
@@ -106,6 +107,7 @@ class PostRepository
 			$pages[$c]['time'] = date_i18n('H:i', get_the_time('U'));
 			$pages[$c]['formattedtime'] = date_i18n('g:i', get_the_time('U'));
 			$pages[$c]['ampm'] = get_the_time('a');
+			$pages[$c]['date_formatted'] = get_the_date();
 
 			// NP Variables
 			$all_meta = get_post_meta(get_the_id());

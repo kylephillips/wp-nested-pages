@@ -4,6 +4,7 @@ namespace NestedPages\Entities\PluginIntegration;
 
 use NestedPages\Entities\PluginIntegration\EditorialAccessManager;
 use NestedPages\Entities\PluginIntegration\AdvancedCustomFields;
+use NestedPages\Entities\PluginIntegration\YoastSeo;
 
 class IntegrationFactory 
 {
@@ -24,6 +25,7 @@ class IntegrationFactory
 		$this->plugins = new \StdClass();
 		$this->plugins->editorial_access_manager = new EditorialAccessManager;
 		$this->plugins->acf = new AdvancedCustomFields;
+		$this->plugins->yoast = new YoastSeo;
 	}
 
 }

@@ -55,8 +55,8 @@ class UserRepository
 		$cansort = get_option('nestedpages_allowsorting', array());
 		if ( $cansort == "" ) $cansort = array();
 		
-		if ( current_user_can('edit_theme_options') ) return true;
 		foreach($roles as $role){
+			if ( $role == 'administrator' ) return true;
 			if ( in_array($role, $cansort) ) return true;
 		}
 		return false;

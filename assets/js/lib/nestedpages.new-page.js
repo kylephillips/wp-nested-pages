@@ -141,7 +141,6 @@ NestedPages.NewPage = function()
 			datatype: 'json',
 			data: $(plugin.form).serialize() + '&action=' + NestedPages.formActions.newPage + '&nonce=' + NestedPages.jsData.nonce + '&syncmenu=' + NestedPages.jsData.syncmenu + '&post_type=' + NestedPages.jsData.posttype,
 			success: function(data){
-				console.log(data);
 				if (data.status === 'error'){
 					plugin.toggleLoading(false);
 					$(plugin.form).find(NestedPages.selectors.quickEditErrorDiv).text(data.message).show();
@@ -206,6 +205,7 @@ NestedPages.NewPage = function()
 			html += '<div class="child-toggle"></div>';
 		} else {
 			html += '<div class="row non-hierarchical">';
+			html += '<div class="non-hierarchical-spacer"></div>';
 		}
 
 		html += '<div class="row-inner">';
@@ -229,6 +229,21 @@ NestedPages.NewPage = function()
 
 		html += '<span class="edit-indicator"><i class="np-icon-pencil"></i>Edit</span>';
 		html += '</a>';
+
+		// Non-Hierarchical Data
+		if ( !NestedPages.jsData.hierarchical ){
+			html += '<div class="np-post-columns">';
+			html += '<ul class="np-post-info">';
+			html += '<li><span class="np-author-display">' + post.author_formatted + '</span></li>';
+			html += '<li>' + post.date_formatted + '</li>';
+			html += '</ul>';
+			html += '</div>';
+		}
+
+		// Yoast
+		if ( $('.nplist').first().hasClass('has-yoast') ) {
+			html += '<span class="np-seo-indicator na"></span>';
+		}
 
 		// Action Buttons
 		html += '<div class="action-buttons">';

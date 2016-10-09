@@ -5,12 +5,6 @@
 $row_classes = '';
 if ( !$this->post_type->hierarchical ) $row_classes .= ' non-hierarchical';
 if ( !$this->user->canSortPages() ) $row_classes .= ' no-sort';
-
-$yoast = false;
-if ( function_exists('wpseo_auto_load') ){
-	$yoast = true;
-	$row_classes .= ' has-yoast';
-}
 ?>
 <div class="row<?php echo $row_classes; ?>" <?php if ( $this->isSearch() ) echo 'style="padding-left:10px;"';?>>
 	
@@ -68,10 +62,8 @@ if ( function_exists('wpseo_auto_load') ){
 			?>
 		</a>
 
-
 		<!-- Responsive Toggle Button -->
 		<a href="#" class="np-toggle-edit"><i class="np-icon-pencil"></i></a>
-
 
 		<?php if ( !$this->post->hierarchical ) : echo $this->post->hierarchical; ?>
 		<div class="np-post-columns">
@@ -83,7 +75,7 @@ if ( function_exists('wpseo_auto_load') ){
 		<?php endif; ?>
 
 		<?php
-		if ( function_exists('wpseo_auto_load') ){
+		if ( $this->integrations->plugins->yoast->installed ){
 			echo '<span class="np-seo-indicator ' . $this->post->score . '"></span>';
 		}
 		?>

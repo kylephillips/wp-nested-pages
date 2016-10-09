@@ -221,11 +221,13 @@ class Listing
 		// Compare child pages with user's toggled pages
 		$compared = array_intersect($this->listing_repo->visiblePages($this->post_type->name), $children);
 
+		$list_classes = 'sortable visible nplist';
+		if ( !$this->user->canSortPages() && !$sortable ) $list_classes .= ' no-sort';
+		if ( $this->integrations->plugins->yoast->installed ) $list_classes .= ' has-yoast';
+
 		// Primary List
 		if ( $count == 1 ) {
-			echo ( $this->user->canSortPages() && $sortable ) 
-				? '<ol class="sortable nplist visible" id="np-' . $this->post_type->name . '">' 
-				: '<ol class="sortable no-sort nplist" visible" id="np-' . $this->post_type->name . '">';
+			echo '<ol class="' . $list_classes . '" id="np-' . $this->post_type->name . '">';
 			return;
 		}
 
