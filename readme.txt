@@ -93,13 +93,13 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 = 1.5.5 =
 * Redesign of post type settings page
-* Ability to customize quick edit fields for each post type added. Visit Settings > Nested Pages > Post Types to hide specific fields from the quick edit interface for each post type.
 * Thumbnail support added to nested/sort view. Visit Settings > Nested Pages > Post Types to enable post thumbnails.
+* Ability to customize quick edit fields for each post type added. Visit Settings > Nested Pages > Post Types to hide specific fields from the quick edit interface for each post type. Please note: specific fields are still hidden depending on the current user's roles/capabilities.
+* When adding multiple pages, the option to set them as hidden in the nav menu is now available.
 * Bug fix where Post menu wasn't being replaced if option checked.
 * Modified date set to not update when reordering post order through the nested view.
 * Issue of duplicate posts item in nav menu resolved.
 * Fix for invalid rel attribute in generated nav menus, resulting in W3C validation error.
-* When adding multiple pages, the option to set them as hidden in the nav menu is now available.
 * Bug fix where non-hierarchical post types were allowing nesting.
 * Swedish translation added (Thanks to Marcus Forsberg)
 
