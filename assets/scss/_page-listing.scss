@@ -213,8 +213,14 @@
 		@include clearfix;
 		img {
 			float: right;
-			width: 80px;
+			width: 100%;
 			height: auto;
+		}
+		&.large {
+			width: 150px;
+		}
+		&.small {
+			width: 50px;
 		}
 	}
 

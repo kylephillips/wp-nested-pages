@@ -151,11 +151,12 @@ if ( !$this->user->canSortPages() ) $row_classes .= ' no-sort';
 
 	<?php
 	// Thumbnail
-	$thumbnail_size = $this->post_type_repo->thumbnails($this->post_type->name);
-	if ( $thumbnail_size ) :
-		$out = '<div class="np-thumbnail">';
+	$thumbnail_source = $this->post_type_repo->thumbnails($this->post_type->name, 'source');
+	$thumbnail_size = $this->post_type_repo->thumbnails($this->post_type->name, 'display_size');
+	if ( $thumbnail_source ) :
+		$out = '<div class="np-thumbnail ' . $thumbnail_size . '">';
 		if ( has_post_thumbnail($this->post->id) ) :
-			$image = get_the_post_thumbnail($this->post->id, $thumbnail_size);
+			$image = get_the_post_thumbnail($this->post->id, $thumbnail_source);
 			$out .= apply_filters('nestedpages_thumbnail', $image, $this->post);
 		else :
 			$image_fallback = apply_filters('nestedpages_thumbnail_fallback', false, $this->post);

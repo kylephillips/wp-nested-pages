@@ -156,7 +156,7 @@ class PostTypeRepository
 	* @param $post_type - post type name
 	* @return boolean || string (thumbnail size)
 	*/
-	public function thumbnails($post_type)
+	public function thumbnails($post_type, $key = 'enabled')
 	{
 		$types = $this->enabled_post_types;
 		$type_settings = array();
@@ -166,8 +166,27 @@ class PostTypeRepository
 		}
 		if ( !array_key_exists('thumbnails', $type_settings) ) return false;
 		if ( !isset($type_settings['thumbnails']['display']) ) return false;
-		if ( isset($type_settings['thumbnails']['size']) ) return $type_settings['thumbnails']['size'];
-		return true;
+		if ( $key == 'enabled' ) return true;
+		if ( $key == 'source' ){
+			return ( isset($type_settings['thumbnails']['size']) ) ? $type_settings['thumbnails']['size'] : 'thumbnail';
+		}
+		if ( $key == 'display_size' ){
+			return ( isset($type_settings['thumbnails']['display_size']) ) ? $type_settings['thumbnails']['display_size'] : 'medium';
+		}
+	}
+
+	/**
+	* Thumbnail Display Size
+	* @return string
+	*/
+	public function thumbnailDisplaySize($post_type)
+	{
+		$types = $this->enabled_post_types;
+		$type_settings = array();
+		foreach ( $types as $type => $settings ){
+			if ( $type !== $post_type ) continue;
+			$type_settings = $settings;
+		}
 	}
 
 	/**
