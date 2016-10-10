@@ -15,17 +15,23 @@ class BulkActions
 	private $url;
 
 	/**
-	* Post IDs to Perform Actions on
-	* @var array
+	* Post IDs (Comma-separated)
+	* @var string
 	*/
 	private $post_ids;
+
+	/**
+	* Post IDs to Perform Actions on, Formatted as an Array
+	* @var array
+	*/
+	private $post_ids_array;
 
 	public function __construct()
 	{
 		$this->setURL();
 		$this->setPostIds();
 		$this->performAction();
-		// $this->redirect();
+		$this->redirect();
 	}
 
 	/**
@@ -42,9 +48,9 @@ class BulkActions
 	private function setPostIds()
 	{
 		$ids = sanitize_text_field($_POST['post_ids']);
-		$ids = rtrim($ids, ",");
-		$ids = explode(',', $ids);
-		$this->post_ids = $ids;
+		$this->post_ids = rtrim($ids, ",");
+		$ids = explode(',', $this->post_ids);
+		$this->post_ids_array = $ids;
 	}
 
 	/**
@@ -53,6 +59,12 @@ class BulkActions
 	private function performAction()
 	{
 		$action = sanitize_text_field($_POST['np_bulk_action']);
+
+		if ( $action == 'no-action' || !$action ){
+			$this->redirect();
+			return;
+		}
+
 		if ( $action == 'trash' ){
 			$this->trashPosts();
 			return;
@@ -64,9 +76,20 @@ class BulkActions
 	*/
 	private function trashPosts()
 	{
-		var_dump($this->post_ids);
-	}
+		if ( !current_user_can('delete_pages') ){
+			$this->redirect();
+			return;
+		}
 
+		foreach ( $this->post_ids_array as $id ){
+			wp_trash_post($id);
+		}
+		
+		$this->url = $this->url . '&ids=' . $this->post_ids;
+		// $redirect = add_query_arg(array('page'=>'nestedpages', 'untrashed' => true, 'untrashed' => $_GET['untrashed'] ));
+		// wp_redirect($redirect);
+		// exit();
+	}
 
 	/**
 	* Redirect to new URL
