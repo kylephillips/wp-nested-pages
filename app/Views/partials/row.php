@@ -155,11 +155,13 @@ if ( !$this->user->canSortPages() ) $row_classes .= ' no-sort';
 	if ( $thumbnail_size ) :
 		$out = '<div class="np-thumbnail">';
 		if ( has_post_thumbnail($this->post->id) ) :
-			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $this->post->id ), $thumbnail_size );
-			$out .= '<img src="' . apply_filters('nestedpages_thumbnail', $image[0], $this->post) . '" />';
+			$image = get_the_post_thumbnail($this->post->id, $thumbnail_size);
+			$out .= apply_filters('nestedpages_thumbnail', $image, $this->post);
 		else :
-			$image_fallback = '';
-			$out .= apply_filters('nestedpages_thumbnail_fallback', $image_fallback, $this->post);
+			$image_fallback = apply_filters('nestedpages_thumbnail_fallback', false, $this->post);
+			if ( $image_fallback ) :
+				$out .= apply_filters('nestedpages_thumbnail_fallback', $image_fallback, $this->post);
+			endif;
 		endif;
 		$out .= '</div>';
 		echo $out;
