@@ -11,7 +11,7 @@ settings_fields( 'nestedpages-posttypes' );
 	<div class="post-type">
 		<div class="head">
 			<div class="checkbox">
-				<input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>]" value="<?php echo $type->name; ?>" <?php if ( $type->np_enabled ) echo 'checked'; ?> data-nestedpages-pt-checbox id="post-type-<?php echo $type->name; ?>" />
+				<input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>]" value="<?php echo $type->name; ?>" <?php if ( $type->np_enabled ) echo 'checked'; ?> data-nestedpages-pt-checkbox id="post-type-<?php echo $type->name; ?>" />
 			</div>
 			<label for="post-type-<?php echo $type->name; ?>">
 				<?php 

@@ -34,6 +34,11 @@ NestedPages.selectors = {
 	// Responsive Toggle
 	toggleEditButtons : '.np-toggle-edit', // Button that toggles responsive buttons
 
+	// Bulk Actions
+	bulkActionsForm : '[data-np-bulk-form]',
+	bulkActionsCheckbox : '[data-np-bulk-checkbox]',
+	bulkActionsIds : '[data-np-bulk-ids]',
+
 	// Quick Edit
 	quickEditOverlay : '.np-inline-overlay', // The inline modal
 	quickEditLoadingIndicator : '.np-qe-loading', // Loading indicator in Quick Edit
@@ -140,6 +145,7 @@ NestedPages.Factory = function()
 
 	plugin.formatter = new NestedPages.Formatter;
 	plugin.responsive = new NestedPages.Responsive;
+	plugin.bulkActions = new NestedPages.BulkActions;
 	plugin.menuToggle = new NestedPages.MenuToggle;
 	plugin.pageToggle = new NestedPages.PageToggle;
 	plugin.nesting = new NestedPages.Nesting;

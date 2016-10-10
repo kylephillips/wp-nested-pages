@@ -99,8 +99,9 @@
 	<?php endif; ?>
 
 
-	<?php if ( $this->post_type->name == 'page' && $this->post_type_repo->categoriesEnabled($this->post_type->name) ) : ?>
 	<div class="np-tools-primary">
+	<?php if ( $this->post_type->name == 'page' && $this->post_type_repo->categoriesEnabled($this->post_type->name) ) : ?>
+	
 		<form action="<?php echo admin_url('admin-post.php'); ?>" method="post" class="np-tools-sort">
 			<input type="hidden" name="action" value="npCategoryFilter">
 			<input type="hidden" name="page" value="<?php echo $this->pageURL(); ?>">
@@ -123,9 +124,24 @@
 				<input type="submit" id="nestedpages-sort" class="button" value="Apply">
 			</div>
 		</form>
-	</div>
 	<?php endif; ?>
-
+		<form data-np-bulk-form style="display:none;" action="<?php echo admin_url('admin-post.php'); ?>" method="post" class="np-tools-sort">
+			<input type="hidden" name="action" value="npBulkActions">
+			<input type="hidden" name="page" value="<?php echo $this->pageURL(); ?>">
+			<input type="hidden" name="post_ids" value="" data-np-bulk-ids>
+			<div class="select">
+				<select id="np_bulk" name="np_bulk_action" class="nestedpages-sort">
+					<option value=""><?php _e('Bulk Actions', 'nestedpages'); ?></option>
+					<?php if ( current_user_can('delete_pages') && $this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ) : ?>
+					<option value="trash"><?php _e('Move to Trash', 'nestedpages'); ?></option>
+					<?php endif; ?>
+				</select>
+			</div>
+			<div class="select">
+				<input type="submit" class="button" value="Apply">
+			</div>
+		</form>
+	</div><!-- .np-tools-primary -->
 
 	<div class="np-tools-search">
 		<form action="<?php echo admin_url('admin-post.php'); ?>" method="post">

@@ -165,4 +165,8 @@ if ( !$this->user->canSortPages() ) $row_classes .= ' no-sort';
 		echo $out;
 	endif;
 	?>
+
+	<div class="np-bulk-checkbox">
+		<input type="checkbox" name="nestedpages_bulk[]" value="<?php echo $this->post->id; ?>" data-np-bulk-checkbox />
+	</div>
 </div><!-- .row -->

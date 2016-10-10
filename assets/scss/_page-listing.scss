@@ -183,7 +183,6 @@
 		}
 	} // .child-toggle
 
-
 	// Handle for sortable functionality
 	.handle {
 		display: inline-block;
@@ -191,22 +190,16 @@
 		font-size: 20px;
 		color: darken($white, 30%);
 		transition: all 200ms ease;
-		
 		&:hover {
 			transition: all 200ms ease;
 			color: $blue;
 		}
 	} // .handle
 
-
 	// Submenu Indicator
 	.np-icon-sub-menu {
 		display: none;
 		color: darken($white, 40%);
-	}
-
-	.page-title {
-		// display: inline-block;
 	}
 
 	.row.no-sort .page-title {
@@ -222,6 +215,17 @@
 			float: right;
 			width: 80px;
 			height: auto;
+		}
+	}
+
+	.np-bulk-checkbox {
+		display: table-cell;
+		width: 33px;
+		vertical-align: middle;
+		text-align: center;
+		background-color: darken($white, 6%);
+		input[type="checkbox"]{
+			margin-right: 0;
 		}
 	}
 
