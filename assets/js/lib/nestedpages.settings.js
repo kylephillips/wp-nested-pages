@@ -12,7 +12,7 @@ NestedPages.Settings = function()
 
 	plugin.selectors = {
 		postTypeToggle : '[data-toggle-nestedpages-pt-settings]', // Toggle Button for Post Type Settings
-		postTypeCheckbox : '[data-nestedpages-pt-checbox]', // Checkbox for enabling post type
+		postTypeCheckbox : '[data-nestedpages-pt-checkbox]', // Checkbox for enabling post type
 		customFieldsCheckbox : '[data-toggle-nestedpages-cf-settings]', // Checkbox for toggling custom fields settings
 		standardFieldsCheckbox : '[data-toggle-nestedpages-sf-settings]', // Checkbox for toggling standard field settings
 		taxonomiesFieldCheckbox : '[data-hide-taxonomies]', // Checkbox for disabling taxonomies from quick edit
@@ -70,6 +70,7 @@ NestedPages.Settings = function()
 		$(button).parents('.head').siblings('.body').hide();
 		$(button).parents('.post-type').removeClass('active');
 		$(button).parents('.head').siblings('.body').find('input[type="checkbox"]').attr('checked', false);
+		$(button).parents('.head').siblings('.body').find('select').val(false);
 	}
 
 	/**
