@@ -9,9 +9,12 @@ class RedirectsFrontEnd
 	public function __construct()
 	{
 		add_filter('page_link', array($this, 'pageLinks'),10,2);
-		add_action('request', array($this, 'request'));
+		add_action('parse_request', array($this, 'parseRequest'));
 	}
 
+	/**
+	* Remove np-redirect slugs from links
+	*/
 	public function pageLinks( $post_link, $id = 0 )
 	{
 		$post = get_post($id);
@@ -19,41 +22,43 @@ class RedirectsFrontEnd
 		return $post_link;
 	}
 
+	public function parseRequest($wp)
+	{
+		if ( isset($wp->query_vars['error']) ) $slug = basename($wp->request);
+		if ( isset($wp->query_vars['pagename']) && ! empty($wp->query_vars['pagename']) ) $slug = $wp->query_vars['pagename'];
+		if ( isset($wp->query_vars['name']) && ! empty($wp->query_vars['name']) ) $slug = $wp->query_vars['name'];
+		if ( isset($wp->query_vars['attachment']) && ! empty($wp->query_vars['attachment']) ) $slug = $wp->query_vars['attachment'];
+		if ( !isset($slug) ) return;
+
+		$slug = basename($slug);
+		
+		$page = get_posts(array('name' => $slug, 'post_type' => 'any', 'posts_per_page' => 1));
+		if ( !$page ) return;
+
+		$parent_type = get_post_type($page[0]->post_parent);
+
+		if ( $parent_type !== 'np-redirect' && !isset($wp->query_vars['attachment']) && $parent_type !== 'page' ) return;
+		
+		unset($wp->query_vars['pagename']);
+		unset($wp->query_vars['name']);
+		unset($wp->query_vars['attachment']);
+		unset($wp->query_vars['error']);
+		
+		$wp->query_vars['page_id'] = $page[0]->ID;
+	}
+
 	/**
 	* Recursive function removes non-page parent slugs
 	*/
 	private function removeParentSlugs($post, $slug)
 	{
-		$parent_type = get_post_type($post->post_parent);
-		if ( $parent_type == 'np-redirect' ){
+		if ( $post->post_parent > 0 ) {
 			$parent_post = get_post($post->post_parent);
-			$slug = str_replace($parent_post->post_name . '/', '', $slug);
-			return $slug;
+			if ( $parent_post->post_type == 'np-redirect' ){
+				$slug = str_replace($parent_post->post_name . '/', '', $slug);
+			}
+			return $this->removeParentSlugs($parent_post, $slug);
 		}
 		return $slug;
 	}
-
-	/**
-	* Add page query
-	*/
-	public function request($request)
-	{
-		if ( !isset($request['name']) ) return $request;
-		$slug = $request['name'];
-		$dpost = get_posts(array('name' => $slug, 'post_type' => 'page'));
-		if ( $dpost && $dpost[0]->post_type == 'page' ){
-			add_filter('pre_get_posts', array($this, 'query'));
-		}		
-		return $request;
-	}
-
-	/**
-	* Set the query to page
-	*/
-	public function query($query)
-	{ 
-		if (!$query->is_main_query()) return;
-		$query->set('post_type', 'page');
-	}
-
 }
