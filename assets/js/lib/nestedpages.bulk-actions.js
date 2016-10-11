@@ -52,7 +52,7 @@ NestedPages.BulkActions = function()
 	*/
 	plugin.setSelectedNumber = function()
 	{
-		var checkedLength = $(NestedPages.selectors.bulkActionsCheckbox + ':checked').length;
+		var checkedLength = $(NestedPages.selectors.bulkActionsCheckbox + ':checked').not('.np-check-all input').length;
 		var option = $(NestedPages.selectors.bulkActionsForm).find('select option').first();
 		$(option).text(nestedpages.bulk_actions + ' (' + checkedLength + ')');
 		console.log(checkedLength);
