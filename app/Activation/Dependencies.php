@@ -3,6 +3,7 @@
 namespace NestedPages\Activation;
 
 use NestedPages\Entities\PostType\PostTypeRepository;
+use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 use NestedPages\Helpers;
 
 /**
@@ -25,10 +26,16 @@ class Dependencies
 	* Post Type Repository
 	*/
 	private $post_type_repo;
+
+	/**
+	* Integrations
+	*/
+	private $integrations;
 	
 	public function __construct()
 	{
 		$this->post_type_repo = new PostTypeRepository;
+		$this->integrations = new IntegrationFactory;
 		$this->setPluginVersion();
 		add_action( 'admin_enqueue_scripts', array($this, 'styles') );
 		add_action( 'admin_enqueue_scripts', array($this, 'scripts') );
@@ -56,8 +63,7 @@ class Dependencies
 			array(), 
 			$this->plugin_version
 		);
-		wp_enqueue_style('acf-input');
-
+		if ( $this->integrations->plugins->acf->installed ) wp_enqueue_style('acf-input');
 	}
 
 	/**
@@ -66,7 +72,6 @@ class Dependencies
 	*/
 	public function scripts()
 	{
-		wp_enqueue_script('acf-input');
 		$screen = get_current_screen();
 		global $np_env;
 		if ( strpos( $screen->id, 'nestedpages' ) ) :
@@ -138,6 +143,7 @@ class Dependencies
 				'nestedpages', 
 				$localized_data
 			);
+			if ( $this->integrations->plugins->acf->installed ) wp_enqueue_script('acf-input');
 		endif;
 	}
 
