@@ -358,6 +358,40 @@
 	float: right;
 }
 
+// List Header
+.nestedpages-list-header {
+	background-color: $white;
+	border: 1px solid $border;
+	border-bottom: 0;
+	height: 46px;
+	@include clearfix;
+	.np-check-all {
+		float: right;
+		width: 33px;
+		text-align: center;
+		line-height: 46px;
+		background-color: darken($white, 6%);
+		input[type="checkbox"]{
+			margin: 0;
+			&.check-all-partial:checked:before {
+				content: "-";
+				margin: 0;
+				margin-top: -9px;
+			}
+		}
+	}
+	.np-bulk-form {
+		padding-right: 3px;
+		float: right;
+		margin-right: 5px;
+		position: relative;
+		top: 9px;
+		select, input[type="submit"]{
+			display: inline-block;
+		}
+	}
+} // .nestedpages-list-header
+
 @media (min-width: 768px)
 {
 	.nestedpages .row:hover .action-buttons {

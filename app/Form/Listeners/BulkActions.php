@@ -81,14 +81,12 @@ class BulkActions
 			return;
 		}
 
+
 		foreach ( $this->post_ids_array as $id ){
 			wp_trash_post($id);
 		}
 		
-		$this->url = $this->url . '&ids=' . $this->post_ids;
-		// $redirect = add_query_arg(array('page'=>'nestedpages', 'untrashed' => true, 'untrashed' => $_GET['untrashed'] ));
-		// wp_redirect($redirect);
-		// exit();
+		$this->url = $this->url . '&bulk=true&trashed=1&ids=' . $this->post_ids;
 	}
 
 	/**

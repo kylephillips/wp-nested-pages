@@ -227,6 +227,7 @@ class Listing
 
 		// Primary List
 		if ( $count == 1 ) {
+			include( Helpers::view('partials/list-header') ); // List Header
 			echo '<ol class="' . $list_classes . '" id="np-' . $this->post_type->name . '">';
 			return;
 		}

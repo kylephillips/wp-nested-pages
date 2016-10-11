@@ -10,6 +10,8 @@ NestedPages.BulkActions = function()
 	var plugin = this;
 	var $ = jQuery;
 
+	plugin.selectedNumber = 0;
+
 	plugin.init = function()
 	{
 		plugin.bindEvents();
@@ -17,7 +19,7 @@ NestedPages.BulkActions = function()
 
 	plugin.bindEvents = function()
 	{
-		$(document).on('click', NestedPages.selectors.bulkActionsCheckbox, function(){
+		$(document).on('change', NestedPages.selectors.bulkActionsCheckbox, function(){
 			plugin.toggleBulkForm();
 		});
 	}
@@ -38,10 +40,22 @@ NestedPages.BulkActions = function()
 		if ( checked ){
 			$(NestedPages.selectors.bulkActionsForm).show();
 			$(NestedPages.selectors.bulkActionsIds).val(checked_ids);
+			plugin.setSelectedNumber();
 			return;
 		}
 		$(NestedPages.selectors.bulkActionsIds).val('');
 		$(NestedPages.selectors.bulkActionsForm).hide();
+	}
+
+	/**
+	* Set the number of total selected
+	*/
+	plugin.setSelectedNumber = function()
+	{
+		var checkedLength = $(NestedPages.selectors.bulkActionsCheckbox + ':checked').length;
+		var option = $(NestedPages.selectors.bulkActionsForm).find('select option').first();
+		$(option).text(nestedpages.bulk_actions + ' (' + checkedLength + ')');
+		console.log(checkedLength);
 	}
 
 	return plugin.init();

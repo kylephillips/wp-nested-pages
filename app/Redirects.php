@@ -25,6 +25,7 @@ class Redirects
 			($screen->id == 'edit-page')   &&
 			(isset($_GET['trashed']))      &&
 			(intval($_GET['trashed']) > 0) &&
+			(!isset($_GET['bulk'])) &&
 			$this->arePagesNested()
 		){
 			$redirect = add_query_arg(array('page'=>'nestedpages', 'trashed' => true, 'ids' => $_GET['ids'] ));
@@ -43,6 +44,7 @@ class Redirects
 			($screen->id == 'edit-page')     &&
 			(isset($_GET['untrashed']))      &&
 			(intval($_GET['untrashed']) > 0) &&
+			(!isset($_GET['bulk'])) &&
 			$this->arePagesNested()
 		){
 			$redirect = add_query_arg(array('page'=>'nestedpages', 'untrashed' => true, 'untrashed' => $_GET['untrashed'] ));
