@@ -380,6 +380,13 @@
 			}
 		}
 	}
+	.np-hidden-select-count {
+		display: none;
+		float: right;
+		margin: 0 1em 0 0;
+		line-height: 46px;
+		font-style: oblique;
+	}
 	.np-bulk-form {
 		padding-right: 3px;
 		float: right;

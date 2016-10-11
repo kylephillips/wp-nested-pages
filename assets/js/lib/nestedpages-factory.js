@@ -38,6 +38,8 @@ NestedPages.selectors = {
 	bulkActionsForm : '[data-np-bulk-form]',
 	bulkActionsCheckbox : '[data-np-bulk-checkbox]',
 	bulkActionsIds : '[data-np-bulk-ids]',
+	hiddenItemCount : '[data-np-hidden-count]',
+	hiddenItemCountParent : '[data-np-hidden-count-parent]',
 
 	// Quick Edit
 	quickEditOverlay : '.np-inline-overlay', // The inline modal
@@ -157,6 +159,7 @@ NestedPages.Factory = function()
 	plugin.clone = new NestedPages.Clone;
 	plugin.tabs = new NestedPages.Tabs;
 	plugin.menuLinks = new NestedPages.MenuLinks;
+	plugin.hiddenItemCount = new NestedPages.HiddenItemCount;
 
 	plugin.init = function()
 	{
