@@ -11,8 +11,8 @@ class TrashRestoredConfirmation implements ConfirmationInterface
 	public function setMessage()
 	{
 		$untrashed = sanitize_text_field($_GET['untrashed']);
-		$page = ( intval($untrashed) > 1 ) ? __('pages', 'nestedpages') : __('page', 'nestedpages');
-		$out = $untrashed . ' ' . $page . ' ' . __('restored from trash.', 'nestedpages');
+		$label = ( intval($untrashed) > 1 ) ? __('items', 'nestedpages') : __('item', 'nestedpages');
+		$out = $untrashed . ' ' . $label . ' ' . __('restored from trash.', 'nestedpages');
 		return $out;
 	}
 

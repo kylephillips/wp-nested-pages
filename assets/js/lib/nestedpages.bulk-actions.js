@@ -34,7 +34,7 @@ NestedPages.BulkActions = function()
 		$.each($(NestedPages.selectors.bulkActionsCheckbox), function(){
 			if ( $(this).is(':checked') ) {
 				checked = true;
-				checked_ids += $(this).val() + ',';
+				if ( !$(this).parent('div').hasClass('np-check-all') ) checked_ids += $(this).val() + ',';
 			}
 		});
 		if ( checked ){
@@ -55,7 +55,6 @@ NestedPages.BulkActions = function()
 		var checkedLength = $(NestedPages.selectors.bulkActionsCheckbox + ':checked').not('.np-check-all input').length;
 		var option = $(NestedPages.selectors.bulkActionsForm).find('select option').first();
 		$(option).text(nestedpages.bulk_actions + ' (' + checkedLength + ')');
-		console.log(checkedLength);
 	}
 
 	return plugin.init();

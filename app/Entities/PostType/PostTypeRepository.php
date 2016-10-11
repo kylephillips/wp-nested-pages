@@ -164,6 +164,7 @@ class PostTypeRepository
 			if ( $type !== $post_type ) continue;
 			$type_settings = $settings;
 		}
+		if ( !is_array($type_settings) ) return false;
 		if ( !array_key_exists('thumbnails', $type_settings) ) return false;
 		if ( !isset($type_settings['thumbnails']['display']) ) return false;
 		if ( $key == 'enabled' ) return true;

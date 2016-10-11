@@ -1,3 +1,6 @@
+<?php
+$page_obj = get_post_type_object('page');
+?>
 <div class="nestedpages-list-header">
 	<div class="np-check-all">
 		<input type="checkbox" data-np-check-all="nestedpages_bulk[]" data-np-bulk-checkbox />
