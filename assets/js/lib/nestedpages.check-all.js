@@ -39,6 +39,8 @@ NestedPages.CheckAll = function()
 
 		var checkboxes = $('*[name="' + name + '"]');
 		$.each(checkboxes, function(){
+			var row = $(this).parents(NestedPages.selectors.rows);
+			if ( $(row).hasClass('np-hide') && !$(row).is(':visible') ) return;
 			$(this).prop('checked', checked);
 		});
 
