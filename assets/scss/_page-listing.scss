@@ -222,6 +222,15 @@
 		&.small {
 			width: 50px;
 		}
+		&.link {
+			background-color: darken($white, 8%);
+			text-align: center;
+			border-right: 1px solid $border;
+			i {
+				font-size: 1.8em;
+				opacity: .5;
+			}
+		}
 	}
 
 	.np-bulk-checkbox {

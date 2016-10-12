@@ -136,4 +136,17 @@ NestedPages.Formatter = function()
 	}
 
 
+	// Size the link thumbnails to the same as the page/post thumbnails
+	plugin.sizeLinkThumbnails = function()
+	{
+		var thumbnail = $(NestedPages.selectors.thumbnailContainer).not(NestedPages.selectors.thumbnailContainerLink).first().find('img');
+		var width = $(thumbnail).width();
+		var height = $(thumbnail).height();
+		$.each($(NestedPages.selectors.thumbnailContainerLink), function(){
+			$(this).width(width);
+			$(this).height(height);
+		});
+	}
+
+
 }

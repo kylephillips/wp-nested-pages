@@ -77,6 +77,33 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 		</div><!-- .action-buttons -->
 	</div><!-- .row-inner -->
 
+	<?php
+	// Thumbnail Displays for original post if it's a relational link, otherwise a placeholder displays
+	$thumbnail_source = $this->post_type_repo->thumbnails('page', 'source');
+	$thumbnail_size = $this->post_type_repo->thumbnails('page', 'display_size');
+	
+	if ( $thumbnail_source ) :		
+		if ( has_post_thumbnail($this->post->nav_object_id) && $this->post->nav_type != 'taxonomy' ) :
+			$out = '<div class="np-thumbnail ' . $thumbnail_size . '">';
+			$image = get_the_post_thumbnail($this->post->nav_object_id, $thumbnail_source);
+			$out .= apply_filters('nestedpages_thumbnail', $image, $this->post);
+		else :
+			$out = '<div class="np-thumbnail link">';
+			$fallback_icon = 'np-icon-link';
+			if ( $this->post->nav_type == 'taxonomy' ) $fallback_icon = 'np-icon-tag';
+			if ( $this->post->nav_object == 'post' ) $fallback_icon = 'np-icon-post';
+			if ( $this->post->nav_object == 'page' ) $fallback_icon = 'np-icon-page';
+			$image_fallback = '<i class="' . $fallback_icon . '" /></i>';
+			$image_fallback = apply_filters('nestedpages_thumbnail_fallback', $image_fallback, $this->post);
+			if ( $image_fallback ) :
+				$out .= $image_fallback;
+			endif;
+		endif;
+		$out .= '</div>';
+		echo $out;
+	endif;
+	?>
+
 	<div class="np-bulk-checkbox">
 		<input type="checkbox" name="nestedpages_bulk[]" value="<?php echo $this->post->id; ?>" data-np-bulk-checkbox />
 	</div>

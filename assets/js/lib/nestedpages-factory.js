@@ -99,6 +99,10 @@ NestedPages.selectors = {
 	tabButton : '[data-np-tab]', // Tab Link
 	tabContent : '[data-np-tab-pane]', // Tab Pane
 
+	// Thumbnails
+	thumbnailContainer : '.np-thumbnail', // Container for Thumbnail
+	thumbnailContainerLink : '.np-thumbnail.link', // Link Thumbnail Container
+
 }
 
 
@@ -190,6 +194,7 @@ NestedPages.Factory = function()
 		});
 		$(document).ready(function(){
 			plugin.formatter.hideAjaxError();
+			plugin.formatter.sizeLinkThumbnails();
 		});
 	}
 
