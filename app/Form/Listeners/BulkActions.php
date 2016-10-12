@@ -26,6 +26,18 @@ class BulkActions
 	*/
 	private $post_ids_array;
 
+	/**
+	* Redirect Post IDs (Comma-separated)
+	* @var string
+	*/
+	private $redirect_post_ids;
+
+	/**
+	* Redirect Post IDs to Perform Actions on, Formatted as an Array
+	* @var array
+	*/
+	private $redirect_post_ids_array;
+
 	public function __construct()
 	{
 		$this->setURL();
@@ -51,6 +63,11 @@ class BulkActions
 		$this->post_ids = rtrim($ids, ",");
 		$ids = explode(',', $this->post_ids);
 		$this->post_ids_array = $ids;
+
+		$r_ids = sanitize_text_field($_POST['redirect_post_ids']);
+		$this->redirect_post_ids = rtrim($r_ids, ",");
+		$r_ids = explode(',', $this->redirect_post_ids);
+		$this->redirect_post_ids_array = $r_ids;
 	}
 
 	/**
@@ -81,12 +98,18 @@ class BulkActions
 			return;
 		}
 
-
 		foreach ( $this->post_ids_array as $id ){
 			wp_trash_post($id);
 		}
+
+		foreach ( $this->redirect_post_ids_array as $id ){
+			wp_delete_post($id, true);
+		}
+
+		$this->url = $this->url . '&bulk=true&trashed=1';
 		
-		$this->url = $this->url . '&bulk=true&trashed=1&ids=' . $this->post_ids;
+		if ( $this->post_ids != '' ) $this->url = $this->url . '&ids=' . $this->post_ids;
+		if ( $this->redirect_post_ids != '' ) $this->url = $this->url . '&link_ids=' . $this->redirect_post_ids;
 	}
 
 	/**

@@ -28,7 +28,12 @@ class Redirects
 			(!isset($_GET['bulk'])) &&
 			$this->arePagesNested()
 		){
-			$redirect = add_query_arg(array('page'=>'nestedpages', 'trashed' => true, 'ids' => $_GET['ids'] ));
+			$query_args = array(
+				'page' => 'nestedpages',
+				'trashed' => true
+			);
+			if ( isset($_GET['ids']) ) $query_args['ids'] = $_GET['ids'];
+			$redirect = add_query_arg(array('page'=>'nestedpages', 'trashed' => true ));
 			wp_redirect($redirect);
 			exit();
 		}
@@ -59,6 +64,7 @@ class Redirects
 	public function linkDeleted($post_id)
 	{
 		$screen = get_current_screen();
+		if ( !$screen ) return;
 		if (
 			(get_post_type($post_id) == 'np-redirect') &&
 			($screen->id == 'np-redirect')             &&
