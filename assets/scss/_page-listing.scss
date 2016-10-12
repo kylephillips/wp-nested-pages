@@ -281,6 +281,9 @@
 			background-color: $white;
 			transition: background-color 400ms ease;	
 		}
+		&.search .page-title {
+			padding-left: 10px;
+		}
 	} // .row
 
 	.non-hierarchical-spacer {

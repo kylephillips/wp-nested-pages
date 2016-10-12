@@ -5,10 +5,11 @@
 $row_classes = '';
 if ( !$this->post_type->hierarchical ) $row_classes .= ' non-hierarchical';
 if ( !$this->user->canSortPages() ) $row_classes .= ' no-sort';
+if ( $this->isSearch() ) $row_classes .= ' search';
 ?>
-<div class="row<?php echo $row_classes; ?>" <?php if ( $this->isSearch() ) echo 'style="padding-left:10px;"';?>>
+<div class="row<?php echo $row_classes; ?>">
 	
-	<?php if ( $this->post_type->hierarchical && !$this->isSearch() ) : ?>
+	<?php if ( $this->post_type->hierarchical ) : ?>
 	<div class="child-toggle">
 		<div class="child-toggle-spacer"></div>
 	</div>
