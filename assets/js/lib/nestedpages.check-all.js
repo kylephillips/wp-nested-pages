@@ -40,8 +40,11 @@ NestedPages.CheckAll = function()
 		var checkboxes = $('*[name="' + name + '"]');
 		$.each(checkboxes, function(){
 			var row = $(this).parents(NestedPages.selectors.rows);
-			if ( $(row).hasClass('np-hide') && !$(row).is(':visible') ) return;
 			$(this).prop('checked', checked);
+			// Uncheck any hidden checkboxes
+			if ( $(row).hasClass('np-hide') && !$(row).is(':visible') ) {
+				$(row).find(NestedPages.selectors.bulkActionsCheckbox).prop('checked', false)
+			};
 		});
 
 		plugin.toggleCheckAll();
@@ -53,8 +56,15 @@ NestedPages.CheckAll = function()
 	plugin.toggleCheckAll = function()
 	{
 		var name = $(plugin.activeCheckbox).attr('data-np-check-all');
+		
 		var checkboxes_total = $('*[name="' + name + '"]').length;
+		var hidden_checkboxes = $('.np-hide').find(NestedPages.selectors.bulkActionsCheckbox).length;
+		var hidden_checkboxes_visible = $('.np-hide:visible').find(NestedPages.selectors.bulkActionsCheckbox).length;
+
+		checkboxes_total = ( checkboxes_total - hidden_checkboxes ) + hidden_checkboxes_visible;
+		
 		var checkboxes_checked = $('*[name="' + name + '"]:checked').length;
+
 		if ( checkboxes_total == checkboxes_checked ){
 			$(plugin.activeCheckbox).prop('checked', true);
 			$(plugin.activeCheckbox).removeClass('check-all-partial');
