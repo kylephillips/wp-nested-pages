@@ -7,7 +7,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body">
-				<p><?php _e('Are you sure you would like to delete this item? This action is not reversable.', 'nestedpages'); ?></p>
+				<p data-np-link-delete-text></p>
 				<a href="#" class="np-cancel-trash button modal-close" data-dismiss="modal"><?php _e('Cancel', 'nestedpages'); ?></a>
 				<a href="#" class="button-primary" data-delete-confirmation><?php _e('Delete', 'nestedpages'); ?></a>
 			</div>

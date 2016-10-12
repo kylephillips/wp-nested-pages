@@ -133,7 +133,11 @@ class Dependencies
 				'add_multiple' => __('Add Multiple', 'nestedpages'),
 				'trash_confirm' => __('Are you sure you would like to empty the trash? This action is not reversable.', 'nestedpages'),
 				'hidden' => __('Hidden', 'nestedpages'),
-				'bulk_actions' => __('Bulk Actions', 'nestedpages')
+				'bulk_actions' => __('Bulk Actions', 'nestedpages'),
+				'link_delete_confirmation' => __('Your selection includes link items, which cannot be recovered after deleting. Would you like to continue? (Other items are moved to the trash)', 'nestedpages'),
+				'link_delete_confirmation_singular' => __('Are you sure you would like to delete this item? This action is not reversable.', 'nestedpages'),
+				'delete' => __('Delete', 'nestedpages'),
+				'trash_delete_links' => __('Trash Posts and Delete Links')
 			);
 			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;
 			$localized_data['syncmenu'] = $syncmenu;

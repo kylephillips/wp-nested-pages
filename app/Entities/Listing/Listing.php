@@ -328,6 +328,9 @@ class Listing
 
 					echo '<li id="menuItem_' . $this->post->id . '" class="page-row';
 
+					// Post Type
+					echo ' post-type-' . $this->post->post_type;
+
 					// Published?
 					if ( $this->post->status == 'publish' ) echo ' published';
 					if ( $this->post->status == 'draft' ) echo ' draft';

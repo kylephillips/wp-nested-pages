@@ -76,4 +76,8 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 
 		</div><!-- .action-buttons -->
 	</div><!-- .row-inner -->
+
+	<div class="np-bulk-checkbox">
+		<input type="checkbox" name="nestedpages_bulk[]" value="<?php echo $this->post->id; ?>" data-np-bulk-checkbox />
+	</div>
 </div><!-- .row -->

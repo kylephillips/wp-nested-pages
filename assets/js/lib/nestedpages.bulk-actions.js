@@ -25,21 +25,25 @@ NestedPages.BulkActions = function()
 	}
 
 	/**
-	* Toggle the Bulk Actions Form
+	* Toggle the Bulk Actions Form & Populate the Hidden ID Fields for posts and redirects
 	*/
 	plugin.toggleBulkForm = function()
 	{
 		var checked = false;
 		var checked_ids = '';
+		var checked_redirect_ids = '';
 		$.each($(NestedPages.selectors.bulkActionsCheckbox), function(){
 			if ( $(this).is(':checked') ) {
+				var row = $(this).parents(NestedPages.selectors.rows);
 				checked = true;
-				if ( !$(this).parent('div').hasClass('np-check-all') ) checked_ids += $(this).val() + ',';
+				if ( !$(this).parent('div').hasClass('np-check-all') && !$(row).hasClass('post-type-np-redirect') ) checked_ids += $(this).val() + ',';
+				if ( $(row).hasClass('post-type-np-redirect') ) checked_redirect_ids += $(this).val() + ',';
 			}
 		});
 		if ( checked ){
 			$(NestedPages.selectors.bulkActionsForm).show();
 			$(NestedPages.selectors.bulkActionsIds).val(checked_ids);
+			$(NestedPages.selectors.bulkActionRedirectIds).val(checked_redirect_ids);
 			plugin.setSelectedNumber();
 			return;
 		}

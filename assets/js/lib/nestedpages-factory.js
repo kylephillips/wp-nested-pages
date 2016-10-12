@@ -38,6 +38,7 @@ NestedPages.selectors = {
 	bulkActionsForm : '[data-np-bulk-form]',
 	bulkActionsCheckbox : '[data-np-bulk-checkbox]',
 	bulkActionsIds : '[data-np-bulk-ids]',
+	bulkActionRedirectIds : '[data-np-bulk-redirect-ids]',
 	hiddenItemCount : '[data-np-hidden-count]',
 	hiddenItemCountParent : '[data-np-hidden-count-parent]',
 
@@ -66,6 +67,12 @@ NestedPages.selectors = {
 	linkLoadingIndicator : '.np-link-loading', // Loading Indicator in Link Modal
 	linkErrorDiv : '.np-new-link-error', // Error Div in Link Modal
 	linkForm : '.np-new-link-form', // The form element for a new link
+
+	// Link Deletion
+	linkDeleteButton : '[data-np-confirm-delete]',
+	linkDeleteConfirmationButton : '[data-delete-confirmation]',
+	linkDeleteConfirmationModal : '#np-delete-confirmation-modal',
+	linkDeleteConfirmationModalText : '[data-np-link-delete-text]',
 
 	// New Page Items
 	openPageModal : '.open-bulk-modal', // Opens the new page(s) modal
@@ -160,6 +167,7 @@ NestedPages.Factory = function()
 	plugin.tabs = new NestedPages.Tabs;
 	plugin.menuLinks = new NestedPages.MenuLinks;
 	plugin.hiddenItemCount = new NestedPages.HiddenItemCount;
+	plugin.confirmDelete = new NestedPages.ConfirmDelete;
 
 	plugin.init = function()
 	{

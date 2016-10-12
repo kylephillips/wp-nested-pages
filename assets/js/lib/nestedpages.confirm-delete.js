@@ -1,47 +1,69 @@
+var NestedPages = NestedPages || {};
+
 /**
-* Confirm deletion of a link
+* Confirm deletion of links
 * @package Nested Pages
 * @author Kyle Phillips - https://github.com/kylephillips/wp-nested-pages
 */
-jQuery(document).ready(function(){
-	new NestedPagesConfirmDelete;
-});
-
-var NestedPagesConfirmDelete = function()
+NestedPages.ConfirmDelete = function()
 {
 	var plugin = this;
 	var $ = jQuery;
 
-	// DOM Selectors
-	plugin.deleteButton = '[data-np-confirm-delete]'; // delete button
-	plugin.confirmButton = '[data-delete-confirmation]'; // Confirm button in modal
-	plugin.warningModal = '#np-delete-confirmation-modal'; // Modal with empty confirmation
-
 	// JS Data
 	plugin.deleteLink = ''; // Link for deleting the item
 
-	// Initialization
-	plugin.init = function(){
-		plugin.bindEvents();
+	plugin.bindEvents = function()
+	{
+		$(document).on('click', NestedPages.selectors.linkDeleteButton, function(e){
+			e.preventDefault();
+			plugin.confirmSingle($(this));
+		});
+		$(document).on('click', NestedPages.selectors.linkDeleteConfirmationButton, function(e){
+			e.preventDefault();
+			if ( !$(this).hasClass('bulk') ){
+				plugin.deleteSingle();
+				return;
+			}
+			plugin.deleteMultiple();
+		});
+		$(document).on('submit', NestedPages.selectors.bulkActionsForm, function(e){
+			plugin.confirmMultiple(e);
+		});
 	}
 
-	// Bind Events
-	plugin.bindEvents = function(){
-		$(document).on('click', plugin.deleteButton, function(e){
-			e.preventDefault();
-			plugin.deleteLink = $(this).attr('href');
-			$(plugin.warningModal).modal('show');
-		});
-		$(document).on('click', plugin.confirmButton, function(e){
-			e.preventDefault();
-			plugin.confirmEmpty();
-		});
+	// Confirm a single link deletion
+	plugin.confirmSingle = function(button)
+	{
+		plugin.deleteLink = $(button).attr('href');
+		$(NestedPages.selectors.linkDeleteConfirmationModalText).text(nestedpages.link_delete_confirmation_singular);
+		$(NestedPages.selectors.linkDeleteConfirmationButton).text(nestedpages.delete).removeClass('bulk');
+		$(NestedPages.selectors.linkDeleteConfirmationModal).modal('show');
 	}
 
-	// Confirm Trash Empty
-	plugin.confirmEmpty = function(){
+	// Confirm Multiple link deletion
+	plugin.confirmMultiple = function(event)
+	{
+		if ( $('select[name="np_bulk_action"]').val() !== 'trash' ) return;
+		var linkCount = $(NestedPages.selectors.bulkActionRedirectIds).val();
+		if ( linkCount === '' ) return;
+		event.preventDefault();
+		$(NestedPages.selectors.linkDeleteConfirmationModalText).text(nestedpages.link_delete_confirmation);
+		$(NestedPages.selectors.linkDeleteConfirmationButton).text(nestedpages.trash_delete_links).addClass('bulk');
+		$(NestedPages.selectors.linkDeleteConfirmationModal).modal('show');
+	}
+
+	// Submit the form to delete multiple
+	plugin.deleteMultiple = function()
+	{
+		$(NestedPages.selectors.bulkActionsForm)[0].submit();
+	}
+
+	// Delete the single
+	plugin.deleteSingle = function()
+	{
 		window.location.replace(plugin.deleteLink);
 	}
 
-	return plugin.init();
+	return plugin.bindEvents();
 }
