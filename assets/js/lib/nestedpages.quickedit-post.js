@@ -330,6 +330,7 @@ NestedPages.QuickEditPost = function()
 		plugin.row = $(plugin.button).parents('.row-inner');
 		
 		$(plugin.row).find('.title').text(plugin.newData.post_title);
+		$(plugin.row).find('.np-view-button').attr('href', plugin.newData.permalink);
 		
 		var status = $(plugin.row).find('.status');
 		if ( (plugin.newData._status !== 'publish') && (plugin.newData._status !== 'future') ){

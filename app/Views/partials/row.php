@@ -136,7 +136,7 @@ if ( !$this->user->canSortPages() ) $row_classes .= ' no-sort';
 			</a>
 			<?php endif; ?>
 
-			<a href="<?php echo get_the_permalink(); ?>" class="np-btn" target="_blank"><?php _e('View'); ?></a>
+			<a href="<?php echo get_the_permalink(); ?>" class="np-btn np-view-button" target="_blank"><?php _e('View'); ?></a>
 			
 			<a href="#" class="np-btn"><i class="np-icon-more_vert"></i></a>
 			

@@ -66,6 +66,7 @@ class QuickEdit extends BaseHandler
 		$this->data['link_target'] = ( isset($this->data['link_target']) ) ? '_blank' : 'none';
 		$this->data['keep_private'] = ( isset($this->data['keep_private']) ) ? 'private' : 'public';
 		$this->data['_status'] = ( isset($this->data['_status']) ) ? $this->data['_status'] : 'publish';
+		$this->data['permalink'] = get_the_permalink($this->data['post_id']);
 		if ( !isset($_POST['comment_status']) ) $this->data['comment_status'] = 'closed';
 	}
 
