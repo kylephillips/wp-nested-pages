@@ -15,8 +15,8 @@ class TrashConfirmation implements ConfirmationInterface
 		$post_type_object = get_post_type_object($post_type);
 		
 		$out = ( count($trashed) > 1 )
-			? $out .= count($trashed) . ' ' . $post_type_object->labels->name . ' ' . __('moved to the Trash.', 'nestedpages')
-			: $out .= '<strong>' . get_the_title($trashed[0]) . ' </strong>' . __('moved to the Trash.', 'nestedpages');			
+			? count($trashed) . ' ' . $post_type_object->labels->name . ' ' . __('moved to the Trash.', 'nestedpages')
+			: '<strong>' . get_the_title($trashed[0]) . ' </strong>' . __('moved to the Trash.', 'nestedpages');			
 
 		// Undo Link
 		if ( current_user_can('delete_pages') ) {
