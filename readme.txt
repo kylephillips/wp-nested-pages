@@ -95,6 +95,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Redesign of post type settings page, with additional options added
 * Thumbnail support added to nested/sort view. Visit Settings > Nested Pages > Post Types to enable post thumbnails.
 * Ability to customize quick edit fields for each post type added. Visit Settings > Nested Pages > Post Types to hide specific fields from the quick edit interface for each post type. Please note: specific fields are still hidden depending on the current user's roles/capabilities.
+* Bulk delete functionality added
 * When adding multiple pages, the option to set them as hidden in the nav menu is now available.
 * Bug fix where Post menu wasn't being replaced if option checked.
 * Modified date set to not update when reordering post order through the nested view.
