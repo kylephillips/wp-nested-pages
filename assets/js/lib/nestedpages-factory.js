@@ -29,6 +29,7 @@ NestedPages.selectors = {
 	errorDiv : '#np-error', // Error Alert
 	loadingIndicator : '#nested-loading', // Loading Indicator,
 	syncCheckbox : '.np-sync-menu', // Sync menu checkbox
+	syncForm: '.np-sync-menu-cont', // The form/container for the sync menu element
 	ajaxError : '[data-nestedpages-error]', // AJAX error notification
 
 	// Responsive Toggle

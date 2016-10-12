@@ -54,8 +54,15 @@ NestedPages.PageToggle = function()
 	{
 		var target = $(button).attr('href');
 		target = target.substring(1);
+		$(NestedPages.selectors.syncCheckbox).attr('disabled', false);
 		$(NestedPages.selectors.toggleStatus).removeClass('active');
 		$(button).addClass('active');
+		if ( target == 'draft' ){
+			// $(NestedPages.selectors.syncForm).hide();
+			$(NestedPages.selectors.syncCheckbox).attr('disabled', true);
+			$('.' + target).addClass('nested-visible');
+			// return;
+		}
 		if ( target == 'all' ){
 			$(NestedPages.selectors.rows).show();
 			return;
