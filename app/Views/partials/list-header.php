@@ -18,5 +18,5 @@ $page_obj = get_post_type_object('page');
 		</select>
 		<input type="submit" class="button" value="Apply">
 	</form>
-	<p class="np-hidden-select-count" data-np-hidden-count-parent><span data-np-hidden-count></span> <?php _e('Nested Items Selected', 'nestedpages'); ?></p>
+	<p class="np-hidden-select-count" data-np-hidden-count-parent><span data-np-hidden-count></span> <?php _e('Nested Items Selected', 'nestedpages'); ?>. <a href="#" class="nestedpages-toggleall"><?php _e('Expand All', 'nestedpages'); ?></a></p>
 </div>
