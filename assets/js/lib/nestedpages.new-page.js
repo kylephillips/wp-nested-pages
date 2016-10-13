@@ -50,6 +50,9 @@ NestedPages.NewPage = function()
 		$(NestedPages.selectors.newPageModal).on('hide.bs.modal', function(){
 			plugin.cancelNewPage();
 		});
+		$(NestedPages.selectors.newPageModal).on('shown.bs.modal', function(){
+			plugin.modalOpened($(this));
+		});
 		$(document).on('click', NestedPages.selectors.cancelNewChildButton, function(e){
 			e.preventDefault();
 			plugin.cancelNewPage();
@@ -61,11 +64,19 @@ NestedPages.NewPage = function()
 	// Open the form modal
 	plugin.openModal = function()
 	{
-		var newform = $(NestedPages.selectors.newPageFormContainer).clone().find(NestedPages.selectors.newPageForm).addClass('in-modal');
+		var newform = $(NestedPages.selectors.newPageFormContainer).clone().find(NestedPages.selectors.newPageForm);
+		$(newform).addClass('in-modal');
 		$(NestedPages.selectors.newPageModal).find('.modal-body').html(newform);
 		$(NestedPages.selectors.newPageModal).find('h3').text(nestedpages.add_multiple);
 		$(NestedPages.selectors.newPageModal).find('.page_parent_id').val(plugin.parent_id);
-		$(NestedPages.selectors.newPageModal).modal('show');		
+		$(NestedPages.selectors.newPageModal).modal('show');
+	}
+
+	// Modal has opened, set the attributes
+	plugin.modalOpened = function(modal)
+	{
+		$(modal).find('.np_title').focus();
+		$(modal).find(NestedPages.selectors.newPageTitle).prop('tabindex', '2');
 	}
 
 
@@ -91,6 +102,7 @@ NestedPages.NewPage = function()
 		$(newform).find('.page_parent_id').val($(button).attr('data-id'));
 		$(newform).show();
 		$(newform).find('.np_title').focus();
+		$(newform).find(NestedPages.selectors.newPageTitle).prop('tabindex', '2');
 	}
 
 
@@ -113,6 +125,7 @@ NestedPages.NewPage = function()
 		var html = '<li><i class="handle np-icon-menu"></i><div class="form-control new-child-row"><label>' + NestedPages.jsData.titleText + '</label><div><input type="text" name="post_title[]" class="np_title" placeholder="' + NestedPages.jsData.titleText + '" value="" tabindex="' + fieldcount + '" /><a href="#" class="button-secondary np-remove-child">-</a></div></div></li>';
 		var container = $(button).siblings('.new-page-titles').append(html);
 		$(form).find('.np_title').last().focus();
+		$(form).find(NestedPages.selectors.newPageTitle).prop('tabindex', fieldcount++);
 		$('.new-page-titles').sortable({
 			items : 'li',
 			handle: '.handle',
