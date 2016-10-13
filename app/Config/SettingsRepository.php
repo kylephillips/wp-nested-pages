@@ -37,6 +37,16 @@ class SettingsRepository
 	}
 
 	/**
+	* Is AJAX menu sync disabled?
+	*/
+	public function autoMenuDisabled()
+	{
+		$option = get_option('nestedpages_ui', false);
+		if ( $option && isset($option['disable_ajax_menu_sync']) && $option['disable_ajax_menu_sync'] == 'true' ) return true;
+		return false;
+	}
+
+	/**
 	* Are menus completely disabled?
 	* @return boolean
 	*/

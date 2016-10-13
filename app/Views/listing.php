@@ -33,11 +33,16 @@
 
 		<?php if ( $this->user->canSortPages() && $this->post_type->name == 'page' && !$this->isSearch() && !$this->settings->hideMenuSync() && !$this->isFiltered() && !$this->settings->menusDisabled() ) : ?>
 		<div class="np-sync-menu-cont" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:2px;"';?>>
+			<?php if ( !$this->settings->autoMenuDisabled() ) : ?>
 			<label>
 				<input type="checkbox" name="np_sync_menu" class="np-sync-menu" value="sync" <?php if ( get_option('nestedpages_menusync') == 'sync' ) echo 'checked'; ?>/> <?php _e('Sync Menu', 'nestedpages'); ?>
 			</label>
+			<?php else : ?>
+				<button class="np-btn" data-np-manual-sync><?php _e('Sync Menu', 'nestedpages'); ?></button>
+			<?php endif; ?>
 		</div>
 		<?php endif; ?>
+
 
 		<img src="<?php echo NestedPages\Helpers::plugin_url(); ?>/assets/images/spinner-2x.gif" alt="loading" id="nested-loading" />
 	</div><!-- .nestedpages-top-toggles -->

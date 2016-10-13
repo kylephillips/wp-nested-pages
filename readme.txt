@@ -109,6 +109,7 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 * Bug fix where page redirect errors were showing while attempting to delete pages with the Page post type disabled. (Thanks to Evan Washkow)
 * Bug fix where non-ascii characters were not displaying correctly in the quick edit slug field
 * Bug fix where "Add Child" was not available if menu sync was disabled completely
+* Tab index set when adding a new child or multiple pages. No mouse necessary for adding in bulk.
 * Various UI enhancements
 * Swedish translation added (Thanks to Marcus Forsberg)
 

@@ -17,6 +17,9 @@ NestedPages.Settings = function()
 		standardFieldsCheckbox : '[data-toggle-nestedpages-sf-settings]', // Checkbox for toggling standard field settings
 		taxonomiesFieldCheckbox : '[data-hide-taxonomies]', // Checkbox for disabling taxonomies from quick edit
 		thumbnailsCheckbox : '[data-enable-thumbnails]', // Checkbox for enabling thumbnails in sort view
+		menuEnabledOption : '[data-menu-enabled-option]', // Options when the menu is enabled
+		disableMenuCheckbox : '[data-disable-menu-checkbox]', // Checkbox for disabling menus completely
+		disableAutoCheckbox : '[data-menu-disable-auto-checkbox]', // Checkbox for disabling auto menu sync
 	}
 
 	plugin.bindEvents = function()
@@ -25,6 +28,8 @@ NestedPages.Settings = function()
 			plugin.toggleAllSettingsButtons();
 			plugin.toogleAllFieldSettings('.custom-fields');
 			plugin.toogleAllFieldSettings('.standard-fields');
+			plugin.toggleMenuCheckboxes();
+			plugin.toggleHideCheckbox();
 		});
 		$(document).on('click', plugin.selectors.postTypeToggle, function(e){
 			e.preventDefault();
@@ -44,6 +49,12 @@ NestedPages.Settings = function()
 		});
 		$(document).on('change', plugin.selectors.thumbnailsCheckbox, function(){
 			plugin.toggleThumbnailSettings($(this));
+		});
+		$(document).on('change', plugin.selectors.disableMenuCheckbox, function(){
+			plugin.toggleMenuCheckboxes();
+		});
+		$(document).on('change', plugin.selectors.disableAutoCheckbox, function(){
+			plugin.toggleHideCheckbox();
 		});
 	}
 
@@ -135,6 +146,34 @@ NestedPages.Settings = function()
 			return;
 		}
 		$(settings).hide();
+	}
+
+	/**
+	* Toggle the Menu Checkboxes
+	*/
+	plugin.toggleMenuCheckboxes = function()
+	{
+		var checkbox = $(plugin.selectors.disableMenuCheckbox);
+		var menuCheckboxes = $(plugin.selectors.menuEnabledOption);
+		if ( $(checkbox).is(':checked') ){
+			$(menuCheckboxes).hide();
+			return;
+		}
+		$(menuCheckboxes).show();
+	}
+
+	/**
+	* Toggle the hide checkbox option
+	*/
+	plugin.toggleHideCheckbox = function()
+	{
+		var checkbox = $(plugin.selectors.disableAutoCheckbox);
+		var hideCheckboxOption = $('[data-menu-hide-checkbox]');
+		if ( $(checkbox).is(':checked') ){
+			$(hideCheckboxOption).hide();
+			return;
+		}
+		$(hideCheckboxOption).show();
 	}
 
 	plugin.init = function()

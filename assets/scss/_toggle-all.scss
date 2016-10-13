@@ -29,6 +29,11 @@
 .np-sync-menu-cont {
 	float: right;
 	margin: 5px 15px 0px 0px;
+	button {
+		position: relative;
+		top: -5px;
+		padding: 5px 8px;
+	}
 }
 
 #nested-loading {

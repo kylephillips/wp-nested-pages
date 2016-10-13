@@ -30,17 +30,21 @@ settings_fields( 'nestedpages-general' );
 <tr valign="top">
 	<th scope="row"><?php _e('Menu Sync', 'nestedpages'); ?></th>
 	<td>
-		<?php if ( !$this->settings->menusDisabled() ) : ?>
-		<p>
+		<p data-menu-enabled-option data-menu-hide-checkbox>
 		<label>
 			<input type="checkbox" name="nestedpages_ui[hide_menu_sync]" value="true" <?php if ( $this->settings->hideMenuSync() ) echo 'checked'; ?> />
 			<?php _e('Hide Menu Sync Checkbox', 'nestedpages'); ?> (<?php echo $sync_status; ?>)
 		</label>
 		</p>
-		<?php endif; ?>
+		<p data-menu-enabled-option data-menu-disable-auto>
+		<label>
+			<input type="checkbox" name="nestedpages_ui[disable_ajax_menu_sync]" value="true" <?php if ( $this->settings->autoMenuDisabled() ) echo 'checked'; ?> data-menu-disable-auto-checkbox />
+			<?php _e('Disable Automatic/AJAX menu sync and display manual sync button.', 'nestedpages'); ?>
+		</label>
+		</p>
 		<p>
 		<label>
-			<input type="checkbox" name="nestedpages_disable_menu" value="true" <?php if ( $this->settings->menusDisabled() ) echo 'checked'; ?> />
+			<input type="checkbox" name="nestedpages_disable_menu" value="true" <?php if ( $this->settings->menusDisabled() ) echo 'checked'; ?> data-disable-menu-checkbox />
 			<?php _e('Disable Menu Sync Completely', 'nestedpages'); ?>
 		</label>
 		</p>
