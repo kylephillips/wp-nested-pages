@@ -10,6 +10,8 @@ NestedPages.PageToggle = function()
 	var plugin = this;
 	var $ = jQuery;
 
+	plugin.activeButton = '';
+
 	plugin.formatter = new NestedPages.Formatter;
 
 	plugin.init = function()
@@ -21,6 +23,7 @@ NestedPages.PageToggle = function()
 	{
 		$(document).on('click', NestedPages.selectors.toggleHidden, function(e){
 			e.preventDefault();
+			plugin.activeButton = $(this);
 			plugin.toggleHidden();
 		});
 		$(document).on('click', NestedPages.selectors.toggleStatus, function(e){
@@ -33,19 +36,24 @@ NestedPages.PageToggle = function()
 	// Toggle Hidden Pages
 	plugin.toggleHidden = function()
 	{
-		var button = NestedPages.selectors.toggleHidden;
+		var button = $(plugin.activeButton);
 		var action = $(button).attr('href');
-		if ( action === 'show' ){
-			$(button).attr('href', 'hide').text(NestedPages.jsData.showHiddenText);
+		console.log(action);
+
+		if ( action == '#show' ){
+			$(button).attr('href', '#hide').text(NestedPages.jsData.showHiddenText);
 			$(NestedPages.selectors.hiddenRows).removeClass('shown').hide();
 			plugin.formatter.updateSubMenuToggle();
 			plugin.formatter.setBorders();
 			return;
 		}
-		$(button).attr('href', 'show').text(NestedPages.jsData.hideHiddenText);
-		$(NestedPages.selectors.hiddenRows).addClass('shown').show();
-		plugin.formatter.updateSubMenuToggle();
-		plugin.formatter.setBorders();
+
+		if ( action == '#hide' ){
+			$(button).attr('href', '#show').text(NestedPages.jsData.hideHiddenText);
+			$(NestedPages.selectors.hiddenRows).addClass('shown').show();
+			plugin.formatter.updateSubMenuToggle();
+			plugin.formatter.setBorders();
+		}
 	}
 
 

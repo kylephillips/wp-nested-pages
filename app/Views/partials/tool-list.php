@@ -15,7 +15,11 @@
 		</li>
 
 		<li> |
-			<a href="#show" class="np-toggle-hidden"><?php _e('Show Hidden', 'nestedpages'); ?> </a>
+			<?php if ( !$this->isSearch() ) : ?>
+			<a href="#hide" class="np-toggle-hidden"><?php _e('Show Hidden', 'nestedpages'); ?> </a>
+			<?php else : ?>
+			<a href="#show" class="np-toggle-hidden"><?php _e('Hide Hidden', 'nestedpages'); ?> </a>
+			<?php endif; ?>
 			<span class="count">(<?php echo $this->post_repo->getHiddenCount(array($this->post_type->name)); ?>)</span>
 		</li>
 

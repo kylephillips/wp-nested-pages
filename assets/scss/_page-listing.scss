@@ -146,6 +146,11 @@
 
 	} // ol 1
 
+	// Show hidden items in search results
+	.np-search-results .np-hide {
+		display: block;
+	}
+
 	// Block that holds the toggle child arrow
 	.child-toggle {
 		display: table-cell;

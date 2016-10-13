@@ -139,7 +139,7 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 
 			<a href="<?php echo get_the_permalink(); ?>" class="np-btn np-view-button" target="_blank"><?php _e('View'); ?></a>
 			
-			<a href="#" class="np-btn"><i class="np-icon-more_vert"></i></a>
+			<!-- <a href="#" class="np-btn"><i class="np-icon-more_vert"></i></a> -->
 			
 			<?php if ( current_user_can('delete_pages') && $this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ) : ?>
 			<a href="<?php echo get_delete_post_link(get_the_id()); ?>" class="np-btn np-btn-trash">

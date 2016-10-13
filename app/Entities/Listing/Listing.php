@@ -222,8 +222,9 @@ class Listing
 		$compared = array_intersect($this->listing_repo->visiblePages($this->post_type->name), $children);
 
 		$list_classes = 'sortable visible nplist';
-		if ( !$this->user->canSortPages() && !$sortable ) $list_classes .= ' no-sort';
+		if ( !$this->user->canSortPages() && !$sortable || $this->isSearch() ) $list_classes .= ' no-sort';
 		if ( $this->integrations->plugins->yoast->installed ) $list_classes .= ' has-yoast';
+		if ( $this->isSearch() ) $list_classes .= ' np-search-results';
 
 		// Primary List
 		if ( $count == 1 ) {
