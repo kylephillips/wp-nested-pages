@@ -48,6 +48,7 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 2. Activate the plugin through the Plugins menu in WordPress
 3. Click on the Pages Menu item to begin ordering pages. Nested Pages replaces the default Page management screen.
 4. To access the default the pages screen, select Default Pages located in the Pages submenu, or on the Nested Pages screen
+5. Additional options are available through the plugin settings at Settings > Nested Pages. Nested Pages may be enabled for any post type, and is configurable by post type. Options include quick edit field settings, thumbnail display and more.
 
 == Frequently Asked Questions ==
 
@@ -71,6 +72,9 @@ Custom columns are not currently supported by Nested Pages. To view custom colum
 
 = What are those dots in my page rows? =
 If you have WordPress SEO by Yoast installed, your page score indicators are shown along with the pages.
+
+= Can I show the thumbnail in the tree view? =
+As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure thumbnail settings for each post type. Filters are also available for customizing the images displayed.
 
 
 == Screenshots ==
