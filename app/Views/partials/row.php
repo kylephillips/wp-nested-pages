@@ -93,9 +93,11 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 			<?php else : $cs = 'closed'; endif; ?>
 
 
-			<?php if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->isSearch() && !$this->settings->menusDisabled() ) : ?>
+			<?php if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->isSearch() ) : ?>
 		
+			<?php if (!$this->settings->menusDisabled()) : ?>
 			<a href="#" class="np-btn open-redirect-modal" data-parentid="<?php echo $this->post->id; ?>"><i class="np-icon-link"></i></a>
+			<?php endif; ?>
 			
 			<a href="#" class="np-btn add-new-child" data-id="<?php echo get_the_id(); ?>" data-parentname="<?php echo $this->post->title; ?>"><?php _e('Add Child', 'nestedpages'); ?></a>
 

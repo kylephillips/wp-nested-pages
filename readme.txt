@@ -93,7 +93,7 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 
 = 1.5.5 =
 * Redesign of post type settings page, with additional options added
-* Thumbnail support added to nested/sort view. Visit Settings > Nested Pages > Post Types to enable post thumbnails.
+* Thumbnail support added to nested/sort view. Visit Settings > Nested Pages > Post Types to enable post thumbnails and set optionsm.
 * Ability to customize quick edit fields for each post type added. Visit Settings > Nested Pages > Post Types to hide specific fields from the quick edit interface for each post type. Please note: specific fields are still hidden depending on the current user's roles/capabilities.
 * Bulk delete functionality added
 * When adding multiple pages, the option to set them as hidden in the nav menu is now available.
@@ -103,6 +103,8 @@ If you have WordPress SEO by Yoast installed, your page score indicators are sho
 * Fix for invalid rel attribute in generated nav menus, resulting in W3C validation error.
 * Bug fix where non-hierarchical post types were allowing nesting.
 * Bug fix where page redirect errors were showing while attempting to delete pages with the Page post type disabled. (Thanks to Evan Washkow)
+* Bug fix where non-ascii characters were not displaying correctly in the quick edit slug field
+* Bug fix where "Add Child" was not available if menu sync was disabled completely
 * Various UI enhancements
 * Swedish translation added (Thanks to Marcus Forsberg)
 
