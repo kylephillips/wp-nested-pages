@@ -15,6 +15,10 @@
 		transition: all 200ms ease;
 		border-color: $blue;
 	}
+	&:disabled, &.disabled {
+		opacity: .6;
+		cursor: not-allowed;
+	}
 }
 
 .np-btn-half {

@@ -38,14 +38,20 @@ settings_fields( 'nestedpages-general' );
 		</p>
 		<p data-menu-enabled-option data-menu-disable-auto>
 		<label>
-			<input type="checkbox" name="nestedpages_ui[disable_ajax_menu_sync]" value="true" <?php if ( $this->settings->autoMenuDisabled() ) echo 'checked'; ?> data-menu-disable-auto-checkbox />
-			<?php _e('Disable Automatic/AJAX menu sync and display manual sync button.', 'nestedpages'); ?>
+			<input type="checkbox" name="nestedpages_ui[manual_menu_sync]" value="true" <?php if ( $this->settings->autoMenuDisabled() ) echo 'checked'; ?> data-menu-disable-auto-checkbox />
+			<?php _e('Manually sync menu.', 'nestedpages'); ?>
+		</label>
+		</p>
+		<p>
+		<label>
+			<input type="checkbox" name="nestedpages_ui[manual_page_order_sync]" value="true" <?php if ( $this->settings->autoPageOrderDisabled() ) echo 'checked'; ?> />
+			<?php _e('Manually sync page order.', 'nestedpages'); ?>
 		</label>
 		</p>
 		<p>
 		<label>
 			<input type="checkbox" name="nestedpages_disable_menu" value="true" <?php if ( $this->settings->menusDisabled() ) echo 'checked'; ?> data-disable-menu-checkbox />
-			<?php _e('Disable Menu Sync Completely', 'nestedpages'); ?>
+			<?php _e('Disable menu sync completely', 'nestedpages'); ?>
 		</label>
 		</p>
 	</td>

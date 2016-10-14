@@ -4,6 +4,7 @@ namespace NestedPages\Activation;
 
 use NestedPages\Entities\PostType\PostTypeRepository;
 use NestedPages\Entities\PluginIntegration\IntegrationFactory;
+use NestedPages\Config\SettingsRepository;
 use NestedPages\Helpers;
 
 /**
@@ -28,6 +29,11 @@ class Dependencies
 	private $post_type_repo;
 
 	/**
+	* Settings Repository
+	*/
+	private $settings;
+
+	/**
 	* Integrations
 	*/
 	private $integrations;
@@ -36,6 +42,7 @@ class Dependencies
 	{
 		$this->post_type_repo = new PostTypeRepository;
 		$this->integrations = new IntegrationFactory;
+		$this->settings = new SettingsRepository;
 		$this->setPluginVersion();
 		add_action( 'admin_enqueue_scripts', array($this, 'styles') );
 		add_action( 'admin_enqueue_scripts', array($this, 'scripts') );
@@ -137,7 +144,8 @@ class Dependencies
 				'link_delete_confirmation' => __('Your selection includes link items, which cannot be recovered after deleting. Would you like to continue? (Other items are moved to the trash)', 'nestedpages'),
 				'link_delete_confirmation_singular' => __('Are you sure you would like to delete this item? This action is not reversable.', 'nestedpages'),
 				'delete' => __('Delete', 'nestedpages'),
-				'trash_delete_links' => __('Trash Posts and Delete Links')
+				'trash_delete_links' => __('Trash Posts and Delete Links'),
+				'manual_menu_sync' => $this->settings->autoMenuDisabled(),
 			);
 			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;
 			$localized_data['syncmenu'] = $syncmenu;

@@ -38,7 +38,7 @@
 				<input type="checkbox" name="np_sync_menu" class="np-sync-menu" value="sync" <?php if ( get_option('nestedpages_menusync') == 'sync' ) echo 'checked'; ?>/> <?php _e('Sync Menu', 'nestedpages'); ?>
 			</label>
 			<?php else : ?>
-				<a href="#" class="np-btn" data-np-manual-sync><?php _e('Sync Menu', 'nestedpages'); ?></a>
+				<a href="#" class="np-btn" data-np-manual-menu-sync><?php _e('Sync Menu', 'nestedpages'); ?></a>
 			<?php endif; ?>
 		</div>
 		<?php endif; ?>

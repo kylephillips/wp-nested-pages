@@ -20,6 +20,7 @@ NestedPages.SyncMenuSetting = function()
 	plugin.bindEvents = function()
 	{
 		$(document).ready(function(){ // catches trash updates
+			if ( nestedpages.manual_menu_sync === '1' ) return;
 			if ( nestedpages.syncmenu === '1' ) plugin.syncSetting(); 
 		});
 		$(document).on('change', NestedPages.selectors.syncCheckbox, function(){

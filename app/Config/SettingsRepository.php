@@ -42,7 +42,17 @@ class SettingsRepository
 	public function autoMenuDisabled()
 	{
 		$option = get_option('nestedpages_ui', false);
-		if ( $option && isset($option['disable_ajax_menu_sync']) && $option['disable_ajax_menu_sync'] == 'true' ) return true;
+		if ( $option && isset($option['manual_menu_sync']) && $option['manual_menu_sync'] == 'true' ) return true;
+		return false;
+	}
+
+	/**
+	* Is AJAX page order disabled?
+	*/
+	public function autoPageOrderDisabled()
+	{
+		$option = get_option('nestedpages_ui', false);
+		if ( $option && isset($option['manual_page_order_sync']) && $option['manual_page_order_sync'] == 'true' ) return true;
 		return false;
 	}
 

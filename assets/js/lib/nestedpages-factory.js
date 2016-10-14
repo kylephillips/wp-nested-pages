@@ -104,6 +104,9 @@ NestedPages.selectors = {
 	thumbnailContainer : '.np-thumbnail', // Container for Thumbnail
 	thumbnailContainerLink : '.np-thumbnail.link', // Link Thumbnail Container
 
+	// Manual Sync Buttons
+	manualMenuSync : '[data-np-manual-menu-sync]', // Button for Triggering Manual Menu Sync
+
 }
 
 
@@ -145,7 +148,8 @@ NestedPages.formActions = {
 	quickEditPost : 'npquickEdit',
 	clonePost : 'npclonePost',
 	search : 'npmenuSearch',
-	newMenuItem : 'npnewMenuItem'
+	newMenuItem : 'npnewMenuItem',
+	manualMenuSync : 'npmanualMenuSync'
 }
 
 
@@ -173,6 +177,7 @@ NestedPages.Factory = function()
 	plugin.menuLinks = new NestedPages.MenuLinks;
 	plugin.hiddenItemCount = new NestedPages.HiddenItemCount;
 	plugin.confirmDelete = new NestedPages.ConfirmDelete;
+	plugin.manualSync = new NestedPages.ManualSync;
 
 	plugin.init = function()
 	{
@@ -225,6 +230,7 @@ NestedPages.Factory = function()
 	plugin.setMenuSync = function()
 	{
 		NestedPages.jsData.syncmenu = ( nestedpages.syncmenu === '1' ) ? 'sync' : 'nosync';
+		if ( nestedpages.manual_menu_sync === '1' ) NestedPages.jsData.syncmenu = 'nosync';
 	}
 
 

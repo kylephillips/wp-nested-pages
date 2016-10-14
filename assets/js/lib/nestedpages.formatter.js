@@ -148,5 +148,4 @@ NestedPages.Formatter = function()
 		});
 	}
 
-
 }
