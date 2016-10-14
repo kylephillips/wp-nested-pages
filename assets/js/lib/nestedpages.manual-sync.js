@@ -32,6 +32,7 @@ NestedPages.ManualSync = function()
 			data: {
 				action : NestedPages.formActions.manualMenuSync,
 				nonce : NestedPages.jsData.nonce,
+				post_type : NestedPages.jsData.posttype,
 				syncmenu : 'sync'
 			},
 			success: function(data){

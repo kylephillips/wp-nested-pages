@@ -230,7 +230,6 @@ NestedPages.Factory = function()
 	plugin.setMenuSync = function()
 	{
 		NestedPages.jsData.syncmenu = ( nestedpages.syncmenu === '1' ) ? 'sync' : 'nosync';
-		if ( nestedpages.manual_menu_sync === '1' ) NestedPages.jsData.syncmenu = 'nosync';
 	}
 
 
