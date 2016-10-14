@@ -36,7 +36,6 @@ NestedPages.ManualSync = function()
 				syncmenu : 'sync'
 			},
 			success: function(data){
-				console.log(data);
 				if (data.status === 'error'){
 					$(NestedPages.selectors.errorDiv).text(data.message).show();
 					$(NestedPages.selectors.loadingIndicator).hide();

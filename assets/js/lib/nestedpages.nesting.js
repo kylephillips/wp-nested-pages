@@ -60,6 +60,9 @@ NestedPages.Nesting = function()
 		list = $(NestedPages.selectors.sortable).nestedSortable('toHierarchy', {startDepthCount: 0});
 		plugin.disableNesting();
 
+		var syncmenu = NestedPages.jsData.syncmenu;
+		if ( nestedpages.manual_menu_sync === '1' ) syncmenu = 'nosync';
+
 		$.ajax({
 			url: ajaxurl,
 			type: 'post',
@@ -69,7 +72,7 @@ NestedPages.Nesting = function()
 				nonce : NestedPages.jsData.nonce,
 				list : list,
 				post_type : NestedPages.jsData.posttype,
-				syncmenu : NestedPages.jsData.syncmenu
+				syncmenu : syncmenu
 			},
 			success: function(data){
 				plugin.initializeSortable();
