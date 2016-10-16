@@ -33,11 +33,12 @@
 
 		<?php if ( $this->user->canSortPages() && !$this->isSearch() && !$this->isFiltered() ) : ?>
 		<div class="np-sync-menu-cont" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:2px;"';?>>
-			<?php if ( $this->post_type->name == 'page' && !$this->settings->hideMenuSync() && !$this->settings->menusDisabled() ) : ?>
 
-				<?php if ( $this->settings->autoPageOrderDisabled() ) : ?>
-				<a href="#" class="np-btn" data-np-manual-order-sync><?php echo __('Sync', 'nestedpages') . ' ' . $this->post_type->labels->singular_name . ' ' . __('Order', 'nestedpages'); ?></a>
-				<?php endif; ?>
+			<?php if ( $this->settings->autoPageOrderDisabled() ) : ?>
+			<a href="#" class="np-btn" data-np-manual-order-sync><?php echo __('Sync', 'nestedpages') . ' ' . $this->post_type->labels->singular_name . ' ' . __('Order', 'nestedpages'); ?></a>
+			<?php endif; ?>
+
+			<?php if ( $this->post_type->name == 'page' && !$this->settings->hideMenuSync() && !$this->settings->menusDisabled() ) : ?>
 
 				<?php if ( !$this->settings->autoMenuDisabled() ) : ?>
 				<label>
@@ -48,6 +49,7 @@
 				<?php endif; ?>
 
 			<?php endif; ?>
+			
 		</div>
 		<?php endif; ?>
 
