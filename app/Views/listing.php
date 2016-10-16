@@ -31,18 +31,25 @@
 		<a href="#" class="np-btn nestedpages-toggleall" data-toggle="closed"><?php _e('Expand All', 'nestedpages'); ?></a>
 		<?php endif; ?>
 
-		<?php if ( $this->user->canSortPages() && $this->post_type->name == 'page' && !$this->isSearch() && !$this->settings->hideMenuSync() && !$this->isFiltered() && !$this->settings->menusDisabled() ) : ?>
+		<?php if ( $this->user->canSortPages() && !$this->isSearch() && !$this->isFiltered() ) : ?>
 		<div class="np-sync-menu-cont" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:2px;"';?>>
-			<?php if ( !$this->settings->autoMenuDisabled() ) : ?>
-			<label>
-				<input type="checkbox" name="np_sync_menu" class="np-sync-menu" value="sync" <?php if ( get_option('nestedpages_menusync') == 'sync' ) echo 'checked'; ?>/> <?php _e('Sync Menu', 'nestedpages'); ?>
-			</label>
-			<?php else : ?>
-				<a href="#" class="np-btn" data-np-manual-menu-sync><?php _e('Sync Menu', 'nestedpages'); ?></a>
+			<?php if ( $this->post_type->name == 'page' && !$this->settings->hideMenuSync() && !$this->settings->menusDisabled() ) : ?>
+
+				<?php if ( $this->settings->autoPageOrderDisabled() ) : ?>
+				<a href="#" class="np-btn" data-np-manual-order-sync><?php echo __('Sync', 'nestedpages') . ' ' . $this->post_type->labels->singular_name . ' ' . __('Order', 'nestedpages'); ?></a>
+				<?php endif; ?>
+
+				<?php if ( !$this->settings->autoMenuDisabled() ) : ?>
+				<label>
+					<input type="checkbox" name="np_sync_menu" class="np-sync-menu" value="sync" <?php if ( get_option('nestedpages_menusync') == 'sync' ) echo 'checked'; ?>/> <?php _e('Sync Menu', 'nestedpages'); ?>
+				</label>
+				<?php else : ?>
+					<a href="#" class="np-btn" data-np-manual-menu-sync><?php _e('Sync Menu', 'nestedpages'); ?></a>
+				<?php endif; ?>
+
 			<?php endif; ?>
 		</div>
 		<?php endif; ?>
-
 
 		<img src="<?php echo NestedPages\Helpers::plugin_url(); ?>/assets/images/spinner-2x.gif" alt="loading" id="nested-loading" />
 	</div><!-- .nestedpages-top-toggles -->

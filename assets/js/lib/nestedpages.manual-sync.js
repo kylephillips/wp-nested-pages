@@ -19,6 +19,11 @@ NestedPages.ManualSync = function()
 			plugin.activeBtn = $(this);
 			plugin.syncMenu();
 		});
+		$(document).on('click', NestedPages.selectors.manualOrderSync, function(e){
+			e.preventDefault();
+			plugin.activeBtn = $(this);
+			plugin.syncOrder();
+		});
 	}
 
 	plugin.syncMenu = function()
@@ -44,6 +49,13 @@ NestedPages.ManualSync = function()
 				}
 			}
 		});
+	}
+
+	plugin.syncOrder = function()
+	{
+		plugin.loading(true);
+		var nestingClass = new NestedPages.Nesting;
+		nestingClass.syncNesting(true, plugin.loading(false));
 	}
 
 	plugin.loading = function(loading)

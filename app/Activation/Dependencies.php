@@ -146,6 +146,7 @@ class Dependencies
 				'delete' => __('Delete', 'nestedpages'),
 				'trash_delete_links' => __('Trash Posts and Delete Links'),
 				'manual_menu_sync' => $this->settings->autoMenuDisabled(),
+				'manual_order_sync' => $this->settings->autoPageOrderDisabled(),
 			);
 			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;
 			$localized_data['syncmenu'] = $syncmenu;

@@ -106,6 +106,7 @@ NestedPages.selectors = {
 
 	// Manual Sync Buttons
 	manualMenuSync : '[data-np-manual-menu-sync]', // Button for Triggering Manual Menu Sync
+	manualOrderSync : '[data-np-manual-order-sync]', // Button for Triggering Manual Order Sync
 
 }
 

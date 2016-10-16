@@ -52,8 +52,9 @@ NestedPages.Nesting = function()
 
 
 	// Sync Nesting
-	plugin.syncNesting = function()
+	plugin.syncNesting = function(manual, callback)
 	{
+		if ( nestedpages.manual_order_sync === '1' && !manual) return;
 		$(NestedPages.selectors.errorDiv).hide();
 		$(NestedPages.selectors.loadingIndicator).show();
 
@@ -74,12 +75,16 @@ NestedPages.Nesting = function()
 				post_type : NestedPages.jsData.posttype,
 				syncmenu : syncmenu
 			},
-			success: function(data){
+			success: function(data, callback){
 				plugin.initializeSortable();
 				if (data.status === 'error'){
 					$(NestedPages.selectors.errorDiv).text(data.message).show();
 					$(NestedPages.selectors.loadingIndicator).hide();
 				} else {
+					if ( callback && typeof callback === 'function') {
+						callback();
+						return;
+					}
 					$(NestedPages.selectors.loadingIndicator).hide();
 				}
 			}

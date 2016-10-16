@@ -101,6 +101,7 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 * Ability to customize quick edit fields for each post type added. Visit Settings > Nested Pages > Post Types to hide specific fields from the quick edit interface for each post type. Please note: specific fields are still hidden depending on the current user's roles/capabilities.
 * Bulk delete functionality added
 * When adding multiple pages, the option to set them as hidden in the nav menu is now available.
+* Option added to manually sync the nav menu and page order
 * Bug fix where Post menu wasn't being replaced if option checked.
 * Modified date set to not update when reordering post order through the nested view.
 * Issue of duplicate posts item in nav menu resolved.
