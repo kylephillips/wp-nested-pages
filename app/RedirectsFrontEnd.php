@@ -52,6 +52,7 @@ class RedirectsFrontEnd
 	*/
 	private function removeParentSlugs($post, $slug)
 	{
+		if ( is_admin() ) return $slug;
 		if ( $post->post_parent > 0 ) {
 			$parent_post = get_post($post->post_parent);
 			if ( $parent_post->post_type == 'np-redirect' ){
