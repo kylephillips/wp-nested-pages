@@ -76,7 +76,6 @@ NestedPages.PageToggle = function()
 		$(NestedPages.selectors.rows).hide();
 		$('.' + target).show();
 		return;
-		
 	}
 
 
