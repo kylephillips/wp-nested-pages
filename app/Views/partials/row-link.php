@@ -21,7 +21,7 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 		<?php endif; ?>
 
 		<a href="<?php echo $link; ?>" class="page-link page-title" target="_blank">
-			<span class="title"><?php echo $this->post->title ?> <i class="np-icon-link"></i></span>
+			<span class="title"><?php echo apply_filters('the_title', $this->post->title, $this->post->id, $view = 'nestedpages_title'); ?> <i class="np-icon-link"></i></span>
 			<?php 
 
 				// Post Status
