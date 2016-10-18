@@ -24,7 +24,7 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 		<i class="handle np-icon-menu"></i>
 		<?php endif; ?>
 
-		<a href="<?php echo get_edit_post_link(); ?>" class="page-link page-title">
+		<a href="<?php echo apply_filters('nestedpages_edit_link', get_edit_post_link(), $this->post); ?>" class="page-link page-title">
 			<span class="title">
 				<?php 
 					echo apply_filters( 'the_title', $this->post->title, $this->post->id, $view = 'nestedpages_title' ); 
@@ -57,7 +57,7 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 				} elseif ( !$this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ){
 					echo '<span class="locked"><i class="np-icon-lock"></i></span>';
 				} else {
-					echo '<span class="edit-indicator"><i class="np-icon-pencil"></i>' . __('Edit') . '</span>';
+					echo '<span class="edit-indicator"><i class="np-icon-pencil"></i>' . apply_filters('nestedpages_edit_link_text', __('Edit'), $this->post) . '</span>';
 				}
 				
 			?>
@@ -139,7 +139,9 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 			</a>
 			<?php endif; ?>
 
-			<a href="<?php echo get_the_permalink(); ?>" class="np-btn np-view-button" target="_blank"><?php _e('View'); ?></a>
+			<a href="<?php echo apply_filters('nestedpages_view_link', get_the_permalink(), $this->post); ?>" class="np-btn np-view-button" target="_blank">
+				<?php echo apply_filters('nestedpages_view_link_text', __('View'), $this->post); ?>
+			</a>
 			
 			<!-- <a href="#" class="np-btn"><i class="np-icon-more_vert"></i></a> -->
 			
