@@ -17,13 +17,13 @@ class NavMenuFrontEnd
 	public function __construct()
 	{
 		$this->nav_menu_repo = new NavMenuRepository;
-		add_filter('nav_menu_link_attributes', array($this, 'attributeFilter'), 10, 4);
+		add_filter('nav_menu_link_attributes', array($this, 'attributeFilter'), 10, 3);
 	}
 
 	/**
 	* Filter the link attributes on the generated menu
 	*/
-	public function attributeFilter($atts, $item, $args, $depth)
+	public function attributeFilter($atts, $item, $args)
 	{
 		if ( $this->nav_menu_repo->getMenuID() == null ) return $atts;
 		if ( !isset($args->menu->term_id) ) return $atts;

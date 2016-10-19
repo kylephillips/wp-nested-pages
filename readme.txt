@@ -99,6 +99,9 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 
 == Changelog ==
 
+= 1.6.2 =
+* Bug fix that was throwing error in the nav menu
+
 = 1.6.1 =
 * Bug fix in nav menu front end that was throwing error on sites with errors enabled.
 
