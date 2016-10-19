@@ -81,38 +81,43 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 
 1. Expandable tree view of your page structure
 
-2. Retains quick edit functionality while adding additional options and a cleaner interface
+2. Enhanced quick edit offers configurable fields and additional options
 
 3. Sortable page nesting updates in real time
 
-4. Toggle nested child pages for a clutter-free tree
+4. Toggle child pages for a clutter-free and nestable tree
 
-5. Quickly add posts without leaving the page tree
+5. Quickly add child posts without leaving the page tree
 
-6. Set capabilities
+6. Clone existing pages for quick setup
 
-7. The Nested Pages interface can be enabled on a per-post-type basis, with customizable options for each type.
+7. Add pages in bulk – great for setting up new site structures quickly
+
+8. Enable or disable nesting for any user group with the necessary permissions. Additional options offer more configuration options.
+
+9. The Nested Pages interface can be enabled on a per-post-type basis, with customizable options for each type.
 
 == Changelog ==
 
 = 1.6.0 =
-* Redesign of post type settings page, with additional options added
+* Redesign of post type settings page, with additional options added.
 * Thumbnail support added to nested/sort view. Visit Settings > Nested Pages > Post Types to enable post thumbnails and set options.
-* Ability to customize quick edit fields for each post type added. Visit Settings > Nested Pages > Post Types to hide specific fields from the quick edit interface for each post type. Please note: specific fields are still hidden depending on the current user's roles/capabilities.
-* Bulk delete functionality added
+* Ability to customize quick edit fields for each post type added. Visit Settings > Nested Pages > Post Types to hide specific fields from the quick edit interface for each post type. Please note: specific fields are still hidden depending. on the current user's roles/capabilities.
+* Bulk delete functionality added.
 * When adding multiple pages, the option to set them as hidden in the nav menu is now available.
-* Option added to manually sync the nav menu and page order
+* Option added to manually sync the nav menu and page order.
 * Bug fix where Post menu wasn't being replaced if option checked.
 * Modified date set to not update when reordering post order through the nested view.
 * Issue of duplicate posts item in nav menu resolved.
 * Fix for invalid rel attribute in generated nav menus, resulting in W3C validation error.
+* Filters added for title, edit links, and view links in the nested interface.
 * Bug fix where non-hierarchical post types were allowing nesting.
 * Bug fix where page redirect errors were showing while attempting to delete pages with the Page post type disabled. (Thanks to Evan Washkow)
-* Bug fix where non-ascii characters were not displaying correctly in the quick edit slug field
-* Bug fix where "Add Child" was not available if menu sync was disabled completely
+* Bug fix where non-ascii characters were not displaying correctly in the quick edit slug field.
+* Bug fix where "Add Child" was not available if menu sync was disabled completely.
 * Tab index set when adding a new child or multiple pages. No mouse necessary for adding in bulk.
-* Various UI enhancements
-* Swedish translation added (Thanks to Marcus Forsberg)
+* Various UI enhancements.
+* Swedish translation added (Thanks to Marcus Forsberg).
 
 = 1.5.4 = 
 * Spanish translation added (Thanks to Raúl Martínez)
@@ -368,3 +373,13 @@ After installing Nested Pages, a new menu will be available with the name `Neste
 **Editing the generated menu:** Any manual changes made to the menu outside of the Nested Pages interface will be overwritten after the synchronization runs.
 
 **Hiding Pages in the Menu:** To hide a page from the Nested Pages menu, click “Quick Edit” on it’s row, select “Hide in Nav Menu”, and click “update”. If menu sync is disabled, enable it now to sync the setting. Hidden pages are marked “(Hidden)”. If a page with child pages is hidden from the menu, all of it’s child pages will also be hidden. 
+
+= Filters =
+
+* `the_title($title, $post_id, $view)` – Standard title filter. Applied to the title displayed in the nested interface. A third paramater, $view, is passed to check if the current title is being displayed in the nested view.
+* `nestedpages_thumbnail($image, $post)` – Customize the thumbnail for each page/post. Note: Thumbnails must be enabled for the post type.
+* `nestedpages_thumbnail_fallback($image, $post)` - Customize the thumbnail fallback for each page/post (if the post does not have a featured image). Note: Thumbnails must be enabled for the post type.
+* `nestedpages_edit_link($link, $post)` - Customize the "edit" link for each page/post in the nested interface.
+* `nestedpages_edit_link_text($text, $post)` - Customize the "edit" link text for each page/post in the nested interface.
+* `nestedpages_view_link($link, $post)` - Customize the "view" button link for each page/post in the nested interface.
+* `nestedpages_view_link_text($text, $post)` - Customize the "view" button text for each page/post in the nested interface.
