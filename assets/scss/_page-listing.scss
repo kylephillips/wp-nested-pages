@@ -208,7 +208,6 @@
 	.np-icon-sub-menu {
 		display: none;
 		color: darken($white, 40%);
-		// margin-top: 10px;
 	}
 
 	.row.no-sort .page-title {
@@ -234,7 +233,6 @@
 		&.link {
 			background-color: darken($white, 8%);
 			text-align: center;
-			border-right: 1px solid $border;
 			i {
 				font-size: 1.8em;
 				opacity: .5;
