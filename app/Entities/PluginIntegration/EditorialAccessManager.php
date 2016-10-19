@@ -23,6 +23,13 @@ class EditorialAccessManager
 
 	public function __construct()
 	{
+		add_action( 'init', array( $this, 'init' ) );
+	}
+	
+	/**
+	* Initialize Plugin Integration
+	*/
+	public function init() {
 		if ( class_exists('Editorial_Access_Manager') ){
 			$this->installed = true;
 			$this->user = wp_get_current_user();
