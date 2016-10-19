@@ -99,6 +99,9 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 
 == Changelog ==
 
+= 1.6.1 =
+* Bug fix in nav menu front end that was throwing error on sites with errors enabled.
+
 = 1.6.0 =
 * Redesign of post type settings page, with additional options added.
 * Thumbnail support added to nested/sort view. Visit Settings > Nested Pages > Post Types to enable post thumbnails and set options.

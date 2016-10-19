@@ -25,6 +25,8 @@ class NavMenuFrontEnd
 	*/
 	public function attributeFilter($atts, $item, $args, $depth)
 	{
+		if ( $this->nav_menu_repo->getMenuID() == null ) return $atts;
+		if ( !isset($args->menu->term_id) ) return $atts;
 		if ( $args->menu->term_id !== $this->nav_menu_repo->getMenuID() ) return $atts;
 
 		// Remove the rel= attribute created from saving the menu object for syncing
