@@ -62,7 +62,7 @@ Nested Pages is not currently compatible with WPML.
 Click the “Default link in the page subnav, or on the Nested Pages screen. This item may be optionally hidden under the Nested Pages settings.
 
 = How do I save the order I create? =
-Post sorting and nesting is saved in the background after changes are made to the structure.
+Post sorting and nesting is saved in the background after changes are made to the structure. If the "manual page order" option is enabled in the plugin options, you'll need to click the "Sync Order" button at the top of the page to save.
 
 = How do I edit in bulk? =
 Bulk quick edits are not currently supported by Nested Pages. To edit in bulk, click on the "Default" link to use the native interface.
