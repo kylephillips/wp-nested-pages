@@ -99,6 +99,9 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 
 == Changelog ==
 
+= 1.6.3 =
+* Bug fix in fatal error with integration with Editorial Access Manager (Thanks to Marco Chiesi)
+
 = 1.6.2 =
 * Bug fix that was throwing error in the nav menu
 
