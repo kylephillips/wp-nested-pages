@@ -100,6 +100,7 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 == Changelog ==
 
 = 1.6.3 =
+* Fix for issue where duplicate slugs were preventing the correct content from displaying.
 * Bug fix in fatal error with integration with Editorial Access Manager (Thanks to Marco Chiesi)
 
 = 1.6.2 =

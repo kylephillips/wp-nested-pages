@@ -28,11 +28,28 @@ class RedirectsFrontEnd
 		if ( isset($wp->query_vars['pagename']) && ! empty($wp->query_vars['pagename']) ) $slug = $wp->query_vars['pagename'];
 		if ( isset($wp->query_vars['name']) && ! empty($wp->query_vars['name']) ) $slug = $wp->query_vars['name'];
 		if ( isset($wp->query_vars['attachment']) && ! empty($wp->query_vars['attachment']) ) $slug = $wp->query_vars['attachment'];
-		if ( !isset($slug) ) return;
+		if ( !isset($slug) ) return;		
 
+		$segments = explode('/', $slug);
 		$slug = basename($slug);
+
+		if ( count($segments) > 1 ){
+			$parent_slug = $segments[count($segments) - 2];
+			$parent_post = get_posts(array(
+				'name' => $parent_slug,
+				'post_type' => 'any',
+				'posts_per_page' => 1
+			));
+		}
+
+		$page_args = array(
+			'name' => $slug, 
+			'post_type' => 'any', 
+			'posts_per_page' => 1
+		);
+		if ( isset($parent_post) ) $page_args['post_parent'] = $parent_post[0]->ID;
 		
-		$page = get_posts(array('name' => $slug, 'post_type' => 'any', 'posts_per_page' => 1));
+		$page = get_posts($page_args);
 		if ( !$page ) return;
 
 		$parent_type = get_post_type($page[0]->post_parent);
