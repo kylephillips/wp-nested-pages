@@ -8,8 +8,8 @@ class RedirectsFrontEnd
 {
 	public function __construct()
 	{
-		add_filter('page_link', array($this, 'pageLinks'),10,2);
-		add_action('parse_request', array($this, 'parseRequest'));
+		// add_filter('page_link', array($this, 'pageLinks'),10,2);
+		// add_action('parse_request', array($this, 'parseRequest'));
 	}
 
 	/**
@@ -24,6 +24,7 @@ class RedirectsFrontEnd
 
 	public function parseRequest($wp)
 	{
+
 		if ( isset($wp->query_vars['error']) ) $slug = basename($wp->request);
 		if ( isset($wp->query_vars['pagename']) && ! empty($wp->query_vars['pagename']) ) $slug = $wp->query_vars['pagename'];
 		if ( isset($wp->query_vars['name']) && ! empty($wp->query_vars['name']) ) $slug = $wp->query_vars['name'];
@@ -47,7 +48,7 @@ class RedirectsFrontEnd
 			'post_type' => 'any', 
 			'posts_per_page' => 1
 		);
-		if ( isset($parent_post) ) $page_args['post_parent'] = $parent_post[0]->ID;
+		$page_args['post_parent'] = ( isset($parent_post) ) ? $parent_post[0]->ID : 0;
 		
 		$page = get_posts($page_args);
 		if ( !$page ) return;
