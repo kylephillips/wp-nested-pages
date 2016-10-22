@@ -42,6 +42,9 @@ NestedPages.selectors = {
 	bulkActionRedirectIds : '[data-np-bulk-redirect-ids]',
 	hiddenItemCount : '[data-np-hidden-count]',
 	hiddenItemCountParent : '[data-np-hidden-count-parent]',
+	bulkEditForm : '[data-np-bulk-edit-form]', // The primary bulk edit form
+	bulkEditTitles : '[data-np-bulk-titles]', // Titles to perform bulk edits on (includes hidden ids),
+	bulkEditRemoveItem : '[data-np-remove-bulk-item]', // Remove an item from bulk edit
 
 	// Quick Edit
 	quickEditOverlay : '.np-inline-overlay', // The inline modal

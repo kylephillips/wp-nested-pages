@@ -1,0 +1,45 @@
+//
+// Bulk Edit Form
+// --------------------------------------------------
+.nestedpages-bulk-edit {
+	display: none;
+	background-color: $white;
+	margin: 0;
+	padding: 1em;
+	border: 1px solid $border;
+	border-bottom: 0;
+	h3 {
+		margin: 0 0 .5em 0;
+	}
+
+	.np-bulk-titles {
+		@include unstyled;
+		background-color: $gray-lighter;
+		border: 1px solid $border-light;
+		padding: .5em;
+		li {
+			padding: 0;
+			margin: .5em 0 0 0;
+			&:first-child {
+				margin: 0;
+			}
+		}
+		.np-remove {
+			display: inline-block;
+			background-color: $black;
+			width: 22px;
+			height: 22px;
+			border-radius: 50%;
+			text-align: center;
+			text-decoration: none;
+			color: $white;
+			line-height: 18px;
+			font-size: 1.5em;
+			margin-right: .3em;
+			&:hover {
+				background-color: darken($white, 50%);
+			}
+		}
+	} //.np-bulk-titles
+
+} // .nestedpages-bulk-edit

@@ -15,6 +15,7 @@ $page_obj = get_post_type_object('page');
 			<?php if ( current_user_can('delete_pages') ) : ?>
 			<option value="trash"><?php _e('Move to Trash', 'nestedpages'); ?></option>
 			<?php endif; ?>
+			<option value="edit"><?php _e('Edit', 'nestedpages'); ?></option>
 		</select>
 		<input type="submit" class="button" value="Apply">
 	</form>
