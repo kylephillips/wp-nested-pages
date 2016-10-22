@@ -27,12 +27,17 @@ NestedPages.BulkActions = function()
 			if ( $('select[name=np_bulk_action]').val() === 'edit' ){
 				e.preventDefault();
 				$(NestedPages.selectors.bulkEditForm).show();
+				$(NestedPages.selectors.bulkActionsHeader).hide();
 			}
 		});
 		$(document).on('click', NestedPages.selectors.bulkEditRemoveItem, function(e){
 			e.preventDefault();
 			var id = $(this).siblings('input[type=hidden]').val();
 			plugin.uncheckBulkItem(id);
+		});
+		$(document).on('click', NestedPages.selectors.bulkEditCancel, function(e){
+			e.preventDefault();
+			plugin.uncheckAllBulkItems();
 		});
 	}
 
@@ -98,7 +103,20 @@ NestedPages.BulkActions = function()
 		// Hide the form if all posts are removed
 		if ( $(NestedPages.selectors.bulkEditRemoveItem).length === 0 ){
 			$(NestedPages.selectors.bulkEditForm).hide();
+			$(NestedPages.selectors.bulkActionsHeader).show();
 		}
+	}
+
+	/**
+	* Uncheck all bulk items
+	*/
+	plugin.uncheckAllBulkItems = function()
+	{
+		$.each($(NestedPages.selectors.bulkActionsCheckbox), function(){
+			$(this).prop('checked', false).change();
+		});
+		$(NestedPages.selectors.bulkEditForm).hide();
+		$(NestedPages.selectors.bulkActionsHeader).show();
 	}
 
 	/**
