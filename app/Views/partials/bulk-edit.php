@@ -86,9 +86,34 @@
 			</div><!-- .right -->
 		</div><!-- .fields -->
 
+		<?php if ( !empty($this->h_taxonomies) || !empty($this->f_taxonomies)) : ?>
+		<div class="np-taxonomies">
+			<?php foreach ( $this->h_taxonomies as $taxonomy ) : ?>
+			<div class="np-taxonomy">
+				<span class="title"><?php echo esc_html( $taxonomy->labels->name ) ?></span>
+				<input type="hidden" name="<?php echo ( $taxonomy->name == 'category' ) ? 'post_category[]' : 'tax_input[' . esc_attr( $taxonomy->name ) . '][]'; ?>" value="0" />
+				<ul class="cat-checklist <?php echo esc_attr( $taxonomy->name )?>-checklist">
+					<?php wp_terms_checklist( null, array( 'taxonomy' => $taxonomy->name ) ) ?>
+				</ul>
+			</div><!-- .np-taxonomy -->
+			<?php endforeach; ?>
+
+			<?php foreach ( $this->f_taxonomies as $taxonomy ) : ?>
+			<div class="np-taxonomy">
+				<span class="title"><?php echo esc_html( $taxonomy->labels->name ) ?></span>
+				<textarea id="<?php echo esc_attr($taxonomy->name); ?>" cols="22" rows="1" name="tax_input[<?php echo esc_attr( $taxonomy->name )?>]" class="tax_input_<?php echo esc_attr( $taxonomy->name )?>" data-autotag data-taxonomy="<?php echo esc_attr($taxonomy->name); ?>"></textarea>
+			</div><!-- .np-taxonomy -->
+			<?php endforeach; ?>
+		</div><!-- .taxonomies -->
+		<?php endif; // if taxonomies ?>
+
 		<div class="np-bulk-footer">
-			<button class="button pull-left" data-np-cancel-bulk-edit><?php _e('Cancel', 'nestedpages'); ?></button>
-			<button type="submit" class="button button-primary"><?php _e('Update', 'nestedpages'); ?></button>
+			<button class="button pull-left" data-np-cancel-bulk-edit>
+				<?php _e('Cancel', 'nestedpages'); ?>
+			</button>
+			<button type="submit" class="button button-primary">
+				<?php _e('Update', 'nestedpages'); ?>
+			</button>
 		</div><!-- .np-bulk-footer -->
 
 	</div><!--.quickedit -->

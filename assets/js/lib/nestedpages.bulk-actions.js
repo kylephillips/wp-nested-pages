@@ -26,8 +26,7 @@ NestedPages.BulkActions = function()
 		$(document).on('submit', NestedPages.selectors.bulkActionsForm, function(e){
 			if ( $('select[name=np_bulk_action]').val() === 'edit' ){
 				e.preventDefault();
-				$(NestedPages.selectors.bulkEditForm).show();
-				$(NestedPages.selectors.bulkActionsHeader).hide();
+				plugin.toggleBulkEdit(true);
 			}
 		});
 		$(document).on('click', NestedPages.selectors.bulkEditRemoveItem, function(e){
@@ -103,8 +102,7 @@ NestedPages.BulkActions = function()
 		});
 		// Hide the form if all posts are removed
 		if ( $(NestedPages.selectors.bulkEditRemoveItem).length === 0 ){
-			$(NestedPages.selectors.bulkEditForm).hide();
-			$(NestedPages.selectors.bulkActionsHeader).show();
+			plugin.toggleBulkEdit(false);
 		}
 	}
 
@@ -116,8 +114,7 @@ NestedPages.BulkActions = function()
 		$.each($(NestedPages.selectors.bulkActionsCheckbox), function(){
 			$(this).prop('checked', false).change();
 		});
-		$(NestedPages.selectors.bulkEditForm).hide();
-		$(NestedPages.selectors.bulkActionsHeader).show();
+		plugin.toggleBulkEdit(false);
 	}
 
 	/**
@@ -141,11 +138,54 @@ NestedPages.BulkActions = function()
 		if ( checkedLength === 0 ){
 			$(option).prop('disabled', true);
 			$(NestedPages.selectors.bulkActionsForm).find('select option').first().prop('selected', true);
-			$(NestedPages.selectors.bulkEditForm).hide();
-			$(NestedPages.selectors.bulkActionsHeader).show();
+			plugin.toggleBulkEdit(false);
 			return;
 		}
 		$(option).prop('disabled', false);
+	}
+
+	/**
+	* Toggle the bulk edit form
+	*/
+	plugin.toggleBulkEdit = function(visible)
+	{
+		if ( visible ){
+			$(NestedPages.selectors.bulkEditForm).show();
+			$(NestedPages.selectors.bulkActionsForm).hide();
+			plugin.setWPSuggest();
+			return;
+		}
+		$(NestedPages.selectors.bulkEditForm).hide();
+		$(NestedPages.selectors.bulkActionsForm).show();
+		$(NestedPages.selectors.bulkActionsForm).find('select option').first().text(nestedpages.bulk_actions);
+		plugin.resetBulkEditFields();
+	}
+
+	/**
+	* Initialize WP Auto Suggest on Flat Taxonomy fields
+	*/
+	plugin.setWPSuggest = function()
+	{
+		var tagfields = $(NestedPages.selectors.bulkEditForm).find('[data-autotag]');
+		$.each(tagfields, function(i, v){
+			var taxonomy = $(this).attr('data-taxonomy');
+			$(this).suggest(ajaxurl + '?action=ajax-tag-search&tax=' + taxonomy , {multiple:true, multipleSep: ","});
+		});
+	}
+
+	/**
+	* Clear out the bulk edit fields
+	*/
+	plugin.resetBulkEditFields = function()
+	{
+		var selectFields = $(NestedPages.selectors.bulkEditForm).find('select');
+		$.each(selectFields, function(){
+			$(this).find('option').first().prop('selected', true);
+		});
+		var categoryChecklists = $(NestedPages.selectors.bulkEditForm).find('.cat-checklist');
+		$.each(categoryChecklists, function(){
+			$(this).find('input[type=checkbox]').prop('checked', false);
+		});
 	}
 
 	return plugin.init();
