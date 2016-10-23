@@ -65,6 +65,7 @@ NestedPages.BulkActions = function()
 			}
 		});
 		plugin.setBulkEditPosts();
+		plugin.toggleEditOption();
 		if ( checked ){
 			$(NestedPages.selectors.bulkActionsForm).show();
 			$(NestedPages.selectors.bulkActionsIds).val(checked_ids);
@@ -85,7 +86,7 @@ NestedPages.BulkActions = function()
 		for ( var i = 0; i < plugin.selectedPosts.length; i++ ){
 			html += '<li><a href="#" class="np-remove" data-np-remove-bulk-item>&times;</a>';
 			html += plugin.selectedPosts[i].title;
-			html += '<input type="hidden" name="bulk_id[]" value="' + plugin.selectedPosts[i].id + '"></li>';
+			html += '<input type="hidden" name="post_ids[]" value="' + plugin.selectedPosts[i].id + '"></li>';
 		}
 		$(NestedPages.selectors.bulkEditTitles).html(html);
 	}
@@ -127,6 +128,24 @@ NestedPages.BulkActions = function()
 		var checkedLength = $(NestedPages.selectors.bulkActionsCheckbox + ':checked').not('.np-check-all input').length;
 		var option = $(NestedPages.selectors.bulkActionsForm).find('select option').first();
 		$(option).text(nestedpages.bulk_actions + ' (' + checkedLength + ')');
+	}
+
+	/**
+	* Toggle the edit option to disabled if no post checkboxes are checked
+	* Prevents opening the bulk edit form with only np-redirects checked
+	*/
+	plugin.toggleEditOption = function()
+	{
+		var checkedLength = $(NestedPages.selectors.bulkActionsCheckbox + ':checked').not('.np-check-all input').not('.np-redirect-bulk').length;
+		var option = $(NestedPages.selectors.bulkActionsForm).find('select option[value=edit]');
+		if ( checkedLength === 0 ){
+			$(option).prop('disabled', true);
+			$(NestedPages.selectors.bulkActionsForm).find('select option').first().prop('selected', true);
+			$(NestedPages.selectors.bulkEditForm).hide();
+			$(NestedPages.selectors.bulkActionsHeader).show();
+			return;
+		}
+		$(option).prop('disabled', false);
 	}
 
 	return plugin.init();

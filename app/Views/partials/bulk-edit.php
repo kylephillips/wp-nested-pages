@@ -2,7 +2,10 @@
 	$post_type_object = get_post_type_object( 'page' );
 	$can_publish = current_user_can( $post_type_object->cap->publish_posts );
 ?>
-<form data-np-bulk-edit-form class="nestedpages-bulk-edit">
+<form data-np-bulk-edit-form class="nestedpages-bulk-edit" action="<?php echo admin_url('admin-post.php'); ?>" method="post">
+	<input type="hidden" name="action" value="npBulkEdit">
+	<input type="hidden" name="page" value="<?php echo $this->pageURL(); ?>">
+
 	<h3><?php _e('Bulk Edit', 'nestedpages'); ?></h3>
 	
 	<ul class="np-bulk-titles" data-np-bulk-titles></ul>
