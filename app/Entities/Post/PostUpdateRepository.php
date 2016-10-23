@@ -79,9 +79,10 @@ class PostUpdateRepository
 	/**
 	* Update Post
 	* @param array data
+	* @param boolean taxonomies - whether to update taxonomies
 	* @since 1.0
 	*/
-	public function updatePost($data)
+	public function updatePost($data, $taxonomies = true)
 	{
 		$updated_post = array(
 			'ID' => sanitize_text_field($data['post_id'])
@@ -123,8 +124,10 @@ class PostUpdateRepository
 		$this->updateNestedPagesStatus($data);
 
 		// Taxonomies
-		$this->updateCategories($data);
-		$this->updateTaxonomies($data);
+		if ( $taxonomies ){
+			$this->updateCategories($data);
+			$this->updateTaxonomies($data);
+		}
 
 		// Menu Options
 		$this->updateNavStatus($data);

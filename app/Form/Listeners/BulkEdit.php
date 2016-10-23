@@ -2,12 +2,13 @@
 
 namespace NestedPages\Form\Listeners;
 
+use NestedPages\Entities\Post\PostUpdateRepository;
+
 /**
 * Perform a Bulk Edit
 */
 class BulkEdit 
 {
-
 	/**
 	* URL to redirect to
 	* @var string
@@ -20,12 +21,23 @@ class BulkEdit
 	*/
 	private $post_ids;
 
+	/**
+	* The Field Data
+	*/
+	private $data;
+
+	/**
+	* Post Update Repo
+	*/
+	private $post_update_repo;
+
 	public function __construct()
 	{
+		$this->post_update_repo = new PostUpdateRepository;
 		$this->setURL();
-		$this->setPostIds();
+		$this->setFieldData();
 		$this->performEdits();
-		// $this->redirect();
+		$this->redirect();
 	}
 
 	/**
@@ -37,11 +49,14 @@ class BulkEdit
 	}
 
 	/**
-	* Set the Post IDs
+	* Set the field data (Removed unchanged fields so they're not overwritten)
 	*/
-	private function setPostIds()
+	private function setFieldData()
 	{
-		
+		foreach ( $_POST as $field => $value ){
+			if ( $value == '' || $value == '-1' ) unset($_POST[$field]);
+		}
+		$this->data = $_POST;
 	}
 
 	/**
@@ -49,12 +64,13 @@ class BulkEdit
 	*/
 	private function performEdits()
 	{
-		foreach ( $_POST as $field => $value ){
-			// Unchanged Values
-			if ( $value == '' || $value == '-1' ) unset($_POST[$field]);
+		foreach ( $this->data['post_ids'] as $post_id ){
+			$data = $this->data;
+			$data['post_id'] = $post_id;
+			$this->post_update_repo->updatePost($data, $taxonomies = false);
 		}
-		var_dump($_POST);
-		die();
+		// var_dump($this->data);
+		// die();
 	}
 
 	/**
