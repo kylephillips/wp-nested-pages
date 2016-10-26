@@ -47,6 +47,7 @@ NestedPages.selectors = {
 	bulkEditTitles : '[data-np-bulk-titles]', // Titles to perform bulk edits on (includes hidden ids),
 	bulkEditRemoveItem : '[data-np-remove-bulk-item]', // Remove an item from bulk edit
 	bulkEditCancel : '[data-np-cancel-bulk-edit]', // Cancel button in bulk edit form
+	bulkEditLinkCount : '[data-bulk-edit-link-count]', // Count of selected links in bulk edit
 
 	// Quick Edit
 	quickEditOverlay : '.np-inline-overlay', // The inline modal

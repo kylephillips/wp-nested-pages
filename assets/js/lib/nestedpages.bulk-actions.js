@@ -11,6 +11,7 @@ NestedPages.BulkActions = function()
 	var $ = jQuery;
 
 	plugin.selectedNumber = 0;
+	plugin.selectedLinks = [];
 	plugin.selectedPosts = []; // array
 
 	plugin.init = function()
@@ -49,12 +50,16 @@ NestedPages.BulkActions = function()
 		var checked_ids = '';
 		var checked_redirect_ids = '';
 		plugin.selectedPosts = [];
+		plugin.selectedLinks = [];
 		$.each($(NestedPages.selectors.bulkActionsCheckbox), function(){
 			if ( $(this).is(':checked') ) {
 				var row = $(this).parents(NestedPages.selectors.rows);
 				checked = true;
 				if ( !$(this).parent('div').hasClass('np-check-all') && !$(row).hasClass('post-type-np-redirect') ) checked_ids += $(this).val() + ',';
-				if ( $(row).hasClass('post-type-np-redirect') ) checked_redirect_ids += $(this).val() + ',';
+				if ( $(row).hasClass('post-type-np-redirect') ) {
+					checked_redirect_ids += $(this).val() + ',';
+					plugin.selectedLinks.push($(this).val());
+				}
 				if ( $(this).attr('data-np-post-type') !== 'np-redirect' && !$(this).parent('div').hasClass('np-check-all') ){
 					var post = [];
 					post['title'] = $(this).attr('data-np-bulk-checkbox');
@@ -65,6 +70,7 @@ NestedPages.BulkActions = function()
 		});
 		plugin.setBulkEditPosts();
 		plugin.toggleEditOption();
+		plugin.toggleLinkCountAlert();
 		if ( checked ){
 			$(NestedPages.selectors.bulkActionsForm).show();
 			$(NestedPages.selectors.bulkActionsIds).val(checked_ids);
@@ -149,6 +155,7 @@ NestedPages.BulkActions = function()
 	*/
 	plugin.toggleBulkEdit = function(visible)
 	{
+		plugin.toggleLinkCountAlert();
 		if ( visible ){
 			$(NestedPages.selectors.bulkEditForm).show();
 			$(NestedPages.selectors.bulkActionsForm).hide();
@@ -157,8 +164,22 @@ NestedPages.BulkActions = function()
 		}
 		$(NestedPages.selectors.bulkEditForm).hide();
 		$(NestedPages.selectors.bulkActionsForm).show();
+		$(NestedPages.selectors.bulkEditLinkCount).parent('div').hide();
 		$(NestedPages.selectors.bulkActionsForm).find('select option').first().text(nestedpages.bulk_actions);
 		plugin.resetBulkEditFields();
+	}
+
+	/**
+	* Toggle the bulk edit link count alert
+	*/
+	plugin.toggleLinkCountAlert = function()
+	{
+		var selectedLinkCount = plugin.selectedLinks.length;
+		if ( selectedLinkCount === 0 ) {
+			$(NestedPages.selectors.bulkEditLinkCount).parent('div').hide();
+			return;
+		}
+		$(NestedPages.selectors.bulkEditLinkCount).parent('div').show();
 	}
 
 	/**

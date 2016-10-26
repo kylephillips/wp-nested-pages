@@ -8,6 +8,10 @@
 	<input type="hidden" name="post_type" value="<?php echo $this->post_type->name; ?>">
 
 	<h3><?php _e('Bulk Edit', 'nestedpages'); ?></h3>
+
+	<div class="np-bulk-edit-link-info">
+		<div class="np-quickedit-info" data-bulk-edit-link-count><?php _e('There are links selected. Bulk edit will not apply to links.', 'nestedpages'); ?></div>
+	</div>
 	
 	<ul class="np-bulk-titles" data-np-bulk-titles></ul>
 	
