@@ -238,6 +238,7 @@ NestedPages.QuickEditPost = function()
 			var term = tax_array.splice(splitter + 1); // Splice off the name
 			term = term.join('-'); // Join the name back into a string
 
+
 			// Get the taxonomy
 			var tax = singleTerm.split('-').splice(0, splitter);
 			tax.shift('inf');
@@ -280,7 +281,7 @@ NestedPages.QuickEditPost = function()
 	{
 		if ( !plugin.termNames ) return;
 		$.each(plugin.termNames, function(i, v){
-			var textarea = $('#' + i);
+			var textarea = $('#' + i + '-quickedit');
 			$(textarea).val(v.join(','));
 		});
 	}

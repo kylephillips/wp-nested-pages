@@ -67,10 +67,8 @@ class BulkEdit
 		foreach ( $this->data['post_ids'] as $post_id ){
 			$data = $this->data;
 			$data['post_id'] = $post_id;
-			$this->post_update_repo->updatePost($data, $taxonomies = false);
+			$this->post_update_repo->updatePost($data, $append_taxonomies = true);
 		}
-		// var_dump($this->data);
-		// die();
 	}
 
 	/**
