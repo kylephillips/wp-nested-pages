@@ -53,10 +53,6 @@
 					</select>
 				</div>
 
-			</div><!-- .left -->
-
-			<div class="right">
-				
 				<?php if ( $this->post_type->hierarchical ) : ?>
 				<div class="form-control">
 					<label><?php _e( 'Template' ); ?></label>
@@ -67,6 +63,10 @@
 					</select>
 				</div>
 				<?php endif; ?>
+
+			</div><!-- .left -->
+
+			<div class="right">
 
 				<div class="form-control">
 					<label><?php _e( 'Comments' ); ?></label>
@@ -86,7 +86,17 @@
 						<option value="show"><?php _e('Show'); ?></option>
 					</select>
 				</div>
-				<?php endif; // Edit theme options ?>
+
+				<?php if ( $this->user->canSortPages() && $this->post_type->name == 'page' ) : ?>
+				<div class="form-control">
+					<label><?php _e( 'Hide in Nav Menu', 'nestedpages' ); ?></label>
+					<select name="nav_status">
+						<option value="">&mdash; <?php _e('No Change'); ?> &mdash;</option>
+						<option value="hide"><?php _e('Hide'); ?></option>
+						<option value="show"><?php _e('Show'); ?></option>
+					</select>
+				</div>
+				<?php endif; endif; // Edit theme options ?>
 
 			</div><!-- .right -->
 		</div><!-- .fields -->

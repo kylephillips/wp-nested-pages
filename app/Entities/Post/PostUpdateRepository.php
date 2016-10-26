@@ -161,7 +161,7 @@ class PostUpdateRepository
 	*/
 	public function updateNavStatus($data)
 	{
-		$status = ( isset($data['nav_status']) ) ? 'hide' : 'show';
+		$status = ( isset($data['nav_status']) && $data['nav_status'] == 'hide' ) ? 'hide' : 'show';
 		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
 		update_post_meta( 
 			$id, 
@@ -179,7 +179,7 @@ class PostUpdateRepository
 	{
 		if ( $this->post_type_repo->standardFieldDisabled('hide_in_np', sanitize_text_field($data['post_type'])) ) return;
 		
-		$status = ( isset($data['nested_pages_status']) ) ? 'hide' : 'show';
+		$status = ( isset($data['nested_pages_status']) && $data['nested_pages_status'] == 'hide' ) ? 'hide' : 'show';
 		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
 		update_post_meta(
 			$id,
