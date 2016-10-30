@@ -33,6 +33,15 @@ class RedirectsFrontEnd
 		$segments = explode('/', $wp->request);
 		$slug = basename($slug);
 
+		// If this is a redirect link, strip out the np-r and go to the original
+		if ( substr($slug, -4) == 'np-r' ){
+			$slug = substr($slug, 0, -5);
+			$wp->request = $slug;
+			$wp->query_vars['pagename'] = $slug;
+			$wp->query_vars['name'] = $slug;
+			return;
+		};
+
 		$redirect = false;
 		if ( count($segments) == 1 ) return;
 		
@@ -53,9 +62,8 @@ class RedirectsFrontEnd
 			'post_type' => 'any', 
 			'posts_per_page' => 1
 		);
-		$page_args['post_parent'] = ( isset($parent_post) && $redirect ) ? $parent_post[0]->ID : 0;
+		$page_args['post_parent'] = ( isset($parent_post) && $redirect ) ? $parent_post[0]->ID : null;
 		$page = get_posts($page_args);
-
 		if ( !$page ) return;
 		
 		unset($wp->query_vars['attachment']);
