@@ -314,7 +314,7 @@ class PostTypeRepository
 	*/
 	public function getSubmenuText($post_type)
 	{
-		return ( $post_type->hierarchical ) ? __('Nested View', 'nestedpages') : __('Sort View', 'nestedpages');
+		return ( $post_type->hierarchical ) ? __('Nested View', 'wp-nested-pages') : __('Sort View', 'wp-nested-pages');
 	}
 
 	/**

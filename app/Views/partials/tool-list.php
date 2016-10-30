@@ -16,9 +16,9 @@
 
 		<li> |
 			<?php if ( !$this->isSearch() ) : ?>
-			<a href="#hide" class="np-toggle-hidden"><?php _e('Show Hidden', 'nestedpages'); ?> </a>
+			<a href="#hide" class="np-toggle-hidden"><?php _e('Show Hidden', 'wp-nested-pages'); ?> </a>
 			<?php else : ?>
-			<a href="#show" class="np-toggle-hidden"><?php _e('Hide Hidden', 'nestedpages'); ?> </a>
+			<a href="#show" class="np-toggle-hidden"><?php _e('Hide Hidden', 'wp-nested-pages'); ?> </a>
 			<?php endif; ?>
 			<span class="count">(<?php echo $this->post_repo->getHiddenCount(array($this->post_type->name)); ?>)</span>
 		</li>
@@ -27,7 +27,7 @@
 		<li class="np-trash-links">
 			 |
 			<a href="<?php echo $this->post_type_repo->trashLink($this->post_type->name); ?>"><?php _e('Trash'); ?> </a>
-			<span class="count">(<a href="#" class="np-empty-trash" data-posttype="<?php echo $this->post_type->name; ?>"><?php _e('Empty', 'nestedpages'); ?></a> <?php echo $trashedCount; ?>)</span>
+			<span class="count">(<a href="#" class="np-empty-trash" data-posttype="<?php echo $this->post_type->name; ?>"><?php _e('Empty', 'wp-nested-pages'); ?></a> <?php echo $trashedCount; ?>)</span>
 		</li>
 		<?php endif; ?>
 
@@ -49,7 +49,7 @@
 			<div class="select first">
 				<select id="np_sortauthor" name="np_author" class="nestedpages-sort">
 					<?php
-						$out = '<option value="all">' . __('All Authors', 'nestedpages') . '</option>';
+						$out = '<option value="all">' . __('All Authors', 'wp-nested-pages') . '</option>';
 						$users = $this->user->allUsers();
 						foreach( $users as $user ){
 							$out .= '<option value="' . $user->ID . '"';
@@ -64,11 +64,11 @@
 				<select id="np_orderby" name="np_orderby" class="nestedpages-sort">
 					<?php
 						$options = array(
-							'menu_order' => __('Menu Order', 'nestedpages'),
-							'date' => __('Date', 'nestedpages'),
-							'title' => __('Title', 'nestedpages')
+							'menu_order' => __('Menu Order', 'wp-nested-pages'),
+							'date' => __('Date', 'wp-nested-pages'),
+							'title' => __('Title', 'wp-nested-pages')
 						);
-						$out = '<option value="">' . __('Order By', 'nestedpages') . '</option>';
+						$out = '<option value="">' . __('Order By', 'wp-nested-pages') . '</option>';
 						foreach ( $options as $key => $option ){
 							$out .= '<option value="' . $key . '"';
 							if ( isset($_GET['orderby']) && ($_GET['orderby'] == $key) ) $out .= ' selected';
@@ -82,8 +82,8 @@
 				<select id="np_order" name="np_order" class="nestedpages-sort">
 					<?php
 						$options = array(
-							'ASC' => __('Ascending', 'nestedpages'),
-							'DESC' => __('Descending', 'nestedpages')
+							'ASC' => __('Ascending', 'wp-nested-pages'),
+							'DESC' => __('Descending', 'wp-nested-pages')
 						);
 						$out = '';
 						foreach ( $options as $key => $option ){
@@ -112,7 +112,7 @@
 				<select id="np_category" name="np_category" class="nestedpages-sort">
 					<?php
 						$tax = get_taxonomy('category');
-						$out = '<option value="all">' . __('All ', 'nestedpages') . $tax->labels->name . '</option>';
+						$out = '<option value="all">' . __('All ', 'wp-nested-pages') . $tax->labels->name . '</option>';
 						$terms = get_terms('category');
 						foreach( $terms as $term ){
 							$out .= '<option value="' . $term->term_id . '"';

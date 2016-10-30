@@ -16,45 +16,45 @@
 		</a>
 
 		<?php if ( current_user_can('publish_pages') && !$this->isSearch() ) : ?>
-		<a href="#" class="add-new-h2 open-bulk-modal" title="<?php _e('Add Multiple', 'nestedpages'); ?>" data-parentid="0">
-			<?php _e('Add Multiple', 'nestedpages'); ?>
+		<a href="#" class="add-new-h2 open-bulk-modal" title="<?php _e('Add Multiple', 'wp-nested-pages'); ?>" data-parentid="0">
+			<?php _e('Add Multiple', 'wp-nested-pages'); ?>
 		</a>
 		<?php endif; ?>
 		
 		<?php if ( current_user_can('publish_pages') && $this->post_type->name == 'page' && !$this->isSearch() && !$this->settings->menusDisabled() ) : ?>
-		<a href="#" class="add-new-h2 open-redirect-modal" title="<?php _e('Add Link', 'nestedpages'); ?>" data-parentid="0">
-			<?php _e('Add Link', 'nestedpages'); ?>
+		<a href="#" class="add-new-h2 open-redirect-modal" title="<?php _e('Add Link', 'wp-nested-pages'); ?>" data-parentid="0">
+			<?php _e('Add Link', 'wp-nested-pages'); ?>
 		</a>
 		<?php endif; ?>
 
 	</h2>
 
 	<?php if ( $this->confirmation->getMessage() ) : ?>
-		<div id="message" class="updated notice is-dismissible"><p><?php echo $this->confirmation->getMessage(); ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>
+		<div id="message" class="updated notice is-dismissible"><p><?php echo $this->confirmation->getMessage(); ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php_e('Dismiss this notice.', 'wp-nested-pages'); ?></span></button></div>
 	<?php endif; ?>
 
-	<div data-nestedpages-error class="updated error notice is-dismissible" style="display:none;"><p></p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>
+	<div data-nestedpages-error class="updated error notice is-dismissible" style="display:none;"><p></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php_e('Dismiss this notice.', 'wp-nested-pages'); ?></span></button></div>
 
 	<div class="nestedpages-top-toggles">
 		<?php if ( $this->post_type->hierarchical && !$this->isSearch() ) : ?>
-		<a href="#" class="np-btn nestedpages-toggleall" data-toggle="closed"><?php _e('Expand All', 'nestedpages'); ?></a>
+		<a href="#" class="np-btn nestedpages-toggleall" data-toggle="closed"><?php _e('Expand All', 'wp-nested-pages'); ?></a>
 		<?php endif; ?>
 
 		<?php if ( $this->user->canSortPages() && !$this->isSearch() && !$this->isFiltered() ) : ?>
 		<div class="np-sync-menu-cont" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:2px;"';?>>
 
 			<?php if ( $this->settings->autoPageOrderDisabled() ) : ?>
-			<a href="#" class="np-btn" data-np-manual-order-sync><?php echo __('Sync', 'nestedpages') . ' ' . $this->post_type->labels->singular_name . ' ' . __('Order', 'nestedpages'); ?></a>
+			<a href="#" class="np-btn" data-np-manual-order-sync><?php echo __('Sync', 'wp-nested-pages') . ' ' . $this->post_type->labels->singular_name . ' ' . __('Order', 'wp-nested-pages'); ?></a>
 			<?php endif; ?>
 
 			<?php if ( $this->post_type->name == 'page' && !$this->settings->hideMenuSync() && !$this->settings->menusDisabled() ) : ?>
 
 				<?php if ( !$this->settings->autoMenuDisabled() ) : ?>
 				<label>
-					<input type="checkbox" name="np_sync_menu" class="np-sync-menu" value="sync" <?php if ( get_option('nestedpages_menusync') == 'sync' ) echo 'checked'; ?>/> <?php _e('Sync Menu', 'nestedpages'); ?>
+					<input type="checkbox" name="np_sync_menu" class="np-sync-menu" value="sync" <?php if ( get_option('nestedpages_menusync') == 'sync' ) echo 'checked'; ?>/> <?php _e('Sync Menu', 'wp-nested-pages'); ?>
 				</label>
 				<?php else : ?>
-					<a href="#" class="np-btn" data-np-manual-menu-sync><?php _e('Sync Menu', 'nestedpages'); ?></a>
+					<a href="#" class="np-btn" data-np-manual-menu-sync><?php _e('Sync Menu', 'wp-nested-pages'); ?></a>
 				<?php endif; ?>
 
 			<?php endif; ?>

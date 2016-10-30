@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nested Pages\n"
-"POT-Creation-Date: 2016-10-18 22:30-0500\n"
-"PO-Revision-Date: 2016-10-18 22:30-0500\n"
+"POT-Creation-Date: 2016-10-30 16:48-0500\n"
+"PO-Revision-Date: 2016-10-30 16:48-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: app/Activation/Dependencies.php:124 app/Views/listing.php:31
-#: app/Views/partials/list-header.php:21
+#: app/Activation/Dependencies.php:124 app/Views/listing.php:40
+#: app/Views/partials/list-header.php:19
 msgid "Expand All"
 msgstr ""
 
@@ -33,8 +33,8 @@ msgstr ""
 msgid "Hide Hidden"
 msgstr ""
 
-#: app/Activation/Dependencies.php:128 app/Views/listing.php:16
-#: app/Views/listing.php:17
+#: app/Activation/Dependencies.php:128 app/Views/listing.php:25
+#: app/Views/listing.php:26
 msgid "Add Link"
 msgstr ""
 
@@ -43,7 +43,7 @@ msgid "Add Child Link"
 msgstr ""
 
 #: app/Activation/Dependencies.php:130
-#: app/Entities/Post/PostUpdateRepository.php:91
+#: app/Entities/Post/PostUpdateRepository.php:92
 #: app/Views/forms/new-child.php:19 app/Views/forms/new-child.php:21
 #: app/Views/forms/quickedit-post.php:21 app/Views/partials/tool-list.php:69
 msgid "Title"
@@ -88,8 +88,8 @@ msgstr ""
 msgid "Add Pages"
 msgstr ""
 
-#: app/Activation/Dependencies.php:140 app/Views/listing.php:10
-#: app/Views/listing.php:11
+#: app/Activation/Dependencies.php:140 app/Views/listing.php:19
+#: app/Views/listing.php:20
 msgid "Add Multiple"
 msgstr ""
 
@@ -104,7 +104,7 @@ msgstr ""
 msgid "Hidden"
 msgstr ""
 
-#: app/Activation/Dependencies.php:143 app/Views/partials/list-header.php:14
+#: app/Activation/Dependencies.php:143 app/Views/partials/list-header.php:11
 msgid "Bulk Actions"
 msgstr ""
 
@@ -155,6 +155,7 @@ msgstr ""
 
 #: app/Config/SettingsRepository.php:82 app/Views/forms/clone-form.php:50
 #: app/Views/forms/new-child.php:61 app/Views/forms/quickedit-post.php:74
+#: app/Views/partials/bulk-edit.php:35
 msgid "Author"
 msgstr ""
 
@@ -171,7 +172,7 @@ msgid "Allow Comments"
 msgstr ""
 
 #: app/Config/SettingsRepository.php:89 app/Views/forms/new-child.php:71
-#: app/Views/forms/quickedit-post.php:103
+#: app/Views/forms/quickedit-post.php:103 app/Views/partials/bulk-edit.php:58
 msgid "Template"
 msgstr ""
 
@@ -328,23 +329,24 @@ msgstr ""
 
 #: app/Views/forms/clone-form.php:26 app/Views/forms/new-child.php:35
 #: app/Views/forms/quickedit-link.php:27 app/Views/forms/quickedit-post.php:85
+#: app/Views/partials/bulk-edit.php:44
 msgid "Status"
 msgstr ""
 
 #: app/Views/forms/clone-form.php:29 app/Views/forms/new-child.php:38
 #: app/Views/forms/quickedit-link.php:30 app/Views/forms/quickedit-post.php:88
-#: app/Views/partials/tool-list.php:10
+#: app/Views/partials/bulk-edit.php:48 app/Views/partials/tool-list.php:10
 msgid "Published"
 msgstr ""
 
 #: app/Views/forms/clone-form.php:31 app/Views/forms/quickedit-link.php:33
-#: app/Views/forms/quickedit-post.php:91
+#: app/Views/forms/quickedit-post.php:91 app/Views/partials/bulk-edit.php:51
 msgid "Pending Review"
 msgstr ""
 
 #: app/Views/forms/clone-form.php:32 app/Views/forms/new-child.php:40
 #: app/Views/forms/quickedit-link.php:34 app/Views/forms/quickedit-post.php:92
-#: app/Views/partials/tool-list.php:14
+#: app/Views/partials/bulk-edit.php:52 app/Views/partials/tool-list.php:14
 msgid "Draft"
 msgstr ""
 
@@ -352,7 +354,7 @@ msgstr ""
 #: app/Views/forms/delete-confirmation-modal.php:11
 #: app/Views/forms/empty-trash-modal.php:11 app/Views/forms/link-form.php:101
 #: app/Views/forms/new-child.php:99 app/Views/forms/quickedit-link.php:84
-#: app/Views/forms/quickedit-post.php:231
+#: app/Views/forms/quickedit-post.php:231 app/Views/partials/bulk-edit.php:127
 msgid "Cancel"
 msgstr ""
 
@@ -408,11 +410,12 @@ msgid "+"
 msgstr ""
 
 #: app/Views/forms/new-child.php:73 app/Views/forms/quickedit-post.php:105
+#: app/Views/partials/bulk-edit.php:61
 msgid "Default Template"
 msgstr ""
 
 #: app/Views/forms/new-child.php:83 app/Views/forms/quickedit-link.php:54
-#: app/Views/forms/quickedit-post.php:211
+#: app/Views/forms/quickedit-post.php:211 app/Views/partials/bulk-edit.php:92
 msgid "Hide in Nav Menu"
 msgstr ""
 
@@ -435,7 +438,7 @@ msgid "CSS Classes"
 msgstr ""
 
 #: app/Views/forms/quickedit-link.php:87
-#: app/Views/forms/quickedit-post.php:234
+#: app/Views/forms/quickedit-post.php:234 app/Views/partials/bulk-edit.php:130
 msgid "Update"
 msgstr ""
 
@@ -464,27 +467,69 @@ msgstr ""
 msgid "&ndash;OR&ndash;"
 msgstr ""
 
-#: app/Views/forms/quickedit-post.php:119
+#: app/Views/forms/quickedit-post.php:119 app/Views/partials/bulk-edit.php:50
 msgid "Private"
 msgstr ""
 
-#: app/Views/listing.php:38
+#: app/Views/listing.php:47
 msgid "Sync"
 msgstr ""
 
-#: app/Views/listing.php:38
+#: app/Views/listing.php:47
 msgid "Order"
 msgstr ""
 
-#: app/Views/listing.php:45 app/Views/listing.php:48
+#: app/Views/listing.php:54 app/Views/listing.php:57
 msgid "Sync Menu"
 msgstr ""
 
-#: app/Views/partials/list-header.php:16
+#: app/Views/partials/bulk-edit.php:10
+msgid "Bulk Edit"
+msgstr ""
+
+#: app/Views/partials/bulk-edit.php:13
+msgid "There are links selected. Bulk edit will not apply to links."
+msgstr ""
+
+#: app/Views/partials/bulk-edit.php:25 app/Views/partials/bulk-edit.php:46
+#: app/Views/partials/bulk-edit.php:60 app/Views/partials/bulk-edit.php:74
+#: app/Views/partials/bulk-edit.php:84 app/Views/partials/bulk-edit.php:94
+msgid "No Change"
+msgstr ""
+
+#: app/Views/partials/bulk-edit.php:72
+msgid "Comments"
+msgstr ""
+
+#: app/Views/partials/bulk-edit.php:75
+msgid "Allow"
+msgstr ""
+
+#: app/Views/partials/bulk-edit.php:76
+msgid "Do not allow"
+msgstr ""
+
+#: app/Views/partials/bulk-edit.php:82
+msgid "Display in Nested View"
+msgstr ""
+
+#: app/Views/partials/bulk-edit.php:85 app/Views/partials/bulk-edit.php:95
+msgid "Hide"
+msgstr ""
+
+#: app/Views/partials/bulk-edit.php:86 app/Views/partials/bulk-edit.php:96
+msgid "Show"
+msgstr ""
+
+#: app/Views/partials/list-header.php:13
 msgid "Move to Trash"
 msgstr ""
 
-#: app/Views/partials/list-header.php:21
+#: app/Views/partials/list-header.php:15 app/Views/partials/row.php:60
+msgid "Edit"
+msgstr ""
+
+#: app/Views/partials/list-header.php:19
 msgid "Nested Items Selected"
 msgstr ""
 
@@ -498,10 +543,6 @@ msgstr ""
 
 #: app/Views/partials/row.php:56
 msgid "currently editing"
-msgstr ""
-
-#: app/Views/partials/row.php:60
-msgid "Edit"
 msgstr ""
 
 #: app/Views/partials/tool-list.php:6
