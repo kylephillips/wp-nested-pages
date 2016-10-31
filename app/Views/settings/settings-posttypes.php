@@ -94,7 +94,49 @@ settings_fields( 'nestedpages-posttypes' );
 							</div><!-- .thumbnail-options -->
 						</div>
 					</div><!-- .row -->
-				</li>
+				</li><!-- .thumbnails -->
+
+				<li>
+					<div class="row">
+						<div class="description">
+							<p><strong><?php _e('Enable Admin Columns', 'wp-nested-pages'); ?></strong><br>
+							<?php _e('If this post type has custom columns enabled through the manage_{$posts}_column filter, they may be enabled in the nested interface.', 'wp-nested-pages'); ?> <a href="https://codex.wordpress.org/Plugin_API/Filter_Reference/manage_$post_type_posts_columns" target="_blank"><?php _e('More Information', 'wp-nested-pages'); ?></a>
+							</p>
+						</div>
+						<div class="field">
+							<?php 
+							$columns = $this->post_type_repo->getCustomColumns($type->name);
+							?>
+							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][columns_enabled]" value="true" <?php if ( $type->columns_enabled ) echo 'checked '; ?> data-enable-columns /><?php echo __('Enable Columns for', 'wp-nested-pages') . ' ' . $type->label; ?>
+							</label>
+							<div class="columns">
+								<?php if ( $columns ) : ?>
+								<h5><?php _e('Check to columns to include.', 'wp-nested-pages'); ?></h5>
+								<div class="custom-field-group">
+									<ul>
+										<?php
+											$out = "";
+											foreach ( $columns as $name => $label ) :
+												$out .= '<li>';
+												$out .= '<label>';
+												$out .= '<input type="checkbox" name="nestedpages_posttypes[' . $type->name . '][columns][' . $name . ']" value="' . $label . '"';
+												if ( array_key_exists($name, $type->columns) ) $out .= ' checked';
+												$out .= ' />' . $label;
+												$out .= '</label>';
+												$out .= '</li>';
+											endforeach;
+											echo $out;
+										?>
+									</ul>
+								</div><!-- .custom-field-group -->
+								<?php else : ?>
+									<?php _e('This post type does not have any custom columns available.', 'wp-nested-pages'); ?>
+								<?php endif; ?>
+							</div><!-- .standard-fields -->
+						</div><!-- .field -->
+					</div><!-- .row -->
+				</li><!-- .custom columns -->
+
 				<li>
 					<div class="row">
 						<div class="description">

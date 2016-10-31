@@ -76,6 +76,8 @@ class PostTypeRepository
 			$post_types[$type->name]->standard_fields_enabled = $this->postTypeSetting($type->name, 'standard_fields_enabled');
 			$post_types[$type->name]->custom_fields = $this->configuredFields($type->name, 'custom_fields');
 			$post_types[$type->name]->standard_fields = $this->configuredFields($type->name, 'standard_fields');
+			$post_types[$type->name]->columns_enabled = $this->postTypeSetting($type->name, 'columns_enabled');
+			$post_types[$type->name]->columns = $this->configuredFields($type->name, 'columns');
 		}
 		return $post_types;
 	}
@@ -205,6 +207,17 @@ class PostTypeRepository
 			if ( $key == $field && $value == 'true') return true;
 		}
 		return false;
+	}
+
+	/**
+	* Get the custom columns for a post type
+	*/
+	public function getCustomColumns($post_type)
+	{
+		if ( $post_type == 'page' ) return apply_filters('manage_pages_columns', array());
+		if ( $post_type == 'post' ) return apply_filters('manage_post_columns', array());
+		$post_type = $post_type . 's';
+		return apply_filters("manage_{$post_type}_columns", array());
 	}
 
 	/**

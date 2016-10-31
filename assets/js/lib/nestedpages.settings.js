@@ -20,6 +20,7 @@ NestedPages.Settings = function()
 		menuEnabledOption : '[data-menu-enabled-option]', // Options when the menu is enabled
 		disableMenuCheckbox : '[data-disable-menu-checkbox]', // Checkbox for disabling menus completely
 		disableAutoCheckbox : '[data-menu-disable-auto-checkbox]', // Checkbox for disabling auto menu sync
+		columnsCheckbox : '[data-enable-columns]', // Checkbox for toggling column settings
 	}
 
 	plugin.bindEvents = function()
@@ -28,6 +29,7 @@ NestedPages.Settings = function()
 			plugin.toggleAllSettingsButtons();
 			plugin.toogleAllFieldSettings('.custom-fields');
 			plugin.toogleAllFieldSettings('.standard-fields');
+			plugin.toogleAllFieldSettings('.columns');
 			plugin.toggleMenuCheckboxes();
 			plugin.toggleHideCheckbox();
 		});
@@ -55,6 +57,9 @@ NestedPages.Settings = function()
 		});
 		$(document).on('change', plugin.selectors.disableAutoCheckbox, function(){
 			plugin.toggleHideCheckbox();
+		});
+		$(document).on('change', plugin.selectors.columnsCheckbox, function(){
+			plugin.toogleFieldSettings($(this), '.columns');
 		});
 	}
 
@@ -116,6 +121,9 @@ NestedPages.Settings = function()
 		var checkboxes = $(plugin.selectors.customFieldsCheckbox);
 		if ( fieldGroupClass == '.standard-fields' ){
 			var checkboxes = $(plugin.selectors.standardFieldsCheckbox);
+		}
+		if ( fieldGroupClass == '.columns' ){
+			var checkboxes = $(plugin.selectors.columnsCheckbox);
 		}
 		$.each(checkboxes, function(){
 			plugin.toogleFieldSettings($(this), fieldGroupClass);

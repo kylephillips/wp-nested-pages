@@ -99,6 +99,10 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 
 == Changelog ==
 
+= 1.6.4 =
+* Text domain updated to wp-nested-pages in compliance with wordpress.org translation requirments
+* Additional bug fixes in front end redirects that were causing duplicate slugs to be unreliable
+
 = 1.6.3 =
 * Temporary removal of front end redirects (resolves issue of duplicate slugs being overriden)
 * Bug fix in fatal error with integration with Editorial Access Manager (Thanks to Marco Chiesi)
