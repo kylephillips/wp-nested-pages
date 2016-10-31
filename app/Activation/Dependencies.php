@@ -170,7 +170,7 @@ class Dependencies
 			wp_enqueue_script(
 				'nestedpages-settings', 
 				$this->plugin_dir . '/assets/js/nestedpages.settings.min.js', 
-				array('jquery'), 
+				array('jquery', 'jquery-ui-sortable'), 
 				$this->plugin_version
 			);
 		endif;

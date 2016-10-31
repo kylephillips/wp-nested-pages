@@ -21,6 +21,7 @@ NestedPages.Settings = function()
 		disableMenuCheckbox : '[data-disable-menu-checkbox]', // Checkbox for disabling menus completely
 		disableAutoCheckbox : '[data-menu-disable-auto-checkbox]', // Checkbox for disabling auto menu sync
 		columnsCheckbox : '[data-enable-columns]', // Checkbox for toggling column settings
+		sortableColumns : '[data-columns-sortable]', // List of selected custom columns for sorting
 	}
 
 	plugin.bindEvents = function()
@@ -32,6 +33,7 @@ NestedPages.Settings = function()
 			plugin.toogleAllFieldSettings('.columns');
 			plugin.toggleMenuCheckboxes();
 			plugin.toggleHideCheckbox();
+			$(plugin.selectors.sortableColumns).sortable();
 		});
 		$(document).on('click', plugin.selectors.postTypeToggle, function(e){
 			e.preventDefault();

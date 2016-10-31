@@ -105,23 +105,36 @@ settings_fields( 'nestedpages-posttypes' );
 						</div>
 						<div class="field">
 							<?php 
-							$columns = $this->post_type_repo->getCustomColumns($type->name);
+							$all_columns = $this->post_type_repo->getCustomColumns($type->name);
+							$selected_columns = ( isset($type->columns) ) ? $type->columns : array();
 							?>
-							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][columns_enabled]" value="true" <?php if ( $type->columns_enabled ) echo 'checked '; ?> data-enable-columns /><?php echo __('Enable Columns for', 'wp-nested-pages') . ' ' . $type->label; ?>
+							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][columns_enabled]" value="true" <?php if ( $type->columns_enabled ) echo 'checked '; ?> data-enable-columns />
+							<?php echo __('Enable Columns for', 'wp-nested-pages') . ' ' . $type->label; ?>
 							</label>
 							<div class="columns">
-								<?php if ( $columns ) : ?>
-								<h5><?php _e('Check to columns to include.', 'wp-nested-pages'); ?></h5>
+								<?php if ( $all_columns ) : ?>
+								<h5><?php _e('Check to columns to include. (Drag and drop to reorder columns)', 'wp-nested-pages'); ?></h5>
 								<div class="custom-field-group">
-									<ul>
+									<ul data-columns-sortable>
 										<?php
 											$out = "";
-											foreach ( $columns as $name => $label ) :
+											// Selected Columns (custom ordering)
+											foreach ( $selected_columns as $name => $label ) :
 												$out .= '<li>';
 												$out .= '<label>';
 												$out .= '<input type="checkbox" name="nestedpages_posttypes[' . $type->name . '][columns][' . $name . ']" value="' . $label . '"';
 												if ( array_key_exists($name, $type->columns) ) $out .= ' checked';
 												$out .= ' />' . $label;
+												$out .= '</label>';
+												$out .= '</li>';
+											endforeach;
+
+											// Remaining Columns
+											foreach ( $all_columns as $name => $label ) :
+												if ( array_key_exists($name, $type->columns) ) continue;
+												$out .= '<li>';
+												$out .= '<label>';
+												$out .= '<input type="checkbox" name="nestedpages_posttypes[' . $type->name . '][columns][' . $name . ']" value="' . $label . '" />' . $label;
 												$out .= '</label>';
 												$out .= '</li>';
 											endforeach;
