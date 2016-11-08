@@ -20,7 +20,7 @@ class SettingsRepository
     /**
      * Is the Favorites option enabled
      * @return boolean
-     */
+	*/
     public function favoritesEnabled()
     {
         $option = get_option('nestedpages_ui', false);

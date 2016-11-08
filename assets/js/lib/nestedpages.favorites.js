@@ -49,8 +49,7 @@ var NestedPagesFavorites = function()
 	// Update html
 	plugin.updatePostRowsFavoriteStatus = function(dataID, enableFavorite)
 	{
-		if(enableFavorite)
-		{
+		if(enableFavorite){
 			//Add the 'favorite' class and set the checked property to all ancestors and to the selected item.
 			var changedElement = $(plugin.listItemPrefix+dataID);
 			$(changedElement).addClass("favorite");

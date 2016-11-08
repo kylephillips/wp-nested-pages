@@ -13,36 +13,36 @@ class UpdateFavorites extends BaseHandler
 
 	private function updatefavorites()
 	{
-        $postID = intval($_POST['id']);
-        $newStatus = $_POST['newStatus'] === 'true'? true: false;
-        $favorites = $this->user->getFavoritePages();
+		$postID = intval($_POST['id']);
+		$newStatus = $_POST['newStatus'] === 'true'? true: false;
+		$favorites = $this->user->getFavoritePages();
 
-        if($newStatus){
-            //Get all ancestor IDs as well. Otherwise, only pages whose ancestors up to the root level are marked as favorites will show up.
+		if($newStatus){
+			//Get all ancestor IDs as well. Otherwise, only pages whose ancestors up to the root level are marked as favorites will show up.
 
-            $ancestors = get_ancestors($postID, get_post_type($postID));
-            if($ancestors==null)
-                $ancestors = array();
-            array_push($ancestors, $postID);
-            $favorites = array_merge($favorites, $ancestors);
-        }
-        else if(in_array($postID, $favorites)){
-            //Remove both postID as well as any children, for the same reasons as above.
+			$ancestors = get_ancestors($postID, get_post_type($postID));
+			if($ancestors==null)
+				$ancestors = array();
+			array_push($ancestors, $postID);
+			$favorites = array_merge($favorites, $ancestors);
+		}
+		else if(in_array($postID, $favorites)){
+			//Remove both postID as well as any children, for the same reasons as above.
 
-            $children = get_pages( array(
-                'child_of' => $postID,
-                'post_type' => get_post_type($postID)
-            ));
-            if($children==null)
-                $children = array();
-            $childrenIDs = array();
-            foreach ($children as $ch)
-                array_push($childrenIDs, $ch->ID);
-            array_push($childrenIDs, $postID);
-            $favorites = array_diff($favorites, $childrenIDs);
-        }
+			$children = get_pages( array(
+				'child_of' => $postID,
+				'post_type' => get_post_type($postID)
+			));
+			if($children==null)
+				$children = array();
+			$childrenIDs = array();
+			foreach ($children as $ch)
+				array_push($childrenIDs, $ch->ID);
+			array_push($childrenIDs, $postID);
+			$favorites = array_diff($favorites, $childrenIDs);
+		}
 
-        $this->user->updateFavoritePages($favorites);
+		$this->user->updateFavoritePages($favorites);
 
 		return wp_send_json(array(
 			'status'=>'success',

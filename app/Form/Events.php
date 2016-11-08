@@ -48,7 +48,7 @@ class Events
 			'admin_post_npBulkActions',
 			'wp_ajax_npmanualMenuSync',
 			'admin_post_npBulkEdit',
-            'wp_ajax_npUpdateFavorites'
+			'wp_ajax_npUpdateFavorites'
 		);
 		$this->setHandlers();
 	}
