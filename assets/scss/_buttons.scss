@@ -47,6 +47,8 @@
 	display: none;
 	float: right;
 	margin-right: 10px;
+	position: relative;
+	top: 9px;
 	@extend .np-btn;
 	&.active {
 		background-color: $blue;

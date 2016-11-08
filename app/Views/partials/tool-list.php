@@ -1,9 +1,12 @@
-<?php $trashedCount = $this->post_repo->trashedCount($this->post_type->name); ?>
+<?php 
+$trashedCount = $this->post_repo->trashedCount($this->post_type->name); 
+$allCount = $this->post_repo->allCount($this->post_type->name); 
+?>
 <div class="nestedpages-tools">
 
 	<ul class="subsubsub">
 		<li>
-			<a href="#all" class="np-toggle-publish active"><?php _e('All'); ?></a> |
+			<a href="#all" class="np-toggle-publish active"><?php _e('All'); ?> (<?php echo $allCount; ?>)</a> |
 		</li>
 
 		<?php if($this->settings->favoritesEnabled()) { ?>

@@ -158,7 +158,7 @@ class PostTypeRepository
 	* @param $post_type - post type name
 	* @return boolean || string (thumbnail size)
 	*/
-	public function thumbnails($post_type, $key = 'enabled')
+	public function thumbnails($post_type, $key = 'enabled', $return_type = 'value')
 	{
 		$types = $this->enabled_post_types;
 		$type_settings = array();
@@ -174,7 +174,11 @@ class PostTypeRepository
 			return ( isset($type_settings['thumbnails']['size']) ) ? $type_settings['thumbnails']['size'] : 'thumbnail';
 		}
 		if ( $key == 'display_size' ){
-			return ( isset($type_settings['thumbnails']['display_size']) ) ? $type_settings['thumbnails']['display_size'] : 'medium';
+			$size = ( isset($type_settings['thumbnails']['display_size']) ) ? $type_settings['thumbnails']['display_size'] : 'medium';
+			if ( $return_type == 'value' ) return $size;
+			if ( $size == 'small' ) return '50px';
+			if ( $size == 'medium' ) return '80px';
+			if ( $size == 'large' ) return '150px';
 		}
 	}
 
@@ -211,13 +215,63 @@ class PostTypeRepository
 
 	/**
 	* Get the custom columns for a post type
+	* @param string - post type name
+	* @param boolean - whether to return only columns that have been enabled
+	* @param boolean - whether to include custom taxonomies
 	*/
-	public function getCustomColumns($post_type)
+	public function getCustomColumns($post_type, $enabled_only = false, $include_taxonomies = false)
 	{
-		if ( $post_type == 'page' ) return apply_filters('manage_pages_columns', array());
-		if ( $post_type == 'post' ) return apply_filters('manage_post_columns', array());
-		$post_type = $post_type . 's';
-		return apply_filters("manage_{$post_type}_columns", array());
+		if ( $enabled_only ){
+			$enabled_columns = $this->configuredFields($post_type, 'columns');
+			return $enabled_columns;
+		}
+		$columns = array();
+		if ( $include_taxonomies ){
+			$h_taxonomies = $this->getTaxonomies($post_type);
+			$f_taxonomies = $this->getTaxonomies($post_type, false);
+			$taxonomies = array_merge($h_taxonomies, $f_taxonomies);
+			foreach($taxonomies as $tax){
+				if ( !$tax->public ) continue;
+				$name = 'np_taxonomy_' . $tax->name;
+				$columns[$name] = $tax->labels->name;
+			}
+		}
+		if ( $post_type == 'page' ) :
+			return apply_filters('manage_pages_columns', $columns);
+		elseif ( $post_type == 'post' ) :
+			return apply_filters('manage_posts_columns', $columns);
+		else :
+			return apply_filters("manage_{$post_type}_posts_columns", $columns);
+		endif;
+	}
+
+	/**
+	* Are custom columns enabled for a post type
+	*/
+	public function columnsEnabled($post_type)
+	{
+		foreach ( $this->enabled_post_types as $key => $type )
+		{
+			if ( $key != $post_type ) continue;
+			if ( isset($type['columns_enabled']) && $type['columns_enabled'] == 'true' ) return true;
+		}
+		return false;
+	}
+
+	/**
+	* Get a taxonomy column for a post
+	* @return html, list of taxonomy links
+	*/
+	public function getTaxonomiesList($post_id, $taxonomy)
+	{
+		$terms = wp_get_post_terms($post_id, $taxonomy);
+		if ( !$terms ) return '&mdash;';
+		$out = '';
+		foreach ( $terms as $key => $term ){
+			$out .= $term->name;
+			if ( ($key + 1) < count($terms) ) $out .= ', ';
+		}
+		return $out;
 	}
 
 	/**

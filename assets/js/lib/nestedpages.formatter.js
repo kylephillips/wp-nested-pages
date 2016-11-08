@@ -53,16 +53,18 @@ NestedPages.Formatter = function()
 	// Adjust nested margins based on how deep the list is nested
 	plugin.setNestedMargins = function()
 	{
+		var paddedElement = ( NestedPages.jsData.allPostTypes[NestedPages.jsData.posttype].columns_enabled ) ? '.nestedpages-row-columns .title-cell' : '.row-inner';
 		$.each($(NestedPages.selectors.lists), function(i, v){
 			var parent_count = $(this).parents(NestedPages.selectors.lists).length;
 			var padding = 0;
 			if ( parent_count > 0 ){
 				var padding = ( parent_count * 20 ) + padding;
-				$(this).find('.row-inner').css('padding-left', padding + 'px');
+				$(this).find(paddedElement).css('padding-left', padding + 'px');
 				return;
 			}
-			$(this).find('.row-inner').css('padding-left', '0px');
+			$(this).find(paddedElement).css('padding-left', '0px');
 		});
+		if ( NestedPages.jsData.allPostTypes[NestedPages.jsData.posttype].columns_enabled ) $('.row-inner').css('padding-left', '0px');
 	}
 
 

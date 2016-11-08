@@ -279,6 +279,9 @@
 		width: 100%;
 		&:hover {
 			background-color: darken($white, 6%);
+			.cell.custom-column {
+				visibility: hidden;
+			}
 		}
 		&.np-updated {
 			background-color: lighten(#7ad03a, 40%);
@@ -353,6 +356,10 @@
 	}
 	.has-yoast .np-post-columns {
 		margin-right: 30px;
+	}
+
+	.has-custom-columns .np-post-columns {
+		display: none;
 	}
 
 	// Action Buttons

@@ -1,0 +1,80 @@
+//
+// Columns
+// --------------------------------------------------
+.nestedpages-columns-header {
+	display: table;
+	border-collapse: collapse;
+	width: 100%;
+	box-sizing: border-box;
+	background-color: darken($white, 6%);
+	border: 1px solid $border;
+	border-bottom: 0;
+	.cell {
+		font-weight: bold;
+		text-align: left;
+		display: table-cell;
+		padding: 1em .5em 1em 0;
+		box-sizing: border-box;
+		vertical-align: middle;
+	}
+	.toggle-spacer {
+		span {
+			display: block;
+			width: 50px;
+		}
+	}
+	.bulk-spacer {
+		span {
+			display: block;
+			width: 33px;
+		}
+	}
+	.thumbnail-spacer {
+		span {
+			display: block;
+			width: 100%;
+		}
+	}
+	.title {
+		width: 30%;
+		padding: 0 5px;
+	}
+}
+
+// Post Rows
+.nestedpages-row-columns {
+	display: table;
+	width: 100%;
+	border-collapse: collapse;
+	box-sizing: border-box;
+	.cell {
+		text-align: left;
+		display: table-cell;
+		padding: 1em .5em 1em 0;
+		box-sizing: border-box;
+		vertical-align: middle;
+	}
+	.title-cell {
+		width: 30%;
+		position: relative;
+	}
+	.title-cell-spacer {
+		position: absolute;
+		display: block;
+		width: 100%;
+	}
+}
+
+@media (max-width:767px)
+{
+	.nestedpages-row-columns .custom-column,
+	.nestedpages-columns-header {
+		display: none;
+	}
+	.nestedpages-row-columns .title-cell.cell {
+		width: 100%;
+	}
+}
+
+
+

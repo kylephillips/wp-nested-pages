@@ -33,7 +33,7 @@ NestedPages.Responsive = function()
 	// Toggle the responsive edit buttons
 	plugin.toggleEdit = function(button)
 	{
-		var buttons = $(button).siblings('.action-buttons');
+		var buttons = $(button).closest('.row-inner').find('.action-buttons');
 		if ( $(buttons).is(':visible') ){
 			$(button).removeClass('active');
 			$(buttons).hide();
