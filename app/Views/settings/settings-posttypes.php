@@ -1,7 +1,7 @@
 <?php
 $types = $this->getPostTypes();
 $thumbnail_sizes = get_intermediate_image_sizes();
-settings_fields( 'nestedpages-posttypes' ); 
+settings_fields( 'nestedpages-posttypes' );
 ?>
 
 <h3><?php _e('Enable Nested Pages for:', 'wp-nested-pages'); ?></h3>
@@ -105,7 +105,7 @@ settings_fields( 'nestedpages-posttypes' );
 						</div>
 						<div class="field">
 							<?php 
-							$all_columns = $this->post_type_repo->getCustomColumns($type->name);
+							$all_columns = $this->post_type_repo->getCustomColumns($type->name, false, true);
 							$selected_columns = ( isset($type->columns) ) ? $type->columns : array();
 							?>
 							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][columns_enabled]" value="true" <?php if ( $type->columns_enabled ) echo 'checked '; ?> data-enable-columns />

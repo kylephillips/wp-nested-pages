@@ -3,6 +3,8 @@
 * Row represents a single page
 */
 $row_classes = '';
+$columns = $this->columns;
+if ( $columns ) $column_width = ( 0.7 / count($columns) ) * 100;
 if ( !$this->post_type->hierarchical ) $row_classes .= ' non-hierarchical';
 if ( !$this->user->canSortPages() ) $row_classes .= ' no-sort';
 if ( $this->isSearch() ) $row_classes .= ' search';
@@ -18,6 +20,13 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 	<?php if ( !$this->post_type->hierarchical ) echo '<div class="non-hierarchical-spacer"></div>'; ?>
 
 	<div class="row-inner">
+		<?php 
+			if ( $columns ) {
+				echo '<div class="nestedpages-row-columns">'; 
+				echo '<div class="cell title-cell">';
+			}
+		?>
+
 		<i class="np-icon-sub-menu"></i>
 		
 		<?php if ( $this->user->canSortPages() && !$this->isSearch() ) : ?>
@@ -63,6 +72,8 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 			?>
 		</a>
 
+		<?php include( NestedPages\Helpers::view('partials/custom-column') ); ?>
+
 		<!-- Responsive Toggle Button -->
 		<a href="#" class="np-toggle-edit"><i class="np-icon-pencil"></i></a>
 
@@ -80,6 +91,8 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 			echo '<span class="np-seo-indicator ' . $this->post->score . '"></span>';
 		}
 		?>
+
+		<?php if ( $columns ) echo '</div><!-- .row-columns -->'; ?>
 
 		<div class="action-buttons">
 

@@ -56,7 +56,7 @@ For more information visit [nestedpages.com](http://nestedpages.com).
 As of Nested Pages version 1.3.0, all post types are supported. To enable the Nested Pages interface for post types, update your settings under Settings > Nested Pages.
 
 = Is this plugin compatible with the WPML plugin? =
-Nested Pages is not currently compatible with WPML. 
+Nested Pages is not currently compatible with WPML. Why? Primarily due to WPML's own menu generation options. It is not a matter of making the plugin translatable, but a core plugin feature that is not supported.
 
 = How do I access the WordPress "Pages" screen? =
 Click the “Default link in the page subnav, or on the Nested Pages screen. This item may be optionally hidden under the Nested Pages settings.
@@ -65,10 +65,10 @@ Click the “Default link in the page subnav, or on the Nested Pages screen. Thi
 Post sorting and nesting is saved in the background after changes are made to the structure. If the "manual page order" option is enabled in the plugin options, you'll need to click the "Sync Order" button at the top of the page to save.
 
 = How do I edit in bulk? =
-Bulk quick edits are not currently supported by Nested Pages. To edit in bulk, click on the "Default" link to use the native interface.
+As of version 1.6, bulk edits are available directly through the Nested interface. To edit in bulk, select one or more posts. Choose "Edit" from the bulk actions to edit. Bulk edit functionality is similar to the WordPress core edit. Note: custom links that have been added through the Nested Pages interface are not affected by bulk edit actions.
 
 = What about custom columns? =
-Custom columns are not currently supported by Nested Pages. To view custom columns, click on the "Default" link to view the native interface. If you are using WordPress SEO by Yoast, a page analysis indicator is shown.
+As of version 1.6.4, custom columns are available. Visit Settings > Nested Pages > Post Types to enable and order custom columns for each post type. Columns made available through the appropriate WordPress filters are available for selection, along with any taxonomies enabled for the post type. Sortable custom columns are not enabled, however. The sorting of columns would interfere with the automatic ordering and menu syncing of Nested Pages.
 
 = What are those dots in my page rows? =
 If you have WordPress SEO by Yoast installed, your page score indicators are shown along with the pages.
@@ -101,6 +101,7 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 
 = 1.6.4 =
 * Text domain updated to wp-nested-pages in compliance with wordpress.org translation requirments
+* Custom columns are now supported. Visit Settings > Nested Pages > Post Types to enable and order custom columns for each post type. Columns made available through the appropriate WordPress filters are available for selection, along with any taxonomies enabled for the post type.
 * Additional bug fixes in front end redirects that were causing duplicate slugs to be unreliable
 
 = 1.6.3 =

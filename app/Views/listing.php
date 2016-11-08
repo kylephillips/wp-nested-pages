@@ -1,13 +1,4 @@
 <div class="wrap nestedpages">
-<?php
-// if ( $this->post_type->name == 'page' ) $columns = apply_filters('manage_pages_columns', array());
-// if ( $this->post_type->name == 'post' ) $columns = apply_filters('manage_post_columns', array());
-// if ( isset($columns) ) var_dump($columns);
-
-// $post_type = strtolower($this->post_type->name) . 's';
-// $columns = apply_filters( "manage_{$post_type}_columns", array() );
-// var_dump($columns);
-?>
 	<h2 class="nestedpages-listing-title">
 		<?php _e($this->post_type->labels->name); ?>
 		
