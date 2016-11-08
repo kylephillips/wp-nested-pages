@@ -6,6 +6,12 @@
 			<a href="#all" class="np-toggle-publish active"><?php _e('All'); ?></a> |
 		</li>
 
+		<?php if($this->settings->favoritesEnabled()) { ?>
+		<li>
+			<a href="#favorite" class="np-toggle-publish"><?php _e('Favorites'); ?></a> |
+		</li>
+		<?php } ?>
+
 		<li>
 			<a href="#published" class="np-toggle-publish"><?php _e('Published'); ?></a> |
 		</li>

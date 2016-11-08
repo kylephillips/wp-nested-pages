@@ -9,6 +9,8 @@ namespace NestedPages\Entities\User;
 class UserRepository 
 {
 
+    public $favoritePages;
+
 	/**
 	* Return Current User's Roles
 	* @return array
@@ -98,5 +100,40 @@ class UserRepository
 			serialize($visible)
 		);
 	}
+
+	/*
+	 * Cache favorite pages in order to avoid calling get_user_meta for each row.
+	 * */
+	public function cacheFavoritePages()
+    {
+        $favorites = get_user_meta(get_current_user_id(), "np_favorites", true);
+        $this->favoritePages = ($favorites!=null) ? $favorites : array();
+    }
+
+    /**
+     * Get User's Favorite Pages
+     * @return array - array of page ids user has marked as favorites
+     */
+    public function getFavoritePages()
+    {
+        $favorites = get_user_meta(get_current_user_id(), "np_favorites", true);
+        return ($favorites!=null) ? $favorites : array();
+    }
+
+    /**
+     * Update User's Favorite Pages
+     */
+    public function updateFavoritePages($ids)
+    {
+        //Remove duplicates
+        $ids=array_keys(array_flip($ids));
+
+        //Save the data
+        update_user_meta(
+            get_current_user_id(),
+            'np_favorites',
+            $ids
+        );
+    }
 
 }

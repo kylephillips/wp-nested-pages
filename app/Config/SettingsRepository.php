@@ -17,6 +17,17 @@ class SettingsRepository
 		return false;
 	}
 
+    /**
+     * Is the Favorites option enabled
+     * @return boolean
+     */
+    public function favoritesEnabled()
+    {
+        $option = get_option('nestedpages_ui', false);
+        if ( $option && isset($option['favorites']) && $option['favorites'] == 'true' ) return true;
+        return false;
+    }
+
 	/**
 	* Is the Menu Sync Option Visible
 	*/

@@ -31,7 +31,8 @@ var js_source = [
 	'assets/js/lib/nestedpages.menu-search.js',
 	'assets/js/lib/nestedpages.trash.js',
 	'assets/js/lib/nestedpages.confirm-delete.js',
-	'assets/js/lib/nestedpages.manual-sync.js'
+	'assets/js/lib/nestedpages.manual-sync.js',
+	'assets/js/lib/nestedpages.favorites.js',
 ];
 var js_source_settings = [
 	'assets/js/lib/nestedpages.settings.js'
