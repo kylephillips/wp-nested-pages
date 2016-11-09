@@ -46,7 +46,7 @@ class UpdateFavorites extends BaseHandler
 
 		return wp_send_json(array(
 			'status'=>'success',
-			'message'=> __('Updated successfully!')
+			'message'=> __(count($this->user->getFavoritePages()))
 		));
 	}
 

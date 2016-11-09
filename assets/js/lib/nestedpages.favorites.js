@@ -47,7 +47,7 @@ var NestedPagesFavorites = function()
 	}
 
 	// Update html
-	plugin.updatePostRowsFavoriteStatus = function(dataID, enableFavorite)
+	plugin.updatePostRowsFavoriteStatus = function(dataID, enableFavorite, totalNumberOfFavorites)
 	{
 		if(enableFavorite){
 			//Add the 'favorite' class and set the checked property to all ancestors and to the selected item.
@@ -66,6 +66,11 @@ var NestedPagesFavorites = function()
 			$(changedElement).find("input.np-toggle-favorite-checkbox").prop('checked', enableFavorite);
 			$(changedElement).find("li.page-row").removeClass("favorite");
 		}
+
+		//Update the total favorites count
+		var favoritesText = $('a[href="#favorite"]').text();
+		favoritesText = favoritesText.replace(/\(.*?\)/, "("+totalNumberOfFavorites+")");
+		$('a[href="#favorite"]').text(favoritesText);
 
 		//Update favorites if we're on that filter.
 		if($('a[href="#favorite"]').hasClass("active"))
@@ -87,7 +92,7 @@ var NestedPagesFavorites = function()
 			},
 			success: function(data){
 				plugin.loading(false);
-				plugin.updatePostRowsFavoriteStatus(dataID, enableFavorite);
+				plugin.updatePostRowsFavoriteStatus(dataID, enableFavorite, data.message);
 			}
 		});
 	}
