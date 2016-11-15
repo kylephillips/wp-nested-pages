@@ -18,13 +18,26 @@ class UpdateFavorites extends BaseHandler
 		$favorites = $this->user->getFavoritePages();
 
 		if($newStatus){
-			//Get all ancestor IDs as well. Otherwise, only pages whose ancestors up to the root level are marked as favorites will show up.
+			//Get all ancestor IDs. Otherwise, only pages whose ancestors up to the root level are marked as favorites will show up.
 
 			$ancestors = get_ancestors($postID, get_post_type($postID));
 			if($ancestors==null)
 				$ancestors = array();
 			array_push($ancestors, $postID);
 			$favorites = array_merge($favorites, $ancestors);
+
+			//Get children as well
+			$children = get_pages( array(
+				'child_of' => $postID,
+				'post_type' => get_post_type($postID)
+			));
+			if($children==null)
+				$children = array();
+			$childrenIDs = array();
+			foreach ($children as $ch)
+				array_push($childrenIDs, $ch->ID);
+
+			$favorites = array_merge($favorites, $childrenIDs);
 		}
 		else if(in_array($postID, $favorites)){
 			//Remove both postID as well as any children, for the same reasons as above.

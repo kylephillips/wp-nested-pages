@@ -58,6 +58,10 @@ var NestedPagesFavorites = function()
 			$(changedElement).parents("li.page-row").each(function(index){
 				$(this).find("input.np-toggle-favorite-checkbox").first().prop('checked', enableFavorite);
 			});
+
+			//Add the 'favorite' class and set the checked property to all children.
+			$(changedElement).find("ol input.np-toggle-favorite-checkbox").prop('checked', enableFavorite);
+			$(changedElement).find("li.page-row").addClass("favorite"); 
 		}
 		else {
 			//Remove the 'favorite' class and set the checked property to all children and to the selected item.
