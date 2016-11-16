@@ -99,6 +99,9 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 
 == Changelog ==
 
+= 1.6.5 =
+* PHP fatal error bug fix
+
 = 1.6.4 =
 * Text domain updated to wp-nested-pages in compliance with wordpress.org translation requirments
 * Custom columns are now supported. Visit Settings > Nested Pages > Post Types to enable and order custom columns for each post type. Columns made available through the appropriate WordPress filters are available for selection, along with any taxonomies enabled for the post type.

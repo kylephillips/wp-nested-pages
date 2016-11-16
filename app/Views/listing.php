@@ -21,7 +21,7 @@
 	</h2>
 
 	<?php if ( $this->confirmation->getMessage() ) : ?>
-		<div id="message" class="updated notice is-dismissible"><p><?php echo $this->confirmation->getMessage(); ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php_e('Dismiss this notice.', 'wp-nested-pages'); ?></span></button></div>
+		<div id="message" class="updated notice is-dismissible"><p><?php echo $this->confirmation->getMessage(); ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php _e('Dismiss this notice.', 'wp-nested-pages'); ?></span></button></div>
 	<?php endif; ?>
 
 	<div data-nestedpages-error class="updated error notice is-dismissible" style="display:none;"><p></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php_e('Dismiss this notice.', 'wp-nested-pages'); ?></span></button></div>
