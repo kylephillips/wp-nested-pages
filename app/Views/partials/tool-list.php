@@ -20,14 +20,14 @@
 			<?php else : ?>
 			<a href="#show" class="np-toggle-hidden"><?php _e('Hide Hidden', 'nestedpages'); ?> </a>
 			<?php endif; ?>
-			<span class="count">(<?php echo $this->post_repo->getHiddenCount(array($this->post_type->name)); ?>)</span>
+			<span class="count">(<?php echo absint($this->post_repo->getHiddenCount(array($this->post_type->name))); ?>)</span>
 		</li>
 
 		<?php if ( current_user_can('delete_pages') && $trashedCount > 0) : ?>
 		<li class="np-trash-links">
 			 |
-			<a href="<?php echo $this->post_type_repo->trashLink($this->post_type->name); ?>"><?php _e('Trash'); ?> </a>
-			<span class="count">(<a href="#" class="np-empty-trash" data-posttype="<?php echo $this->post_type->name; ?>"><?php _e('Empty', 'nestedpages'); ?></a> <?php echo $trashedCount; ?>)</span>
+			<a href="<?php echo esc_url($this->post_type_repo->trashLink($this->post_type->name)); ?>"><?php _e('Trash'); ?> </a>
+			<span class="count">(<a href="#" class="np-empty-trash" data-posttype="<?php echo esc_attr($this->post_type->name); ?>"><?php _e('Empty', 'nestedpages'); ?></a> <?php echo absint($trashedCount); ?>)</span>
 		</li>
 		<?php endif; ?>
 
@@ -54,7 +54,7 @@
 						foreach( $users as $user ){
 							$out .= '<option value="' . $user->ID . '"';
 							if ( isset($_GET['author']) && ($_GET['author'] == $user->ID) ) $out .= ' selected';
-							$out .= '>' . $user->display_name . '</option>';
+							$out .= '>' . esc_html($user->display_name) . '</option>';
 						}
 						echo $out;
 					?>
@@ -72,7 +72,7 @@
 						foreach ( $options as $key => $option ){
 							$out .= '<option value="' . $key . '"';
 							if ( isset($_GET['orderby']) && ($_GET['orderby'] == $key) ) $out .= ' selected';
-							$out .= '>' . $option . '</option>';
+							$out .= '>' . esc_html($option) . '</option>';
 						}
 						echo $out;
 					?>
@@ -87,9 +87,9 @@
 						);
 						$out = '';
 						foreach ( $options as $key => $option ){
-							$out .= '<option value="' . $key . '"';
+							$out .= '<option value="' . esc_attr($key) . '"';
 							if ( isset($_GET['order']) && ($_GET['order'] == $key) ) $out .= ' selected';
-							$out .= '>' . $option . '</option>';
+							$out .= '>' . esc_html($option) . '</option>';
 						}
 						echo $out;
 					?>
@@ -112,12 +112,12 @@
 				<select id="np_category" name="np_category" class="nestedpages-sort">
 					<?php
 						$tax = get_taxonomy('category');
-						$out = '<option value="all">' . __('All ', 'nestedpages') . $tax->labels->name . '</option>';
+						$out = '<option value="all">' . __('All ', 'nestedpages') . esc_html($tax->labels->name) . '</option>';
 						$terms = get_terms('category');
 						foreach( $terms as $term ){
-							$out .= '<option value="' . $term->term_id . '"';
+							$out .= '<option value="' . esc_attr($term->term_id) . '"';
 							if ( isset($_GET['category']) && ($_GET['category'] == $term->term_id) ) $out .= ' selected';
-							$out .= '>' . $term->name . '</option>';
+							$out .= '>' . esc_html($term->name) . '</option>';
 						}
 						echo $out;
 					?>
@@ -133,11 +133,11 @@
 	<div class="np-tools-search">
 		<form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
 			<input type="hidden" name="action" value="npSearch">
-			<input type="hidden" name="posttype" value="<?php echo $this->post_type->name; ?>">
-			<input type="hidden" name="page" value="<?php echo $this->pageURL(); ?>">
+			<input type="hidden" name="posttype" value="<?php echo esc_attr($this->post_type->name); ?>">
+			<input type="hidden" name="page" value="<?php echo esc_attr($this->pageURL()); ?>">
 			<?php wp_nonce_field('nestedpages-nonce', 'nonce'); ?>
-			<input type="search" name="search_term" id="nestedpages-search" placeholder="<?php echo $this->post_type->labels->search_items; ?>" <?php if ( $this->isSearch() ) echo ' value="' . sanitize_text_field($_GET['search']) . '"'; ?>>
-			<input type="submit" name="" class="button" value="<?php echo $this->post_type->labels->search_items;?>">
+			<input type="search" name="search_term" id="nestedpages-search" placeholder="<?php echo esc_attr($this->post_type->labels->search_items); ?>" <?php if ( $this->isSearch() ) echo ' value="' . sanitize_text_field($_GET['search']) . '"'; ?>>
+			<input type="submit" name="" class="button" value="<?php echo esc_attr($this->post_type->labels->search_items);?>">
 		</form>
 	</div><!-- .np-tools-search -->
 

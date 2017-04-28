@@ -53,7 +53,7 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 				// Post Lock
 				if ( $user = wp_check_post_lock($this->post->id) ){
 					$u = get_userdata($user);
-					echo '<span class="locked"><i class="np-icon-lock"></i><em> ' . $u->display_name . ' ' . __('currently editing', 'nestedpages') . '</em></span>';
+					echo '<span class="locked"><i class="np-icon-lock"></i><em> ' . esc_html($u->display_name) . ' ' . __('currently editing', 'nestedpages') . '</em></span>';
 				} elseif ( !$this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ){
 					echo '<span class="locked"><i class="np-icon-lock"></i></span>';
 				} else {
@@ -77,7 +77,7 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 
 		<?php
 		if ( $this->integrations->plugins->yoast->installed ){
-			echo '<span class="np-seo-indicator ' . $this->post->score . '"></span>';
+			echo '<span class="np-seo-indicator ' . esc_html($this->post->score) . '"></span>';
 		}
 		?>
 
@@ -110,27 +110,27 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 			<?php if ( !$user = wp_check_post_lock($this->post->id) || !$this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ) : ?>
 			<a href="#" 
 				class="np-btn np-quick-edit" 
-				data-id="<?php echo $this->post->id; ?>" 
-				data-template="<?php echo $this->post->template; ?>" 
-				data-title="<?php echo $this->post->title; ?>" 
-				data-slug="<?php echo urldecode($post->post_name); ?>" 
-				data-commentstatus="<?php echo $cs; ?>" 
-				data-status="<?php echo $this->post->status; ?>" 
-				data-np-status="<?php echo $this->post->np_status; ?>"
-				data-navstatus="<?php echo $this->post->nav_status; ?>" 
-				data-navtitleattr="<?php echo $this->post->nav_title_attr; ?>"
-				data-navcss="<?php echo $this->post->nav_css; ?>"
-				data-linktarget="<?php echo $this->post->link_target; ?>" 
-				data-navtitle="<?php echo $this->post->nav_title; ?>"
-				data-author="<?php echo $post->post_author; ?>" 
+				data-id="<?php echo esc_attr($this->post->id); ?>" 
+				data-template="<?php echo esc_attr($this->post->template); ?>" 
+				data-title="<?php echo esc_attr($this->post->title); ?>" 
+				data-slug="<?php echo esc_attr(urldecode($post->post_name)); ?>" 
+				data-commentstatus="<?php echo esc_attr($cs); ?>" 
+				data-status="<?php echo esc_attr($this->post->status); ?>" 
+				data-np-status="<?php echo esc_attr($this->post->np_status); ?>"
+				data-navstatus="<?php echo esc_attr($this->post->nav_status); ?>" 
+				data-navtitleattr="<?php echo esc_attr($this->post->nav_title_attr); ?>"
+				data-navcss="<?php echo esc_attr($this->post->nav_css); ?>"
+				data-linktarget="<?php echo esc_attr($this->post->link_target); ?>" 
+				data-navtitle="<?php echo esc_attr($this->post->nav_title); ?>"
+				data-author="<?php echo esc_attr($post->post_author); ?>" 
 				<?php if ( current_user_can('publish_pages') ) : ?>
-				data-password="<?php echo $post->post_password; ?>"
+				data-password="<?php echo esc_attr($post->post_password); ?>"
 				<?php endif; ?>
-				data-month="<?php echo $this->post->date->month; ?>" 
-				data-day="<?php echo $this->post->date->d; ?>" 
-				data-year="<?php echo $this->post->date->y; ?>" 
-				data-hour="<?php echo $this->post->date->h; ?>" 
-				data-minute="<?php echo $this->post->date->m;?>"
+				data-month="<?php echo esc_attr($this->post->date->month); ?>" 
+				data-day="<?php echo esc_attr($this->post->date->d); ?>" 
+				data-year="<?php echo esc_attr($this->post->date->y); ?>" 
+				data-hour="<?php echo esc_attr($this->post->date->h); ?>" 
+				data-minute="<?php echo esc_attr($this->post->date->m);?>"
 				data-datepicker="<?php echo date_i18n('n/j/Y', $this->post->date->datepicker); ?>"
 				data-time="<?php echo date_i18n('H:i', $this->post->date->datepicker); ?>"
 				data-formattedtime="<?php echo date_i18n('g:i', $this->post->date->datepicker); ?>"
@@ -175,6 +175,6 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 	?>
 
 	<div class="np-bulk-checkbox">
-		<input type="checkbox" name="nestedpages_bulk[]" value="<?php echo $this->post->id; ?>" data-np-bulk-checkbox="<?php echo $this->post->title; ?>" data-np-post-type="<?php echo $this->post->post_type; ?>" />
+		<input type="checkbox" name="nestedpages_bulk[]" value="<?php echo esc_attr($this->post->id); ?>" data-np-bulk-checkbox="<?php echo esc_attr($this->post->title); ?>" data-np-post-type="<?php echo esc_attr($this->post->post_type); ?>" />
 	</div>
 </div><!-- .row -->

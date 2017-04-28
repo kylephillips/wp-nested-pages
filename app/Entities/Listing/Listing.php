@@ -328,10 +328,10 @@ class Listing
 
 				if ( $this->post->status !== 'trash' ) :
 
-					echo '<li id="menuItem_' . $this->post->id . '" class="page-row';
+					echo '<li id="menuItem_' . esc_attr($this->post->id) . '" class="page-row';
 
 					// Post Type
-					echo ' post-type-' . $this->post->post_type;
+					echo ' post-type-' . esc_attr($this->post->post_type);
 
 					// Published?
 					if ( $this->post->status == 'publish' ) echo ' published';

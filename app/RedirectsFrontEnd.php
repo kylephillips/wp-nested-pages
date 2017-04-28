@@ -51,14 +51,14 @@ class RedirectsFrontEnd
 			$parent_slug = substr($parent_slug, 0, -5);
 		}
 		$parent_args = array(
-			'name' => $parent_slug,
+			'name' => sanitize_text_field($parent_slug),
 			'posts_per_page' => 1
 		);
 		$parent_args['post_type'] = ( $redirect ) ? 'np-redirect' : 'any';
 		$parent_post = get_posts($parent_args);
 
 		$page_args = array(
-			'name' => $slug, 
+			'name' => sanitize_text_field($slug), 
 			'post_type' => 'any', 
 			'posts_per_page' => 1
 		);

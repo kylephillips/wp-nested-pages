@@ -43,7 +43,7 @@ class NavMenuRepository
 			$term_relationships_table = $prefix . 'term_relationships';
 			$term_taxonomy_table = $prefix . 'term_taxonomy';
 			$terms_table = $prefix . 'terms';
-			$sql = "SELECT
+			$sql = $wpdb->prepare("SELECT
 				pm.post_id,
 				t.term_id,
 				t.name,
@@ -57,8 +57,8 @@ class NavMenuRepository
 				ON t.term_id = tt.term_id
 				LEFT JOIN $meta_table AS pmx
 				ON pmx.post_id = pm.post_id AND pmx.meta_key = '_menu_item_xfn'
-				WHERE pm.meta_value = $id AND pm.meta_key = '_menu_item_object_id'
-			";
+				WHERE pm.meta_value = %d AND pm.meta_key = '_menu_item_object_id'
+			", $id);
 			$results = $wpdb->get_results($sql);
 			foreach($results as $result){
 				if ( $result->term_id == $menu_id && $result->xfn_type == 'page' ) $post_id = $result->post_id;
@@ -72,7 +72,7 @@ class NavMenuRepository
 		global $wpdb;
 		$prefix = $wpdb->prefix;
 			$meta_table = $prefix . 'postmeta';
-			$sql = "SELECT post_id FROM `$meta_table` WHERE meta_value = $id AND meta_key = '_menu_item_xfn'";
+			$sql = $wpdb->prepare("SELECT post_id FROM `$meta_table` WHERE meta_value = %d AND meta_key = '_menu_item_xfn'", $id);
 			$post_id = $wpdb->get_var($sql);
 			
 			$wpdb = $original_wpdb;

@@ -27,12 +27,12 @@ class TrashConfirmation implements ConfirmationInterface
 			$post_type = get_post_type($trashed[0]);
 			$post_type_object = get_post_type_object($post_type);
 			$out .= ( count($trashed) > 1 )
-				? count($trashed) . ' ' . $post_type_object->labels->name . ' ' . __('moved to the Trash.', 'nestedpages')
+				? count($trashed) . ' ' . esc_html($post_type_object->labels->name) . ' ' . __('moved to the Trash.', 'nestedpages')
 				: '<strong>' . get_the_title($trashed[0]) . ' </strong>' . __('moved to the Trash.', 'nestedpages');			
 			// Undo Link
 			if ( current_user_can('delete_pages') ) {
 				$ids = preg_replace( '/[^0-9,]/', '', $_GET['ids'] );
-				$out .= ' <a href="' . wp_nonce_url( admin_url( 'edit.php?&post_type=' . $post_type . '&amp;doaction=undo'. '&amp;action=untrash&amp;ids=' . $ids ), 'bulk-posts') . '">' . __( 'Undo' ) . "</a>";
+				$out .= ' <a href="' . wp_nonce_url( admin_url( 'edit.php?&post_type=' . esc_attr($post_type) . '&amp;doaction=undo'. '&amp;action=untrash&amp;ids=' . esc_attr($ids) ), 'bulk-posts') . '">' . __( 'Undo' ) . "</a>";
 			}
 		endif; 
 
