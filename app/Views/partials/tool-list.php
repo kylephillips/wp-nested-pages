@@ -1,6 +1,7 @@
 <?php 
 $trashedCount = $this->post_repo->trashedCount($this->post_type->name); 
-$allCount = $this->post_repo->allCount($this->post_type->name); 
+$allCount = $this->post_repo->allCount($this->post_type->name);
+$favoritesCount = count($this->user->getFavoritePages());
 ?>
 <div class="nestedpages-tools">
 
@@ -8,6 +9,12 @@ $allCount = $this->post_repo->allCount($this->post_type->name);
 		<li>
 			<a href="#all" class="np-toggle-publish active"><?php _e('All'); ?> (<?php echo absint($allCount); ?>)</a> |
 		</li>
+
+		<?php if($this->settings->favoritesEnabled()) { ?>
+		<li>
+			<a href="#favorite" class="np-toggle-publish"><?php _e('Favorites'); ?> (<?php echo $favoritesCount ?>)</a> |
+		</li>
+		<?php } ?>
 
 		<li>
 			<a href="#published" class="np-toggle-publish"><?php _e('Published'); ?></a> |

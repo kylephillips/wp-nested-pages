@@ -28,6 +28,15 @@ settings_fields( 'nestedpages-general' );
 	</td>
 </tr>
 <tr valign="top">
+	<th scope="row"><?php _e('Show favorites', 'wp-nested-pages'); ?></th>
+	<td>
+		<label>
+			<input type="checkbox" name="nestedpages_ui[favorites]" value="true" <?php if ( $this->settings->favoritesEnabled() ) echo 'checked'; ?> />
+			<?php _e('Enable favorite pages functionality', 'wp-nested-pages'); ?>
+		</label>
+	</td>
+</tr>
+<tr valign="top">
 	<th scope="row"><?php _e('Menu Sync', 'wp-nested-pages'); ?></th>
 	<td>
 		<p data-menu-enabled-option data-menu-hide-checkbox>

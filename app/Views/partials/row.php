@@ -96,6 +96,15 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 
 		<div class="action-buttons">
 
+
+
+			<?php if($this->settings->favoritesEnabled()) { ?>
+				<div class="np-btn np-checkbox">
+					<input name="np-favorite-checkbox" data-id="<?php echo get_the_id(); ?>" data-parentname="<?php echo $this->post->title; ?>" class="np-toggle-favorite-checkbox" id="np-favorite-checkbox" type="checkbox" <?php if (in_array(get_the_id(), $this->user->favoritePages)) echo "checked=\"checked\""; ?>>
+					<span><?php _e('Favorite', 'wp-nested-pages'); ?></span>
+				</div>
+			<?php } ?>
+
 			<?php if ( $this->post->comment_status == 'open' ) : $comments = wp_count_comments($this->post->id); $cs = 'open' ?>
 
 			

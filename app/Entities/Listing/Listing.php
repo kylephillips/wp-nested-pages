@@ -339,6 +339,10 @@ class Listing
 			if ( $this->publishCount($pages) > 1 ){
 				$this->listOpening($pages, $count);			
 			}
+
+			//cache favorite pages for user if favorites is enabled
+			if($this->settings->favoritesEnabled())
+				$this->user->cacheFavoritePages();
 			
 			while ( $pages->have_posts() ) : $pages->the_post();
 
@@ -355,6 +359,9 @@ class Listing
 					// Published?
 					if ( $this->post->status == 'publish' ) echo ' published';
 					if ( $this->post->status == 'draft' ) echo ' draft';
+
+					// Favorite?
+					if ( in_array($this->post->id, $this->user->favoritePages) ) echo ' favorite';
 					
 					// Hidden in Nested Pages?
 					if ( $this->post->np_status == 'hide' ) echo ' np-hide';
