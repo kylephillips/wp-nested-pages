@@ -107,7 +107,7 @@
 	<div class="np-tools-primary">	
 		<form action="<?php echo admin_url('admin-post.php'); ?>" method="post" class="np-tools-sort">
 			<input type="hidden" name="action" value="npCategoryFilter">
-			<input type="hidden" name="page" value="<?php echo $this->pageURL(); ?>">
+			<input type="hidden" name="page" value="<?php echo esc_url($this->pageURL()); ?>">
 			<div class="select first">
 				<select id="np_category" name="np_category" class="nestedpages-sort">
 					<?php
@@ -134,9 +134,9 @@
 		<form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
 			<input type="hidden" name="action" value="npSearch">
 			<input type="hidden" name="posttype" value="<?php echo esc_attr($this->post_type->name); ?>">
-			<input type="hidden" name="page" value="<?php echo esc_attr($this->pageURL()); ?>">
+			<input type="hidden" name="page" value="<?php echo esc_url($this->pageURL()); ?>">
 			<?php wp_nonce_field('nestedpages-nonce', 'nonce'); ?>
-			<input type="search" name="search_term" id="nestedpages-search" placeholder="<?php echo esc_attr($this->post_type->labels->search_items); ?>" <?php if ( $this->isSearch() ) echo ' value="' . sanitize_text_field($_GET['search']) . '"'; ?>>
+			<input type="search" name="search_term" id="nestedpages-search" placeholder="<?php echo esc_attr($this->post_type->labels->search_items); ?>" <?php if ( $this->isSearch() ) echo ' value="' . esc_url(sanitize_text_field($_GET['search'])) . '"'; ?>>
 			<input type="submit" name="" class="button" value="<?php echo esc_attr($this->post_type->labels->search_items);?>">
 		</form>
 	</div><!-- .np-tools-search -->
