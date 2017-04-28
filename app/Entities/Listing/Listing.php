@@ -98,11 +98,6 @@ class Listing
 	*/
 	private $enabled_custom_fields;
 
-	/**
-	* Columns
-	*/
-	private $columns;
-
 
 	public function __construct($post_type)
 	{
@@ -116,7 +111,6 @@ class Listing
 		$this->post_data_factory = new PostDataFactory;
 		$this->settings = new SettingsRepository;
 		$this->setStandardFields();
-		$this->setColumns();
 	}
 
 	/**
@@ -191,17 +185,6 @@ class Listing
 	}
 
 	/**
-	* Set the columns
-	*/
-	private function setColumns()
-	{
-		$columns_enabled = $this->post_type_repo->columnsEnabled($this->post_type->name);
-		$this->columns = ( $columns_enabled )
-			? $this->post_type_repo->getCustomColumns($this->post_type->name, $enabled_only = true)
-			: null;
-	}
-
-	/**
 	* The Main View
 	* Replaces Default Post Listing
 	*/
@@ -242,12 +225,10 @@ class Listing
 		if ( !$this->user->canSortPages() && !$sortable || $this->isSearch() ) $list_classes .= ' no-sort';
 		if ( $this->integrations->plugins->yoast->installed ) $list_classes .= ' has-yoast';
 		if ( $this->isSearch() ) $list_classes .= ' np-search-results';
-		if ( $this->columns ) $list_classes .= ' has-custom-columns';
 
 		// Primary List
 		if ( $count == 1 ) {
 			include( Helpers::view('partials/list-header') ); // List Header
-			if ( $this->columns ) include( Helpers::view('partials/columns-header') );
 			include( Helpers::view('partials/bulk-edit') ); // Bulk Edit
 			echo '<ol class="' . $list_classes . '" id="np-' . $this->post_type->name . '">';
 			return;
@@ -347,10 +328,10 @@ class Listing
 
 				if ( $this->post->status !== 'trash' ) :
 
-					echo '<li id="menuItem_' . esc_attr( $this->post->id ) . '" class="page-row';
+					echo '<li id="menuItem_' . $this->post->id . '" class="page-row';
 
 					// Post Type
-					echo ' post-type-' . esc_attr( $this->post->post_type );
+					echo ' post-type-' . $this->post->post_type;
 
 					// Published?
 					if ( $this->post->status == 'publish' ) echo ' published';

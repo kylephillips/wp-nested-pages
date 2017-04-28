@@ -37,7 +37,7 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 
 				// Nav Status
 				if ( $this->post->nav_status == 'hide' ){
-					echo '<span class="nav-status">(' . __('Hidden', 'wp-nested-pages') . ')</span>';
+					echo '<span class="nav-status">(' . __('Hidden', 'nestedpages') . ')</span>';
 				} else {
 					echo '<span class="nav-status"></span>';
 				}
@@ -50,21 +50,21 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 
 			<a href="#" 
 				class="np-btn np-quick-edit-redirect" 
-				data-id="<?php echo esc_attr($this->post->id); ?>" 
-				data-parentid="<?php echo esc_attr($this->post->parent_id); ?>"
-				data-title="<?php echo esc_attr($this->post->title); ?>" 
-				data-url="<?php echo esc_attr(NestedPages\Helpers::check_url($this->post->content)); ?>"
-				data-status="<?php echo esc_attr($this->post->status); ?>" 
-				data-np-status="<?php echo esc_attr($this->post->np_status); ?>"
-				data-navstatus="<?php echo esc_attr($this->post->nav_status); ?>"
-				data-navtitleattr="<?php echo esc_attr($this->post->nav_title_attr); ?>"
-				data-navcss="<?php echo esc_attr($this->post->nav_css); ?>"
-				data-nav-type="<?php echo esc_attr($this->post->nav_type); ?>"
-				data-nav-object="<?php echo esc_attr($this->post->nav_object); ?>"
-				data-nav-object-id="<?php echo esc_attr($this->post->nav_object_id); ?>"
-				data-nav-original-link="<?php echo esc_attr($this->post->nav_original_link); ?>"
-				data-nav-original-title="<?php echo esc_attr($this->post->nav_original_title); ?>"
-				data-linktarget="<?php echo esc_attr($this->post->link_target); ?>">
+				data-id="<?php echo $this->post->id; ?>" 
+				data-parentid="<?php echo $this->post->parent_id; ?>"
+				data-title="<?php echo $this->post->title; ?>" 
+				data-url="<?php echo NestedPages\Helpers::check_url($this->post->content); ?>"
+				data-status="<?php echo $this->post->status; ?>" 
+				data-np-status="<?php echo $this->post->np_status; ?>"
+				data-navstatus="<?php echo $this->post->nav_status; ?>"
+				data-navtitleattr="<?php echo $this->post->nav_title_attr; ?>"
+				data-navcss="<?php echo $this->post->nav_css; ?>"
+				data-nav-type="<?php echo $this->post->nav_type; ?>"
+				data-nav-object="<?php echo $this->post->nav_object; ?>"
+				data-nav-object-id="<?php echo $this->post->nav_object_id; ?>"
+				data-nav-original-link="<?php echo $this->post->nav_original_link; ?>"
+				data-nav-original-title="<?php echo $this->post->nav_original_title; ?>"
+				data-linktarget="<?php echo $this->post->link_target; ?>">
 				<?php _e('Quick Edit'); ?>
 			</a>
 
@@ -84,7 +84,7 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 	
 	if ( $thumbnail_source ) :		
 		if ( has_post_thumbnail($this->post->nav_object_id) && $this->post->nav_type != 'taxonomy' ) :
-			$out = '<div class="np-thumbnail ' . esc_attr($thumbnail_size) . '">';
+			$out = '<div class="np-thumbnail ' . $thumbnail_size . '">';
 			$image = get_the_post_thumbnail($this->post->nav_object_id, $thumbnail_source);
 			$out .= apply_filters('nestedpages_thumbnail', $image, $this->post);
 		else :
@@ -93,7 +93,7 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 			if ( $this->post->nav_type == 'taxonomy' ) $fallback_icon = 'np-icon-tag';
 			if ( $this->post->nav_object == 'post' ) $fallback_icon = 'np-icon-post';
 			if ( $this->post->nav_object == 'page' ) $fallback_icon = 'np-icon-page';
-			$image_fallback = '<i class="' . esc_attr($fallback_icon) . '" /></i>';
+			$image_fallback = '<i class="' . $fallback_icon . '" /></i>';
 			$image_fallback = apply_filters('nestedpages_thumbnail_fallback', $image_fallback, $this->post);
 			if ( $image_fallback ) :
 				$out .= $image_fallback;
@@ -105,6 +105,6 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 	?>
 
 	<div class="np-bulk-checkbox">
-		<input type="checkbox" name="nestedpages_bulk[]" value="<?php echo esc_attr($this->post->id); ?>" data-np-bulk-checkbox="<?php echo esc_attr($this->post->title); ?>" class="np-redirect-bulk" data-np-post-type="<?php echo esc_attr($this->post->post_type); ?>" />
+		<input type="checkbox" name="nestedpages_bulk[]" value="<?php echo $this->post->id; ?>" data-np-bulk-checkbox="<?php echo $this->post->title; ?>" class="np-redirect-bulk" data-np-post-type="<?php echo $this->post->post_type; ?>" />
 	</div>
 </div><!-- .row -->

@@ -56,7 +56,7 @@ class Bootstrap
 	public function addLocalization()
 	{
 		load_plugin_textdomain(
-			'wp-nested-pages', 
+			'nestedpages', 
 			false, 
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages' );
 	}

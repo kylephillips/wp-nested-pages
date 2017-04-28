@@ -32,7 +32,7 @@ class Redirects
 				'page' => 'nestedpages',
 				'trashed' => true
 			);
-			if ( isset($_GET['ids']) ) $query_args['ids'] = urlencode($_GET['ids']);
+			if ( isset($_GET['ids']) ) $query_args['ids'] = $_GET['ids'];
 			$redirect = add_query_arg(array('page'=>'nestedpages', 'trashed' => true ));
 			wp_redirect($redirect);
 			exit();
@@ -52,7 +52,7 @@ class Redirects
 			(!isset($_GET['bulk'])) &&
 			$this->arePagesNested()
 		){
-			$redirect = add_query_arg(array('page'=>'nestedpages', 'untrashed' => true, 'untrashed' => urlencode($_GET['untrashed']) ));
+			$redirect = add_query_arg(array('page'=>'nestedpages', 'untrashed' => true, 'untrashed' => $_GET['untrashed'] ));
 			wp_redirect($redirect);
 			exit();
 		}

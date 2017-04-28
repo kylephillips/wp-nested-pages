@@ -131,7 +131,7 @@ class Validation
 	{
 		wp_send_json(array(
 			'status' => 'error', 
-			'message' => __('Please provide a valid date.', 'wp-nested-pages') 
+			'message' => __('Please provide a valid date.', 'nestedpages') 
 		));
 		die();
 	}
@@ -142,10 +142,10 @@ class Validation
 	public function validateRedirect($data)
 	{
 		if ( (!isset($data['np_link_title'])) || ($data['np_link_title'] == "") ){
-			return wp_send_json(array('status' => 'error', 'message' => __('Please provide a menu title.', 'wp-nested-pages') ));
+			return wp_send_json(array('status' => 'error', 'message' => __('Please provide a menu title.', 'nestedpages') ));
 		}
 		if ( (!isset($data['np_link_content'])) || ($data['np_link_content'] == "") ){
-			return wp_send_json(array('status' => 'error', 'message' => __('Please provide a valid URL.', 'wp-nested-pages') ));
+			return wp_send_json(array('status' => 'error', 'message' => __('Please provide a valid URL.', 'nestedpages') ));
 		}
 	}
 
@@ -155,7 +155,7 @@ class Validation
 	public function checkEmpty($var, $title)
 	{
 		if ( $var == "" ){
-			$message = __('Please provide a ', 'wp-nested-pages') . $title;
+			$message = __('Please provide a ', 'nestedpages') . $title;
 			return wp_send_json(array('status' => 'error', 'message' => $message));
 			die();
 		}
@@ -168,14 +168,14 @@ class Validation
 	{
 		// Check for Parent ID
 		if ( (!isset($data['parent_id'])) || (!is_numeric($data['parent_id'])) ){
-			$message = __('A valid parent page was not provided.', 'wp-nested-pages');
+			$message = __('A valid parent page was not provided.', 'nestedpages');
 			return wp_send_json(array('status' => 'error', 'message' => $message));
 			die();
 		}
 
 		// Make sure there's at least one page
 		if ( !isset($data['post_title']) ){
-			$message = __('Please provide at least one page title.', 'wp-nested-pages');
+			$message = __('Please provide at least one page title.', 'nestedpages');
 			return wp_send_json(array('status' => 'error', 'message' => $message));
 			die();
 		}
@@ -183,7 +183,7 @@ class Validation
 		// Page fields cannot be blank
 		foreach ( $data['post_title'] as $title ){
 			if ( $title == "" ){
-				$message = __('Page titles cannot be blank.', 'wp-nested-pages');
+				$message = __('Page titles cannot be blank.', 'nestedpages');
 				return wp_send_json(array('status' => 'error', 'message' => $message));
 				die();
 			}

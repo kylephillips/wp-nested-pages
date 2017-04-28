@@ -139,7 +139,7 @@ class NavMenuSyncMenu extends NavMenuSync
 			'titleAttribute' => $item->attr_title
 		);
 		$post_id = $this->post_update_repo->saveRedirect($post_data);
-		update_post_meta($item->ID, '_menu_item_xfn', absint($post_id));
+		update_post_meta($item->ID, '_menu_item_xfn', $post_id);
 	}
 
 	/**

@@ -36,11 +36,11 @@
 			<label><?php _e( 'Date' ); ?></label>
 			<div class="datetime">
 				<input type="text" name="np_date" class="np_datepicker" value="" />
-				<span><?php _e('@', 'wp-nested-pages'); ?></span>
+				<span><?php _e('@', 'nestedpages'); ?></span>
 				<div class="np-time-container">
 					<select name="np_ampm" class="np_ampm">
-						<option value="am"><?php _e('am', 'wp-nested-pages'); ?></option>
-						<option value="pm"><?php _e('pm', 'wp-nested-pages'); ?></option>
+						<option value="am"><?php _e('am', 'nestedpages'); ?></option>
+						<option value="pm"><?php _e('pm', 'nestedpages'); ?></option>
 					</select>
 					<input type="text" name="np_time" class="np_time" value="" />
 				</div>
@@ -135,18 +135,18 @@
 		<div class="comments">
 			<label>
 				<input type="checkbox" name="nested_pages_status" class="np_status" value="hide" />
-				<span class="checkbox-title"><?php _e( 'Hide in Nested Pages', 'wp-nested-pages' ); ?></span>
+				<span class="checkbox-title"><?php _e( 'Hide in Nested Pages', 'nestedpages' ); ?></span>
 			</label>
 		</div>
 		<?php endif; // Edit theme options ?>
 		
 		<div class="form-control np-toggle-options">
 			<?php if ( $this->user->canSortPages() && $this->post_type->name == 'page' && !$this->isSearch() && !array_key_exists('menu_options', $this->disabled_standard_fields) ) : ?>
-			<a href="#" class="np-btn np-btn-half np-toggle-menuoptions"><?php _e('Menu Options', 'wp-nested-pages'); ?></a>
+			<a href="#" class="np-btn np-btn-half np-toggle-menuoptions"><?php _e('Menu Options', 'nestedpages'); ?></a>
 			<?php endif; ?>
 
 			<?php if ( !empty($this->h_taxonomies) && !array_key_exists('hide_taxonomies', $this->disabled_standard_fields) ) : ?>
-			<a href="#" class="np-btn np-btn-half btn-right np-toggle-taxonomies"><?php _e('Taxonomies', 'wp-nested-pages'); ?></a>
+			<a href="#" class="np-btn np-btn-half btn-right np-toggle-taxonomies"><?php _e('Taxonomies', 'nestedpages'); ?></a>
 			<?php endif; ?>
 		</div>
 
@@ -208,7 +208,7 @@
 			<div class="form-control">
 				<label>
 					<input type="checkbox" name="nav_status" class="np_nav_status" value="hide" />
-					<span class="checkbox-title"><?php _e( 'Hide in Nav Menu', 'wp-nested-pages' ); ?></span>
+					<span class="checkbox-title"><?php _e( 'Hide in Nav Menu', 'nestedpages' ); ?></span>
 				</label>
 			</div>
 			<div class="form-control">

@@ -44,16 +44,6 @@ class PostRepository
 	}
 
 	/**
-	* Get count of untrashed posts
-	* @param string $post_type
-	*/
-	public function allCount($post_type)
-	{
-		$posts = new \WP_Query(array('post_type'=>$post_type,'post_status'=>'any','posts_per_page'=>-1));
-		return $posts->found_posts;
-	}
-
-	/**
 	* Return css class string of taxonomies
 	* @param int post_id
 	* @return string

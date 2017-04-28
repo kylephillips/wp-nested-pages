@@ -72,7 +72,7 @@ class AdminSubmenu
 		global $submenu;
 		if ( !$this->post_type_repo->postTypeSetting($this->post_type->name, 'hide_default') ){
 			$submenu[$this->slug][$c] = array( 
-				__('Default', 'wp-nested-pages') . ' ' . $this->post_type->labels->name, 
+				__('Default','nestedpages') . ' ' . $this->post_type->labels->name, 
 				'publish_pages', 
 				$this->post_type_repo->editSlug($this->post_type)
 			);

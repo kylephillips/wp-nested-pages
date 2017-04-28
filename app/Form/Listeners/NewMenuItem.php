@@ -24,8 +24,8 @@ class NewMenuItem extends BaseHandler
 	*/
 	private function validateFields()
 	{
-		if ( $_POST['menuType'] == 'custom' && $_POST['navigationLabel'] == "" ) return wp_send_json(array('status' => 'error', 'message' => __('Custom Links must have a label.', 'wp-nested-pages')));
-		if ( $_POST['menuType'] == 'custom' && $_POST['url'] == "" ) return wp_send_json(array('status' => 'error', 'message' => __('Please provide a valid URL.', 'wp-nested-pages')));
+		if ( $_POST['menuType'] == 'custom' && $_POST['navigationLabel'] == "" ) return wp_send_json(array('status' => 'error', 'message' => __('Custom Links must have a label.', 'nestedpages')));
+		if ( $_POST['menuType'] == 'custom' && $_POST['url'] == "" ) return wp_send_json(array('status' => 'error', 'message' => __('Please provide a valid URL.', 'nestedpages')));
 	}
 
 	/**
@@ -44,7 +44,7 @@ class NewMenuItem extends BaseHandler
 
 		$this->response = array(
 			'status' => 'success',
-			'message' => __('Link successfully updated.', 'wp-nested-pages'),
+			'message' => __('Link successfully updated.', 'nestedpages'),
 			'post_data' => $this->data['post']
 		);
 	}

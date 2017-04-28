@@ -63,8 +63,8 @@ class Settings
 	public function registerSettingsPage()
 	{
 		add_options_page( 
-			__('Nested Pages Settings', 'wp-nested-pages'),
-			__('Nested Pages', 'wp-nested-pages'),
+			__('Nested Pages Settings', 'nestedpages'),
+			__('Nested Pages', 'nestedpages'),
 			'manage_options',
 			'nested-pages-settings', 
 			array( $this, 'settingsPage' ) 

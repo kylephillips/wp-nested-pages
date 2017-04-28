@@ -5,7 +5,7 @@
 
 <form method="get" action="">
 	<div class="form-interior">
-	<h3><?php _e('Link', 'wp-nested-pages'); ?></h3>
+	<h3><?php _e('Link', 'nestedpages'); ?></h3>
 
 	<div class="np-quickedit-error" style="clear:both;display:none;"></div>
 
@@ -51,19 +51,19 @@
 		<div class="comments">
 			<label>
 				<input type="checkbox" name="nav_status" class="np_nav_status" value="hide" />
-				<span class="checkbox-title"><?php _e( 'Hide in Nav Menu', 'wp-nested-pages' ); ?></span>
+				<span class="checkbox-title"><?php _e( 'Hide in Nav Menu', 'nestedpages' ); ?></span>
 			</label>
 		</div>
 		<div class="comments">
 			<label>
 				<input type="checkbox" name="nested_pages_status" class="np_status" value="hide" />
-				<span class="checkbox-title"><?php _e( 'Hide in Nested Pages', 'wp-nested-pages' ); ?></span>
+				<span class="checkbox-title"><?php _e( 'Hide in Nested Pages', 'nestedpages' ); ?></span>
 			</label>
 		</div>
 		<div class="comments">
 			<label>
 				<input type="checkbox" name="linkTarget" class="link_target" value="_blank" />
-				<span class="checkbox-title"><?php _e( 'Open link in a new window/tab', 'wp-nested-pages' ); ?></span>
+				<span class="checkbox-title"><?php _e( 'Open link in a new window/tab' ); ?></span>
 			</label>
 		</div>			
 		<?php endif; // Edit theme options?>

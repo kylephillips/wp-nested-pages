@@ -9,7 +9,7 @@ class LinkDeletedConfirmation implements ConfirmationInterface
 {
 	public function setMessage()
 	{
-		$out = __('Link successfully deleted.', 'wp-nested-pages');
+		$out = __('Link successfully deleted.', 'nestedpages');
 		return $out;
 	}
 

@@ -27,7 +27,7 @@ class QuickEditLink extends BaseHandler
 		$this->addData();
 		$this->response = array(
 			'status' => 'success',
-			'message' => __('Link successfully updated.', 'wp-nested-pages'),
+			'message' => __('Link successfully updated.', 'nestedpages'),
 			'post_data' => $this->data
 		);
 	}

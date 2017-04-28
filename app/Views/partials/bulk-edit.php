@@ -7,10 +7,10 @@
 	<input type="hidden" name="page" value="<?php echo $this->pageURL(); ?>">
 	<input type="hidden" name="post_type" value="<?php echo $this->post_type->name; ?>">
 
-	<h3><?php _e('Bulk Edit', 'wp-nested-pages'); ?></h3>
+	<h3><?php _e('Bulk Edit', 'nestedpages'); ?></h3>
 
 	<div class="np-bulk-edit-link-info">
-		<div class="np-quickedit-info" data-bulk-edit-link-count><?php _e('There are links selected. Bulk edit will not apply to links.', 'wp-nested-pages'); ?></div>
+		<div class="np-quickedit-info" data-bulk-edit-link-count><?php _e('There are links selected. Bulk edit will not apply to links.', 'nestedpages'); ?></div>
 	</div>
 	
 	<ul class="np-bulk-titles" data-np-bulk-titles></ul>
@@ -79,7 +79,7 @@
 				
 				<?php if ( current_user_can('edit_theme_options') ) : ?>
 				<div class="form-control">
-					<label><?php _e( 'Display in Nested View', 'wp-nested-pages' ); ?></label>
+					<label><?php _e( 'Display in Nested View', 'nestedpages' ); ?></label>
 					<select name="nested_pages_status">
 						<option value="">&mdash; <?php _e('No Change'); ?> &mdash;</option>
 						<option value="hide"><?php _e('Hide'); ?></option>
@@ -89,7 +89,7 @@
 
 				<?php if ( $this->user->canSortPages() && $this->post_type->name == 'page' ) : ?>
 				<div class="form-control">
-					<label><?php _e( 'Hide in Nav Menu', 'wp-nested-pages' ); ?></label>
+					<label><?php _e( 'Hide in Nav Menu', 'nestedpages' ); ?></label>
 					<select name="nav_status">
 						<option value="">&mdash; <?php _e('No Change'); ?> &mdash;</option>
 						<option value="hide"><?php _e('Hide'); ?></option>
@@ -124,10 +124,10 @@
 
 		<div class="np-bulk-footer">
 			<button class="button pull-left" data-np-cancel-bulk-edit>
-				<?php _e('Cancel', 'wp-nested-pages'); ?>
+				<?php _e('Cancel', 'nestedpages'); ?>
 			</button>
 			<button type="submit" class="button button-primary">
-				<?php _e('Update', 'wp-nested-pages'); ?>
+				<?php _e('Update', 'nestedpages'); ?>
 			</button>
 		</div><!-- .np-bulk-footer -->
 

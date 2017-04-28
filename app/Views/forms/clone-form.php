@@ -6,17 +6,17 @@
 <div class="np-modal fade nestedpages np-modal-form" id="np-clone-modal">
 	<div class="modal-dialog">
 		<div class="modal-content clone-modal">
-			<h3><?php _e('Clone', 'wp-nested-pages'); ?> <span data-clone-parent></span></h3>
+			<h3><?php _e('Clone', 'nestedpages'); ?> <span data-clone-parent></span></h3>
 
 			<div class="modal-body">
 
 			<div class="form-control">
-				<label for="clone-quantity"><?php _e('Number of Copies', 'wp-nested-pages'); ?></label>
+				<label for="clone-quantity"><?php _e('Number of Copies', 'nestedpages'); ?></label>
 				<select id="clone-quantity" data-clone-quantity>
 					<option value="1" selected="">1</option>
 					<?php 
 					for ( $i = 2; $i < 11; $i++ ){
-						echo '<option value="' . absint($i) . '">' . absint($i) . '</option>';
+						echo '<option value="' . $i . '">' . $i . '</option>';
 					}
 					?>
 				</select>
@@ -62,7 +62,7 @@
 				<?php _e('Cancel'); ?>
 			</button>
 			<a accesskey="s" class="button-primary alignright" data-confirm-clone>
-				<?php _e( 'Clone', 'wp-nested-pages' ); ?>
+				<?php _e( 'Clone', 'nestedpages' ); ?>
 			</a>
 			<span class="np-qe-loading np-link-loading" data-clone-loading></span>
 		</div>
