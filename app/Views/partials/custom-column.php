@@ -7,7 +7,7 @@ if ( $columns ) :
 	echo '</div><!-- .cell.title -->';
 	
 	foreach ( $columns as $column => $label ) :
-		echo '<div class="cell custom-column" style="width:' . $column_width . '%;';
+		echo '<div class="cell custom-column" style="width:' . absint($column_width) . '%;';
 		if ( $i == count($columns) && $this->integrations->plugins->yoast->installed ) echo 'padding-right:24px;';
 		echo '">';
 

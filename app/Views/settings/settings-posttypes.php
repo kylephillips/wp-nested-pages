@@ -11,11 +11,11 @@ settings_fields( 'nestedpages-posttypes' );
 	<div class="post-type">
 		<div class="head">
 			<div class="checkbox">
-				<input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>]" value="<?php echo $type->name; ?>" <?php if ( $type->np_enabled ) echo 'checked'; ?> data-nestedpages-pt-checkbox id="post-type-<?php echo $type->name; ?>" />
+				<input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>]" value="<?php echo esc_attr($type->name); ?>" <?php if ( $type->np_enabled ) echo 'checked'; ?> data-nestedpages-pt-checkbox id="post-type-<?php echo esc_attr($type->name); ?>" />
 			</div>
 			<label for="post-type-<?php echo $type->name; ?>">
 				<?php 
-					echo $type->label; 
+					echo esc_html($type->label); 
 					if ( $type->hierarchical ) echo ' <em>(' . __('Hierarchical', 'wp-nested-pages') . ')</em>';
 				?>
 			</label>
@@ -30,7 +30,7 @@ settings_fields( 'nestedpages-posttypes' );
 							<?php _e('Replace the default top-level item with the nested view link.', 'wp-nested-pages'); ?></p>
 						</div>
 						<div class="field">
-							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][replace_menu]" value="true" <?php if ( $type->replace_menu ) echo 'checked'; ?> /><?php echo __('Replace Default') . ' ' . $type->label . ' ' . __('Menu', 'wp-nested-pages'); ?></label>
+							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][replace_menu]" value="true" <?php if ( $type->replace_menu ) echo 'checked'; ?> /><?php echo __('Replace Default') . ' ' . $type->label . ' ' . __('Menu', 'wp-nested-pages'); ?></label>
 						</div><!-- .field -->
 					</div><!-- .row -->
 				</li>
@@ -41,7 +41,7 @@ settings_fields( 'nestedpages-posttypes' );
 							<?php _e('If the default menu is replaced, a link to the default view will be added. Select this to remove the link', 'wp-nested-pages'); ?>
 						</div>
 						<div class="field">
-							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][hide_default]" value="true" <?php if ( $type->hide_default ) echo 'checked'; ?> /><?php echo __('Hide Default', 'wp-nested-pages') . ' ' . $type->label . ' ' . __('Link', 'wp-nested-pages'); ?></label>
+							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][hide_default]" value="true" <?php if ( $type->hide_default ) echo 'checked'; ?> /><?php echo __('Hide Default', 'wp-nested-pages') . ' ' . esc_html($type->label) . ' ' . __('Link', 'wp-nested-pages'); ?></label>
 						</div>
 					</div><!-- .row -->
 				</li>
@@ -53,7 +53,7 @@ settings_fields( 'nestedpages-posttypes' );
 							<?php _e('To disable nesting on hierarchical post types, select this option.', 'wp-nested-pages'); ?></p>
 						</div>
 						<div class="field">
-							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][disable_nesting]" value="true" <?php if ( $type->disable_nesting ) echo 'checked '; ?>/><?php echo __('Disable Nesting for', 'wp-nested-pages') . ' ' . $type->label; ?></label>
+							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][disable_nesting]" value="true" <?php if ( $type->disable_nesting ) echo 'checked '; ?>/><?php echo __('Disable Nesting for', 'wp-nested-pages') . ' ' . esc_html($type->label); ?></label>
 						</div>
 					</div><!-- .row -->
 				</li>
@@ -71,16 +71,16 @@ settings_fields( 'nestedpages-posttypes' );
 							<?php _e('Note: Thumbnail width is displayed at a maximum of 80px in the nested pages view. The image is scaled proportionally.', 'wp-nested-pages'); ?></p>
 						</div>
 						<div class="field">
-							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][thumbnails][display]" value="true" <?php if ( $thumbnails_enabled ) echo 'checked'; ?> data-enable-thumbnails /><?php echo __('Display Thumbnails for', 'wp-nested-pages') . ' ' . $type->label; ?></label>
+							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo $type->name; ?>][thumbnails][display]" value="true" <?php if ( $thumbnails_enabled ) echo 'checked'; ?> data-enable-thumbnails /><?php echo __('Display Thumbnails for', 'wp-nested-pages') . ' ' . esc_html($type->label); ?></label>
 							
 							<div class="thumbnail-options" data-thumbnail-options <?php if ( !$thumbnails_enabled ) echo 'style="display:none;"'; ?>>
 								<label><?php _e('Thumbnail Source', 'wp-nested-pages'); ?></label>
 								<select name="nestedpages_posttypes[<?php echo $type->name; ?>][thumbnails][size]">
 								<?php
 								foreach ( $thumbnail_sizes as $size ){
-									echo '<option value="' . $size . '"';
+									echo '<option value="' . esc_attr($size) . '"';
 									if ( $size == $thumbnail_source ) echo ' selected';
-									echo '>' . $size . '</option>';
+									echo '>' . esc_html($size) . '</option>';
 								}
 								?>
 								</select>
@@ -122,9 +122,9 @@ settings_fields( 'nestedpages-posttypes' );
 											foreach ( $selected_columns as $name => $label ) :
 												$out .= '<li>';
 												$out .= '<label>';
-												$out .= '<input type="checkbox" name="nestedpages_posttypes[' . $type->name . '][columns][' . $name . ']" value="' . $label . '"';
+												$out .= '<input type="checkbox" name="nestedpages_posttypes[' . esc_attr($type->name) . '][columns][' . esc_attr($name) . ']" value="' . esc_attr($label) . '"';
 												if ( array_key_exists($name, $type->columns) ) $out .= ' checked';
-												$out .= ' />' . $label;
+												$out .= ' />' . esc_html($label);
 												$out .= '</label>';
 												$out .= '</li>';
 											endforeach;
@@ -134,7 +134,7 @@ settings_fields( 'nestedpages-posttypes' );
 												if ( array_key_exists($name, $type->columns) ) continue;
 												$out .= '<li>';
 												$out .= '<label>';
-												$out .= '<input type="checkbox" name="nestedpages_posttypes[' . $type->name . '][columns][' . $name . ']" value="' . $label . '" />' . $label;
+												$out .= '<input type="checkbox" name="nestedpages_posttypes[' . esc_attr($type->name) . '][columns][' . esc_attr($name) . ']" value="' . esc_attr($label) . '" />' . esc_html($label);
 												$out .= '</label>';
 												$out .= '</li>';
 											endforeach;
@@ -157,7 +157,7 @@ settings_fields( 'nestedpages-posttypes' );
 							<?php _e('Remove standard fields from the quick edit form.', 'wp-nested-pages'); ?></p>
 						</div>
 						<div class="field">
-							<label><input type="checkbox" data-toggle-nestedpages-sf-settings name="nestedpages_posttypes[<?php echo $type->name; ?>][standard_fields_enabled]" value="true" <?php if ( $type->standard_fields_enabled ) echo 'checked '; ?>/><?php _e('Configure Standard Fields', 'wp-nested-pages'); ?></label>
+							<label><input type="checkbox" data-toggle-nestedpages-sf-settings name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][standard_fields_enabled]" value="true" <?php if ( $type->standard_fields_enabled ) echo 'checked '; ?>/><?php _e('Configure Standard Fields', 'wp-nested-pages'); ?></label>
 
 							<div class="standard-fields">
 								<h5><?php _e('Check to remove from Quick Edit.', 'wp-nested-pages'); ?></h5>
@@ -169,10 +169,10 @@ settings_fields( 'nestedpages-posttypes' );
 											if ( $name != 'taxonomies' ) :
 												$out .= '<li>';
 												$out .= '<label>';
-												$out .= '<input type="checkbox" name="nestedpages_posttypes[' . $type->name . '][standard_fields][standard][' . $name . ']" value="true"';
+												$out .= '<input type="checkbox" name="nestedpages_posttypes[' . esc_attr($type->name) . '][standard_fields][standard][' . esc_attr($name) . ']" value="true"';
 												if ( $name == 'hide_taxonomies' ) $out .= ' data-hide-taxonomies';
 												if ( $this->post_type_repo->fieldEnabled($type->name, 'standard', $name, 'standard_fields') ) $out .= ' checked';
-												$out .= ' />' . $label;
+												$out .= ' />' . esc_html($label);
 												$out .= '</label>';
 												$out .= '</li>';
 											else : // Taxonomies
@@ -182,9 +182,9 @@ settings_fields( 'nestedpages-posttypes' );
 													if ( $this->post_type_repo->fieldEnabled($type->name, 'standard', 'hide_taxonomies', 'standard_fields') ) $out .= 'display:none;';
 													$out .= '">';
 													$out .= '<label>';
-													$out .= '<input type="checkbox" name="nestedpages_posttypes[' . $type->name . '][standard_fields][standard][taxonomies][' . $tax_name . ']" value="true"';
+													$out .= '<input type="checkbox" name="nestedpages_posttypes[' . esc_attr($type->name) . '][standard_fields][standard][taxonomies][' . esc_attr($tax_name) . ']" value="true"';
 													if ( $disabled ) $out .= ' checked';
-													$out .= ' />' . $tax_label;
+													$out .= ' />' . esc_html($tax_label);
 													$out .= '</label>';
 													$out .= '</li>';
 												endforeach;
@@ -220,9 +220,9 @@ settings_fields( 'nestedpages-posttypes' );
 									foreach ($acf_fields as $field){
 										$out .= '<li>';
 										$out .= '<label>';
-										$out .= '<input type="checkbox" name="nestedpages_posttypes[' . $type->name . '][custom_fields][acf][' . $field['key'] . ']" value="' . $field['type'] . '"'; 
+										$out .= '<input type="checkbox" name="nestedpages_posttypes[' . esc_attr($type->name) . '][custom_fields][acf][' . esc_attr($field['key']) . ']" value="' . esc_attr($field['type']) . '"'; 
 										if ( $this->post_type_repo->fieldEnabled($type->name, 'acf', $field['key']) ) $out .= ' checked';
-										$out .= '/>' . $field['label'] . ' (' . $field['type'] . ')';
+										$out .= '/>' . $field['label'] . ' (' . esc_html($field['type']) . ')';
 										$out .= '</label>';
 										$out .= '</li>';
 									}

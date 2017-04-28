@@ -16,7 +16,7 @@
 					<option value="1" selected="">1</option>
 					<?php 
 					for ( $i = 2; $i < 11; $i++ ){
-						echo '<option value="' . $i . '">' . $i . '</option>';
+						echo '<option value="' . absint($i) . '">' . absint($i) . '</option>';
 					}
 					?>
 				</select>
