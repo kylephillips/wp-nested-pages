@@ -101,6 +101,7 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 
 = 1.6.7 =
 * Multisite superadmins treated as admins (Thanks to Kristoffer Svanmark)
+* Text domain change from v1.6.4 integrated
 
 = 1.6.6 =
 * Important security update: XSS vulnerability fix
