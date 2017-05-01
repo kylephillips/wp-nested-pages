@@ -4,7 +4,7 @@
 ?>
 <form method="get" action="" class="np-new-child-form">
 	<div class="form-interior">
-	<h3><strong><?php _e('Add Child', 'nestedpages'); ?></strong><span class="parent_name"></span></h3>
+	<h3><strong><?php _e('Add Child', 'wp-nested-pages'); ?></strong><span class="parent_name"></span></h3>
 
 	<div class="np-quickedit-error" style="clear:both;display:none;"></div>
 	
@@ -18,14 +18,14 @@
 				<div class="form-control new-child-row">
 					<label><?php _e( 'Title' ); ?></label>
 					<div>
-						<input type="text" name="post_title[]" class="np_title" placeholder="<?php _e('Title', 'nestedpages'); ?>" value="" tabindex="1" />
+						<input type="text" name="post_title[]" class="np_title" placeholder="<?php _e('Title', 'wp-nested-pages'); ?>" value="" tabindex="1" />
 						<a href="#" class="button-secondary np-remove-child">-</a>
 					</div>
 				</div>
 			</li>
 		</ol>
 
-		<a href="#" class="add-new-child-row button-primary" style="clear:both;"><?php _e('+', 'nestedpages'); ?></a>
+		<a href="#" class="add-new-child-row button-primary" style="clear:both;"><?php _e('+', 'wp-nested-pages'); ?></a>
 	</div><!-- .left -->
 
 
@@ -80,7 +80,7 @@
 		<div class="form-control full checkbox">
 			<label>
 				<input type="checkbox" name="nav_status" class="np_nav_status" value="hide" />
-				<span class="checkbox-title"><?php _e( 'Hide in Nav Menu', 'nestedpages' ); ?></span>
+				<span class="checkbox-title"><?php _e( 'Hide in Nav Menu', 'wp-nested-pages' ); ?></span>
 			</label>
 		</div>
 		<?php endif; ?>
@@ -99,10 +99,10 @@
 			<?php _e( 'Cancel' ); ?>
 		</a>
 		<a accesskey="s" href="#" class="button-primary np-save-newchild alignright" style="margin-left:10px;">
-			<?php _e( 'Add', 'nestedpages' ); ?>
+			<?php _e( 'Add', 'wp-nested-pages' ); ?>
 		</a>
 		<a href="#" class="button-secondary np-save-newchild add-edit alignright">
-			<?php _e( 'Add & Edit', 'nestedpages' ); ?>
+			<?php _e( 'Add & Edit', 'wp-nested-pages' ); ?>
 		</a>
 		<span class="np-qe-loading"></span>
 	</div>

@@ -37,7 +37,7 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 
 				// Nav Status
 				if ( $this->post->nav_status == 'hide' ){
-					echo '<span class="nav-status">(' . __('Hidden', 'nestedpages') . ')</span>';
+					echo '<span class="nav-status">(' . __('Hidden', 'wp-nested-pages') . ')</span>';
 				} else {
 					echo '<span class="nav-status"></span>';
 				}

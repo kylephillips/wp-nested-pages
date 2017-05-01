@@ -76,21 +76,21 @@ class SettingsRepository
 		$post_type_repo = new PostTypeRepository;
 
 		$fields = array(
-			'title' => __('Post Title', 'nestedpages'), 
-			'slug' => __('Slug', 'nestedpages'), 
-			'date' => __('Post Date', 'nestedpages'), 
-			'author' => __('Author', 'nestedpages'),
-			'status' => __('Post Status', 'nestedpages'),
-			'password' => __('Password/Private', 'nestedpages'),
-			'allow_comments' => __('Allow Comments', 'nestedpages')
+			'title' => __('Post Title', 'wp-nested-pages'), 
+			'slug' => __('Slug', 'wp-nested-pages'), 
+			'date' => __('Post Date', 'wp-nested-pages'), 
+			'author' => __('Author', 'wp-nested-pages'),
+			'status' => __('Post Status', 'wp-nested-pages'),
+			'password' => __('Password/Private', 'wp-nested-pages'),
+			'allow_comments' => __('Allow Comments', 'wp-nested-pages')
 		);
 
 		if ( $post_type == 'page' ) {
-			$fields['template'] = __('Template', 'nestedpages');
-			$fields['menu_options'] = __('Menu Options', 'nestedpages');
+			$fields['template'] = __('Template', 'wp-nested-pages');
+			$fields['menu_options'] = __('Menu Options', 'wp-nested-pages');
 		}
 
-		$fields['hide_in_np'] = __('Hide in Nested Pages', 'nestedpages');
+		$fields['hide_in_np'] = __('Hide in Nested Pages', 'wp-nested-pages');
 		
 		// Taxonomies
 		$enabled_h_taxonomies = $post_type_repo->getTaxonomies($post_type);
@@ -98,7 +98,7 @@ class SettingsRepository
 		$enabled_taxonomies = array_merge($enabled_h_taxonomies, $enabled_f_taxonomies);
 		if ( empty($enabled_taxonomies) ) return $fields;
 		
-		$fields['hide_taxonomies'] = __('Taxonomies', 'nestedpages');
+		$fields['hide_taxonomies'] = __('Taxonomies', 'wp-nested-pages');
 		$fields['taxonomies'] = array();
 		foreach($enabled_taxonomies as $taxonomy){
 			$fields['taxonomies'][$taxonomy->name] = $taxonomy->labels->name;

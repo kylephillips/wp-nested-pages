@@ -33,7 +33,7 @@ class SyncMenu extends BaseHandler
 	{
 		update_option('nestedpages_menusync', 'sync');
 		$this->syncMenu();
-		$this->response = array('status'=>'success', 'message'=> __('Menu sync enabled.'));
+		$this->response = array('status'=>'success', 'message'=> __('Menu sync enabled.', 'wp-nested-pages'));
 	}
 
 }

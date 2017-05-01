@@ -28,8 +28,8 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 			<span class="title">
 				<?php 
 					echo apply_filters( 'the_title', $this->post->title, $this->post->id, $view = 'nestedpages_title' ); 
-					if ( $this->post->id == get_option('page_on_front') ) echo ' <em class="np-page-type"><strong>&ndash; ' . __('Front Page', 'nestedpages') . '</strong></em>';
-					if ( $this->post->id == get_option('page_for_posts') ) echo ' <em class="np-page-type"><strong>&ndash; ' . __('Posts Page', 'nestedpages') . '</strong></em>';
+					if ( $this->post->id == get_option('page_on_front') ) echo ' <em class="np-page-type"><strong>&ndash; ' . __('Front Page', 'wp-nested-pages') . '</strong></em>';
+					if ( $this->post->id == get_option('page_for_posts') ) echo ' <em class="np-page-type"><strong>&ndash; ' . __('Posts Page', 'wp-nested-pages') . '</strong></em>';
 				?>
 			</span>
 			<?php 
@@ -45,7 +45,7 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 
 				// Nav Status
 				if ( $this->post->nav_status == 'hide' ){
-					echo '<span class="nav-status">' . __('Hidden', 'nestedpages') . '</span>';
+					echo '<span class="nav-status">' . __('Hidden', 'wp-nested-pages') . '</span>';
 				} else {
 					echo '<span class="nav-status"></span>';
 				}
@@ -53,7 +53,7 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 				// Post Lock
 				if ( $user = wp_check_post_lock($this->post->id) ){
 					$u = get_userdata($user);
-					echo '<span class="locked"><i class="np-icon-lock"></i><em> ' . esc_html($u->display_name) . ' ' . __('currently editing', 'nestedpages') . '</em></span>';
+					echo '<span class="locked"><i class="np-icon-lock"></i><em> ' . esc_html($u->display_name) . ' ' . __('currently editing', 'wp-nested-pages') . '</em></span>';
 				} elseif ( !$this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ){
 					echo '<span class="locked"><i class="np-icon-lock"></i></span>';
 				} else {
@@ -99,12 +99,12 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 			<a href="#" class="np-btn open-redirect-modal" data-parentid="<?php echo $this->post->id; ?>"><i class="np-icon-link"></i></a>
 			<?php endif; ?>
 			
-			<a href="#" class="np-btn add-new-child" data-id="<?php echo get_the_id(); ?>" data-parentname="<?php echo $this->post->title; ?>"><?php _e('Add Child', 'nestedpages'); ?></a>
+			<a href="#" class="np-btn add-new-child" data-id="<?php echo get_the_id(); ?>" data-parentname="<?php echo $this->post->title; ?>"><?php _e('Add Child', 'wp-nested-pages'); ?></a>
 
 			<?php endif; ?>
 
 			<?php if ( current_user_can('edit_pages') && current_user_can('edit_posts') ) : ?>
-			<a href="#" class="np-btn clone-post" data-id="<?php echo get_the_id(); ?>" data-parentname="<?php echo $this->post->title; ?>"><?php _e('Clone', 'nestedpages'); ?></a>
+			<a href="#" class="np-btn clone-post" data-id="<?php echo get_the_id(); ?>" data-parentname="<?php echo $this->post->title; ?>"><?php _e('Clone', 'wp-nested-pages'); ?></a>
 			<?php endif; ?>
 
 			<?php if ( !$user = wp_check_post_lock($this->post->id) || !$this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ) : ?>

@@ -19,8 +19,8 @@ class RegisterPostTypes
 	public function registerRedirects()
 	{
 		$labels = array(
-			'name' => __('Redirects', 'nestedpages'),  
-			'singular_name' => __('Redirect', 'nestedpages'),
+			'name' => __('Redirects', 'wp-nested-pages'),  
+			'singular_name' => __('Redirect', 'wp-nested-pages'),
 			'add_new_item'=> 'Add Redirect',
 			'edit_item' => 'Edit Redirect',
 			'view_item' => 'View Redirect'

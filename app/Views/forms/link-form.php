@@ -15,7 +15,7 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 					<div class="np-menu-type-selection">
 						<ul data-np-menu-accordion>
 
-							<li><a href="#" class="np-custom-link" data-np-menu-object="custom" data-np-menu-type="custom" data-np-menu-objectid="" data-np-permalink="" data-np-menu-selection><?php _e('Custom Link', 'nestedpages'); ?></a></li>
+							<li><a href="#" class="np-custom-link" data-np-menu-object="custom" data-np-menu-type="custom" data-np-menu-objectid="" data-np-permalink="" data-np-menu-selection><?php _e('Custom Link', 'wp-nested-pages'); ?></a></li>
 
 							<?php
 								// Post Types
@@ -24,7 +24,7 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 									if ( !$recent_posts ) continue;
 									$out = '<li><a href="#" data-np-menu-accordion-item>' . esc_html($type->labels->name) . '</a>';
 									$out .= '<ul>';
-									$out .= '<li class="np-menu-search"><input type="text" data-np-menu-search data-search-type="post_type" data-search-object="' . esc_attr($name) . '" placeholder="' . __('Search', 'nestedpages') . ' ' . esc_attr($type->labels->name) . '" /><div class="np-menu-search-loading"></div><div class="np-menu-search-noresults">' . __('No Results', 'nestedpages') . '</div></li>';
+									$out .= '<li class="np-menu-search"><input type="text" data-np-menu-search data-search-type="post_type" data-search-object="' . esc_attr($name) . '" placeholder="' . __('Search', 'wp-nested-pages') . ' ' . esc_attr($type->labels->name) . '" /><div class="np-menu-search-loading"></div><div class="np-menu-search-noresults">' . __('No Results', 'wp-nested-pages') . '</div></li>';
 									foreach ( $recent_posts as $post ){
 										$out .= '<li data-default-result><a href="#" data-np-menu-object="' . esc_attr($name) . '" data-np-menu-type="post_type" data-np-menu-objectid="' . esc_attr($post->ID) . '" data-np-permalink="' . get_the_permalink($post->ID) . '" data-np-object-name="' . esc_attr($type->labels->singular_name) . '" data-np-menu-selection>' . esc_html($post->post_title) . '</a></li>';
 									}
@@ -41,7 +41,7 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 									if ( !$terms ) continue;
 									$out = '<li><a href="#" data-np-menu-accordion-item>' . esc_html($taxonomy->labels->name) . '</a>';
 									$out .= '<ul>';
-									$out .= '<li class="np-menu-search"><input type="text" data-np-menu-search data-search-type="taxonomy" data-search-object="' . esc_attr($name) . '" placeholder="' . __('Search', 'nestedpages') . ' ' . esc_attr($taxonomy->labels->name) . '" /><div class="np-menu-search-loading"></div><div class="np-menu-search-noresults">' . __('No Results', 'nestedpages') . '</div></li>';
+									$out .= '<li class="np-menu-search"><input type="text" data-np-menu-search data-search-type="taxonomy" data-search-object="' . esc_attr($name) . '" placeholder="' . __('Search', 'wp-nested-pages') . ' ' . esc_attr($taxonomy->labels->name) . '" /><div class="np-menu-search-loading"></div><div class="np-menu-search-noresults">' . __('No Results', 'wp-nested-pages') . '</div></li>';
 									foreach ( $terms as $term ){
 										$out .= '<li data-default-result><a href="#" data-np-menu-object="' . esc_attr($name) . '" data-np-menu-type="taxonomy" data-np-menu-objectid="' . esc_attr($term->term_id) . '" data-np-permalink="' . esc_attr(get_term_link($term)) . '" data-np-object-name="' . esc_attr($taxonomy->labels->name) . '" data-np-menu-selection>' . esc_html($term->name) . '</a></li>';
 									}
@@ -55,29 +55,29 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 					</div><!-- .np-menu-type-selection -->
 					<div class="np-menu-link-object">
 						<div class="np-menu-link-object-placeholder">
-							<?php _e('Select an item', 'nestedpages'); ?>
+							<?php _e('Select an item', 'wp-nested-pages'); ?>
 						</div>
 						<div class="np-menu-link-details" style="display:none;">
 							<h3><span data-np-menu-title></span> <em></em></h3>
 							<div class="original-link">
-								<?php _e('Original', 'nestedpages'); ?>: <span data-np-original-link></span>
+								<?php _e('Original', 'wp-nested-pages'); ?>: <span data-np-original-link></span>
 							</div>
 							<div class="np-quickedit-error" data-np-error style="clear:both;display:none;"></div>
 							<div class="fields">
 								<p data-np-menu-url-cont style="display:none;">
-									<label><?php _e('URL', 'nestedpages'); ?></label>
+									<label><?php _e('URL', 'wp-nested-pages'); ?></label>
 									<input type="text" name="url" data-np-menu-url />
 								</p>
 								<p>
-									<label><?php _e('Navigation Label', 'nestedpages'); ?></label>
+									<label><?php _e('Navigation Label', 'wp-nested-pages'); ?></label>
 									<input type="text" name="navigationLabel" data-np-menu-navigation-label />
 								</p>
 								<p>
-									<label><?php _e('Title Attribute', 'nestedpages'); ?></label>
+									<label><?php _e('Title Attribute', 'wp-nested-pages'); ?></label>
 									<input type="text" name="titleAttribute" data-np-menu-title-attr />
 								</p>
 								<p>
-									<label><?php _e('CSS Classes (optional)', 'nestedpages'); ?></label>
+									<label><?php _e('CSS Classes (optional)', 'wp-nested-pages'); ?></label>
 									<input type="text" name="cssClasses" data-np-menu-css-classes />
 								</p>
 								<?php if ( $this->user->canSortPages() ) : // Menu Options Button ?>
@@ -102,7 +102,7 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 					</button>
 
 					<a accesskey="s" class="button-primary" data-np-save-link style="display:none;float:right;">
-						<?php _e( 'Add', 'nestedpages' ); ?>
+						<?php _e( 'Add', 'wp-nested-pages' ); ?>
 					</a>
 					<span class="np-qe-loading"></span>
 

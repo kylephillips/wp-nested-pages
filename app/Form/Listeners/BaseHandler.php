@@ -77,7 +77,7 @@ abstract class BaseHandler
 	protected function validateNonce()
 	{
 		if ( ! wp_verify_nonce( $this->nonce, 'nestedpages-nonce' ) ){
-			$this->response = array( 'status' => 'error', 'message' => __('Incorrect Form Field', 'nestedpages') );
+			$this->response = array( 'status' => 'error', 'message' => __('Incorrect Form Field', 'wp-nested-pages') );
 			$this->sendResponse();
 			die();
 		}
@@ -110,7 +110,7 @@ abstract class BaseHandler
 	{
 		$this->response = array(
 			'status' => 'error', 
-			'message' => __('There was an error updating the page.', 'nestedpages') 
+			'message' => __('There was an error updating the page.', 'wp-nested-pages') 
 		);
 		$this->sendResponse();
 	}

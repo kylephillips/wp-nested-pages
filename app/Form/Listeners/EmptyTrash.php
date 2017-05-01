@@ -16,7 +16,7 @@ class EmptyTrash extends BaseHandler
 		if ( $this->post_repo->emptyTrash($_POST['posttype']) ){
 			return wp_send_json(array(
 				'status'=>'success', 
-				'message'=> __('Trash successfully emptied.')
+				'message'=> __('Trash successfully emptied.', 'wp-nested-pages')
 			));
 		}
 		$this->sendErrorResponse();

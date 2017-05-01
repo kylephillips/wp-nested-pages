@@ -26,9 +26,9 @@ class Sort extends BaseHandler
 		$posts = $this->data['list'];
 		$order = $this->post_update_repo->updateOrder($posts);
 		if ( $order ){
-			$this->response = array('status' => 'success', 'message' => __('Page order successfully updated.','nestedpages') );
+			$this->response = array('status' => 'success', 'message' => __('Page order successfully updated.','wp-nested-pages') );
 		} else {
-			$this->response = array('status'=>'error', 'message'=> __('There was an error updating the page order.','nestedpages') );
+			$this->response = array('status'=>'error', 'message'=> __('There was an error updating the page order.','wp-nested-pages') );
 		}
 	}
 

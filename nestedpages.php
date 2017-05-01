@@ -6,7 +6,7 @@ Description: Provides an intuitive drag and drop interface for managing pages in
 Version: 1.6.6
 Author: Kyle Phillips
 Author URI: https://github.com/kylephillips
-Text Domain: nestedpages
+Text Domain: wp-nested-pages
 Domain Path: /languages/
 License: GPLv2 or later.
 Copyright: Kyle Phillips

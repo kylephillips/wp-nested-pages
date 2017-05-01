@@ -8,8 +8,8 @@
 		<div class="modal-content">
 			<div class="modal-body">
 				<p data-np-link-delete-text></p>
-				<a href="#" class="np-cancel-trash button modal-close" data-dismiss="modal"><?php _e('Cancel', 'nestedpages'); ?></a>
-				<a href="#" class="button-primary" data-delete-confirmation><?php _e('Delete', 'nestedpages'); ?></a>
+				<a href="#" class="np-cancel-trash button modal-close" data-dismiss="modal"><?php _e('Cancel', 'wp-nested-pages'); ?></a>
+				<a href="#" class="button-primary" data-delete-confirmation><?php _e('Delete', 'wp-nested-pages'); ?></a>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
