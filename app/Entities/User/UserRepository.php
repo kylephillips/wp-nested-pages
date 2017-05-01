@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace NestedPages\Entities\User;
 
@@ -6,7 +6,7 @@ namespace NestedPages\Entities\User;
 * User Repository
 * @since 1.1.7
 */
-class UserRepository 
+class UserRepository
 {
 
 	/**
@@ -17,6 +17,12 @@ class UserRepository
 	public function getRoles()
 	{
 		global $current_user;
+
+		// If current user is superadmin (WP Multisite) add administrator to the roles array
+		if (function_exists('is_multisite') && is_multisite() && is_super_admin()) {
+			$current_user->roles[] = 'administrator';
+		}
+
 		return $current_user->roles;
 	}
 
@@ -54,7 +60,7 @@ class UserRepository
 		$roles = $this->getRoles();
 		$cansort = get_option('nestedpages_allowsorting', array());
 		if ( $cansort == "" ) $cansort = array();
-		
+
 		foreach($roles as $role){
 			if ( $role == 'administrator' ) return true;
 			if ( in_array($role, $cansort) ) return true;
@@ -66,7 +72,7 @@ class UserRepository
 	* Get an array of all users/ids
 	* @since 1.3.0
 	* @return array
-	*/ 
+	*/
 	public function allUsers()
 	{
 		$users = get_users(array(
