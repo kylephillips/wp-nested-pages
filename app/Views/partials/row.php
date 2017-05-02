@@ -96,15 +96,15 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 			<?php if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->isSearch() ) : ?>
 		
 			<?php if (!$this->settings->menusDisabled()) : ?>
-			<a href="#" class="np-btn open-redirect-modal" data-parentid="<?php echo $this->post->id; ?>"><i class="np-icon-link"></i></a>
+			<a href="#" class="np-btn open-redirect-modal" data-parentid="<?php echo esc_attr($this->post->id); ?>"><i class="np-icon-link"></i></a>
 			<?php endif; ?>
 			
-			<a href="#" class="np-btn add-new-child" data-id="<?php echo get_the_id(); ?>" data-parentname="<?php echo $this->post->title; ?>"><?php _e('Add Child', 'wp-nested-pages'); ?></a>
+			<a href="#" class="np-btn add-new-child" data-id="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php echo esc_html($this->post->title); ?>"><?php _e('Add Child', 'wp-nested-pages'); ?></a>
 
 			<?php endif; ?>
 
 			<?php if ( current_user_can('edit_pages') && current_user_can('edit_posts') ) : ?>
-			<a href="#" class="np-btn clone-post" data-id="<?php echo get_the_id(); ?>" data-parentname="<?php echo $this->post->title; ?>"><?php _e('Clone', 'wp-nested-pages'); ?></a>
+			<a href="#" class="np-btn clone-post" data-id="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php echo esc_html($this->post->title); ?>"><?php _e('Clone', 'wp-nested-pages'); ?></a>
 			<?php endif; ?>
 
 			<?php if ( !$user = wp_check_post_lock($this->post->id) || !$this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ) : ?>
