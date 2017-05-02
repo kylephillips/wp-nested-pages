@@ -99,6 +99,9 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 
 == Changelog ==
 
+= 1.6.8 =
+* Bug fix where admin bars were not displaying in Safari until hover
+
 = 1.6.7 =
 * Multisite superadmins treated as admins (Thanks to Kristoffer Svanmark)
 * Text domain change from v1.6.4 integrated
