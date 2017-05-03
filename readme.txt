@@ -99,6 +99,9 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 
 == Changelog ==
 
+= 1.6.9 =
+* Added option to disable sorting per post type
+
 = 1.6.8 =
 * Bug fix where admin bars were not displaying in Safari until hover
 * Bug fixes in display of post titles with html tags
