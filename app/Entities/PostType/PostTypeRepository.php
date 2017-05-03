@@ -71,6 +71,7 @@ class PostTypeRepository
 			$post_types[$type->name]->np_enabled = ( array_key_exists($type->name, $this->enabled_post_types) ) ? true : false;
 			$post_types[$type->name]->replace_menu = $this->postTypeSetting($type->name, 'replace_menu');
 			$post_types[$type->name]->hide_default = $this->postTypeSetting($type->name, 'hide_default');
+			$post_types[$type->name]->disable_sorting = $this->postTypeSetting($type->name, 'disable_sorting');
 			$post_types[$type->name]->disable_nesting = $this->postTypeSetting($type->name, 'disable_nesting');
 			$post_types[$type->name]->custom_fields_enabled = $this->postTypeSetting($type->name, 'custom_fields_enabled');
 			$post_types[$type->name]->standard_fields_enabled = $this->postTypeSetting($type->name, 'standard_fields_enabled');

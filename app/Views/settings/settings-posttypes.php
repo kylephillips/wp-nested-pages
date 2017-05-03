@@ -45,6 +45,17 @@ settings_fields( 'nestedpages-posttypes' );
 						</div>
 					</div><!-- .row -->
 				</li>
+				<li>
+					<div class="row">
+						<div class="description">
+							<p><strong><?php _e('Disable Sorting', 'wp-nested-pages'); ?>*</strong><br />
+							<?php _e('Remove drag and drop sorting from this post type.', 'wp-nested-pages'); ?></p>
+						</div>
+						<div class="field">
+							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][disable_sorting]" value="true" <?php if ( $type->disable_sorting ) echo 'checked'; ?> /><?php echo __('Disable Sorting') ?></label>
+						</div><!-- .field -->
+					</div><!-- .row -->
+				</li>
 				<?php if ( $type->hierarchical ) : ?>
 				<li>
 					<div class="row">
