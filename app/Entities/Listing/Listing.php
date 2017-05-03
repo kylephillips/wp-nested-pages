@@ -84,6 +84,12 @@ class Listing
 	private $settings;
 
 	/**
+	* Post Type Settings
+	* @var object from post type repo
+	*/
+	private $post_type_settings;
+
+	/**
 	* Plugin Integrations
 	*/
 	private $integrations;
@@ -110,6 +116,7 @@ class Listing
 		$this->listing_repo = new ListingRepository;
 		$this->post_data_factory = new PostDataFactory;
 		$this->settings = new SettingsRepository;
+		$this->setPostTypeSettings();
 		$this->setStandardFields();
 	}
 
@@ -161,21 +168,28 @@ class Listing
 	}
 
 	/**
+	* Set the Post Type Settings
+	* @since 1.6.9
+	*/
+	private function setPostTypeSettings()
+	{
+		$this->post_type_settings = $this->post_type_repo->getSinglePostType($this->post_type->name);
+	}
+
+	/**
 	* Set the Quick Edit Field Options
 	*/
 	private function setStandardFields()
 	{
-		$type_options = $this->post_type_repo->getSinglePostType($this->post_type->name);
-
 		// The standard fields checkbox is explicitly not set
-		if ( isset($type_options->standard_fields_enabled) && !$type_options->standard_fields_enabled ){
+		if ( isset($this->post_type_settings->standard_fields_enabled) && !$this->post_type_settings->standard_fields_enabled ){
 			$this->disabled_standard_fields = array();
 			return;
 		}
 
-		if ( isset($type_options->standard_fields) && is_array($type_options->standard_fields) ){
-			$this->disabled_standard_fields = $type_options->standard_fields;
-			foreach ( $type_options->standard_fields as $key => $fields ){
+		if ( isset($this->post_type_settings->standard_fields) && is_array($this->post_type_settings->standard_fields) ){
+			$this->disabled_standard_fields = $this->post_type_settings->standard_fields;
+			foreach ( $this->post_type_settings->standard_fields as $key => $fields ){
 				if ( $key == 'standard' ) $this->disabled_standard_fields = $fields;
 			}
 			return;
@@ -211,6 +225,7 @@ class Listing
 	private function listOpening($pages, $count, $sortable = true)
 	{
 		if ( $this->isSearch() ) $sortable = false;
+		if ( $this->post_type_settings->disable_sorting ) $sortable = false;
 
 		// Get array of child pages
 		$children = array();
@@ -222,7 +237,7 @@ class Listing
 		$compared = array_intersect($this->listing_repo->visiblePages($this->post_type->name), $children);
 
 		$list_classes = 'sortable visible nplist';
-		if ( !$this->user->canSortPages() && !$sortable || $this->isSearch() ) $list_classes .= ' no-sort';
+		if ( !$this->user->canSortPages() || !$sortable || $this->isSearch() ) $list_classes .= ' no-sort';
 		if ( $this->integrations->plugins->yoast->installed ) $list_classes .= ' has-yoast';
 		if ( $this->isSearch() ) $list_classes .= ' np-search-results';
 
