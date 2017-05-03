@@ -133,6 +133,7 @@ NestedPages.jsData = {
 	syncmenu : 'nosync', // Whether to sync the menu
 	posttype : '', // current Screen's post type
 	nestable : true, // boolean - whether post type is nestable
+	sortable : true, // boolean - whether post type is sortable
 	hierarchical : true, // boolean - whether post type is hierarchical
 	expandText : nestedpages.expand_text, // Expand all button text
 	collapseText : nestedpages.collapse_text, // Collapse all button text
@@ -192,6 +193,7 @@ NestedPages.Factory = function()
 		plugin.setPostType();
 		plugin.setMenuSync();
 		plugin.setNestable();
+		plugin.setSortable();
 		plugin.formatter.updateSubMenuToggle();
 		plugin.formatter.setBorders();
 		plugin.formatter.setNestedMargins();
@@ -222,6 +224,19 @@ NestedPages.Factory = function()
 			if ( v.disable_nesting === true ) nestable = false;
 		});
 		NestedPages.jsData.nestable = nestable;
+	}
+
+
+	// Set whether or not post type is sortable
+	plugin.setSortable = function()
+	{
+		var sortable = true;
+		$.each(NestedPages.jsData.allPostTypes, function(i, v){
+			if ( v.name !== NestedPages.jsData.posttype ) return;
+			if ( typeof v.disable_sorting === 'undefined' || v.disable_sorting === '' ) return;
+			if ( v.disable_sorting === "true" ) sortable = false;
+		});
+		NestedPages.jsData.sortable = sortable;
 	}
 
 

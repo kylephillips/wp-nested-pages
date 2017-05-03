@@ -20,7 +20,7 @@ if ( $this->isSearch() ) $row_classes .= ' search';
 	<div class="row-inner">
 		<i class="np-icon-sub-menu"></i>
 		
-		<?php if ( $this->user->canSortPages() && !$this->isSearch() ) : ?>
+		<?php if ( $this->user->canSortPages() && !$this->isSearch() && !$this->post_type_settings->disable_sorting ) : ?>
 		<i class="handle np-icon-menu"></i>
 		<?php endif; ?>
 
