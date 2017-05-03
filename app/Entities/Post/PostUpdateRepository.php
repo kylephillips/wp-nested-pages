@@ -112,6 +112,11 @@ class PostUpdateRepository
 			$updated_post['post_date'] = $date;
 		}
 
+		if ( isset($data['mm']) && isset($data['jj']) && isset($data['aa'])  ){
+			$date = $this->validation->validateDate($data);
+			$updated_post['post_date'] = $date;
+		}
+
 		if ( isset($_POST['keep_private']) && $_POST['keep_private'] == 'private' ){
 			$updated_post['post_status'] = 'private';
 		} else {

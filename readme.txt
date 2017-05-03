@@ -102,6 +102,7 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 = 1.6.8 =
 * Bug fix where admin bars were not displaying in Safari until hover
 * Bug fixes in display of post titles with html tags
+* Bug fix where date was not being saved in the quick edit form when the datepicker is not enabled
 
 = 1.6.7 =
 * Multisite superadmins treated as admins (Thanks to Kristoffer Svanmark)
