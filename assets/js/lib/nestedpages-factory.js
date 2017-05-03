@@ -243,7 +243,10 @@ NestedPages.Factory = function()
 	// Set the Screen's Post Type
 	plugin.setPostType = function()
 	{
-		NestedPages.jsData.posttype = $(NestedPages.selectors.sortable).attr('id').substring(3);
+		NestedPages.jsData.posttype = nestedpages.current_post_type;
+		if ( typeof NestedPages.jsData.posttype === 'undefined' || NestedPages.jsData.posttype === '' ){
+			NestedPages.jsData.posttype = $(NestedPages.selectors.sortable).attr('id').substring(3);
+		}
 		NestedPages.jsData.hierarchical = NestedPages.jsData.allPostTypes[NestedPages.jsData.posttype].hierarchical;
 	}
 

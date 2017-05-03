@@ -80,6 +80,7 @@ class Dependencies
 	public function scripts()
 	{
 		$screen = get_current_screen();
+		global $np_page_params;
 		global $np_env;
 		if ( strpos( $screen->id, 'nestedpages' ) ) :
 			wp_enqueue_script('suggest');
@@ -151,6 +152,9 @@ class Dependencies
 			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;
 			$localized_data['syncmenu'] = $syncmenu;
 			$localized_data['post_types'] = $this->post_type_repo->getPostTypesObject();
+			if ( isset($np_page_params) && is_array($np_page_params) && array_key_exists($screen->id, $np_page_params) ){
+				$localized_data['current_post_type'] = $np_page_params[$screen->id]['post_type'];
+			}
 			wp_localize_script( 
 				'nestedpages', 
 				'nestedpages', 
