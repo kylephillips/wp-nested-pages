@@ -15,6 +15,6 @@ class NestedPages
 		$np_version = '1.6.9';
 
 		if ( is_admin() ) $app = new NestedPages\Bootstrap;
-		// if ( !is_admin() ) $app = new NestedPages\FrontEndBootstrap;
+		if ( !is_admin() ) $app = new NestedPages\FrontEndBootstrap;
 	}
 }
