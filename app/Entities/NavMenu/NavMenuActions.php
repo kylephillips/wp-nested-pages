@@ -12,6 +12,8 @@ class NavMenuActions
 
 	public function __construct()
 	{
+		if ( get_option('nestedpages_menusync') !== 'sync' ) return;
+		if ( get_option('nestedpages_disable_menu') == 'true' ) return;
 		$this->addUpdateHook();
 	}
 

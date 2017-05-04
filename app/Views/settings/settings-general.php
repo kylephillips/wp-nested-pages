@@ -30,12 +30,14 @@ settings_fields( 'nestedpages-general' );
 <tr valign="top">
 	<th scope="row"><?php _e('Menu Sync', 'wp-nested-pages'); ?></th>
 	<td>
+		<?php if ( !$this->settings->menusDisabled() ) : ?>
 		<p data-menu-enabled-option data-menu-hide-checkbox>
 		<label>
 			<input type="checkbox" name="nestedpages_ui[hide_menu_sync]" value="true" <?php if ( $this->settings->hideMenuSync() ) echo 'checked'; ?> />
 			<?php _e('Hide Menu Sync Checkbox', 'wp-nested-pages'); ?> (<?php echo esc_html($sync_status); ?>)
 		</label>
 		</p>
+		<?php endif; ?>
 		<p data-menu-enabled-option data-menu-disable-auto>
 		<label>
 			<input type="checkbox" name="nestedpages_ui[manual_menu_sync]" value="true" <?php if ( $this->settings->autoMenuDisabled() ) echo 'checked'; ?> data-menu-disable-auto-checkbox />
