@@ -38,10 +38,12 @@
 				<input type="text" name="np_date" class="np_datepicker" value="" />
 				<span><?php _e('@', 'wp-nested-pages'); ?></span>
 				<div class="np-time-container">
+					<?php if ( get_option('time_format') !== 'H:i' ) : ?>
 					<select name="np_ampm" class="np_ampm">
 						<option value="am"><?php _e('am', 'wp-nested-pages'); ?></option>
 						<option value="pm"><?php _e('pm', 'wp-nested-pages'); ?></option>
 					</select>
+					<?php endif; ?>
 					<input type="text" name="np_time" class="np_time" value="" />
 				</div>
 			</div>

@@ -90,7 +90,7 @@ NestedPages.QuickEditPost = function()
 			day : $(plugin.button).attr('data-day'),
 			year : $(plugin.button).attr('data-year'),
 			hour : $(plugin.button).attr('data-hour'),
-			minute : $(plugin.button).attr('data-minute'),
+			minute : $(plugin.button).attr('data-minute'),			
 			navstatus : $(plugin.button).attr('data-navstatus'),
 			npstatus : $(plugin.button).attr('data-np-status'),
 			navtitle : $(plugin.button).attr('data-navtitle'),
@@ -100,7 +100,9 @@ NestedPages.QuickEditPost = function()
 			password : $(plugin.button).attr('data-password'),
 			datepicker : $(plugin.button).attr('data-datepicker'),
 			time: $(plugin.button).attr('data-formattedtime'),
-			ampm: $(plugin.button).attr('data-ampm')
+			timeTwentyFour : $(plugin.button).attr('data-time'),
+			ampm: $(plugin.button).attr('data-ampm'),
+			timeFormat: $(plugin.button).attr('data-timeformat')
 		};
 
 		// Add Array of Taxonomies to the data object using classes applied to the list element
@@ -149,8 +151,6 @@ NestedPages.QuickEditPost = function()
 		$(plugin.form).find('.np_nav_css_classes').val(plugin.initialData.navcss);
 		$(plugin.form).find('.post_password').val(plugin.initialData.password);
 		$(plugin.form).find('.np_datepicker').val(plugin.initialData.datepicker);
-		$(plugin.form).find('.np_time').val(plugin.initialData.time);
-		$(plugin.form).find('.np_ampm').val(plugin.initialData.ampm);
 		if ( plugin.initialData.cs === 'open' ) $(plugin.form).find('.np_cs').attr('checked', 'checked');
 
 		if ( plugin.initialData.template !== '' ){
@@ -187,11 +187,17 @@ NestedPages.QuickEditPost = function()
 		}
 		
 		// Date Fields
-		$(plugin.form).find('select[name="mm"]').val(plugin.initialData.month);
-		$(plugin.form).find('input[name="jj"]').val(plugin.initialData.day);
-		$(plugin.form).find('input[name="aa"]').val(plugin.initialData.year);
-		$(plugin.form).find('input[name="hh"]').val(plugin.initialData.hour);
-		$(plugin.form).find('input[name="mn"]').val(plugin.initialData.minute);
+		if ( plugin.initialData.timeFormat === 'H:i' ){
+			$(plugin.form).find('.np_time').val(plugin.initialData.timeTwentyFour);
+		} else {
+			$(plugin.form).find('.np_time').val(plugin.initialData.time);
+			$(plugin.form).find('.np_ampm').val(plugin.initialData.ampm);
+			$(plugin.form).find('select[name="mm"]').val(plugin.initialData.month);
+			$(plugin.form).find('input[name="jj"]').val(plugin.initialData.day);
+			$(plugin.form).find('input[name="aa"]').val(plugin.initialData.year);
+			$(plugin.form).find('input[name="hh"]').val(plugin.initialData.hour);
+			$(plugin.form).find('input[name="mn"]').val(plugin.initialData.minute);
+		}
 
 		// Populate Hierarchical Taxonomy Checkboxes
 		if ( plugin.initialData.hasOwnProperty('h_taxonomies') ){
