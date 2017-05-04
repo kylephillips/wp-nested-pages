@@ -102,6 +102,7 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 = 1.6.9 =
 * Added option to disable sorting per post type
 * rel=page removed from generated nav menu links which was causing errors in W3C validation
+* Bug fix where menu sync was firing in the background when "Disable menu sync completely" option was selected
 
 = 1.6.8 =
 * Bug fix where admin bars were not displaying in Safari until hover
