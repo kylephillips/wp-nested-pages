@@ -88,7 +88,7 @@ class NavMenuRepository
 	{
 		$menu_id = get_option('nestedpages_menu');
 		$term = get_term_by('id', $menu_id, 'nav_menu');
-		if ( $term ) return get_term_by('id', $menu_id, 'nav_menu');
+		if ( $term ) return $term;
 		
 		// No Menu Yet		
 		$this->createNewMenu();
@@ -159,7 +159,7 @@ class NavMenuRepository
 		$meta_table = $wpdb->prefix . 'postmeta';
 		$sql = "SELECT p.ID AS nav_status FROM $post_table AS p LEFT JOIN $meta_table AS m ON p.ID = m.post_id AND m.meta_key = 'np_nav_status' WHERE p.post_type = 'page' AND (m.meta_value = 'show' OR m.meta_value IS NULL)";
 		$results = $wpdb->get_results($sql, ARRAY_N);
-		if ( !$results ) return;
+		if ( !$results ) return array();
 		foreach($results as $key => $result){
 			$visible[$key] = $result[0];
 		}

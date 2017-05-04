@@ -22,11 +22,11 @@ abstract class NavMenuSync
 	*/
 	protected $id;
 
-	public function __construct()
+	public function __construct($menu_id)
 	{
 		if ( get_option('nestedpages_menusync') !== 'sync' ) return;
 		$this->nav_menu_repo = new NavMenuRepository;
-		$this->setMenuID();
+		$this->id = $menu_id;
 	}
 
 	/**
