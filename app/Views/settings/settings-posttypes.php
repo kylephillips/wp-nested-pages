@@ -48,7 +48,7 @@ settings_fields( 'nestedpages-posttypes' );
 				<li>
 					<div class="row">
 						<div class="description">
-							<p><strong><?php _e('Disable Sorting', 'wp-nested-pages'); ?>*</strong><br />
+							<p><strong><?php _e('Disable Sorting', 'wp-nested-pages'); ?></strong><br />
 							<?php _e('Remove drag and drop sorting from this post type.', 'wp-nested-pages'); ?></p>
 						</div>
 						<div class="field">
