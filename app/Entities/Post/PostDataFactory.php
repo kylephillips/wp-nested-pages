@@ -60,15 +60,15 @@ class PostDataFactory
 	public function addPostMeta($post)
 	{
 		$meta = get_metadata('post', $post->ID);
-		$this->post_data->nav_title = ( isset($meta['np_nav_title'][0]) ) ? $meta['np_nav_title'][0] : null;
-		$this->post_data->link_target = ( isset($meta['np_link_target'][0]) ) ? $meta['np_link_target'][0] : null;
-		$this->post_data->nav_title_attr = ( isset($meta['np_title_attribute'][0]) ) ? $meta['np_title_attribute'][0] : null;
-		$this->post_data->nav_css = ( isset($meta['np_nav_css_classes'][0]) ) ? $meta['np_nav_css_classes'][0] : null;
-		$this->post_data->nav_object = ( isset($meta['np_nav_menu_item_object'][0]) ) ? $meta['np_nav_menu_item_object'][0] : null;
-		$this->post_data->nav_object_id = ( isset($meta['np_nav_menu_item_object_id'][0]) ) ? $meta['np_nav_menu_item_object_id'][0] : null;
-		$this->post_data->nav_type = ( isset($meta['np_nav_menu_item_type'][0]) ) ? $meta['np_nav_menu_item_type'][0] : null;
-		$this->post_data->nav_status = ( isset($meta['np_nav_status'][0]) && $meta['np_nav_status'][0] == 'hide' ) ? 'hide' : 'show';
-		$this->post_data->np_status = ( isset($meta['nested_pages_status'][0]) && $meta['nested_pages_status'][0] == 'hide' ) ? 'hide' : 'show';
+		$this->post_data->nav_title = ( isset($meta['_np_nav_title'][0]) ) ? $meta['_np_nav_title'][0] : null;
+		$this->post_data->link_target = ( isset($meta['_np_link_target'][0]) ) ? $meta['_np_link_target'][0] : null;
+		$this->post_data->nav_title_attr = ( isset($meta['_np_title_attribute'][0]) ) ? $meta['_np_title_attribute'][0] : null;
+		$this->post_data->nav_css = ( isset($meta['_np_nav_css_classes'][0]) ) ? $meta['_np_nav_css_classes'][0] : null;
+		$this->post_data->nav_object = ( isset($meta['_np_nav_menu_item_object'][0]) ) ? $meta['_np_nav_menu_item_object'][0] : null;
+		$this->post_data->nav_object_id = ( isset($meta['_np_nav_menu_item_object_id'][0]) ) ? $meta['_np_nav_menu_item_object_id'][0] : null;
+		$this->post_data->nav_type = ( isset($meta['_np_nav_menu_item_type'][0]) ) ? $meta['_np_nav_menu_item_type'][0] : null;
+		$this->post_data->nav_status = ( isset($meta['_np_nav_status'][0]) && $meta['_np_nav_status'][0] == 'hide' ) ? 'hide' : 'show';
+		$this->post_data->np_status = ( isset($meta['_nested_pages_status'][0]) && $meta['_nested_pages_status'][0] == 'hide' ) ? 'hide' : 'show';
 		$this->post_data->template = ( isset($meta['_wp_page_template'][0]) ) ? $meta['_wp_page_template'][0] : false;
 
 		// Yoast Score
