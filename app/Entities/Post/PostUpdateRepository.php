@@ -170,7 +170,7 @@ class PostUpdateRepository
 		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
 		update_post_meta( 
 			$id, 
-			'np_nav_status', 
+			'_np_nav_status', 
 			$status
 		);
 	}
@@ -188,7 +188,7 @@ class PostUpdateRepository
 		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
 		update_post_meta(
 			$id,
-			'nested_pages_status',
+			'_nested_pages_status',
 			$status
 		);
 	}
@@ -204,7 +204,7 @@ class PostUpdateRepository
 			$title = sanitize_text_field($data['np_nav_title']);
 			update_post_meta( 
 				$data['post_id'], 
-				'np_nav_title', 
+				'_np_nav_title', 
 				$title
 			);
 		}
@@ -221,7 +221,7 @@ class PostUpdateRepository
 			$css_classes = sanitize_text_field($data['np_nav_css_classes']);
 			update_post_meta( 
 				$data['post_id'], 
-				'np_nav_css_classes', 
+				'_np_nav_css_classes', 
 				$css_classes
 			);
 		}
@@ -238,7 +238,7 @@ class PostUpdateRepository
 			$title_attr = sanitize_text_field($data['np_title_attribute']);
 			update_post_meta( 
 				$data['post_id'], 
-				'np_title_attribute', 
+				'_np_title_attribute', 
 				$title_attr
 			);
 		}
@@ -323,7 +323,7 @@ class PostUpdateRepository
 		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
 		update_post_meta( 
 			$id, 
-			'np_link_target', 
+			'_np_link_target', 
 			$link_target
 		);
 	}
@@ -337,20 +337,20 @@ class PostUpdateRepository
 	{
 		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
 		$link_target = ( isset($data['linkTarget']) ) ? "_blank" : "";
-		update_post_meta($id, 'np_link_target', $link_target);
-		update_post_meta($id, 'np_nav_menu_item_type', sanitize_text_field($data['menuType']));
-		update_post_meta($id, 'np_nav_menu_item_object', sanitize_text_field($data['objectType']));
-		update_post_meta($id, 'np_nav_menu_item_object_id', sanitize_text_field($data['objectId']));
+		update_post_meta($id, '_np_link_target', $link_target);
+		update_post_meta($id, '_np_nav_menu_item_type', sanitize_text_field($data['menuType']));
+		update_post_meta($id, '_np_nav_menu_item_object', sanitize_text_field($data['objectType']));
+		update_post_meta($id, '_np_nav_menu_item_object_id', sanitize_text_field($data['objectId']));
 		if ( isset($data['cssClasses']) ){
-			update_post_meta($id, 'np_nav_css_classes', sanitize_text_field($data['cssClasses']));
+			update_post_meta($id, '_np_nav_css_classes', sanitize_text_field($data['cssClasses']));
 		}
 		if ( isset($data['titleAttribute']) ){
 			$title_attr = sanitize_text_field($data['titleAttribute']);
-			update_post_meta($id, 'np_title_attribute', $title_attr);
+			update_post_meta($id, '_np_title_attribute', $title_attr);
 		}
 		if ( isset($data['navigationLabel']) ){
 			$title = sanitize_text_field($data['navigationLabel']);
-			update_post_meta($id, 'np_nav_title', $title);
+			update_post_meta($id, '_np_nav_title', $title);
 		}
 	}
 

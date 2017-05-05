@@ -345,7 +345,7 @@ class PostTypeRepository
 	private function fieldsArray($results)
 	{
 		$fields = array();
-		$exclude = array('_wp_page_template', '_edit_lock', '_edit_last', '_wp_trash_meta_status', '_wp_trash_meta_time', 'layout', 'position', 'rule', 'hide_on_screen', 'np_link_target', 'np_nav_title', 'np_title_attribute', 'np_nav_status', 'nested_pages_status', 'np_nav_css_classes');
+		$exclude = array('_wp_page_template', '_edit_lock', '_edit_last', '_wp_trash_meta_status', '_wp_trash_meta_time', 'layout', 'position', 'rule', 'hide_on_screen', '_np_link_target', '_np_nav_title', '_np_title_attribute', '_np_nav_status', '_nested_pages_status', '_np_nav_css_classes');
 		foreach ( $results as $field ){
 			if ( !in_array($field->meta_key, $exclude) ) 
 				array_push($fields, $field->meta_key);

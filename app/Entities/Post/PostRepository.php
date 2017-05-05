@@ -14,7 +14,7 @@ class PostRepository
 		if ( in_array('page', $type) ) array_push($type, 'np-redirect');
 		$hidden = new \WP_Query(array(
 			'post_type' => $type,
-			'meta_key' => 'nested_pages_status',
+			'meta_key' => '_nested_pages_status',
 			'meta_value' => 'hide',
 			'perm' => 'readable'));
 		return $hidden->found_posts;
