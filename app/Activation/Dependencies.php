@@ -82,7 +82,8 @@ class Dependencies
 		$screen = get_current_screen();
 		global $np_page_params;
 		global $np_env;
-		if ( strpos( $screen->id, 'nestedpages' ) ) :
+		$settings_page = ( strpos($screen->id, 'nested-pages-settings') ) ? true : false;
+		if ( strpos( $screen->id, 'nestedpages' ) || $settings_page ) :
 			wp_enqueue_script('suggest');
 			wp_enqueue_script('jquery-ui-core');
 			wp_enqueue_script('jquery-ui-sortable');
@@ -148,6 +149,7 @@ class Dependencies
 				'trash_delete_links' => __('Trash Posts and Delete Links'),
 				'manual_menu_sync' => $this->settings->autoMenuDisabled(),
 				'manual_order_sync' => $this->settings->autoPageOrderDisabled(),
+				'settings_page' => $settings_page
 			);
 			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;
 			$localized_data['syncmenu'] = $syncmenu;
