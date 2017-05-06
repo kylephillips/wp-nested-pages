@@ -70,6 +70,38 @@ settings_fields( 'nestedpages-posttypes' );
 				</li>
 				<?php endif; ?>
 				<li>
+					<div class="row">
+						<div class="description">
+							<p><strong><?php _e('Assign Page for Listing', 'wp-nested-pages'); ?></strong><br />
+							<?php _e('Adds contextual links and post counts to the page row for the assigned post type.', 'wp-nested-pages'); ?></p>
+						</div>
+						<div class="field">
+							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][post_type_page_assignment]" <?php if ( $type->page_assignment ) echo 'checked'; ?> /><?php _e('Assign Page', 'wp-nested-pages'); ?></label>
+							<div class="nestedpages-page-pt-assignment" data-nestedpages-post-search-form>
+								<?php
+								$recent_pages = $this->listing_repo->recentPosts('page');
+								if ( $recent_pages ) :
+								?>
+								<input type="search" data-nestedpages-post-search="page" placeholder="<?php _e('Search Pages', 'wp-nested-pages'); ?>" />
+								<div class="np-quickedit-info" style="display:none;" data-nestedpages-no-results><?php _e('No pages were found.', 'wp-nested-pages'); ?></div>
+								<img src="<?php echo NestedPages\Helpers::plugin_url(); ?>/assets/images/spinner.gif" alt="<?php _e('Loading', 'wp-nested-pages'); ?>" style="display:none;" data-nestedpages-loading />
+								<div class="nestedpages-page-search-results" data-nestedpages-search-results>
+									<ul>
+									<?php foreach($recent_pages as $page) : ?>
+										<li><a href="#" data-page-id="<?php echo esc_attr($page->ID); ?>"><?php echo esc_html($page->post_title); ?></a></li>
+									<?php endforeach; ?>
+									</ul>
+								</div><!-- .nestedpages-page-search-results -->
+								<?php else : ?>
+									<div class="np-quickedit-info">
+										<?php _e('There are currently no pages available.', 'wp-nested-pages'); ?>
+									</div>
+								<?php endif; ?>
+							</div><!-- .nestedpages-page-pt-assignment -->
+						</div><!-- .field -->
+					</div><!-- .row -->
+				</li>
+				<li>
 					<?php 
 						$thumbnails_enabled = $this->post_type_repo->thumbnails($type->name, 'enabled'); 
 						$thumbnail_source = $this->post_type_repo->thumbnails($type->name, 'source'); 

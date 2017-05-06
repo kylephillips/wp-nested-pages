@@ -77,6 +77,7 @@ class PostTypeRepository
 			$post_types[$type->name]->standard_fields_enabled = $this->postTypeSetting($type->name, 'standard_fields_enabled');
 			$post_types[$type->name]->custom_fields = $this->configuredFields($type->name, 'custom_fields');
 			$post_types[$type->name]->standard_fields = $this->configuredFields($type->name, 'standard_fields');
+			$post_types[$type->name]->page_assignment = $this->configuredFields($type->name, 'post_type_page_assignment');
 		}
 		return $post_types;
 	}
