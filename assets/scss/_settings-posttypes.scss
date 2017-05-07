@@ -130,3 +130,55 @@
 		} // .thumbnail-options
 	} // .post-type
 } // .nestedpages-settings-posttypes
+
+.nestedpages-page-pt-assignment {
+	background-color: $gray-lighter;
+	padding: 10px;
+	border: 1px solid $border;
+	margin-top: 1em;
+	input[type="search"]{
+		width: 100%;
+		margin-bottom: 1em;
+	}
+	.np-quickedit-info {
+		background-color: $white;
+		border-right: 1px solid $border-light;
+		border-top: 1px solid $border-light;
+		border-bottom: 1px solid $border-light;
+	}
+	.nestedpages-page-search-results {
+		height: 100px;
+		overflow: auto;
+		ul {
+			@include unstyled;
+		}
+		a {
+			display: block;
+			text-decoration: none;
+			border-top: 1px solid darken($border, 2%);
+			padding: 3px 0;
+			color: $black;
+			background-color: $gray-lighter;
+			&:hover {
+				background-color: $blue;
+				color: $white;
+				padding-left: 5px;
+			}
+		}
+		li:first-child a {
+			border: 0;
+			padding-top: 0;
+		}
+	} // .nestedpages-page-serach-results
+} // .nestedpages-page-pt-assignment
+.nestedpages-page-pt-assignment-selection {
+	background-color: $gray-lighter;
+	border: 1px solid $border;
+	margin-top: 1em;
+	padding: .5em;
+}
+
+
+
+
+

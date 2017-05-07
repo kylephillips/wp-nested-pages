@@ -90,6 +90,12 @@ class Listing
 	private $post_type_settings;
 
 	/**
+	* Assigned Pages for post types
+	* @var array from post type repo
+	*/
+	private $assigned_pt_pages;
+
+	/**
 	* Plugin Integrations
 	*/
 	private $integrations;
@@ -174,6 +180,7 @@ class Listing
 	private function setPostTypeSettings()
 	{
 		$this->post_type_settings = $this->post_type_repo->getSinglePostType($this->post_type->name);
+		$this->assigned_pt_pages = $this->post_type_repo->getAssignedPages();
 	}
 
 	/**
@@ -347,6 +354,9 @@ class Listing
 
 					// Post Type
 					echo ' post-type-' . esc_attr($this->post->post_type);
+
+					// Assigned to manage a post type?
+					if ( $this->post_type->name == 'page' && array_key_exists($this->post->id, $this->assigned_pt_pages) ) echo ' is-page-assignment';
 
 					// Published?
 					if ( $this->post->status == 'publish' ) echo ' published';

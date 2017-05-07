@@ -77,6 +77,9 @@ class PostTypeRepository
 			$post_types[$type->name]->standard_fields_enabled = $this->postTypeSetting($type->name, 'standard_fields_enabled');
 			$post_types[$type->name]->custom_fields = $this->configuredFields($type->name, 'custom_fields');
 			$post_types[$type->name]->standard_fields = $this->configuredFields($type->name, 'standard_fields');
+			$post_types[$type->name]->page_assignment = $this->configuredFields($type->name, 'post_type_page_assignment');
+			$post_types[$type->name]->page_assignment_id = $this->configuredFields($type->name, 'post_type_page_assignment_page_id');
+			$post_types[$type->name]->page_assignment_title = $this->configuredFields($type->name, 'post_type_page_assignment_page_title');
 		}
 		return $post_types;
 	}
@@ -250,6 +253,21 @@ class PostTypeRepository
 	}
 
 	/**
+	* All Posts Link
+	* @since 1.7.0
+	* @param string post_type
+	* @return string
+	*/
+	public function allPostsLink($post_type)
+	{
+		$pt_object = $this->getSinglePostType(esc_attr($post_type));
+		if ( $pt_object->replace_menu ){
+			return esc_url( admin_url('admin.php?page=nestedpages-' . $post_type) );
+		}
+		return esc_url( admin_url('edit.php?post_type=' . esc_attr($post_type)) );
+	}
+
+	/**
 	* Edit Post Link
 	* @since 1.2.1
 	* @param string post_type
@@ -351,6 +369,19 @@ class PostTypeRepository
 				array_push($fields, $field->meta_key);
 		}
 		return $fields;
+	}
+
+	/**
+	* Get an array of assigned page IDs for all post types
+	*/
+	public function getAssignedPages()
+	{
+		$post_types = $this->getPostTypesObject();
+		$array = array();
+		foreach($post_types as $type => $options){
+			if ( isset($options->page_assignment) && $options->page_assignment == 'true' && isset($options->page_assignment_id) && $options->page_assignment_id !== '' ) $array[$options->page_assignment_id] = $type;
+		}
+		return $array;
 	}
 
 }

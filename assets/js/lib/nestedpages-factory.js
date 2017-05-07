@@ -157,7 +157,8 @@ NestedPages.formActions = {
 	clonePost : 'npclonePost',
 	search : 'npmenuSearch',
 	newMenuItem : 'npnewMenuItem',
-	manualMenuSync : 'npmanualMenuSync'
+	manualMenuSync : 'npmanualMenuSync',
+	postSearch: 'nppostSearch'
 }
 
 
@@ -186,9 +187,11 @@ NestedPages.Factory = function()
 	plugin.hiddenItemCount = new NestedPages.HiddenItemCount;
 	plugin.confirmDelete = new NestedPages.ConfirmDelete;
 	plugin.manualSync = new NestedPages.ManualSync;
+	plugin.postSearch = new NestedPages.PostSearch;
 
 	plugin.init = function()
 	{
+		if ( nestedpages.settings_page ) return;
 		plugin.bindEvents();
 		plugin.setPostType();
 		plugin.setMenuSync();

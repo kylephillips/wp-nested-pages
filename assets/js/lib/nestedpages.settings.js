@@ -20,6 +20,14 @@ NestedPages.Settings = function()
 		menuEnabledOption : '[data-menu-enabled-option]', // Options when the menu is enabled
 		disableMenuCheckbox : '[data-disable-menu-checkbox]', // Checkbox for disabling menus completely
 		disableAutoCheckbox : '[data-menu-disable-auto-checkbox]', // Checkbox for disabling auto menu sync
+		
+		// Page Assignment for Post Types
+		assignPostTypeCheckbox : '[data-nestedpages-assign-post-type]', // Checkbox for assigning a post type to a page
+		assignPostTypeId : '[data-nested-pages-assign-post-type-id]', // Hidden field containing the assigned page id
+		assignPostTypeTitle : '[data-nested-pages-assign-post-type-title]', // Hidden field containing the assigned page title
+		assignPostTypeOption : '[data-assignment-page-id]', // Option within the listing to select page for post type assignment
+		assignPostTypeRemove : '[data-nestedpages-page-pt-assignment-remove]', // Link to remove the assigned page for the post type,
+		assignPostTypeSelection : '[data-nestedpages-page-pt-assignment-selection]', // The div displaying the selection
 	}
 
 	plugin.bindEvents = function()
@@ -30,6 +38,7 @@ NestedPages.Settings = function()
 			plugin.toogleAllFieldSettings('.standard-fields');
 			plugin.toggleMenuCheckboxes();
 			plugin.toggleHideCheckbox();
+			plugin.toggleAssignPostType();
 		});
 		$(document).on('click', plugin.selectors.postTypeToggle, function(e){
 			e.preventDefault();
@@ -55,6 +64,17 @@ NestedPages.Settings = function()
 		});
 		$(document).on('change', plugin.selectors.disableAutoCheckbox, function(){
 			plugin.toggleHideCheckbox();
+		});
+		$(document).on('change', plugin.selectors.assignPostTypeCheckbox, function(){
+			plugin.toggleAssignPostType();
+		});
+		$(document).on('click', plugin.selectors.assignPostTypeOption, function(e){
+			e.preventDefault();
+			plugin.chooseAssignPostType($(this));
+		});
+		$(document).on('click', plugin.selectors.assignPostTypeRemove, function(e){
+			e.preventDefault();
+			plugin.removeAssignPostType($(this));
 		});
 	}
 
@@ -175,6 +195,51 @@ NestedPages.Settings = function()
 		}
 		$(hideCheckboxOption).show();
 	}
+
+	/**
+	* Toggle the Assign Page to a Post Type Listing
+	*/
+	plugin.toggleAssignPostType = function()
+	{
+		var checkboxes = $(plugin.selectors.assignPostTypeCheckbox);
+		$.each(checkboxes, function(){
+			var checkbox = $(this);
+			var listing = $(this).parents('.field').find('.nestedpages-assignment-display');
+			if ( $(checkbox).is(':checked') ){
+				$(listing).show();
+			} else {
+				$(listing).hide();
+			}
+		});
+	}
+
+	/**
+	* Choose a page assignment
+	*/
+	plugin.chooseAssignPostType = function(element)
+	{
+		var pageId = $(element).attr('data-assignment-page-id');
+		var pageTitle = $(element).attr('data-assignment-page-title');
+		var container = $(element).parents('.field');
+		var html = nestedpages.currently_assigned_to + ' ' + pageTitle + ' <a href="#" data-nestedpages-page-pt-assignment-remove>(' + nestedpages.remove + ')</a>';
+		$(container).find(plugin.selectors.assignPostTypeId).val(pageId);
+		$(container).find(plugin.selectors.assignPostTypeTitle).val(pageTitle);
+		$(container).find(plugin.selectors.assignPostTypeSelection).html(html).show();
+		$(container).find('[data-nestedpages-post-search-form]').hide();
+	}
+
+	/**
+	* Remove a page assignment
+	*/
+	plugin.removeAssignPostType = function(element)
+	{
+		var container = $(element).parents('.field');
+		$(container).find(plugin.selectors.assignPostTypeSelection).hide();
+		$(container).find('[data-nestedpages-post-search-form]').show();
+		$(container).find(plugin.selectors.assignPostTypeId).val('');
+		$(container).find(plugin.selectors.assignPostTypeTitle).val('');
+	}
+
 
 	plugin.init = function()
 	{
