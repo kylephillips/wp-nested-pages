@@ -85,6 +85,28 @@
 			display: none;
 		}
 
+		// Post Type Assignment Actions
+		.np-assigned-pt-actions {
+			@include unstyled;
+			display: inline-block;
+			margin-left: 10px;
+			li {
+				display: inline-block;
+				background: transparent;
+				border: 0;
+				a {
+					color: $black;
+					display: block;
+					border-left: 1px solid $border;
+					padding: 0 5px;
+				}
+				&:first-child a {
+					border: 0;
+					padding-left: 0;
+				}
+			}
+		} // .np-assigned-pt-actions
+
 		// Yoast SEO Indicator
 		// See Yoast's metabox-tabs.css
 		.np-seo-indicator {

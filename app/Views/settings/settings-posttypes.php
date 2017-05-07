@@ -76,7 +76,7 @@ settings_fields( 'nestedpages-posttypes' );
 							<?php _e('Adds contextual links and post counts to the page row for the assigned post type.', 'wp-nested-pages'); ?></p>
 						</div>
 						<div class="field">
-							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][post_type_page_assignment]" <?php if ( $type->page_assignment ) echo 'checked'; ?> data-nestedpages-assign-post-type /><?php _e('Assign Page', 'wp-nested-pages'); ?></label>
+							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][post_type_page_assignment]" <?php if ( $type->page_assignment ) echo 'checked'; ?> data-nestedpages-assign-post-type value="true" /><?php _e('Assign Page', 'wp-nested-pages'); ?></label>
 							<input type="hidden" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][post_type_page_assignment_page_id]" data-nested-pages-assign-post-type-id value="<?php if ( $type->page_assignment_id ) echo $type->page_assignment_id; ?>" />
 							<input type="hidden" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][post_type_page_assignment_page_title]" data-nested-pages-assign-post-type-title value="<?php if ( $type->page_assignment_title ) echo $type->page_assignment_title; ?>" />
 							
