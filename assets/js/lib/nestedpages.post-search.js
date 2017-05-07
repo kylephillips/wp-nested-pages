@@ -114,7 +114,7 @@ NestedPages.PostSearch = function()
 	{
 		var html = "<ul>";
 		$.each(plugin.results, function(i, v){
-			html += '<li><a href="#" data-page-id="' + v.ID + '">' + v.post_title + '</a></li>';
+			html += '<li><a href="#" data-assignment-page-id="' + v.ID + '" data-assignment-page-title="' + v.post_title + '">' + v.post_title + '</a></li>';
 		});
 		html += '</ul>';
 		$(plugin.activeForm).find('[' + plugin.selectors.results + ']').html(html);

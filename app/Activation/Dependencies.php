@@ -146,9 +146,11 @@ class Dependencies
 				'link_delete_confirmation' => __('Your selection includes link items, which cannot be recovered after deleting. Would you like to continue? (Other items are moved to the trash)', 'wp-nested-pages'),
 				'link_delete_confirmation_singular' => __('Are you sure you would like to delete this item? This action is not reversable.', 'wp-nested-pages'),
 				'delete' => __('Delete', 'wp-nested-pages'),
-				'trash_delete_links' => __('Trash Posts and Delete Links'),
+				'trash_delete_links' => __('Trash Posts and Delete Links', 'wp-nested-pages'),
 				'manual_menu_sync' => $this->settings->autoMenuDisabled(),
 				'manual_order_sync' => $this->settings->autoPageOrderDisabled(),
+				'currently_assigned_to' => __('Currently assigned to:', 'wp-nested-pages'),
+				'remove' => __('Remove', 'wp-nested-pages'),
 				'settings_page' => $settings_page
 			);
 			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;

@@ -68,7 +68,7 @@
 			}
 		} // .row
 		.body {
-			// display: none;
+			display: none;
 			h4 {
 				margin: 0;
 				padding: 10px 0 0 10px;
@@ -171,3 +171,14 @@
 		}
 	} // .nestedpages-page-serach-results
 } // .nestedpages-page-pt-assignment
+.nestedpages-page-pt-assignment-selection {
+	background-color: $gray-lighter;
+	border: 1px solid $border;
+	margin-top: 1em;
+	padding: .5em;
+}
+
+
+
+
+

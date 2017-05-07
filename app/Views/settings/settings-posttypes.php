@@ -76,28 +76,38 @@ settings_fields( 'nestedpages-posttypes' );
 							<?php _e('Adds contextual links and post counts to the page row for the assigned post type.', 'wp-nested-pages'); ?></p>
 						</div>
 						<div class="field">
-							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][post_type_page_assignment]" <?php if ( $type->page_assignment ) echo 'checked'; ?> /><?php _e('Assign Page', 'wp-nested-pages'); ?></label>
-							<div class="nestedpages-page-pt-assignment" data-nestedpages-post-search-form>
-								<?php
-								$recent_pages = $this->listing_repo->recentPosts('page');
-								if ( $recent_pages ) :
-								?>
-								<input type="search" data-nestedpages-post-search="page" placeholder="<?php _e('Search Pages', 'wp-nested-pages'); ?>" />
-								<div class="np-quickedit-info" style="display:none;" data-nestedpages-no-results><?php _e('No pages were found.', 'wp-nested-pages'); ?></div>
-								<img src="<?php echo NestedPages\Helpers::plugin_url(); ?>/assets/images/spinner.gif" alt="<?php _e('Loading', 'wp-nested-pages'); ?>" style="display:none;" data-nestedpages-loading />
-								<div class="nestedpages-page-search-results" data-nestedpages-search-results>
-									<ul>
-									<?php foreach($recent_pages as $page) : ?>
-										<li><a href="#" data-page-id="<?php echo esc_attr($page->ID); ?>"><?php echo esc_html($page->post_title); ?></a></li>
-									<?php endforeach; ?>
-									</ul>
-								</div><!-- .nestedpages-page-search-results -->
-								<?php else : ?>
-									<div class="np-quickedit-info">
-										<?php _e('There are currently no pages available.', 'wp-nested-pages'); ?>
-									</div>
-								<?php endif; ?>
-							</div><!-- .nestedpages-page-pt-assignment -->
+							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][post_type_page_assignment]" <?php if ( $type->page_assignment ) echo 'checked'; ?> data-nestedpages-assign-post-type /><?php _e('Assign Page', 'wp-nested-pages'); ?></label>
+							<input type="hidden" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][post_type_page_assignment_page_id]" data-nested-pages-assign-post-type-id value="<?php if ( $type->page_assignment_id ) echo $type->page_assignment_id; ?>" />
+							<input type="hidden" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][post_type_page_assignment_page_title]" data-nested-pages-assign-post-type-title value="<?php if ( $type->page_assignment_title ) echo $type->page_assignment_title; ?>" />
+							
+							<div class="nestedpages-assignment-display" style="display:none;">
+								<div class="nestedpages-page-pt-assignment-selection" data-nestedpages-page-pt-assignment-selection>
+									<?php if ( $type->page_assignment_id ) : ?>
+									<?php _e('Currently assigned to:', 'wp-nested-pages'); ?> <?php echo $type->page_assignment_title; ?> <a href="#" data-nestedpages-page-pt-assignment-remove>(<?php _e('Remove', 'wp-nested-pages'); ?>)</a>
+									<?php endif; ?>
+								</div>
+								<div class="nestedpages-page-pt-assignment" data-nestedpages-post-search-form <?php if ( $type->page_assignment_id ) echo 'style="display:none"';?>>
+									<?php
+									$recent_pages = $this->listing_repo->recentPosts('page');
+									if ( $recent_pages ) :
+									?>
+									<input type="search" data-nestedpages-post-search="page" placeholder="<?php _e('Search Pages', 'wp-nested-pages'); ?>" />
+									<div class="np-quickedit-info" style="display:none;" data-nestedpages-no-results><?php _e('No pages were found.', 'wp-nested-pages'); ?></div>
+									<img src="<?php echo NestedPages\Helpers::plugin_url(); ?>/assets/images/spinner.gif" alt="<?php _e('Loading', 'wp-nested-pages'); ?>" style="display:none;" data-nestedpages-loading />
+									<div class="nestedpages-page-search-results" data-nestedpages-search-results>
+										<ul>
+										<?php foreach($recent_pages as $page) : ?>
+											<li><a href="#" data-assignment-page-id="<?php echo esc_attr($page->ID); ?>" data-assignment-page-title="<?php echo esc_html($page->post_title); ?>"><?php echo esc_html($page->post_title); ?></a></li>
+										<?php endforeach; ?>
+										</ul>
+									</div><!-- .nestedpages-page-search-results -->
+									<?php else : ?>
+										<div class="np-quickedit-info">
+											<?php _e('There are currently no pages available.', 'wp-nested-pages'); ?>
+										</div>
+									<?php endif; ?>
+								</div><!-- .nestedpages-page-pt-assignment -->
+							</div><!-- .nestedpages-assignment-display -->
 						</div><!-- .field -->
 					</div><!-- .row -->
 				</li>

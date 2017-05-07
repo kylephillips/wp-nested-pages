@@ -78,6 +78,8 @@ class PostTypeRepository
 			$post_types[$type->name]->custom_fields = $this->configuredFields($type->name, 'custom_fields');
 			$post_types[$type->name]->standard_fields = $this->configuredFields($type->name, 'standard_fields');
 			$post_types[$type->name]->page_assignment = $this->configuredFields($type->name, 'post_type_page_assignment');
+			$post_types[$type->name]->page_assignment_id = $this->configuredFields($type->name, 'post_type_page_assignment_page_id');
+			$post_types[$type->name]->page_assignment_title = $this->configuredFields($type->name, 'post_type_page_assignment_page_title');
 		}
 		return $post_types;
 	}
