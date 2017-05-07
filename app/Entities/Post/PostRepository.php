@@ -132,4 +132,20 @@ class PostRepository
 		return true;
 	}
 
+	/**
+	* Does a post exist?
+	* @since 1.7.0
+	* @param int post_id
+	* @return boolean
+	*/
+	public function postExists($post_id, $post_type = 'post')
+	{
+		$post_q = new \WP_Query(array('post_type' => $post_type, 'p' => $post_id));
+		if ( $post_q->have_posts() ){
+			wp_reset_postdata();
+			return true;
+		}
+		return false;
+	}
+
 }
