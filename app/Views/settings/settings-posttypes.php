@@ -81,7 +81,7 @@ settings_fields( 'nestedpages-posttypes' );
 							<input type="hidden" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][post_type_page_assignment_page_title]" data-nested-pages-assign-post-type-title value="<?php if ( $type->page_assignment_title ) echo $type->page_assignment_title; ?>" />
 							
 							<div class="nestedpages-assignment-display" style="display:none;">
-								<div class="nestedpages-page-pt-assignment-selection" data-nestedpages-page-pt-assignment-selection>
+								<div class="nestedpages-page-pt-assignment-selection" data-nestedpages-page-pt-assignment-selection <?php if ( !$type->page_assignment_id ) echo 'style="display:none;"'?>>
 									<?php if ( $type->page_assignment_id ) : ?>
 									<?php _e('Currently assigned to:', 'wp-nested-pages'); ?> <?php echo $type->page_assignment_title; ?> <a href="#" data-nestedpages-page-pt-assignment-remove>(<?php _e('Remove', 'wp-nested-pages'); ?>)</a>
 									<?php endif; ?>
