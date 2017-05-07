@@ -8,6 +8,7 @@ use NestedPages\Entities\PostType\PostTypeRepository;
 use NestedPages\Config\SettingsRepository;
 use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 use NestedPages\Entities\Listing\ListingRepository;
+use NestedPages\Entities\Post\PostRepository;
 
 /**
 * Plugin Settings
@@ -51,6 +52,11 @@ class Settings
 	*/
 	private $listing_repo;
 
+	/**
+	* Post Repository
+	*/
+	private $post_repo;
+
 	public function __construct()
 	{
 		add_action( 'admin_menu', array( $this, 'registerSettingsPage' ) );
@@ -61,6 +67,7 @@ class Settings
 		$this->post_type_repo = new PostTypeRepository;
 		$this->integrations = new IntegrationFactory;
 		$this->listing_repo = new ListingRepository;
+		$this->post_repo = new PostRepository;
 	}
 
 	/**
