@@ -138,7 +138,7 @@ class Updates
 	*/
 	private function convertCustomFieldsToHidden()
 	{
-		if ( version_compare( $this->current_version, '1.6.9', '<' ) ){
+		if ( version_compare( $this->current_version, '1.7.0', '<' ) ){
 			new CustomFieldsToHidden;
 		}
 	}

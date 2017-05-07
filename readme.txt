@@ -99,7 +99,7 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 
 == Changelog ==
 
-= 1.6.9 =
+= 1.7.0 =
 * Added option to disable sorting per post type
 * Added option to assign a post type page. Assigning a page to a post type adds "Add New" and "All" links to the page row for the given post type, along with a count of published posts for that type
 * 24 hour time format support added to datepicker time field (follows General Time Format settings)
