@@ -95,12 +95,14 @@ NestedPages.Settings = function()
 		var button = $(checkbox).parents('.head').find(plugin.selectors.postTypeToggle);
 		if ( $(checkbox).is(':checked') ){
 			$(button).show();
+			$(button).parents('.head').siblings('.body').find('input[type="hidden"]').attr('disabled', false);
 			return;
 		}
 		$(button).hide();
 		$(button).parents('.head').siblings('.body').hide();
 		$(button).parents('.post-type').removeClass('active');
 		$(button).parents('.head').siblings('.body').find('input[type="checkbox"]').attr('checked', false);
+		$(button).parents('.head').siblings('.body').find('input[type="hidden"]').attr('disabled', true);
 		$(button).parents('.head').siblings('.body').find('select').val(false);
 	}
 
