@@ -151,7 +151,8 @@ class Dependencies
 				'manual_order_sync' => $this->settings->autoPageOrderDisabled(),
 				'currently_assigned_to' => __('Currently assigned to:', 'wp-nested-pages'),
 				'remove' => __('Remove', 'wp-nested-pages'),
-				'settings_page' => $settings_page
+				'settings_page' => $settings_page,
+				'wpml' => ( $this->integrations->plugins->wpml->installed ) ? true : false
 			);
 			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;
 			$localized_data['syncmenu'] = $syncmenu;
