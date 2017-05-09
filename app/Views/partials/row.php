@@ -7,6 +7,7 @@ if ( !$this->post_type->hierarchical ) $row_classes .= ' non-hierarchical';
 if ( !$this->user->canSortPages() ) $row_classes .= ' no-sort';
 if ( $this->isSearch() ) $row_classes .= ' search';
 $assigned_pt = ( $this->post_type->name == 'page' && array_key_exists($this->post->id, $this->assigned_pt_pages) ) ? get_post_type_object($this->assigned_pt_pages[$this->post->id]) : false;
+$wpml = ( $this->integrations->plugins->wpml->installed ) ? true : false;
 ?>
 <div class="row<?php echo $row_classes; ?>">
 	
@@ -96,8 +97,6 @@ $assigned_pt = ( $this->post_type->name == 'page' && array_key_exists($this->pos
 		<div class="action-buttons">
 
 			<?php if ( $this->post->comment_status == 'open' ) : $comments = wp_count_comments($this->post->id); $cs = 'open' ?>
-
-			
 			
 			<a href="<?php echo admin_url( 'edit-comments.php?p=' . get_the_id() ); ?>" class="np-btn">
 				<i class="np-icon-bubble"></i> <?php echo $comments->total_comments; ?>
@@ -106,6 +105,10 @@ $assigned_pt = ( $this->post_type->name == 'page' && array_key_exists($this->pos
 			<?php else : $cs = 'closed'; endif; ?>
 
 			<?php if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->isSearch() ) : ?>
+
+			<?php if ( $wpml ) : ?>
+				<a href="#" class="np-btn"><?php _e('Translations', 'wp-nested-pages'); ?></a>
+			<?php endif; ?>
 		
 			<?php if (!$this->settings->menusDisabled()) : ?>
 			<a href="#" class="np-btn open-redirect-modal" data-parentid="<?php echo esc_attr($this->post->id); ?>"><i class="np-icon-link"></i></a>
