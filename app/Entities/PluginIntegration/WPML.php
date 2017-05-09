@@ -69,4 +69,24 @@ class WPML
 		return ( array_key_exists($language, $languages) ) ? $languages[$language] : array();
 	}
 
+	/**
+	* Is the default language currently being shown
+	* @return boolean
+	*/
+	public function isDefaultLanguage()
+	{
+		return ( $this->getCurrentLanguage() == $this->getDefaultLanguage() ) ? true : false;
+	}
+
+	/**
+	* Get all translations for a post
+	* @return array
+	*/
+	public function getAllTranslations($post_id)
+	{
+		if ( !$post_id ) return array();
+		$true_id = $this->sitepress->get_element_trid($post_id);
+		return $this->sitepress->get_element_translations($true_id);
+	}
+
 }
