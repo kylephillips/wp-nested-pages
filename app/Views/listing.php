@@ -38,7 +38,16 @@
 			<a href="#" class="np-btn" data-np-manual-order-sync><?php echo __('Sync', 'wp-nested-pages') . ' ' . esc_html($this->post_type->labels->singular_name) . ' ' . __('Order', 'wp-nested-pages'); ?></a>
 			<?php endif; ?>
 
-			<?php if ( $this->post_type->name == 'page' && !$this->settings->hideMenuSync() && !$this->settings->menusDisabled() ) : ?>
+			<?php 
+				$wpml = $this->integrations->plugins->wpml->installed;
+				$primary_language = ( $wpml && $this->integrations->plugins->wpml->isDefaultLanguage() ) ? true : false;
+				if ( !$wpml ) $primary_language = true;
+
+				if ( $this->post_type->name == 'page' && 
+				!$this->settings->hideMenuSync() && 
+				!$this->settings->menusDisabled() &&
+				$primary_language ) : 
+			?>
 
 				<?php if ( !$this->settings->autoMenuDisabled() ) : ?>
 				<label>
