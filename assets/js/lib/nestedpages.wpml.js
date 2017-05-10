@@ -18,8 +18,9 @@ NestedPages.Wpml = function()
 
 	plugin.selectors = {
 		translationsBtn : 'data-nestedpages-translations',
-		modal : 'data-wpml-translations-modal',
-		title : 'data-wmpl-translation-title'
+		modal : 'data-np-wpml-translations-modal',
+		title : 'data-wmpl-translation-title',
+		table : 'data-np-wpml-translations-modal-table'
 	}
 
 	plugin.bindEvents = function()
@@ -72,8 +73,12 @@ NestedPages.Wpml = function()
 				nonce : NestedPages.jsData.nonce
 			},
 			success: function(data){
-				console.log(data);
-				plugin.populateModal();
+				if ( data.status === 'success' ){
+					plugin.populateModal(data.translations);
+				} else {
+					$(plugin.modal).find(NestedPages.selectors.quickEditErrorDiv).text(data.message).show();
+					plugin.toggleLoading(false);
+				}
 			}
 		});
 	}
@@ -81,8 +86,24 @@ NestedPages.Wpml = function()
 	/**
 	* Open the Modal
 	*/
-	plugin.populateModal = function()
+	plugin.populateModal = function(translations)
 	{
+		var html = '<tbody>';
+		$.each(translations, function(i, v){
+			var translation = translations[i];
+			html += '<tr>';
+			html += '<td><img src="' + translation.country_flag_url + '" alt="' + translation.translated_name + '" /> ' + translation.translated_name + '</td>';
+			html += '<td>';
+			if ( translation.has_translation ){
+				html += '<a href="' + translation.edit_link + '">' + translation.translation.post_title + ' (' + nestedpages.edit + ')</a>';
+			} else {
+				html += '<a href="' + translation.add_link + '" class="np-btn">+ ' + nestedpages.add_translation + '</a>';
+			}
+			html += '</td>';
+			html += '</tr>';
+		});
+		html += '</tbody>';
+		$(plugin.modal).find('[' + plugin.selectors.table + ']').html(html);
 		plugin.toggleLoading(false);
 	}
 

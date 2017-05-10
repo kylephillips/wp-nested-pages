@@ -1,5 +1,4 @@
 <div class="wrap nestedpages">
-<?php var_dump($this->integrations->plugins->wpml->getAllTranslations(4)); ?>
 	<h2 class="nestedpages-listing-title">
 		<?php esc_html_e($this->post_type->labels->name); ?>
 		
