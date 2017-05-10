@@ -80,13 +80,15 @@ class WPML
 
 	/**
 	* Get all translations for a post
-	* @return array
+	* @return array or int
 	*/
-	public function getAllTranslations($post_id)
+	public function getAllTranslations($post_id, $return = 'array')
 	{
-		if ( !$post_id ) return array();
+		if ( !$post_id && $return == 'array' ) return array();
+		if ( !$post_id && $return == 'count' ) return 0;
 		$true_id = $this->sitepress->get_element_trid($post_id);
-		return $this->sitepress->get_element_translations($true_id);
+		if ( $return == 'array' ) return $this->sitepress->get_element_translations($true_id);
+		if ( $return == 'count' ) return count($this->sitepress->get_element_translations($true_id));
 	}
 
 }

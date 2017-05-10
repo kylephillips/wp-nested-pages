@@ -107,7 +107,7 @@ $wpml = ( $this->integrations->plugins->wpml->installed ) ? true : false;
 			<?php if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->isSearch() ) : ?>
 
 			<?php if ( $wpml ) : ?>
-				<a href="#" class="np-btn" data-nestedpages-translations><?php _e('Translations', 'wp-nested-pages'); ?></a>
+				<a href="#" class="np-btn" data-nestedpages-translations><?php _e('Translations', 'wp-nested-pages'); ?> (<?php echo $this->integrations->plugins->wpml->getAllTranslations($this->post->id, 'count'); ?>)</a>
 			<?php endif; ?>
 		
 			<?php if (!$this->settings->menusDisabled()) : ?>

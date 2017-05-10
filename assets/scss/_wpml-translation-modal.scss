@@ -1,0 +1,39 @@
+//
+// WPML Inline Modal for displaying translations for a post
+// --------------------------------------------------
+.np-wpml-translations-modal {
+	.loading-indicator {
+		display: none;
+		text-align: center;
+		padding: 30px 0;
+	}
+	&.loading {
+		.np-translations-table {
+			display: none;
+		}
+		.loading-indicator {
+			display: block;
+		}
+	}
+	.np-translations-table {
+		display: table;
+		border-collapse: collapse;
+		width: 100%;
+		tr {
+			td {
+				padding: 10px;
+				border: 1px solid $border;
+				&:first-child {
+					border-left: 0;
+					padding-left: 0;
+				}
+				&:last-child {
+					border-right: 0;
+				}
+			}
+			&:last-child td {
+				border-bottom: 0;
+			}
+		} // tr
+	} // .np-translations-table
+} // .np-wpml-translations-modal

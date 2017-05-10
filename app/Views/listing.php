@@ -1,4 +1,5 @@
 <div class="wrap nestedpages">
+<?php var_dump($this->integrations->plugins->wpml->getAllTranslations(4)); ?>
 	<h2 class="nestedpages-listing-title">
 		<?php esc_html_e($this->post_type->labels->name); ?>
 		
@@ -47,7 +48,7 @@
 				!$this->settings->hideMenuSync() && 
 				!$this->settings->menusDisabled() &&
 				$primary_language ) : 
-			?>
+				?>
 
 				<?php if ( !$this->settings->autoMenuDisabled() ) : ?>
 				<label>
@@ -97,3 +98,4 @@ include( NestedPages\Helpers::view('forms/clone-form') );
 include( NestedPages\Helpers::view('forms/link-form') );
 include( NestedPages\Helpers::view('forms/bulk-add') );
 include( NestedPages\Helpers::view('forms/delete-confirmation-modal') ); 
+if ( $this->integrations->plugins->wpml->installed ) include( NestedPages\Helpers::view('partials/wpml-translations') );

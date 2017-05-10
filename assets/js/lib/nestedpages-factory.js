@@ -158,7 +158,8 @@ NestedPages.formActions = {
 	search : 'npmenuSearch',
 	newMenuItem : 'npnewMenuItem',
 	manualMenuSync : 'npmanualMenuSync',
-	postSearch: 'nppostSearch'
+	postSearch: 'nppostSearch',
+	wpmlTranslations : 'npWpmlTranslations'
 }
 
 
