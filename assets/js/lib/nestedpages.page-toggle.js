@@ -38,7 +38,6 @@ NestedPages.PageToggle = function()
 	{
 		var button = $(plugin.activeButton);
 		var action = $(button).attr('href');
-		console.log(action);
 
 		if ( action == '#show' ){
 			$(button).attr('href', '#hide').text(NestedPages.jsData.showHiddenText);

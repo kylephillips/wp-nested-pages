@@ -61,7 +61,16 @@ gulp.task('scripts', function(){
 		.pipe(gulp.dest(js_compiled))
 		.pipe(uglify())
 		.pipe(gulp.dest(js_compiled))
-		.pipe(notify('Nested Pages scripts compiles & compressed.'));
+		.pipe(notify('Nested Pages scripts compiled & compressed.'));
+});
+
+/**
+* Output unminified JS for dev environment
+*/
+gulp.task('scripts-dev', function(){
+	return gulp.src(js_source)
+		.pipe(concat('nestedpages.js'))
+		.pipe(gulp.dest(js_compiled));
 });
 
 /**
@@ -85,9 +94,10 @@ gulp.task('watch', function(){
 	gulp.watch(scss, ['scss']);
 	gulp.watch(js_source, ['scripts']);
 	gulp.watch(js_source_settings, ['settings-scripts']);
+	gulp.watch(js_source, ['scripts-dev']);
 });
 
 /**
 * Default
 */
-gulp.task('default', ['scss', 'scripts', 'settings-scripts', 'watch']);
+gulp.task('default', ['scss', 'scripts', 'settings-scripts', 'scripts-dev', 'watch']);

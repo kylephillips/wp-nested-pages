@@ -109,7 +109,7 @@ class Dependencies
 			if ( $np_env == 'dev' ){
 				wp_enqueue_script(
 					'nestedpages', 
-					$this->plugin_dir . '/assets/js/lib/nestedpages.js', 
+					$this->plugin_dir . '/assets/js/nestedpages.js', 
 					array('jquery'), 
 					$this->plugin_version
 				);
