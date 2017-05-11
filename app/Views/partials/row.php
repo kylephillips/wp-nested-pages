@@ -95,6 +95,9 @@ $wpml = ( $this->integrations->plugins->wpml->installed ) ? true : false;
 		?>
 
 		<div class="action-buttons">
+			<?php if ( $wpml ) : ?>
+				<a href="#" class="np-btn" data-nestedpages-translations><?php _e('Translations', 'wp-nested-pages'); ?> (<?php echo $this->integrations->plugins->wpml->getAllTranslations($this->post->id, 'count'); ?>)</a>
+			<?php endif; ?>
 
 			<?php if ( $this->post->comment_status == 'open' ) : $comments = wp_count_comments($this->post->id); $cs = 'open' ?>
 			
@@ -105,10 +108,6 @@ $wpml = ( $this->integrations->plugins->wpml->installed ) ? true : false;
 			<?php else : $cs = 'closed'; endif; ?>
 
 			<?php if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->isSearch() ) : ?>
-
-			<?php if ( $wpml ) : ?>
-				<a href="#" class="np-btn" data-nestedpages-translations><?php _e('Translations', 'wp-nested-pages'); ?> (<?php echo $this->integrations->plugins->wpml->getAllTranslations($this->post->id, 'count'); ?>)</a>
-			<?php endif; ?>
 		
 			<?php if (!$this->settings->menusDisabled()) : ?>
 			<a href="#" class="np-btn open-redirect-modal" data-parentid="<?php echo esc_attr($this->post->id); ?>"><i class="np-icon-link"></i></a>
