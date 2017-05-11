@@ -20,12 +20,18 @@ class WPML
 	*/
 	private $sitepress;
 
+	/**
+	* WPML Settings
+	*/
+	private $settings;
+
 	public function __construct()
 	{
 		if ( defined('ICL_SITEPRESS_VERSION') ){
 			$this->installed = true;
 			global $sitepress;
 			$this->sitepress = $sitepress;
+			$this->settings = get_option('icl_sitepress_settings');
 			return;
 		} 
 	}
@@ -89,6 +95,26 @@ class WPML
 		$true_id = $this->sitepress->get_element_trid($post_id);
 		if ( $return == 'array' ) return $this->sitepress->get_element_translations($true_id);
 		if ( $return == 'count' ) return count($this->sitepress->get_element_translations($true_id));
+	}
+
+	/**
+	* Sync Post Order among translations
+	* @param array of posts with children
+	*/
+	public function syncPostOrder($posts)
+	{
+		if ( $this->settings['sync_page_ordering'] !== 1 ) return;
+		global $wpdb;
+		if ( !is_array($posts) ) return;
+		foreach ( $posts as $order => $post ) :
+			$translations = $this->getAllTranslations($post['id']);
+			foreach ( $translations as $lang_code => $post_info ) :
+				$post_id = $post_info->element_id;
+				$query = "UPDATE $wpdb->posts SET menu_order = '$order' WHERE ID = '$post_id'";
+				$wpdb->query( $query );
+			endforeach;
+			if ( isset($post['children']) ) $this->syncPostOrder($post['children']);
+		endforeach;
 	}
 
 }
