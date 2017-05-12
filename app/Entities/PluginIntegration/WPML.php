@@ -117,4 +117,14 @@ class WPML
 		endforeach;
 	}
 
+	/**
+	* Output the sync menus button
+	* @return html
+	*/
+	public function syncMenusButton()
+	{
+		$url = esc_url(admin_url('admin.php?page=sitepress-multilingual-cms/menu/menu-sync/menus-sync.php'));
+		return '<a href="' . $url . '" class="np-btn">' . __('Sync WPML Menus', 'wp-nested-pages') . '</a>';
+	}
+
 }

@@ -57,7 +57,10 @@
 					<a href="#" class="np-btn" data-np-manual-menu-sync><?php esc_html_e('Sync Menu', 'wp-nested-pages'); ?></a>
 				<?php endif; ?>
 
+
 			<?php endif; ?>
+			
+			<?php if ( $wpml && !$primary_language ) echo $this->integrations->plugins->wpml->syncMenusButton(); ?>
 			
 		</div>
 		<?php endif; ?>
