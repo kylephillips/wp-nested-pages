@@ -49,6 +49,11 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 		<?php endif; ?>
 	</ul>
 
+	<?php
+	if ( $this->integrations->plugins->wpml->installed ) 
+		echo $this->integrations->plugins->wpml->languageToolLinks(esc_attr($this->post_type->name));
+	?>
+
 	<?php if ( !$this->post_type->hierarchical ) : ?>
 	<div class="np-tools-primary">
 		<form action="<?php echo admin_url('admin-post.php'); ?>" method="post" class="np-tools-sort">
