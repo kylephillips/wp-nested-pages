@@ -127,4 +127,23 @@ class WPML
 		return '<a href="' . $url . '" class="np-btn">' . __('Sync WPML Menus', 'wp-nested-pages') . '</a>';
 	}
 
+	/**
+	* Get the Translated IDs of an array of post IDs
+	* @param array $post_ids
+	* @return array of post ids
+	*/
+	public function getAllTranslatedIds($post_ids)
+	{
+		if ( !is_array($post_ids) ) return array();
+		foreach ( $post_ids as $id ){
+			$translations = $this->getAllTranslations($id);
+			if ( empty($translations) ) continue;
+			foreach ( $translations as $lang => $post ){
+				if ( $post->element_id == $id ) continue;
+				array_push($post_ids, $post->element_id);
+			}
+		}
+		return $post_ids;
+	}
+
 }

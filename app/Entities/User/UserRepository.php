@@ -1,6 +1,7 @@
 <?php
 
 namespace NestedPages\Entities\User;
+use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 
 /**
 * User Repository
@@ -8,6 +9,16 @@ namespace NestedPages\Entities\User;
 */
 class UserRepository
 {
+	/**
+	* Plugin Integrations
+	* @var object
+	*/
+	private $integrations;
+
+	public function __construct()
+	{
+		$this->integrations = new IntegrationFactory;
+	}
 
 	/**
 	* Return Current User's Roles
@@ -97,6 +108,7 @@ class UserRepository
 	public function updateVisiblePages($post_type, $ids)
 	{
 		$visible = $this->getVisiblePages();
+		if ( $this->integrations->plugins->wpml->installed ) $ids = $this->integrations->plugins->wpml->getAllTranslatedIds($ids);
 		$visible[$post_type] = $ids;
 		update_user_meta(
 			get_current_user_id(),
