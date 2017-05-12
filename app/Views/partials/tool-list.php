@@ -1,4 +1,12 @@
-<?php $trashedCount = $this->post_repo->trashedCount($this->post_type->name); ?>
+<?php 
+$trashedCount = $this->post_repo->trashedCount($this->post_type->name); 
+$searchLabel = esc_attr($this->post_type->labels->search_items);
+
+// WPML
+$wpml = $this->integrations->plugins->wpml->installed;
+if ( $wpml ) $current_lang = $this->integrations->plugins->wpml->getCurrentLanguage('name');
+if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugins->wpml->getCurrentLanguage('name') . ')';
+?>
 <div class="nestedpages-tools">
 
 	<ul class="subsubsub">
@@ -137,7 +145,7 @@
 			<input type="hidden" name="page" value="<?php echo esc_url($this->pageURL()); ?>">
 			<?php wp_nonce_field('nestedpages-nonce', 'nonce'); ?>
 			<input type="search" name="search_term" id="nestedpages-search" placeholder="<?php echo esc_attr($this->post_type->labels->search_items); ?>" <?php if ( $this->isSearch() ) echo ' value="' . esc_attr(sanitize_text_field($_GET['search'])) . '"'; ?>>
-			<input type="submit" name="" class="button" value="<?php echo esc_attr($this->post_type->labels->search_items);?>">
+			<input type="submit" name="" class="button" value="<?php echo $searchLabel;?>">
 		</form>
 	</div><!-- .np-tools-search -->
 
