@@ -245,6 +245,7 @@ class Listing
 
 		$list_classes = 'sortable visible nplist';
 		if ( !$this->user->canSortPages() || !$sortable || $this->isSearch() ) $list_classes .= ' no-sort';
+		if ( $this->integrations->plugins->wpml->installed && $this->integrations->plugins->wpml->getCurrentLanguage() == 'all' ) $list_classes .= ' no-sort';
 		if ( $this->integrations->plugins->yoast->installed ) $list_classes .= ' has-yoast';
 		if ( $this->isSearch() ) $list_classes .= ' np-search-results';
 
@@ -374,6 +375,22 @@ class Listing
 					$count++;
 
 					$row_view = ( $this->post->type !== 'np-redirect' ) ? 'partials/row' : 'partials/row-link';
+
+					// WPML
+					$wpml = ( $this->integrations->plugins->wpml->installed ) ? true : false;
+					$wpml_current_language = null;
+					if ( $wpml ) $wpml_current_language = $this->integrations->plugins->wpml->getCurrentLanguage();
+
+					// CSS Classes for the <li> row element
+					$row_classes = '';
+					if ( !$this->post_type->hierarchical ) $row_classes .= ' non-hierarchical';
+					if ( !$this->user->canSortPages() ) $row_classes .= ' no-sort';
+					if ( $wpml_current_language == 'all' ) $row_classes .= ' no-sort';
+					if ( $this->isSearch() ) $row_classes .= ' search';
+
+					// Page Assignment for Post Type
+					$assigned_pt = ( $this->post_type->name == 'page' && array_key_exists($this->post->id, $this->assigned_pt_pages) ) ? get_post_type_object($this->assigned_pt_pages[$this->post->id]) : false;
+
 					include( Helpers::view($row_view) );
 
 				endif; // trash status

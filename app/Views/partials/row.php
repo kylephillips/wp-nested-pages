@@ -2,12 +2,6 @@
 /**
 * Row represents a single page
 */
-$row_classes = '';
-if ( !$this->post_type->hierarchical ) $row_classes .= ' non-hierarchical';
-if ( !$this->user->canSortPages() ) $row_classes .= ' no-sort';
-if ( $this->isSearch() ) $row_classes .= ' search';
-$assigned_pt = ( $this->post_type->name == 'page' && array_key_exists($this->post->id, $this->assigned_pt_pages) ) ? get_post_type_object($this->assigned_pt_pages[$this->post->id]) : false;
-$wpml = ( $this->integrations->plugins->wpml->installed ) ? true : false;
 ?>
 <div class="row<?php echo $row_classes; ?>">
 	
@@ -22,7 +16,7 @@ $wpml = ( $this->integrations->plugins->wpml->installed ) ? true : false;
 	<div class="row-inner">
 		<i class="np-icon-sub-menu"></i>
 		
-		<?php if ( $this->user->canSortPages() && !$this->isSearch() && !$this->post_type_settings->disable_sorting ) : ?>
+		<?php if ( $this->user->canSortPages() && !$this->isSearch() && !$this->post_type_settings->disable_sorting && $wpml_current_language !== 'all' ) : ?>
 		<i class="handle np-icon-menu"></i>
 		<?php endif; ?>
 
