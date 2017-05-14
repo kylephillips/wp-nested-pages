@@ -231,4 +231,29 @@ class WPML
 		return ( $results[0]->name ) ? $results[0]->name : null;
 	}
 
+	/**
+	* Sync fields across all langauges
+	*/
+	public function syncFields($post_id)
+	{
+		$all_translations = $this->getAllTranslations($post_id);
+		$source_template = get_post_meta($post_id, '_wp_page_template', true);
+		foreach ( $all_translations as $translation ) :
+			if ( $translation->element_id == $post_id ) continue;
+			if ( $this->settings['sync_page_template'] && $source_template ){
+				update_post_meta( 
+					$translation->element_id, 
+					'_wp_page_template', 
+					$source_template
+				);
+			}
+			// if ( $this->settings->sync_comment_status ){
+
+			// }
+			// if ( $this->settings->sync_post_date ){
+
+			// }
+		endforeach;
+	}
+
 }
