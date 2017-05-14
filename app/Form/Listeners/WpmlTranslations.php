@@ -69,7 +69,7 @@ class WpmlTranslations extends BaseHandler
 		{
 			$add_link = 'post-new.php?' . http_build_query (
 				array(
-					'lang'        => $code,
+					'lang'        => $lang_code,
 					'post_type'   => get_post_type ( $this->data['post_id'] ),
 					'trid'        => $sitepress->get_element_trid($this->data['post_id']),
 					'source_lang' => $current_language
