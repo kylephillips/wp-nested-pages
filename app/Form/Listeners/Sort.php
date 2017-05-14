@@ -10,16 +10,10 @@ use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 */
 class Sort extends BaseHandler 
 {
-	/**
-	* Plugin Integrations
-	* @var object
-	*/
-	private $integrations;
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->integrations = new IntegrationFactory;
 		$this->updateOrder();
 		$this->syncMenu();
 		$this->sendResponse();
