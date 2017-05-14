@@ -51,7 +51,7 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 
 	<?php
 	if ( $this->integrations->plugins->wpml->installed ) 
-		echo $this->integrations->plugins->wpml->languageToolLinks(esc_attr($this->post_type->name));
+		if ( $this->post_type->name !== 'post' ) echo $this->integrations->plugins->wpml->languageToolLinks(esc_attr($this->post_type->name));
 	?>
 
 	<?php if ( !$this->post_type->hierarchical ) : ?>

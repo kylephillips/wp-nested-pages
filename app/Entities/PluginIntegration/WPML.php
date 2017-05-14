@@ -174,27 +174,61 @@ class WPML
 
 	/**
 	* Output a list of language links in the tools section of the listing head
+	* @param string $post_type
+	* @return string html
+	* @example English (2) | German (1) | Spanish (0)
 	*/
 	public function languageToolLinks($post_type)
 	{
 		$html = '<ul class="subsubsub" style="clear:both;">';
 		$c = 1;
 		$languages = $this->getLanguages();
-
 		foreach ( $languages as $lang_code => $lang ){
+			$translated_language = $this->getTranslatedLanguageName($this->getDefaultLanguage(), $lang_code);
+			if ( !$translated_language ) continue;
+			$post_count = ( $lang_code == $this->getDefaultLanguage() )
+				? $this->defaultPostCount($post_type)
+				: $this->translatedPostCount($lang_code, $post_type);
 			$html .= '<li>';
 			if ( $c > 1 ) $html .= '|&nbsp;';
 			if ( $lang['active'] ) $html .= '<strong>';
-			$html .= $lang['translated_name'] . ' ';
-			if ( $lang_code !== $this->getDefaultLanguage() ) $html .= $this->translatedPostCount($lang_code, $post_type);
-			if ( $lang_code == $this->getDefaultLanguage() ) $html .= $this->defaultPostCount($post_type);
+			if ( $post_count > 0 ) $html .= '<a href="' . $this->getLanguageFilteredLink($lang_code, $post_type) . '">';
+			$html .= $translated_language . ' ';
+			if ( $lang_code !== $this->getDefaultLanguage() ) $html .= '(' . $post_count . ')';
+			if ( $lang_code == $this->getDefaultLanguage() ) $html .= '(' . $post_count . ')';
 			if ( $lang['active'] ) $html .= '</strong>';
+			if ( $post_count > 0 ) $html .= '</a>';
 			$html .= '&nbsp;</li>';
 			$c++;
 		}
-		$html .= '<li>|&nbsp;All Languages</li>';
+		$html .= '<li>|&nbsp;<a href="' . $this->getLanguageFilteredLink('all', $post_type) . '">' . __('All Languages', 'wp-nested-pages') . '</a></li>';
 		$html .= '</ul>';
 		return $html;
+	}
+
+	/**
+	* Get the Links to a filtered language
+	*/
+	public function getLanguageFilteredLink($language, $post_type)
+	{
+		$url = 'admin.php?page=nestedpages';
+		if ( $post_type !== 'page' ) $url .= '-' . $post_type;
+		$url .= '&lang=' . $language;
+		return esc_url(admin_url($url));
+	}
+
+	/**
+	* Get a translated language name for a given language
+	* @param string $translated_language - the language to return as
+	* @param string $target_language - the language to translate
+	* @return string - translated name of language (ex: if default is english, and target is spanish, will return "Spanish" rather than "Espanol")
+	*/
+	public function getTranslatedLanguageName($translated_language, $target_language)
+	{
+		global $wpdb;
+		$query = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}icl_languages_translations WHERE language_code = '%s' AND display_language_code = '%s'",  $target_language, $translated_language);
+		$results = $wpdb->get_results( $query );
+		return ( $results[0]->name ) ? $results[0]->name : null;
 	}
 
 }
