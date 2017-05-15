@@ -26,7 +26,7 @@ class QuickEdit extends BaseHandler
 		$updated = $this->post_update_repo->updatePost($this->data);
 		if ( !$updated ) $this->sendErrorResponse();
 		if ( isset($this->data['tax_input']) ) $this->addFlatTaxonomies();
-		if ( $this->integrations->plugins->wpml->installed ) $this->integrations->plugins->wpml->syncFields($this->data['post_id']);
+		if ( $this->integrations->plugins->wpml->installed ) $this->integrations->plugins->wpml->syncPosts($this->data['post_id']);
 		$this->addData();
 		$this->response = array(
 			'status' => 'success',

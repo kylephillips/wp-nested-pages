@@ -234,10 +234,12 @@ class WPML
 	/**
 	* Sync fields across all langauges
 	*/
-	public function syncFields($post_id)
+	public function syncPosts($post_id)
 	{
 		$all_translations = $this->getAllTranslations($post_id);
 		$source_template = get_post_meta($post_id, '_wp_page_template', true);
+		$source_post = get_post($post_id);
+		$sticky_flag = ( $this->settings['sync_sticky_flag'] ) ? get_option('sticky_posts') : array();
 		foreach ( $all_translations as $translation ) :
 			if ( $translation->element_id == $post_id ) continue;
 			if ( $this->settings['sync_page_template'] && $source_template ){
@@ -247,12 +249,14 @@ class WPML
 					$source_template
 				);
 			}
-			// if ( $this->settings->sync_comment_status ){
+			$update_args = array();
+			if ( $this->settings['sync_comment_status'] ) $update_args['comment_status'] = $source_post->comment_status;
+			if ( $this->settings['sync_post_date'] ) $update_args['post_date'] = $source_post->post_date;
+			if ( $this->settings['sync_post_date'] ) $update_args['post_date_gmt'] = $source_post->post_date_gmt;
+			if ( $this->settings['sync_ping_status'] ) $update_args['post_status'] = $source_post->post_status;
 
-			// }
-			// if ( $this->settings->sync_post_date ){
-
-			// }
+			if ( $this->settings['sync_password'] ) $update_args['post_password'] = $source_post->post_password;
+			if ( $this->settings['sync_private_flag'] ) $update_args['post_status'] = $source_post->post_status;
 		endforeach;
 	}
 
