@@ -4,6 +4,8 @@
 	*/
 	$post_type_object = get_post_type_object( 'page' );
 	$can_publish = current_user_can( $post_type_object->cap->publish_posts );
+	$wpml_pages = ( $this->integrations->plugins->wpml->installed && $this->integrations->plugins->wpml->isDefaultLanguage()) ? true : false;
+	if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
 ?>
 
 <form method="get" action="">
@@ -143,7 +145,7 @@
 		<?php endif; // Edit theme options ?>
 		
 		<div class="form-control np-toggle-options">
-			<?php if ( $this->user->canSortPages() && $this->post_type->name == 'page' && !$this->isSearch() && !array_key_exists('menu_options', $this->disabled_standard_fields) ) : ?>
+			<?php if ( $this->user->canSortPages() && $this->post_type->name == 'page' && !$this->isSearch() && !array_key_exists('menu_options', $this->disabled_standard_fields) && $wpml_pages ) : ?>
 			<a href="#" class="np-btn np-btn-half np-toggle-menuoptions"><?php _e('Menu Options', 'wp-nested-pages'); ?></a>
 			<?php endif; ?>
 

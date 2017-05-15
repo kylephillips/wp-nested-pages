@@ -2,6 +2,8 @@
 /**
 * Row represents a single page
 */
+$wpml_pages = ( $this->integrations->plugins->wpml->installed && $this->integrations->plugins->wpml->isDefaultLanguage()) ? true : false;
+if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
 ?>
 <div class="row<?php echo $row_classes; ?>">
 	
@@ -101,7 +103,7 @@
 			
 			<?php else : $cs = 'closed'; endif; ?>
 
-			<?php if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->isSearch() ) : ?>
+			<?php if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->isSearch() && $wpml_pages ) : ?>
 		
 			<?php if (!$this->settings->menusDisabled()) : ?>
 			<a href="#" class="np-btn open-redirect-modal" data-parentid="<?php echo esc_attr($this->post->id); ?>"><i class="np-icon-link"></i></a>
@@ -111,7 +113,7 @@
 
 			<?php endif; ?>
 
-			<?php if ( current_user_can('edit_pages') && current_user_can('edit_posts') ) : ?>
+			<?php if ( current_user_can('edit_pages') && current_user_can('edit_posts') && $wpml_pages ) : ?>
 			<a href="#" class="np-btn clone-post" data-id="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php echo esc_html($this->post->title); ?>"><?php _e('Clone', 'wp-nested-pages'); ?></a>
 			<?php endif; ?>
 

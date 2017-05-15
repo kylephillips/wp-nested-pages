@@ -1,3 +1,7 @@
+<?php
+$wpml_pages = ( $this->integrations->plugins->wpml->installed && $this->integrations->plugins->wpml->isDefaultLanguage()) ? true : false;
+if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
+?>
 <div class="wrap nestedpages">
 	<h2 class="nestedpages-listing-title">
 		<?php esc_html_e($this->post_type->labels->name); ?>
@@ -6,13 +10,13 @@
 			<?php esc_html_e($this->post_type->labels->add_new); ?>
 		</a>
 
-		<?php if ( current_user_can('publish_pages') && !$this->isSearch() ) : ?>
+		<?php if ( current_user_can('publish_pages') && !$this->isSearch() && $wpml_pages ) : ?>
 		<a href="#" class="add-new-h2 open-bulk-modal" title="<?php _e('Add Multiple', 'wp-nested-pages'); ?>" data-parentid="0">
 			<?php esc_html_e('Add Multiple', 'wp-nested-pages'); ?>
 		</a>
 		<?php endif; ?>
 		
-		<?php if ( current_user_can('publish_pages') && $this->post_type->name == 'page' && !$this->isSearch() && !$this->settings->menusDisabled() ) : ?>
+		<?php if ( current_user_can('publish_pages') && $this->post_type->name == 'page' && !$this->isSearch() && !$this->settings->menusDisabled() && $wpml_pages ) : ?>
 		<a href="#" class="add-new-h2 open-redirect-modal" title="<?php _e('Add Link', 'wp-nested-pages'); ?>" data-parentid="0">
 			<?php esc_html_e('Add Link', 'wp-nested-pages'); ?>
 		</a>
