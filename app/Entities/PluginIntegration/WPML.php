@@ -1,6 +1,7 @@
 <?php 
 
 namespace NestedPages\Entities\PluginIntegration;
+use NestedPages\Entities\Post\PostRepository;
 
 /**
 * WPML Integration
@@ -25,6 +26,11 @@ class WPML
 	*/
 	private $settings;
 
+	/**
+	* Post Repository
+	*/
+	private $post_repo;
+
 	public function __construct()
 	{
 		if ( defined('ICL_SITEPRESS_VERSION') ){
@@ -32,6 +38,7 @@ class WPML
 			global $sitepress;
 			$this->sitepress = $sitepress;
 			$this->settings = get_option('icl_sitepress_settings');
+			$this->post_repo = new PostRepository;
 			return;
 		} 
 	}
@@ -254,10 +261,29 @@ class WPML
 			if ( $this->settings['sync_post_date'] ) $update_args['post_date'] = $source_post->post_date;
 			if ( $this->settings['sync_post_date'] ) $update_args['post_date_gmt'] = $source_post->post_date_gmt;
 			if ( $this->settings['sync_ping_status'] ) $update_args['post_status'] = $source_post->post_status;
-
 			if ( $this->settings['sync_password'] ) $update_args['post_password'] = $source_post->post_password;
 			if ( $this->settings['sync_private_flag'] ) $update_args['post_status'] = $source_post->post_status;
+			if ( $this->settings['sync_post_taxonomies'] ) $this->syncTaxonomies($post_id);
 		endforeach;
 	}
 
+	/**
+	* Sync Taxonomies across all languages
+	*/
+	public function syncTaxonomies($source_post_id)
+	{
+		$all_translations = $this->getAllTranslations($source_post_id);
+		$terms = $this->post_repo->getAllTerms($source_post_id);
+		foreach ( $terms as $term ){
+			$translation_ids = $this->sitepress->get_element_trid($term->term_id);
+			var_dump($translation_ids);
+		}
+		var_dump($terms);
+
+		foreach ( $all_translations as $translation ) :
+			if ( $translation->element_id == $source_post_id ) continue;
+			if ( !$terms ) continue;
+			
+		endforeach;
+	}
 }
