@@ -55,7 +55,11 @@ if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
 
 				<?php if ( !$this->settings->autoMenuDisabled() ) : ?>
 				<label>
-					<input type="checkbox" name="np_sync_menu" class="np-sync-menu" value="sync" <?php if ( get_option('nestedpages_menusync') == 'sync' ) echo 'checked'; ?>/> <?php esc_html_e('Sync Menu', 'wp-nested-pages'); ?>
+					<input type="checkbox" name="np_sync_menu" class="np-sync-menu" value="sync" <?php if ( get_option('nestedpages_menusync') == 'sync' ) echo 'checked'; ?>/> 
+					<?php 
+						esc_html_e('Sync Menu', 'wp-nested-pages'); 
+						if ( $wpml ) echo ' (' . esc_html($this->integrations->plugins->wpml->getCurrentLanguage('name')) . ')';
+					?>
 				</label>
 				<?php else : ?>
 					<a href="#" class="np-btn" data-np-manual-menu-sync><?php esc_html_e('Sync Menu', 'wp-nested-pages'); ?></a>
