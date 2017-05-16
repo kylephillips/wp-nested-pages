@@ -110,11 +110,20 @@ class NavMenuRepository
 	* Create Empty Menu if one doesn't exist
 	* @since 1.3.4
 	*/
-	private function createNewMenu()
-	{
-		$menu_id = wp_create_nav_menu('Nested Pages');
-		update_option('nestedpages_menu', $menu_id);
-	}
+    private function createNewMenu()
+    {
+        $check_option = get_option('nestedpages_menu');
+        if(!is_numeric($check_option)){
+            $menu = wp_get_nav_menu_object('Nested Pages');
+            update_option('nestedpages_menu', $menu->term_id);
+        }
+
+        $is_menu = wp_get_nav_menu_object('Nested Pages');
+        if($is_menu === false){
+            $menu = wp_create_nav_menu('Nested Pages');
+            update_option('nestedpages_menu', $menu->term_id);
+        }
+    }
 
 	/**
 	* Clear out the menu
