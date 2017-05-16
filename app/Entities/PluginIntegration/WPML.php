@@ -272,18 +272,49 @@ class WPML
 	*/
 	public function syncTaxonomies($source_post_id)
 	{
+		global $wpdb;
 		$all_translations = $this->getAllTranslations($source_post_id);
 		$terms = $this->post_repo->getAllTerms($source_post_id);
+		$translated_terms = array();
+
+		// Get all translations for the terms
 		foreach ( $terms as $term ){
-			$translation_ids = $this->sitepress->get_element_trid($term->term_id);
-			var_dump($translation_ids);
+			if ( $term->tax_name == 'language' ) continue;
+			$query = "SELECT trid FROM {$wpdb->prefix}icl_translations WHERE element_id = $term->term_id AND element_type LIKE 'tax_%'";
+			$trid = $wpdb->get_var($query);
+			if ( !$trid ) continue;
+			$translated_terms[] = $this->getTermTranslations($trid);
+			if ( !$translated_terms ) continue;
 		}
-		var_dump($terms);
 
 		foreach ( $all_translations as $translation ) :
 			if ( $translation->element_id == $source_post_id ) continue;
 			if ( !$terms ) continue;
-			
+
+			// Build the array of terms to sync
+			foreach ( $translated_terms as $term_translations ) :
+				foreach ( $term_translations as $trans ) :
+					$taxonomy = get_taxonomy($trans->taxonomy);
+					$tax_hierarchical = $taxonomy->hierarchical;
+					if ( $trans->language_code == $translation->language_code )  {
+						$translation->terms[$trans->taxonomy][] = ($tax_hierarchical) ? $trans->term_id : $trans->name;
+					}
+				endforeach;
+			endforeach;
+
+			if ( !is_array($translation->terms) ) continue;
+			foreach ( $translation->terms as $taxonomy => $terms ) :
+				wp_set_post_terms($translation->element_id, $terms, $taxonomy, false);
+			endforeach;
 		endforeach;
+	}
+
+	/**
+	* Get all the translations for a term
+	*/
+	public function getTermTranslations($trid)
+	{
+		global $wpdb;
+		return $wpdb->get_results($wpdb->prepare("SELECT iclt.language_code, t.term_id, t.name, t.slug, tt.taxonomy FROM {$wpdb->prefix}icl_translations AS iclt LEFT JOIN {$wpdb->prefix}terms AS t ON t.term_id = iclt.element_id LEFT JOIN {$wpdb->prefix}term_taxonomy AS tt ON tt.term_id = t.term_id WHERE trid = %s", $trid));
 	}
 }

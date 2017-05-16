@@ -1,8 +1,6 @@
 <?php
 $wpml_pages = ( $this->integrations->plugins->wpml->installed && $this->integrations->plugins->wpml->isDefaultLanguage()) ? true : false;
 if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
-// var_dump(get_option('icl_sitepress_settings'));
-$this->integrations->plugins->wpml->syncTaxonomies(71717);
 ?>
 <div class="wrap nestedpages">
 	<h2 class="nestedpages-listing-title">
