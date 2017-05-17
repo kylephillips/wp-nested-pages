@@ -105,7 +105,7 @@ if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
 
 			<?php if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->isSearch() && $wpml_pages ) : ?>
 		
-			<?php if (!$this->settings->menusDisabled()) : ?>
+			<?php if (!$this->settings->menusDisabled() && !$this->integrations->plugins->wpml->installed) : ?>
 			<a href="#" class="np-btn open-redirect-modal" data-parentid="<?php echo esc_attr($this->post->id); ?>"><i class="np-icon-link"></i></a>
 			<?php endif; ?>
 			

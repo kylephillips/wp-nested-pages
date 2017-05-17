@@ -16,7 +16,7 @@ if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
 		</a>
 		<?php endif; ?>
 		
-		<?php if ( current_user_can('publish_pages') && $this->post_type->name == 'page' && !$this->isSearch() && !$this->settings->menusDisabled() && $wpml_pages ) : ?>
+		<?php if ( current_user_can('publish_pages') && $this->post_type->name == 'page' && !$this->isSearch() && !$this->settings->menusDisabled() && !$this->integrations->plugins->wpml->installed ) : ?>
 		<a href="#" class="add-new-h2 open-redirect-modal" title="<?php _e('Add Link', 'wp-nested-pages'); ?>" data-parentid="0">
 			<?php esc_html_e('Add Link', 'wp-nested-pages'); ?>
 		</a>
