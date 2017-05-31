@@ -99,6 +99,10 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 
 == Changelog ==
 
+= 2.0.1 =
+* WPML compatibility added (limited support, see the more information section for important notes on support)
+* Important upgrade note: Custom links within the Nested Pages interface are disabled if WPML is installed and enabled. This is a potential breaking change, so please remove all custom links before updating. Links may be added back to menus by using the default WordPress Appearance > Menus editor.
+
 = 1.7.1 =
 * Bug fix where saving post type options was enabling all post types
 
@@ -421,6 +425,16 @@ After installing Nested Pages, a new menu will be available with the name `Neste
 **Editing the generated menu:** Any manual changes made to the menu outside of the Nested Pages interface will be overwritten after the synchronization runs.
 
 **Hiding Pages in the Menu:** To hide a page from the Nested Pages menu, click “Quick Edit” on it’s row, select “Hide in Nav Menu”, and click “update”. If menu sync is disabled, enable it now to sync the setting. Hidden pages are marked “(Hidden)”. If a page with child pages is hidden from the menu, all of it’s child pages will also be hidden. 
+
+
+= WPML Compatibility =
+
+As of version 2.0.1, some features of Nested Pages are compatible with WPML. There are some important exceptions to take note of before upgrading to version 2 if WPML is installed, or if installing WPML on an existing Nested Pages enabled site.
+
+**WPML and menu support:** Certain features within Nested Pages are disabled if WPML is installed and enabled. This is due to the complexity of menu synchronization across languages. While automatic menu sync remains available for the site's primary language, additional languages must be synchronized using WPML's menu synchronization methods. If menu sync is enabled within Nested Pages, a "Sync WPML Menus" link is available on non-primary language screens for convenience.
+
+**Custom Links:** Custom links within Nested Pages are disabled on installs with WPML. Custom links may be added through the traditional Appearance > Menus interface. This ensures that WPML menus synchronize successfully across languages.
+
 
 = Filters =
 
