@@ -1,5 +1,4 @@
 <?php
-
 namespace NestedPages\Entities\Post;
 
 class PostCloner

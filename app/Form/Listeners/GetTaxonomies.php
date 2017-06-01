@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Form\Listeners;
 
 /**
@@ -8,7 +7,6 @@ namespace NestedPages\Form\Listeners;
 */
 class GetTaxonomies extends BaseHandler 
 {
-
 	/**
 	* Terms to return
 	* @var object

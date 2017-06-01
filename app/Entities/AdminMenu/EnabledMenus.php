@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 namespace NestedPages\Entities\AdminMenu;
 
 use NestedPages\Entities\PostType\PostTypeRepository;
@@ -13,7 +12,6 @@ use NestedPages\Entities\User\UserRepository;
 */
 class EnabledMenus 
 {
-
 	/**
 	* Post Type
 	*/
@@ -143,5 +141,4 @@ class EnabledMenus
 	{
 		return $this->post_type_repo->getMenuSlug($this->post_type);
 	}
-
 }

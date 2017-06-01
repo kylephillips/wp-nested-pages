@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 namespace NestedPages\Entities\Confirmation;
 
 /**
@@ -12,5 +11,4 @@ class LinkDeletedConfirmation implements ConfirmationInterface
 		$out = __('Link successfully deleted.', 'wp-nested-pages');
 		return $out;
 	}
-
 }

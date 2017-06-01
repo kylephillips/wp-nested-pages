@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Form\Listeners;
 
 class MenuSearch extends BaseHandler 
@@ -80,5 +79,4 @@ class MenuSearch extends BaseHandler
 		}
 		$this->results = null;
 	}
-
 }

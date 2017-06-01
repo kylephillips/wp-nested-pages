@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Form\Listeners;
 
 /**
@@ -15,5 +14,4 @@ class ManualMenuSync extends BaseHandler
 		$this->response = array('status' => 'success');
 		$this->sendResponse();
 	}
-
 }

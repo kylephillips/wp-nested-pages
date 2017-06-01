@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 namespace NestedPages\Entities\AdminMenu;
 
 use NestedPages\Entities\PostType\PostTypeRepository;
@@ -9,7 +8,6 @@ use NestedPages\Entities\PostType\PostTypeRepository;
 */
 class AdminSubmenuExpander 
 {
-
 	/**
 	* Current Page Object
 	*/
@@ -94,5 +92,4 @@ class AdminSubmenuExpander
 			echo '<script>jQuery(document).ready(function(){jQuery("#toplevel_page_nestedpages").removeClass("wp-not-current-submenu").addClass("wp-has-current-submenu").addClass("wp-menu-open");jQuery("#toplevel_page_nestedpages a:first").addClass("wp-has-current-submenu");});</script>';
 		}
 	}
-
 }

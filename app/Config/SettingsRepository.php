@@ -1,11 +1,10 @@
-<?php 
-
+<?php
 namespace NestedPages\Config;
+
 use NestedPages\Entities\PostType\PostTypeRepository;
 
 class SettingsRepository 
 {
-
 	/**
 	* Is the Datepicker UI option enabled
 	* @return boolean
@@ -139,5 +138,4 @@ class SettingsRepository
 		if ( isset( $sizes[ $size ] ) ) return $sizes[ $size ];
 		return false;
 	}
-
 }

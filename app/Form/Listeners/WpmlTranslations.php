@@ -1,6 +1,6 @@
 <?php 
-
 namespace NestedPages\Form\Listeners;
+
 use NestedPages\Entities\PluginIntegration\WPML;
 
 class WpmlTranslations extends BaseHandler 
@@ -86,5 +86,4 @@ class WpmlTranslations extends BaseHandler
 		}
 		$this->translations = $all_languages;
 	}
-
 }

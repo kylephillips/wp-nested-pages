@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 namespace NestedPages\Config;
 
 use NestedPages\Helpers;
@@ -15,7 +14,6 @@ use NestedPages\Entities\Post\PostRepository;
 */
 class Settings 
 {
-
 	/**
 	* Nested Pages Menu
 	* @var object
@@ -149,5 +147,4 @@ class Settings
 		$tab = ( isset($_GET['tab']) ) ? $_GET['tab'] : 'general';
 		include( Helpers::view('settings/settings') );
 	}	
-
 }

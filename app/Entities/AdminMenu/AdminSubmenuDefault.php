@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 namespace NestedPages\Entities\AdminMenu;
 
 use NestedPages\Entities\PostType\PostTypeRepository;
@@ -10,7 +9,6 @@ use NestedPages\Entities\Listing\Listing;
 */
 class AdminSubmenuDefault 
 {
-
 	/**
 	* Post Type
 	* @var object
@@ -70,5 +68,4 @@ class AdminSubmenuDefault
 	{
 		return $this->hook;
 	}
-
 }

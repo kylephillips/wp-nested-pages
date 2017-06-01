@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 namespace NestedPages\Entities\NavMenu;
 
 use NestedPages\Entities\NavMenu\NavMenuSync;
@@ -13,7 +12,6 @@ use NestedPages\Entities\NavMenu\NavMenuRepository;
 */
 class NavMenuSyncMenu extends NavMenuSync 
 {
-
 	/**
 	* Menu Items
 	* @var array of objects
@@ -37,7 +35,6 @@ class NavMenuSyncMenu extends NavMenuSync
 	* @var object
 	*/
 	private $post_repo;
-
 
 	public function __construct()
 	{
@@ -160,5 +157,4 @@ class NavMenuSyncMenu extends NavMenuSync
 			}
 		}
 	}
-
 }

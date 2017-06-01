@@ -1,13 +1,12 @@
 <?php 
-
 namespace NestedPages\Entities\PluginIntegration;
+
 use NestedPages\Entities\Post\PostRepository;
 
 /**
 * WPML Integration
 * @link https://wpml.org/
 */
-
 class WPML 
 {
 	/**

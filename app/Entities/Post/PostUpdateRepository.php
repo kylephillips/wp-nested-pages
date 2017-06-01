@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Entities\Post;
 
 use NestedPages\Form\Validation\Validation;
@@ -11,7 +10,6 @@ use NestedPages\Entities\PostType\PostTypeRepository;
 */
 class PostUpdateRepository 
 {
-
 	/**
 	* Validation Class
 	* @var object NP_Validation
@@ -33,7 +31,6 @@ class PostUpdateRepository
 	* @var int
 	*/
 	protected $new_id;
-
 
 	public function __construct()
 	{
@@ -429,5 +426,4 @@ class PostUpdateRepository
 			$this->updateNavCSS($data);
 		}
 	}
-
 }

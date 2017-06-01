@@ -1,10 +1,8 @@
 <?php 
-
 namespace NestedPages\Entities\Post;
 
 class PostRepository 
 {
-
 	/**
 	* Get count of hidden posts
 	* @since 1.1.4
@@ -157,5 +155,4 @@ class PostRepository
 		$query = $wpdb->prepare("SELECT p.post_title, tr.term_taxonomy_id AS tax_id, t.slug AS term_name, tt.taxonomy AS tax_name, tt.term_id AS term_id FROM {$wpdb->prefix}posts AS p LEFT JOIN {$wpdb->prefix}term_relationships AS tr ON tr.object_id = p.ID LEFT JOIN {$wpdb->prefix}terms AS t ON t.term_id = tr.term_taxonomy_id LEFT JOIN {$wpdb->prefix}term_taxonomy AS tt ON tt.term_taxonomy_id = tr.term_taxonomy_id WHERE p.ID = %s", $post_id);
 		return $wpdb->get_results($query);
 	}
-
 }

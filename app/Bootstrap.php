@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages;
 
 /**
@@ -7,7 +6,6 @@ namespace NestedPages;
 */
 class Bootstrap 
 {
-
 	public function __construct()
 	{
 		$this->initializePlugin();
@@ -69,5 +67,4 @@ class Bootstrap
 		array_unshift($links, $settings_link); 
 		return $links; 
 	}
-
 }

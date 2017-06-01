@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Form\Listeners;
 
 /**
@@ -7,7 +6,6 @@ namespace NestedPages\Form\Listeners;
 */
 class BulkActions 
 {
-
 	/**
 	* URL to redirect to
 	* @var string

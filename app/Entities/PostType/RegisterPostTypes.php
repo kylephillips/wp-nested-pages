@@ -1,6 +1,6 @@
 <?php 
-
 namespace NestedPages\Entities\PostType;
+
 use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 
 /**
@@ -46,5 +46,4 @@ class RegisterPostTypes
 		);
 		register_post_type( 'np-redirect' , $args );
 	}
-
 }

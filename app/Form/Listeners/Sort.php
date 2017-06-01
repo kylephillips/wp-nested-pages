@@ -1,6 +1,6 @@
 <?php 
-
 namespace NestedPages\Form\Listeners;
+
 use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 
 /**
@@ -10,7 +10,6 @@ use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 */
 class Sort extends BaseHandler 
 {
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -33,5 +32,4 @@ class Sort extends BaseHandler
 			$this->response = array('status'=>'error', 'message'=> __('There was an error updating the page order.','wp-nested-pages') );
 		}
 	}
-
 }

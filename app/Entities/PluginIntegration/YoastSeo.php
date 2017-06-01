@@ -1,12 +1,10 @@
 <?php 
-
 namespace NestedPages\Entities\PluginIntegration;
 
 /**
 * Yoast SEO Integration
 * @link https://wordpress.org/plugins/wordpress-seo/
 */
-
 class YoastSeo 
 {
 	/**
@@ -33,5 +31,4 @@ class YoastSeo
 			return 'noindex';
 		}
 	}
-
 }

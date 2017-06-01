@@ -1,10 +1,8 @@
-<?php 
-
+<?php
 namespace NestedPages\Entities\Listing;
 
 class ListingRepository 
 {
-
 	/**
 	* User's Toggled Pages
 	*/
@@ -60,5 +58,4 @@ class ListingRepository
 			return false;
 		endif; wp_reset_postdata();
 	}
-
 }

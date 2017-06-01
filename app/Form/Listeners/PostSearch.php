@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Form\Listeners;
 
 class PostSearch extends BaseHandler 
@@ -47,5 +46,4 @@ class PostSearch extends BaseHandler
 			$this->results = null;
 		endif; wp_reset_postdata();
 	}
-
 }

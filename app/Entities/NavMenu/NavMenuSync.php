@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Entities\NavMenu;
 
 use NestedPages\Entities\NavMenu\NavMenuRepository;
@@ -9,7 +8,6 @@ use NestedPages\Entities\NavMenu\NavMenuRepository;
 */
 abstract class NavMenuSync 
 {
-
 	/**
 	* Nav Menu Repository
 	* @var object NavMenuRepository
@@ -45,5 +43,4 @@ abstract class NavMenuSync
 	{
 		wp_delete_post($id, true);
 	}
-
 }

@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 namespace NestedPages\Entities\DefaultList;
 
 use NestedPages\Entities\PostType\PostTypeRepository;
@@ -10,7 +9,6 @@ use NestedPages\Entities\DefaultList\NestedViewLink;
 */
 class DefaultListFactory 
 {
-
 	/**
 	* Post Type Repository
 	*/
@@ -20,7 +18,6 @@ class DefaultListFactory
 	* Post Type
 	*/
 	private $post_type;
-
 
 	public function __construct()
 	{
@@ -38,5 +35,4 @@ class DefaultListFactory
 			new NestedViewLink($type);
 		}
 	}
-
 }

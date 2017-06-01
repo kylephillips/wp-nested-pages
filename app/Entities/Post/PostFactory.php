@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Entities\Post;
 
 use NestedPages\Entities\Post\PostRepository;
@@ -10,7 +9,6 @@ use NestedPages\Entities\Post\PostUpdateRepository;
 */
 class PostFactory 
 {
-
 	/**
 	* Post Repository
 	* @var object
@@ -67,5 +65,4 @@ class PostFactory
 		$new_posts = $this->post_repo->postArray($this->new_ids, $post_type);
 		return $new_posts;
 	}
-
 }

@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Form\Listeners;
 
 /**
@@ -8,7 +7,6 @@ namespace NestedPages\Form\Listeners;
 */
 class SyncMenu extends BaseHandler 
 {
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -35,5 +33,4 @@ class SyncMenu extends BaseHandler
 		$this->syncMenu();
 		$this->response = array('status'=>'success', 'message'=> __('Menu sync enabled.', 'wp-nested-pages'));
 	}
-
 }

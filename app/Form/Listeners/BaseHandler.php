@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Form\Listeners;
 
 use NestedPages\Entities\NavMenu\NavMenuSyncListing;
@@ -13,7 +12,6 @@ use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 */
 abstract class BaseHandler 
 {
-
 	/**
 	* Nonce
 	* @var string
@@ -144,5 +142,4 @@ abstract class BaseHandler
 	{
 		return wp_send_json($this->response);
 	}
-
 }

@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 namespace NestedPages\Entities\AdminMenu;
 
 use NestedPages\Entities\PostType\PostTypeRepository;
@@ -9,7 +8,6 @@ use NestedPages\Entities\PostType\PostTypeRepository;
 */
 class AdminSubmenu 
 {
-
 	/**
 	* Post Type
 	* @var string
@@ -26,7 +24,6 @@ class AdminSubmenu
 	* @var string
 	*/
 	private $slug;
-
 
 	public function __construct($post_type)
 	{
@@ -86,5 +83,4 @@ class AdminSubmenu
 	{
 		$this->slug = $this->post_type_repo->getMenuSlug($this->post_type);
 	}
-
 }

@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Form\Listeners;
 
 /**
@@ -7,7 +6,6 @@ namespace NestedPages\Form\Listeners;
 */
 class ListingSort 
 {
-
 	/**
 	* URL to redirect to
 	* @var string
@@ -68,5 +66,4 @@ class ListingSort
 	{
 		header('Location:' . $this->url);
 	}
-
 }

@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 namespace NestedPages\Entities\Confirmation;
 
 /**
@@ -8,7 +7,6 @@ namespace NestedPages\Entities\Confirmation;
 */
 class ConfirmationFactory 
 {
-
 	/**
 	* Message Output
 	* @var string
@@ -54,5 +52,4 @@ class ConfirmationFactory
 	{
 		return $this->message;
 	}
-
 }

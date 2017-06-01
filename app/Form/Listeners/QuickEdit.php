@@ -1,5 +1,4 @@
 <?php
-
 namespace NestedPages\Form\Listeners;
 
 /**
@@ -8,7 +7,6 @@ namespace NestedPages\Form\Listeners;
 */
 class QuickEdit extends BaseHandler
 {
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -70,5 +68,4 @@ class QuickEdit extends BaseHandler
 		$this->data['permalink'] = get_the_permalink($this->data['post_id']);
 		if ( !isset($_POST['comment_status']) ) $this->data['comment_status'] = 'closed';
 	}
-
 }

@@ -1,10 +1,8 @@
 <?php 
-
 namespace NestedPages\Form\Listeners;
 
 class EmptyTrash extends BaseHandler 
 {
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -21,5 +19,4 @@ class EmptyTrash extends BaseHandler
 		}
 		$this->sendErrorResponse();
 	}
-
 }

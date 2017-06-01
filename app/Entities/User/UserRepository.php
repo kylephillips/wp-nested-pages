@@ -1,6 +1,6 @@
 <?php
-
 namespace NestedPages\Entities\User;
+
 use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 
 /**
@@ -116,5 +116,4 @@ class UserRepository
 			serialize($visible)
 		);
 	}
-
 }

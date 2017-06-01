@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Form\Listeners;
 
 use NestedPages\Form\Validation\Validation;
@@ -11,7 +10,6 @@ use NestedPages\Entities\Post\PostFactory;
 */
 class NewChild extends BaseHandler 
 {
-
 	/**
 	* Post Factory
 	*/
@@ -63,5 +61,4 @@ class NewChild extends BaseHandler
 			'new_pages' => $this->data['new_pages']
 		);
 	}
-
 }

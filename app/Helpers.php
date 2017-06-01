@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages;
 
 /**
@@ -7,7 +6,6 @@ namespace NestedPages;
 */
 class Helpers 
 {
-
 	/**
 	* Verify URL Format
 	* @param string - URL to check
@@ -44,5 +42,4 @@ class Helpers
 		$link = esc_url( admin_url('edit.php?post_type=' . $type ) );
 		return $link;
 	}
-
 }

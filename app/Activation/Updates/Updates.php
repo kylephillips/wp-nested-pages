@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Activation\Updates;
 
 use NestedPages\Entities\NavMenu\NavMenuRepository;
@@ -11,7 +10,6 @@ use NestedPages\Activation\Updates\CustomFieldsToHidden;
 */
 class Updates 
 {
-
 	/**
 	* New Version
 	*/
@@ -142,5 +140,4 @@ class Updates
 			new CustomFieldsToHidden;
 		}
 	}
-
 }

@@ -1,16 +1,13 @@
 <?php 
-
 namespace NestedPages\Form\Listeners;
 
 class Search extends BaseHandler 
 {
-
 	/**
 	* URL to redirect to
 	* @var string
 	*/
 	private $url;
-
 
 	public function __construct()
 	{
@@ -34,5 +31,4 @@ class Search extends BaseHandler
 	{
 		header('Location:' . $this->url);
 	}
-
 }

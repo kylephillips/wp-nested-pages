@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 namespace NestedPages\Entities\NavMenu;
 
 /**
@@ -7,7 +6,6 @@ namespace NestedPages\Entities\NavMenu;
 */
 class NavMenuRemoveItem 
 {
-
 	/**
 	* Item ID to Remove
 	* @var int - ID of nav menu item
@@ -27,5 +25,4 @@ class NavMenuRemoveItem
 	{
 		wp_delete_post($this->item_id, true);
 	}
-
 }

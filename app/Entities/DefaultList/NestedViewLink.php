@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 namespace NestedPages\Entities\DefaultList;
 
 use NestedPages\Entities\PostType\PostTypeRepository;
@@ -9,7 +8,6 @@ use NestedPages\Entities\PostType\PostTypeRepository;
 */
 class NestedViewLink 
 {
-
 	/**
 	* Post Type
 	*/
@@ -50,5 +48,4 @@ class NestedViewLink
 		}
 		return $views;
 	}
-
 }

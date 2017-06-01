@@ -1,5 +1,4 @@
 <?php
-
 namespace NestedPages\Form\Listeners;
 
 use NestedPages\Helpers;
@@ -73,5 +72,4 @@ class NewMenuItem extends BaseHandler
 		$this->data['post']['original_link'] = get_the_permalink($id);
 		$this->data['post']['original_title'] = get_the_title($id);
 	}
-
 }

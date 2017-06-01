@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 namespace NestedPages\Entities\NavMenu;
 
 use NestedPages\Entities\NavMenu\NavMenuSync;
@@ -11,7 +10,6 @@ use NestedPages\Entities\Post\PostDataFactory;
 */
 class NavMenuSyncListing extends NavMenuSync 
 {
-
 	/**
 	* Individual Post
 	* @var array
@@ -118,5 +116,4 @@ class NavMenuSyncListing extends NavMenuSync
 		$menu = wp_update_nav_menu_item($this->id, $menu_item_id, $args);
 		return $menu;
 	}
-
 }

@@ -1,8 +1,8 @@
 <?php 
-
 namespace NestedPages\Entities\NavMenu;
 
 use NestedPages\Entities\NavMenu\NavMenuSyncMenu;
+
 /**
 * Hook into WP actions for necessary tasks related to nav menus
 */
@@ -36,5 +36,4 @@ class NavMenuActions
 		if ( $menu_data == null ) $sync = new NavMenuSyncMenu($menu_id);
 		$this->addUpdateHook();
 	}
-
 }

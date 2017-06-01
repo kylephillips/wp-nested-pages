@@ -1,5 +1,4 @@
 <?php
-
 namespace NestedPages\Entities\NavMenu;
 
 use NestedPages\Entities\NavMenu\NavMenuRepository;

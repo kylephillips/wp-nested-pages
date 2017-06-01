@@ -1,12 +1,10 @@
 <?php 
-
 namespace NestedPages\Entities\PluginIntegration;
 
 /**
 * Editorial Access Manager Integration
 * @link https://wordpress.org/plugins/editorial-access-manager/
 */
-
 class EditorialAccessManager 
 {
 	/**
@@ -19,7 +17,6 @@ class EditorialAccessManager
 	* Current User ID
 	*/
 	private $user;
-
 
 	public function __construct()
 	{
@@ -70,5 +67,4 @@ class EditorialAccessManager
 		if ( in_array('administrator', $this->user->roles) ) return true;
 		return false;
 	}
-
 }

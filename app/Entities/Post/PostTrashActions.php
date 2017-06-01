@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Entities\Post;
 
 use NestedPages\Entities\User\UserRepository;
@@ -12,7 +11,6 @@ use NestedPages\Entities\NavMenu\NavMenuRepository;
 */
 class PostTrashActions 
 {
-
 	/**
 	* User Repository
 	* @var object
@@ -23,7 +21,6 @@ class PostTrashActions
 	* Nav Menu Repository
 	*/
 	private $nav_menu_repo;
-
 
 	public function __construct()
 	{
@@ -94,5 +91,4 @@ class PostTrashActions
 
 		$this->user_repo->updateVisiblePages($post_type, $visible_pages);
 	}
-
 }

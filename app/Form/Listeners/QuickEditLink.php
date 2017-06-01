@@ -1,5 +1,4 @@
 <?php
-
 namespace NestedPages\Form\Listeners;
 
 /**
@@ -8,7 +7,6 @@ namespace NestedPages\Form\Listeners;
 */
 class QuickEditLink extends BaseHandler
 {
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -41,5 +39,4 @@ class QuickEditLink extends BaseHandler
 		$this->data['np_status'] = ( isset($this->data['nested_pages_status']) ) ? 'hide' : 'show';
 		$this->data['linkTarget'] = ( isset($this->data['linkTarget']) ) ? '_blank' : 'none';
 	}
-
 }

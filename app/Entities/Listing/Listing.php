@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Entities\Listing;
 
 use NestedPages\Helpers;
@@ -17,7 +16,6 @@ use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 */
 class Listing 
 {
-
 	/**
 	* Post Type
 	* @var object WP Post Type Object
@@ -109,7 +107,6 @@ class Listing
 	* Enabled Custom Fields
 	*/
 	private $enabled_custom_fields;
-
 
 	public function __construct($post_type)
 	{
@@ -312,7 +309,6 @@ class Listing
 	*/
 	private function loopPosts($parent_id = 0, $count = 0, $nest_count = 0)
 	{
-		// WPML
 		$wpml = $this->integrations->plugins->wpml->installed;
 		$wpml_current_language = null;
 		if ( $wpml ) $wpml_current_language = $this->integrations->plugins->wpml->getCurrentLanguage();
@@ -434,7 +430,5 @@ class Listing
 		if ( !isset($pages->query['post_parent']) || $pages->query['post_parent'] == 0 ) return false;
 		if ( get_post_status($pages->query['post_parent']) == 'trash' ) return true;
 		return false;
-
 	}
-
 }

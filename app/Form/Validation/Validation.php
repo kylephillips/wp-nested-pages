@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Form\Validation;
 
 use NestedPages\Config\SettingsRepository;
@@ -9,7 +8,6 @@ use NestedPages\Config\SettingsRepository;
 */
 class Validation 
 {
-
 	/**
 	* Settings Repository
 	*/
@@ -195,5 +193,4 @@ class Validation
 
 		return true;
 	}
-
 }

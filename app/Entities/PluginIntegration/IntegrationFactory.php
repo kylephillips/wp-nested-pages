@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Entities\PluginIntegration;
 
 use NestedPages\Entities\PluginIntegration\EditorialAccessManager;
@@ -9,7 +8,6 @@ use NestedPages\Entities\PluginIntegration\WPML;
 
 class IntegrationFactory 
 {
-
 	/**
 	* Integration Classes
 	*/
@@ -29,5 +27,4 @@ class IntegrationFactory
 		$this->plugins->yoast = new YoastSeo;
 		$this->plugins->wpml = new WPML;
 	}
-
 }

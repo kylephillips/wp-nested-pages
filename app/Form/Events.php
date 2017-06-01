@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Form;
 
 /**
@@ -7,7 +6,6 @@ namespace NestedPages\Form;
 */
 class Events 
 {
-
 	/**
 	* Actions
 	* @var array
@@ -80,5 +78,4 @@ class Events
 			});
 		}
 	}
-
 }

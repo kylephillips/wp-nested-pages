@@ -1,5 +1,4 @@
 <?php
-
 namespace NestedPages\Entities\Confirmation;
 
 /**
@@ -7,7 +6,6 @@ namespace NestedPages\Entities\Confirmation;
 */
 class TrashConfirmation implements ConfirmationInterface
 {
-
 	public function setMessage()
 	{
 		$out = '';
@@ -38,5 +36,4 @@ class TrashConfirmation implements ConfirmationInterface
 
 		return $out;
 	}
-
 }

@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Form\Listeners;
 
 use NestedPages\Entities\User\UserRepository;
@@ -9,7 +8,6 @@ use NestedPages\Entities\User\UserRepository;
 */
 class NestToggle extends BaseHandler 
 {
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -36,5 +34,4 @@ class NestToggle extends BaseHandler
 		$this->response = array('status'=>'success', 'data'=>$this->data);
 		$this->sendResponse();
 	}
-
 }

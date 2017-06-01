@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages;
 
 /**
@@ -7,7 +6,6 @@ namespace NestedPages;
 */
 class Redirects 
 {
-
 	public function __construct()
 	{
 		add_action('load-edit.php', array($this, 'pageTrashed'));
@@ -84,6 +82,4 @@ class Redirects
 		$enabledPostTypes   = $postTypeRepository->enabledPostTypes();
 		return array_key_exists( 'page', $enabledPostTypes );
 	}
-
-
 }

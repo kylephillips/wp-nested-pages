@@ -1,10 +1,8 @@
 <?php 
-
 namespace NestedPages\Entities\PostType;
 
 class PostTypeRepository 
 {
-
 	/**
 	* Enabled Post Types
 	* @var array – the posttype setting
@@ -383,5 +381,4 @@ class PostTypeRepository
 		}
 		return $array;
 	}
-
 }

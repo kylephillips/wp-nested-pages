@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 namespace NestedPages\Entities\NavMenu;
 
 use NestedPages\Entities\NavMenu\NavMenuRepository;
@@ -9,7 +8,6 @@ use NestedPages\Entities\NavMenu\NavMenuRepository;
 */
 class NavMenuTrashActions 
 {
-
 	/**
 	* Nav Menu Repository
 	*/
@@ -42,5 +40,4 @@ class NavMenuTrashActions
 			
 		}
 	}
-
 }

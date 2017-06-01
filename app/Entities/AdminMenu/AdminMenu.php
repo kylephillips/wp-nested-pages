@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 namespace NestedPages\Entities\AdminMenu;
 
 use NestedPages\Entities\AdminMenu\EnabledMenus;
@@ -11,7 +10,6 @@ use NestedPages\Entities\AdminMenu\AdminSubmenuExpander;
 */
 class AdminMenu 
 {
-	
 	public function __construct()
 	{
 		add_action( 'admin_menu', array($this, 'setMenus') );
@@ -33,5 +31,4 @@ class AdminMenu
 	{
 		new AdminSubmenuExpander;
 	}
-
 }

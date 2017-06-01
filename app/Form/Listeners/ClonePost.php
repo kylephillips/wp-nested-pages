@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Form\Listeners;
 
 use NestedPages\Entities\Post\PostCloner;

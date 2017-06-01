@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Activation;
 
 use NestedPages\Activation\Updates\Updates;
@@ -64,5 +63,4 @@ class Activate
 			update_option('nestedpages_menusync', 'nosync');
 		}
 	}
-
 }

@@ -1,10 +1,8 @@
-<?php 
-
+<?php
 namespace NestedPages\Entities\NavMenu;
 
 class NavMenuRepository 
 {
-
 	/**
 	* Get the Menu ID
 	* @since 1.3.4
@@ -165,5 +163,4 @@ class NavMenuRepository
 		}
 		return $visible;
 	}
-
 }

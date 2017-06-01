@@ -1,6 +1,6 @@
 <?php 
-
 namespace NestedPages\Entities\Post;
+
 use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 
 /**
@@ -8,7 +8,6 @@ use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 */
 class PostDataFactory 
 {
-
 	/**
 	* Post Data
 	* @var object
@@ -123,5 +122,4 @@ class PostDataFactory
 		$this->post_data->author = get_the_author_meta('display_name', $post->post_author);
 		$this->post_data->author_link = admin_url('edit.php?post_type=' . $post->post_type . '&author=' . $post->post_author);
 	}
-
 }

@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Activation;
 
 use NestedPages\Entities\PostType\PostTypeRepository;
@@ -12,7 +11,6 @@ use NestedPages\Helpers;
 */
 class Dependencies 
 {
-
 	/**
 	* Plugin Directory
 	*/
@@ -186,5 +184,4 @@ class Dependencies
 			);
 		endif;
 	}
-
 }

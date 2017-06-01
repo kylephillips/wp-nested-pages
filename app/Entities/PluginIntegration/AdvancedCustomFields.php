@@ -1,5 +1,4 @@
 <?php 
-
 namespace NestedPages\Entities\PluginIntegration;
 
 /**
@@ -68,5 +67,4 @@ class AdvancedCustomFields
 		}
 		return $all_fields;
 	}
-
 }
