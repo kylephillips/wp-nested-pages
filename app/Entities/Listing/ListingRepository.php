@@ -94,7 +94,7 @@ class ListingRepository
 	*/
 	public function assignedPostType($page_id, $assigned_pages)
 	{
-		if ( !$this->integrations->plugins->wpml->isDefaultLanguage() ){
+		if ( $this->integrations->plugins->wpml->installed && !$this->integrations->plugins->wpml->isDefaultLanguage() ){
 			$page_id = $this->integrations->plugins->wpml->getPrimaryLanguagePost($page_id);
 		}
 		return get_post_type_object($assigned_pages[$page_id]);
