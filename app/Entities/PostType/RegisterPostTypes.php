@@ -35,7 +35,7 @@ class RegisterPostTypes
 		$args = array(
 			'labels' => $labels,
 			'public' => false,  
-			'show_ui' => true,
+			'show_ui' => false,
 			'exclude_from_search' => true,
 			'capability_type' => 'post',  
 			'hierarchical' => true,  
