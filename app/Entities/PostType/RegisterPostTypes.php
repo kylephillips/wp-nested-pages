@@ -1,15 +1,22 @@
 <?php 
 
 namespace NestedPages\Entities\PostType;
+use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 
 /**
 * Post Types required by Nested Pages
 */
 class RegisterPostTypes 
 {
+	/**
+	* Plugin Integrations
+	*/
+	private $integrations;
 
 	public function __construct()
 	{
+		$this->integrations = new IntegrationFactory;
+		if ( $this->integrations->plugins->wpml->installed ) return;
 		add_action( 'init', array( $this, 'registerRedirects') );
 	}
 
@@ -28,7 +35,7 @@ class RegisterPostTypes
 		$args = array(
 			'labels' => $labels,
 			'public' => false,  
-			'show_ui' => false,
+			'show_ui' => true,
 			'exclude_from_search' => true,
 			'capability_type' => 'post',  
 			'hierarchical' => true,  
