@@ -104,6 +104,19 @@ class WPML
 	}
 
 	/**
+	* Get the primary language post ID for a provided child id
+	* @param int 
+	* @return int - post id
+	*/
+	public function getPrimaryLanguagePost($post_id)
+	{
+		$all_translations = $this->getAllTranslations($post_id);
+		foreach ( $all_translations as $translation ){
+			if ( $translation->language_code == $this->getDefaultLanguage() ) return $translation->element_id;
+		}
+	}
+
+	/**
 	* Sync Post Order among translations
 	* @param array of posts with children
 	*/
@@ -315,5 +328,18 @@ class WPML
 	{
 		global $wpdb;
 		return $wpdb->get_results($wpdb->prepare("SELECT iclt.language_code, t.term_id, t.name, t.slug, tt.taxonomy FROM {$wpdb->prefix}icl_translations AS iclt LEFT JOIN {$wpdb->prefix}terms AS t ON t.term_id = iclt.element_id LEFT JOIN {$wpdb->prefix}term_taxonomy AS tt ON tt.term_id = t.term_id WHERE trid = %s", $trid));
+	}
+
+	/**
+	* Get the count of published posts for a post type in a specific language
+	* @param $post_type string – post type name
+	* @param $language string - language code
+	*/ 
+	public function getPostTypeCountByLanguage($post_type, $language = null)
+	{
+		if ( !$language ) $language = $this->getCurrentLanguage();
+		global $wpdb;
+		$query = $wpdb->prepare("SELECT COUNT(*) FROM {$wpdb->prefix}posts AS p LEFT JOIN {$wpdb->prefix}icl_translations AS trans ON p.ID = trans.element_id WHERE post_type = %s AND p.post_status = 'publish' AND trans.language_code = %s", $post_type, $language);
+		return $wpdb->get_var($query);
 	}
 }

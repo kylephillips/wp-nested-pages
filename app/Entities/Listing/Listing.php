@@ -356,7 +356,7 @@ class Listing
 					echo ' post-type-' . esc_attr($this->post->post_type);
 
 					// Assigned to manage a post type?
-					if ( $this->post_type->name == 'page' && array_key_exists($this->post->id, $this->assigned_pt_pages) ) echo ' is-page-assignment';
+					if ( $this->listing_repo->isAssignedPostType($this->post->id, $this->assigned_pt_pages) ) echo ' is-page-assignment';
 
 					// Published?
 					if ( $this->post->status == 'publish' ) echo ' published';
@@ -383,7 +383,9 @@ class Listing
 					if ( $this->isSearch() ) $row_classes .= ' search';
 
 					// Page Assignment for Post Type
-					$assigned_pt = ( $this->post_type->name == 'page' && array_key_exists($this->post->id, $this->assigned_pt_pages) ) ? get_post_type_object($this->assigned_pt_pages[$this->post->id]) : false;
+					$assigned_pt = ( $this->listing_repo->isAssignedPostType($this->post->id, $this->assigned_pt_pages) ) 
+						? $this->listing_repo->assignedPostType($this->post->id, $this->assigned_pt_pages)
+						: false;
 
 					include( Helpers::view($row_view) );
 

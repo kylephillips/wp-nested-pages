@@ -69,7 +69,7 @@ if ( !$wpml ) $wpml_pages = true;
 			<?php if ( current_user_can('publish_posts') ) : ?>
 			<li><a href="<?php echo $this->post_type_repo->addNewPostLink($assigned_pt->name); ?>" class=""><?php echo $assigned_pt->labels->add_new; ?></a></li>
 			<?php endif; ?>
-			<li><a href="<?php echo $this->post_type_repo->allPostsLink($assigned_pt->name); ?>" class=""><?php echo $assigned_pt->labels->all_items . ' (' . wp_count_posts($assigned_pt->name)->publish . ')'; ?></a></li>
+			<li><a href="<?php echo $this->post_type_repo->allPostsLink($assigned_pt->name); ?>" class=""><?php echo $assigned_pt->labels->all_items . ' (' . $this->listing_repo->postCount($assigned_pt->name) . ')'; ?></a></li>
 		</ul>
 		<?php endif; ?>
 
