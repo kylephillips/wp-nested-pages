@@ -2,8 +2,9 @@
 /**
 * Row represents a single page
 */
-$wpml_pages = ( $this->integrations->plugins->wpml->installed && $this->integrations->plugins->wpml->isDefaultLanguage()) ? true : false;
-if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
+$wpml = $this->integrations->plugins->wpml->installed;
+$wpml_pages = ( $wpml && $this->integrations->plugins->wpml->isDefaultLanguage()) ? true : false;
+if ( !$wpml ) $wpml_pages = true;
 ?>
 <div class="row<?php echo $row_classes; ?>">
 	
@@ -40,11 +41,11 @@ if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
 				echo '</span>';
 
 				// Nested Pages Status
-				if ( $this->post->np_status == 'hide' )
+				if ( $this->post->np_status == 'hide' && !$wpml )
 					echo '<i class="np-icon-eye-blocked"></i>';
 
 				// Nav Status
-				if ( $this->post->nav_status == 'hide' ){
+				if ( $this->post->nav_status == 'hide' && !$wpml ){
 					echo '<span class="nav-status">' . __('Hidden', 'wp-nested-pages') . '</span>';
 				} else {
 					echo '<span class="nav-status"></span>';
