@@ -38,10 +38,12 @@ class NavMenuSyncListing extends NavMenuSync
 	*/
 	public function sync($parent = 0, $menu_parent = 0, $nest_level = 0)
 	{	
+		$post_types = array('page');
+		if ( !$this->integrations->plugins->wpml->installed ) $post_types[] = 'np-redirect';
 		try {
 			$this->count = $this->count + 1;
 			$args = array(
-				'post_type' => array('page', 'np-redirect'),
+				'post_type' => $post_types,
 				'posts_per_page' => -1,
 				'post_status' => 'publish',
 				'orderby' => 'menu_order',

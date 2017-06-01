@@ -121,6 +121,7 @@ class NavMenuSyncMenu extends NavMenuSync
 	*/
 	private function syncNewLink($item, $parent_id)
 	{
+		if ( $this->integrations->plugins->wpml->installed ) return;
 		$post_data = array(
 			'menuTitle' => $item->title,
 			'np_link_title' => $item->title,

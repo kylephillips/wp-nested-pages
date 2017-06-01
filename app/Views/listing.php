@@ -21,7 +21,6 @@ if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
 			<?php esc_html_e('Add Link', 'wp-nested-pages'); ?>
 		</a>
 		<?php endif; ?>
-
 	</h2>
 
 	<?php if ( $this->confirmation->getMessage() ) : ?>
