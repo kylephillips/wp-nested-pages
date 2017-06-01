@@ -312,11 +312,16 @@ class Listing
 	*/
 	private function loopPosts($parent_id = 0, $count = 0, $nest_count = 0)
 	{
+		// WPML
+		$wpml = $this->integrations->plugins->wpml->installed;
+		$wpml_current_language = null;
+		if ( $wpml ) $wpml_current_language = $this->integrations->plugins->wpml->getCurrentLanguage();
+
 		$this->setTaxonomies();
 		
 		if ( $this->post_type->name == 'page' ) {
 			$post_type = array('page');
-			if ( !$this->settings->menusDisabled() ) $post_type[] = 'np-redirect';
+			if ( !$this->settings->menusDisabled() && !$wpml ) $post_type[] = 'np-redirect';
 		} else {
 			$post_type = array($this->post_type->name);
 		}
@@ -340,9 +345,7 @@ class Listing
 			$count++;
 			$nest_count++;
 
-			if ( $this->publishCount($pages) > 1 ){
-				$this->listOpening($pages, $count);			
-			}
+			if ( $this->publishCount($pages) > 1 ) $this->listOpening($pages, $count);
 			
 			while ( $pages->have_posts() ) : $pages->the_post();
 
@@ -376,11 +379,6 @@ class Listing
 
 					$row_view = ( $this->post->type !== 'np-redirect' ) ? 'partials/row' : 'partials/row-link';
 
-					// WPML
-					$wpml = ( $this->integrations->plugins->wpml->installed ) ? true : false;
-					$wpml_current_language = null;
-					if ( $wpml ) $wpml_current_language = $this->integrations->plugins->wpml->getCurrentLanguage();
-
 					// CSS Classes for the <li> row element
 					$row_classes = '';
 					if ( !$this->post_type->hierarchical ) $row_classes .= ' non-hierarchical';
@@ -397,15 +395,11 @@ class Listing
 				
 				if ( !$this->isSearch() ) $this->loopPosts($this->post->id, $count, $nest_count);
 
-				if ( $this->post->status !== 'trash' ) {
-					echo '</li>';
-				}				
+				if ( $this->post->status !== 'trash' ) echo '</li>';
 
 			endwhile; // Loop
 			
-			if ( $this->publishCount($pages) > 1 ){
-				echo '</ol>';
-			}
+			if ( $this->publishCount($pages) > 1 ) echo '</ol>';
 
 		endif; wp_reset_postdata();
 	}
