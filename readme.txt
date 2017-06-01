@@ -103,6 +103,9 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 * WPML compatibility added (limited support, see the "More Information" section for important notes on support)
 * Important upgrade note: Custom links within the Nested Pages interface are disabled if WPML is installed and enabled. This is a potential breaking change, so please remove all custom links before updating. Links may be added back to menus by using the default WordPress Appearance > Menus editor.
 
+= 2.0.0 =
+* WPML beta release
+
 = 1.7.1 =
 * Bug fix where saving post type options was enabling all post types
 
