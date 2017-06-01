@@ -79,7 +79,7 @@ class ListingRepository
 	*/
 	public function isAssignedPostType($page_id, $assigned_pages)
 	{
-		if ( !$this->integrations->plugins->wpml->isDefaultLanguage() ){
+		if ( $this->integrations->plugins->wpml->installed && !$this->integrations->plugins->wpml->isDefaultLanguage() ){
 			$page_id = $this->integrations->plugins->wpml->getPrimaryLanguagePost($page_id);
 		}
 		if ( array_key_exists($page_id, $assigned_pages) ) return true;
