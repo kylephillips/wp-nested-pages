@@ -201,6 +201,7 @@ NestedPages.NewPage = function()
 		// Show the child page list and reset submenu toggles
 		$(appendto).show();
 		plugin.formatter.updateSubMenuToggle();
+		plugin.formatter.setNestedMargins();
 		plugin.cancelNewPage();
 		$(NestedPages.selectors.newPageModal).modal('hide');
 	}
