@@ -119,6 +119,7 @@ class Listing
 		$this->listing_repo = new ListingRepository;
 		$this->post_data_factory = new PostDataFactory;
 		$this->settings = new SettingsRepository;
+		$this->setTaxonomies();
 		$this->setPostTypeSettings();
 		$this->setStandardFields();
 	}
@@ -150,6 +151,25 @@ class Listing
 		$this->sort_options->author = isset($_GET['author'])
 			? sanitize_text_field($_GET['author'])
 			: null;
+	}
+
+	/**
+	* Add Taxonomy Filters to the sort options if applicable
+	*/
+	private function setTaxonomyFilters()
+	{
+		$taxonomies = array_merge($this->h_taxonomies, $this->f_taxonomies);
+		$tax_query = array();
+		foreach ( $taxonomies as $tax ) :
+			if ( $this->post_type_repo->sortOptionEnabled($this->post_type->name, $tax->name, true) && isset($_GET[$tax->name]) ) :
+				$tax_query[] = array(
+					'taxonomy' => $tax->name,
+					'fields' => 'term_id',
+					'terms' => sanitize_text_field($_GET[$tax->name])
+				);
+			endif;
+		endforeach;
+		if ( !empty($tax_query) ) $this->sort_options->tax_query = $tax_query;
 	}
 
 	/**
@@ -209,6 +229,7 @@ class Listing
 	public function listPosts()
 	{
 		$this->setSortOptions();
+		$this->setTaxonomyFilters();
 		include( Helpers::view('listing') );
 	}
 
@@ -313,8 +334,6 @@ class Listing
 		$wpml_current_language = null;
 		if ( $wpml ) $wpml_current_language = $this->integrations->plugins->wpml->getCurrentLanguage();
 
-		$this->setTaxonomies();
-		
 		if ( $this->post_type->name == 'page' ) {
 			$post_type = array('page');
 			if ( !$this->settings->menusDisabled() && !$wpml ) $post_type[] = 'np-redirect';
@@ -334,6 +353,7 @@ class Listing
 		
 		if ( $this->isSearch() ) $query_args = $this->searchParams($query_args);
 		if ( $this->isFiltered() ) $query_args = $this->filterParams($query_args);
+		if ( isset($this->sort_options->tax_query) ) $query_args['tax_query'] = $this->sort_options->tax_query;
 
 		$pages = new \WP_Query(apply_filters('nestedpages_page_listing', $query_args, $nest_count));
 		

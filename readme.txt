@@ -102,6 +102,7 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 = 2.0.1 =
 * WPML compatibility added (limited support, see the "More Information" section for important notes on support)
 * Important upgrade note: Custom links within the Nested Pages interface are disabled if WPML is installed and enabled. This is a potential breaking change, so please remove all custom links before updating. Links may be added back to menus by using the default WordPress Appearance > Menus editor.
+* Sort/Order options on non-page post type listings may now be added/removed. All options are hidden by default. To enable these, visit Settings > Nested Pages > Post Types. Under the desired post type, options may be enabled under the "Sort Options" row.
 
 = 2.0.0 =
 * WPML beta release

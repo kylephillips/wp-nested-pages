@@ -59,6 +59,8 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 		<form action="<?php echo admin_url('admin-post.php'); ?>" method="post" class="np-tools-sort">
 			<input type="hidden" name="action" value="npListingSort">
 			<input type="hidden" name="page" value="<?php echo $this->pageURL(); ?>">
+			<input type="hidden" name="post_type" value="<?php echo esc_attr($this->post_type->name); ?>">
+			<?php if ( $this->post_type_repo->sortOptionEnabled($this->post_type->name, 'author') ) : ?>
 			<div class="select first">
 				<select id="np_sortauthor" name="np_author" class="nestedpages-sort">
 					<?php
@@ -73,6 +75,8 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 					?>
 				</select>
 			</div>
+			<?php endif; ?>
+			<?php if ( $this->post_type_repo->sortOptionEnabled($this->post_type->name, 'orderby') ) : ?>
 			<div class="select">
 				<select id="np_orderby" name="np_orderby" class="nestedpages-sort">
 					<?php
@@ -91,6 +95,8 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 					?>
 				</select>
 			</div>
+			<?php endif; ?>
+			<?php if ( $this->post_type_repo->sortOptionEnabled($this->post_type->name, 'order') ) : ?>
 			<div class="select">
 				<select id="np_order" name="np_order" class="nestedpages-sort">
 					<?php
@@ -108,6 +114,27 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 					?>
 				</select>
 			</div>
+			<?php endif; ?>
+			<?php 
+				// Taxonomies
+				$taxonomies = array_merge($this->h_taxonomies, $this->f_taxonomies);
+				foreach ( $taxonomies as $tax ) :
+					if ( $this->post_type_repo->sortOptionEnabled($this->post_type->name, $tax->name, true) ) :
+						$terms = get_terms($tax->name);
+						$out = '<div class="select">';
+						$out .= '<select id="np_taxonomy_' . $tax->name . '" name="' . $tax->name . '" class="nestedpages-sort">';
+						$out .= '<option value="all">' . $tax->labels->all_items . '</option>';
+						foreach ( $terms as $term ) :
+							$out .= '<option value="' . $term->term_id . '"';
+							if ( isset($_GET[$tax->name]) && $_GET[$tax->name] == $term->term_id ) $out .= ' selected';
+							$out .= '>' . $term->name . '</option>';
+						endforeach;
+						$out .= '</select>';
+						$out .= '</div>';
+						echo $out;
+					endif;
+				endforeach;
+			?>
 			<div class="select">
 				<input type="submit" id="nestedpages-sort" class="button" value="Apply">
 			</div>

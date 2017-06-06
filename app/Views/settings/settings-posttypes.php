@@ -235,7 +235,46 @@ settings_fields( 'nestedpages-posttypes' );
 						</div><!-- .field -->
 					</div><!-- .row -->
 				</li>
-			<?php  endif; ?>
+			<?php endif; ?>
+			<?php 
+			if ( $type->name !== 'page' ) : 
+			$h_taxonomies = $this->post_type_repo->getTaxonomies($type->name, true); 
+			$f_taxonomies = $this->post_type_repo->getTaxonomies($type->name, false);
+			$taxonomies = array_merge($h_taxonomies, $f_taxonomies);
+			?>
+			<li>
+				<div class="row">
+					<div class="description">
+						<p><strong><?php _e('Sort Options', 'wp-nested-pages'); ?></strong><br />
+						<?php _e('Add and remove sort options.', 'wp-nested-pages'); ?></p>
+					</div>
+					<div class="field">
+						<div class="nestedpages-sort-options-selection">
+							<label>
+								<input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][sort_options][author]" value="true" <?php if ( $this->post_type_repo->sortOptionEnabled($type->name, 'author') ) echo 'checked'; ?> />
+								<?php _e('Author') ?>
+							</label>
+							<label>
+								<input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][sort_options][orderby]" value="true" <?php if ( $this->post_type_repo->sortOptionEnabled($type->name, 'orderby') ) echo 'checked'; ?> />
+								<?php _e('Order By') ?>
+							</label>
+							<label>
+								<input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][sort_options][order]" value="true" <?php if ( $this->post_type_repo->sortOptionEnabled($type->name, 'order') ) echo 'checked'; ?> />
+								<?php _e('Order') ?>
+							</label>
+
+							<?php if ( !empty($taxonomies) ) : foreach ( $taxonomies as $tax ) : ?>
+							<label>
+								<input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][sort_options][taxonomies][<?php echo $tax->name; ?>]" value="true" <?php if ( $this->post_type_repo->sortOptionEnabled($type->name, $tax->name, true) ) echo 'checked'; ?> />
+								<?php echo $tax->label; ?>
+							</label>
+							<?php endforeach; endif; ?>
+							
+						<!-- .nestedpages-sort-options-selection -->
+					</div><!-- .field -->
+				</div><!-- .row -->
+			</li>
+			<?php endif; ?>
 			</ul>
 		</div><!-- .body -->
 	</div><!-- .post-type -->
