@@ -171,11 +171,26 @@
 		}
 	} // .nestedpages-page-serach-results
 } // .nestedpages-page-pt-assignment
+
 .nestedpages-page-pt-assignment-selection {
 	background-color: $gray-lighter;
 	border: 1px solid $border;
 	margin-top: 1em;
 	padding: .5em;
+}
+
+.nestedpages-sort-options-selection {
+	background-color: $gray-lighter;
+	border: 1px solid $border;
+	margin-top: 1em;
+	padding: .5em;
+	label {
+		display: block;
+		margin-top: 3px;
+		&:first-child {
+			margin: 0;
+		}
+	}
 }
 
 
