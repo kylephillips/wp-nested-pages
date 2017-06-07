@@ -138,7 +138,7 @@
 		<?php if ( current_user_can('edit_theme_options') && !array_key_exists('hide_in_np', $this->disabled_standard_fields) ) : ?>
 		<div class="comments">
 			<label>
-				<input type="checkbox" name="nested_pages_status" class="np_status" value="hide" />
+				<input type="checkbox" name="nested_pages_status" class="nested_pages_status" value="hide" />
 				<span class="checkbox-title"><?php _e( 'Hide in Nested Pages', 'wp-nested-pages' ); ?></span>
 			</label>
 		</div>

@@ -1368,9 +1368,9 @@ NestedPages.QuickEditPost = function()
 		}
 
 		if ( plugin.initialData.npstatus === 'hide' ){
-			$(plugin.form).find('.np_status').attr('checked', 'checked');
+			$(plugin.form).find('.nested_pages_status').attr('checked', 'checked');
 		} else {
-			$(plugin.form).find('.np_status').removeAttr('checked');
+			$(plugin.form).find('.nested_pages_status').removeAttr('checked');
 		}
 		
 		if ( plugin.initialData.navstatus === 'hide' ) {
