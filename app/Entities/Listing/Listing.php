@@ -104,6 +104,12 @@ class Listing
 	private $disabled_standard_fields;
 
 	/**
+	* Sticky Posts
+	* @var array
+	*/
+	private $sticky_posts;
+
+	/**
 	* Enabled Custom Fields
 	*/
 	private $enabled_custom_fields;
@@ -111,6 +117,7 @@ class Listing
 	public function __construct($post_type)
 	{
 		$this->setPostType($post_type);
+		$this->setStickyPosts();
 		$this->integrations = new IntegrationFactory;
 		$this->post_repo = new PostRepository;
 		$this->user = new UserRepository;
@@ -188,6 +195,16 @@ class Listing
 	private function setPostType($post_type)
 	{
 		$this->post_type = get_post_type_object($post_type);
+	}
+
+	/**
+	* Set the Sticky Posts
+	* @since 2.0.1
+	*/
+	private function setStickyPosts()
+	{
+		$this->sticky_posts = get_option('sticky_posts');
+		if ( !$this->sticky_posts ) $this->sticky_posts = array();
 	}
 
 	/**

@@ -102,7 +102,8 @@ NestedPages.QuickEditPost = function()
 			time: $(plugin.button).attr('data-formattedtime'),
 			timeTwentyFour : $(plugin.button).attr('data-time'),
 			ampm: $(plugin.button).attr('data-ampm'),
-			timeFormat: $(plugin.button).attr('data-timeformat')
+			timeFormat: $(plugin.button).attr('data-timeformat'),
+			sticky: $(plugin.button).attr('data-sticky')
 		};
 
 		// Add Array of Taxonomies to the data object using classes applied to the list element
@@ -184,6 +185,12 @@ NestedPages.QuickEditPost = function()
 
 		if ( plugin.initialData.status === "private" ) {
 			$(plugin.form).find('.np_status').val('publish');
+		}
+
+		if ( plugin.initialData.sticky === 'sticky' ){
+			$(plugin.form).find('.np-sticky').attr('checked', 'checked');
+		} else {
+			$(plugin.form).find('.np-sticky').removeAttr('checked');
 		}
 		
 		// Date Fields
@@ -373,6 +380,14 @@ NestedPages.QuickEditPost = function()
 			$(plugin.row).find('.np-icon-eye-blocked').remove();
 		}
 
+		// Sticky
+		var sticky = $(plugin.row).find('.sticky');
+		if ( (plugin.newData.sticky == 'sticky') ){
+			$(sticky).show();
+		} else {
+			$(sticky).hide();
+		}
+
 		// Author for Non-Hierarchical Types
 		if ( !NestedPages.jsData.hierarchical ){
 			$(plugin.row).find('.np-author-display').text(plugin.newData.author_name);
@@ -386,6 +401,7 @@ NestedPages.QuickEditPost = function()
 		$(button).attr('data-slug', plugin.newData.post_name);
 		$(button).attr('data-commentstatus', plugin.newData.comment_status);
 		$(button).attr('data-status', plugin.newData._status);
+		$(button).attr('data-sticky', plugin.newData.sticky);
 		
 		// Private Status
 		if ( plugin.newData.keep_private === 'private' ) {
