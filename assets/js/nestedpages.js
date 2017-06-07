@@ -1583,6 +1583,14 @@ NestedPages.QuickEditPost = function()
 			$(plugin.row).find('.np-icon-eye-blocked').remove();
 		}
 
+		// Sticky
+		var sticky = $(plugin.row).find('.sticky');
+		if ( (plugin.newData.sticky == 'sticky') ){
+			$(sticky).show();
+		} else {
+			$(sticky).hide();
+		}
+
 		// Author for Non-Hierarchical Types
 		if ( !NestedPages.jsData.hierarchical ){
 			$(plugin.row).find('.np-author-display').text(plugin.newData.author_name);

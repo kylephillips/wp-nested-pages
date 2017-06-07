@@ -60,6 +60,16 @@ if ( !$wpml ) $wpml_pages = true;
 				} else {
 					echo '<span class="edit-indicator"><i class="np-icon-pencil"></i>' . apply_filters('nestedpages_edit_link_text', __('Edit'), $this->post) . '</span>';
 				}
+
+				// Sticky
+				echo '<span class="sticky"';
+				if ( !in_array($this->post->id, $this->sticky_posts) ) echo ' style="display:none;"';
+				echo '>(' . __('Sticky', 'wp-nested-pages') . ')<span>';
+
+				if ( $this->post->status !== 'publish' )	echo '(' . __(ucfirst($this->post->status)) . ')';
+				if ( post_password_required($this->post->id) ) echo ' <i class="np-icon-lock"></i>';
+				
+				
 				
 			?>
 		</a>
