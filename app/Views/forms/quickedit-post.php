@@ -143,6 +143,15 @@
 			</label>
 		</div>
 		<?php endif; // Edit theme options ?>
+
+		<?php if ( !$this->post_type->hierarchical ) : ?>
+		<div class="comments">
+			<label>
+				<input type="checkbox" name="sticky" class="np-sticky" value="sticky" />
+				<span class="checkbox-title"><?php _e( 'Make Sticky', 'wp-nested-pages' ); ?></span>
+			</label>
+		</div>
+		<?php endif; ?>
 		
 		<div class="form-control np-toggle-options">
 			<?php if ( $this->user->canSortPages() && $this->post_type->name == 'page' && !$this->isSearch() && !array_key_exists('menu_options', $this->disabled_standard_fields) && $wpml_pages ) : ?>
