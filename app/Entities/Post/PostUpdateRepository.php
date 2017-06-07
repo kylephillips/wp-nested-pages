@@ -333,15 +333,15 @@ class PostUpdateRepository
 	*/
 	private function updateSticky($data)
 	{
-		if ( $this->post_type_repo->standardFieldDisabled('sticky', sanitize_text_field($data['post_type'])) ) return
+		if ( $this->post_type_repo->standardFieldDisabled('sticky', sanitize_text_field($data['post_type'])) ) return;
 		$sticky_posts = get_option('sticky_posts');
-		if ( isset($data['sticky']){
+		if ( isset($data['sticky']) ){
 			$sticky_posts[] = $data['post_id'];
 			update_option('sticky_posts', $sticky_posts);
-			return
+			return;
 		}
-		// if ( ($key = array_search(intval($data['sticky']), $sticky_posts) ) !== false) unset($sticky_posts[$key]);
-		// update_option('sticky_posts', $sticky_posts);
+		if ( ($key = array_search(intval($data['sticky']), $sticky_posts) ) !== false) unset($sticky_posts[$key]);
+		update_option('sticky_posts', $sticky_posts);
 	}
 
 	/**
