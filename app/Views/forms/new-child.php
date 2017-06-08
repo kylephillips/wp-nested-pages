@@ -54,7 +54,8 @@
 				'id' => 'post_author',
 				'class'=> 'authors',
 				'multi' => 1,
-				'echo' => 0
+				'echo' => 0,
+				'selected' => get_current_user_id()
 			);
 
 			if ( $authors = wp_dropdown_users( $users_opt ) ) :
