@@ -171,7 +171,7 @@ class PostTypeRepository
 			if ( $option == $sort_option && $value == 'true' ) $enabled = true;
 		}
 		if ( $taxonomy && !isset($options['taxonomies']) ) $enabled = false;
-		if ( $taxonomy && $options['taxonomies'][$sort_option] == 'true' ) $enabled = true;
+		if ( $taxonomy && isset($options['taxonomies'][$sort_option]) && $options['taxonomies'][$sort_option] == 'true' ) $enabled = true;
 		return $enabled;
 	}
 
