@@ -176,6 +176,16 @@ class PostTypeRepository
 	}
 
 	/**
+	* Does the post type have any sort options
+	* @return boolean
+	*/
+	public function hasSortOptions($post_type)
+	{
+		$options = $this->configuredFields($post_type, 'sort_options');
+		return ( empty($options) ) ? false : true;
+	}
+
+	/**
 	* Are Thumbnails enabled for this post type? If not, return false, if so, return the thumbnail size
 	* @param $post_type - post type name
 	* @return boolean || string (thumbnail size)

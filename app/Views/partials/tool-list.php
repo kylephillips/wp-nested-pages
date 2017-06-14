@@ -54,7 +54,8 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 		if ( $this->post_type->name !== 'post' ) echo $this->integrations->plugins->wpml->languageToolLinks(esc_attr($this->post_type->name));
 	?>
 
-	<?php if ( !$this->post_type->hierarchical ) : ?>
+	<?php 
+	if ( $this->post_type->name !== 'page' && $this->post_type_repo->hasSortOptions($this->post_type->name) ) : ?>
 	<div class="np-tools-primary">
 		<form action="<?php echo admin_url('admin-post.php'); ?>" method="post" class="np-tools-sort">
 			<input type="hidden" name="action" value="npListingSort">
