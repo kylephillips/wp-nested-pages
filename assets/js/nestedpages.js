@@ -3207,7 +3207,6 @@ NestedPages.Wpml = function()
 				nonce : NestedPages.jsData.nonce
 			},
 			success: function(data){
-				console.log(data);
 				if ( data.status === 'success' ){
 					plugin.populateModal(data.translations);
 				} else {
