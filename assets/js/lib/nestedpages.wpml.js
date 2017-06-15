@@ -73,6 +73,7 @@ NestedPages.Wpml = function()
 				nonce : NestedPages.jsData.nonce
 			},
 			success: function(data){
+				console.log(data);
 				if ( data.status === 'success' ){
 					plugin.populateModal(data.translations);
 				} else {
@@ -94,7 +95,7 @@ NestedPages.Wpml = function()
 			html += '<tr>';
 			html += '<td><img src="' + translation.country_flag_url + '" alt="' + translation.translated_name + '" /> ' + translation.translated_name + '</td>';
 			html += '<td>';
-			if ( translation.has_translation ){
+			if ( translation.has_translation && translation.edit_link ){
 				html += '<a href="' + translation.edit_link + '">' + translation.translation.post_title + ' (' + nestedpages.edit + ')</a>';
 			} else {
 				html += '<a href="' + translation.add_link + '" class="np-btn">+ ' + nestedpages.add_translation + '</a>';
