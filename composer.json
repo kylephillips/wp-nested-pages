@@ -2,12 +2,11 @@
 	"name": "kylephillips/nestedpages",
 	"description": "Nested Pages for WordPress",
 	"keywords": ["wordpress", "plugin", "nested pages"],
-	"homepage": "http://nestedpages.com",
+	"homepage": "https://nestedpages.com",
 	"license": "GPL",
 	"authors": [
 		{
 			"name": "Kyle Phillips",
-			"email": "support@nestedpages.com",
 			"homepage": "https://github.com/kylephillips"
 		}
 	],
