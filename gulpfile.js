@@ -5,6 +5,7 @@ var livereload = require('gulp-livereload');
 var notify = require('gulp-notify');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var pump = require('pump');
 
 // Paths
 var scss = 'assets/scss/**/*';
@@ -42,46 +43,54 @@ var js_compiled = 'assets/js/';
 /**
 * Smush the admin Styles and output
 */
-gulp.task('scss', function(){
-	return gulp.src(scss)
-		.pipe(sass({ outputStyle: 'compressed' }))
-		.pipe(autoprefix('last 15 version'))
-		.pipe(gulp.dest(css))
-		.pipe(livereload())
-		.pipe(notify('Nested Pages styles compiled & compressed.'));
+gulp.task('scss', function(callback){
+	pump([
+		gulp.src(scss),
+		sass({ outputStyle: 'compressed' }),
+		autoprefix('last 15 version'),
+		gulp.dest(css),
+		livereload(),
+		notify('Nested Pages styles compiled & compressed.')
+	], callback);
 });
 
 /**
 * Smush the JS and output
 */
-gulp.task('scripts', function(){
-	return gulp.src(js_source)
-		.pipe(concat('nestedpages.min.js'))
-		.pipe(gulp.dest(js_compiled))
-		.pipe(uglify())
-		.pipe(gulp.dest(js_compiled))
-		.pipe(notify('Nested Pages scripts compiled & compressed.'));
+gulp.task('scripts', function(callback){
+	pump([
+		gulp.src(js_source),
+		concat('nestedpages.min.js'),
+		gulp.dest(js_compiled),
+		uglify(),
+		gulp.dest(js_compiled),
+		notify('Nested Pages scripts compiled & compressed.')
+	], callback);
 });
 
 /**
 * Output unminified JS for dev environment
 */
-gulp.task('scripts-dev', function(){
-	return gulp.src(js_source)
-		.pipe(concat('nestedpages.js'))
-		.pipe(gulp.dest(js_compiled));
+gulp.task('scripts-dev', function(callback){
+	pump([
+		gulp.src(js_source),
+		concat('nestedpages.js'),
+		gulp.dest(js_compiled)
+	], callback);
 });
 
 /**
 * Smush the Settings JS and output
 */
-gulp.task('settings-scripts', function(){
-	return gulp.src(js_source_settings)
-		.pipe(concat('nestedpages.settings.min.js'))
-		.pipe(gulp.dest(js_compiled))
-		.pipe(uglify())
-		.pipe(gulp.dest(js_compiled))
-		.pipe(notify('Nested Pages settings scripts compiles & compressed.'));
+gulp.task('settings-scripts', function(callback){
+	pump([
+		gulp.src(js_source_settings),
+		concat('nestedpages.settings.min.js'),
+		gulp.dest(js_compiled),
+		uglify(),
+		gulp.dest(js_compiled),
+		notify('Nested Pages settings scripts compiles & compressed.')
+	], callback);
 });
 
 
