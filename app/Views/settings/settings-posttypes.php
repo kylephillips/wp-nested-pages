@@ -4,7 +4,7 @@ $thumbnail_sizes = get_intermediate_image_sizes();
 settings_fields( 'nestedpages-posttypes' ); 
 ?>
 
-<h3><?php _e('Enable Nested Pages for:', 'wp-nested-pages'); ?></h3>
+<h3><?php _e('Enable Post Types:', 'wp-nested-pages'); ?></h3>
 
 <div class="nestedpages-settings-posttypes">
 	<?php foreach ($types as $type) : ?>
