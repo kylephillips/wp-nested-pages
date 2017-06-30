@@ -4,7 +4,6 @@
 
 .nestedpages {
 	clear: both;
-	border-radius: 4px;
 
 	// Sortable Placeholder
 	.ui-sortable-placeholder {
@@ -23,18 +22,14 @@
 		box-shadow: 2px 2px 3px 0px rgba(0,0,0,.5);
 	}
 
-
 	ol {
 		list-style-type: none;
 		clear: both;
 		margin: 0;
 		@include wptable;
-
 		a {
 			text-decoration: none;
 		}
-
-
 		.page-link {
 			.edit-indicator {
 				margin-left: 10px;
@@ -181,12 +176,12 @@
 	// Block that holds the toggle child arrow
 	.child-toggle {
 		display: table-cell;
-		width: 46px;
+		width: 50px;
 		background-color: darken($white, 6%);
 		text-align: center;
 		position: relative;
 		.child-toggle-spacer {
-			height: 46px;
+			height: 50px;
 			width: 100%;
 		}
 		a { // Arrow Toggle
@@ -194,8 +189,8 @@
 			top: 50%;
 			left: 8px;
 			margin-top: -16px;
-			width: 28px;
-			height: 28px;
+			width: 30px;
+			height: 30px;
 			background-color: $white;
 			border: 1px solid $border;
 			border-radius: 20px;
@@ -205,7 +200,7 @@
 			box-shadow: none;
 			transition: all 200ms ease;
 			i {
-				line-height: 26px;
+				line-height: 28px;
 			}
 			&:hover {
 				background-color: $blue;
@@ -395,7 +390,7 @@
 		position: absolute;
 		right: 10px;
 		top: 50%;
-		margin-top: -15px;
+		margin-top: -1.25em;
 		a {
 			margin: 0 0 0 -5px;
 			&.np-btn-trash {
