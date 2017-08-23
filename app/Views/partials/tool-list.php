@@ -23,7 +23,7 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 		</li>
 
 		<li> |
-			<?php if ( !$this->isSearch() ) : ?>
+			<?php if ( !$this->listing_repo->isSearch() ) : ?>
 			<a href="#hide" class="np-toggle-hidden"><?php _e('Show Hidden', 'wp-nested-pages'); ?> </a>
 			<?php else : ?>
 			<a href="#show" class="np-toggle-hidden"><?php _e('Hide Hidden', 'wp-nested-pages'); ?> </a>
@@ -177,7 +177,7 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 			<input type="hidden" name="posttype" value="<?php echo esc_attr($this->post_type->name); ?>">
 			<input type="hidden" name="page" value="<?php echo esc_url($this->pageURL()); ?>">
 			<?php wp_nonce_field('nestedpages-nonce', 'nonce'); ?>
-			<input type="search" name="search_term" id="nestedpages-search" placeholder="<?php echo esc_attr($this->post_type->labels->search_items); ?>" <?php if ( $this->isSearch() ) echo ' value="' . esc_attr(sanitize_text_field($_GET['search'])) . '"'; ?>>
+			<input type="search" name="search_term" id="nestedpages-search" placeholder="<?php echo esc_attr($this->post_type->labels->search_items); ?>" <?php if ( $this->listing_repo->isSearch() ) echo ' value="' . esc_attr(sanitize_text_field($_GET['search'])) . '"'; ?>>
 			<input type="submit" name="" class="button" value="<?php echo $searchLabel;?>">
 		</form>
 	</div><!-- .np-tools-search -->

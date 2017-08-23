@@ -154,7 +154,7 @@
 		<?php endif; ?>
 		
 		<div class="form-control np-toggle-options">
-			<?php if ( $this->user->canSortPages() && $this->post_type->name == 'page' && !$this->isSearch() && !array_key_exists('menu_options', $this->disabled_standard_fields) && $wpml_pages ) : ?>
+			<?php if ( $this->user->canSortPages() && $this->post_type->name == 'page' && !$this->listing_repo->isSearch() && !array_key_exists('menu_options', $this->disabled_standard_fields) && $wpml_pages ) : ?>
 			<a href="#" class="np-btn np-btn-half np-toggle-menuoptions"><?php _e('Menu Options', 'wp-nested-pages'); ?></a>
 			<?php endif; ?>
 
@@ -201,7 +201,7 @@
 	<?php endif; // if taxonomies ?>
 
 
-	<?php if ( $this->user->canSortPages() && !$this->isSearch() ) : ?>
+	<?php if ( $this->user->canSortPages() && !$this->listing_repo->isSearch() ) : ?>
 	<div class="np-menuoptions">
 		<div class="menuoptions-left">
 			<div class="form-control">

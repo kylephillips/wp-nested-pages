@@ -23,7 +23,7 @@ class PostDataFactory
 	/**
 	* Build the Object
 	*/
-	public function build($post)
+	public function build($post, $h_taxonomies = null, $f_taxonomies = null)
 	{
 		$this->integrations = new IntegrationFactory;
 		$this->post_data = new \stdClass();
@@ -32,6 +32,7 @@ class PostDataFactory
 		$this->addOriginalLink($post);
 		$this->addDate($post);
 		$this->author($post);
+		if ( $h_taxonomies || $f_taxonomies ) $this->addTaxonomies($post, $h_taxonomies, $f_taxonomies);
 		return $this->post_data;
 	}
 
@@ -121,5 +122,27 @@ class PostDataFactory
 	{
 		$this->post_data->author = get_the_author_meta('display_name', $post->post_author);
 		$this->post_data->author_link = admin_url('edit.php?post_type=' . $post->post_type . '&author=' . $post->post_author);
+	}
+
+	/**
+	* Add taxonomies
+	*/
+	public function addTaxonomies($post, $h_taxonomies, $f_taxonomies)
+	{
+		// Add taxonomies
+		if ( count($h_taxonomies) > 0 ) {
+			foreach($h_taxonomies as $tax){
+				$taxname = $tax->name;
+				if ( !isset($post->$taxname) ) continue;
+				$this->post_data->$taxname = explode(',', $post->$taxname);
+			}
+		}
+		if ( count($f_taxonomies) > 0 ) {
+			foreach($f_taxonomies as $tax){
+				$taxname = $tax->name;
+				if ( !isset($post->$taxname) ) continue;
+				$this->post_data->$taxname = explode(',', $post->$taxname);
+			}
+		}
 	}
 }

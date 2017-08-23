@@ -19,7 +19,7 @@ if ( !$wpml ) $wpml_pages = true;
 	<div class="row-inner">
 		<i class="np-icon-sub-menu"></i>
 		
-		<?php if ( $this->user->canSortPages() && !$this->isSearch() && !$this->post_type_settings->disable_sorting && $wpml_current_language !== 'all' ) : ?>
+		<?php if ( $this->user->canSortPages() && !$this->listing_repo->isSearch() && !$this->post_type_settings->disable_sorting && $wpml_current_language !== 'all' ) : ?>
 		<i class="handle np-icon-menu"></i>
 		<?php endif; ?>
 
@@ -114,7 +114,7 @@ if ( !$wpml ) $wpml_pages = true;
 			
 			<?php else : $cs = 'closed'; endif; ?>
 
-			<?php if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->isSearch() && $wpml_pages ) : ?>
+			<?php if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->listing_repo->isSearch() && $wpml_pages ) : ?>
 		
 			<?php if (!$this->settings->menusDisabled() && !$this->integrations->plugins->wpml->installed) : ?>
 			<a href="#" class="np-btn open-redirect-modal" data-parentid="<?php echo esc_attr($this->post->id); ?>"><i class="np-icon-link"></i></a>

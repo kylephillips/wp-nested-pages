@@ -21,7 +21,9 @@
 
 // WP Dashboard Styling
 @mixin wptable {
-	border: 1px solid $border;
+	// box-shadow: 0 1px 1px rgba(0,0,0,.06);
+	border: 1px solid $border-light;
+	border-radius: 3px;
 }
 
 @mixin translate($x, $y) {

@@ -6,12 +6,12 @@ settings_fields( 'nestedpages-posttypes' );
 
 <h3><?php _e('Enable Post Types:', 'wp-nested-pages'); ?></h3>
 
-<div class="nestedpages-settings-posttypes">
+<div class="nestedpages-settings-table">
 	<?php foreach ($types as $type) : ?>
-	<div class="post-type">
+	<div class="row-container">
 		<div class="head">
 			<div class="checkbox">
-				<input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>]" value="<?php echo esc_attr($type->name); ?>" <?php if ( $type->np_enabled ) echo 'checked'; ?> data-nestedpages-pt-checkbox id="post-type-<?php echo esc_attr($type->name); ?>" />
+				<input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>]" value="<?php echo esc_attr($type->name); ?>" <?php if ( $type->np_enabled ) echo 'checked'; ?> data-nestedpages-settings-row-checkbox id="post-type-<?php echo esc_attr($type->name); ?>" />
 			</div>
 			<label for="post-type-<?php echo $type->name; ?>">
 				<?php 
@@ -22,7 +22,7 @@ settings_fields( 'nestedpages-posttypes' );
 			<a href="#" class="button" data-toggle-nestedpages-pt-settings><?php _e('Settings', 'wp-nested-pages'); ?></a>
 		</div><!-- .head -->
 		<div class="body">
-			<ul class="post-type-settings">
+			<ul class="settings-details">
 				<li>
 					<div class="row">
 						<div class="description">

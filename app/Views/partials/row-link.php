@@ -6,9 +6,9 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 	? $this->post->nav_original_link
 	: esc_url($this->post->content);
 ?>
-<div class="row" <?php if ( $this->isSearch() ) echo 'style="padding-left:10px;"';?>>
+<div class="row" <?php if ( $this->listing_repo->isSearch() ) echo 'style="padding-left:10px;"';?>>
 	
-	<?php if ( $this->post_type->hierarchical && !$this->isSearch() ) : ?>
+	<?php if ( $this->post_type->hierarchical && !$this->listing_repo->isSearch() ) : ?>
 	<div class="child-toggle"></div>
 	<?php endif; ?>
 
@@ -16,7 +16,7 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 
 		<i class="np-icon-sub-menu"></i>
 		
-		<?php if ( $this->user->canSortPages() && !$this->isSearch() ) : ?>
+		<?php if ( $this->user->canSortPages() && !$this->listing_repo->isSearch() ) : ?>
 		<i class="handle np-icon-menu"></i>
 		<?php endif; ?>
 

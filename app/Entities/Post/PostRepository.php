@@ -43,20 +43,33 @@ class PostRepository
 
 	/**
 	* Return css class string of taxonomies
-	* @param int post_id
+	* @param object post object with taxonomies added
 	* @return string
 	*/
-	public function getTaxonomyCSS($post_id, $taxonomies, $hierarchical = true)
+	public function getTaxonomyCSS($post, $h_taxonomies = array(), $f_taxonomies = array())
 	{
-		$out = '';
-		if ( count($taxonomies) > 0 ) {
-			foreach ( $taxonomies as $taxonomy ){
-				$terms = wp_get_post_terms($post_id, $taxonomy->name);
+		$out = ' ';
+		
+		// Build Hierarchical string
+		if ( count($h_taxonomies) > 0 ) {
+			foreach ( $h_taxonomies as $taxonomy ){
+				$taxname = $taxonomy->name;
+				if ( !isset($post->$taxname) ) continue;
+				$terms = $post->$taxname;
 				foreach ( $terms as $term ){
-					$out .= ( $hierarchical ) ? 'in-' : 'inf-';
-					$out .= $taxonomy->name;
-					$out .= ( $hierarchical ) ? '-' : '-nps-';
-					$out .= $term->term_id . ' ';
+					$out .= 'in-' . $taxonomy->name . '-' . $term . ' ';
+				}
+			}
+		}
+
+		// Build Non-Hierarchical string
+		if ( count($f_taxonomies) > 0 ) {
+			foreach ( $f_taxonomies as $taxonomy ){
+				$taxname = $taxonomy->name;
+				if ( !isset($post->$taxname) ) continue;
+				$terms = $post->$taxname;
+				foreach ( $terms as $term ){
+					$out .= 'inf-' . $taxonomy->name . '-nps-' . $term . ' ';
 				}
 			}
 		}

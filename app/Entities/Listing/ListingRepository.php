@@ -110,4 +110,21 @@ class ListingRepository
 		}
 		return wp_count_posts($post_type)->publish;
 	}
+
+	/**
+	* Is this a search
+	* @return boolean
+	*/
+	public function isSearch()
+	{
+		return ( isset($_GET['search']) && $_GET['search'] !== "" ) ? true : false;
+	}
+
+	/**
+	* Is the list filtered?
+	*/ 
+	public function isFiltered()
+	{
+		return ( isset($_GET['category']) && $_GET['category'] !== "all" ) ? true : false;
+	}
 }

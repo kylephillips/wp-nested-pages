@@ -1,9 +1,9 @@
 //
-// Post Types Settings Styles
+// Tables in Settings (Post Types, etc)
 // --------------------------------------------------
-.nestedpages-settings-posttypes {
+.nestedpages-settings-table {
 	@include wptable;
-	.post-type {
+	.row-container {
 		background-color: $white;
 		border-bottom: 1px solid $border;
 		&:last-child {
@@ -45,10 +45,11 @@
 			width: 100%;
 			.description {
 				display: table-cell;
+				vertical-align: top;
 				width: 25%;
 				border-bottom: 1px solid $border;
 				background-color: $gray-lighter;
-				padding: 10px;
+				padding: 1em;
 				p {
 					color: darken($white, 50%);
 					font-size: .9em;
@@ -60,11 +61,26 @@
 			}
 			.field {
 				display: table-cell;
+				vertical-align: top;
 				width: 75%;
 				background-color: $white;
 				border-bottom: 1px solid $border;
 				border-left: 1px solid $border;
-				padding: 10px;
+				padding: 1em;
+				&.padded-sides {
+					padding: 1em 2em;
+				}
+				&.extra-padding {
+					padding: 2em;
+				}
+				label.block {
+					display: block;
+				}
+				input[type="text"], 
+				input[type="tel"],
+				select{
+					width: 100%;
+				}
 			}
 		} // .row
 		.body {
@@ -73,15 +89,15 @@
 				margin: 0;
 				padding: 10px 0 0 10px;
 			}
-			.post-type-settings {
+			.settings-details {
 				margin: 0;
 			}
 			li {
 				margin: 0;
 			}
 		}
-		.post-type-settings li:last-child .field,
-		.post-type-settings li:last-child .description {
+		.settings-details li:last-child .field,
+		.settings-details li:last-child .description {
 			border-bottom: 0;
 		}
 		.custom-fields, .standard-fields, .columns {
@@ -179,7 +195,8 @@
 	padding: .5em;
 }
 
-.nestedpages-sort-options-selection {
+.nestedpages-sort-options-selection,
+.nestedpages-checklist-field {
 	background-color: $gray-lighter;
 	border: 1px solid $border;
 	margin-top: 1em;

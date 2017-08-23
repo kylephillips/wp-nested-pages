@@ -42,13 +42,13 @@ class UserRepository
 	* @return array
 	* @since 1.1.7
 	*/
-	public function allRoles()
+	public function allRoles($exclude = array('Administrator', 'Contributor', 'Subscriber', 'Author') )
 	{
 		global $wp_roles;
 		$all_roles = $wp_roles->roles;
 		$editable_roles = apply_filters('editable_roles', $all_roles);
 		$roles = array();
-		$exclude = array('Administrator', 'Contributor', 'Subscriber', 'Author');
+		if ( !is_array($exclude) ) $exclude = array();
 		foreach($editable_roles as $key=>$editable_role){
 			if ( !in_array($editable_role['name'], $exclude) ){
 				$role = array(
@@ -59,6 +59,17 @@ class UserRepository
 			}
 		}
 		return $roles;
+	}
+
+	/**
+	* Get a single role
+	* @since 3.0
+	*/
+	public function getSingleRole($role = 'administrator')
+	{
+		global $wp_roles;
+		if ( isset($wp_roles->roles[$role]) ) return $wp_roles->roles[$role];
+		return false;
 	}
 
 	/**

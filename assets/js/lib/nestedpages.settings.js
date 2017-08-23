@@ -12,7 +12,7 @@ NestedPages.Settings = function()
 
 	plugin.selectors = {
 		postTypeToggle : '[data-toggle-nestedpages-pt-settings]', // Toggle Button for Post Type Settings
-		postTypeCheckbox : '[data-nestedpages-pt-checkbox]', // Checkbox for enabling post type
+		postTypeCheckbox : '[data-nestedpages-settings-row-checkbox]', // Checkbox for enabling post type
 		customFieldsCheckbox : '[data-toggle-nestedpages-cf-settings]', // Checkbox for toggling custom fields settings
 		standardFieldsCheckbox : '[data-toggle-nestedpages-sf-settings]', // Checkbox for toggling standard field settings
 		taxonomiesFieldCheckbox : '[data-hide-taxonomies]', // Checkbox for disabling taxonomies from quick edit
@@ -42,7 +42,7 @@ NestedPages.Settings = function()
 		});
 		$(document).on('click', plugin.selectors.postTypeToggle, function(e){
 			e.preventDefault();
-			plugin.togglePostTypeSettings($(this));
+			plugin.toggleRow($(this));
 		});
 		$(document).on('change', plugin.selectors.postTypeCheckbox, function(){
 			plugin.toggleSettingsButton($(this));
@@ -81,10 +81,10 @@ NestedPages.Settings = function()
 	/**
 	* Toggle Individual Post Type Settings
 	*/
-	plugin.togglePostTypeSettings = function(button)
+	plugin.toggleRow = function(button)
 	{
 		$(button).parent('.head').siblings('.body').toggle();
-		$(button).parents('.post-type').toggleClass('active');
+		$(button).parents('.row-container').toggleClass('active');
 	}
 
 	/**
@@ -100,7 +100,7 @@ NestedPages.Settings = function()
 		}
 		$(button).hide();
 		$(button).parents('.head').siblings('.body').hide();
-		$(button).parents('.post-type').removeClass('active');
+		$(button).parents('.row-container').removeClass('active');
 		$(button).parents('.head').siblings('.body').find('input[type="checkbox"]').attr('checked', false);
 		$(button).parents('.head').siblings('.body').find('input[type="hidden"]').attr('disabled', true);
 		$(button).parents('.head').siblings('.body').find('select').val(false);
