@@ -6,6 +6,7 @@
 	$can_publish = current_user_can( $post_type_object->cap->publish_posts );
 	$wpml_pages = ( $this->integrations->plugins->wpml->installed && $this->integrations->plugins->wpml->isDefaultLanguage()) ? true : false;
 	if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
+	$has_taxonomies = ( !empty($this->h_taxonomies) || !empty($this->f_taxonomies) ) ? true : false;
 ?>
 
 <form method="get" action="">
@@ -158,14 +159,14 @@
 			<a href="#" class="np-btn np-btn-half np-toggle-menuoptions"><?php _e('Menu Options', 'wp-nested-pages'); ?></a>
 			<?php endif; ?>
 
-			<?php if ( !empty($this->h_taxonomies) && !array_key_exists('hide_taxonomies', $this->disabled_standard_fields) ) : ?>
+			<?php if ( $has_taxonomies && !array_key_exists('hide_taxonomies', $this->disabled_standard_fields) ) : ?>
 			<a href="#" class="np-btn np-btn-half btn-right np-toggle-taxonomies"><?php _e('Taxonomies', 'wp-nested-pages'); ?></a>
 			<?php endif; ?>
 		</div>
 
 	</div><!-- .right -->
 
-	<?php if ( !empty($this->h_taxonomies) ) : ?>
+	<?php if ( $has_taxonomies ) : ?>
 	<div class="np-taxonomies">
 		<?php 
 			foreach ( $this->h_taxonomies as $taxonomy ) : 
