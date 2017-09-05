@@ -151,9 +151,9 @@ class ListingQuery
 			$t = 't_' . $tax->name;
 
 			$pieces['join'] .= "
-				LEFT JOIN $wpdb->term_relationships AS $tr ON $tr.object_id = $wpdb->posts.ID
-				LEFT JOIN $wpdb->term_taxonomy $tt ON $tt.term_taxonomy_id = $tr.term_taxonomy_id AND $tt.taxonomy = '$name'
-				LEFT JOIN $wpdb->terms AS $t ON $t.term_id = $tt.term_id";
+				LEFT JOIN `$wpdb->term_relationships` AS $tr ON $tr.object_id = '$wpdb->posts.ID'
+				LEFT JOIN `$wpdb->term_taxonomy` AS $tt ON $tt.term_taxonomy_id = $tr.term_taxonomy_id AND $tt.taxonomy = '$name'
+				LEFT JOIN `$wpdb->terms` AS $t ON $t.term_id = '$tt.term_id'";
 			$pieces['fields'] .= ",GROUP_CONCAT(DISTINCT $t.term_id SEPARATOR ',') AS $name";
 		}
 
@@ -165,13 +165,13 @@ class ListingQuery
 			$t = 't_' . $tax->name;
 
 			$pieces['join'] .= "
-				LEFT JOIN $wpdb->term_relationships AS $tr ON $tr.object_id = $wpdb->posts.ID
-				LEFT JOIN $wpdb->term_taxonomy $tt ON $tt.term_taxonomy_id = $tr.term_taxonomy_id AND $tt.taxonomy = '$name'
-				LEFT JOIN $wpdb->terms AS $t ON $t.term_id = $tt.term_id";
+				LEFT JOIN `$wpdb->term_relationships` AS $tr ON $tr.object_id = '$wpdb->posts.ID'
+				LEFT JOIN `$wpdb->term_taxonomy` AS $tt ON $tt.term_taxonomy_id = $tr.term_taxonomy_id AND $tt.taxonomy = '$name'
+				LEFT JOIN `$wpdb->terms` AS $t ON $t.term_id = '$tt.term_id'";
 			$pieces['fields'] .= ",GROUP_CONCAT(DISTINCT $t.term_id SEPARATOR ',') AS $name";
 		}
 
-		$pieces['groupby'] = "$wpdb->posts.ID"; 		
+		$pieces['groupby'] = "$wpdb->posts.ID"; 
 		return $pieces;
 	}
 }
