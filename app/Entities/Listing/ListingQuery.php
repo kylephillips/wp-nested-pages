@@ -78,8 +78,7 @@ class ListingQuery
 			'author' => $this->sort_options->author,
 			'orderby' => $this->sort_options->orderby,
 			'post_status' => array('publish', 'pending', 'draft', 'private', 'future', 'trash'),
-			'order' => $this->sort_options->order,
-			'suppress_filters' => true
+			'order' => $this->sort_options->order
 		);
 		
 		if ( $this->listing_repo->isSearch() ) $query_args = $this->searchParams($query_args);
@@ -152,10 +151,10 @@ class ListingQuery
 			$t = 't_' . $tax->name;
 
 			$pieces['join'] .= "
-				LEFT JOIN `$wpdb->term_relationships` AS $tr ON $tr.object_id = '$wpdb->posts.ID'
+				LEFT JOIN `$wpdb->term_relationships` AS $tr ON $tr.object_id = $wpdb->posts.ID
 				LEFT JOIN `$wpdb->term_taxonomy` AS $tt ON $tt.term_taxonomy_id = $tr.term_taxonomy_id AND $tt.taxonomy = '$name'
-				LEFT JOIN `$wpdb->terms` AS $t ON $t.term_id = '$tt.term_id'";
-			$pieces['fields'] .= ",GROUP_CONCAT(DISTINCT $t.term_id SEPARATOR ',') AS $name";
+				LEFT JOIN `$wpdb->terms` AS $t ON $t.term_id = $tt.term_id";
+			$pieces['fields'] .= ", GROUP_CONCAT(DISTINCT $t.term_id SEPARATOR ',') AS $name";
 		}
 
 		// Add Flat Categories
@@ -166,9 +165,9 @@ class ListingQuery
 			$t = 't_' . $tax->name;
 
 			$pieces['join'] .= "
-				LEFT JOIN `$wpdb->term_relationships` AS $tr ON $tr.object_id = '$wpdb->posts.ID'
+				LEFT JOIN `$wpdb->term_relationships` AS $tr ON $tr.object_id = $wpdb->posts.ID
 				LEFT JOIN `$wpdb->term_taxonomy` AS $tt ON $tt.term_taxonomy_id = $tr.term_taxonomy_id AND $tt.taxonomy = '$name'
-				LEFT JOIN `$wpdb->terms` AS $t ON $t.term_id = '$tt.term_id'";
+				LEFT JOIN `$wpdb->terms` AS $t ON $t.term_id = $tt.term_id";
 			$pieces['fields'] .= ",GROUP_CONCAT(DISTINCT $t.term_id SEPARATOR ',') AS $name";
 		}
 
