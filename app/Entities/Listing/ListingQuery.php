@@ -78,7 +78,8 @@ class ListingQuery
 			'author' => $this->sort_options->author,
 			'orderby' => $this->sort_options->orderby,
 			'post_status' => array('publish', 'pending', 'draft', 'private', 'future', 'trash'),
-			'order' => $this->sort_options->order
+			'order' => $this->sort_options->order,
+			'suppress_filters' => true
 		);
 		
 		if ( $this->listing_repo->isSearch() ) $query_args = $this->searchParams($query_args);
