@@ -146,29 +146,31 @@ class ListingQuery
 		// Add Hierarchical Categories
 		foreach($this->h_taxonomies as $tax){
 			$name = $tax->name;
-			$tr = 'tr_' . $tax->name;
-			$tt = 'tt_' . $tax->name;
-			$t = 't_' . $tax->name;
+			$name_simple = sanitize_text_field(str_replace('-', '', $tax->name));
+			$tr = 'tr_' . $name_simple;
+			$tt = 'tt_' . $name_simple;
+			$t = 't_' . $name_simple;
 
 			$pieces['join'] .= "
 				LEFT JOIN `$wpdb->term_relationships` AS $tr ON $tr.object_id = $wpdb->posts.ID
 				LEFT JOIN `$wpdb->term_taxonomy` AS $tt ON $tt.term_taxonomy_id = $tr.term_taxonomy_id AND $tt.taxonomy = '$name'
 				LEFT JOIN `$wpdb->terms` AS $t ON $t.term_id = $tt.term_id";
-			$pieces['fields'] .= ", GROUP_CONCAT(DISTINCT $t.term_id SEPARATOR ',') AS $name";
+			$pieces['fields'] .= ", GROUP_CONCAT(DISTINCT $t.term_id SEPARATOR ',') AS $name_simple";
 		}
 
 		// Add Flat Categories
 		foreach($this->f_taxonomies as $tax){
 			$name = $tax->name;
-			$tr = 'tr_' . $tax->name;
-			$tt = 'tt_' . $tax->name;
-			$t = 't_' . $tax->name;
+			$name_simple = sanitize_text_field(str_replace('-', '', $tax->name));
+			$tr = 'tr_' . $name_simple;
+			$tt = 'tt_' . $name_simple;
+			$t = 't_' . $name_simple;
 
 			$pieces['join'] .= "
 				LEFT JOIN `$wpdb->term_relationships` AS $tr ON $tr.object_id = $wpdb->posts.ID
 				LEFT JOIN `$wpdb->term_taxonomy` AS $tt ON $tt.term_taxonomy_id = $tr.term_taxonomy_id AND $tt.taxonomy = '$name'
 				LEFT JOIN `$wpdb->terms` AS $t ON $t.term_id = $tt.term_id";
-			$pieces['fields'] .= ",GROUP_CONCAT(DISTINCT $t.term_id SEPARATOR ',') AS $name";
+			$pieces['fields'] .= ",GROUP_CONCAT(DISTINCT $t.term_id SEPARATOR ',') AS $name_simple";
 		}
 
 		$pieces['groupby'] = "$wpdb->posts.ID"; 
