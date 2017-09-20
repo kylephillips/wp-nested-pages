@@ -290,7 +290,7 @@ class Listing
 
 	/**
 	* Loop through all the pages and create the nested / sortable list
-	* Recursive Method, called in page.php view
+	* Called in listing.php view
 	*/
 	private function getPosts()
 	{
