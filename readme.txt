@@ -98,6 +98,9 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 
 == Changelog ==
 
+= 2.0.2 =
+* Fixes issue where no posts were displaying in nested view when a taxonomy was assigned to the post with a dash in the taxonomy name.
+
 = 2.0.1 =
 * WPML compatibility added (Limited support, see the "More Information" section for important notes on support).
 * Important upgrade note: Custom links within the Nested Pages interface are disabled if WPML is installed and enabled. This is a potential breaking change, so please remove all custom links before updating. Links may be added back to menus by using the default WordPress Appearance > Menus editor.
