@@ -137,7 +137,8 @@ class PostRepository
 	{
 		$posts_q = new \WP_Query(array('post_type'=>$post_type, 'post_status'=>'trash', 'posts_per_page'=>-1));
 		if ( $posts_q->have_posts() ) : while ( $posts_q->have_posts() ) : $posts_q->the_post();
-			if( current_user_can( 'delete_' . $post_type, get_the_id() ) )
+			$capability = ( $post_type == 'page' ) ? 'delete_page' : 'delete_posts';
+			if( current_user_can( $capability, get_the_id() ) )
 				wp_delete_post(get_the_id(), true);
 		endwhile; endif; wp_reset_postdata();
 		return true;
