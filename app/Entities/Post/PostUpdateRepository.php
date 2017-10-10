@@ -54,19 +54,20 @@ class PostUpdateRepository
 			$post_id = sanitize_text_field($post['id']);
 			$original_modifed_date = get_post_modified_time('Y-m-d H:i:s', false, $post_id);
 			$original_modifed_date_gmt = get_post_modified_time('Y-m-d H:i:s', true, $post_id);
-			
-			wp_update_post(array(
-				'ID' => $post_id,
-				'menu_order' => $key,
-				'post_parent' => $parent
-			));
 
 			// Reset the modified date to the last modified date
-			$query = "UPDATE $wpdb->posts SET post_modified = '$original_modifed_date' WHERE ID = '$post_id'";
-			$wpdb->query( $query );
+			$query = $wpdb->prepare(
+				"UPDATE $wpdb->posts 
+				SET menu_order = '%d', post_parent = '%d', post_modified = '%s', post_modified_gmt = '%s' 
+				WHERE ID = '%d'", 
+				intval($key), 
+				intval($parent),
+				$original_modifed_date, 
+				$original_modifed_date_gmt, 
+				intval($post_id)
+			);
 
-			$query_gmt = "UPDATE $wpdb->posts SET post_modified_gmt = '$original_modifed_date_gmt' WHERE ID = '$post_id'";
-    		$wpdb->query( $query_gmt );
+			$wpdb->query( $query );
 
 			if ( isset($post['children']) ) $this->updateOrder($post['children'], $post_id);
 		}
