@@ -21,7 +21,7 @@ var js_source = [
 	'assets/js/lib/nestedpages.page-toggle.js',
 	'assets/js/lib/nestedpages.nesting.js',
 	'assets/js/lib/nestedpages.sync-menu-setting.js',
-	'assets/js/lib/nestedpages.new-page.js',
+	'assets/js/lib/nestedpages.new-post.js',
 	'assets/js/lib/nestedpages.quickedit-post.js',
 	'assets/js/lib/nestedpages.quickedit-link.js',
 	'assets/js/lib/nestedpages.clone.js',

@@ -1,11 +1,11 @@
 var NestedPages = NestedPages || {};
 
 /**
-* Add new page(s) - Top level & child
+* Add new post(s) - Top level & child
 * @package Nested Pages
 * @author Kyle Phillips - https://github.com/kylephillips/wp-nested-pages
 */
-NestedPages.NewPage = function()
+NestedPages.NewPost = function()
 {
 	var plugin = this;
 	var $ = jQuery;
@@ -14,13 +14,6 @@ NestedPages.NewPage = function()
 	plugin.parent_id = 0; // Parent ID for the post(s) to add
 	plugin.posts = ''; // The newly added posts
 	plugin.form = ''; // The active form
-
-
-	plugin.init = function()
-	{
-		plugin.bindEvents();
-	}
-
 
 	plugin.bindEvents = function()
 	{
@@ -60,7 +53,6 @@ NestedPages.NewPage = function()
 		});
 	}
 
-
 	// Open the form modal
 	plugin.openModal = function()
 	{
@@ -78,7 +70,6 @@ NestedPages.NewPage = function()
 		$(modal).find('.np_title').focus();
 		$(modal).find(NestedPages.selectors.newPageTitle).prop('tabindex', '2');
 	}
-
 
 	// Open the new child quick edit
 	plugin.openQuickEdit = function(button)
@@ -105,7 +96,6 @@ NestedPages.NewPage = function()
 		$(newform).find(NestedPages.selectors.newPageTitle).prop('tabindex', '2');
 	}
 
-
 	// Close the form modal
 	plugin.cancelNewPage = function()
 	{
@@ -115,7 +105,6 @@ NestedPages.NewPage = function()
 		$(NestedPages.selectors.sortable).find('.new-child').remove();
 		$(NestedPages.selectors.row).show();
 	}
-
 
 	// Add a page title field to the form
 	plugin.addTitleField = function(button)
@@ -132,13 +121,11 @@ NestedPages.NewPage = function()
 		});
 	}
 
-
 	// Remove a page title field
 	plugin.removeTitleField = function(button)
 	{
 		$(button).parents('.new-child-row').parent('li').remove();
 	}
-
 
 	// Submit the New Page Form
 	plugin.submitForm = function(button)
@@ -177,7 +164,6 @@ NestedPages.NewPage = function()
 		});
 	}
 
-
 	// Add the new posts
 	plugin.addPosts = function()
 	{
@@ -205,7 +191,6 @@ NestedPages.NewPage = function()
 		plugin.cancelNewPage();
 		$(NestedPages.selectors.newPageModal).modal('hide');
 	}
-
 
 	// Append new post rows to the nested view
 	plugin.appendRows = function(appendto, post)
@@ -277,8 +262,6 @@ NestedPages.NewPage = function()
 		$(appendto).append(html);
 	}
 
-
-
 	// Toggle the form loading state
 	plugin.toggleLoading = function(loading)
 	{
@@ -292,7 +275,5 @@ NestedPages.NewPage = function()
 		$(NestedPages.selectors.quickEditLoadingIndicator).hide();
 	}
 
-
-
-	return plugin.init();
+	return plugin.bindEvents();
 }
