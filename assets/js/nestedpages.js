@@ -2834,6 +2834,7 @@ var NestedPagesTrash = function()
 					$(plugin.errorAlert).text(data.message).show();
 				} else {
 					$(plugin.trashLinks).hide();
+					$('.notice-dismiss').click();
 				}
 			}
 		});
