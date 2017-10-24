@@ -72,4 +72,20 @@ settings_fields( 'nestedpages-general' );
 		<p><em><?php _e('Admins always have sorting ability.', 'wp-nested-pages'); ?></em></p>
 	</td>
 </tr>
+<tr valign="top">
+	<th scope="row"><?php _e('Reset Plugin Settings', 'wp-nested-pages'); ?></th>
+	<td>
+		<div class="nestedpages-reset-settings">
+			<p>
+				<?php _e('Warning: Resetting plugin settings will remove all menu settings, post type customizations, role customizations and any other Nested Pages settings. These will be replaced with the default settings. This action cannot be undone.', 'wp-nested-pages'); ?>
+			</p>
+			<p>
+				<button class="np-btn np-btn-trash" data-nestedpages-reset-settings><?php _e('Reset Nested Pages Settings', 'wp-nested-pages'); ?></button>
+			</p>
+		</div>
+		<div class="nestedpages-reset-settings-complete" style="display:none;">
+			<p><?php _e('Settings have been successfully reset.', 'wp-nested-pages'); ?></p>
+		</div>
+	</td>
+</tr>
 </table>

@@ -23,4 +23,33 @@
 	i {
 		font-size: 20px;
 	}
+	.np-btn {
+		cursor: pointer;
+		text-decoration: none;
+		color: #555;
+		display: inline-block;
+		background-color: #f7f7f7;
+		border: 1px solid $border;
+		padding: 5px 8px;
+		transition: all 200ms ease;
+		&:hover {
+			background-color: $blue;
+			color: $white;
+			transition: all 200ms ease;
+			border-color: $blue;
+		}
+		&:disabled, &.disabled {
+			opacity: .6;
+			cursor: not-allowed;
+		}
+	}
+	.np-btn-trash {
+		background-color: $red;
+		border-color: $red;
+		color: $white;
+		&:hover {
+			background-color: darken($red, 15%);
+			border-color: darken($red, 15%);
+		}
+	}
 }

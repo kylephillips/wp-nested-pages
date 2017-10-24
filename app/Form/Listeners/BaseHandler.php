@@ -6,6 +6,7 @@ use NestedPages\Entities\Post\PostRepository;
 use NestedPages\Entities\Post\PostUpdateRepository;
 use NestedPages\Entities\User\UserRepository;
 use NestedPages\Entities\PluginIntegration\IntegrationFactory;
+use NestedPages\Config\SettingsRepository;
 
 /**
 * Base Form Handler Class
@@ -53,6 +54,12 @@ abstract class BaseHandler
 	*/
 	protected $integrations;
 
+	/**
+	* Settings Repo
+	* @var object;
+	*/
+	protected $settings;
+
 
 	public function __construct()
 	{
@@ -60,6 +67,7 @@ abstract class BaseHandler
 		$this->post_update_repo = new PostUpdateRepository;
 		$this->user = new UserRepository;
 		$this->integrations = new IntegrationFactory;
+		$this->settings = new SettingsRepository;
 		$this->setData();
 		$this->validateNonce();
 	}

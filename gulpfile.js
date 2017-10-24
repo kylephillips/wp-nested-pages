@@ -36,6 +36,7 @@ var js_source = [
 	'assets/js/lib/nestedpages.wpml.js'
 ];
 var js_source_settings = [
+	'assets/js/lib/nestedpages.settings-reset.js',
 	'assets/js/lib/nestedpages.settings.js'
 ];
 var js_compiled = 'assets/js/';

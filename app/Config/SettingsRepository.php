@@ -138,4 +138,24 @@ class SettingsRepository
 		if ( isset( $sizes[ $size ] ) ) return $sizes[ $size ];
 		return false;
 	}
+
+	/**
+	* Reset all plugin settings
+	*/
+	public function resetSettings()
+	{
+		$options = array(
+			'nested_pages_custom_fields_hidden',
+			'nestedpages_allowsorting',
+			'nestedpages_disable_menu',
+			'nestedpages_menu',
+			'nestedpages_menusync',
+			'nestedpages_posttypes',
+			'nestedpages_ui',
+			'nestedpages_version'
+		);
+		foreach($options as $option){
+			delete_option($option);
+		}
+	}
 }
