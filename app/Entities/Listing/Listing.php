@@ -315,6 +315,7 @@ class Listing
 			$level++;
 			if ( $parent_status !== 'trash' ) $this->listOpening($pages, $count);
 		} else {
+			$parent_status = null;
 			$pages = $this->all_posts;
 			echo '<ol class="sortable no-sort nplist visible">';
 		}

@@ -98,6 +98,9 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 
 == Changelog ==
 
+= 2.0.4 = 
+* Fixes PHP warning if a search is performed with only one result (when WP_DEBUG is enabled).
+
 = 2.0.3 =
 * Fixes bug where empty trash was not working under custom post types.
 * Fixes issue where sticky status could not be removed from post in quick edit.
