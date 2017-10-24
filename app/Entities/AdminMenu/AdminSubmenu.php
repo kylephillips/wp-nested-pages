@@ -38,9 +38,9 @@ class AdminSubmenu
 	public function addSubmenu()
 	{
 		global $submenu;
+		$c = 0;
 		// Get the right submenu and remove all pages link
 		foreach($submenu as $key => $sub){
-
 			if ($key == $this->post_type_repo->editSlug($this->post_type)){
 				// Add the "All Link"
 				$submenu[$this->slug][50] = array( $sub[5][0], 'publish_pages', esc_url(admin_url('admin.php?page=' . $this->slug)) );
