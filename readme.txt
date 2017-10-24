@@ -100,8 +100,8 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 
 = 2.0.3 =
 * Fixes bug where empty trash was not working under custom post types.
-* Fixes issue where sticky status could not be removed from post in quick edit
-* Adds button to reset all plugin settings to default
+* Fixes issue where sticky status could not be removed from post in quick edit.
+* Adds button to reset all plugin settings to default.
 
 = 2.0.2 =
 * Fixes issue where no posts were displaying in nested view when a taxonomy was assigned to the post with a dash in the taxonomy name.
