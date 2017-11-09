@@ -101,6 +101,7 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 = 2.0.4 = 
 * Fixes PHP warning if a search is performed with only one result when WP_DEBUG is enabled.
 * Fixes "undefined variable: c" PHP warning on some installs when WP_DEBUG is enabled. 
+* Tested for WordPress 4.9 compatibility
 
 = 2.0.3 =
 * Fixes bug where empty trash was not working under custom post types.
