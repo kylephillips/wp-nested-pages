@@ -64,6 +64,22 @@
 				</div>
 				<?php endif; ?>
 
+				<?php if ( $this->user->canSortPages() && $this->post_type->hierarchical ) : ?>
+				<div class="form-control">
+					<label><?php echo __('Parent', 'wp-nested-pages') . ' ' . $this->post_type->labels->singular_name; ?></label>
+					<?php 
+						wp_dropdown_pages(array(
+							'show_option_no_change'=> __('— No Change —', 'wp-nested-pages'),
+							'sort_column' => 'menu_order', 
+							'hierarchical' => 1,
+							'depth' => 0,
+							'name' => 'post_parent',
+							'post_type' => $this->post_type->name
+						));
+					?>
+				</div>
+				<?php endif; ?>
+
 			</div><!-- .left -->
 
 			<div class="right">

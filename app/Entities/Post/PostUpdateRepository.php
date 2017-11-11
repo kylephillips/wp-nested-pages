@@ -105,6 +105,10 @@ class PostUpdateRepository
 			$updated_post['comment_status'] = ( isset($data['comment_status']) ) ? 'open' : 'closed';
 		}
 
+		if ( isset($data['post_parent']) && $data['post_parent'] != '-1' ){
+			$updated_post['post_parent'] = intval(sanitize_text_field($data['post_parent']));
+		}
+
 		if ( isset($data['np_date']) ) {
 			$date = $this->validation->validateDate($data);
 			$updated_post['post_date'] = $date;

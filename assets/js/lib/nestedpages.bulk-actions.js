@@ -157,6 +157,7 @@ NestedPages.BulkActions = function()
 	{
 		plugin.toggleLinkCountAlert();
 		if ( visible ){
+			plugin.disableParentOptions();
 			$(NestedPages.selectors.bulkEditForm).show();
 			$(NestedPages.selectors.bulkActionsForm).hide();
 			plugin.setWPSuggest();
@@ -183,6 +184,18 @@ NestedPages.BulkActions = function()
 	}
 
 	/**
+	* Set parent options to disabled for selected posts
+	*/
+	plugin.disableParentOptions = function()
+	{
+		var selectElement = $(NestedPages.selectors.bulkEditForm).find('select[name=post_parent]');
+		for ( var i = 0; i < plugin.selectedPosts.length; i++ )
+		{
+			$(selectElement).find('option[value=' + plugin.selectedPosts[i].id + ']').attr('disabled', true);
+		}
+	}
+
+	/**
 	* Initialize WP Auto Suggest on Flat Taxonomy fields
 	*/
 	plugin.setWPSuggest = function()
@@ -202,6 +215,7 @@ NestedPages.BulkActions = function()
 		var selectFields = $(NestedPages.selectors.bulkEditForm).find('select');
 		$.each(selectFields, function(){
 			$(this).find('option').first().prop('selected', true);
+			$(this).find('option').removeAttr('disabled');
 		});
 		var categoryChecklists = $(NestedPages.selectors.bulkEditForm).find('.cat-checklist');
 		$.each(categoryChecklists, function(){

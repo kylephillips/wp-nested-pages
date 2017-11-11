@@ -98,6 +98,9 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 
 == Changelog ==
 
+= 2.0.5 =
+* Parent field added to bulk edit under hierarchical post types.
+
 = 2.0.4 = 
 * Fixes PHP warning if a search is performed with only one result when WP_DEBUG is enabled.
 * Fixes "undefined variable: c" PHP warning on some installs when WP_DEBUG is enabled. 
