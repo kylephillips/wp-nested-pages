@@ -11,7 +11,7 @@
 
 <form method="get" action="">
 	<div class="form-interior">
-	<h3><?php _e('Quick Edit'); ?><span class="page_id"></span></h3>
+	<h3><?php _e('Quick Edit', 'wp-nested-pages'); ?><span class="page_id"></span></h3>
 
 	<div class="np-quickedit-error" style="clear:both;display:none;"></div>
 

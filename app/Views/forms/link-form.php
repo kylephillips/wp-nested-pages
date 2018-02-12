@@ -98,7 +98,7 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 					<input type="hidden" name="menuType" data-np-menu-type-input value="">
 					<input type="hidden" name="parent_id" class="parent_id" value="">
 					<button type="button" class="button modal-close" data-dismiss="modal">
-						<?php _e('Cancel'); ?>
+						<?php _e('Cancel', 'wp-nested-pages'); ?>
 					</button>
 
 					<a accesskey="s" class="button-primary" data-np-save-link style="display:none;float:right;">

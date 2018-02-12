@@ -65,7 +65,7 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 				data-nav-original-link="<?php echo esc_attr($this->post->nav_original_link); ?>"
 				data-nav-original-title="<?php echo esc_attr($this->post->nav_original_title); ?>"
 				data-linktarget="<?php echo esc_attr($this->post->link_target); ?>">
-				<?php _e('Quick Edit'); ?>
+				<?php _e('Quick Edit', 'wp-nested-pages'); ?>
 			</a>
 
 			<?php if ( current_user_can('delete_pages') ) : ?>
