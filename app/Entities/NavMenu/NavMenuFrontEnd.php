@@ -32,6 +32,7 @@ class NavMenuFrontEnd
 		foreach($atts as $attribute => $value){
 			if ( strtolower($attribute) != 'rel' ) continue;
 			if ( $value == $item->object ) unset($atts[$attribute]);
+			if ( is_numeric($value) ) unset($atts[$attribute]);
 		}
 		
 		return $atts;
