@@ -58,7 +58,7 @@ if ( !$wpml ) $wpml_pages = true;
 				} elseif ( !$this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ){
 					echo '<span class="locked"><i class="np-icon-lock"></i></span>';
 				} else {
-					echo '<span class="edit-indicator"><i class="np-icon-pencil"></i>' . apply_filters('nestedpages_edit_link_text', __('Edit'), $this->post) . '</span>';
+					echo '<span class="edit-indicator">' . apply_filters('nestedpages_edit_link_text', __('Edit'), $this->post) . '</span>';
 				}
 
 				// Sticky
@@ -68,9 +68,6 @@ if ( !$wpml ) $wpml_pages = true;
 
 				if ( $this->post->status !== 'publish' )	echo '(' . __(ucfirst($this->post->status)) . ')';
 				if ( post_password_required($this->post->id) ) echo ' <i class="np-icon-lock"></i>';
-				
-				
-				
 			?>
 		</a>
 
