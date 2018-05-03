@@ -133,7 +133,7 @@ class ListingQuery
 				);
 			endif;
 		endforeach;
-		if ( !empty($tax_query) ) $this->sort_options->tax_query = $tax_query;
+		$this->sort_options->tax_query = ( !empty($tax_query) ) ? $tax_query : false;
 	}
 
 	/**
