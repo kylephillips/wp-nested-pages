@@ -42,6 +42,7 @@ class PostDataFactory
 	public function addPostVars($post)
 	{
 		$this->post_data->id = $post->ID;
+		$this->post_data->ID = $post->ID;
 		$this->post_data->parent_id = $post->post_parent;
 		$this->post_data->title = $post->post_title;
 		$this->post_data->password = $post->post_password;

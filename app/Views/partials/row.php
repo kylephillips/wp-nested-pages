@@ -31,6 +31,7 @@ if ( !$wpml ) $wpml_pages = true;
 						if ( $this->post->id == get_option('page_on_front') ) echo ' <em class="np-page-type"><strong>&ndash; ' . __('Front Page', 'wp-nested-pages') . '</strong></em>';
 						if ( $this->post->id == get_option('page_for_posts') ) echo ' <em class="np-page-type"><strong>&ndash; ' . __('Posts Page', 'wp-nested-pages') . '</strong></em>';
 					endif;
+					echo $this->postStates();
 				?>
 			</span>
 			<?php 
