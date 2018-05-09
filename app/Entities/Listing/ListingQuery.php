@@ -80,6 +80,11 @@ class ListingQuery
 			'post_status' => array('publish', 'pending', 'draft', 'private', 'future', 'trash'),
 			'order' => $this->sort_options->order
 		);
+
+		//Add Tax Query if relevant
+		if(isset($this->sort_options->tax_query)):
+			$query_args['tax_query'] = $this->sort_options->tax_query;
+		endif;
 		
 		if ( $this->listing_repo->isSearch() ) $query_args = $this->searchParams($query_args);
 		if ( $this->listing_repo->isFiltered() ) $query_args = $this->filterParams($query_args);
