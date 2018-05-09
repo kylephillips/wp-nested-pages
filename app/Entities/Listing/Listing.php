@@ -211,6 +211,24 @@ class Listing
 	}
 
 	/**
+	* Get the Post States
+	*/
+	private function postStates()
+	{
+		$out = '';
+		$post_states = apply_filters('display_post_states', [], $this->post);
+		if ( empty($post_states) ) return $out;
+		$state_count = count($post_states);
+		$i = 0;
+		foreach ( $post_states as $state ) {
+			++$i;
+			( $i == $state_count ) ? $sep = '' : $sep = ', ';
+			$out .= " <em class='np-page-type'><strong>&ndash; $state</strong>$sep</em>";
+		}
+		return $out;
+	}
+
+	/**
 	* The Main View
 	* Replaces Default Post Listing
 	*/

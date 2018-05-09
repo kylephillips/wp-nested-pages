@@ -23,6 +23,7 @@ class AdminSubmenuExpander
 	{
 		$this->post_type_repo = new PostTypeRepository;
 		$this->page = get_current_screen();
+		if ( !$this->page ) return;
 		$this->addHighlighting();
 	}
 

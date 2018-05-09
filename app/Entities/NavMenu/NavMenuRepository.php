@@ -85,7 +85,7 @@ class NavMenuRepository
 	public function getMenuTermObject()
 	{
 		$menu_id = get_option('nestedpages_menu');
-		$term = get_term_by('id', $menu_id, 'nav_menu');
+		$term = ( is_numeric($menu_id) ) ? get_term_by('id', $menu_id, 'nav_menu') : false;
 		if ( $term ) return $term;
 		
 		// No Menu Yet		
@@ -111,6 +111,10 @@ class NavMenuRepository
 	private function createNewMenu()
 	{
 		$menu_id = wp_create_nav_menu('Nested Pages');
+		if ( is_wp_error($menu_id) ){
+			$name = 'Nested Pages ' . rand(1, 5);
+			$menu_id = wp_create_nav_menu($name);
+		}
 		update_option('nestedpages_menu', $menu_id);
 	}
 

@@ -52,6 +52,9 @@ NestedPages.SyncMenuSetting = function()
 					plugin.formatter.showAjaxError(data.message);
 				}
 			},
+			error: function(data){
+				console.log(data);
+			}
 		});
 	}
 
