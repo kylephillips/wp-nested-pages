@@ -14,7 +14,7 @@
 			<?php endif; ?>
 			<option value="edit"><?php _e('Edit', 'wp-nested-pages'); ?></option>
 		</select>
-		<input type="submit" class="button" value="Apply">
+		<input type="submit" class="button" value="<?php echo esc_attr__('Apply', 'wp-nested-pages'); ?>">
 	</form>
 	<p class="np-hidden-select-count" data-np-hidden-count-parent><span data-np-hidden-count></span> <?php _e('Nested Items Selected', 'wp-nested-pages'); ?>. <a href="#" class="nestedpages-toggleall"><?php _e('Expand All', 'wp-nested-pages'); ?></a></p>
 </div>
