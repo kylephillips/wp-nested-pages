@@ -102,6 +102,7 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 * Parent field added to bulk edit under hierarchical post types.
 * Fixes HTML Validation where invalid rel attribute error was being thrown on custom link items.
 * Fixes bug where filtering by taxonomy does not work.
+* Adds error handling for existing nav menu with the name “Nested Pages”, preventing WP_Error object from saving in the database which causes a fatal error in some instances.
 
 = 2.0.4 = 
 * Fixes PHP warning if a search is performed with only one result when WP_DEBUG is enabled.
