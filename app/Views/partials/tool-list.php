@@ -137,7 +137,7 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 				endforeach;
 			?>
 			<div class="select">
-				<input type="submit" id="nestedpages-sort" class="button" value="Apply">
+				<input type="submit" id="nestedpages-sort" class="button" value="<?php echo esc_attr__('Apply', 'wp-nested-pages'); ?>">
 			</div>
 		</form>
 	</div>
