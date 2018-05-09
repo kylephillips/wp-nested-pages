@@ -23,13 +23,13 @@
 			</div>
 		
 			<div class="form-control">
-				<label><?php _e( 'Status' ); ?></label>
+				<label><?php _e( 'Status', 'wp-nested-pages' ); ?></label>
 				<select name="_status" data-clone-status>
 				<?php if ( $can_publish ) : ?>
-					<option value="publish"><?php _e( 'Published' ); ?></option>
+					<option value="publish"><?php _e( 'Published', 'wp-nested-pages' ); ?></option>
 				<?php endif; ?>
-					<option value="pending"><?php _e( 'Pending Review' ); ?></option>
-					<option value="draft"><?php _e( 'Draft' ); ?></option>
+					<option value="pending"><?php _e( 'Pending Review', 'wp-nested-pages' ); ?></option>
+					<option value="draft"><?php _e( 'Draft', 'wp-nested-pages' ); ?></option>
 				</select>
 			</div>
 
@@ -59,7 +59,7 @@
 		</div><!-- /.modal-content -->
 		<div class="modal-footer">
 			<button type="button" class="button modal-close" data-dismiss="modal">
-				<?php _e('Cancel'); ?>
+				<?php _e('Cancel', 'wp-nested-pages'); ?>
 			</button>
 			<a accesskey="s" class="button-primary alignright" data-confirm-clone>
 				<?php _e( 'Clone', 'wp-nested-pages' ); ?>

@@ -11,15 +11,15 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 
 	<ul class="subsubsub">
 		<li>
-			<a href="#all" class="np-toggle-publish active"><?php _e('All'); ?></a> |
+			<a href="#all" class="np-toggle-publish active"><?php _e('All', 'wp-nested-pages'); ?></a> |
 		</li>
 
 		<li>
-			<a href="#published" class="np-toggle-publish"><?php _e('Published'); ?></a> |
+			<a href="#published" class="np-toggle-publish"><?php _e('Published', 'wp-nested-pages'); ?></a> |
 		</li>
 
 		<li>
-			<a href="#draft" class="np-toggle-publish"><?php _e('Draft'); ?></a>
+			<a href="#draft" class="np-toggle-publish"><?php _e('Draft', 'wp-nested-pages'); ?></a>
 		</li>
 
 		<li> |
@@ -34,7 +34,7 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 		<?php if ( current_user_can('delete_pages') && $trashedCount > 0) : ?>
 		<li class="np-trash-links">
 			 |
-			<a href="<?php echo esc_url($this->post_type_repo->trashLink($this->post_type->name)); ?>"><?php _e('Trash'); ?> </a>
+			<a href="<?php echo esc_url($this->post_type_repo->trashLink($this->post_type->name)); ?>"><?php _e('Trash', 'wp-nested-pages'); ?> </a>
 			<span class="count">(<a href="#" class="np-empty-trash" data-posttype="<?php echo esc_attr($this->post_type->name); ?>"><?php _e('Empty', 'wp-nested-pages'); ?></a> <?php echo absint($trashedCount); ?>)</span>
 		</li>
 		<?php endif; ?>
@@ -43,7 +43,7 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 		<li>
 			 |
 			<a href="<?php echo NestedPages\Helpers::defaultPagesLink($this->post_type->name); ?>">
-				<?php _e('Default'); ?> <?php _e($this->post_type->labels->name); ?>
+				<?php _e('Default', 'wp-nested-pages'); ?> <?php _e($this->post_type->labels->name); ?>
 			</a>
 		</li>
 		<?php endif; ?>

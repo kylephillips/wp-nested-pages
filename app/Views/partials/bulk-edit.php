@@ -22,7 +22,7 @@
 				$authors_dropdown = '';
 				if ( is_super_admin() || current_user_can( $post_type_object->cap->edit_others_posts ) ) :
 					$users_opt = array(
-						'show_option_none' => '&mdash; ' . __('No Change') . ' &mdash;',
+						'show_option_none' => '&mdash; ' . __('No Change', 'wp-nested-pages') . ' &mdash;',
 						'hide_if_only_one_author' => false,
 						'who' => 'authors',
 						'name' => 'post_author',
@@ -32,7 +32,7 @@
 						'echo' => 0
 					);
 					if ( $authors = wp_dropdown_users( $users_opt ) ) :
-						$authors_dropdown  = '<div class="form-control"><label>' . __( 'Author' ) . '</label>';
+						$authors_dropdown  = '<div class="form-control"><label>' . __( 'Author', 'wp-nested-pages') . '</label>';
 						$authors_dropdown .= $authors;
 						$authors_dropdown .= '</div>';
 					endif;
@@ -41,24 +41,24 @@
 				?>
 
 				<div class="form-control">
-					<label><?php _e( 'Status' ); ?></label>
+					<label><?php _e( 'Status', 'wp-nested-pages' ); ?></label>
 					<select name="_status">
-						<option value="">&mdash; <?php _e('No Change'); ?> &mdash;</option>
+						<option value="">&mdash; <?php _e('No Change', 'wp-nested-pages'); ?> &mdash;</option>
 					<?php if ( $can_publish ) : ?>
-						<option value="publish"><?php _e( 'Published' ); ?></option>
+						<option value="publish"><?php _e( 'Published', 'wp-nested-pages' ); ?></option>
 					<?php endif; ?>
-						<option value="private"><?php _e( 'Private' ); ?></option>
-						<option value="pending"><?php _e( 'Pending Review' ); ?></option>
-						<option value="draft"><?php _e( 'Draft' ); ?></option>
+						<option value="private"><?php _e( 'Private', 'wp-nested-pages' ); ?></option>
+						<option value="pending"><?php _e( 'Pending Review', 'wp-nested-pages' ); ?></option>
+						<option value="draft"><?php _e( 'Draft', 'wp-nested-pages' ); ?></option>
 					</select>
 				</div>
 
 				<?php if ( $this->post_type->hierarchical ) : ?>
 				<div class="form-control">
-					<label><?php _e( 'Template' ); ?></label>
+					<label><?php _e( 'Template', 'wp-nested-pages' ); ?></label>
 					<select name="page_template">
-						<option value="">&mdash; <?php _e('No Change'); ?> &mdash;</option>
-						<option value="default"><?php _e( 'Default Template' ); ?></option>
+						<option value="">&mdash; <?php _e('No Change', 'wp-nested-pages'); ?> &mdash;</option>
+						<option value="default"><?php _e( 'Default Template', 'wp-nested-pages' ); ?></option>
 						<?php page_template_dropdown() ?>
 					</select>
 				</div>
@@ -85,11 +85,11 @@
 			<div class="right">
 
 				<div class="form-control">
-					<label><?php _e( 'Comments' ); ?></label>
+					<label><?php _e( 'Comments', 'wp-nested-pages' ); ?></label>
 					<select name="comment_status">
-						<option value="">&mdash; <?php _e('No Change'); ?> &mdash;</option>
-						<option value="open"><?php _e('Allow'); ?></option>
-						<option value="closed"><?php _e('Do not allow'); ?></option>
+						<option value="">&mdash; <?php _e('No Change', 'wp-nested-pages'); ?> &mdash;</option>
+						<option value="open"><?php _e('Allow', 'wp-nested-pages'); ?></option>
+						<option value="closed"><?php _e('Do not allow', 'wp-nested-pages'); ?></option>
 					</select>
 				</div>
 				
@@ -97,9 +97,9 @@
 				<div class="form-control">
 					<label><?php _e( 'Display in Nested View', 'wp-nested-pages' ); ?></label>
 					<select name="nested_pages_status">
-						<option value="">&mdash; <?php _e('No Change'); ?> &mdash;</option>
-						<option value="hide"><?php _e('Hide'); ?></option>
-						<option value="show"><?php _e('Show'); ?></option>
+						<option value="">&mdash; <?php _e('No Change', 'wp-nested-pages'); ?> &mdash;</option>
+						<option value="hide"><?php _e('Hide', 'wp-nested-pages'); ?></option>
+						<option value="show"><?php _e('Show', 'wp-nested-pages'); ?></option>
 					</select>
 				</div>
 
@@ -107,9 +107,9 @@
 				<div class="form-control">
 					<label><?php _e( 'Hide in Nav Menu', 'wp-nested-pages' ); ?></label>
 					<select name="nav_status">
-						<option value="">&mdash; <?php _e('No Change'); ?> &mdash;</option>
-						<option value="hide"><?php _e('Hide'); ?></option>
-						<option value="show"><?php _e('Show'); ?></option>
+						<option value="">&mdash; <?php _e('No Change', 'wp-nested-pages'); ?> &mdash;</option>
+						<option value="hide"><?php _e('Hide', 'wp-nested-pages'); ?></option>
+						<option value="show"><?php _e('Show', 'wp-nested-pages'); ?></option>
 					</select>
 				</div>
 				<?php endif; endif; // Edit theme options ?>

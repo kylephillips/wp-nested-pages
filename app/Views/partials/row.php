@@ -59,7 +59,7 @@ if ( !$wpml ) $wpml_pages = true;
 				} elseif ( !$this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ){
 					echo '<span class="locked"><i class="np-icon-lock"></i></span>';
 				} else {
-					echo '<span class="edit-indicator">' . apply_filters('nestedpages_edit_link_text', __('Edit'), $this->post) . '</span>';
+          echo '<span class="edit-indicator">' . apply_filters('nestedpages_edit_link_text', __('Edit', 'wp-nested-pages'), $this->post) . '</span>';
 				}
 
 				// Sticky
@@ -156,12 +156,12 @@ if ( !$wpml ) $wpml_pages = true;
 				data-timeformat="<?php echo get_option('time_format'); ?>"
 				data-ampm="<?php echo date('a', $this->post->date->datepicker); ?>"
 				data-sticky="<?php if ( in_array($this->post->id, $this->sticky_posts) ) echo 'sticky'; ?>">
-				<?php _e('Quick Edit'); ?>
+				<?php _e('Quick Edit', 'wp-nested-pages'); ?>
 			</a>
 			<?php endif; ?>
 
 			<a href="<?php echo apply_filters('nestedpages_view_link', get_the_permalink(), $this->post); ?>" class="np-btn np-view-button" target="_blank">
-				<?php echo apply_filters('nestedpages_view_link_text', __('View'), $this->post); ?>
+				<?php echo apply_filters('nestedpages_view_link_text', __('View', 'wp-nested-pages'), $this->post); ?>
 			</a>
 			
 			<!-- <a href="#" class="np-btn"><i class="np-icon-more_vert"></i></a> -->

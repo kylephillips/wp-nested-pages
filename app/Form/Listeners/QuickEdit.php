@@ -28,7 +28,7 @@ class QuickEdit extends BaseHandler
 		$this->addData();
 		$this->response = array(
 			'status' => 'success',
-			'message' => __('Post successfully updated.'),
+			'message' => __('Post successfully updated.', 'wp-nested-pages'),
 			'post_data' => $this->data
 		);
 	}
