@@ -32,7 +32,7 @@ Copyright: Kyle Phillips
 * Check Wordpress and PHP versions before instantiating plugin
 */
 register_activation_hook( __FILE__, 'nestedpages_check_versions' );
-function nestedpages_check_versions( $wp = '3.9', $php = '5.3.2' ) {
+function nestedpages_check_versions( $wp = '3.9', $php = '5.4.0' ) {
     global $wp_version;
     if ( version_compare( PHP_VERSION, $php, '<' ) ) $flag = 'PHP';
     elseif ( version_compare( $wp_version, $wp, '<' ) ) $flag = 'WordPress';
