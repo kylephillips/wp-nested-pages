@@ -110,6 +110,7 @@ class PostTypeRepository
 			if ( !is_array($type_settings) ) return false;
 			foreach ( $type_settings as $option_key => $setting ){
 				if ( $option_key !== $setting_key ) continue;
+				if ( $setting == 'true' ) return true;
 				return $setting;
 			}
 		}

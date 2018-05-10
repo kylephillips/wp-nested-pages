@@ -778,12 +778,13 @@ NestedPages.Nesting = function()
 
 	plugin.formatter = new NestedPages.Formatter;
 
-
 	// Make the Menu sortable
 	plugin.initializeSortable = function()
 	{
 		maxLevels = ( NestedPages.jsData.nestable ) ? 0 : 1;
+		var disableParentChange = ( maxLevels == 1 ) ? false : true;
 		$(NestedPages.selectors.sortable).not(NestedPages.selectors.notSortable).nestedSortable({
+			disableParentChange: disableParentChange,
 			items : NestedPages.selectors.rows,
 			toleranceElement: '> .row',
 			handle: NestedPages.selectors.handle,
