@@ -31,7 +31,7 @@ class PostCloner
 	* Clone Options
 	* @var array
 	*/
-	private $clone_options = array();
+	private $clone_options = [];
 
 	/**
 	* New Posts
@@ -97,7 +97,7 @@ class PostCloner
 	{
 		$taxonomies = get_object_taxonomies($this->original_post->post_type);
  		foreach ($taxonomies as $taxonomy) {
- 			$post_terms = wp_get_object_terms($this->original_id, $taxonomy, array('fields' => 'slugs'));
+ 			$post_terms = wp_get_object_terms($this->original_id, $taxonomy, ['fields' => 'slugs']);
  			wp_set_object_terms($this->new_id, $post_terms, $taxonomy, false);
  		}
 	}

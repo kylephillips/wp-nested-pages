@@ -12,8 +12,8 @@ class AdminMenu
 {
 	public function __construct()
 	{
-		add_action( 'admin_menu', array($this, 'setMenus') );
-		add_action( 'admin_head', array($this, 'expandSubMenus') );
+		add_action('admin_menu', [$this, 'setMenus']);
+		add_action('admin_head', [$this, 'expandSubMenus']);
 	}
 
 	/**

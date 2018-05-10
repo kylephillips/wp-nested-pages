@@ -82,9 +82,9 @@ class PostUpdateRepository
 	*/
 	public function updatePost($data, $append_taxonomies = false)
 	{
-		$updated_post = array(
+		$updated_post = [
 			'ID' => sanitize_text_field($data['post_id'])
-		);
+		];
 
 		if ( isset($data['post_title']) && $data['post_title'] == "" ){ 
 			$this->validation->checkEmpty($data['post_title'], __('Title', 'wp-nested-pages'));
@@ -257,7 +257,7 @@ class PostUpdateRepository
 		if ( isset($data['post_category']) )
 		{
 			$this->validation->validateIntegerArray($data['post_category']);
-			$cats = array();
+			$cats = [];
 			foreach($data['post_category'] as $cat) {
 				if ( $cat !== 0 ) $cats[] = (int) $cat;
 			}
@@ -292,7 +292,7 @@ class PostUpdateRepository
 	*/
 	private function updateHierarchicalTaxonomies($data, $taxonomy, $term_ids, $append_taxonomies)
 	{
-		$terms = array();
+		$terms = [];
 		foreach ( $term_ids as $term ){
 			if ( $term !== 0 ) $terms[] = (int) $term;
 		}
@@ -385,13 +385,13 @@ class PostUpdateRepository
 	public function updateRedirect($data)
 	{
 		$menu_order = isset($data['menu_order']) ? $data['menu_order'] : 0;
-		$updated_post = array(
+		$updated_post = [
 			'ID' => sanitize_text_field($data['post_id']),
 			'post_title' => sanitize_text_field($data['post_title']),
 			'post_status' => sanitize_text_field($data['_status']),
 			'post_parent' => sanitize_text_field($data['parent_id']),
 			'menu_order' => $menu_order
-		);
+		];
 
 		if ( isset($data['post_content']) && $data['post_content'] !== "" ){
 			$updated_post['post_content'] = esc_url($data['post_content']);
@@ -409,13 +409,13 @@ class PostUpdateRepository
 	*/
 	public function saveRedirect($data)
 	{
-		$new_link = array(
+		$new_link = [
 			'post_title' => sanitize_text_field($data['menuTitle']),
 			'post_status' => sanitize_text_field('publish'),
 			'post_parent' => sanitize_text_field($data['parent_id']),
 			'post_type' => 'np-redirect',
 			'post_excerpt' => ''
-		);
+		];
 		if ( isset($data['url']) && $data['url'] !== "" ){
 			$new_link['post_content'] = esc_url($data['url']);
 		}
@@ -431,11 +431,11 @@ class PostUpdateRepository
 	*/
 	public function updateFromMenuItem($data)
 	{
-		$updated_post = array(
+		$updated_post = [
 			'ID' => sanitize_text_field($data['post_id']),
 			'menu_order' => sanitize_text_field($data['menu_order']),
 			'post_parent' => sanitize_text_field($data['post_parent'])
-		);
+		];
 		if ( isset($data['content']) ){
 			$updated_post['post_content'] = $data['content'];
 			$updated_post['post_title'] = $data['np_nav_title'];

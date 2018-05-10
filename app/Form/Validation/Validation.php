@@ -26,7 +26,7 @@ class Validation
 		foreach ($posts as $post)
 		{
 			if ( !is_numeric($post['id']) ){
-				return wp_send_json(array('status'=>'error', 'message'=>'Incorrect Form Field'));
+				return wp_send_json(['status'=>'error', 'message'=>'Incorrect Form Field']);
 			}
 		}
 	}
@@ -39,7 +39,7 @@ class Validation
 		foreach ( $items as $item )
 		{
 			if ( !is_numeric($item) ){
-				return wp_send_json(array('status'=>'error', 'message'=>'Incorrect Form Field'));
+				return wp_send_json(['status'=>'error', 'message'=>'Incorrect Form Field']);
 			}
 		}
 	}
@@ -131,10 +131,10 @@ class Validation
 	*/
 	private function sendDateError()
 	{
-		wp_send_json(array(
+		wp_send_json([
 			'status' => 'error', 
 			'message' => __('Please provide a valid date.', 'wp-nested-pages') 
-		));
+		]);
 		die();
 	}
 
@@ -158,7 +158,7 @@ class Validation
 	{
 		if ( $var == "" ){
 			$message = __('Please provide a ', 'wp-nested-pages') . $title;
-			return wp_send_json(array('status' => 'error', 'message' => $message));
+			return wp_send_json(['status' => 'error', 'message' => $message]);
 			die();
 		}
 	}
@@ -171,14 +171,14 @@ class Validation
 		// Check for Parent ID
 		if ( (!isset($data['parent_id'])) || (!is_numeric($data['parent_id'])) ){
 			$message = __('A valid parent page was not provided.', 'wp-nested-pages');
-			return wp_send_json(array('status' => 'error', 'message' => $message));
+			return wp_send_json(['status' => 'error', 'message' => $message]);
 			die();
 		}
 
 		// Make sure there's at least one page
 		if ( !isset($data['post_title']) ){
 			$message = __('Please provide at least one page title.', 'wp-nested-pages');
-			return wp_send_json(array('status' => 'error', 'message' => $message));
+			return wp_send_json(['status' => 'error', 'message' => $message]);
 			die();
 		}
 
@@ -186,7 +186,7 @@ class Validation
 		foreach ( $data['post_title'] as $title ){
 			if ( $title == "" ){
 				$message = __('Page titles cannot be blank.', 'wp-nested-pages');
-				return wp_send_json(array('status' => 'error', 'message' => $message));
+				return wp_send_json(['status' => 'error', 'message' => $message]);
 				die();
 			}
 		}

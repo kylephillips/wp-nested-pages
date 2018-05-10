@@ -24,12 +24,12 @@ class NavMenuActions
 
 	private function addUpdateHook()
 	{
-		add_action( 'wp_update_nav_menu', array($this, 'syncMenu'), 10, 2 );
+		add_action( 'wp_update_nav_menu', [$this, 'syncMenu'], 10, 2 );
 	}
 
 	private function removeUpdateHook()
 	{
-		remove_action( 'wp_update_nav_menu', array($this, 'syncMenu'), 10);
+		remove_action( 'wp_update_nav_menu', [$this, 'syncMenu'], 10);
 	}
 
 	/**

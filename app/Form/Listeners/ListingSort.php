@@ -51,7 +51,7 @@ class ListingSort
 	*/
 	private function setOrderBy()
 	{
-		$allowed = array('menu_order', 'date', 'title'); // prevent tomfoolery
+		$allowed = ['menu_order', 'date', 'title']; // prevent tomfoolery
 		if ( isset($_POST['np_orderby']) && $_POST['np_orderby'] !== "" && in_array($_POST['np_orderby'], $allowed) ) $this->url .= '&orderby=' . sanitize_text_field($_POST['np_orderby']);
 	}
 
@@ -60,7 +60,7 @@ class ListingSort
 	*/
 	private function setOrder()
 	{
-		$allowed = array('ASC', 'DESC'); // prevent tomfoolery
+		$allowed = ['ASC', 'DESC']; // prevent tomfoolery
 		if ( isset($_POST['np_order']) && in_array($_POST['np_order'], $allowed) ) $this->url .= '&order=' . sanitize_text_field($_POST['np_order']);
 	}
 

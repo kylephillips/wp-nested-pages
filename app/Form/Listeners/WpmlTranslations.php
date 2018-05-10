@@ -35,7 +35,7 @@ class WpmlTranslations extends BaseHandler
 			$this->exception(__('There are currently no translations for the selected post.', 'wp-nested-pages'));
 			return;
 		}
-		return wp_send_json(array('status' => 'success', 'translations' => $this->translations));
+		return wp_send_json(['status' => 'success', 'translations' => $this->translations]);
 	}
 
 	/**
@@ -44,7 +44,7 @@ class WpmlTranslations extends BaseHandler
 	private function setPostId()
 	{
 		if ( !isset($_POST['post_id']) ){
-			return $this->sendResponse(array('status' => 'error', 'message' => __('Post Not Found', 'nestedapges')));
+			return $this->sendResponse(['status' => 'error', 'message' => __('Post Not Found', 'nestedapges')]);
 		}
 		$this->data['post_id'] = intval(sanitize_text_field($_POST['post_id']));
 	}
@@ -68,12 +68,12 @@ class WpmlTranslations extends BaseHandler
 		foreach ( $all_languages as $lang_code => $lang )
 		{
 			$add_link = 'post-new.php?' . http_build_query (
-				array(
+				[
 					'lang'        => $lang_code,
 					'post_type'   => get_post_type ( $this->data['post_id'] ),
 					'trid'        => $sitepress->get_element_trid($this->data['post_id']),
 					'source_lang' => $current_language
-				)
+				]
 			);
 			$all_languages[$lang_code]['add_link'] = $add_link;
 			if ( array_key_exists($lang_code, $this->translations) ){

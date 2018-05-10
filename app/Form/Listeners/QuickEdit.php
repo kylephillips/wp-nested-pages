@@ -26,11 +26,11 @@ class QuickEdit extends BaseHandler
 		if ( isset($this->data['tax_input']) ) $this->addFlatTaxonomies();
 		if ( $this->integrations->plugins->wpml->installed ) $this->integrations->plugins->wpml->syncPosts($this->data['post_id']);
 		$this->addData();
-		$this->response = array(
+		$this->response = [
 			'status' => 'success',
 			'message' => __('Post successfully updated.', 'wp-nested-pages'),
 			'post_data' => $this->data
-		);
+		];
 	}
 
 	/**

@@ -38,18 +38,18 @@ class NavMenuSyncListing extends NavMenuSync
 	*/
 	public function sync($parent = 0, $menu_parent = 0, $nest_level = 0)
 	{	
-		$post_types = array('page');
+		$post_types = ['page'];
 		if ( !$this->integrations->plugins->wpml->installed ) $post_types[] = 'np-redirect';
 		try {
 			$this->count = $this->count + 1;
-			$args = array(
+			$args = [
 				'post_type' => $post_types,
 				'posts_per_page' => -1,
 				'post_status' => 'publish',
 				'orderby' => 'menu_order',
 				'order' => 'ASC',
 				'post_parent' => $parent
-			);
+			];
 			$page_q = new \WP_Query(apply_filters('nestedpages_menu_sync', $args, $nest_level));
 			if ( $page_q->have_posts() ) : while ( $page_q->have_posts() ) : $page_q->the_post();
 				$nest_level++;
@@ -100,7 +100,7 @@ class NavMenuSyncListing extends NavMenuSync
 		// WP 4.4 Fix, empty nav title attribute causing post_excerpt null error
 		$attr_title = ( $this->post->nav_title_attr ) ? $this->post->nav_title_attr : '';
 
-		$args = array(
+		$args = [
 			'menu-item-title' => $title,
 			'menu-item-position' => $this->count,
 			'menu-item-url' => $url,
@@ -114,7 +114,7 @@ class NavMenuSyncListing extends NavMenuSync
 			'menu-item-xfn' => $xfn,
 			'menu-item-target' => $this->post->link_target,
 			'menu-item-description' => ' '
-		);
+		];
 		$menu = wp_update_nav_menu_item($this->id, $menu_item_id, $args);
 		return $menu;
 	}

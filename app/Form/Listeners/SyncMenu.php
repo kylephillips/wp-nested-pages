@@ -21,7 +21,7 @@ class SyncMenu extends BaseHandler
 	{
 		if ( $this->data['syncmenu'] == 'sync' ) return $this->sync();
 		update_option('nestedpages_menusync', 'nosync');
-		$this->response = array('status'=>'success', 'message'=> __('Menu sync disabled.', 'wp-nested-pages'));
+		$this->response = ['status'=>'success', 'message'=> __('Menu sync disabled.', 'wp-nested-pages')];
 	}
 
 	/**
@@ -31,6 +31,6 @@ class SyncMenu extends BaseHandler
 	{
 		update_option('nestedpages_menusync', 'sync');
 		$this->syncMenu();
-		$this->response = array('status'=>'success', 'message'=> __('Menu sync enabled.', 'wp-nested-pages'));
+		$this->response = ['status'=>'success', 'message'=> __('Menu sync enabled.', 'wp-nested-pages')];
 	}
 }

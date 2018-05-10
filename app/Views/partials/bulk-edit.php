@@ -21,7 +21,7 @@
 				<?php 
 				$authors_dropdown = '';
 				if ( is_super_admin() || current_user_can( $post_type_object->cap->edit_others_posts ) ) :
-					$users_opt = array(
+					$users_opt = [
 						'show_option_none' => '&mdash; ' . __('No Change', 'wp-nested-pages') . ' &mdash;',
 						'hide_if_only_one_author' => false,
 						'who' => 'authors',
@@ -30,7 +30,7 @@
 						'class'=> 'authors',
 						'multi' => 1,
 						'echo' => 0
-					);
+					];
 					if ( $authors = wp_dropdown_users( $users_opt ) ) :
 						$authors_dropdown  = '<div class="form-control"><label>' . __( 'Author', 'wp-nested-pages') . '</label>';
 						$authors_dropdown .= $authors;
@@ -68,14 +68,14 @@
 				<div class="form-control">
 					<label><?php echo __('Parent', 'wp-nested-pages') . ' ' . $this->post_type->labels->singular_name; ?></label>
 					<?php 
-						wp_dropdown_pages(array(
+						wp_dropdown_pages([
 							'show_option_no_change'=> __('— No Change —', 'wp-nested-pages'),
 							'sort_column' => 'menu_order', 
 							'hierarchical' => 1,
 							'depth' => 0,
 							'name' => 'post_parent',
 							'post_type' => $this->post_type->name
-						));
+						]);
 					?>
 				</div>
 				<?php endif; ?>

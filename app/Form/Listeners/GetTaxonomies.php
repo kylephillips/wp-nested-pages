@@ -51,6 +51,6 @@ class GetTaxonomies extends BaseHandler
 	*/
 	private function setResponse()
 	{
-		$this->response = array('status'=>'success', 'terms'=>$this->terms);
+		$this->response = ['status'=>'success', 'terms'=>$this->terms];
 	}
 }

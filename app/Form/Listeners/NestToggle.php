@@ -31,7 +31,7 @@ class NestToggle extends BaseHandler
 	private function updateUserMeta()
 	{
 		$this->user->updateVisiblePages($this->data['posttype'], $this->data['ids']);
-		$this->response = array('status'=>'success', 'data'=>$this->data);
+		$this->response = ['status'=>'success', 'data'=>$this->data];
 		$this->sendResponse();
 	}
 }

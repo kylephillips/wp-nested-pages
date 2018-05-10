@@ -18,7 +18,7 @@ class MenuSearch extends BaseHandler
 		parent::__construct();
 		$this->setFormData();
 		$this->search();
-		return wp_send_json(array('status' => 'success', 'results' => $this->results));
+		return wp_send_json(['status' => 'success', 'results' => $this->results]);
 	}
 
 	/**
@@ -45,10 +45,10 @@ class MenuSearch extends BaseHandler
 	*/
 	private function searchPosts()
 	{
-		$sq = new \WP_Query(array(
+		$sq = new \WP_Query([
 			'post_type' => $this->data['searchObject'],
 			's' => $this->data['term']
-		));
+		]);
 		if ( $sq->have_posts() ) :
 			$this->results = $sq->posts;
 			$pt = get_post_type_object($this->data['searchObject']);
@@ -67,9 +67,9 @@ class MenuSearch extends BaseHandler
 	*/
 	private function searchTaxonomies()
 	{
-		$terms = get_terms($this->data['searchObject'], array(
+		$terms = get_terms($this->data['searchObject'], [
 			'name__like' => $this->data['term']
-		));
+		]);
 		if ( $terms ){
 			$this->results = $terms;
 			foreach($terms as $key => $term){

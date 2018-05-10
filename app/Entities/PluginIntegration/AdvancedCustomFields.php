@@ -35,9 +35,9 @@ class AdvancedCustomFields
 	*/
 	private function setUnsupportedFieldTypes()
 	{
-		$this->unsupported = array(
+		$this->unsupported = [
 			'relationship'
-		);
+		];
 	}
 
 	/**
@@ -48,11 +48,11 @@ class AdvancedCustomFields
 	public function getFieldsForPostType($post_type)
 	{
 		if ( !function_exists('get_field') ) return false;
-		$field_groups = acf_get_field_groups(array(
+		$field_groups = acf_get_field_groups([
 			'post_type' => $post_type
-		));
+		]);
 		if ( !$field_groups ) return false;
-		$all_fields = array();
+		$all_fields = [];
 		$c = 0;
 		foreach ( $field_groups as $key => $group ){
 			$fields = acf_get_fields($group);

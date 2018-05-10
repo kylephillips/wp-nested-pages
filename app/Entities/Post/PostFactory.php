@@ -25,7 +25,7 @@ class PostFactory
 	* New Page IDs
 	* @var array
 	*/
-	private $new_ids = array();
+	private $new_ids = [];
 
 
 	public function __construct()
@@ -41,13 +41,13 @@ class PostFactory
 	{
 		foreach($data['post_title'] as $key => $title){
 			$post_type = sanitize_text_field($data['post_type']);
-			$post = array(
+			$post = [
 				'post_title' => sanitize_text_field($title),
 				'post_status' => sanitize_text_field($data['_status']),
 				'post_author' => sanitize_text_field($data['post_author']),
 				'post_parent' => sanitize_text_field($data['parent_id']),
 				'post_type' => $post_type
-			);
+			];
 			$new_page_id = wp_insert_post($post);
 			$data['post_id'] = $new_page_id;
 			if ( isset($data['page_template']) ) $this->post_update_repo->updateTemplate($data);

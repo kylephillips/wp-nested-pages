@@ -16,7 +16,7 @@ class NavMenuFrontEnd
 	public function __construct()
 	{
 		$this->nav_menu_repo = new NavMenuRepository;
-		add_filter('nav_menu_link_attributes', array($this, 'attributeFilter'), 10, 3);
+		add_filter('nav_menu_link_attributes', [$this, 'attributeFilter'], 10, 3);
 	}
 
 	/**

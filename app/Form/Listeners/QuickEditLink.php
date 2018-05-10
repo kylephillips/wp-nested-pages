@@ -23,11 +23,11 @@ class QuickEditLink extends BaseHandler
 		$updated = $this->post_update_repo->updateRedirect($this->data);
 		if ( !$updated ) $this->sendErrorResponse();
 		$this->addData();
-		$this->response = array(
+		$this->response = [
 			'status' => 'success',
 			'message' => __('Link successfully updated.', 'wp-nested-pages'),
 			'post_data' => $this->data
-		);
+		];
 	}
 
 	/**

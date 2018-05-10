@@ -21,7 +21,7 @@ class ListingRepository
 	public function visiblePages($post_type)
 	{
 		$visible = unserialize(get_user_meta(get_current_user_id(), 'np_visible_posts', true));
-		if ( !isset($visible[$post_type]) ) $visible[$post_type] = array();
+		if ( !isset($visible[$post_type]) ) $visible[$post_type] = [];
 		return $visible[$post_type];
 	}
 
@@ -30,9 +30,9 @@ class ListingRepository
 	*/
 	public function taxonomies()
 	{
-		$taxonomies = get_taxonomies(array(
+		$taxonomies = get_taxonomies([
 			'public' => true,
-		), 'objects');
+		], 'objects');
 		return $taxonomies;
 	}
 
@@ -49,9 +49,9 @@ class ListingRepository
 	*/
 	public function postTypes()
 	{
-		$types = get_post_types(array(
+		$types = get_post_types([
 			'public' => true
-		), 'objects');
+		], 'objects');
 		return $types;
 	}
 
@@ -60,10 +60,10 @@ class ListingRepository
 	*/
 	public function recentPosts($post_type)
 	{
-		$pq = new \WP_Query(array(
+		$pq = new \WP_Query([
 			'post_type' => $post_type,
 			'posts_per_page' => 10
-		));
+		]);
 		if ( $pq->have_posts() ) :
 			return $pq->posts;
 		else : 

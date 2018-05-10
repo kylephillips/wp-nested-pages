@@ -12,10 +12,10 @@ class EmptyTrash extends BaseHandler
 	private function emptyTrash()
 	{
 		if ( $this->post_repo->emptyTrash($_POST['posttype']) ){
-			return wp_send_json(array(
+			return wp_send_json([
 				'status'=>'success', 
 				'message'=> __('Trash successfully emptied.', 'wp-nested-pages')
-			));
+			]);
 		}
 		$this->sendErrorResponse();
 	}

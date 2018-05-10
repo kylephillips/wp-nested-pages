@@ -67,7 +67,7 @@ class EnabledMenus
 				}
 			} else {
 				$default = new AdminSubmenuDefault($type);
-				$np_page_params[$default->getHook()] = array('post_type' => $type->name);
+				$np_page_params[$default->getHook()] = ['post_type' => $type->name];
 			}
 			$c++;
 		}
@@ -89,7 +89,7 @@ class EnabledMenus
 			$this->menuIcon(),
 			$this->menuPosition($c)
 		);
-		$np_page_params[$hook] = array('post_type' => $this->post_type->name);
+		$np_page_params[$hook] = ['post_type' => $this->post_type->name];
 	}
 
 	/**

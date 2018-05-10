@@ -47,7 +47,7 @@
 		*/
 		$authors_dropdown = '';
 		if ( is_super_admin() || current_user_can( $post_type_object->cap->edit_others_posts ) ) :
-			$users_opt = array(
+			$users_opt = [
 				'hide_if_only_one_author' => false,
 				'who' => 'authors',
 				'name' => 'post_author',
@@ -56,7 +56,7 @@
 				'multi' => 1,
 				'echo' => 0,
 				'selected' => get_current_user_id()
-			);
+			];
 
 			if ( $authors = wp_dropdown_users( $users_opt ) ) :
 				$authors_dropdown  = '<div class="form-control np_author"><label>' . __( 'Author' ) . '</label>';

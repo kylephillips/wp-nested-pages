@@ -47,14 +47,14 @@ class UserRepository
 		global $wp_roles;
 		$all_roles = $wp_roles->roles;
 		$editable_roles = apply_filters('editable_roles', $all_roles);
-		$roles = array();
-		if ( !is_array($exclude) ) $exclude = array();
+		$roles = [];
+		if ( !is_array($exclude) ) $exclude = [];
 		foreach($editable_roles as $key=>$editable_role){
 			if ( !in_array($editable_role['name'], $exclude) ){
-				$role = array(
+				$role = [
 					'name' => $key,
 					'label' => $editable_role['name']
-				);
+				];
 				array_push($roles, $role);
 			}
 		}
@@ -80,8 +80,8 @@ class UserRepository
 	public function canSortPages()
 	{
 		$roles = $this->getRoles();
-		$cansort = get_option('nestedpages_allowsorting', array());
-		if ( $cansort == "" ) $cansort = array();
+		$cansort = get_option('nestedpages_allowsorting', []);
+		if ( $cansort == "" ) $cansort = [];
 
 		foreach($roles as $role){
 			if ( $role == 'administrator' ) return true;
@@ -97,9 +97,9 @@ class UserRepository
 	*/
 	public function allUsers()
 	{
-		$users = get_users(array(
-			'fields' => array('ID', 'display_name')
-		));
+		$users = get_users([
+			'fields' => ['ID', 'display_name']
+		]);
 		return $users;
 	}
 

@@ -101,10 +101,10 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 			<div class="select">
 				<select id="np_order" name="np_order" class="nestedpages-sort">
 					<?php
-						$options = array(
+						$options = [
 							'ASC' => __('Ascending', 'wp-nested-pages'),
 							'DESC' => __('Descending', 'wp-nested-pages')
-						);
+						];
 						$out = '';
 						foreach ( $options as $key => $option ){
 							$out .= '<option value="' . esc_attr($key) . '"';

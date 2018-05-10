@@ -147,7 +147,7 @@ class Listing
 	{
 		$class_name = get_class();
 		$classinstance = new $class_name($post_type);
-		return array(&$classinstance, "listPosts");
+		return [&$classinstance, "listPosts"];
 	}
 
 	/**
@@ -175,7 +175,7 @@ class Listing
 	private function setStickyPosts()
 	{
 		$this->sticky_posts = get_option('sticky_posts');
-		if ( !$this->sticky_posts ) $this->sticky_posts = array();
+		if ( !$this->sticky_posts ) $this->sticky_posts = [];
 	}
 
 	/**
@@ -195,7 +195,7 @@ class Listing
 	{
 		// The standard fields checkbox is explicitly not set
 		if ( isset($this->post_type_settings->standard_fields_enabled) && !$this->post_type_settings->standard_fields_enabled ){
-			$this->disabled_standard_fields = array();
+			$this->disabled_standard_fields = [];
 			return;
 		}
 
@@ -206,7 +206,7 @@ class Listing
 			}
 			return;
 		}
-		$this->disabled_standard_fields = array();
+		$this->disabled_standard_fields = [];
 		return;
 	}
 
@@ -281,7 +281,7 @@ class Listing
 		if ( $this->post_type_settings->disable_sorting ) $sortable = false;
 
 		// Get array of child pages
-		$children = array();
+		$children = [];
 		$all_children = $pages;
 		foreach($all_children as $child){
 			array_push($children, $child->ID);

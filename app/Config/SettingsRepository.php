@@ -74,7 +74,7 @@ class SettingsRepository
 	{
 		$post_type_repo = new PostTypeRepository;
 
-		$fields = array(
+		$fields = [
 			'title' => __('Post Title', 'wp-nested-pages'), 
 			'slug' => __('Slug', 'wp-nested-pages'), 
 			'date' => __('Post Date', 'wp-nested-pages'), 
@@ -82,7 +82,7 @@ class SettingsRepository
 			'status' => __('Post Status', 'wp-nested-pages'),
 			'password' => __('Password/Private', 'wp-nested-pages'),
 			'allow_comments' => __('Allow Comments', 'wp-nested-pages')
-		);
+		];
 
 		if ( $post_type == 'page' ) {
 			$fields['template'] = __('Template', 'wp-nested-pages');
@@ -98,7 +98,7 @@ class SettingsRepository
 		if ( empty($enabled_taxonomies) ) return $fields;
 		
 		$fields['hide_taxonomies'] = __('Taxonomies', 'wp-nested-pages');
-		$fields['taxonomies'] = array();
+		$fields['taxonomies'] = [];
 		foreach($enabled_taxonomies as $taxonomy){
 			$fields['taxonomies'][$taxonomy->name] = $taxonomy->labels->name;
 		}
@@ -112,18 +112,18 @@ class SettingsRepository
 	public function getImageSizes()
 	{
 		global $_wp_additional_image_sizes;
-		$sizes = array();
+		$sizes = [];
 		foreach ( get_intermediate_image_sizes() as $_size ) {
-			if ( in_array( $_size, array('thumbnail', 'medium', 'medium_large', 'large') ) ) {
+			if ( in_array( $_size, ['thumbnail', 'medium', 'medium_large', 'large'] ) ) {
 				$sizes[ $_size ]['width']  = get_option( "{$_size}_size_w" );
 				$sizes[ $_size ]['height'] = get_option( "{$_size}_size_h" );
 				$sizes[ $_size ]['crop']   = (bool) get_option( "{$_size}_crop" );
 			} elseif ( isset( $_wp_additional_image_sizes[ $_size ] ) ) {
-				$sizes[ $_size ] = array(
+				$sizes[ $_size ] = [
 					'width'  => $_wp_additional_image_sizes[ $_size ]['width'],
 					'height' => $_wp_additional_image_sizes[ $_size ]['height'],
 					'crop'   => $_wp_additional_image_sizes[ $_size ]['crop'],
-				);
+				];
 			}
 		}
 		return $sizes;
@@ -144,7 +144,7 @@ class SettingsRepository
 	*/
 	public function resetSettings()
 	{
-		$options = array(
+		$options = [
 			'nested_pages_custom_fields_hidden',
 			'nestedpages_allowsorting',
 			'nestedpages_disable_menu',
@@ -153,7 +153,7 @@ class SettingsRepository
 			'nestedpages_posttypes',
 			'nestedpages_ui',
 			'nestedpages_version'
-		);
+		];
 		foreach($options as $option){
 			delete_option($option);
 		}

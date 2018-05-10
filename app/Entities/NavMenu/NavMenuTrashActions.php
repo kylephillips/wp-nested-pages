@@ -16,8 +16,8 @@ class NavMenuTrashActions
 	public function __construct()
 	{
 		$this->nav_menu_repo = new NavMenuRepository;
-		add_action( 'before_delete_post', array( $this, 'removeLinkItem'), 10 );
-		add_action( 'before_delete_post', array( $this, 'hidePagefromNav'), 10 );
+		add_action( 'before_delete_post', [$this, 'removeLinkItem'], 10 );
+		add_action( 'before_delete_post', [$this, 'hidePagefromNav'], 10 );
 	}
 
 	/**
@@ -25,7 +25,7 @@ class NavMenuTrashActions
 	*/
 	public function removeLinkItem($post_id)
 	{	
-		remove_action( 'before_delete_post', array( $this, 'removeLinkItem'), 10 );
+		remove_action( 'before_delete_post', [$this, 'removeLinkItem'], 10 );
 		$redirect_id = get_post_meta($post_id, '_menu_item_xfn', true);
 		if ( $redirect_id !== "" ) wp_delete_post($redirect_id, true);
 		return true;

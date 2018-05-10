@@ -18,7 +18,7 @@ class PostSearch extends BaseHandler
 		parent::__construct();
 		$this->setFormData();
 		$this->searchPosts();
-		return wp_send_json(array('status' => 'success', 'results' => $this->results));
+		return wp_send_json(['status' => 'success', 'results' => $this->results]);
 	}
 
 	/**
@@ -35,11 +35,11 @@ class PostSearch extends BaseHandler
 	*/
 	private function searchPosts()
 	{
-		$sq = new \WP_Query(array(
+		$sq = new \WP_Query([
 			'post_type' => $this->data['postType'],
 			's' => $this->data['term'],
 			'posts_per_page' => -1
-		));
+		]);
 		if ( $sq->have_posts() ) :
 			$this->results = $sq->posts;
 		else :

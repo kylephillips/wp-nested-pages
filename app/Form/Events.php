@@ -28,7 +28,7 @@ class Events
 	*/
 	public function registerEvents()
 	{
-		$this->actions = array(
+		$this->actions = [
 			'wp_ajax_npsort',
 			'wp_ajax_npquickEdit',
 			'wp_ajax_npsyncMenu',
@@ -49,7 +49,7 @@ class Events
 			'wp_ajax_nppostSearch',
 			'wp_ajax_npWpmlTranslations',
 			'wp_ajax_npresetSettings'
-		);
+		];
 		$this->setHandlers();
 	}
 

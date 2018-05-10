@@ -161,7 +161,7 @@ class NavMenuRepository
 		$meta_table = $wpdb->prefix . 'postmeta';
 		$sql = "SELECT p.ID AS nav_status FROM $post_table AS p LEFT JOIN $meta_table AS m ON p.ID = m.post_id AND m.meta_key = 'np_nav_status' WHERE p.post_type = 'page' AND (m.meta_value = 'show' OR m.meta_value IS NULL)";
 		$results = $wpdb->get_results($sql, ARRAY_N);
-		if ( !$results ) return array();
+		if ( !$results ) return [];
 		foreach($results as $key => $result){
 			$visible[$key] = $result[0];
 		}

@@ -56,7 +56,7 @@ class ListingQuery
 	/**
 	* Get the Posts
 	*/
-	public function getPosts($post_type, $h_taxonomies = array(), $f_taxonomies = array())
+	public function getPosts($post_type, $h_taxonomies = [], $f_taxonomies = [])
 	{
 		$wpml = $this->integrations->plugins->wpml->installed;
 		$this->h_taxonomies = $h_taxonomies;
@@ -66,20 +66,20 @@ class ListingQuery
 		$this->setTaxonomyFilters();
 
 		if ( $this->post_type->name == 'page' ) {
-			$post_type = array('page');
+			$post_type = ['page'];
 			if ( !$this->settings->menusDisabled() && !$wpml ) $post_type[] = 'np-redirect';
 		} else {
-			$post_type = array($post_type->name);
+			$post_type = [$post_type->name];
 		}
 		
-		$query_args = array(
+		$query_args = [
 			'post_type' => $post_type,
 			'posts_per_page' => -1,
 			'author' => $this->sort_options->author,
 			'orderby' => $this->sort_options->orderby,
-			'post_status' => array('publish', 'pending', 'draft', 'private', 'future', 'trash'),
+			'post_status' => ['publish', 'pending', 'draft', 'private', 'future', 'trash'],
 			'order' => $this->sort_options->order
-		);
+		];
 		
 		if ( $this->listing_repo->isSearch() ) $query_args = $this->searchParams($query_args);
 		if ( $this->listing_repo->isFiltered() ) $query_args = $this->filterParams($query_args);
@@ -87,9 +87,9 @@ class ListingQuery
 		
 		$query_args = apply_filters('nestedpages_page_listing', $query_args);
 		
-		add_filter( 'posts_clauses', array($this, 'queryFilter') );
+		add_filter( 'posts_clauses', [$this, 'queryFilter']);
 		$all_posts = new \WP_Query($query_args);
-		remove_filter( 'posts_clauses', array($this, 'queryFilter') );
+		remove_filter( 'posts_clauses', [$this, 'queryFilter']);
 		
 		if ( $all_posts->have_posts() ) :
 			return $all_posts->posts;
@@ -123,14 +123,14 @@ class ListingQuery
 	private function setTaxonomyFilters()
 	{
 		$taxonomies = array_merge($this->h_taxonomies, $this->f_taxonomies);
-		$tax_query = array();
+		$tax_query = [];
 		foreach ( $taxonomies as $tax ) :
 			if ( $this->post_type_repo->sortOptionEnabled($this->post_type->name, $tax->name, true) && isset($_GET[$tax->name]) ) :
-				$tax_query[] = array(
+				$tax_query[] = [
 					'taxonomy' => $tax->name,
 					'fields' => 'term_id',
 					'terms' => sanitize_text_field($_GET[$tax->name])
-				);
+				];
 			endif;
 		endforeach;
 		$this->sort_options->tax_query = ( !empty($tax_query) ) ? $tax_query : false;

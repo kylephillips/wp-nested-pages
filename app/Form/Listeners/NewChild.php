@@ -56,9 +56,9 @@ class NewChild extends BaseHandler
 	*/
 	private function setResponse()
 	{
-		$this->response = array(
+		$this->response = [
 			'status'=>'success',
 			'new_pages' => $this->data['new_pages']
-		);
+		];
 	}
 }

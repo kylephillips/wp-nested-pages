@@ -78,7 +78,7 @@ abstract class BaseHandler
 	protected function setData()
 	{
 		$this->nonce = sanitize_text_field($_POST['nonce']);
-		$data = array();		
+		$data = [];		
 		foreach( $_POST as $key => $value ){
 			$data[$key] = $value;
 		}
@@ -91,7 +91,7 @@ abstract class BaseHandler
 	protected function validateNonce()
 	{
 		if ( ! wp_verify_nonce( $this->nonce, 'nestedpages-nonce' ) ){
-			$this->response = array( 'status' => 'error', 'message' => __('Incorrect Form Field', 'wp-nested-pages') );
+			$this->response = [ 'status' => 'error', 'message' => __('Incorrect Form Field', 'wp-nested-pages') ];
 			$this->sendResponse();
 			die();
 		}
@@ -125,10 +125,10 @@ abstract class BaseHandler
 	*/
 	protected function sendErrorResponse()
 	{
-		$this->response = array(
+		$this->response = [
 			'status' => 'error', 
 			'message' => __('There was an error updating the page.', 'wp-nested-pages') 
-		);
+		];
 		$this->sendResponse();
 	}
 
@@ -137,10 +137,10 @@ abstract class BaseHandler
 	*/
 	protected function exception($message)
 	{
-		return wp_send_json(array(
+		return wp_send_json([
 			'status' => 'error',
 			'message' => $message
-		));
+		]);
 	}
 
 	/**

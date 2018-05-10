@@ -11,7 +11,7 @@ class ManualMenuSync extends BaseHandler
 	{
 		parent::__construct();
 		$this->syncMenu();
-		$this->response = array('status' => 'success');
+		$this->response = ['status' => 'success'];
 		$this->sendResponse();
 	}
 }

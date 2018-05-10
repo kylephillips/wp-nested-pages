@@ -17,7 +17,7 @@ class RegisterPostTypes
 	{
 		$this->integrations = new IntegrationFactory;
 		if ( $this->integrations->plugins->wpml->installed ) return;
-		add_action( 'init', array( $this, 'registerRedirects') );
+		add_action( 'init', [ $this, 'registerRedirects'] );
 	}
 
 	/**
@@ -25,14 +25,14 @@ class RegisterPostTypes
 	*/
 	public function registerRedirects()
 	{
-		$labels = array(
+		$labels = [
 			'name' => __('Redirects', 'wp-nested-pages'),  
 			'singular_name' => __('Redirect', 'wp-nested-pages'),
 			'add_new_item'=> 'Add Redirect',
 			'edit_item' => 'Edit Redirect',
 			'view_item' => 'View Redirect'
-		);
-		$args = array(
+		];
+		$args = [
 			'labels' => $labels,
 			'public' => false,  
 			'show_ui' => false,
@@ -40,10 +40,10 @@ class RegisterPostTypes
 			'capability_type' => 'post',  
 			'hierarchical' => true,  
 			'has_archive' => false,
-			'supports' => array('title','editor'),
+			'supports' => ['title','editor'],
 			'_edit_link' => 'post.php?post=%d',
-			'rewrite' => array('slug' => 'np-redirect', 'with_front' => false)
-		);
+			'rewrite' => ['slug' => 'np-redirect', 'with_front' => false]
+		];
 		register_post_type( 'np-redirect' , $args );
 	}
 }

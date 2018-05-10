@@ -41,11 +41,11 @@ class NewMenuItem extends BaseHandler
 		$this->data['post']['delete_link'] = get_delete_post_link($new_link, '', true);
 		$this->addExtras($new_link);
 
-		$this->response = array(
+		$this->response = [
 			'status' => 'success',
 			'message' => __('Link successfully updated.', 'wp-nested-pages'),
 			'post_data' => $this->data['post']
-		);
+		];
 	}
 
 	/**

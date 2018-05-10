@@ -32,7 +32,7 @@ class ClonePost extends BaseHandler
 	private function setPostID()
 	{
 		if ( !isset($_POST['parent_id']) ){
-			return $this->sendResponse(array('status' => 'error', 'message' => __('Post Not Found', 'nestedapges')));
+			return $this->sendResponse(['status' => 'error', 'message' => __('Post Not Found', 'nestedapges')]);
 		}
 		$this->data['post_id'] = intval(sanitize_text_field($_POST['parent_id']));
 		$this->data['status'] = sanitize_text_field($_POST['status']);
@@ -47,9 +47,9 @@ class ClonePost extends BaseHandler
 	private function clonePost()
 	{
 		$new_posts = $this->cloner->clonePost($this->data['post_id'], $this->data['quantity'], $this->data['status'], $this->data['author']);
-		return wp_send_json(array(
+		return wp_send_json([
 			'status' => 'success', 
 			'posts' => $this->post_repo->postArray($new_posts, $this->data['post_type'])
-		));
+		]);
 	}
 }
