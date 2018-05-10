@@ -229,6 +229,30 @@ class Listing
 	}
 
 	/**
+	* Row Actions
+	* Adds assigned pt actions as well as any custom actions registered through page_row_actions filter
+	*/
+	private function rowActions($assigned_pt)
+	{
+		$actions = [];
+		if ( $assigned_pt ) {
+			if ( current_user_can('publish_posts') ) $actions['add_new'] = '<a href="' . $this->post_type_repo->addNewPostLink($assigned_pt->name) . '">' . $assigned_pt->labels->add_new . '</a>';
+			$actions['view_all'] = '<a href="' .  $this->post_type_repo->allPostsLink($assigned_pt->name) . '">' . $assigned_pt->labels->all_items . ' (' . $this->listing_repo->postCount($assigned_pt->name) . ')</a>';
+		}
+		$actions = apply_filters('post_row_actions', $actions, $this->post);
+		if ( $this->post_type->name == 'page' ) $actions = apply_filters('page_row_actions', $actions, $this->post);
+		if ( empty($actions) ) return null;
+		$out = '<ul class="np-assigned-pt-actions">';
+		foreach ( $actions as $key => $action ){
+			$out .= '<li class="' . $key;
+			if ( $key == 'add_new' || $key == 'view_all' ) $out .= ' visible';
+			$out .= '">' . $action . '</li>';
+		}		
+		$out .= '</ul>';
+		return $out;
+	}
+
+	/**
 	* The Main View
 	* Replaces Default Post Listing
 	*/

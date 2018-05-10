@@ -72,14 +72,7 @@ if ( !$wpml ) $wpml_pages = true;
 			?>
 		</a>
 
-		<?php if ( $assigned_pt ) : ?>
-		<ul class="np-assigned-pt-actions">
-			<?php if ( current_user_can('publish_posts') ) : ?>
-			<li><a href="<?php echo $this->post_type_repo->addNewPostLink($assigned_pt->name); ?>" class=""><?php echo $assigned_pt->labels->add_new; ?></a></li>
-			<?php endif; ?>
-			<li><a href="<?php echo $this->post_type_repo->allPostsLink($assigned_pt->name); ?>" class=""><?php echo $assigned_pt->labels->all_items . ' (' . $this->listing_repo->postCount($assigned_pt->name) . ')'; ?></a></li>
-		</ul>
-		<?php endif; ?>
+		<?php echo $this->rowActions($assigned_pt); ?>
 
 		<!-- Responsive Toggle Button -->
 		<a href="#" class="np-toggle-edit"><i class="np-icon-pencil"></i></a>

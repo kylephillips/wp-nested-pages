@@ -96,9 +96,13 @@
 			display: inline-block;
 			margin-left: 10px;
 			li {
-				display: inline-block;
+				display: none;
+				// display: inline-block;
 				background: transparent;
 				border: 0;
+				&.visible {
+					display: inline-block;
+				}
 				a {
 					color: $black;
 					display: block;
@@ -306,6 +310,9 @@
 		width: 100%;
 		&:hover {
 			background-color: darken($white, 6%);
+			.np-assigned-pt-actions li {
+				display: inline-block;
+			}
 			.cell.custom-column {
 				visibility: hidden;
 			}
