@@ -98,7 +98,8 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 
 == Changelog ==
 
-= 2.0.5 =
+= 3.1.0 =
+* PHP Version 5.4.0+ is required to run Nested Pages v3
 * Parent field added to bulk edit under hierarchical post types.
 * Fixes HTML Validation where invalid rel attribute error was being thrown on custom link items.
 * Fixes bug where filtering by taxonomy does not work.
