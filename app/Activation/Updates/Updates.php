@@ -110,9 +110,9 @@ class Updates
 	{
 		if ( version_compare( $this->current_version, '1.3.1', '<' ) ){
 			$enabled = get_option('nestedpages_ui', false);
-			$default = array(
+			$default = [
 				'datepicker' => 'true'
-			);
+			];
 			if ( !$enabled ) update_option('nestedpages_ui', $default);
 		}
 	}

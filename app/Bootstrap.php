@@ -9,9 +9,9 @@ class Bootstrap
 	public function __construct()
 	{
 		$this->initializePlugin();
-		add_action( 'wp_loaded', array($this, 'wpLoaded'));
-		add_action( 'init', array($this, 'initializeWordPress') );
-		add_filter( 'plugin_action_links_' . 'wp-nested-pages/nestedpages.php', array($this, 'settingsLink' ) );
+		add_action( 'wp_loaded', [$this, 'wpLoaded']);
+		add_action( 'init', [$this, 'initializeWordPress']);
+		add_filter( 'plugin_action_links_' . 'wp-nested-pages/nestedpages.php', [$this, 'settingsLink']);
 	}
 
 	/**

@@ -57,9 +57,9 @@ class Settings
 
 	public function __construct()
 	{
-		add_action( 'admin_menu', array( $this, 'registerSettingsPage' ) );
-		add_action( 'admin_init', array( $this, 'registerSettings' ) );
-		add_action( 'updated_option', array( $this, 'updateMenuName'), 10, 3);
+		add_action( 'admin_menu', [$this, 'registerSettingsPage' ]);
+		add_action( 'admin_init', [$this, 'registerSettings']);
+		add_action( 'updated_option', [$this, 'updateMenuName'], 10, 3);
 		$this->user_repo = new UserRepository;
 		$this->settings = new SettingsRepository;
 		$this->post_type_repo = new PostTypeRepository;
@@ -79,7 +79,7 @@ class Settings
 			__('Nested Pages', 'wp-nested-pages'),
 			'manage_options',
 			'nested-pages-settings', 
-			array( $this, 'settingsPage' ) 
+			[$this, 'settingsPage']
 		);
 	}
 
@@ -110,10 +110,10 @@ class Settings
 			if ( $menu ) {
 				delete_option('nestedpages_menu'); // Delete the option to prevent infinite loop
 				update_option('nestedpages_menu', $old_value);
-				wp_update_term($menu->term_id, 'nav_menu', array(
+				wp_update_term($menu->term_id, 'nav_menu', [
 					'name' => $value,
 					'slug' => sanitize_title($value)
-				));
+				]);
 			}
 		}
 	}

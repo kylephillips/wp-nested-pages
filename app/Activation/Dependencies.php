@@ -42,9 +42,9 @@ class Dependencies
 		$this->integrations = new IntegrationFactory;
 		$this->settings = new SettingsRepository;
 		$this->setPluginVersion();
-		add_action( 'admin_enqueue_scripts', array($this, 'styles') );
-		add_action( 'admin_enqueue_scripts', array($this, 'scripts') );
-		add_action( 'admin_enqueue_scripts', array($this, 'settingsScripts') );
+		add_action( 'admin_enqueue_scripts', [$this, 'styles']);
+		add_action( 'admin_enqueue_scripts', [$this, 'scripts']);
+		add_action( 'admin_enqueue_scripts', [$this, 'settingsScripts']);
 		$this->plugin_dir = Helpers::plugin_url();
 	}
 
@@ -65,7 +65,7 @@ class Dependencies
 		wp_enqueue_style(
 			'nestedpages', 
 			$this->plugin_dir . '/assets/css/nestedpages.css', 
-			array(), 
+			[], 
 			$this->plugin_version
 		);
 		if ( $this->integrations->plugins->acf->installed ) wp_enqueue_style('acf-input');
@@ -89,37 +89,37 @@ class Dependencies
 			wp_enqueue_script(
 				'bootstrap', 
 				$this->plugin_dir . '/assets/js/lib/bootstrap.min.js', 
-				array('jquery'), 
+				['jquery'], 
 				'3.3.2'
 			);
 			wp_enqueue_script(
 				'ui-touch-punch', 
 				$this->plugin_dir . '/assets/js/lib/jquery.ui.touch-punch.min.js', 
-				array('jquery', 'jquery-ui-sortable'), 
+				['jquery', 'jquery-ui-sortable'], 
 				$this->plugin_version
 			);
 			wp_enqueue_script(
 				'nested-sortable', 
 				$this->plugin_dir . '/assets/js/lib/jquery.mjs.nestedSortable.js', 
-				array('jquery', 'jquery-ui-sortable'), 
+				['jquery', 'jquery-ui-sortable'], 
 				$this->plugin_version
 			);
 			if ( $np_env == 'dev' ){
 				wp_enqueue_script(
 					'nestedpages', 
 					$this->plugin_dir . '/assets/js/nestedpages.js', 
-					array('jquery'), 
+					['jquery'],
 					$this->plugin_version
 				);
 			} else {
 				wp_enqueue_script(
 					'nestedpages', 
 					$this->plugin_dir . '/assets/js/nestedpages.min.js', 
-					array('jquery'), 
+					['jquery'], 
 					$this->plugin_version
 				);
 			}
-			$localized_data = array(
+			$localized_data = [
 				'np_nonce' => wp_create_nonce( 'nestedpages-nonce' ),
 				'expand_text' => __('Expand All', 'wp-nested-pages'),
 				'collapse_text' => __('Collapse All', 'wp-nested-pages'),
@@ -153,7 +153,7 @@ class Dependencies
 				'wpml' => ( $this->integrations->plugins->wpml->installed ) ? true : false,
 				'add_translation' => __('Add Translation', 'wp-nested-pages'),
 				'edit' => __('Edit', 'wp-nested-pages')
-			);
+			];
 			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;
 			$localized_data['syncmenu'] = $syncmenu;
 			$localized_data['post_types'] = $this->post_type_repo->getPostTypesObject();
@@ -179,7 +179,7 @@ class Dependencies
 			wp_enqueue_script(
 				'nestedpages-settings', 
 				$this->plugin_dir . '/assets/js/nestedpages.settings.min.js', 
-				array('jquery'), 
+				['jquery'], 
 				$this->plugin_version
 			);
 		endif;

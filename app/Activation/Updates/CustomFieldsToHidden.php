@@ -21,7 +21,7 @@ class CustomFieldsToHidden
 	*/
 	private function setKeys()
 	{
-		$this->meta_keys = array(
+		$this->meta_keys = [
 			'np_nav_title',
 			'nested_pages_status',
 			'np_title_attribute',
@@ -31,7 +31,7 @@ class CustomFieldsToHidden
 			'np_nav_menu_item_type',
 			'np_nav_menu_item_object',
 			'np_nav_menu_item_object_id'
-		);
+		];
 	}
 
 	/**
@@ -45,8 +45,8 @@ class CustomFieldsToHidden
 			$newKey = '_' . $key;
 			$sql = $wpdb->update(
 				$meta_table,
-				array('meta_key' => $newKey),
-				array('meta_key' => $key)
+				['meta_key' => $newKey],
+				['meta_key' => $key]
 			);
 		}
 		$this->setOption();

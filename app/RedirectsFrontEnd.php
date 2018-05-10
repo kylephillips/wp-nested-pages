@@ -8,8 +8,8 @@ class RedirectsFrontEnd
 {
 	public function __construct()
 	{
-		add_filter('page_link', array($this, 'pageLinks'),10,2);
-		add_action('parse_request', array($this, 'parseRequest'));
+		add_filter('page_link', [$this, 'pageLinks'],10,2);
+		add_action('parse_request', [$this, 'parseRequest']);
 	}
 
 	/**
@@ -50,18 +50,18 @@ class RedirectsFrontEnd
 			$redirect = true;
 			$parent_slug = substr($parent_slug, 0, -5);
 		}
-		$parent_args = array(
+		$parent_args = [
 			'name' => sanitize_text_field($parent_slug),
 			'posts_per_page' => 1
-		);
+		];
 		$parent_args['post_type'] = ( $redirect ) ? 'np-redirect' : 'any';
 		$parent_post = get_posts($parent_args);
 
-		$page_args = array(
+		$page_args = [
 			'name' => sanitize_text_field($slug), 
 			'post_type' => 'any', 
 			'posts_per_page' => 1
-		);
+		];
 		$page_args['post_parent'] = ( isset($parent_post) && $redirect ) ? $parent_post[0]->ID : null;
 		$page = get_posts($page_args);
 		if ( !$page ) return;
