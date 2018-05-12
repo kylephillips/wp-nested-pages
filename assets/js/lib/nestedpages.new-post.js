@@ -100,7 +100,7 @@ NestedPages.NewPost = function()
 	{		
 		var form = $(button).parents('form');
 		var fieldcount = $(button).siblings('.new-page-titles').children('li').length + 1;
-		var html = '<li><i class="handle np-icon-menu"></i><div class="form-control new-child-row"><label>' + NestedPages.jsData.titleText + '</label><div><input type="text" name="post_title[]" class="np_title" placeholder="' + NestedPages.jsData.titleText + '" value="" tabindex="' + fieldcount + '" /><a href="#" class="button-secondary np-remove-child">-</a></div></div></li>';
+		var html = '<li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="handle np-icon-menu"><path d="M0 0h24v24H0z" fill="none" /><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" class="bars" /></svg><div class="form-control new-child-row"><label>' + NestedPages.jsData.titleText + '</label><div><input type="text" name="post_title[]" class="np_title" placeholder="' + NestedPages.jsData.titleText + '" value="" tabindex="' + fieldcount + '" /><a href="#" class="button-secondary np-remove-child">-</a></div></div></li>';
 		var container = $(button).siblings('.new-page-titles').append(html);
 		$(form).find('.np_title').last().focus();
 		$(form).find(NestedPages.selectors.newPageTitle).prop('tabindex', fieldcount++);

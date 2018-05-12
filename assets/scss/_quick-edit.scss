@@ -240,8 +240,10 @@
 		.np-icon-menu {
 			float: left;
 			margin-top: 0px;
-			height: auto;
-			line-height: 26px;
+			width: 24px;
+			height: 24px;
+			position: relative;
+			top: 5px;
 		}
 		.new-child-row {
 			div {
