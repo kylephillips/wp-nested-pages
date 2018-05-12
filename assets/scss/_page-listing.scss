@@ -65,6 +65,17 @@
 			}
 		}
 
+		.row-status-icon {
+			width: 18px;
+			height: 18px;
+			display: inline-block;
+			vertical-align: middle;
+			margin-left: 5px;
+			.icon {
+				fill: darken($white, 30%);
+			}
+		}
+
 		// Indicates status if not published
 		.status {
 			color: darken($white, 40%);
