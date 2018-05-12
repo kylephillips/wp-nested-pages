@@ -15,6 +15,7 @@ var js_source = [
 	'assets/js/lib/nestedpages-responsive.js',
 	'assets/js/lib/nestedpages.formatter.js',
 	'assets/js/lib/nestedpages.dropdowns.js',
+	'assets/js/lib/nestedpages.modals.js',
 	'assets/js/lib/nestedpages.check-all.js',
 	'assets/js/lib/nestedpages.bulk-actions.js',
 	'assets/js/lib/nestedpages.hidden-item-count.js',
