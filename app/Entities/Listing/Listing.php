@@ -398,11 +398,16 @@ class Listing
 				$row_view = ( $this->post->type !== 'np-redirect' ) ? 'partials/row' : 'partials/row-link';
 
 				// CSS Classes for the <li> row element
+				$template = ( $this->post->template )
+					? ' tpl-' .  str_replace('.php', '', $this->post->template)
+					: '';
+
 				$row_classes = '';
 				if ( !$this->post_type->hierarchical ) $row_classes .= ' non-hierarchical';
 				if ( !$this->user->canSortPages() ) $row_classes .= ' no-sort';
 				if ( $wpml_current_language == 'all' ) $row_classes .= ' no-sort';
 				if ( $this->listing_repo->isSearch() ) $row_classes .= ' search';
+				if ( $this->post->template ) $row_classes .= $template;
 
 				// Page Assignment for Post Type
 				$assigned_pt = ( $this->listing_repo->isAssignedPostType($this->post->id, $this->assigned_pt_pages) ) 

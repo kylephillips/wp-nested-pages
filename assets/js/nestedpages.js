@@ -2988,13 +2988,6 @@ var NestedPagesTrash = function()
 	plugin.nonce = nestedpages.np_nonce;
 	plugin.formAction = 'npEmptyTrash';
 
-
-	// Initialization
-	plugin.init = function(){
-		plugin.bindEvents();
-	}
-
-	// Bind Events
 	plugin.bindEvents = function(){
 		$(document).on('click', plugin.confirmButton, function(e){
 			e.preventDefault();
@@ -3042,9 +3035,8 @@ var NestedPagesTrash = function()
 		$(plugin.loadingIndicator).hide();
 	}
 
-	return plugin.init();
+	return plugin.bindEvents();
 }
-
 var NestedPages = NestedPages || {};
 
 /**
