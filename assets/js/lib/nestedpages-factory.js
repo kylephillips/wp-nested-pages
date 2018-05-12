@@ -174,6 +174,7 @@ NestedPages.Factory = function()
 
 	plugin.formatter = new NestedPages.Formatter;
 	plugin.responsive = new NestedPages.Responsive;
+	plugin.dropdowns = new NestedPages.Dropdowns;
 	plugin.checkAll = new NestedPages.CheckAll;
 	plugin.bulkActions = new NestedPages.BulkActions;
 	plugin.menuToggle = new NestedPages.MenuToggle;

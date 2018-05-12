@@ -223,12 +223,16 @@
 	.handle {
 		display: inline-block;
 		cursor: move;
-		font-size: 20px;
 		margin-top: -8px;
 		position: relative;
 		top: 2px;
+		width: 22px;
+		height: 22px;
 		color: darken($white, 30%);
 		transition: all 200ms ease;
+		.bars {
+			fill : darken($white, 30%);
+		}
 		&:hover {
 			transition: all 200ms ease;
 			color: $blue;
@@ -238,7 +242,11 @@
 	// Submenu Indicator
 	.np-icon-sub-menu {
 		display: none;
-		color: darken($white, 40%);
+		width: 18px;
+		height: 18px;
+		.arrow {
+			fill: darken($white, 40%);
+		}
 	}
 
 	.row.no-sort .page-title {
@@ -308,7 +316,7 @@
 		background-color: $white;
 		display: table;
 		width: 100%;
-		&:hover {
+		&:hover, &.active {
 			background-color: darken($white, 6%);
 			.np-assigned-pt-actions li {
 				display: inline-block;
@@ -405,11 +413,67 @@
 		margin-top: -15px;
 		a {
 			margin: 0 0 0 -5px;
+			padding: 0 .5em;
+			height: 30px;
+			line-height: 30px;
 			&.np-btn-trash {
 				margin-left: 4px;
+				svg {
+					width: 20px;
+					height: 20px;
+					position: relative;
+					top: 4px;
+					.icon {
+						fill: $white;
+					}
+				}
 			}
 		}
 	}
+
+	.action-buttons .nestedpages-dropdown {
+		display: inline-block;
+		vertical-align: middle;
+		.np-btn.toggle {
+			background: transparent;
+			border: 0;
+			svg {
+				position: relative;
+				top: 4px;
+			}
+			&:active, &:focus {
+				box-shadow: none;
+			}
+			&.active {
+				color: darken($white, 50%);
+			}
+		}
+		ul {
+			left: auto;
+			right: 5px;
+			width: 180px;
+			li {
+				background-color: $white;
+				line-height: 36px;
+				a {
+					display: block;
+					color: $black;
+					line-height: 36px;
+					height: auto;
+					margin: 0;
+					padding: 0;
+					svg {
+						width: 20px;
+						height: 20px;
+						position: relative;
+						top: 5px;
+						margin-right: 5px;
+						margin-left: 5px;
+					}
+				}
+			} // li
+		} // ul
+	} // .nestedpages-dropdown
 
 } // .nestedpages
 
@@ -461,7 +525,8 @@
 
 @media (min-width: 768px)
 {
-	.nestedpages .row:hover .action-buttons {
+	.nestedpages .row:hover .action-buttons,
+	.nestedpages .row.active .action-buttons {
 		display: block;
 	}
 	.nestedpages .row:hover .np-post-columns {

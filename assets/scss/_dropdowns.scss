@@ -1,0 +1,75 @@
+//
+// Dropdowns
+// --------------------------------------------------
+.nestedpages-dropdown {
+	position: relative;
+	// z-index: 3;
+	display: inline-block;
+}
+
+.nestedpages-dropdown-content {
+	display: none;
+	position: absolute;
+	top: 40px;
+	left: 0;
+	z-index: 2;
+	background-color: $white;
+	width: 250px;
+	text-align: left;
+	border-radius: 2px;
+	box-shadow: 1px 1px 3px 0px rgba($black, .4);
+	&.padded {
+		padding: 1em;
+	}
+	p {
+		line-height: 1.4;
+		margin: 0;
+	}
+	&.right {
+		left: auto;
+		right: 0;
+	}
+	ul {
+		@include unstyled;
+		@include clearfix;
+		li {
+			float: none;
+			width: 100%;
+			margin: 0;
+			line-height: 1;
+			a {
+				display: block;
+				color: $black;
+				text-decoration: none;
+			}
+			&:first-child a {
+				border: 0;
+			}
+		}
+	}
+	&.active {
+		display: block;
+	}
+}
+
+// .icon-arrow_drop_down {
+// 	width: 0; 
+// 	height: 0; 
+// 	display: inline-block;
+// 	border-left: 4px solid transparent;
+// 	border-right: 4px solid transparent;
+// 	border-top: 4px solid $black;
+// 	position: relative;
+// 	top: -2px;
+// }
+
+// .icon-arrow_drop_up {
+// 	width: 0; 
+// 	height: 0; 
+// 	position: relative;
+// 	top: -2px;
+// 	display: inline-block;
+// 	border-left: 4px solid transparent;
+// 	border-right: 4px solid transparent;
+// 	border-bottom: 4px solid $black;
+// }

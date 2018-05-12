@@ -9,6 +9,7 @@
 	border: 1px solid $border;
 	padding: 5px 8px;
 	transition: all 200ms ease;
+	vertical-align: top;
 	&:hover {
 		background-color: $blue;
 		color: $white;
@@ -18,6 +19,9 @@
 	&:disabled, &.disabled {
 		opacity: .6;
 		cursor: not-allowed;
+	}
+	&.has-icon {
+		padding: 0;
 	}
 }
 

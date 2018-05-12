@@ -14,10 +14,10 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 
 	<div class="row-inner">
 
-		<i class="np-icon-sub-menu"></i>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="np-icon-sub-menu"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M19 15l-6 6-1.42-1.42L15.17 16H4V4h2v10h9.17l-3.59-3.58L13 9l6 6z" class="arrow" /></svg>
 		
 		<?php if ( $this->user->canSortPages() && !$this->listing_repo->isSearch() ) : ?>
-		<i class="handle np-icon-menu"></i>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="handle np-icon-menu"><path d="M0 0h24v24H0z" fill="none" /><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" class="bars" /></svg>
 		<?php endif; ?>
 
 		<a href="<?php echo $link; ?>" class="page-link page-title" target="_blank">
@@ -70,7 +70,7 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 
 			<?php if ( current_user_can('delete_pages') ) : ?>
 			<a href="<?php echo get_delete_post_link($this->post->id, '', true); ?>" class="np-btn np-btn-trash" data-np-confirm-delete>
-				<i class="np-icon-remove"></i>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="np-icon-remove"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" class="icon"/><path d="M0 0h24v24H0z" fill="none"/></svg>
 			</a>
 			<?php endif; ?>
 
