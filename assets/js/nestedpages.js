@@ -1945,13 +1945,6 @@ NestedPages.QuickEditLink = function()
 	plugin.newPostData = ''; // Data after update
 	plugin.form = ''; // The newly created Quick Edit Form
 
-
-	plugin.init = function()
-	{
-		plugin.bindEvents();
-	}
-
-
 	plugin.bindEvents = function()
 	{
 		$(document).on('click', NestedPages.selectors.quickEditButtonLink, function(e){
@@ -2160,8 +2153,7 @@ NestedPages.QuickEditLink = function()
 		$(NestedPages.selectors.quickEditLoadingIndicator).hide();
 	}
 
-
-	return plugin.init();
+	return plugin.bindEvents();
 
 }
 var NestedPages = NestedPages || {};
