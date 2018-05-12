@@ -253,6 +253,19 @@
 		padding-left: 10px;
 	}
 
+	.page-title .link-icon {
+		width: 20px;
+		height: 20px;
+		display: inline;
+		vertical-align: middle;
+		margin-left: 8px;
+		position: relative;
+		top: -2px;
+		.icon {
+			fill: darken($white, 30%);
+		}
+	}
+
 	.np-thumbnail {
 		display: table-cell;
 		width: 80px;
