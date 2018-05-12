@@ -38,7 +38,7 @@ NestedPages.ConfirmDelete = function()
 		plugin.deleteLink = $(button).attr('href');
 		$(NestedPages.selectors.linkDeleteConfirmationModalText).text(nestedpages.link_delete_confirmation_singular);
 		$(NestedPages.selectors.linkDeleteConfirmationButton).text(nestedpages.delete).removeClass('bulk');
-		$(NestedPages.selectors.linkDeleteConfirmationModal).modal('show');
+		$(document).trigger('open-modal-manual', NestedPages.selectors.linkDeleteConfirmationModal);
 	}
 
 	// Confirm Multiple link deletion
@@ -50,7 +50,7 @@ NestedPages.ConfirmDelete = function()
 		event.preventDefault();
 		$(NestedPages.selectors.linkDeleteConfirmationModalText).text(nestedpages.link_delete_confirmation);
 		$(NestedPages.selectors.linkDeleteConfirmationButton).text(nestedpages.trash_delete_links).addClass('bulk');
-		$(NestedPages.selectors.linkDeleteConfirmationModal).modal('show');
+		$(document).trigger('open-modal-manual', [NestedPages.selectors.linkDeleteConfirmationModal]);
 	}
 
 	// Submit the form to delete multiple

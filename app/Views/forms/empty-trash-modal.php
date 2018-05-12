@@ -3,15 +3,12 @@
 * Modal for confirming trash empty
 */
 ?>
-<div class="np-modal fade np-trash-modal" id="np-trash-modal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body">
-				<p><?php _e('Are you sure you would like to empty the trash? This action is not reversable.', 'wp-nested-pages'); ?></p>
-				<a href="#" class="np-cancel-trash button modal-close" data-dismiss="modal"><?php _e('Cancel', 'wp-nested-pages'); ?></a>
-				<a href="#" class="np-trash-confirm button-primary"><?php _e('Empty Trash', 'wp-nested-pages'); ?></a>
-				<input type="hidden" id="np-trash-posttype" value="<?php echo esc_attr($this->post_type->name); ?>">
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
+<div class="nestedpages-modal-backdrop" data-nestedpages-modal="np-trash-modal"></div>
+<div class="nestedpages-modal-content" id="np-trash-modal" data-nestedpages-modal="np-trash-modal">
+	<div class="modal-body np-trash-modal">
+		<p><?php _e('Are you sure you would like to empty the trash? This action is not reversable.', 'wp-nested-pages'); ?></p>
+		<a href="#" class="np-cancel-trash button modal-close" data-nestedpages-modal-close><?php _e('Cancel', 'wp-nested-pages'); ?></a>
+		<a href="#" class="np-trash-confirm button-primary"><?php _e('Empty Trash', 'wp-nested-pages'); ?></a>
+		<input type="hidden" id="np-trash-posttype" value="<?php echo esc_attr($this->post_type->name); ?>">
+	</div>
 </div><!-- /.modal -->

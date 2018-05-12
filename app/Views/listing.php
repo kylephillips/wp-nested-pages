@@ -11,7 +11,7 @@ if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
 		</a>
 
 		<?php if ( current_user_can('publish_pages') && !$this->listing_repo->isSearch() && $wpml_pages ) : ?>
-		<a href="#" class="add-new-h2 open-bulk-modal" title="<?php _e('Add Multiple', 'wp-nested-pages'); ?>" data-parentid="0">
+		<a href="#" class="add-new-h2 open-bulk-modal" title="<?php _e('Add Multiple', 'wp-nested-pages'); ?>" data-parentid="0" data-nestedpages-modal-toggle="np-bulk-modal">
 			<?php esc_html_e('Add Multiple', 'wp-nested-pages'); ?>
 		</a>
 		<?php endif; ?>
@@ -101,7 +101,6 @@ if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
 </div><!-- .wrap -->
 
 <?php 
-include( NestedPages\Helpers::view('forms/more-options-modal') );
 include( NestedPages\Helpers::view('forms/empty-trash-modal') );
 include( NestedPages\Helpers::view('forms/clone-form') );
 if ( !$this->integrations->plugins->wpml->installed) include( NestedPages\Helpers::view('forms/link-form') );

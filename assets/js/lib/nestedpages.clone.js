@@ -16,12 +16,6 @@ NestedPages.Clone = function()
 
 	plugin.formatter = new NestedPages.Formatter;
 
-	plugin.init = function()
-	{
-		plugin.bindEvents();
-	}
-
-
 	plugin.bindEvents = function()
 	{
 		$(document).on('click', NestedPages.selectors.cloneButton, function(e){
@@ -40,10 +34,9 @@ NestedPages.Clone = function()
 	// Open the modal with clone options
 	plugin.openModal = function()
 	{
-		$(NestedPages.selectors.cloneModal).find('[data-clone-parent]').text(plugin.parent_title);
-		$(NestedPages.selectors.cloneModal).modal('show');
+		$('#' + NestedPages.selectors.cloneModal).find('[data-clone-parent]').text(plugin.parent_title);
+		$(document).trigger('open-modal-manual', NestedPages.selectors.cloneModal);
 	}
-
 
 	// Clone the post
 	plugin.clone = function()
@@ -63,24 +56,23 @@ NestedPages.Clone = function()
 			},
 			success : function(data){
 				plugin.toggleLoading(false);
-				$(NestedPages.selectors.cloneModal).modal('hide');
+				$(document).trigger('close-modal-manual');
 				location.reload();
 			}
 		});
 	}
 
-
 	// Toggle Loading
 	plugin.toggleLoading = function(loading)
 	{
 		if ( loading ){
-			$(NestedPages.selectors.cloneModal).find('[data-clone-loading]').show();
+			$('#' + NestedPages.selectors.cloneModal).find('[data-clone-loading]').show();
 			$(NestedPages.selectors.confirmClone).attr('disabled', 'disabled');
 			return;
 		}
-		$(NestedPages.selectors.cloneModal).find('[data-clone-loading]').hide();
+		$('#' + NestedPages.selectors.cloneModal).find('[data-clone-loading]').hide();
 		$(NestedPages.selectors.confirmClone).attr('disabled', false);
 	}
 
-	return plugin.init();
+	return plugin.bindEvents();
 }

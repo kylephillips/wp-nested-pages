@@ -25,18 +25,7 @@ var NestedPagesTrash = function()
 	plugin.nonce = nestedpages.np_nonce;
 	plugin.formAction = 'npEmptyTrash';
 
-
-	// Initialization
-	plugin.init = function(){
-		plugin.bindEvents();
-	}
-
-	// Bind Events
 	plugin.bindEvents = function(){
-		$(document).on('click', plugin.trashButton, function(e){
-			e.preventDefault();
-			$(plugin.warningModal).modal('show');
-		});
 		$(document).on('click', plugin.confirmButton, function(e){
 			e.preventDefault();
 			plugin.confirmEmpty();
@@ -46,7 +35,7 @@ var NestedPagesTrash = function()
 	// Confirm Trash Empty
 	plugin.confirmEmpty = function(){
 		plugin.loading(true);
-		$(plugin.warningModal).hide();
+		$(document).trigger('close-modal-manual');
 		$(plugin.errorAlert).hide();
 		plugin.emptyTrash();
 	}
@@ -83,5 +72,5 @@ var NestedPagesTrash = function()
 		$(plugin.loadingIndicator).hide();
 	}
 
-	return plugin.init();
+	return plugin.bindEvents();
 }

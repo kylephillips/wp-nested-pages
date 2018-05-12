@@ -69,7 +69,7 @@ NestedPages.selectors = {
 
 	// Link Items
 	openLinkModal : '.open-redirect-modal', // Opens new link modal
-	linkModal : '#np-link-modal', // The add a link modal
+	linkModal : 'np-link-modal', // The add a link modal
 	saveLink : '.np-save-link', // Save Link Button
 	linkLoadingIndicator : '.np-link-loading', // Loading Indicator in Link Modal
 	linkErrorDiv : '.np-new-link-error', // Error Div in Link Modal
@@ -78,7 +78,7 @@ NestedPages.selectors = {
 	// Link Deletion
 	linkDeleteButton : '[data-np-confirm-delete]',
 	linkDeleteConfirmationButton : '[data-delete-confirmation]',
-	linkDeleteConfirmationModal : '#np-delete-confirmation-modal',
+	linkDeleteConfirmationModal : 'np-delete-confirmation-modal',
 	linkDeleteConfirmationModalText : '[data-np-link-delete-text]',
 
 	// New Page Items
@@ -96,7 +96,7 @@ NestedPages.selectors = {
 	// Clone
 	cloneButton : '.clone-post', // Button to clone a post
 	confirmClone : '[data-confirm-clone]', // Button in modal to confirm clone
-	cloneModal : '#np-clone-modal', // Modal with clone options
+	cloneModal : 'np-clone-modal', // Modal with clone options
 	cloneQuantity : '[data-clone-quantity]', // Quantity to Clone
 	cloneStatus : '[data-clone-status]', // Clone Status
 	cloneAuthor : '[data-clone-author]', // Clone Author

@@ -4,10 +4,7 @@
 * Populated via JS function
 */
 ?>
-<div class="np-modal fade nestedpages" id="np-bulk-modal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body new-child"></div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
+<div class="nestedpages-modal-backdrop" data-nestedpages-modal="np-bulk-modal"></div>
+<div class="nestedpages-modal-content nestedpages" id="np-bulk-modal" data-nestedpages-modal="np-bulk-modal">
+	<div class="modal-body new-child"></div>
 </div><!-- /.modal -->

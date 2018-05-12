@@ -1,80 +1,44 @@
 //
 // Modals
 // --------------------------------------------------
-
-// Modal background
-
-.modal-open {
-	overflow: hidden;
+.nestedpages-modal-backdrop {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.85);
+	top: 0;
+	left: 0;
+	z-index: $z-index-modal-backdrop;
+	visibility: hidden;
+	opacity: 0;
+	transition: all 500ms ease;
+	&.active {
+		visibility: visible;
+		opacity: 1;
+		transition: all 200ms ease;
+	}
 }
 
-.np-modal {
-	display: none;
-	overflow: hidden;
+.nestedpages-modal-content {
+	z-index: $z-index-modal-content;
 	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 99999;
-	-webkit-overflow-scrolling: touch;
-	outline: 0;
-
-	.modal-backdrop {
-		position: fixed;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		background-color: #000;
-		opacity: .85;
-		z-index: 9999;
+	top: -200%;
+	width: 90%;
+	// height: 80%;
+	margin: 10px auto 0px auto;
+	background-color: $white;
+	// transform: translateX(-50%);
+	left: 5%;
+	transition: all 500ms ease;
+	&.small {
+		width: 400px;
 	}
-	&.fade .modal-dialog {
-		@include translate(0, -25%);
-		@include transition-transform(0.3s ease-out);
+	&.active {
+		top: 50px;
+		transition: all 200ms ease;
 	}
-	&.in .modal-dialog { @include translate(0, 0) }
-
-
-	.modal-open .modal {
-		overflow-x: hidden;
-		overflow-y: auto;
-	}
-
-	.modal-dialog {
-	 	position: relative;
-		width: 90%;
-		height: 80%;
-		margin: 10px auto 0px auto;
-		max-width: 800px;
-		z-index: 9999;
-	}
-
-	// Actual modal
-	.modal-content {
-		position: relative;
-		background-color: $white;
-		box-shadow: 0 3px 9px rgba(0,0,0,.5);
-		background-clip: padding-box;
-		outline: 0;
-	}
-
-
-	.modal-header {
-		padding: 8px;
-		background-color: darken($white, 8%);
-		.sr-only {
-			display: none;
-		}
-	}
-
-	.modal-header .close {
-		margin-top: -2px;
-	}
-
-	.modal-title {
-		margin: 0;
+	h5 {
+		font-size: 1.1em;
 	}
 
 	.modal-body {
@@ -96,17 +60,58 @@
 		}
 	}
 
-	// Measure scrollbar width for padding body during modal show/hide
-	.modal-scrollbar-measure {
-		position: absolute;
-		top: -9999px;
-		width: 50px;
-		height: 50px;
-		overflow: scroll;
+	.modal-open .modal {
+		overflow-x: hidden;
+		overflow-y: auto;
 	}
 
+	// Actual modal
+	.modal-content {
+		position: relative;
+		background-color: $white;
+		box-shadow: 0 3px 9px rgba(0,0,0,.5);
+		background-clip: padding-box;
+		outline: 0;
+	}
 }
 
+.nestedpages-modal-full {
+	width: 94%;
+	height: 94%;
+	transform: none;
+	left: 3%;
+	&.active {
+		top: 3%;
+	}
+	.modal-header {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 50px;
+		z-index: 4;
+		@include clearfix;
+		padding-left: .5em;
+	} // .modal-header
+	.modal-content-interior {
+		padding-top: 50px;
+		height: 100%;
+		.modal-content-body {
+			height: 100%;
+			max-height: 100%;
+		}
+	}
+} // .modal-full
+
+.np-trash-modal {
+	text-align: center;
+	.modal-body {
+		padding-bottom: 30px;
+	}
+	.button-primary {
+		margin-left: 10px;
+	}
+}
 
 .clone-modal {
 	h3 {
@@ -117,16 +122,5 @@
 	.form-control {
 		margin: 0 !important;
 		padding: 5px 10px;
-	}
-}
-
-
-.np-trash-modal {
-	text-align: center;
-	.modal-body {
-		padding-bottom: 30px;
-	}
-	.button-primary {
-		margin-left: 10px;
 	}
 }

@@ -36,7 +36,7 @@ NestedPages.Modals = function()
 			self.closeModals();
 		});
 		$(document).on('open-modal-manual', function(e, modal){
-			self.activeModal = $('*[data-nestedpages-modal="' + modal + '"]');
+			self.activeModal = $('[data-nestedpages-modal="' + modal + '"]');
 			self.openModal();
 		});
 		$(document).on('close-modal-manual', function(e){
@@ -76,7 +76,8 @@ NestedPages.Modals = function()
 	{
 		self.modalOpen = false;
 		$('[data-nestedpages-modal]').removeClass('active');
-		$(document).trigger('close-modal', [self.activeBtn, self.activeModal]);
+		self.activeModal = '';
+		self.activeBtn = '';
 	}
 
 	/**

@@ -17,9 +17,11 @@ NestedPages.NewPost = function()
 
 	plugin.bindEvents = function()
 	{
-		$(document).on('click', NestedPages.selectors.openPageModal, function(e){
-			e.preventDefault();
-			plugin.openModal();
+		$(document).on('open-modal', function(e, button, modal){
+			var target = $(button).attr('data-nestedpages-modal-toggle');
+			if ( typeof target !== 'undefined' && target == 'np-bulk-modal' ){
+				plugin.openModal();
+			}
 		});
 		$(document).on('submit', NestedPages.selectors.newPageForm, function(e){
 			e.preventDefault();
@@ -40,16 +42,9 @@ NestedPages.NewPost = function()
 			e.preventDefault();
 			plugin.openQuickEdit($(this));
 		});
-		$(NestedPages.selectors.newPageModal).on('hide.bs.modal', function(){
-			plugin.cancelNewPage();
-		});
-		$(NestedPages.selectors.newPageModal).on('shown.bs.modal', function(){
-			plugin.modalOpened($(this));
-		});
 		$(document).on('click', NestedPages.selectors.cancelNewChildButton, function(e){
 			e.preventDefault();
 			plugin.cancelNewPage();
-			$(NestedPages.selectors.newPageModal).modal('hide');
 		});
 	}
 
@@ -61,14 +56,8 @@ NestedPages.NewPost = function()
 		$(NestedPages.selectors.newPageModal).find('.modal-body').html(newform);
 		$(NestedPages.selectors.newPageModal).find('h3').text(nestedpages.add_multiple);
 		$(NestedPages.selectors.newPageModal).find('.page_parent_id').val(plugin.parent_id);
-		$(NestedPages.selectors.newPageModal).modal('show');
-	}
-
-	// Modal has opened, set the attributes
-	plugin.modalOpened = function(modal)
-	{
-		$(modal).find('.np_title').focus();
-		$(modal).find(NestedPages.selectors.newPageTitle).prop('tabindex', '2');
+		$(newform).find('.np_title').first().focus();
+		$(newform).find(NestedPages.selectors.newPageTitle).first().prop('tabindex', '2');
 	}
 
 	// Open the new child quick edit
@@ -189,7 +178,7 @@ NestedPages.NewPost = function()
 		plugin.formatter.updateSubMenuToggle();
 		plugin.formatter.setNestedMargins();
 		plugin.cancelNewPage();
-		$(NestedPages.selectors.newPageModal).modal('hide');
+		$(document).trigger('close-modal-manual');
 	}
 
 	// Append new post rows to the nested view
@@ -208,7 +197,10 @@ NestedPages.NewPost = function()
 		}
 
 		html += '<div class="row-inner">';
-		html += '<i class="np-icon-sub-menu"></i><i class="handle np-icon-menu"></i>';
+		// Submenu
+		html += '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="np-icon-sub-menu"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M19 15l-6 6-1.42-1.42L15.17 16H4V4h2v10h9.17l-3.59-3.58L13 9l6 6z" class="arrow" /></svg>';
+		// Handle
+		html += '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="handle np-icon-menu"><path d="M0 0h24v24H0z" fill="none" /><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" class="bars" /></svg>';
 		html += '<a href="' + post.edit_link + '" class="page-link page-title">';
 		html += '<span class="title">' + post.title + '</span>';
 		
@@ -246,14 +238,20 @@ NestedPages.NewPost = function()
 
 		// Action Buttons
 		html += '<div class="action-buttons">';
-		html += '<a href="#" class="np-btn open-redirect-modal" data-parentid="' + post.id + '"><i class="np-icon-link"></i></a>';
-		html += '<a href="#" class="np-btn add-new-child" data-id="' + post.id + '" data-parentname="' + post.title + '">' + nestedpages.add_child_short + '</a>';
+		html += '<div class="nestedpages-dropdown" data-dropdown><a href="#" class="np-btn has-icon toggle" data-dropdown-toggle><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></a><ul class="nestedpages-dropdown-content" data-dropdown-content>';
+		// Add Link
+		html += '<li><a href="#" class="open-redirect-modal" data-parentid="' + post.id + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>' + nestedpages.add_link + '</a></li>';
+		// Add Child
+		html += '<li><a href="#" class="add-new-child" data-id="' + post.id + '" data-parentname="' + post.title + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 21h18v-2H3v2zM3 8v8l4-4-4-4zm8 9h10v-2H11v2zM3 3v2h18V3H3zm8 6h10V7H11v2zm0 4h10v-2H11v2z"/><path d="M0 0h24v24H0z" fill="none"/></svg>' + nestedpages.add_child_short + '</a></li>';
+		html += '</ul></div>';
 		
 		// Quick Edit (data attrs)
 		html += '<a href="#" class="np-btn np-quick-edit" data-id="' + post.id + '" data-template="' + post.page_template + '" data-title="' + post.title + '" data-slug="' + post.slug + '" data-commentstatus="closed" data-status="' + post.status.toLowerCase() + '" data-np-status="show"	data-navstatus="show" data-author="' + post.author + '" data-template="' + post.template + '" data-month="' + post.month + '" data-day="' + post.day + '" data-year="' + post.year + '" data-hour="' + post.hour + '" data-minute="' + post.minute + '" data-datepicker="' + post.datepicker + '" data-time="' + post.time + '" data-formattedtime="' + post.formattedtime + '" data-ampm="' + post.ampm + '">' + nestedpages.quick_edit + '</a>';
 
 		html += '<a href="' + post.view_link + '" class="np-btn" target="_blank">' + nestedpages.view + '</a>';
-		html += '<a href="' + post.delete_link + '" class="np-btn np-btn-trash"><i class="np-icon-remove"></i></a>';
+
+		// Trash
+		html += '<a href="' + post.delete_link + '" class="np-btn np-btn-trash"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="np-icon-remove"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" class="icon"/><path d="M0 0h24v24H0z" fill="none"/></svg></a>';
 		html += '</div><!-- .action-buttons -->';
 
 		html += '</div><!-- .row-inner --></div><!-- .row -->';

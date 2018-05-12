@@ -87,12 +87,6 @@ class Dependencies
 			wp_enqueue_script('jquery-ui-sortable');
 			wp_enqueue_script('jquery-ui-datepicker');
 			wp_enqueue_script(
-				'bootstrap', 
-				$this->plugin_dir . '/assets/js/lib/bootstrap.min.js', 
-				['jquery'], 
-				'3.3.2'
-			);
-			wp_enqueue_script(
 				'ui-touch-punch', 
 				$this->plugin_dir . '/assets/js/lib/jquery.ui.touch-punch.min.js', 
 				['jquery', 'jquery-ui-sortable'], 

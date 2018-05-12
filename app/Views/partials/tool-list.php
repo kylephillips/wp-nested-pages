@@ -35,7 +35,7 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 		<li class="np-trash-links">
 			 |
 			<a href="<?php echo esc_url($this->post_type_repo->trashLink($this->post_type->name)); ?>"><?php _e('Trash', 'wp-nested-pages'); ?> </a>
-			<span class="count">(<a href="#" class="np-empty-trash" data-posttype="<?php echo esc_attr($this->post_type->name); ?>"><?php _e('Empty', 'wp-nested-pages'); ?></a> <?php echo absint($trashedCount); ?>)</span>
+			<span class="count">(<a href="#" class="np-empty-trash" data-posttype="<?php echo esc_attr($this->post_type->name); ?>" data-nestedpages-modal-toggle="np-trash-modal"><?php _e('Empty', 'wp-nested-pages'); ?></a> <?php echo absint($trashedCount); ?>)</span>
 		</li>
 		<?php endif; ?>
 
