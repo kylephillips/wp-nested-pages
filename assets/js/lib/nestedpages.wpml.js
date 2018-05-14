@@ -37,8 +37,8 @@ NestedPages.Wpml = function()
 	*/
 	plugin.createTranslationsModal = function(button)
 	{
-		plugin.parent_li = $(button).closest(NestedPages.selectors.row).parent('li');
-		plugin.button = $(button).siblings(NestedPages.selectors.quickEditOpen);
+		plugin.parent_li = $(button).parents('.action-buttons').closest(NestedPages.selectors.row).parent('li');
+		plugin.button = $(plugin.parent_li).find(NestedPages.selectors.quickEditOpen);
 		plugin.postData = {
 			id : $(plugin.button).attr('data-id'),
 			title : $(plugin.button).attr('data-title'),
@@ -73,6 +73,8 @@ NestedPages.Wpml = function()
 				nonce : NestedPages.jsData.nonce
 			},
 			success: function(data){
+				console.log(data);
+				console.log(plugin.postData.id);
 				if ( data.status === 'success' ){
 					plugin.populateModal(data.translations);
 				} else {
