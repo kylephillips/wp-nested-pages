@@ -145,6 +145,26 @@ if ( !$wpml ) $wpml_pages = true;
 
 					<?php endif; ?>
 
+					<?php if ( $this->user->canSortPages() && !$this->listing_repo->isSearch() && !$this->post_type_settings->disable_sorting && $wpml_current_language !== 'all' ) : ?>
+					<li>
+						<a href="#" data-push-to-top>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+							<path fill="none" d="M0 0h24v24H0V0z"/>
+							<path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/>
+						</svg>
+						<?php _e('Push to Top', 'wp-nested-pages'); ?></a>
+					</li>
+
+					<li>
+						<a href="#" data-push-to-bottom>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+							<path fill="none" d="M0 0h24v24H0V0z"/>
+							<path fill="#010101" d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/>
+						</svg>
+						<?php _e('Push to Bottom', 'wp-nested-pages'); ?></a>
+					</li>
+					<?php endif; ?>
+
 					<?php if ( current_user_can('edit_pages') && current_user_can('edit_posts') && $wpml_pages ) : ?>
 					<li>
 						<a href="#" class="clone-post" data-id="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php echo esc_html($this->post->title); ?>">

@@ -35,6 +35,7 @@ var js_source = [
 	'assets/js/lib/nestedpages.confirm-delete.js',
 	'assets/js/lib/nestedpages.manual-sync.js',
 	'assets/js/lib/nestedpages.post-search.js',
+	'assets/js/lib/nestedpages.move-post.js',
 	'assets/js/lib/nestedpages.wpml.js'
 ];
 var js_source_settings = [

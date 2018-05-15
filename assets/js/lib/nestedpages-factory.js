@@ -192,6 +192,7 @@ NestedPages.Factory = function()
 	plugin.confirmDelete = new NestedPages.ConfirmDelete;
 	plugin.manualSync = new NestedPages.ManualSync;
 	plugin.postSearch = new NestedPages.PostSearch;
+	plugin.postMove = new NestedPages.MovePost;
 	plugin.wpml = new NestedPages.Wpml;
 
 	plugin.init = function()
