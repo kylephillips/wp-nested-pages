@@ -478,22 +478,23 @@
 			width: 180px;
 			li {
 				background-color: $white;
-				line-height: 36px;
 				a {
 					display: block;
 					color: $black;
-					line-height: 36px;
+					line-height: 1.2;
 					height: auto;
 					margin: 0;
-					padding: 0;
+					padding: 10px 5px 10px 30px;
+					position: relative;
 					&.disabled {
 						opacity: .3;
 					}
 					svg {
+						position: absolute;
+						left: 0;
 						width: 20px;
 						height: 20px;
-						position: relative;
-						top: 5px;
+						top: 8px;
 						margin-right: 5px;
 						margin-left: 5px;
 					}
