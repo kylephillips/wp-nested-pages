@@ -3433,7 +3433,7 @@ NestedPages.MovePost = function()
 	plugin.moveToBottom = function()
 	{
 		var parent = $(plugin.activeRow).parent(NestedPages.selectors.lists);
-		var last = $(parent).find(NestedPages.selectors.rows).last();
+		var last = $(parent).children(NestedPages.selectors.rows).last();
 		$(plugin.activeRow).insertAfter(last);
 		plugin.formatter.setBorders();
 		$(document).click(); // Close Dropdowns
