@@ -109,6 +109,7 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 * Fixes issue where disabling nesting of a post type was not working
 * Adds template names as CSS classes for custom row styling
 * Adds enhancements to the user interface
+* Removes capability to nest a page underneath a link, preventing broken links
 
 = 2.0.4 = 
 * Fixes PHP warning if a search is performed with only one result when WP_DEBUG is enabled.

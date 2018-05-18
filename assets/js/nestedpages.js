@@ -991,6 +991,9 @@ NestedPages.Nesting = function()
 			handle: NestedPages.selectors.handle,
 			placeholder: "ui-sortable-placeholder",
 			tabSize : 56,
+			isAllowed: function(placeholder, placeholderParent, currentItem){
+				return ( $(placeholderParent).hasClass('post-type-np-redirect') && !$(currentItem).hasClass('post-type-np-redirect') ) ? false : true;
+			},
 			start: function(e, ui){
 				ui.placeholder.height(ui.item.height());
 			},
