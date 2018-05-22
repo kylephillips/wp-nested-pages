@@ -58,6 +58,37 @@ class PostFactory
 	}
 
 	/**
+	* Create new Posts before/after a specified post
+	*/
+	public function createBeforeAfterPosts($data)
+	{
+		// Get the source post, so the parent can be determined
+		$parent = null;
+		$menu_order = 0;
+		$before = ( isset($data['before_id']) && $data['before_id'] !== '' ) ? true : false;
+		$reference_post = ( $before ) ? intval($data['before_id']) : intval($data['after_id']);
+		$pq = new \WP_Query([
+			'post_type' => sanitize_text_field($data['post_type']),
+			'posts_per_page' => 1,
+			'p' => $reference_post
+		]);
+		if ( $pq->have_posts() ) :
+			$parent = $pq->posts[0]->post_parent;
+			$menu_order = $pq->posts[0]->menu_order;
+		endif; wp_reset_postdata();
+		if ( $parent ){
+			$data['parent_id'] = $parent;
+			// $this->createChildPosts($data);
+		}
+
+		// Reorder to match
+		if ( $before && $menu_order > 0 ) $menu_order = $menu_order - 1;
+		if ( !$before ) $menu_order = $menu_order + 1;
+
+		return wp_send_json(['status' => 'error', 'message' => $menu_order, 'before' => $before]);
+	}
+
+	/**
 	* Get Array of New Pages
 	*/
 	private function getNewPosts($post_type)

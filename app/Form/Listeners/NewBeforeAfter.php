@@ -22,7 +22,6 @@ class NewBeforeAfter extends BaseHandler
 
 	public function __construct()
 	{
-		return wp_send_json(['status'=>'testing']);
 		parent::__construct();
 		$this->factory = new PostFactory;
 		$this->validation = new Validation;
@@ -45,7 +44,7 @@ class NewBeforeAfter extends BaseHandler
 	private function savePages()
 	{
 		if ( $this->validates() ){
-			$this->data['new_pages'] = $this->factory->createChildPosts($this->data);
+			$this->data['new_pages'] = $this->factory->createBeforeAfterPosts($this->data);
 			$this->setResponse();
 			return;
 		}

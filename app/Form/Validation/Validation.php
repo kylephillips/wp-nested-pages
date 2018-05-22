@@ -168,10 +168,24 @@ class Validation
 	*/
 	public function validateNewPages($data)
 	{
-		// Check for Parent ID
-		if ( (!isset($data['parent_id'])) || (!is_numeric($data['parent_id'])) ){
-			$message = __('A valid parent page was not provided.', 'wp-nested-pages');
-			return wp_send_json(['status' => 'error', 'message' => $message]);
+		// Check for Parent ID or Before/After IDs
+		if ( !isset($data['before_id']) && !isset($data['after_id']) ){
+			if ( (!isset($data['parent_id'])) || (!is_numeric($data['parent_id'])) ){
+				$message = __('A valid parent page was not provided.', 'wp-nested-pages');
+				return wp_send_json(['status' => 'error', 'message' => $message]);
+				die();
+			}
+		}
+
+		if ( isset($data['before_id']) && $data['before_id'] !== '' && !is_numeric($data['before_id']) ){
+			$message = __('A valid parent page was not provided to insert before.', 'wp-nested-pages');
+			return wp_send_json(['status' => 'error', 'message' => $message, 'data' => $data]);
+			die();
+		}
+
+		if ( isset($data['after_id']) && $data['after_id'] !== '' && !is_numeric($data['after_id']) ){
+			$message = __('A valid parent page was not provided to insert after.', 'wp-nested-pages');
+			return wp_send_json(['status' => 'error', 'message' => $message, 'data' => $data]);
 			die();
 		}
 
@@ -186,7 +200,7 @@ class Validation
 		foreach ( $data['post_title'] as $title ){
 			if ( $title == "" ){
 				$message = __('Page titles cannot be blank.', 'wp-nested-pages');
-				return wp_send_json(['status' => 'error', 'message' => $message]);
+				return wp_send_json(['status' => 'error', 'message' => $message, 'data' => $data]);
 				die();
 			}
 		}
