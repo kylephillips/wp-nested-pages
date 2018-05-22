@@ -36,6 +36,7 @@ class Events
 			'wp_ajax_npquickEditLink',
 			'wp_ajax_npgetTaxonomies',
 			'wp_ajax_npnewChild',
+			'wp_ajax_npnewBeforeAfter',
 			'admin_post_npListingSort',
 			'wp_ajax_npEmptyTrash',
 			'admin_post_npSearch',

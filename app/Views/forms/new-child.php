@@ -4,7 +4,7 @@
 ?>
 <form method="get" action="" class="np-new-child-form">
 	<div class="form-interior">
-	<h3><strong><?php _e('Add Child', 'wp-nested-pages'); ?></strong><span class="parent_name"></span></h3>
+	<h3 data-new-post-relation-title><strong><?php _e('Add Child', 'wp-nested-pages'); ?></strong><span class="parent_name"></span></h3>
 
 	<div class="np-quickedit-error" style="clear:both;display:none;"></div>
 	
@@ -95,6 +95,8 @@
 
 	<div class="buttons">
 		<input type="hidden" name="parent_id" class="page_parent_id" />
+		<input type="hidden" name="before_id" class="page_before_id" />
+		<input type="hidden" name="after_id" class="page_after_id" />
 		<input type="hidden" name="post_type" value="<?php echo $this->post_type->name; ?>" />
 		<a accesskey="c" href="#" class="button-secondary alignleft np-cancel-newchild" data-nestedpages-modal-close>
 			<?php _e( 'Cancel' ); ?>

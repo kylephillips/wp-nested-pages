@@ -1235,6 +1235,14 @@ NestedPages.NewPost = function()
 			e.preventDefault();
 			plugin.cancelNewPage();
 		});
+		$(document).on('click', '[' + NestedPages.selectors.newBeforeButton + ']', function(e){
+			e.preventDefault();
+			plugin.openQuickEdit($(this));
+		});
+		$(document).on('click', '[' + NestedPages.selectors.newAfterButton + ']', function(e){
+			e.preventDefault();
+			plugin.openQuickEdit($(this));
+		});
 	}
 
 	// Open the form modal
@@ -1252,6 +1260,12 @@ NestedPages.NewPost = function()
 	// Open the new child quick edit
 	plugin.openQuickEdit = function(button)
 	{
+		var before = $(button).attr(NestedPages.selectors.newBeforeButton);
+		before = ( typeof before === 'undefined' || before === '' ) ? false : before;
+
+		var after = $(button).attr(NestedPages.selectors.newAfterButton);
+		after = ( typeof after === 'undefined' || after === '' ) ? false : after;
+
 		var parent_li = $(button).closest(NestedPages.selectors.row).parent('li');
 		var newform = $(NestedPages.selectors.newPageFormContainer).clone();
 
@@ -1263,12 +1277,23 @@ NestedPages.NewPost = function()
 			$(newform).appendTo(parent_li);
 		}
 
+
 		$(newform).siblings(NestedPages.selectors.row).hide();
 
 		plugin.formatter.showQuickEdit();
 
 		$(newform).find('.parent_name').html('<em>Parent:</em> ' + $(button).attr('data-parentname'));
-		$(newform).find('.page_parent_id').val($(button).attr('data-id'));
+		if ( !before && !after ) $(newform).find('.page_parent_id').val($(button).attr('data-id'));
+
+		if ( before ) {
+			$(newform).find('.page_before_id').val(before);
+			$(newform).find('[data-new-post-relation-title]').text(nestedpages.insert_before + ': ' + $(button).attr('data-parentname'));
+		}
+		if ( after ) {
+			$(newform).find('.page_after_id').val(after);
+			$(newform).find('[data-new-post-relation-title]').text(nestedpages.insert_after + ': ' + $(button).attr('data-parentname'));
+		}
+
 		$(newform).show();
 		$(newform).find('.np_title').focus();
 		$(newform).find(NestedPages.selectors.newPageTitle).prop('tabindex', '2');
@@ -1312,13 +1337,18 @@ NestedPages.NewPost = function()
 		plugin.form = $(button).parents('form');
 
 		var addedit = ( $(button).hasClass('add-edit') ) ? true : false;
-
+		var action = NestedPages.formActions.newPage;
+		if ( $(plugin.form).find('.page_before_id').val() !== '' ) action = NestedPages.formActions.newBeforeAfter;
+		if ( $(plugin.form).find('.page_after_id').val() !== '' ) action = NestedPages.formActions.newBeforeAfter;
+		
 		$.ajax({
 			url: NestedPages.jsData.ajaxurl,
 			type: 'post',
 			datatype: 'json',
-			data: $(plugin.form).serialize() + '&action=' + NestedPages.formActions.newPage + '&nonce=' + NestedPages.jsData.nonce + '&syncmenu=' + NestedPages.jsData.syncmenu + '&post_type=' + NestedPages.jsData.posttype,
+			data: $(plugin.form).serialize() + '&action=' + action + '&nonce=' + NestedPages.jsData.nonce + '&syncmenu=' + NestedPages.jsData.syncmenu + '&post_type=' + NestedPages.jsData.posttype,
 			success: function(data){
+				// console.log(data);
+				// return;
 				if (data.status === 'error'){
 					plugin.toggleLoading(false);
 					$(plugin.form).find(NestedPages.selectors.quickEditErrorDiv).text(data.message).show();
@@ -2434,6 +2464,8 @@ NestedPages.selectors = {
 	addChildButton : '.add-new-child', // Button to add child page(s)
 	newChildError : '.np-newchild-error', // Error div in new child quick edit
 	cancelNewChildButton : '.np-cancel-newchild', // Cancel button in new child quick edit
+	newBeforeButton : 'data-insert-before', // Add new post(s) before a post
+	newAfterButton : 'data-insert-after', // Add new post(s) after a post
 
 	// Clone
 	cloneButton : '.clone-post', // Button to clone a post
@@ -2493,6 +2525,7 @@ NestedPages.formActions = {
 	syncNesting : 'npsort',
 	syncMenu : 'npsyncMenu',
 	newPage : 'npnewChild',
+	newBeforeAfter : 'npnewBeforeAfter',
 	quickEditLink : 'npquickEditLink',
 	getTaxonomies : 'npgetTaxonomies',
 	quickEditPost : 'npquickEdit',

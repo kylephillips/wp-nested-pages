@@ -146,7 +146,9 @@ class Dependencies
 				'settings_page' => $settings_page,
 				'wpml' => ( $this->integrations->plugins->wpml->installed ) ? true : false,
 				'add_translation' => __('Add Translation', 'wp-nested-pages'),
-				'edit' => __('Edit', 'wp-nested-pages')
+				'edit' => __('Edit', 'wp-nested-pages'),
+				'insert_before' => __('Insert Before', 'wp-nested-pages'),
+				'insert_after' => __('Insert After', 'wp-nested-pages')
 			];
 			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;
 			$localized_data['syncmenu'] = $syncmenu;

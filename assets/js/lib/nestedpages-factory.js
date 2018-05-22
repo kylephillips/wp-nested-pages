@@ -92,6 +92,8 @@ NestedPages.selectors = {
 	addChildButton : '.add-new-child', // Button to add child page(s)
 	newChildError : '.np-newchild-error', // Error div in new child quick edit
 	cancelNewChildButton : '.np-cancel-newchild', // Cancel button in new child quick edit
+	newBeforeButton : 'data-insert-before', // Add new post(s) before a post
+	newAfterButton : 'data-insert-after', // Add new post(s) after a post
 
 	// Clone
 	cloneButton : '.clone-post', // Button to clone a post
@@ -151,6 +153,7 @@ NestedPages.formActions = {
 	syncNesting : 'npsort',
 	syncMenu : 'npsyncMenu',
 	newPage : 'npnewChild',
+	newBeforeAfter : 'npnewBeforeAfter',
 	quickEditLink : 'npquickEditLink',
 	getTaxonomies : 'npgetTaxonomies',
 	quickEditPost : 'npquickEdit',
