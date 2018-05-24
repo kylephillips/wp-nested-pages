@@ -110,6 +110,7 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 * Adds template names as CSS classes for custom row styling
 * Adds enhancements to the user interface
 * Removes capability to nest a page underneath a link, preventing broken links
+* Fixes issue where meta values were not being saved during cloning, when the source post contained multiple entries with the same meta_key
 
 = 2.0.4 = 
 * Fixes PHP warning if a search is performed with only one result when WP_DEBUG is enabled.
