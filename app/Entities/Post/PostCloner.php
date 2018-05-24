@@ -109,7 +109,9 @@ class PostCloner
 	{
 		$meta = get_post_meta($this->original_id);
 		foreach($meta as $key => $value){
-			add_post_meta($this->new_id, $key, $value[0]);
+			foreach( $value as $entry ){
+				add_post_meta($this->new_id, $key, $entry);
+			}
 		}
 	}
 }
