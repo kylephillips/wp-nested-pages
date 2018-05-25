@@ -88,8 +88,12 @@ class PostFactory
 		$first_new_id = $new_posts[0]['id'];
 		$last_new_id = $new_posts[count($new_posts) - 1]['id'];
 
+		$sql = "UPDATE `$wpdb->posts` SET menu_order = menu_order+%d WHERE post_parent = %d AND (post_status = 'publish' OR post_status = 'draft') AND (post_type = '%s'";
+		if ( $post_type == 'page' ) $sql .= " OR post_type = 'np-redirect'";
+		$sql .= ") AND (menu_order >= %d) ORDER BY menu_order;";
+
 		// Reorder All posts after the new ones
-		$wpdb->query($wpdb->prepare("UPDATE `$wpdb->posts` SET menu_order = menu_order+%d WHERE post_parent = %d AND (post_status = 'publish' OR post_status = 'draft') AND (post_type = '%s') AND (menu_order >= %d) ORDER BY menu_order;", [$new_post_count, $parent, $post_type, $menu_order]));
+		$wpdb->query($wpdb->prepare($sql, [$new_post_count, $parent, $post_type, $menu_order]));
 		// Reorder the new posts menu_order
 		$wpdb->query($wpdb->prepare("SET @start_order := %d;", [$menu_order-1]));
 		$wpdb->query($wpdb->prepare("UPDATE `$wpdb->posts` SET menu_order = (@start_order:=@start_order+1) WHERE post_parent = %d AND (post_type = '%s') AND (ID BETWEEN %d AND %d) ORDER BY menu_order;", [$parent, $post_type, $first_new_id, $last_new_id]));
