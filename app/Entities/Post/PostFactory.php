@@ -62,42 +62,39 @@ class PostFactory
 	*/
 	public function createBeforeAfterPosts($data)
 	{
-		// Get the source post, so the reference point can be determined
 		global $wpdb;
-		$parent = null;
 		$menu_order = 0;
+		$parent = false;
 		$post_type = sanitize_text_field($data['post_type']);
-		$before = ( isset($data['before_id']) && $data['before_id'] !== '' ) ? true : false;
-		$reference_post = ( $before ) ? intval($data['before_id']) : intval($data['after_id']);
+		$after = ( isset($data['after_id']) && $data['after_id'] !== '' ) ? true : false;
+		$reference_post = ( $after ) ? intval($data['after_id']) : intval($data['before_id']);
+
+		// Get the source post, so the reference points for menu order can be determined
 		$pq = new \WP_Query([
 			'post_type' => $post_type,
 			'posts_per_page' => 1,
 			'p' => $reference_post
 		]);
 		if ( $pq->have_posts() ) :
-			$parent = $pq->posts[0]->post_parent;
-			$menu_order = $pq->posts[0]->menu_order;
+			$parent = intval($pq->posts[0]->post_parent);
+			$menu_order = $pq->posts[0]->menu_order; 
 		endif; wp_reset_postdata();
-		if ( $parent ){
-			$data['parent_id'] = $parent;
-			$new_posts = $this->createChildPosts($data);
-		}
 
-		// Reorder to match
-		if ( $before && $menu_order > 0 ) $menu_order = $menu_order - 1;
-		if ( !$before ) $menu_order = $menu_order + 1;
+		if ( $parent ) $data['parent_id'] = $parent;
+		$new_posts = $this->createChildPosts($data);
 
-		// Loop through new child posts and set new order for them
+		if ( $after ) $menu_order = $menu_order + 1;
 		$new_post_count = count($new_posts);
+		$first_new_id = $new_posts[0]['id'];
+		$last_new_id = $new_posts[count($new_posts) - 1]['id'];
 
+		// Reorder All posts after the new ones
+		$wpdb->query($wpdb->prepare("UPDATE `$wpdb->posts` SET menu_order = menu_order+%d WHERE post_parent = %d AND (post_status = 'publish' OR post_status = 'draft') AND (post_type = '%s') AND (menu_order >= %d) ORDER BY menu_order;", [$new_post_count, $parent, $post_type, $menu_order]));
+		// Reorder the new posts menu_order
+		$wpdb->query($wpdb->prepare("SET @start_order := %d;", [$menu_order-1]));
+		$wpdb->query($wpdb->prepare("UPDATE `$wpdb->posts` SET menu_order = (@start_order:=@start_order+1) WHERE post_parent = %d AND (post_type = '%s') AND (ID BETWEEN %d AND %d) ORDER BY menu_order;", [$parent, $post_type, $first_new_id, $last_new_id]));
 
-		$sql = ( $before ) 
-			? ""
-			: $wpdb->prepare("UPDATE $wpdb->posts SET menu_order = menu_order+%i WHERE post_parent = %i AND (post_status = 'publish' OR post_status = 'draft') AND (post_type = '%s') AND (menu_order >= %i) ORDER BY menu_order;", $new_post_count, $parent, $post_type, $reference_post);
-
-		// If insert before or after, Reorder all posts after the new ones starting at the count of the new posts
-
-		return wp_send_json(['status' => 'error', 'message' => $menu_order, 'before' => $before, 'reference' => $reference_post, 'new_posts' => $new_posts]);
+		return $new_posts;
 	}
 
 	/**
