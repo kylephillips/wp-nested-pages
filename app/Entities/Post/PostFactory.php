@@ -62,13 +62,15 @@ class PostFactory
 	*/
 	public function createBeforeAfterPosts($data)
 	{
-		// Get the source post, so the parent can be determined
+		// Get the source post, so the reference point can be determined
+		global $wpdb;
 		$parent = null;
 		$menu_order = 0;
+		$post_type = sanitize_text_field($data['post_type']);
 		$before = ( isset($data['before_id']) && $data['before_id'] !== '' ) ? true : false;
 		$reference_post = ( $before ) ? intval($data['before_id']) : intval($data['after_id']);
 		$pq = new \WP_Query([
-			'post_type' => sanitize_text_field($data['post_type']),
+			'post_type' => $post_type,
 			'posts_per_page' => 1,
 			'p' => $reference_post
 		]);
@@ -78,14 +80,24 @@ class PostFactory
 		endif; wp_reset_postdata();
 		if ( $parent ){
 			$data['parent_id'] = $parent;
-			// $this->createChildPosts($data);
+			$new_posts = $this->createChildPosts($data);
 		}
 
 		// Reorder to match
 		if ( $before && $menu_order > 0 ) $menu_order = $menu_order - 1;
 		if ( !$before ) $menu_order = $menu_order + 1;
 
-		return wp_send_json(['status' => 'error', 'message' => $menu_order, 'before' => $before]);
+		// Loop through new child posts and set new order for them
+		$new_post_count = count($new_posts);
+
+
+		$sql = ( $before ) 
+			? ""
+			: $wpdb->prepare("UPDATE $wpdb->posts SET menu_order = menu_order+%i WHERE post_parent = %i AND (post_status = 'publish' OR post_status = 'draft') AND (post_type = '%s') AND (menu_order >= %i) ORDER BY menu_order;", $new_post_count, $parent, $post_type, $reference_post);
+
+		// If insert before or after, Reorder all posts after the new ones starting at the count of the new posts
+
+		return wp_send_json(['status' => 'error', 'message' => $menu_order, 'before' => $before, 'reference' => $reference_post, 'new_posts' => $new_posts]);
 	}
 
 	/**
