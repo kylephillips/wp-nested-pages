@@ -158,7 +158,6 @@ NestedPages.NewPost = function()
 			datatype: 'json',
 			data: $(plugin.form).serialize() + '&action=' + action + '&nonce=' + NestedPages.jsData.nonce + '&syncmenu=' + NestedPages.jsData.syncmenu + '&post_type=' + NestedPages.jsData.posttype,
 			success: function(data){
-				console.log(data);
 				if (data.status === 'error'){
 					plugin.toggleLoading(false);
 					$(plugin.form).find(NestedPages.selectors.quickEditErrorDiv).text(data.message).show();
@@ -185,10 +184,16 @@ NestedPages.NewPost = function()
 	// Add the new posts
 	plugin.addPosts = function()
 	{
+		// Before/After ID if applicable
+		var before = $(plugin.form).find('.page_before_id').val();
+		before = ( before !== '' ) ? before : false;
+		var after = $(plugin.form).find('.page_after_id').val();
+		after = ( after !== '' ) ? after : false;
+
 		var parent_li = $(plugin.form).parent('.new-child').parent('.page-row');
 		
 		// If parent li doesn't have a child ol, add one
-		if ( $(parent_li).children('ol').length === 0 ){
+		if ( $(parent_li).children('ol').length === 0 && !before && !after ){
 			$(parent_li).append('<ol class="nplist"></ol>');
 		}
 
@@ -199,11 +204,14 @@ NestedPages.NewPost = function()
 		}
 
 		for (i = 0; i < plugin.posts.length; i++){
-			plugin.appendRows(appendto, plugin.posts[i]);
+			plugin.appendRows(appendto, plugin.posts[i], before, after);
 		}
 
 		// Show the child page list and reset submenu toggles
-		$(appendto).show();
+		if ( !before && !after ){
+			$(appendto).show();
+		}
+
 		plugin.formatter.updateSubMenuToggle();
 		plugin.formatter.setNestedMargins();
 		plugin.cancelNewPage();
@@ -211,7 +219,7 @@ NestedPages.NewPost = function()
 	}
 
 	// Append new post rows to the nested view
-	plugin.appendRows = function(appendto, post)
+	plugin.appendRows = function(appendto, post, before, after)
 	{
 		var html = '<li id="menuItem_' + post.id + '" class="page-row';
 		if ( post.status === 'publish' ) html += ' published';
@@ -286,7 +294,25 @@ NestedPages.NewPost = function()
 		html += '</div><!-- .row-inner --></div><!-- .row -->';
 		html += '</li>';
 
+		if ( before ){
+			var row = plugin.findRowById(before);
+			$(html).insertBefore(row);
+			return;
+		}
+		if ( after ){
+			var row = plugin.findRowById(after);
+			$(html).insertAfter(row);
+			return;
+		}
+
 		$(appendto).append(html);
+	}
+
+	// Find the row for inserting before/after
+	plugin.findRowById = function(id)
+	{
+		var row = $(NestedPages.selectors.rows + '#menuItem_' + id);
+		return row;
 	}
 
 	// Toggle the form loading state
