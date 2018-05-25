@@ -99,13 +99,14 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 == Changelog ==
 
 = 3.1.0 =
-* PHP Version 5.4.0+ is required to run Nested Pages v3
+* Breaking Change: PHP Version 5.4.0+ is required to run Nested Pages v3
 * Parent field added to bulk edit under hierarchical post types.
 * Fixes HTML Validation where invalid rel attribute error was being thrown on custom link items.
-* Fixes bug where filtering by taxonomy does not work.
+* Fixes bug where filtering by taxonomy did not work.
 * Adds error handling for existing nav menu with the name “Nested Pages”, preventing WP_Error object from saving in the database which causes a fatal error in some instances.
 * Adds support for custom post states, using the display_post_states filter (Ex: Showing a WooCommerce - Checkout Page designator)
 * Adds support for custom row actions using the post_row_actions and page_row_actions filters
+* Adds new feature for inserting new posts before/after a selected post
 * Fixes issue where disabling nesting of a post type was not working
 * Adds template names as CSS classes for custom row styling
 * Adds enhancements to the user interface
