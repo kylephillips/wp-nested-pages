@@ -93,7 +93,9 @@ if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
 		<div class="quick-edit quick-edit-form-redirect np-inline-modal" style="display:none;">
 			<?php include( NestedPages\Helpers::view('forms/quickedit-link') ); ?>
 		</div>
+		<?php endif; ?>
 
+		<?php if ( current_user_can('publish_pages') ) : ?>
 		<div class="new-child new-child-form np-inline-modal" style="display:none;">
 			<?php include( NestedPages\Helpers::view('forms/new-child') ); ?>
 		</div>
