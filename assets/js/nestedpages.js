@@ -21,11 +21,12 @@ NestedPages.Formatter = function()
 			var row = $(button).parent('.row').parent('li');
 			if ( $(row).children('ol').length > 0 ){ // Row has a child menu
 				
-				var icon = ( $(row).children('ol:visible').length > 0 ) 
-					? NestedPages.cssClasses.iconToggleDown 
-					: NestedPages.cssClasses.iconToggleRight;
-
-				$(button).html('<div class="child-toggle-spacer"></div><a href="#"><i class="' + icon + '"></i></a>');
+				var open = ( $(row).children('ol:visible').length > 0 ) ? true : false;
+				var html = '<div class="child-toggle-spacer"></div>';
+				html += '<a href="#"';
+				if ( open ) html += ' class="open"';
+				html += '><span class="np-icon-arrow"></span></a>';
+				$(button).html(html);
 
 				if ( ($(row).children('ol').children('.np-hide').length > 0) && ($(row).children('ol').children('.np-hide.shown').length === 0) ){
 					$(button).find('a').hide();
@@ -758,9 +759,7 @@ NestedPages.MenuToggle = function()
 	plugin.toggleSingleMenu = function(button)
 	{
 		var submenu = $(button).parent(NestedPages.selectors.childToggle).parent(NestedPages.selectors.row).siblings('ol');
-		$(button).find('i')
-			.toggleClass(NestedPages.cssClasses.iconToggleDown)
-			.toggleClass(NestedPages.cssClasses.iconToggleRight);
+		$(button).toggleClass('open');
 		$(submenu).toggle();
 		plugin.formatter.setBorders();
 		plugin.formatter.setNestedMargins();
@@ -775,8 +774,7 @@ NestedPages.MenuToggle = function()
 		if ( $(button).attr('data-toggle') === 'closed' ){
 			$(NestedPages.selectors.lists).show();
 			$(button).attr('data-toggle', 'opened').text(NestedPages.jsData.collapseText);
-			$(NestedPages.selectors.childToggle).find('i').removeClass(NestedPages.cssClasses.iconToggleRight).addClass(NestedPages.cssClasses.iconToggleDown);
-			// revert_quick_edit();
+			$(NestedPages.selectors.childToggle + ' a').addClass('open');
 			plugin.formatter.setBorders();
 			plugin.syncUserToggles();
 			return;
@@ -784,8 +782,7 @@ NestedPages.MenuToggle = function()
 		
 		$(NestedPages.selectors.lists).not($(NestedPages.selectors.lists)[0]).hide();
 		$(button).attr('data-toggle', 'closed').text(NestedPages.jsData.expandText);
-		$(NestedPages.selectors.childToggle).find('i').removeClass(NestedPages.cssClasses.iconToggleDown).addClass(NestedPages.cssClasses.iconToggleRight);
-		// revert_quick_edit();
+		$(NestedPages.selectors.childToggle + ' a').removeClass('open');
 		plugin.formatter.setBorders();
 		plugin.syncUserToggles();
 	}
@@ -2465,8 +2462,6 @@ NestedPages.selectors = {
 
 // CSS Classes
 NestedPages.cssClasses = {
-	iconToggleDown : 'np-icon-arrow-down',
-	iconToggleRight : 'np-icon-arrow-right',
 	noborder : 'no-border'
 }
 

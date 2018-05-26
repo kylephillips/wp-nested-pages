@@ -29,9 +29,7 @@ NestedPages.MenuToggle = function()
 	plugin.toggleSingleMenu = function(button)
 	{
 		var submenu = $(button).parent(NestedPages.selectors.childToggle).parent(NestedPages.selectors.row).siblings('ol');
-		$(button).find('i')
-			.toggleClass(NestedPages.cssClasses.iconToggleDown)
-			.toggleClass(NestedPages.cssClasses.iconToggleRight);
+		$(button).toggleClass('open');
 		$(submenu).toggle();
 		plugin.formatter.setBorders();
 		plugin.formatter.setNestedMargins();
@@ -46,8 +44,7 @@ NestedPages.MenuToggle = function()
 		if ( $(button).attr('data-toggle') === 'closed' ){
 			$(NestedPages.selectors.lists).show();
 			$(button).attr('data-toggle', 'opened').text(NestedPages.jsData.collapseText);
-			$(NestedPages.selectors.childToggle).find('i').removeClass(NestedPages.cssClasses.iconToggleRight).addClass(NestedPages.cssClasses.iconToggleDown);
-			// revert_quick_edit();
+			$(NestedPages.selectors.childToggle + ' a').addClass('open');
 			plugin.formatter.setBorders();
 			plugin.syncUserToggles();
 			return;
@@ -55,8 +52,7 @@ NestedPages.MenuToggle = function()
 		
 		$(NestedPages.selectors.lists).not($(NestedPages.selectors.lists)[0]).hide();
 		$(button).attr('data-toggle', 'closed').text(NestedPages.jsData.expandText);
-		$(NestedPages.selectors.childToggle).find('i').removeClass(NestedPages.cssClasses.iconToggleDown).addClass(NestedPages.cssClasses.iconToggleRight);
-		// revert_quick_edit();
+		$(NestedPages.selectors.childToggle + ' a').removeClass('open');
 		plugin.formatter.setBorders();
 		plugin.syncUserToggles();
 	}

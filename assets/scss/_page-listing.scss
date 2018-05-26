@@ -228,16 +228,32 @@
 			color: $black;
 			box-shadow: none;
 			transition: all 200ms ease;
-			i {
-				line-height: 26px;
+			transform: rotate(0deg);
+			&.open {
+				transition: all 200ms ease;
+				transform: rotate(90deg);
 			}
 			&:hover {
-				background-color: $blue;
-				color: $white;
-				border-color: $blue;
+				background-color: $black;
+				border-color: $black;
+				.np-icon-arrow {
+					border-left-color: $white;
+				}
 			}
 		}
 	} // .child-toggle
+
+	.np-icon-arrow {
+		display: inline-block;
+		vertical-align: middle;
+		width: 0;
+		height: 0; 
+		position: relative;
+		top: -3px;
+		border-top: 4px solid transparent;
+		border-bottom: 4px solid transparent;
+		border-left: 6px solid $black;
+	}
 
 	// Handle for sortable functionality
 	.handle {
@@ -508,7 +524,6 @@
 	} // .nestedpages-dropdown
 
 } // .nestedpages
-
 
 .np-search {
 	float: right;

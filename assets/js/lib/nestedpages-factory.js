@@ -121,8 +121,6 @@ NestedPages.selectors = {
 
 // CSS Classes
 NestedPages.cssClasses = {
-	iconToggleDown : 'np-icon-arrow-down',
-	iconToggleRight : 'np-icon-arrow-right',
 	noborder : 'no-border'
 }
 
