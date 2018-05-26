@@ -65,7 +65,9 @@
 			<a accesskey="s" class="button-primary alignright" data-confirm-clone>
 				<?php _e( 'Clone', 'wp-nested-pages' ); ?>
 			</a>
-			<span class="np-qe-loading np-link-loading" data-clone-loading></span>
+			<div class="np-qe-loading" data-clone-loading>
+				<?php include( NestedPages\Helpers::asset('images/spinner.svg') ); ?>
+			</div>
 		</div>
 	</div><!-- .modal-content -->
 	

@@ -11,7 +11,7 @@
 	svg {
 		width: 30px;
 		height: 30px;
-		animation: nestedpagesRotate linear 1.5s infinite;
+		animation: nestedpagesRotate linear 1.25s infinite;
 		position: absolute;
 		left: 0;
 		top: 0;
@@ -19,6 +19,36 @@
 		path {
 			fill: darken($white, 40%);
 		}
+	}
+}
+
+.np-qe-loading,
+.np-default-loading,
+.np-menu-search-loading {
+	display: none;
+	float: right;
+	width: 25px;
+	height: 25px;
+	margin: 2px 10px 0 0;
+	position: relative;
+	animation: nestedpagesRotate linear 1.25s infinite;
+	svg {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 25px;
+		height: 25px;
+		path {
+			fill: $white;
+		}
+	}
+}
+
+.np-default-loading {
+	float: none;
+	margin: 0;
+	svg path {
+		fill: darken($white, 40%);
 	}
 }
 

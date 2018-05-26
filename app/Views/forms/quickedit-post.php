@@ -247,6 +247,8 @@
 		<a accesskey="s" href="#inline-edit" class="button-primary np-save-quickedit alignright">
 			<?php _e( 'Update' ); ?>
 		</a>
-		<span class="np-qe-loading"></span>
+		<div class="np-qe-loading">
+			<?php include( NestedPages\Helpers::asset('images/spinner.svg') ); ?>
+		</div>
 	</div>
 </form>

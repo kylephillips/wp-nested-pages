@@ -25,7 +25,14 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 								if ( !$recent_posts ) continue;
 								$out = '<li><a href="#" data-np-menu-accordion-item>' . esc_html($type->labels->name) . '</a>';
 								$out .= '<ul>';
-								$out .= '<li class="np-menu-search"><input type="text" data-np-menu-search data-search-type="post_type" data-search-object="' . esc_attr($name) . '" placeholder="' . __('Search', 'wp-nested-pages') . ' ' . esc_attr($type->labels->name) . '" /><div class="np-menu-search-loading"></div><div class="np-menu-search-noresults">' . __('No Results', 'wp-nested-pages') . '</div></li>';
+								$out .= '<li class="np-menu-search"><input type="text" data-np-menu-search data-search-type="post_type" data-search-object="' . esc_attr($name) . '" placeholder="' . __('Search', 'wp-nested-pages') . ' ' . esc_attr($type->labels->name) . '" />';
+								$out .= '<div class="np-default-loading np-menu-search-loading">';
+								ob_start();
+									include( NestedPages\Helpers::asset('images/spinner.svg') );
+									$out .= ob_get_contents();
+								ob_end_clean();
+								$out .= '</div>';
+								$out .= '<div class="np-menu-search-noresults">' . __('No Results', 'wp-nested-pages') . '</div></li>';
 								foreach ( $recent_posts as $post ){
 									$out .= '<li data-default-result><a href="#" data-np-menu-object="' . esc_attr($name) . '" data-np-menu-type="post_type" data-np-menu-objectid="' . esc_attr($post->ID) . '" data-np-permalink="' . get_the_permalink($post->ID) . '" data-np-object-name="' . esc_attr($type->labels->singular_name) . '" data-np-menu-selection>' . esc_html($post->post_title) . '</a></li>';
 								}
@@ -105,7 +112,9 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 				<a accesskey="s" class="button-primary" data-np-save-link style="display:none;float:right;">
 					<?php _e( 'Add', 'wp-nested-pages' ); ?>
 				</a>
-				<span class="np-qe-loading"></span>
+				<div class="np-qe-loading">
+					<?php include( NestedPages\Helpers::asset('images/spinner.svg') ); ?>
+				</div>
 
 			</div><!-- .modal-footer -->
 			</form>

@@ -107,6 +107,8 @@
 		<a href="#" class="button-secondary np-save-newchild add-edit alignright">
 			<?php _e( 'Add & Edit', 'wp-nested-pages' ); ?>
 		</a>
-		<span class="np-qe-loading"></span>
+		<div class="np-qe-loading">
+			<?php include( NestedPages\Helpers::asset('images/spinner.svg') ); ?>
+		</div>
 	</div>
 </form>

@@ -93,7 +93,9 @@ settings_fields( 'nestedpages-posttypes' );
 									?>
 									<input type="search" data-nestedpages-post-search="page" placeholder="<?php _e('Search Pages', 'wp-nested-pages'); ?>" />
 									<div class="np-quickedit-info" style="display:none;" data-nestedpages-no-results><?php _e('No pages were found.', 'wp-nested-pages'); ?></div>
-									<img src="<?php echo NestedPages\Helpers::plugin_url(); ?>/assets/images/spinner.gif" alt="<?php _e('Loading', 'wp-nested-pages'); ?>" style="display:none;" data-nestedpages-loading />
+									<div class="np-default-loading" data-nestedpages-loading>
+										<?php include( NestedPages\Helpers::asset('images/spinner.svg') ); ?>
+									</div>
 									<div class="nestedpages-page-search-results" data-nestedpages-search-results>
 										<ul>
 										<?php foreach($recent_pages as $page) : ?>

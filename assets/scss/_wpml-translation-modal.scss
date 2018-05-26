@@ -2,16 +2,19 @@
 // WPML Inline Modal for displaying translations for a post
 // --------------------------------------------------
 .np-wpml-translations-modal {
-	.loading-indicator {
-		display: none;
+	.np-qe-loading {
+		margin: 1em 0;
 		text-align: center;
-		padding: 30px 0;
+		float: left;
+		svg path {
+			fill: darken($white, 40%);
+		}
 	}
 	&.loading {
 		.np-translations-table {
 			display: none;
 		}
-		.loading-indicator {
+		.np-qe-loading {
 			display: block;
 		}
 	}
