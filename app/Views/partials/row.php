@@ -38,7 +38,11 @@ if ( !$wpml ) $wpml_pages = true;
 				// Post Status
 				echo '<span class="status">';
 				if ( $this->post->status !== 'publish' )	echo '(' . __(ucfirst($this->post->status)) . ')';
-				if ( post_password_required($this->post->id) ) echo ' <i class="np-icon-lock"></i>';
+				if ( post_password_required($this->post->id) ) {
+					echo '<span class="locked password-required">';
+					echo ' <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>';
+					echo '</span>';
+				}
 				echo '</span>';
 
 				// Nested Pages Status
@@ -55,9 +59,13 @@ if ( !$wpml ) $wpml_pages = true;
 				// Post Lock
 				if ( $user = wp_check_post_lock($this->post->id) ){
 					$u = get_userdata($user);
-					echo '<span class="locked"><i class="np-icon-lock"></i><em> ' . esc_html($u->display_name) . ' ' . __('currently editing', 'wp-nested-pages') . '</em></span>';
+					echo '<span class="locked">';
+					echo ' <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>';
+					echo '<em> ' . esc_html($u->display_name) . ' ' . __('currently editing', 'wp-nested-pages') . '</em></span>';
 				} elseif ( !$this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ){
-					echo '<span class="locked"><i class="np-icon-lock"></i></span>';
+					echo '<span class="locked">';
+					echo ' <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>';
+					echo '</span>';
 				} else {
 					echo '<span class="edit-indicator">' . apply_filters('nestedpages_edit_link_text', __('Edit', 'wp-nested-pages'), $this->post) . '</span>';
 				}
@@ -68,7 +76,9 @@ if ( !$wpml ) $wpml_pages = true;
 				echo '>(' . __('Sticky', 'wp-nested-pages') . ')<span>';
 
 				if ( $this->post->status !== 'publish' )	echo '(' . __(ucfirst($this->post->status)) . ')';
-				if ( post_password_required($this->post->id) ) echo ' <i class="np-icon-lock"></i>';
+				if ( post_password_required($this->post->id) ) {
+					echo ' <span class="status-icon-locked"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg></span>';
+				}
 			?>
 		</a>
 

@@ -59,7 +59,16 @@
 		// Indicates post is being edited
 		.locked {
 			color: $black;
-			margin-left: 20px;
+			margin-left: 10px;
+			padding-left: 20px;
+			position: relative;
+			svg {
+				position: absolute;
+				left: 0;
+				top: -5px;
+				width: 15px;
+				height: 24px;
+			}
 			em {
 				font-style: normal;
 			}
