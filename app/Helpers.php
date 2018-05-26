@@ -33,6 +33,14 @@ class Helpers
 	}
 
 	/**
+	* Asset
+	*/
+	public static function asset($file)
+	{
+		return dirname(dirname(__FILE__)) . '/assets/' . $file;
+	}
+
+	/**
 	* Link to the default WP Pages listing
 	* @since 1.2
 	* @return string

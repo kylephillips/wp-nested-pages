@@ -72,7 +72,9 @@ if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
 		</div>
 		<?php endif; ?>
 
-		<img src="<?php echo NestedPages\Helpers::plugin_url(); ?>/assets/images/spinner-2x.gif" alt="loading" id="nested-loading" />
+		<div id="nested-loading">
+			<?php include( NestedPages\Helpers::asset('images/spinner.svg') ); ?>
+		</div>
 	</div><!-- .nestedpages-top-toggles -->
 
 	<?php include(NestedPages\Helpers::view('partials/tool-list')); ?>

@@ -1,0 +1,38 @@
+//
+// Loading Indication
+// --------------------------------------------------
+#nested-loading {
+	display: none;
+	float: right;
+	width: 30px;
+	height: 30px;
+	margin: 0px 20px 0 0;
+	position: relative;
+	svg {
+		width: 30px;
+		height: 30px;
+		animation: nestedpagesRotate linear 1.5s infinite;
+		position: absolute;
+		left: 0;
+		top: 0;
+		line-height: .1;
+		path {
+			fill: darken($white, 40%);
+		}
+	}
+}
+
+@keyframes nestedpagesRotate {
+	0% {
+		transform: rotate(0deg);
+		transform-origin: center center;
+	}
+	50% {
+		transform: rotate(180deg);
+		transform-origin: center center;
+	}
+	100% {
+		transform: rotate(360deg);
+		transform-origin: center center;
+	}
+}
