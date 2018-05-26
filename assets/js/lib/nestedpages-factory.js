@@ -176,7 +176,6 @@ NestedPages.Factory = function()
 	var $ = jQuery;
 
 	plugin.formatter = new NestedPages.Formatter;
-	plugin.responsive = new NestedPages.Responsive;
 	plugin.dropdowns = new NestedPages.Dropdowns;
 	plugin.modals = new NestedPages.Modals;
 	plugin.checkAll = new NestedPages.CheckAll;

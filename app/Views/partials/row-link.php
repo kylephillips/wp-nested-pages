@@ -8,9 +8,9 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 ?>
 <div class="row" <?php if ( $this->listing_repo->isSearch() ) echo 'style="padding-left:10px;"';?>>
 	
-	<?php if ( $this->post_type->hierarchical && !$this->listing_repo->isSearch() ) : ?>
-	<div class="child-toggle"></div>
-	<?php endif; ?>
+	<div class="child-toggle">
+		<div class="child-toggle-spacer"></div>
+	</div>
 
 	<div class="row-inner">
 
@@ -46,8 +46,6 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 				}
 			?>
 		</a>
-
-		<a href="#" class="np-toggle-edit"><i class="np-icon-pencil"></i></a>
 
 		<div class="action-buttons">
 

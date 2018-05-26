@@ -84,9 +84,6 @@ if ( !$wpml ) $wpml_pages = true;
 
 		<?php echo $this->rowActions($assigned_pt); ?>
 
-		<!-- Responsive Toggle Button -->
-		<a href="#" class="np-toggle-edit"><i class="np-icon-pencil"></i></a>
-
 		<?php if ( !$this->post->hierarchical ) : echo $this->post->hierarchical; ?>
 		<div class="np-post-columns">
 			<ul class="np-post-info">

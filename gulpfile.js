@@ -12,7 +12,6 @@ var scss = 'assets/scss/**/*';
 var css = 'assets/css/';
 
 var js_source = [
-	'assets/js/lib/nestedpages-responsive.js',
 	'assets/js/lib/nestedpages.formatter.js',
 	'assets/js/lib/nestedpages.dropdowns.js',
 	'assets/js/lib/nestedpages.modals.js',

@@ -45,25 +45,3 @@
 		border-color: darken($red, 15%);
 	}
 }
-
-// Toggle button for edit buttons (responsive)
-.np-toggle-edit {
-	display: none;
-	float: right;
-	margin-right: 10px;
-	position: relative;
-	top: 9px;
-	@extend .np-btn;
-	&.active {
-		background-color: $blue;
-		color: $white;
-		box-shadow: none;
-		border-color: $blue;
-	}
-}
-@media (max-width: 767px)
-{
-	.np-toggle-edit {
-		display: inline-block;
-	}
-}

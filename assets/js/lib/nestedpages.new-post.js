@@ -255,7 +255,7 @@ NestedPages.NewPost = function()
 		}
 		html += '</span>';
 
-		html += '<span class="edit-indicator"><i class="np-icon-pencil"></i>Edit</span>';
+		html += '<span class="edit-indicator">Edit</span>';
 		html += '</a>';
 
 		// Non-Hierarchical Data
