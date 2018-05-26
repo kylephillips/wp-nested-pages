@@ -557,7 +557,8 @@
 	.nestedpages .row.active .action-buttons {
 		display: block;
 	}
-	.nestedpages .row:hover .np-post-columns {
+	.nestedpages .row:hover .np-post-columns,
+	.nestedpages .row.active .np-post-columns {
 		display: none;
 	}
 }
