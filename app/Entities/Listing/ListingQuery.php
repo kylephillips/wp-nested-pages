@@ -33,7 +33,6 @@ class ListingQuery
 		$this->post_type_repo = new PostTypeRepository;
 		$this->settings = new SettingsRepository;
 		$this->integrations = new IntegrationFactory;
-		$this->setSortOptions();
 	}
 
 	/**
@@ -42,15 +41,33 @@ class ListingQuery
 	private function setSortOptions()
 	{
 		$this->sort_options = new \StdClass();
-		$this->sort_options->orderby = isset($_GET['orderby'])
-			? sanitize_text_field($_GET['orderby'])
-			: 'menu_order';
-		$this->sort_options->order = isset($_GET['order'])
-			? sanitize_text_field($_GET['order'])
-			: 'ASC';
+		$this->setOrderBy();
+		$this->setOrder();
 		$this->sort_options->author = isset($_GET['author'])
 			? sanitize_text_field($_GET['author'])
 			: null;
+	}
+
+	/**
+	* Set Order By
+	*/
+	private function setOrderBy()
+	{
+		$orderby = ( isset($_GET['orderby']) && $_GET['orderby'] !== "" ) ? sanitize_text_field($_GET['orderby']) : 'menu_order';
+		$initial_orderby = $this->post_type_repo->defaultSortOption($this->post_type->name, 'initial_orderby');
+		if ( $initial_orderby && $this->post_type_repo->hasSortOptions($this->post_type->name) ) $orderby = $initial_orderby;
+		$this->sort_options->orderby = $orderby;
+	}
+
+	/**
+	* Set Order
+	*/
+	private function setOrder()
+	{
+		$order = ( isset($_GET['order']) && $_GET['order'] !== "" ) ? sanitize_text_field($_GET['order']) : 'ASC';
+		$initial_order = $this->post_type_repo->defaultSortOption($this->post_type->name, 'initial_order');
+		if ( $initial_order && $this->post_type_repo->hasSortOptions($this->post_type->name) && !isset($_GET['order']) ) $order = $initial_order;
+		$this->sort_options->order = $order;
 	}
 
 	/**
@@ -58,10 +75,11 @@ class ListingQuery
 	*/
 	public function getPosts($post_type, $h_taxonomies = [], $f_taxonomies = [])
 	{
+		$this->post_type = $post_type;
+		$this->setSortOptions();
 		$wpml = $this->integrations->plugins->wpml->installed;
 		$this->h_taxonomies = $h_taxonomies;
 		$this->f_taxonomies = $f_taxonomies;
-		$this->post_type = $post_type;
 
 		$this->setTaxonomyFilters();
 

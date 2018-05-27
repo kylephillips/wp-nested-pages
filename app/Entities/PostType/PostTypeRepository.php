@@ -177,12 +177,33 @@ class PostTypeRepository
 	}
 
 	/**
+	* Is there a default option set for a sort parameter?
+	* @param $post_type - post type name
+	* @param $sort_option - option to search for
+	*/
+	public function defaultSortOption($post_type, $sort_option)
+	{
+		$enabled = false;
+		$options = $this->configuredFields($post_type, 'sort_options');
+		if ( !is_array($options) ) return $enabled;
+		if ( empty($options) ) return $enabled;
+		foreach ( $options as $option => $value ){
+			if ( $option == $sort_option && $value !== '' ) $enabled = $value;
+		}
+		return $enabled;
+	}
+
+	/**
 	* Does the post type have any sort options
 	* @return boolean
 	*/
 	public function hasSortOptions($post_type)
 	{
 		$options = $this->configuredFields($post_type, 'sort_options');
+		$ignore = ['initial_orderby', 'initial_order'];
+		foreach ( $ignore as $key ){
+			if ( isset($options[$key]) ) unset($options[$key]);
+		}
 		return ( empty($options) ) ? false : true;
 	}
 

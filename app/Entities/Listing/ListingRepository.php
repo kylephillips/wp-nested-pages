@@ -2,6 +2,7 @@
 namespace NestedPages\Entities\Listing;
 
 use NestedPages\Entities\PluginIntegration\IntegrationFactory;
+use NestedPages\Entities\PostType\PostTypeRepository;
 
 class ListingRepository 
 {
@@ -10,9 +11,15 @@ class ListingRepository
 	*/
 	private $integrations;
 
+	/**
+	* Post Type Repository
+	*/
+	private $post_type_repo;
+
 	public function __construct()
 	{
 		$this->integrations = new IntegrationFactory;
+		$this->post_type_repo = new PostTypeRepository;
 	}
 
 	/**
@@ -126,5 +133,21 @@ class ListingRepository
 	public function isFiltered()
 	{
 		return ( isset($_GET['category']) && $_GET['category'] !== "all" ) ? true : false;
+	}
+
+	/**
+	* Is the list ordered?
+	*/ 
+	public function isOrdered($post_type = null)
+	{
+		$ordered = ( isset($_GET['orderby']) && $_GET['orderby'] !== "" ) ? true : false;
+		if ( $post_type ){
+			$initial_orderby = $this->post_type_repo->defaultSortOption($post_type, 'initial_orderby');
+			if ( $initial_orderby && $this->post_type_repo->hasSortOptions($post_type) ) $ordered = true;
+		}
+		if ( $ordered && isset($_GET['orderby']) && $_GET['orderby'] == 'menu_order' && !isset($_GET['order']) ) $ordered = false;
+		// Enbales nesting if sorted by menu order in ascending order
+		if ( isset($_GET['orderby']) && $_GET['orderby'] == 'menu_order' && isset($_GET['order']) && $_GET['order'] == 'ASC' ) $ordered = false;
+		return $ordered;
 	}
 }

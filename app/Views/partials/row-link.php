@@ -6,7 +6,7 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 	? $this->post->nav_original_link
 	: esc_url($this->post->content);
 ?>
-<div class="row" <?php if ( $this->listing_repo->isSearch() ) echo 'style="padding-left:10px;"';?>>
+<div class="row <?php if ( $this->listing_repo->isSearch() || $this->listing_repo->isOrdered($this->post_type->name) ) echo 'search';?>">
 	
 	<div class="child-toggle">
 		<div class="child-toggle-spacer"></div>
@@ -16,7 +16,7 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="np-icon-sub-menu"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M19 15l-6 6-1.42-1.42L15.17 16H4V4h2v10h9.17l-3.59-3.58L13 9l6 6z" class="arrow" /></svg>
 		
-		<?php if ( $this->user->canSortPages() && !$this->listing_repo->isSearch() ) : ?>
+		<?php if ( $this->user->canSortPages() && !$this->listing_repo->isSearch() && !$this->listing_repo->isOrdered($this->post_type->name) ) : ?>
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="handle np-icon-menu"><path d="M0 0h24v24H0z" fill="none" /><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" class="bars" /></svg>
 		<?php endif; ?>
 

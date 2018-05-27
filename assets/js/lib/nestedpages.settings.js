@@ -28,6 +28,10 @@ NestedPages.Settings = function()
 		assignPostTypeOption : '[data-assignment-page-id]', // Option within the listing to select page for post type assignment
 		assignPostTypeRemove : '[data-nestedpages-page-pt-assignment-remove]', // Link to remove the assigned page for the post type,
 		assignPostTypeSelection : '[data-nestedpages-page-pt-assignment-selection]', // The div displaying the selection
+
+		// Sort Options for Post Types
+		sortOptionCheckbox : '[data-nestedpages-sort-option-checkbox]', // Checkbox for enabling a sort option
+		defaultSortOptions : '[data-nestedpages-sort-option-default]', // Default sort options (containing div)
 	}
 
 	plugin.bindEvents = function()
@@ -39,6 +43,7 @@ NestedPages.Settings = function()
 			plugin.toggleMenuCheckboxes();
 			plugin.toggleHideCheckbox();
 			plugin.toggleAssignPostType();
+			plugin.toggleAllDefaultSortOptions();
 		});
 		$(document).on('click', plugin.selectors.postTypeToggle, function(e){
 			e.preventDefault();
@@ -75,6 +80,9 @@ NestedPages.Settings = function()
 		$(document).on('click', plugin.selectors.assignPostTypeRemove, function(e){
 			e.preventDefault();
 			plugin.removeAssignPostType($(this));
+		});
+		$(document).on('change', plugin.selectors.sortOptionCheckbox, function(){
+			plugin.toggleDefaultSortOptions($(this));
 		});
 	}
 
@@ -242,13 +250,33 @@ NestedPages.Settings = function()
 		$(container).find(plugin.selectors.assignPostTypeTitle).val('');
 	}
 
-
-	plugin.init = function()
+	/**
+	* Toggle all the default sort options
+	*/
+	plugin.toggleAllDefaultSortOptions = function()
 	{
-		plugin.bindEvents();
+		var checkboxes = $(plugin.selectors.sortOptionCheckbox);
+		$.each(checkboxes, function(){
+			plugin.toggleDefaultSortOptions($(this));
+		});
 	}
 
-	return plugin.init();
+	/**
+	* Toggle the default sort options
+	*/
+	plugin.toggleDefaultSortOptions = function(checkbox)
+	{
+		var checked = ( $(checkbox).is(':checked') ) ? true : false;
+		var options = $(checkbox).parent('label').next(plugin.selectors.defaultSortOptions);
+		if ( $(options).length < 1 ) return;
+		if ( checked ) {
+			$(options).show();
+			return;
+		}
+		$(options).hide();
+	}
+
+	return plugin.bindEvents();
 }
 
 new NestedPages.Settings;

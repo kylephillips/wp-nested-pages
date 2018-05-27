@@ -406,7 +406,7 @@ class Listing
 				if ( !$this->post_type->hierarchical ) $row_classes .= ' non-hierarchical';
 				if ( !$this->user->canSortPages() ) $row_classes .= ' no-sort';
 				if ( $wpml_current_language == 'all' ) $row_classes .= ' no-sort';
-				if ( $this->listing_repo->isSearch() ) $row_classes .= ' search';
+				if ( $this->listing_repo->isSearch() || $this->listing_repo->isOrdered($this->post_type->name) ) $row_classes .= ' search';
 				if ( $this->post->template ) $row_classes .= $template;
 
 				// Page Assignment for Post Type

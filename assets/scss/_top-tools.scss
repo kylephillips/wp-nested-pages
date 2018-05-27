@@ -17,7 +17,7 @@
 	.select {
 		float: left;
 		margin-left: 5px;
-		&.first {
+		&:first-child {
 			margin-left: 0;
 		}
 	}

@@ -16,7 +16,7 @@ if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
 		</a>
 		<?php endif; ?>
 		
-		<?php if ( current_user_can('publish_pages') && $this->post_type->name == 'page' && !$this->listing_repo->isSearch() && !$this->settings->menusDisabled() && !$this->integrations->plugins->wpml->installed ) : ?>
+		<?php if ( current_user_can('publish_pages') && $this->post_type->name == 'page' && !$this->listing_repo->isSearch() && !$this->listing_repo->isOrdered($this->post_type->name) && !$this->settings->menusDisabled() && !$this->integrations->plugins->wpml->installed ) : ?>
 		<a href="#" class="add-new-h2 open-redirect-modal" title="<?php _e('Add Link', 'wp-nested-pages'); ?>" data-parentid="0">
 			<?php esc_html_e('Add Link', 'wp-nested-pages'); ?>
 		</a>
@@ -34,7 +34,7 @@ if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
 		<a href="#" class="np-btn nestedpages-toggleall" data-toggle="closed"><?php esc_html_e('Expand All', 'wp-nested-pages'); ?></a>
 		<?php endif; ?>
 
-		<?php if ( $this->user->canSortPages() && !$this->listing_repo->isSearch() && !$this->listing_repo->isFiltered() ) : ?>
+		<?php if ( $this->user->canSortPages() && !$this->listing_repo->isSearch() && !$this->listing_repo->isFiltered() && !$this->listing_repo->isOrdered($this->post_type->name) ) : ?>
 		<div class="np-sync-menu-cont" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:2px;"';?>>
 
 			<?php if ( $this->settings->autoPageOrderDisabled() ) : ?>

@@ -208,6 +208,19 @@
 			margin: 0;
 		}
 	}
+	.sort-options-default {
+		display: none;
+		background-color: $white;
+		margin: .5em 0 1.5em 0;
+		padding: .75em;
+		border: 1px solid $border;
+		label {
+			display: inline-block;
+		}
+		select {
+			width: auto !important;
+		}
+	}
 }
 
 
