@@ -291,6 +291,7 @@ class Listing
 
 		$list_classes = 'sortable visible nplist';
 		if ( !$this->user->canSortPages() || !$sortable || $this->listing_repo->isSearch() ) $list_classes .= ' no-sort';
+		if ( $this->listing_repo->isOrdered($this->post_type->name) ) $list_classes .= ' no-sort';
 		if ( $this->integrations->plugins->wpml->installed && $this->integrations->plugins->wpml->getCurrentLanguage() == 'all' ) $list_classes .= ' no-sort';
 		if ( $this->integrations->plugins->yoast->installed ) $list_classes .= ' has-yoast';
 		if ( $this->listing_repo->isSearch() ) $list_classes .= ' np-search-results';

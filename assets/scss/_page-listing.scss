@@ -354,6 +354,9 @@
 		}
 	}
 
+	.no-sort ol li .row:hover {
+		.np-icon-sub-menu { display: inline-block; }
+	}
 
 	// Main Row Element
 	.row {
