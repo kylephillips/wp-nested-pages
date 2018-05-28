@@ -142,8 +142,8 @@ class ListingRepository
 	{
 		$ordered = ( isset($_GET['orderby']) && $_GET['orderby'] !== "" ) ? true : false;
 		if ( $post_type ){
-			$initial_orderby = $this->post_type_repo->defaultSortOption($post_type, 'initial_orderby');
-			if ( $initial_orderby && $this->post_type_repo->hasSortOptions($post_type) ) $ordered = true;
+			$initial_orderby = $this->post_type_repo->defaultSortOption($post_type, 'orderby');
+			if ( $initial_orderby ) $ordered = true;
 		}
 		if ( $ordered && isset($_GET['orderby']) && $_GET['orderby'] == 'menu_order' && !isset($_GET['order']) ) $ordered = false;
 		// Enbales nesting if sorted by menu order in ascending order

@@ -54,8 +54,8 @@ class ListingQuery
 	private function setOrderBy()
 	{
 		$orderby = ( isset($_GET['orderby']) && $_GET['orderby'] !== "" ) ? sanitize_text_field($_GET['orderby']) : 'menu_order';
-		$initial_orderby = $this->post_type_repo->defaultSortOption($this->post_type->name, 'initial_orderby');
-		if ( $initial_orderby && $this->post_type_repo->hasSortOptions($this->post_type->name) ) $orderby = $initial_orderby;
+		$initial_orderby = $this->post_type_repo->defaultSortOption($this->post_type->name, 'orderby');
+		if ( $initial_orderby && !isset($_GET['orderby']) ) $orderby = $initial_orderby;
 		$this->sort_options->orderby = $orderby;
 	}
 
@@ -65,8 +65,8 @@ class ListingQuery
 	private function setOrder()
 	{
 		$order = ( isset($_GET['order']) && $_GET['order'] !== "" ) ? sanitize_text_field($_GET['order']) : 'ASC';
-		$initial_order = $this->post_type_repo->defaultSortOption($this->post_type->name, 'initial_order');
-		if ( $initial_order && $this->post_type_repo->hasSortOptions($this->post_type->name) && !isset($_GET['order']) ) $order = $initial_order;
+		$initial_order = $this->post_type_repo->defaultSortOption($this->post_type->name, 'order');
+		if ( $initial_order && !isset($_GET['order']) ) $order = $initial_order;
 		$this->sort_options->order = $order;
 	}
 

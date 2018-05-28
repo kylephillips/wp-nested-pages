@@ -170,6 +170,7 @@ class PostTypeRepository
 		if ( empty($options) ) return $enabled;
 		foreach ( $options as $option => $value ){
 			if ( $option == $sort_option && $value == 'true' ) $enabled = true;
+			if ( $option == $sort_option && isset($value['enabled']) ) $enabled = true;
 		}
 		if ( $taxonomy && !isset($options['taxonomies']) ) $enabled = false;
 		if ( $taxonomy && isset($options['taxonomies'][$sort_option]) && $options['taxonomies'][$sort_option] == 'true' ) $enabled = true;
@@ -188,7 +189,8 @@ class PostTypeRepository
 		if ( !is_array($options) ) return $enabled;
 		if ( empty($options) ) return $enabled;
 		foreach ( $options as $option => $value ){
-			if ( $option == $sort_option && $value !== '' ) $enabled = $value;
+			if ( $option == $sort_option && isset($value['initial']) ) $enabled = $value['initial'];
+			if ( $option == $sort_option && !isset($value['enabled']) ) $enabled = false;
 		}
 		return $enabled;
 	}
@@ -200,10 +202,6 @@ class PostTypeRepository
 	public function hasSortOptions($post_type)
 	{
 		$options = $this->configuredFields($post_type, 'sort_options');
-		$ignore = ['initial_orderby', 'initial_order'];
-		foreach ( $ignore as $key ){
-			if ( isset($options[$key]) ) unset($options[$key]);
-		}
 		return ( empty($options) ) ? false : true;
 	}
 

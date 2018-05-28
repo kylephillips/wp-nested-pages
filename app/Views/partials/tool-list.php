@@ -76,7 +76,7 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 			<?php endif; ?>
 			<?php 
 			if ( $this->post_type_repo->sortOptionEnabled($this->post_type->name, 'orderby') ) : 
-			$default_order_by = $this->post_type_repo->defaultSortOption($this->post_type->name, 'initial_orderby');
+			$default_order_by = $this->post_type_repo->defaultSortOption($this->post_type->name, 'orderby');
 			if ( isset($_GET['orderby']) ) $default_order_by = false;
 			?>
 			<div class="select">
@@ -101,7 +101,7 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 			<?php endif; ?>
 			<?php 
 			if ( $this->post_type_repo->sortOptionEnabled($this->post_type->name, 'order') ) : 
-			$default_order = $this->post_type_repo->defaultSortOption($this->post_type->name, 'initial_order');
+			$default_order = $this->post_type_repo->defaultSortOption($this->post_type->name, 'order');
 			if ( isset($_GET['order']) ) $default_order = false;
 			?>
 			<div class="select">
