@@ -107,6 +107,7 @@ As of version 1.6, yes. Visit Settings > Nested Pages > Post Types to configure 
 * Adds support for custom post states, using the display_post_states filter (Ex: Showing a WooCommerce - Checkout Page designator).
 * Adds support for custom row actions using the post_row_actions and page_row_actions filters.
 * Adds new feature for inserting new posts before/after a selected post.
+* Adds new option to set a default "order by" and "order" parameter for post types, including pages. Visit the post type settings tab in the plugin settings to enable (Note: Sorting/nesting will not be available when viewing the lists in any combination other than menu_order/ascending).
 * Fixes issue where disabling nesting of a post type was not working.
 * Adds template names as CSS classes for custom row styling.
 * Adds enhancements to the user interface.
