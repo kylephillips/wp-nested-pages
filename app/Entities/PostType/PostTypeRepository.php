@@ -202,7 +202,12 @@ class PostTypeRepository
 	public function hasSortOptions($post_type)
 	{
 		$options = $this->configuredFields($post_type, 'sort_options');
-		return ( empty($options) ) ? false : true;
+		if ( empty($options) ) return false;
+		$enabled = false;
+		foreach ( $options as $option ){
+			if ( isset($option['enabled']) ) $enabled = true;
+		}
+		return $enabled;
 	}
 
 	/**
