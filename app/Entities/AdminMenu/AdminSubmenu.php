@@ -43,7 +43,7 @@ class AdminSubmenu
 		foreach($submenu as $key => $sub){
 			if ($key == $this->post_type_repo->editSlug($this->post_type)){
 				// Add the "All Link"
-				$submenu[$this->slug][50] = [$sub[5][0], 'publish_pages', esc_url(admin_url('admin.php?page=' . $this->slug))];
+				$submenu[$this->slug][50] = [$sub[5][0], 'edit_pages', esc_url(admin_url('admin.php?page=' . $this->slug))];
 				unset($sub['5']); // Remove Top Level
 				$menu_items = $sub;
 			}
@@ -70,7 +70,7 @@ class AdminSubmenu
 		if ( !$this->post_type_repo->postTypeSetting($this->post_type->name, 'hide_default') ){
 			$submenu[$this->slug][$c] = [ 
 				__('Default', 'wp-nested-pages') . ' ' . $this->post_type->labels->name, 
-				'publish_pages', 
+				'edit_pages', 
 				$this->post_type_repo->editSlug($this->post_type)
 			];
 		}
