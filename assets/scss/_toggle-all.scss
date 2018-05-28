@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 .nestedpages-listing-title {
-	float: left;
+	@include clearfix;
 }
 
 // Clear fix for admin notices
@@ -41,6 +41,7 @@
 }
 
 .nestedpages-top-toggles {
+	float: right;
 	@include clearfix;
 	padding-top: 10px;
 }
