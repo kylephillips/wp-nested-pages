@@ -4,6 +4,7 @@ Donate link: http://nestedpages.com/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
 Tested up to: 4.9
+Requires PHP: 5.4
 Stable tag: 2.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -24,7 +25,7 @@ Nested Pages provides a drag and drop interface for managing pages & posts in th
 
 For more information visit [nestedpages.com](http://nestedpages.com).
 
-**Important: Nested Pages requires WordPress version 3.8 or higher, and PHP version 5.3.2 or higher.**
+**Important: Nested Pages requires WordPress version 3.8 or higher, and PHP version 5.4 or higher.**
 
 **Languages:**
 
