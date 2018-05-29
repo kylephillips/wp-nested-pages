@@ -102,6 +102,9 @@ Nested Pages uses the same ordering methodology as WordPress core. The plugin of
 
 == Changelog ==
 
+= 3.1.1 =
+* Fixes issue where post_row_action error was being thrown due to incorrect object type being passed as parameter.
+
 = 3.1.0 =
 * Breaking Change: PHP Version 5.4.0+ is required to run Nested Pages V3+.
 * Parent field added to bulk edit under hierarchical post types.
