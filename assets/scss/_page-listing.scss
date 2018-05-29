@@ -258,12 +258,12 @@
 	// Handle for sortable functionality
 	.handle {
 		display: inline-block;
+		vertical-align: middle;
 		cursor: move;
-		margin-top: -8px;
 		position: relative;
-		top: 2px;
-		width: 22px;
-		height: 22px;
+		top: -1px;
+		width: 20px;
+		height: 20px;
 		color: darken($white, 30%);
 		transition: all 200ms ease;
 		.bars {
@@ -278,8 +278,9 @@
 	// Submenu Indicator
 	.np-icon-sub-menu {
 		display: none;
-		width: 18px;
-		height: 18px;
+		vertical-align: middle;
+		width: 20px;
+		height: 20px;
 		.arrow {
 			fill: darken($white, 40%);
 		}
@@ -287,6 +288,11 @@
 
 	.row.no-sort .page-title {
 		padding-left: 10px;
+	}
+
+	.page-title {
+		display: inline-block;
+		vertical-align: middle;
 	}
 
 	.page-title .link-icon {
