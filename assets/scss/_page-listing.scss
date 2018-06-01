@@ -114,10 +114,10 @@
 		.np-assigned-pt-actions {
 			@include unstyled;
 			display: inline-block;
+			vertical-align: middle;
 			margin-left: 10px;
 			li {
 				display: none;
-				// display: inline-block;
 				background: transparent;
 				border: 0;
 				&.visible {
