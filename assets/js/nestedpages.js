@@ -63,7 +63,7 @@ NestedPages.Formatter = function()
 				$(this).find('.row-inner').css('padding-left', padding + 'px');
 				return;
 			}
-			if ( !NestedPages.jsData.sortable ){
+			if ( !NestedPages.jsData.sortable || $(this).hasClass('no-sort') ){
 				$(this).find('.row-inner').css('padding-left', '10px');	
 				return;
 			}
