@@ -362,6 +362,7 @@ class Listing
 			$pages = $this->all_posts;
 			echo '<ol class="sortable no-sort nplist visible">';
 		}
+		if ( !$pages ) return;
 		
 		foreach($pages as $page) :
 

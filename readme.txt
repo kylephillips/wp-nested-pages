@@ -102,6 +102,9 @@ Nested Pages uses the same ordering methodology as WordPress core. The plugin of
 
 == Changelog ==
 
+= 3.0.3 =
+* Fixes PHP error when performing a search with no results.
+
 = 3.0.2 =
 * Fixes issue where post_row_action error was being thrown due to incorrect object type being passed as parameter.
 
