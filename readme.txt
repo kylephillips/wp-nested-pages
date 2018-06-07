@@ -107,6 +107,8 @@ Nested Pages uses the same ordering methodology as WordPress core. The plugin of
 * Fixes WordPress core issue where children of a private post become unnested after editing the post.
 * Fixes bug where updated titles on custom links were not synching with the menu.
 * Fixes bug where an extra trailing slash was being added to asset URLs, resulting in style errors.
+* Adds capability conditional for quick edit functionality
+* Adds filter to hide quick edit button (receives post object as parameter)
 
 = 3.0.2 =
 * Fixes issue where post_row_action error was being thrown due to incorrect object type being passed as parameter.

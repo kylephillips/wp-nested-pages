@@ -196,7 +196,10 @@ if ( !$wpml ) $wpml_pages = true;
 				</ul>
 			</div><!-- .dropdown -->
 
-			<?php if ( !$user = wp_check_post_lock($this->post->id) || !$this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ) : ?>
+			<?php 
+			$can_quickedit_post = apply_filters('nestedpages_quickedit', true, $this->post);
+			if ( !$user = wp_check_post_lock($this->post->id) || !$this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) && current_user_can('edit_posts', $this->post) && $can_quickedit_post ) : 
+			?>
 			<a href="#" 
 				class="np-btn np-quick-edit" 
 				data-id="<?php echo esc_attr($this->post->id); ?>" 
