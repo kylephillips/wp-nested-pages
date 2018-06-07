@@ -21,7 +21,8 @@ class Helpers
 	*/
 	public static function plugin_url()
 	{
-		return plugins_url('/', NESTEDPAGES_URI);
+		$url = plugins_url('/', NESTEDPAGES_URI);
+		return rtrim($url, '/');
 	}
 
 	/**
