@@ -105,6 +105,7 @@ Nested Pages uses the same ordering methodology as WordPress core. The plugin of
 = 3.0.3 =
 * Fixes PHP error when performing a search with no results.
 * Fixes WordPress core issue where children of a private post become unnested after editing the post.
+* Fixes bug where updated titles on custom links were not synching with the menu.
 
 = 3.0.2 =
 * Fixes issue where post_row_action error was being thrown due to incorrect object type being passed as parameter.
