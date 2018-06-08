@@ -102,6 +102,9 @@ Nested Pages uses the same ordering methodology as WordPress core. The plugin of
 
 == Changelog ==
 
+= 3.0.4 = 
+* Fixes bug introduced in v3.0.3 that prevented selection of privacy page.
+
 = 3.0.3 =
 * Fixes PHP error when performing a search with no results.
 * Fixes WordPress core issue where children of a private post become unnested after editing the post.

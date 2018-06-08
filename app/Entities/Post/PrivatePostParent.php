@@ -13,10 +13,10 @@ class PrivatePostParent
 		add_filter('wp_dropdown_pages', [$this, 'metabox']);
 	}
 
-	public function metabox()
+	public function metabox($output)
 	{
 		global $post;
-		if ( !$post ) return;
+		if ( !$post ) return $output;
 
 		$args = [
 			'post_type'	=> $post->post_type,
