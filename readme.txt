@@ -102,6 +102,9 @@ Nested Pages uses the same ordering methodology as WordPress core. The plugin of
 
 == Changelog ==
 
+= 3.0.5 = 
+* Adds actions for sorting update. Single post: nestedpages_post_order_updated($post_id, $parent, $order). All posts: nestedpages_posts_order_updated($posts, $parent).
+
 = 3.0.4 = 
 * Fixes bug introduced in v3.0.3 that prevented selection of privacy page.
 

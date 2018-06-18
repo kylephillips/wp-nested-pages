@@ -68,9 +68,11 @@ class PostUpdateRepository
 			);
 
 			$wpdb->query( $query );
+			do_action('nestedpages_post_order_updated', $post_id, $parent, $key);
 
 			if ( isset($post['children']) ) $this->updateOrder($post['children'], $post_id);
 		}
+		do_action('nestedpages_posts_order_updated', $posts, $parent);
 		return true;
 	}
 
