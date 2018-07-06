@@ -411,6 +411,10 @@ class Listing
 				if ( $this->listing_repo->isSearch() || $this->listing_repo->isOrdered($this->post_type->name) ) $row_classes .= ' search';
 				if ( $this->post->template ) $row_classes .= $template;
 
+				// Filter sortable per post
+				$filtered_sortable = apply_filters('nestedpages_post_sortable', true, $this->post, $this->post_type);
+				if ( !$filtered_sortable && $this->user->canSortPages() && $this->post_type->hierarchical && !$wpml_current_language ) $row_classes .= ' no-sort-filtered';
+
 				// Page Assignment for Post Type
 				$assigned_pt = ( $this->listing_repo->isAssignedPostType($this->post->id, $this->assigned_pt_pages) ) 
 					? $this->listing_repo->assignedPostType($this->post->id, $this->assigned_pt_pages)
