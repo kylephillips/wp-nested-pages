@@ -54,7 +54,7 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 				data-id="<?php echo esc_attr($this->post->id); ?>" 
 				data-parentid="<?php echo esc_attr($this->post->parent_id); ?>"
 				data-title="<?php echo esc_attr($this->post->title); ?>" 
-				data-url="<?php echo esc_attr(NestedPages\Helpers::check_url($this->post->content)); ?>"
+				data-url="<?php echo esc_url($this->post->content); ?>"
 				data-status="<?php echo esc_attr($this->post->status); ?>" 
 				data-np-status="<?php echo esc_attr($this->post->np_status); ?>"
 				data-navstatus="<?php echo esc_attr($this->post->nav_status); ?>"
