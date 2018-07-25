@@ -10,13 +10,17 @@ class PrivatePostParent
 {
 	public function __construct()
 	{
-		add_filter('wp_dropdown_pages', [$this, 'metabox']);
+		add_filter('wp_dropdown_pages', [$this, 'metabox'], 10, 3);
 	}
 
-	public function metabox($output)
+	public function metabox($output, $arguments, $pages)
 	{
 		global $post;
 		if ( !$post ) return $output;
+		if ( !isset($arguments['post_type']) ) return $output;
+		if ( !isset($arguments['name']) ) return $output;
+		if ( $arguments['post_type'] !== $post->post_type ) return $output;
+		if ( $arguments['name'] !== 'parent_id' ) return $output;
 
 		$args = [
 			'post_type'	=> $post->post_type,
