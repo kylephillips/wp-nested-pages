@@ -5,6 +5,7 @@ use NestedPages\Entities\PluginIntegration\EditorialAccessManager;
 use NestedPages\Entities\PluginIntegration\AdvancedCustomFields;
 use NestedPages\Entities\PluginIntegration\YoastSeo;
 use NestedPages\Entities\PluginIntegration\WPML;
+use NestedPages\Entities\PluginIntegration\DarkMode;
 
 class IntegrationFactory 
 {
@@ -26,5 +27,6 @@ class IntegrationFactory
 		$this->plugins->acf = new AdvancedCustomFields;
 		$this->plugins->yoast = new YoastSeo;
 		$this->plugins->wpml = new WPML;
+		$this->plugins->dark_mode = new DarkMode;
 	}
 }

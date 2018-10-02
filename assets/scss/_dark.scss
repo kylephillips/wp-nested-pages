@@ -1,0 +1,332 @@
+//
+// Dark Mode
+// --------------------------------------------------
+$dark_background: #444;
+$dark_background_light: #32373c;
+$dark_background_light_gray: #bbc8d4;
+$dark_background_medium_gray: #50626f;
+
+.nestedpages.np-dark-mode,
+.np-dark-mode {
+	ol {
+		border: 0;
+		border-radius: 0;
+
+		.np-page-type {
+			color: $dark_background_light_gray;
+		}
+
+		.locked {
+			color: $white;
+		}
+
+		.row-status-icon {
+			.icon {
+				fill: $dark_background_medium_gray;
+			}
+		}
+
+		.status,
+		.sticky,
+		.np-icon-eye-blocked,
+		.nav-status {
+			color: $dark_background_medium_gray;
+		}
+
+		.np-assigned-pt-actions li a {
+			color: $white;
+			border-color: rgba(#000, .2);
+		}
+
+		// Yoast SEO Indicator
+		.np-seo-indicator {
+			background-color: $dark_background_medium_gray;
+			&.good {
+				background-color: #7ad03a;
+			}
+			&.ok {
+				background-color: #ffba00;
+			}
+			&.poor {
+				background-color: #ee7c1b;
+			}
+			&.bad {
+				background-color: #dd3d36;
+			}
+			&.warn {
+				background-color: maroon;
+			}
+			&.wrong {
+				background-color: red;
+			}
+            &.noindex {
+                background-color: #1e8cbe;
+            }
+		}
+
+		li {
+			border-top-color: $dark_background_light;
+			background: transparent;
+		}
+
+		ol {
+			border-top: 1px solid $dark_background_light;
+		}
+
+	} // ol 1
+
+	.child-toggle {
+		background-color: rgba(#000, .15);
+		a {
+			background-color: $dark_background_medium_gray;
+			border: 0;
+			color: $white;
+			.np-icon-arrow {
+				border-left-color: $white;
+			}
+			&:hover {
+				background-color: rgba(#000, .5);
+				.np-icon-arrow {
+					border-left-color: $white;
+				}
+			}
+		}
+	} // .child-toggle
+
+	.handle {
+		color: $dark_background_medium_gray; 
+		.bars {
+			fill : $dark_background_medium_gray;
+		}
+	}
+	
+
+	.np-icon-sub-menu {
+		.arrow {
+			fill: $dark_background_medium_gray;
+		}
+	}
+
+	.page-title .link-icon {
+		.icon {
+			fill: $dark_background_medium_gray;
+		}
+	}
+
+	.np-bulk-checkbox {
+		background: transparent;
+	}
+
+
+	// Main Row Element
+	.row {
+		background: transparent;
+		&:hover, &.active {
+			background-color: $dark_background_light;
+		}
+		&.np-updated {
+			background-color: $dark_background_light;
+		}
+		&.np-updated-show {
+			background-color: $dark_background_light;
+		}
+	} // .row
+
+	// Post Data Columns
+	.np-post-columns {
+		ul li {
+			color: $white;
+			border-left: 1px solid rgba(#000, .4);
+			&:first-child {
+				border: 0;
+			}
+		}
+	}
+
+	.action-buttons .nestedpages-dropdown {
+		.np-btn.toggle {
+			svg {
+				path.circles {
+					fill: $white;
+				}
+			}
+		}
+		ul {
+			li {
+				background-color: $dark_background_medium_gray;
+				a {
+					color: $white;
+					svg {
+						path.primary {
+							fill: $white;
+						}
+					}
+				}
+			} // li
+		} // ul
+	} // .nestedpages-dropdown
+
+	.nestedpages-list-header {
+		background-color: $dark_background_light;
+		border: 0;
+		.np-check-all {
+			background: transparent;
+		}
+	} // .nestedpages-list-header
+
+	// Buttons
+	.np-btn {
+		color: $white;
+		display: inline-block;
+		background-color: $dark_background_medium_gray;
+		border: 1px solid $dark_background;
+		&:hover {
+			background-color: $dark_background_light;
+			border-color: $dark_background_light;
+		}
+	}
+
+	// Quick Edit / New Child
+	.np-inline-modal {
+		background-color: $dark_background_light;
+	}
+	.quick-edit, .new-child {
+		h3 {
+			color: $white;
+			span em {
+				color: $dark_background_medium_gray;
+			}
+		}
+
+		.fields {
+			background: transparent;
+		}
+		
+		.buttons {
+			background-color: rgba(#000, .15);
+		}
+		.form-control {
+			&.original-link {
+				background-color: rgba(#000, .15);
+				border: 0;
+			}
+		} // .form-control
+		
+		// Toggle Buttons
+		.np-toggle-options {
+			background-color: rgba(#000, .1);
+		}
+
+		.np-taxonomies, .np-menuoptions {
+			background: transparent;
+		}
+		.np-taxonomy li {
+			background: transparent;
+		}
+	} // .quick-edit
+
+	.nestedpages-bulk-edit {
+		background-color: $dark_background_light;
+		border: 0;
+
+		.np-bulk-titles {
+			background-color: rgba(#000, .15);
+			border: 0;
+			.np-remove {
+				background-color: $dark_background_medium_gray;
+			}
+		}
+
+		.np-bulk-footer {
+			background-color: rgba(#000, .15);
+		}
+
+	} // .nestedpages-bulk-edit
+
+	.np-quickedit-error {
+		background-color: $red;
+		color: $white;
+	}
+
+} // .nestedpages
+
+// Modal Form
+.np-modal-form.np-dark-mode {
+	.form-interior {
+		background: transparent;
+	}
+}
+
+.nestedpages-modal-content.np-dark-mode {
+	background-color: $dark_background_light;
+	h3,
+	.new-child h3 {
+		color: $white;
+	}
+	.modal-content {
+		background-color: $dark_background_light;
+	}
+	.modal-footer {
+		background-color: rgba(#000, .15);
+	}
+	.clone-modal h3, {
+		background: transparent;
+	}
+
+	.np-menu-type-selection {
+		background-color: $dark_background_light;
+		border: 0;
+		ul {
+			li {
+				border: 1px solid $dark_background_light;
+				border-top: 0;
+				a {
+					background-color: $dark_background_medium_gray;
+					color: $white;
+					&:after {
+						color: $white;
+					}
+					&:active, &:focus {
+						box-shadow: none;
+					}
+				} // a
+				&:first-child {
+					border-top: 0;
+				}
+				ul {
+					padding: 0;
+					background: transparent;
+					li {
+						border-color: $dark_background_light;
+						a {
+							background-color: rgba(#000, .15);
+						}
+					} // li 2
+				} // ul 2
+			} // li 1
+		} // ul 1
+	} // .np-menu-type-selection
+
+	.np-menu-search {
+		background-color: rgba(#000, .15);
+		input[type="text"]{
+			&::placeholder {
+				color: $white;
+			}
+		}
+	}
+
+	.np-menu-link-details {
+		h3 em {
+			color: $white;
+		}
+		.original-link {
+			border: 0;
+			background-color: rgba(#000, .15);
+		}
+		.fields {
+			background: transparent;
+			padding: 0;
+		}
+	}
+} // .nestedpages-modal-content

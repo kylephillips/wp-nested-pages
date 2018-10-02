@@ -4,7 +4,7 @@
 */
 ?>
 <div class="nestedpages-modal-backdrop" data-nestedpages-modal="np-trash-modal"></div>
-<div class="nestedpages-modal-content" id="np-trash-modal" data-nestedpages-modal="np-trash-modal">
+<div class="nestedpages-modal-content <?php if ( $this->integrations->plugins->dark_mode->installed ) echo 'np-dark-mode'; ?>" id="np-trash-modal" data-nestedpages-modal="np-trash-modal">
 	<div class="modal-body np-trash-modal">
 		<p><?php _e('Are you sure you would like to empty the trash? This action is not reversable.', 'wp-nested-pages'); ?></p>
 		<a href="#" class="np-cancel-trash button modal-close" data-nestedpages-modal-close><?php _e('Cancel', 'wp-nested-pages'); ?></a>

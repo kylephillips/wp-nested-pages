@@ -6,7 +6,7 @@ $post_type_object = get_post_type_object( 'page' );
 $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 ?>
 <div class="nestedpages-modal-backdrop" data-nestedpages-modal="np-link-modal"></div>
-<div class="nestedpages-modal-content" id="np-link-modal" data-nestedpages-modal="np-link-modal">
+<div class="nestedpages-modal-content <?php if ( $this->integrations->plugins->dark_mode->installed ) echo 'np-dark-mode'; ?>" id="np-link-modal" data-nestedpages-modal="np-link-modal">
 
 	<div class="modal-content">
 		

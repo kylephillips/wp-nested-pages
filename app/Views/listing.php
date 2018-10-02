@@ -2,7 +2,7 @@
 $wpml_pages = ( $this->integrations->plugins->wpml->installed && $this->integrations->plugins->wpml->isDefaultLanguage()) ? true : false;
 if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
 ?>
-<div class="wrap nestedpages">
+<div class="wrap nestedpages <?php if ( $this->integrations->plugins->dark_mode->installed ) echo 'np-dark-mode'; ?>">
 	<div class="nestedpages-listing-title">
 		<h1 class="wp-heading-inline">
 			<?php esc_html_e($this->post_type->labels->name); ?>
