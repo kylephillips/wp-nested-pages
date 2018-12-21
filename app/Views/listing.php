@@ -1,8 +1,13 @@
 <?php
 $wpml_pages = ( $this->integrations->plugins->wpml->installed && $this->integrations->plugins->wpml->isDefaultLanguage()) ? true : false;
 if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
+$dark_mode = ( $this->integrations->plugins->dark_mode->installed ) ? true : false;
+if ( $dark_mode ) :
+	$dark_meta = get_user_meta(get_current_user_id(), 'dark_mode', true);
+	if ( $dark_meta !== 'on' ) $dark_mode = false;
+endif;
 ?>
-<div class="wrap nestedpages <?php if ( $this->integrations->plugins->dark_mode->installed ) echo 'np-dark-mode'; ?>">
+<div class="wrap nestedpages <?php if ( $dark_mode ) echo 'np-dark-mode'; ?>">
 	<div class="nestedpages-listing-title">
 		<h1 class="wp-heading-inline">
 			<?php esc_html_e($this->post_type->labels->name); ?>
