@@ -5,7 +5,7 @@ Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
 Tested up to: 5.0
 Requires PHP: 5.4
-Stable tag: 3.0.6
+Stable tag: 3.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -104,6 +104,7 @@ Nested Pages uses the same ordering methodology as WordPress core. The plugin of
 
 = 3.0.7 =
 * Adds support for "Dark Mode" plugin.
+* Tested in WordPress v5
 
 = 3.0.6 =
 * Fixes issue introduced in v3.0.3 where some custom post/page dropdown fields were failing to show.
