@@ -91,6 +91,18 @@ class UserRepository
 	}
 
 	/**
+	* Can the user publish to post type
+	*/
+	public function canPublish($post_type = 'post')
+	{
+		if ( $post_type == 'page' ) {
+			return ( current_user_can('publish_pages') ) ? true : false;
+		}
+		if ( current_user_can('publish_posts') ) return true;
+		return false;
+	}
+
+	/**
 	* Get an array of all users/ids
 	* @since 1.3.0
 	* @return array
