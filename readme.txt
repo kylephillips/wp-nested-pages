@@ -102,6 +102,9 @@ Nested Pages uses the same ordering methodology as WordPress core. The plugin of
 
 == Changelog ==
 
+= 3.0.8 =
+* Adds filters for displaying individual row action/links. 
+
 = 3.0.7 =
 * Adds support for "Dark Mode" plugin.
 * Tested in WordPress v5
