@@ -459,4 +459,22 @@ class PostTypeRepository
 		}
 		return $array;
 	}
+
+	/**
+	* Get quick edit post statuses for the post type
+	*/
+	public function quickEditStatuses($post_type)
+	{
+		$statuses = [
+			'can_publish' => [
+				'publish' => __('Published', 'wp-nested-pages'),
+				'future' => __('Scheduled', 'wp-nested-pages'),
+			],
+			'other' => [
+				'pending' => __('Pending Review', 'wp-nested-pages'),
+				'draft' => __('Draft', 'wp-nested-pages'),
+			]
+		];
+		return apply_filters('nestedpages_post_statuses', $statuses, $post_type);
+	}
 }

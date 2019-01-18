@@ -85,16 +85,23 @@
 		endif;
 		?>
 
-		<?php if ( !array_key_exists('status', $this->disabled_standard_fields) ) : ?>
+		<?php 
+		if ( !array_key_exists('status', $this->disabled_standard_fields) ) : 
+		$statuses = $this->post_type_repo->quickEditStatuses($this->post_type->name);
+		?>
 		<div class="form-control">
 			<label><?php _e( 'Status' ); ?></label>
 			<select name="_status" class="np_status">
-			<?php if ( $can_publish ) : ?>
-				<option value="publish"><?php _e( 'Published' ); ?></option>
-				<option value="future"><?php _e( 'Scheduled' ); ?></option>
-			<?php endif; ?>
-				<option value="pending"><?php _e( 'Pending Review' ); ?></option>
-				<option value="draft"><?php _e( 'Draft' ); ?></option>
+			<?php 
+				if ( $can_publish && isset($statuses['can_publish']) ) : 
+					foreach ( $statuses['can_publish'] as $status => $label ){
+						echo '<option value="' . $status . '">' . $label . '</option>';
+					}
+				endif;
+				foreach ( $statuses['other'] as $status => $label ){
+					echo '<option value="' . $status . '">' . $label . '</option>';
+				}
+			?>
 			</select>
 		</div>
 		<?php endif; ?>
