@@ -475,6 +475,6 @@ class PostTypeRepository
 				'draft' => __('Draft', 'wp-nested-pages'),
 			]
 		];
-		return apply_filters('nestedpages_post_statuses', $statuses, $post_type);
+		return apply_filters('nestedpages_quickedit_post_statuses', $statuses, $post_type);
 	}
 }
