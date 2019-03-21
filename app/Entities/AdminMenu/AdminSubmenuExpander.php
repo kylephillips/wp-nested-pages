@@ -35,6 +35,7 @@ class AdminSubmenuExpander
 		foreach($this->post_type_repo->getPostTypesObject() as $type){
 			if ( $type->replace_menu ){
 				$this->newPage($type);
+				$this->editPage($type);
 				$this->nestedPagesAll($type);
 				$this->topLevelPostType($type);
 				$this->defaultLink($type);
@@ -51,6 +52,17 @@ class AdminSubmenuExpander
 		$name = ( $type->name == 'page' ) ? '' : '-' . $type->name;
 		if ( ($this->page->id == $type->name) && ($this->page->action == 'add') ){
 			echo '<script>jQuery(document).ready(function(){jQuery("#toplevel_page_nestedpages' . esc_html($name) . '").removeClass("wp-not-current-submenu").addClass("wp-has-current-submenu").addClass("wp-menu-open");jQuery("#toplevel_page_nestedpages' . esc_html($name) . ' a:first").addClass("wp-has-current-submenu");var addnew = jQuery("#toplevel_page_nestedpages ul li:nth-child(3)");jQuery(addnew).addClass("current");jQuery(addnew).children("a").addClass("current");});</script>';
+		}
+	}
+
+	/**
+	* Edit Page Screen
+	*/
+	private function editPage($type)
+	{
+		$name = ( $type->name == 'page' ) ? '' : '-' . $type->name;
+		if ( ($this->page->id == $type->name) && ($this->page->base == 'post') ){
+			echo '<script>jQuery(document).ready(function(){jQuery("#toplevel_page_nestedpages' . esc_html($name) . '").removeClass("wp-not-current-submenu").addClass("wp-has-current-submenu").addClass("wp-menu-open");jQuery("#toplevel_page_nestedpages' . esc_html($name) . ' a:first").addClass("wp-has-current-submenu");var addnew = jQuery("#toplevel_page_nestedpages ul li");jQuery(addnew).removeClass("current");jQuery(addnew).children("a").removeClassClass("current");});</script>';
 		}
 	}
 
