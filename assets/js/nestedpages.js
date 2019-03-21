@@ -20,6 +20,12 @@ NestedPages.Formatter = function()
 			var button = allButtons[i];
 			var row = $(button).parent('.row').parent('li');
 			if ( $(row).children('ol').length > 0 ){ // Row has a child menu
+
+				// Hide the toggle and child list if all items are in the trash
+				if ( $(row).children('ol').find('li.page-row').length < 1 ){
+					$(row).children('ol').hide();
+					continue;
+				}
 				
 				var open = ( $(row).children('ol:visible').length > 0 ) ? true : false;
 				var html = '<div class="child-toggle-spacer"></div>';
