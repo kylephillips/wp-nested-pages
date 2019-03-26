@@ -377,6 +377,7 @@ class PostUpdateRepository
 			$title = sanitize_text_field($data['navigationLabel']);
 			update_post_meta($id, '_np_nav_title', $title);
 		}
+		$this->updateNavStatus($data);
 	}
 
 	/**

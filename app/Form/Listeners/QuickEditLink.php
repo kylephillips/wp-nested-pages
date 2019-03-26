@@ -35,7 +35,7 @@ class QuickEditLink extends BaseHandler
 	*/
 	private function addData()
 	{
-		$this->data['nav_status'] = ( isset($this->data['nav_status']) ) ? 'hide' : 'show';
+		$this->data['nav_status'] = ( isset($this->data['nav_status']) && $this->data['nav_status'] == 'hide' ) ? 'hide' : 'show';
 		$this->data['np_status'] = ( isset($this->data['nested_pages_status']) ) ? 'hide' : 'show';
 		$this->data['linkTarget'] = ( isset($this->data['linkTarget']) ) ? '_blank' : 'none';
 	}

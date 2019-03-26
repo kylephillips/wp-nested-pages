@@ -27,7 +27,8 @@ class NavMenuTrashActions
 	{	
 		remove_action( 'before_delete_post', [$this, 'removeLinkItem'], 10 );
 		$redirect_id = get_post_meta($post_id, '_menu_item_xfn', true);
-		if ( $redirect_id !== "" ) wp_delete_post($redirect_id, true);
+		$hidden = get_post_meta($redirect_id, '_np_nav_status', true);
+		if ( $redirect_id !== "" && $hidden !== 'hide' ) wp_delete_post($redirect_id, true);
 		return true;
 	}
 
