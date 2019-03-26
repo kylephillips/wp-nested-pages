@@ -49,7 +49,8 @@ class ListingRepository
 	*/
 	public function terms($taxonomy)
 	{
-		return get_terms($taxonomy);
+		$args = apply_filters('nestedpages_taxonomy_terms', []);
+		return get_terms($taxonomy, $args);
 	}
 
 	/**
