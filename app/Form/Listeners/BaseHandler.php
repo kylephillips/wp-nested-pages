@@ -123,11 +123,12 @@ abstract class BaseHandler
 	/**
 	* Send a Generic Success Message
 	*/
-	protected function sendErrorResponse()
+	protected function sendErrorResponse($message = null)
 	{
+		$message = ( $message ) ? $message : __('There was an error updating the page.', 'wp-nested-pages');
 		$this->response = [
 			'status' => 'error', 
-			'message' => __('There was an error updating the page.', 'wp-nested-pages') 
+			'message' => $message 
 		];
 		$this->sendResponse();
 	}

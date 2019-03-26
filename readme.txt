@@ -103,6 +103,7 @@ Nested Pages uses the same ordering methodology as WordPress core. The plugin of
 == Changelog ==
 
 = 3.0.8 =
+* Security Fix: Fixes bug where contributors could quick edit posts not authored by themselves.
 * Adds filters for displaying individual row action/links. 
 * Fixes bug where submenu was not expanded when editing a single page, and "replace default" is selected.
 * Fixes bug where toggle icon still displays when all child items are in the trash.

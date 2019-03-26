@@ -21,6 +21,10 @@ class QuickEdit extends BaseHandler
 	*/
 	private function updatePost()
 	{
+		if ( !current_user_can('edit_others_posts') ) {
+			$author = get_post_field('post_author', $this->data['post_id']);
+			if ( intval($author) !== get_current_user_id() ) return $this->sendErrorResponse(__('You do not have sufficient privileges to edit this post.', 'wp-nested-pages'));
+		}
 		$updated = $this->post_update_repo->updatePost($this->data);
 		if ( !$updated ) $this->sendErrorResponse();
 		if ( isset($this->data['tax_input']) ) $this->addFlatTaxonomies();

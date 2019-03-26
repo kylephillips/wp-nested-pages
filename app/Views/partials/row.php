@@ -69,7 +69,8 @@ if ( !$wpml ) $wpml_pages = true;
 					echo ' <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>';
 					echo '</span>';
 				} else {
-					echo '<span class="edit-indicator">' . apply_filters('nestedpages_edit_link_text', __('Edit', 'wp-nested-pages'), $this->post) . '</span>';
+					$display_edit = ( !current_user_can('edit_others_posts') && $this->post->author !== get_current_user_id() ) ? false : true;
+					if ( $display_edit ) echo '<span class="edit-indicator">' . apply_filters('nestedpages_edit_link_text', __('Edit', 'wp-nested-pages'), $this->post) . '</span>';
 				}
 
 				// Sticky
@@ -214,7 +215,12 @@ if ( !$wpml ) $wpml_pages = true;
 
 			<?php 
 			$can_quickedit_post = apply_filters('nestedpages_quickedit', true, $this->post);
+			if ( !current_user_can('edit_others_posts') ){
+				$author = get_post_field('post_author', $this->post->ID);
+				if ( intval($author) !== get_current_user_id() ) $can_quickedit_post = false;
+			}
 			if ( !$user = wp_check_post_lock($this->post->id) || !$this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) && current_user_can('edit_posts', $this->post) && $can_quickedit_post && in_array('quickedit', $this->post_type_settings->row_actions) ) : 
+			if ( $can_quickedit_post ) :
 			?>
 			<a href="#" 
 				class="np-btn np-quick-edit" 
@@ -247,7 +253,7 @@ if ( !$wpml ) $wpml_pages = true;
 				data-sticky="<?php if ( in_array($this->post->id, $this->sticky_posts) ) echo 'sticky'; ?>">
 				<?php _e('Quick Edit', 'wp-nested-pages'); ?>
 			</a>
-			<?php endif; ?>
+			<?php endif; endif; ?>
 
 			<?php if ( in_array('view', $this->post_type_settings->row_actions) ) : ?>
 			<a href="<?php echo apply_filters('nestedpages_view_link', get_the_permalink(), $this->post); ?>" class="np-btn np-view-button" target="_blank">
