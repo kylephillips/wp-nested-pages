@@ -102,6 +102,9 @@ Nested Pages uses the same ordering methodology as WordPress core. The plugin of
 
 == Changelog ==
 
+= 3.0.9 =
+* Fixes Javascript bug introduced in v3.0.8 resulting in console error on page edit screen.
+
 = 3.0.8 =
 * Security Fix: Fixes bug where contributors could quick edit posts not authored by themselves.
 * Adds filters for displaying individual row action/links. 
