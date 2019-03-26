@@ -39,9 +39,8 @@ class ListingRepository
 	*/
 	public function taxonomies()
 	{
-		$taxonomies = get_taxonomies([
-			'public' => true,
-		], 'objects');
+		$args = apply_filters('nestedpages_taxonomies', ['public' => true]);
+		$taxonomies = get_taxonomies($args, 'objects');
 		return $taxonomies;
 	}
 
