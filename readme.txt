@@ -79,6 +79,9 @@ Yes! Visit Settings > Nested Pages > Post Types to configure thumbnail settings 
 = Nested Pages changes my permalink structure. How do I stop that? =
 Nested Pages uses the same ordering methodology as WordPress core. The plugin offers an enhanced interface to achieve the same results. Parent/Child relationships are used in conjunction with the post menu_order field to nest and order posts/pages. There is currently no option to disable this core feature.
 
+= Can I generate a menu using a custom post type? =
+No. The menu synchronization currently only works within the pages post type. 
+
 
 == Screenshots ==
 
