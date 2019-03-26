@@ -106,6 +106,7 @@ Nested Pages uses the same ordering methodology as WordPress core. The plugin of
 * Adds filters for displaying individual row action/links. 
 * Fixes bug where submenu was not expanded when editing a single page, and "replace default" is selected.
 * Fixes bug where toggle icon still displays when all child items are in the trash.
+* Adds filters for taxonomies and terms in the listing interface.
 
 = 3.0.7 =
 * Adds support for "Dark Mode" plugin.
