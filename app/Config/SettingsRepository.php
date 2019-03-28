@@ -41,8 +41,8 @@ class SettingsRepository
 	public function autoMenuDisabled()
 	{
 		$option = get_option('nestedpages_ui', false);
-		if ( $option && isset($option['manual_menu_sync']) && $option['manual_menu_sync'] == 'true' ) return true;
-		return false;
+		$enabled = ( $option && isset($option['manual_menu_sync']) && $option['manual_menu_sync'] == 'true' ) ? true : false;
+		return apply_filters('nestedpages_menu_sync_enabled', $enabled);
 	}
 
 	/**
