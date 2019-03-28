@@ -22,8 +22,8 @@ class SettingsRepository
 	public function hideMenuSync()
 	{
 		$option = get_option('nestedpages_ui', false);
-		if ( $option && isset($option['hide_menu_sync']) && $option['hide_menu_sync'] == 'true' ) return true;
-		return false;
+		$visible = ( $option && isset($option['hide_menu_sync']) && $option['hide_menu_sync'] == 'true' ) ? true : false;
+		return apply_filters('nestedpages_menu_sync_visible', $visible);
 	}
 
 	/**
@@ -32,7 +32,8 @@ class SettingsRepository
 	public function menuSyncEnabled()
 	{
 		$option = get_option('nestedpages_menusync');
-		return ( $option == 'sync' ) ? true : false;
+		$enabled = ( $option == 'sync' ) ? true : false;
+		return apply_filters('nestedpages_menu_sync_enabled', $enabled);
 	}
 
 	/**
@@ -42,7 +43,7 @@ class SettingsRepository
 	{
 		$option = get_option('nestedpages_ui', false);
 		$enabled = ( $option && isset($option['manual_menu_sync']) && $option['manual_menu_sync'] == 'true' ) ? true : false;
-		return apply_filters('nestedpages_menu_sync_enabled', $enabled);
+		return apply_filters('nestedpages_menu_autosync_enabled', $enabled);
 	}
 
 	/**
@@ -62,8 +63,8 @@ class SettingsRepository
 	public function menusDisabled()
 	{
 		$option = get_option('nestedpages_disable_menu');
-		if ( $option && $option == 'true' ) return true;
-		return false;
+		$disabled = ( $option && $option == 'true' ) ? true : false;
+		return apply_filters('nestedpages_menus_disabled', $disabled);
 	}
 
 	/**
