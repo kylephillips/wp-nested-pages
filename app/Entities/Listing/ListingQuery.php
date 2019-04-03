@@ -120,7 +120,7 @@ class ListingQuery
 	*/
 	private function searchParams($query_args)
 	{
-		$query_args['post_title_like'] = sanitize_text_field($_GET['search']);
+		$query_args['s'] = sanitize_text_field($_GET['search']);
 		unset($query_args['post_parent']);
 		return $query_args;
 	}
