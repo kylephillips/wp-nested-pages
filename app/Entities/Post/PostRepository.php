@@ -169,4 +169,57 @@ class PostRepository
 		$query = $wpdb->prepare("SELECT p.post_title, tr.term_taxonomy_id AS tax_id, t.slug AS term_name, tt.taxonomy AS tax_name, tt.term_id AS term_id FROM {$wpdb->prefix}posts AS p LEFT JOIN {$wpdb->prefix}term_relationships AS tr ON tr.object_id = p.ID LEFT JOIN {$wpdb->prefix}terms AS t ON t.term_id = tr.term_taxonomy_id LEFT JOIN {$wpdb->prefix}term_taxonomy AS tt ON tt.term_taxonomy_id = tr.term_taxonomy_id WHERE p.ID = %s", $post_id);
 		return $wpdb->get_results($query);
 	}
+
+	/**
+	* Get a nested array of posts based on a parent
+	* @param $parent_id (int)
+	* @param $post_type (string)
+	* @param $include_parent (bool), whether to include parent in tree
+	*/
+	public function postTree($parent_id = 0, $post_type, $include_parent = true)
+	{
+		$posts = [];
+		if ( $parent_id !== 0 && $include_parent ){
+			$args = [
+				'posts_per_page' => 1,
+				'post_type' => $post_type,
+				'p' => $parent_id
+			];
+			$q = new \WP_Query(apply_filters('nestedpages_post_tree_parent', $args));
+			if ( $q->have_posts() ) $posts = $q->posts;
+			wp_reset_postdata();
+		}
+		$children = $this->getChildren($parent_id, $post_type, $posts);
+		$posts = [];
+		foreach ( $children as $child ){
+			$posts[$child->ID] = $child->post_parent;
+		}		
+		return $posts;
+	}
+
+	/**
+	* Get all children of a post/page
+	* Recursive function
+	*/
+	public function getChildren($parent_id, $post_type, $posts = [])
+	{
+		$new_posts = [];
+		$args = [
+			'posts_per_page' => -1,
+			'post_type' => $post_type,
+			'post_parent' => $parent_id,
+			'orderby' => 'menu_order',
+			'order' => 'ASC'
+		];
+		$q = new \WP_Query(apply_filters('nestedpages_post_tree_children', $args));
+		if ( $q->have_posts() ) $new_posts = $q->posts;
+		wp_reset_postdata();
+		if ( !empty($new_posts) ){
+			$posts = array_merge($posts, $new_posts);
+			foreach ( $new_posts as $post ){
+				return $this->getChildren($post->ID, $post_type, $posts);
+			}
+		}
+		return $posts;
+	}
 }
