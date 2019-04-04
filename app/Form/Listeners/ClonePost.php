@@ -32,7 +32,7 @@ class ClonePost extends BaseHandler
 	private function setPostID()
 	{
 		if ( !isset($_POST['parent_id']) ){
-			return $this->sendResponse(['status' => 'error', 'message' => __('Post Not Found', 'nestedapges')]);
+			return $this->sendResponse(['status' => 'error', 'message' => __('Post Not Found', 'nestedpages')]);
 		}
 		$this->data['post_id'] = intval(sanitize_text_field($_POST['parent_id']));
 		$this->data['status'] = sanitize_text_field($_POST['status']);
