@@ -88,4 +88,20 @@ settings_fields( 'nestedpages-general' );
 		</div>
 	</td>
 </tr>
+<tr valign="top">
+	<th scope="row"><?php _e('Reset User Preferences', 'wp-nested-pages'); ?></th>
+	<td>
+		<div class="nestedpages-reset-user-prefs">
+			<p>
+				<?php _e('Toggle states are saved for each user. This action will clear these preferences for all users. If PHP errors appear within the nested view after an update, this may help clear them.', 'wp-nested-pages'); ?>
+			</p>
+			<p>
+				<button class="np-btn np-btn-trash" data-nestedpages-reset-user-prefs><?php _e('Reset User Preferences', 'wp-nested-pages'); ?></button>
+			</p>
+		</div>
+		<div class="nestedpages-reset-user-prefs-complete" style="display:none;">
+			<p><?php _e('User preferences have been successfully reset.', 'wp-nested-pages'); ?></p>
+		</div>
+	</td>
+</tr>
 </table>

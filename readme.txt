@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.0.10 =
+* Adds settings action to reset user preferences (toggled/visible pages). For clearing user meta that may has become unnormalized during site/other plugin updates, resulting in PHP errors in the listing view.
+
 = 3.0.9 =
 * Fixes Javascript bug introduced in v3.0.8 resulting in console error on page edit screen.
 
