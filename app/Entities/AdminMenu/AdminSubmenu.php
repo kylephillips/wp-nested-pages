@@ -68,8 +68,10 @@ class AdminSubmenu
 	{
 		global $submenu;
 		if ( !$this->post_type_repo->postTypeSetting($this->post_type->name, 'hide_default') ){
+			$label = sprintf(__('Default %s', 'wp-nested-pages'), $this->post_type->labels->name);
+			$label = apply_filters('nestedpages_default_submenu_text', $label, $this->post_type);
 			$submenu[$this->slug][$c] = [ 
-				__('Default', 'wp-nested-pages') . ' ' . $this->post_type->labels->name, 
+				$label, 
 				'edit_pages', 
 				$this->post_type_repo->editSlug($this->post_type)
 			];
