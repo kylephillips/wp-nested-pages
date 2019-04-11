@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Nested Pages\n"
-"POT-Creation-Date: 2019-04-04 13:18-0400\n"
+"POT-Creation-Date: 2019-04-11 09:39-0400\n"
 "PO-Revision-Date: 2019-04-04 13:06-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -224,9 +224,9 @@ msgstr ""
 msgid "Taxonomies"
 msgstr ""
 
-#: app/Entities/AdminMenu/AdminSubmenu.php:72
-#: app/Views/partials/tool-list.php:46
-msgid "Default"
+#: app/Entities/AdminMenu/AdminSubmenu.php:71
+#, php-format
+msgid "Default %s"
 msgstr ""
 
 #: app/Entities/Confirmation/LinkDeletedConfirmation.php:11
@@ -282,25 +282,25 @@ msgstr ""
 msgid "Sort View"
 msgstr ""
 
-#: app/Entities/PostType/PostTypeRepository.php:470
+#: app/Entities/PostType/PostTypeRepository.php:471
 #: app/Views/forms/clone-form.php:30 app/Views/forms/new-child.php:38
 #: app/Views/forms/quickedit-link.php:30 app/Views/partials/bulk-edit.php:48
 #: app/Views/partials/tool-list.php:18
 msgid "Published"
 msgstr ""
 
-#: app/Entities/PostType/PostTypeRepository.php:471
+#: app/Entities/PostType/PostTypeRepository.php:472
 #: app/Views/forms/quickedit-link.php:31
 msgid "Scheduled"
 msgstr ""
 
-#: app/Entities/PostType/PostTypeRepository.php:474
+#: app/Entities/PostType/PostTypeRepository.php:475
 #: app/Views/forms/clone-form.php:32 app/Views/forms/quickedit-link.php:33
 #: app/Views/partials/bulk-edit.php:51
 msgid "Pending Review"
 msgstr ""
 
-#: app/Entities/PostType/PostTypeRepository.php:475
+#: app/Entities/PostType/PostTypeRepository.php:476
 #: app/Views/forms/clone-form.php:33 app/Views/forms/new-child.php:40
 #: app/Views/forms/quickedit-link.php:34 app/Views/partials/bulk-edit.php:52
 #: app/Views/partials/tool-list.php:22
@@ -673,6 +673,10 @@ msgstr ""
 
 #: app/Views/partials/tool-list.php:38
 msgid "Empty"
+msgstr ""
+
+#: app/Views/partials/tool-list.php:46
+msgid "Default"
 msgstr ""
 
 #: app/Views/partials/tool-list.php:65
