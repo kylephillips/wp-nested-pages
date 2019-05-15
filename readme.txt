@@ -107,6 +107,7 @@ No. The menu synchronization currently only works within the pages post type.
 
 = 3.0.11 =
 * Adds filters for "Sort/Nested View" and "Default" labels.
+* Fixes issue where serialized meta data was not being saved properly during cloning.
 
 = 3.0.10 =
 * Fixes issue with translation file naming that was preventing plugin translations from loading.

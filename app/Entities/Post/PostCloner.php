@@ -103,15 +103,20 @@ class PostCloner
 	}
 
 	/**
-	* Clone the custom fields
+	* Clone the post meta
 	*/
 	private function cloneMeta()
 	{
-		$meta = get_post_meta($this->original_id);
-		foreach($meta as $key => $value){
-			foreach( $value as $entry ){
-				add_post_meta($this->new_id, $key, $entry);
-			}
-		}
+		global $wpdb;
+		$meta = $wpdb->get_results("SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = $this->original_id");
+        if (count($meta) == 0) return;
+        $sql_query = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
+        foreach ($meta as $meta_info) {
+            $meta_key = $meta_info->meta_key;
+            $meta_value = addslashes($meta_info->meta_value);
+            $sql_query_sel[] = "SELECT $this->new_id, '$meta_key', '$meta_value'";
+        }
+        $sql_query .= implode(' UNION ALL ', $sql_query_sel);
+        $wpdb->query($sql_query);
 	}
 }
