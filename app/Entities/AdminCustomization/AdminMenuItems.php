@@ -134,14 +134,29 @@ class AdminMenuItems extends AdminCustomizationBase
 			}
 		}
 
-		// var_dump($submenu);
-
 		// Add the Submenu pages back in, ordered and labeled how we want
 		foreach ( $menu_options[$this->current_user_role] as $menu_option ){
-			// var_dump($menu_option);
 			if ( !isset($menu_option['original_link']) ) continue;
-			// var_dump($np_submenu_original[$menu_option['original_link']]);
-			$submenu[$menu_option['link']] = $np_submenu_original[$menu_option['original_link']];
+			if ( !isset($menu_option['submenu']) || !$menu_option['submenu'] ){
+				$submenu[$menu_option['link']] = $np_submenu_original[$menu_option['original_link']];
+				return;
+			}
+			$new_submenu = [];
+			foreach ( $menu_option['submenu'] as $key => $menu ){
+				$index = ($key + 1) * 10;
+				$np_submenu_original[$index][0] = $menu['label'];
+				$np_submenu_original[$index][1] = $menu['role'];
+				$np_submenu_original[$index][2] = $menu['link'];
+				$np_submenu_original[$index][3] = $menu['label'];
+				$np_submenu_original[$index][4] = (isset($menu['hidden']) && $menu['hidden'] == 'true') ? true : false;;
+
+				if ( isset($menu['hidden']) && $menu['hidden'] == 'true' ) continue;
+				$new_submenu[$index][0] = $menu['label'];
+				$new_submenu[$index][1] = $menu['role'];
+				$new_submenu[$index][2] = $menu['link'];
+				$new_submenu[$index][3] = $menu['label'];
+			}
+			$submenu[$menu_option['link']] = $new_submenu;
 		}
 	}
 
@@ -174,21 +189,6 @@ class AdminMenuItems extends AdminCustomizationBase
 					} // submenu
 				} // np menu original
 
-				// Add the custom menu items
-				if ( isset($item['custom']) ){
-					$order = intval($item['order']);
-					$label = ( isset($item['label']) ) ? sanitize_text_field($item['label']) : __('Untitled', 'wp-nested-pages');
-					if ( $label == '' ) $label = __('Untitled', 'wp-nested-pages');
-					$id = strtolower(str_replace(' ', '-', $label));
-					$icon = ( isset($item['icon']) ) ? sanitize_text_field($item['icon']) : __('dashicons-admin-post', 'wp-nested-pages');
-					$link = $key;
-					$no_delete = array('profile.php');
-					$custom_menu_item = array(
-						$label, 'read', $link, '', 'menu-top', $id, $icon, 'custom-item'
-					);
-					if ( in_array($key, $no_delete) ) $custom_menu_item[] = 'no-delete';
-					$np_menu_ordered[$role['name']][$order] = $custom_menu_item;
-				}
 			} // role
 		}
 
@@ -226,7 +226,7 @@ class AdminMenuItems extends AdminCustomizationBase
 		}
 		
 		// Set each role's menu order
-		$user_roles = $this->user_repo->allRoles(array());
+		$user_roles = $this->user_repo->allRoles([]);
 		foreach( $user_roles as $role ){
 
 			$role_capabilities = $this->user_repo->getSingleRole($role['name']);
@@ -235,7 +235,7 @@ class AdminMenuItems extends AdminCustomizationBase
 			foreach ( $np_menu_original as $menu_item ){
 				
 				if ( $menu_item[1] == 'list_users' && !array_key_exists('list_users', $role_capabilities) ){
-					$profile_menu_item = array(
+					$profile_menu_item = [
 						__('Profile', 'wp-nested-pages'),
 						'read',
 						'profile.php',
@@ -245,7 +245,7 @@ class AdminMenuItems extends AdminCustomizationBase
 						'dashicons-admin-users',
 						'custom-item',
 						'no-delete'
-					);
+					];
 					$np_menu_ordered[$role['name']][] = $profile_menu_item;
 					continue;
 				}

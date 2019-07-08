@@ -5,6 +5,7 @@
 $roles = $this->user_repo->allRoles(null, true); 
 $nav_menu_options = $this->settings->adminCustomEnabled('nav_menu_options');
 global $np_menu_original;
+global $np_submenu_original;
 global $menu;
 $c = 1;
 foreach ( $roles as $role ) :
@@ -122,23 +123,41 @@ foreach ( $roles as $role ) :
 			</div><!-- .np-extra-options -->
 			<?php endif; ?>
 			
-			<?php if ( isset($menu_item['submenu']) ) : ?>
+			<?php 
+			if ( isset($menu_item['submenu']) ) : 
+			
+			// Use the custom menu if available, otherwise use default
+			if ( isset($nav_menu_options[$role['name']][$id]['submenu']) ){
+				$submenu_items = $nav_menu_options[$role['name']][$id]['submenu'];
+				$has_custom_submenu = true;
+			} else {
+				$submenu_items = $menu_item['submenu'];
+				$has_custom_submenu = false;
+			}
+			?>
 			<ul class="submenu-listing" data-np-sortable-admin-subnav>
 				<?php 
 				$si = 0;
-				foreach ( $menu_item['submenu'] as $submenu ) : 
-				if ( !array_key_exists($submenu[1], $role_capabilities) || !$role_capabilities[$submenu[1]] ) continue; // This role doesn't have access to this item
+				foreach ( $submenu_items as $submenu ) : 
+				$label = ( $has_custom_submenu ) ? $submenu['label'] : $submenu[0];
+				$role_name = ( $has_custom_submenu ) ?  $submenu['role'] : $submenu[1];
+				$link = ( $has_custom_submenu ) ? $submenu['link'] : $submenu[2];
+				$hidden_sub = ( $has_custom_submenu && isset($submenu['hidden']) && $submenu['hidden'] == 'true' ) ? true : false;
+				if ( !array_key_exists($role_name, $role_capabilities) || !$role_capabilities[$role_name] ) continue; // This role doesn't have access to this item
 				?>
-				<li class="np-nav-preview submenu-item" data-np-sortable-admin-nav>
+				<li class="np-nav-preview <?php if ( $hidden_sub ) echo 'disabled'; ?> submenu-item" data-np-sortable-admin-nav>
 					<div class="menu-item">
 						<div class="handle">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class=" np-icon-menu"><path d="M0 0h24v24H0z" fill="none" /><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" class="bars" /></svg>
 						</div>
 						<div class="title">
-							<p><?php echo $submenu[0]; ?></p>
+							<p><?php echo $label; ?></p>
 						</div>
 						<div class="hide-checkbox">
-							<input type="checkbox" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $id; ?>][submenu][<?php echo $si; ?>][hidden]" value="true" data-nestedpages-admin-nav-item-checkbox />
+							<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $id; ?>][submenu][<?php echo $si; ?>][label]" value="<?php echo $label; ?>" />
+							<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $id; ?>][submenu][<?php echo $si; ?>][role]" value="<?php echo $role_name; ?>" />
+							<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $id; ?>][submenu][<?php echo $si; ?>][link]" value="<?php echo $link; ?>" />
+							<input type="checkbox" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $id; ?>][submenu][<?php echo $si; ?>][hidden]" value="true" data-nestedpages-admin-nav-item-checkbox <?php if ( $hidden_sub )  echo 'checked'; ?>/>
 							<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $id; ?>][submenu][<?php echo $si; ?>][order]" value="<?php echo $si; ?>" data-np-submenu-order>
 						</div>
 					</div><!-- .menu-item -->

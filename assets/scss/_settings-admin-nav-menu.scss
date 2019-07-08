@@ -8,19 +8,19 @@
 		background-color: $gray-lighter;
 		border: 1px solid $border;
 		border-bottom: 0;
-		height: 50px;
+		height: 60px;
 		position: relative;
-		padding: 10px 135px 0 10px;
+		padding: 15px 180px 0 10px;
 		box-sizing: border-box;
 		@include clearfix;
 		.hide, .new {
 			position: absolute;
 			right: 0;
 			top: 0;
-			height: 50px;
-			width: 60px;
+			height: 60px;
+			width: 80px;
 			text-align: center;
-			line-height: 50px;
+			line-height: 60px;
 			border-left: 1px solid $border;
 			background-color: darken($gray-lighter, 5%);
 			font-size: .9em;
@@ -30,13 +30,13 @@
 			width: 100%;
 		}
 		.new {
-			right: 60px;
+			right: 80px;
 			background-color: $white;
 		}
 		.nestedpages-dropdown-toggle {
 			display: block;
-			height: 50px;
-			width: 60px;
+			height: 60px;
+			width: 80px;
 			text-decoration: none;
 			color: $black;
 			.np-caret {
@@ -55,7 +55,7 @@
 			}
 		}
 		.nestedpages-dropdown-content {
-			width: 120px;
+			width: 150px;
 			font-size: 1.1em;
 			ul {
 				li {
@@ -110,38 +110,41 @@
 			}
 		}
 	} // li
+	.update-count {
+		display: none;
+	}
 	.ui-sortable-helper {
 		border: 1px solid $border;
 		box-shadow: 1px 1px 1px 0px rgba(0,0,0,.3);
 	}
 	.menu-item {
-		height: 40px;
+		height: 50px;
 		@include clearfix;
-		padding: 0 60px 0 80px;
+		padding: 0 80px 0 100px;
 		background-color: $white;
 		.title {
 			@include clearfix;
 			position: relative;
 			padding-right: 120px;
-			height: 40px;
+			height: 50px;
 			&.separator {
 				padding-left: 40px;
 			}
 			p {
 				margin: 0;
 				font-size: 1em;
-				line-height: 40px;
+				line-height: 50px;
 			}
 			.menu-icon {
 				position: absolute;
 				left: 0;
 				top: 0;
-				height: 40px;
+				height: 50px;
 				width: 40px;
 				text-align: center;
 				&:before {
 					font-size: 1.6em;
-					line-height: 40px;
+					line-height: 50px;
 				}
 			}
 			.details-button {
@@ -149,7 +152,7 @@
 				position: absolute;
 				right: 0;
 				top: 0;
-				margin: 7px 10px 0 0;
+				margin: 12px 10px 0 0;
 			}
 			&:hover .details-button {
 				display: block;
@@ -160,7 +163,7 @@
 			margin: 0 0 0 40px;
 			position: relative;
 			padding: 0;
-			line-height: 40px;
+			line-height: 50px;
 			border: 0;
 			box-shadow: none;
 			&::placeholder {
@@ -190,8 +193,8 @@
 		visibility: visible !important;
 	}
 	.submenu-toggle {
-		width: 40px;
-		height: 40px;
+		width: 50px;
+		height: 50px;
 		left: 0;
 		border-right: 1px solid $border;
 		background-color: $gray-lighter;
@@ -208,8 +211,8 @@
 			text-align: center;
 			color: $black;
 			position: relative;
-			top: 5px;
-			left: 5px;
+			top: 10px;
+			left: 10px;
 			transform: rotate(0deg);
 			transition: all 200ms ease;
 			span {
@@ -242,9 +245,9 @@
 	} // .submenu-toggle
 	.handle {
 		position: absolute;
-		width: 40px;
-		height: 40px;
-		left: 41px;
+		width: 50px;
+		height: 50px;
+		left: 51px;
 		background-color: $gray-lighter;
 		border-right: 1px solid $border-light;
 		text-align: center;
@@ -255,7 +258,7 @@
 		}
 		svg {
 			position: relative;
-			top: 6px;
+			top: 10px;
 			width: 20px;
 			width: 20px;
 		}
@@ -265,8 +268,8 @@
 	}
 	.hide-checkbox {
 		position: absolute;
-		width: 60px;
-		height: 40px;
+		width: 80px;
+		height: 50px;
 		top: 0;
 		text-align: center;
 		right: 0;
@@ -314,10 +317,10 @@
 	} // options-open
 	.submenu-listing {
 		display: none;
-		padding-left: 40px;
+		padding-left: 50px;
 		background-color: $gray-lighter;
 		border-top: 1px solid $border;
-		border-bottom: 1px solid $border;
+		border-bottom: 3px solid $border;
 	}
 	li.submenu-open .submenu-listing {
 		display: block;
@@ -328,7 +331,7 @@
 		border-top: 1px solid $border;
 		background-color: $gray-lighter;
 		.menu-item {
-			padding-left: 40px;
+			padding-left: 50px;
 		}
 		.title {
 			padding-left: 1em;
