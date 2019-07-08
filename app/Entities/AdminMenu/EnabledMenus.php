@@ -128,9 +128,9 @@ class EnabledMenus
 	private function menuPosition($c)
 	{
 		global $_wp_last_object_menu;
-		if ( $this->post_type->name == 'post' ) return 5;
-		if ( $this->post_type->name == 'page') return 20;
-		if ( $this->post_type->menu_position ) return $this->post_type->menu_position + 1;
+		if ( $this->post_type->name == 'post' ) return apply_filters('nestedpages_menu_order', 5, $this->post_type);
+		if ( $this->post_type->name == 'page') return apply_filters('nestedpages_menu_order', 20, $this->post_type);
+		if ( $this->post_type->menu_position ) return apply_filters('nestedpages_menu_order', $this->post_type->menu_position + 1, $this->post_type);
 		return $_wp_last_object_menu + $c;
 	}
 
