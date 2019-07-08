@@ -45,6 +45,7 @@ class Bootstrap
 	{
 		new Entities\AdminMenu\AdminMenu;
 		new Entities\DefaultList\DefaultListFactory;
+		new Entities\AdminCustomization\AdminCustomizationFactory;
 		$this->addLocalization();
 	}
 

@@ -10,6 +10,9 @@
 			<?php _e('Post Types', 'wp-nested-pages'); ?>
 		</a>
 		<?php endif; ?>
+		<a class="nav-tab <?php if ( $tab == 'admincustom' ) echo 'nav-tab-active'; ?>" href="options-general.php?page=nested-pages-settings&tab=admincustom">
+			<?php _e('Admin Customization', 'wp-nested-pages'); ?>
+		</a>
 	</h2>
 
 	<form method="post" enctype="multipart/form-data" action="options.php">
