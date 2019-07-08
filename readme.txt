@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.1.0 =
+* Adds new feature for customizing the order, visibility, and labels of the admin menu
+
 = 3.0.11 =
 * Adds filters for "Sort/Nested View" and "Default" labels.
 * Fixes issue where serialized meta data was not being saved properly during cloning.
