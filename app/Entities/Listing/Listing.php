@@ -11,6 +11,7 @@ use NestedPages\Entities\Listing\ListingRepository;
 use NestedPages\Entities\Listing\ListingQuery;
 use NestedPages\Config\SettingsRepository;
 use NestedPages\Entities\PluginIntegration\IntegrationFactory;
+use NestedPages\Entities\PostType\PostTypeCustomFields;
 
 /**
 * Primary Post Listing
@@ -88,6 +89,11 @@ class Listing
 	private $settings;
 
 	/**
+	* Custom Field Repository
+	*/
+	private $custom_fields_repo;
+
+	/**
 	* Post Type Settings
 	* @var object from post type repo
 	*/
@@ -133,6 +139,7 @@ class Listing
 		$this->listing_query = new ListingQuery;
 		$this->post_data_factory = new PostDataFactory;
 		$this->settings = new SettingsRepository;
+		$this->custom_fields_repo = new PostTypeCustomFields;
 		$this->setTaxonomies();
 		$this->setPostTypeSettings();
 		$this->setStandardFields();

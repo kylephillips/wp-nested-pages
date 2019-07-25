@@ -1594,6 +1594,15 @@ NestedPages.QuickEditPost = function()
 			sticky: $(plugin.button).attr('data-sticky')
 		};
 
+		// Add Custom Fields if Available
+		var allData = $(plugin.button).data();
+		for ( var key in allData ){
+			if ( !key.includes('npcustom') ) continue;
+			if ( allData.hasOwnProperty(key) ){
+				plugin.initialData[key] = allData[key];
+			}
+		}
+
 		// Add Array of Taxonomies to the data object using classes applied to the list element
 		plugin.initialData.h_taxonomies = [];
 		plugin.initialData.f_taxonomies = [];
@@ -1639,7 +1648,7 @@ NestedPages.QuickEditPost = function()
 		$(plugin.form).find('.np_title_attribute').val(plugin.initialData.navtitleattr);
 		$(plugin.form).find('.np_nav_css_classes').val(plugin.initialData.navcss);
 		$(plugin.form).find('.post_password').val(plugin.initialData.password);
-		$(plugin.form).find('.np_datepicker').val(plugin.initialData.datepicker);
+		$(plugin.form).find('.np_publish_date').val(plugin.initialData.datepicker);
 		if ( plugin.initialData.cs === 'open' ) $(plugin.form).find('.np_cs').attr('checked', 'checked');
 
 		if ( plugin.initialData.template !== '' ){
@@ -1693,6 +1702,18 @@ NestedPages.QuickEditPost = function()
 			$(plugin.form).find('input[name="hh"]').val(plugin.initialData.hour);
 			$(plugin.form).find('input[name="mn"]').val(plugin.initialData.minute);
 		}
+
+		// Custom Fields
+		for ( var key in plugin.initialData ){
+			if ( !key.includes('npcustom') ) continue;
+			if ( plugin.initialData.hasOwnProperty(key) ){
+				var inputName = key.replace('npcustom', '');
+				inputName = inputName.toLowerCase();
+				$(plugin.form).find('[data-np-custom-field="' + inputName + '"]').val(plugin.initialData[key]);
+			}
+		}
+
+		plugin.populateFlatTaxonomies();
 
 		// Populate Hierarchical Taxonomy Checkboxes
 		if ( plugin.initialData.hasOwnProperty('h_taxonomies') ){
@@ -1917,6 +1938,15 @@ NestedPages.QuickEditPost = function()
 		$(button).attr('data-time', plugin.newData.np_time);
 		$(button).attr('data-formattedtime', plugin.newData.np_time);
 		$(button).attr('data-ampm', plugin.newData.np_ampm);
+
+		// Custom Fields
+		for ( var key in plugin.newData ){
+			if ( !key.includes('np_custom') ) continue;
+			if ( plugin.newData.hasOwnProperty(key) ){
+				var attrName = key.replace('np_custom_', 'data-npcustom-');
+				$(button).attr(attrName, plugin.newData[key]);
+			}
+		}
 
 		plugin.removeTaxonomyClasses();
 		plugin.addCategoryClasses();

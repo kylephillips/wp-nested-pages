@@ -88,6 +88,8 @@ class PostUpdateRepository
 			'ID' => sanitize_text_field($data['post_id'])
 		];
 
+		$this->validation->validateCustomFields($data);
+
 		if ( isset($data['post_title']) && $data['post_title'] == "" ){ 
 			$this->validation->checkEmpty($data['post_title'], __('Title', 'wp-nested-pages'));
 		} elseif ( isset($data['post_title']) ){
@@ -132,6 +134,7 @@ class PostUpdateRepository
 		$this->updateSticky($data);
 		$this->updateTemplate($data);
 		$this->updateNestedPagesStatus($data);
+		$this->updateCustomFields($data);
 
 		// Taxonomies
 		$this->updateCategories($data, $append_taxonomies);
@@ -246,6 +249,24 @@ class PostUpdateRepository
 				'_np_title_attribute', 
 				$title_attr
 			);
+		}
+	}
+
+	/**
+	* Update Custom Fields, Available through filters
+	* @param array data
+	*/
+	private function updateCustomFields($data)
+	{
+		foreach ( $data as $key => $value ){
+			if ( strpos($key, 'np_custom_') !== false) {
+				$field_key = str_replace('np_custom_', '', $key);
+				update_post_meta( 
+					$data['post_id'], 
+					$field_key, 
+					sanitize_text_field($data[$key])
+				);
+			}
 		}
 	}
 

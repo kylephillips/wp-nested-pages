@@ -61,6 +61,7 @@ class PostDataFactory
 	public function addPostMeta($post)
 	{
 		$meta = get_metadata('post', $post->ID);
+		$this->post_data->meta = $meta;
 		$this->post_data->nav_title = ( isset($meta['_np_nav_title'][0]) ) ? $meta['_np_nav_title'][0] : null;
 		$this->post_data->link_target = ( isset($meta['_np_link_target'][0]) ) ? $meta['_np_link_target'][0] : null;
 		$this->post_data->nav_title_attr = ( isset($meta['_np_title_attribute'][0]) ) ? $meta['_np_title_attribute'][0] : null;

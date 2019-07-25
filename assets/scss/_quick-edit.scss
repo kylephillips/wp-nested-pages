@@ -105,6 +105,9 @@
 				float: left;
 				width: 45%;
 				margin: 0;
+				&.full {
+					width: 100%;
+				}
 			}
 			span {
 				float: left;
