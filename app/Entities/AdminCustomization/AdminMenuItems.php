@@ -206,8 +206,29 @@ class AdminMenuItems extends AdminCustomizationBase
 			}
 		}
 
+		// Add missing items (added by plugins after saving a custom menu)		
+		$missing_items = [];
+		foreach ( $np_menu_ordered as $role => $ordered_menu ){
+			if ( $role == 'default' ) continue;
+			$all_items = [];
+			foreach ( $np_menu_ordered['default'] as $menu_key => $default_menu ){
+				if ( $default_menu[2] == 'edit-tags.php?taxonomy=link_category' ) continue;
+				$all_items[$default_menu[2]] = $menu_key;
+			}
+			foreach ( $ordered_menu as $ordered_item ){
+				if ( array_key_exists($ordered_item[2], $all_items) ) unset($all_items[$ordered_item[2]]);
+			}
+			$missing_items[$role] = $all_items;
+		}
+		foreach ( $missing_items as $role => $items ){
+			foreach ( $items as $item_id => $key ){
+				$np_menu_ordered[$role][] = $np_menu_ordered['default'][$key];
+			}
+		}
+	
 		$np_menu_original = $np_menu_ordered;
 	}
+
 
 	/**
 	* Set the default menu/order
