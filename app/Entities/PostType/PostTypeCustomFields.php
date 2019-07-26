@@ -38,7 +38,7 @@ class PostTypeCustomFields
 	{
 		$out = '<div class="form-control np-datepicker-container">';
 		$out .= '<label>' . $field['label'] . '</label>';
-		$out .= '<div class="datetime"><input type="text" name="np_custom_' . $field['key'] . '" class="np_datepicker full" value="" data-np-custom-field="' . $field['key'] . '" /></div>';
+		$out .= '<div class="datetime"><input type="text" data-datepicker-format="' . $field['format_datepicker'] . '" name="np_custom_' . $field['key'] . '" class="np_datepicker full" value="" data-np-custom-field="' . $field['key'] . '" /></div>';
 		$out .= '</div>';
 		return $out;
 	}
@@ -79,7 +79,7 @@ class PostTypeCustomFields
 			$custom_value = ( isset($post->meta[$field['key']]) ) ? $post->meta[$field['key']] : null;
 			if ( $custom_value ) :
 				$value = $custom_value[0];
-				if ( $field['type'] == 'date' && $field['format'] && $value !== '' ) $value = date($field['format'], strtotime($value));
+				if ( $field['type'] == 'date' && $field['format_save'] && $value !== '' ) $value = date($field['format_save'], strtotime($value));
 				$out .= ' data-npcustom-' . $field['key'] . '="' . $value . '"';
 			endif;
 		endforeach;

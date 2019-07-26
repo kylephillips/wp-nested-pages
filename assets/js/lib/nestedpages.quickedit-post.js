@@ -21,13 +21,6 @@ NestedPages.QuickEditPost = function()
 	plugin.newData = ''; // New Data, after save
 	plugin.row = ''; // The row being edited
 
-
-	plugin.init = function()
-	{
-		plugin.bindEvents();
-	}
-
-
 	plugin.bindEvents = function()
 	{
 		$(document).on('click', NestedPages.selectors.quickEditOpen, function(e){
@@ -107,13 +100,11 @@ NestedPages.QuickEditPost = function()
 		};
 
 		// Add Custom Fields if Available
-		var allData = $(plugin.button).data();
-		for ( var key in allData ){
-			if ( !key.includes('npcustom') ) continue;
-			if ( allData.hasOwnProperty(key) ){
-				plugin.initialData[key] = allData[key];
-			}
-		}
+		var attrs = $(plugin.button)[0].attributes;
+		$.each(attrs, function(i, attr){
+			if ( !attr.name.includes('data-npcustom') ) return;
+			plugin.initialData[attr.name] = attr.value;
+		});
 
 		// Add Array of Taxonomies to the data object using classes applied to the list element
 		plugin.initialData.h_taxonomies = [];
@@ -219,7 +210,7 @@ NestedPages.QuickEditPost = function()
 		for ( var key in plugin.initialData ){
 			if ( !key.includes('npcustom') ) continue;
 			if ( plugin.initialData.hasOwnProperty(key) ){
-				var inputName = key.replace('npcustom', '');
+				var inputName = key.replace('data-npcustom-', '');
 				inputName = inputName.toLowerCase();
 				$(plugin.form).find('[data-np-custom-field="' + inputName + '"]').val(plugin.initialData[key]);
 			}
@@ -236,10 +227,15 @@ NestedPages.QuickEditPost = function()
 			}
 		}
 
-		$(plugin.form).find('.np_datepicker').datepicker({
-			beforeShow: function(input, inst) {
-				$('#ui-datepicker-div').addClass('nestedpages-datepicker');
-			}
+		var datepickers = $(plugin.form).find('.np_datepicker');
+		$.each(datepickers, function(){
+			var $this = $(this);
+			$this.datepicker({
+				dateFormat: $this.attr('data-datepicker-format'),
+				beforeShow: function(input, inst) {
+					$('#ui-datepicker-div').addClass('nestedpages-datepicker');
+				}
+			});
 		});
 
 		plugin.formatter.showQuickEdit();
@@ -551,9 +547,6 @@ NestedPages.QuickEditPost = function()
 		$(NestedPages.selectors.quickEditLoadingIndicator).hide();
 	}
 
-	
-
-	return plugin.init();
-
+	return plugin.bindEvents();
 
 }
