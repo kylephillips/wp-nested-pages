@@ -109,7 +109,9 @@ foreach ( $roles as $role ) :
 			</div><!-- .menu-item -->
 			<?php if ( !$separator ) : ?>
 			<div class="hide-checkbox">
+				<?php if ( $original_link !== 'options-general.php' ) : ?>
 				<input type="checkbox" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $id; ?>][hidden]" value="<?php echo $id; ?>" data-nestedpages-admin-nav-item-checkbox	<?php if ( in_array($id, $hidden) ) echo 'checked'; ?> />
+				<?php endif; ?>
 			</div>
 			<?php else : ?>
 			<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $id; ?>]" value="true">
@@ -159,11 +161,13 @@ foreach ( $roles as $role ) :
 							<p><?php echo $label; ?></p>
 						</div>
 						<div class="hide-checkbox">
+							<?php if ( $submenu['link'] !== 'nested-pages-settings' ) : ?>
 							<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $id; ?>][submenu][<?php echo $si; ?>][label]" value="<?php echo $label; ?>" />
 							<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $id; ?>][submenu][<?php echo $si; ?>][role]" value="<?php echo $role_name; ?>" />
 							<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $id; ?>][submenu][<?php echo $si; ?>][link]" value="<?php echo $link; ?>" />
 							<input type="checkbox" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $id; ?>][submenu][<?php echo $si; ?>][hidden]" value="true" data-nestedpages-admin-nav-item-checkbox <?php if ( $hidden_sub )  echo 'checked'; ?>/>
 							<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $id; ?>][submenu][<?php echo $si; ?>][order]" value="<?php echo $si; ?>" data-np-submenu-order>
+							<?php endif; ?>
 						</div>
 					</div><!-- .menu-item -->
 				</li>

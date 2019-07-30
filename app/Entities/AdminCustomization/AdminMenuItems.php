@@ -92,7 +92,9 @@ class AdminMenuItems extends AdminCustomizationBase
 		$separator_index = 1;
 		foreach ( $menu_options[$this->current_user_role] as $key => $item ){
 
-			if ( isset($item['hidden']) ) continue;
+			// Settings can't be hidden (unable to return to reset customizations)
+			if ( isset($item['hidden']) && $item['link'] !== 'options-general.php' ) continue;
+
 			$slug = ( isset($item['original_link']) ) ? $item['original_link'] : $key;
 
 			// Loop through the original menu and get the item if it exists (associated through original link)
@@ -120,6 +122,7 @@ class AdminMenuItems extends AdminCustomizationBase
 	{
 		global $submenu;
 		global $np_submenu_original;
+		$original_submenu = $submenu;
 
 		if ( !$this->settings->adminCustomEnabled('enabled_menu') ) return;
 		$menu_options = $this->settings->adminCustomEnabled('nav_menu_options');
@@ -148,7 +151,7 @@ class AdminMenuItems extends AdminCustomizationBase
 				$np_submenu_original[$index][1] = $menu['role'];
 				$np_submenu_original[$index][2] = $menu['link'];
 				$np_submenu_original[$index][3] = $menu['label'];
-				$np_submenu_original[$index][4] = (isset($menu['hidden']) && $menu['hidden'] == 'true') ? true : false;;
+				$np_submenu_original[$index][4] = (isset($menu['hidden']) && $menu['hidden'] == 'true') ? true : false;
 
 				if ( isset($menu['hidden']) && $menu['hidden'] == 'true' ) continue;
 				$new_submenu[$index][0] = $menu['label'];
@@ -157,6 +160,9 @@ class AdminMenuItems extends AdminCustomizationBase
 				$new_submenu[$index][3] = $menu['label'];
 			}
 			$submenu[$menu_option['link']] = $new_submenu;
+			// echo '<pre>';
+			// var_dump($menu_option);
+			// echo '</pre>';
 		}
 	}
 
@@ -178,10 +184,10 @@ class AdminMenuItems extends AdminCustomizationBase
 		// Set each role's menu order
 		$user_roles = $this->user_repo->allRoles(array());
 		foreach( $user_roles as $role ){
+
 			if ( !array_key_exists($role['name'], $menu_options) ) continue;
 
 			foreach ( $menu_options[$role['name']] as $key => $item ){
-
 				foreach ( $np_menu_original as $menu_key => $menu_item ){
 					if ( isset($menu_item[2]) && $menu_item[2] == $key ) {
 						if ( isset($np_submenu_original[$menu_item[2]]) ) $menu_item['submenu'] = $np_submenu_original[$menu_item[2]];
