@@ -54,6 +54,9 @@ foreach ( $roles as $role ) :
 	foreach ( $menu as $menu_item ) :
 
 		$separator = ( $menu_item[0] == '' && isset($menu_item[4]) && $menu_item[4] == 'wp-menu-separator' ) ? true : false;
+
+		// WooCommerce Separator
+		if ( isset($menu_item[4]) && $menu_item[4] == 'wp-menu-separator woocommerce' ) $separator = true;
 		if ( !array_key_exists($menu_item[1], $role_capabilities) || !$role_capabilities[$menu_item[1]] ) continue; // This role doesn't have access to this item
 		$custom_item = ( isset($menu_item[7]) && $menu_item[7] == 'custom-item' ) ? true : false;
 		$id = $menu_item[2];
@@ -93,7 +96,9 @@ foreach ( $roles as $role ) :
 				<div class="title"><div class="menu-icon dashicons-before <?php echo $icon; ?>"></div>
 				<p>
 					<?php if ( $separator ) : ?>
-					<?php _e('Separator', 'wp-nested-pages'); ?>
+					<?php 
+					echo ( $menu_item[4] !== 'wp-menu-separator woocommerce' ) ? __('Separator', 'wp-nested-pages') : __('Separator (WooCommerce)', 'wp-nested-pages');					
+					?>
 					<button class="button button-small details-button" data-np-remove-separator-button><?php _e('Remove', 'wp-nested-pages'); ?></button>
 					<?php else : ?>
 					<input type="text" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $id; ?>][label]" value="<?php if ( $custom_label ) echo $custom_label; ?>" placeholder="<?php echo esc_html($original_text); ?>" class="menu-title-field" />
