@@ -38,7 +38,7 @@
 		<div class="form-control np-datepicker-container">
 			<label><?php _e( 'Date' ); ?></label>
 			<div class="datetime">
-				<input type="text" name="np_date" class="np_datepicker" value="" />
+				<input type="text" name="np_date" class="np_datepicker np_publish_date" value="" />
 				<span><?php _e('@', 'wp-nested-pages'); ?></span>
 				<div class="np-time-container">
 					<?php if ( get_option('time_format') !== 'H:i' ) : ?>
@@ -106,6 +106,11 @@
 		</div>
 		<?php endif; ?>
 
+		<?php
+		$custom_fields_left = $this->custom_fields_repo->outputFields($this->post_type, 'left');
+		if ( $custom_fields_left ) echo $custom_fields_left;
+		?>
+
 	</div><!-- .left -->
 
 	<div class="right">
@@ -170,6 +175,11 @@
 			<a href="#" class="np-btn np-btn-half btn-right np-toggle-taxonomies"><?php _e('Taxonomies', 'wp-nested-pages'); ?></a>
 			<?php endif; ?>
 		</div>
+
+		<?php
+		$custom_fields_right = $this->custom_fields_repo->outputFields($this->post_type, 'right');
+		if ( $custom_fields_right ) echo $custom_fields_right;
+		?>
 
 	</div><!-- .right -->
 

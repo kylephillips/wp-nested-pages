@@ -1509,13 +1509,6 @@ NestedPages.QuickEditPost = function()
 	plugin.newData = ''; // New Data, after save
 	plugin.row = ''; // The row being edited
 
-
-	plugin.init = function()
-	{
-		plugin.bindEvents();
-	}
-
-
 	plugin.bindEvents = function()
 	{
 		$(document).on('click', NestedPages.selectors.quickEditOpen, function(e){
@@ -1594,6 +1587,13 @@ NestedPages.QuickEditPost = function()
 			sticky: $(plugin.button).attr('data-sticky')
 		};
 
+		// Add Custom Fields if Available
+		var attrs = $(plugin.button)[0].attributes;
+		$.each(attrs, function(i, attr){
+			if ( !attr.name.includes('data-npcustom') ) return;
+			plugin.initialData[attr.name] = attr.value;
+		});
+
 		// Add Array of Taxonomies to the data object using classes applied to the list element
 		plugin.initialData.h_taxonomies = [];
 		plugin.initialData.f_taxonomies = [];
@@ -1639,7 +1639,7 @@ NestedPages.QuickEditPost = function()
 		$(plugin.form).find('.np_title_attribute').val(plugin.initialData.navtitleattr);
 		$(plugin.form).find('.np_nav_css_classes').val(plugin.initialData.navcss);
 		$(plugin.form).find('.post_password').val(plugin.initialData.password);
-		$(plugin.form).find('.np_datepicker').val(plugin.initialData.datepicker);
+		$(plugin.form).find('.np_publish_date').val(plugin.initialData.datepicker);
 		if ( plugin.initialData.cs === 'open' ) $(plugin.form).find('.np_cs').attr('checked', 'checked');
 
 		if ( plugin.initialData.template !== '' ){
@@ -1694,6 +1694,18 @@ NestedPages.QuickEditPost = function()
 			$(plugin.form).find('input[name="mn"]').val(plugin.initialData.minute);
 		}
 
+		// Custom Fields
+		for ( var key in plugin.initialData ){
+			if ( !key.includes('npcustom') ) continue;
+			if ( plugin.initialData.hasOwnProperty(key) ){
+				var inputName = key.replace('data-npcustom-', '');
+				inputName = inputName.toLowerCase();
+				$(plugin.form).find('[data-np-custom-field="' + inputName + '"]').val(plugin.initialData[key]);
+			}
+		}
+
+		plugin.populateFlatTaxonomies();
+
 		// Populate Hierarchical Taxonomy Checkboxes
 		if ( plugin.initialData.hasOwnProperty('h_taxonomies') ){
 			var taxonomies = plugin.initialData.h_taxonomies;
@@ -1703,10 +1715,15 @@ NestedPages.QuickEditPost = function()
 			}
 		}
 
-		$(plugin.form).find('.np_datepicker').datepicker({
-			beforeShow: function(input, inst) {
-				$('#ui-datepicker-div').addClass('nestedpages-datepicker');
-			}
+		var datepickers = $(plugin.form).find('.np_datepicker');
+		$.each(datepickers, function(){
+			var $this = $(this);
+			$this.datepicker({
+				dateFormat: $this.attr('data-datepicker-format'),
+				beforeShow: function(input, inst) {
+					$('#ui-datepicker-div').addClass('nestedpages-datepicker');
+				}
+			});
 		});
 
 		plugin.formatter.showQuickEdit();
@@ -1918,6 +1935,15 @@ NestedPages.QuickEditPost = function()
 		$(button).attr('data-formattedtime', plugin.newData.np_time);
 		$(button).attr('data-ampm', plugin.newData.np_ampm);
 
+		// Custom Fields
+		for ( var key in plugin.newData ){
+			if ( !key.includes('np_custom') ) continue;
+			if ( plugin.newData.hasOwnProperty(key) ){
+				var attrName = key.replace('np_custom_', 'data-npcustom-');
+				$(button).attr(attrName, plugin.newData[key]);
+			}
+		}
+
 		plugin.removeTaxonomyClasses();
 		plugin.addCategoryClasses();
 		plugin.addHierarchicalClasses();
@@ -2009,10 +2035,7 @@ NestedPages.QuickEditPost = function()
 		$(NestedPages.selectors.quickEditLoadingIndicator).hide();
 	}
 
-	
-
-	return plugin.init();
-
+	return plugin.bindEvents();
 
 }
 var NestedPages = NestedPages || {};

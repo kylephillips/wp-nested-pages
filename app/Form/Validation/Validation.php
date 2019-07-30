@@ -207,4 +207,28 @@ class Validation
 
 		return true;
 	}
+
+	/**
+	* Validate Custom Fields
+	*/
+	public function validateCustomFields($data)
+	{
+		$post_type = get_post_type_object($data['post_type']);
+		$fields_left = apply_filters('nestedpages_quickedit_custom_fields', [], $post_type, 'left');
+		$fields_right = apply_filters('nestedpages_quickedit_custom_fields', [], $post_type, 'right');
+		$fields = array_merge($fields_left, $fields_right);
+		if ( empty($fields) ) return true;
+		foreach ( $fields as $field ){
+			if ( !isset($field['required']) || !$field['required'] ) continue;
+			$field_name = 'np_custom_' . $field['key'];
+			if ( !isset($data[$field_name]) || $data[$field_name] == '' ){
+				$message = ( isset($field['validation_message']) && $field['validation_message'] !== '' ) 
+					? $field['validation_message']
+					: sprintf(__('%s is required.', 'wp-nested-pages'), $field['label']);
+				return wp_send_json(['status' => 'error', 'message' => $message, 'data' => $data]);
+				die();
+			}
+		}
+		return true;
+	}
 }

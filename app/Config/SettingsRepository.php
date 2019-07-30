@@ -141,6 +141,31 @@ class SettingsRepository
 	}
 
 	/**
+	* Admin Customization
+	*/
+	public function adminCustomEnabled($enabled)
+	{
+		$option = get_option('nestedpages_admin');
+		if ( !isset($option[$enabled]) ) return false;
+		return $option[$enabled];
+	}
+
+	/**
+	* Hidden Menu Items
+	*/
+	public function adminMenuHidden($role = 'administrator')
+	{
+		$roles = $this->adminCustomEnabled('nav_menu_options');
+		if ( !$roles ) return;
+		$hidden = array();
+		if ( !isset($roles[$role]) ) return;
+		foreach($roles[$role] as $key => $options){
+			if ( isset($options['hidden']) ) $hidden[] = $options['hidden'];
+		}
+		return $hidden;
+	}
+
+	/**
 	* Reset all plugin settings
 	*/
 	public function resetSettings()

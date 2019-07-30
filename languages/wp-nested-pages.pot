@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Nested Pages\n"
-"POT-Creation-Date: 2019-04-11 09:39-0400\n"
-"PO-Revision-Date: 2019-04-04 13:06-0400\n"
+"POT-Creation-Date: 2019-07-30 11:03-0400\n"
+"PO-Revision-Date: 2019-07-30 11:03-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgid "Add Child Link"
 msgstr ""
 
 #: app/Activation/Dependencies.php:124
-#: app/Entities/Post/PostUpdateRepository.php:92
+#: app/Entities/Post/PostUpdateRepository.php:94
 #: app/Views/forms/new-child.php:19 app/Views/forms/new-child.php:21
 #: app/Views/forms/quickedit-post.php:24 app/Views/partials/tool-list.php:88
 #: app/Views/settings/settings-posttypes.php:269
@@ -56,7 +56,7 @@ msgid "Title"
 msgstr ""
 
 #: app/Activation/Dependencies.php:125 app/Views/forms/quickedit-post.php:14
-#: app/Views/partials/row-link.php:70 app/Views/partials/row.php:254
+#: app/Views/partials/row-link.php:70 app/Views/partials/row.php:256
 msgid "Quick Edit"
 msgstr ""
 
@@ -64,7 +64,7 @@ msgstr ""
 msgid "Page Title"
 msgstr ""
 
-#: app/Activation/Dependencies.php:127 app/Views/partials/row.php:260
+#: app/Activation/Dependencies.php:127 app/Views/partials/row.php:262
 msgid "View"
 msgstr ""
 
@@ -141,6 +141,7 @@ msgid "Currently assigned to:"
 msgstr ""
 
 #: app/Activation/Dependencies.php:145
+#: app/Views/settings/partials/nav-menu-settings.php:102
 #: app/Views/settings/settings-posttypes.php:86
 msgid "Remove"
 msgstr ""
@@ -162,7 +163,8 @@ msgstr ""
 msgid "Insert After"
 msgstr ""
 
-#: app/Bootstrap.php:67 app/Views/settings/settings-posttypes.php:22
+#: app/Bootstrap.php:68 app/Views/settings/settings-admincustom.php:12
+#: app/Views/settings/settings-posttypes.php:22
 msgid "Settings"
 msgstr ""
 
@@ -202,26 +204,30 @@ msgstr ""
 msgid "Password/Private"
 msgstr ""
 
-#: app/Config/SettingsRepository.php:85 app/Views/forms/quickedit-post.php:141
+#: app/Config/SettingsRepository.php:85 app/Views/forms/quickedit-post.php:146
 msgid "Allow Comments"
 msgstr ""
 
 #: app/Config/SettingsRepository.php:89 app/Views/forms/new-child.php:72
-#: app/Views/forms/quickedit-post.php:115 app/Views/partials/bulk-edit.php:58
+#: app/Views/forms/quickedit-post.php:120 app/Views/partials/bulk-edit.php:58
 msgid "Template"
 msgstr ""
 
-#: app/Config/SettingsRepository.php:90 app/Views/forms/quickedit-post.php:166
+#: app/Config/SettingsRepository.php:90 app/Views/forms/quickedit-post.php:171
 msgid "Menu Options"
 msgstr ""
 
 #: app/Config/SettingsRepository.php:93 app/Views/forms/quickedit-link.php:60
-#: app/Views/forms/quickedit-post.php:150
+#: app/Views/forms/quickedit-post.php:155
 msgid "Hide in Nested Pages"
 msgstr ""
 
-#: app/Config/SettingsRepository.php:101 app/Views/forms/quickedit-post.php:170
+#: app/Config/SettingsRepository.php:101 app/Views/forms/quickedit-post.php:175
 msgid "Taxonomies"
+msgstr ""
+
+#: app/Entities/AdminCustomization/AdminMenuItems.php:260
+msgid "Profile"
 msgstr ""
 
 #: app/Entities/AdminMenu/AdminSubmenu.php:71
@@ -409,6 +415,11 @@ msgstr ""
 msgid "Page titles cannot be blank."
 msgstr ""
 
+#: app/Form/Validation/Validation.php:227
+#, php-format
+msgid "%s is required."
+msgstr ""
+
 #: app/Views/forms/clone-form.php:10 app/Views/forms/clone-form.php:66
 #: app/Views/partials/row.php:210
 msgid "Clone"
@@ -428,7 +439,7 @@ msgstr ""
 #: app/Views/forms/delete-confirmation-modal.php:10
 #: app/Views/forms/empty-trash-modal.php:10 app/Views/forms/link-form.php:109
 #: app/Views/forms/new-child.php:102 app/Views/forms/quickedit-link.php:84
-#: app/Views/forms/quickedit-post.php:252 app/Views/partials/bulk-edit.php:143
+#: app/Views/forms/quickedit-post.php:262 app/Views/partials/bulk-edit.php:143
 msgid "Cancel"
 msgstr ""
 
@@ -467,12 +478,12 @@ msgid "URL"
 msgstr ""
 
 #: app/Views/forms/link-form.php:80 app/Views/forms/quickedit-link.php:17
-#: app/Views/forms/quickedit-post.php:216
+#: app/Views/forms/quickedit-post.php:226
 msgid "Navigation Label"
 msgstr ""
 
 #: app/Views/forms/link-form.php:84 app/Views/forms/quickedit-link.php:44
-#: app/Views/forms/quickedit-post.php:220
+#: app/Views/forms/quickedit-post.php:230
 msgid "Title Attribute"
 msgstr ""
 
@@ -481,7 +492,7 @@ msgid "CSS Classes (optional)"
 msgstr ""
 
 #: app/Views/forms/link-form.php:94 app/Views/forms/quickedit-link.php:66
-#: app/Views/forms/quickedit-post.php:238
+#: app/Views/forms/quickedit-post.php:248
 msgid "Open link in a new window/tab"
 msgstr ""
 
@@ -489,13 +500,13 @@ msgstr ""
 msgid "+"
 msgstr ""
 
-#: app/Views/forms/new-child.php:74 app/Views/forms/quickedit-post.php:117
+#: app/Views/forms/new-child.php:74 app/Views/forms/quickedit-post.php:122
 #: app/Views/partials/bulk-edit.php:61
 msgid "Default Template"
 msgstr ""
 
 #: app/Views/forms/new-child.php:84 app/Views/forms/quickedit-link.php:54
-#: app/Views/forms/quickedit-post.php:232 app/Views/partials/bulk-edit.php:108
+#: app/Views/forms/quickedit-post.php:242 app/Views/partials/bulk-edit.php:108
 msgid "Hide in Nav Menu"
 msgstr ""
 
@@ -508,11 +519,11 @@ msgstr ""
 msgid "Link"
 msgstr ""
 
-#: app/Views/forms/quickedit-link.php:48 app/Views/forms/quickedit-post.php:224
+#: app/Views/forms/quickedit-link.php:48 app/Views/forms/quickedit-post.php:234
 msgid "CSS Classes"
 msgstr ""
 
-#: app/Views/forms/quickedit-link.php:87 app/Views/forms/quickedit-post.php:255
+#: app/Views/forms/quickedit-link.php:87 app/Views/forms/quickedit-post.php:265
 #: app/Views/partials/bulk-edit.php:146
 msgid "Update"
 msgstr ""
@@ -535,19 +546,19 @@ msgstr ""
 msgid "pm"
 msgstr ""
 
-#: app/Views/forms/quickedit-post.php:125
+#: app/Views/forms/quickedit-post.php:130
 msgid "Password"
 msgstr ""
 
-#: app/Views/forms/quickedit-post.php:128
+#: app/Views/forms/quickedit-post.php:133
 msgid "&ndash;OR&ndash;"
 msgstr ""
 
-#: app/Views/forms/quickedit-post.php:131 app/Views/partials/bulk-edit.php:50
+#: app/Views/forms/quickedit-post.php:136 app/Views/partials/bulk-edit.php:50
 msgid "Private"
 msgstr ""
 
-#: app/Views/forms/quickedit-post.php:159
+#: app/Views/forms/quickedit-post.php:164
 msgid "Make Sticky"
 msgstr ""
 
@@ -606,6 +617,7 @@ msgid "Display in Nested View"
 msgstr ""
 
 #: app/Views/partials/bulk-edit.php:101 app/Views/partials/bulk-edit.php:111
+#: app/Views/settings/partials/nav-menu-settings.php:47
 msgid "Hide"
 msgstr ""
 
@@ -712,6 +724,61 @@ msgstr ""
 
 #: app/Views/partials/wpml-translations.php:13
 msgid "Close"
+msgstr ""
+
+#: app/Views/settings/partials/nav-menu-settings.php:39
+msgid "New"
+msgstr ""
+
+#: app/Views/settings/partials/nav-menu-settings.php:42
+#: app/Views/settings/partials/nav-menu-settings.php:71
+#: app/Views/settings/partials/nav-menu-settings.php:100
+msgid "Separator"
+msgstr ""
+
+#: app/Views/settings/partials/nav-menu-settings.php:100
+msgid "Separator (WooCommerce)"
+msgstr ""
+
+#: app/Views/settings/partials/nav-menu-settings.php:105
+msgid "Details"
+msgstr ""
+
+#: app/Views/settings/partials/nav-menu-settings.php:121
+msgid "Icon CSS Class"
+msgstr ""
+
+#: app/Views/settings/partials/nav-menu-settings.php:121
+msgid "Reference"
+msgstr ""
+
+#: app/Views/settings/settings-admincustom.php:2
+msgid "Select Items to Customize"
+msgstr ""
+
+#: app/Views/settings/settings-admincustom.php:11
+msgid "Admin Menu"
+msgstr ""
+
+#: app/Views/settings/settings-admincustom.php:19
+msgid "Menu Items"
+msgstr ""
+
+#: app/Views/settings/settings-admincustom.php:19
+msgid ""
+"Reorder, hide and rename admin menu items by user role. These changes do not "
+"effect actual permissions, only menu appearance."
+msgstr ""
+
+#: app/Views/settings/settings-admincustom.php:20
+msgid "Important: Plugin Menu Items "
+msgstr ""
+
+#: app/Views/settings/settings-admincustom.php:20
+msgid ""
+"Some plugins may add menu items on activation. These new menu items will not "
+"display until the Nested Pages Admin Menu has been configured with these "
+"items."
 msgstr ""
 
 #: app/Views/settings/settings-general.php:4
@@ -1006,6 +1073,10 @@ msgstr ""
 
 #: app/Views/settings/settings.php:10
 msgid "Post Types"
+msgstr ""
+
+#: app/Views/settings/settings.php:14
+msgid "Admin Customization"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
