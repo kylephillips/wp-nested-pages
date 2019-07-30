@@ -2551,7 +2551,8 @@ NestedPages.formActions = {
 	postSearch: 'nppostSearch',
 	wpmlTranslations : 'npWpmlTranslations',
 	resetSettings : 'npresetSettings',
-	resetUserPrefs : 'npresetUserPreferences'
+	resetUserPrefs : 'npresetUserPreferences',
+	resetAdminMenuSettings : 'npresetAdminMenuSettings'
 }
 
 
