@@ -88,7 +88,9 @@ foreach ( $roles as $role ) :
 		$unordered_menu = $np_menu_original[$role['name']];
 		$unordered_submenus = [];
 		foreach ( $unordered_menu as $unordered_menu_item ){
-			if ( isset($unordered_menu_item['submenu']) ) $unordered_submenus[$unordered_menu_item[2]] = $unordered_menu_item['submenu'];
+			if ( isset($unordered_menu_item['submenu']) ) {
+				$unordered_submenus[$unordered_menu_item[2]] = $unordered_menu_item['submenu'];
+			}
 		}
 		?>
 		<li class="np-nav-preview <?php if ( in_array($id, $hidden) ) echo 'disabled'; ?><?php if ( $separator ) echo ' separator';?>" <?php if ( $separator ) echo 'data-np-separator-row'; ?>>
@@ -150,8 +152,17 @@ foreach ( $roles as $role ) :
 				$has_custom_submenu = false;
 			}
 
-			// Add any missing submenu items (added by plugins since last save)
 			if ( $has_custom_submenu ) :
+				// Remove submenu items not active (removed by plugin deactivation since last save)
+				foreach ( $submenu_items as $submenu_key => $submenu_item ) :
+					$exists = false;
+					foreach ( $unordered_submenus[$id] as $unordered_item ) :
+						if ( $unordered_item[2] == $submenu_item['link'] ) $exists = true;
+					endforeach;
+					if ( !$exists ) unset($submenu_items[$submenu_key]);
+				endforeach;
+
+				// Add any missing submenu items (added by plugins since last save)
 				$missing_items = [];
 				foreach ( $unordered_submenus[$id] as $unordered_item ) :
 					$missing = true;

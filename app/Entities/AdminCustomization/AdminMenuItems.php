@@ -139,6 +139,7 @@ class AdminMenuItems extends AdminCustomizationBase
 
 		// Add the Submenu pages back in, ordered and labeled how we want
 		foreach ( $menu_options[$this->current_user_role] as $menu_option ){
+		
 			if ( !isset($menu_option['original_link']) ) continue;
 			if ( !isset($menu_option['submenu']) || !$menu_option['submenu'] ){
 				$submenu[$menu_option['link']] = $np_submenu_original[$menu_option['original_link']];
@@ -147,6 +148,10 @@ class AdminMenuItems extends AdminCustomizationBase
 			$new_submenu = [];
 			foreach ( $menu_option['submenu'] as $key => $menu ){
 				$index = ($key + 1) * 10;
+				
+				// Items saved that no longer exist
+				if ( !$this->submenuExists($np_submenu_original[$menu_option['link']], $menu['link'], $menu_option) ) continue;
+
 				$np_submenu_original[$index][0] = $menu['label'];
 				$np_submenu_original[$index][1] = $menu['role'];
 				$np_submenu_original[$index][2] = $menu['link'];
@@ -166,7 +171,7 @@ class AdminMenuItems extends AdminCustomizationBase
 		foreach ( $np_submenu_original as $id => $submenu_original ){
 			if ( !isset($submenu[$id]) || empty($submenu[$id]) ) continue;
 			foreach ( $submenu_original as $submenu_item ){
-				if ( !$this->submenuExists($submenu[$id], $submenu_item[2], $menu_options)
+				if ( !$this->submenuExists($submenu[$id], $submenu_item[2])
 				&& !$this->submenuHidden($menu_options[$this->current_user_role][$id]['submenu'], $submenu_item[2]) ) {
 					$submenu[$id][] = $submenu_item;
 				}
@@ -174,7 +179,10 @@ class AdminMenuItems extends AdminCustomizationBase
 		}
 	}
 
-	private function submenuExists($source_menu, $link, $menu_options)
+	/**
+	* Does the submenu exist in the source menu?
+	*/
+	private function submenuExists($source_menu, $link)
 	{
 		$exists = false;
 		foreach ( $source_menu as $menu_item ){
