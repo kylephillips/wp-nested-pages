@@ -105,6 +105,11 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.1.1 =
+* Removes ability to hide Settings and Nested Pages menus from administrators within the admin customization interface (removing items hides links to necessary admin sections).
+* Adds ability to reset admin menu settings by clicking a single button
+* Fixes bug in new admin menu feature where submenus added by other plugins were not being displayed if a custom menu was in use.
+
 = 3.1.0 =
 * Adds new feature for customizing the order, visibility, and labels of the admin menu. To view the feature, visit Settings > Nested Pages > Admin Customization > Admin Menu. Important: once custom menus have been configured, new menu items added by other plugins may not appear upon activation. To add these items, revisit the Nested Pages settings and reconfigure the menus with the new items (they will appear at the bottom of the customized menu in the drag and drop interface). While menus may be configured for each user group, the plugin does not set any permissions. While items may be hidden from the menu, they will still be accessible with a direct link if the user has the appropriate permissions.
 * Adds filters for adding basic custom fields to the quick edit interface. Currently supported field types include text, date, and select. See https://gist.github.com/kylephillips/236d0a90aa2ea6fb628c5c1e4010f7be for example usage.
