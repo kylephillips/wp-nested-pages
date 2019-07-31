@@ -50,7 +50,8 @@ class Events
 			'wp_ajax_nppostSearch',
 			'wp_ajax_npWpmlTranslations',
 			'wp_ajax_npresetSettings',
-			'wp_ajax_npresetUserPreferences'
+			'wp_ajax_npresetUserPreferences',
+			'wp_ajax_npresetAdminMenuSettings'
 		];
 		$this->setHandlers();
 	}

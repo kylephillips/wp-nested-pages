@@ -92,7 +92,9 @@ class AdminMenuItems extends AdminCustomizationBase
 		$separator_index = 1;
 		foreach ( $menu_options[$this->current_user_role] as $key => $item ){
 
-			if ( isset($item['hidden']) ) continue;
+			// Settings can't be hidden (unable to return to reset customizations)
+			if ( isset($item['hidden']) && $item['link'] !== 'options-general.php' ) continue;
+
 			$slug = ( isset($item['original_link']) ) ? $item['original_link'] : $key;
 
 			// Loop through the original menu and get the item if it exists (associated through original link)
@@ -120,6 +122,7 @@ class AdminMenuItems extends AdminCustomizationBase
 	{
 		global $submenu;
 		global $np_submenu_original;
+		$original_submenu = $submenu;
 
 		if ( !$this->settings->adminCustomEnabled('enabled_menu') ) return;
 		$menu_options = $this->settings->adminCustomEnabled('nav_menu_options');
@@ -136,6 +139,7 @@ class AdminMenuItems extends AdminCustomizationBase
 
 		// Add the Submenu pages back in, ordered and labeled how we want
 		foreach ( $menu_options[$this->current_user_role] as $menu_option ){
+		
 			if ( !isset($menu_option['original_link']) ) continue;
 			if ( !isset($menu_option['submenu']) || !$menu_option['submenu'] ){
 				$submenu[$menu_option['link']] = $np_submenu_original[$menu_option['original_link']];
@@ -144,11 +148,15 @@ class AdminMenuItems extends AdminCustomizationBase
 			$new_submenu = [];
 			foreach ( $menu_option['submenu'] as $key => $menu ){
 				$index = ($key + 1) * 10;
+				
+				// Items saved that no longer exist
+				if ( !$this->submenuExists($np_submenu_original[$menu_option['link']], $menu['link'], $menu_option) ) continue;
+
 				$np_submenu_original[$index][0] = $menu['label'];
 				$np_submenu_original[$index][1] = $menu['role'];
 				$np_submenu_original[$index][2] = $menu['link'];
 				$np_submenu_original[$index][3] = $menu['label'];
-				$np_submenu_original[$index][4] = (isset($menu['hidden']) && $menu['hidden'] == 'true') ? true : false;;
+				$np_submenu_original[$index][4] = (isset($menu['hidden']) && $menu['hidden'] == 'true') ? true : false;
 
 				if ( isset($menu['hidden']) && $menu['hidden'] == 'true' ) continue;
 				$new_submenu[$index][0] = $menu['label'];
@@ -158,6 +166,42 @@ class AdminMenuItems extends AdminCustomizationBase
 			}
 			$submenu[$menu_option['link']] = $new_submenu;
 		}
+
+		// Submenu pages added by plugins after saving customizations
+		foreach ( $np_submenu_original as $id => $submenu_original ){
+			if ( !isset($submenu[$id]) || empty($submenu[$id]) ) continue;
+			foreach ( $submenu_original as $submenu_item ){
+				if ( !$this->submenuExists($submenu[$id], $submenu_item[2])
+				&& !$this->submenuHidden($menu_options[$this->current_user_role][$id]['submenu'], $submenu_item[2]) ) {
+					$submenu[$id][] = $submenu_item;
+				}
+			}
+		}
+	}
+
+	/**
+	* Does the submenu exist in the source menu?
+	*/
+	private function submenuExists($source_menu, $link)
+	{
+		$exists = false;
+		foreach ( $source_menu as $menu_item ){
+			if ( $menu_item[2] == $link ) $exists = true;
+		}
+		return $exists;
+	}
+
+	private function submenuHidden($menu_options, $submenu_link)
+	{
+		$hidden = false;
+		foreach ( $menu_options as $option ){
+			if ( $option['link'] == $submenu_link && isset($option['hidden']) ) $hidden = true;
+		}
+		return $hidden;
+		echo '<pre>';
+		var_dump($submenu_link);
+		var_dump($menu_options);
+		echo '</pre>';
 	}
 
 	/**
@@ -178,13 +222,15 @@ class AdminMenuItems extends AdminCustomizationBase
 		// Set each role's menu order
 		$user_roles = $this->user_repo->allRoles(array());
 		foreach( $user_roles as $role ){
+
 			if ( !array_key_exists($role['name'], $menu_options) ) continue;
-
+			$missing_submenus = [];
 			foreach ( $menu_options[$role['name']] as $key => $item ){
-
 				foreach ( $np_menu_original as $menu_key => $menu_item ){
 					if ( isset($menu_item[2]) && $menu_item[2] == $key ) {
-						if ( isset($np_submenu_original[$menu_item[2]]) ) $menu_item['submenu'] = $np_submenu_original[$menu_item[2]];
+						if ( isset($np_submenu_original[$menu_item[2]]) ) {
+							$menu_item['submenu'] = $np_submenu_original[$menu_item[2]];
+						}
 						$np_menu_ordered[$role['name']][] = $menu_item;
 					} // submenu
 				} // np menu original
@@ -207,7 +253,8 @@ class AdminMenuItems extends AdminCustomizationBase
 		}
 
 		// Add missing items (added by plugins after saving a custom menu)		
-		$missing_items = [];
+		$missing_top_items = [];
+		$missing_sub_items = [];
 		foreach ( $np_menu_ordered as $role => $ordered_menu ){
 			if ( $role == 'default' ) continue;
 			$all_items = [];
@@ -218,14 +265,17 @@ class AdminMenuItems extends AdminCustomizationBase
 			foreach ( $ordered_menu as $ordered_item ){
 				if ( array_key_exists($ordered_item[2], $all_items) ) unset($all_items[$ordered_item[2]]);
 			}
-			$missing_items[$role] = $all_items;
+			$missing_top_items[$role] = $all_items;
+			foreach ( $ordered_menu as $ordered_item ){
+
+			}
 		}
-		foreach ( $missing_items as $role => $items ){
+
+		foreach ( $missing_top_items as $role => $items ){
 			foreach ( $items as $item_id => $key ){
 				$np_menu_ordered[$role][] = $np_menu_ordered['default'][$key];
 			}
 		}
-	
 		$np_menu_original = $np_menu_ordered;
 	}
 

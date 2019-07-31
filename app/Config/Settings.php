@@ -55,6 +55,11 @@ class Settings
 	*/
 	private $post_repo;
 
+	/**
+	* Admin Menu Settings
+	*/
+	private $admin_menu_settings;
+
 	public function __construct()
 	{
 		add_action( 'admin_menu', [$this, 'registerSettingsPage' ]);
@@ -147,5 +152,5 @@ class Settings
 		$this->setMenu();
 		$tab = ( isset($_GET['tab']) ) ? $_GET['tab'] : 'general';
 		include( Helpers::view('settings/settings') );
-	}	
+	}
 }

@@ -5,7 +5,7 @@ Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
 Tested up to: 5.2
 Requires PHP: 5.4
-Stable tag: 3.1.0
+Stable tag: 3.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -104,6 +104,11 @@ No. The menu synchronization currently only works within the pages post type.
 9. The Nested Pages interface can be enabled on a per-post-type basis, with customizable options for each type.
 
 == Changelog ==
+
+= 3.1.1 =
+* Removes ability to hide Settings and Nested Pages menus from administrators within the admin customization interface (removing items hides links to necessary admin sections).
+* Adds ability to reset admin menu settings by clicking a single button
+* Fixes bug in new admin menu feature where submenus added by other plugins were not being displayed if a custom menu was in use.
 
 = 3.1.0 =
 * Adds new feature for customizing the order, visibility, and labels of the admin menu. To view the feature, visit Settings > Nested Pages > Admin Customization > Admin Menu. Important: once custom menus have been configured, new menu items added by other plugins may not appear upon activation. To add these items, revisit the Nested Pages settings and reconfigure the menus with the new items (they will appear at the bottom of the customized menu in the drag and drop interface). While menus may be configured for each user group, the plugin does not set any permissions. While items may be hidden from the menu, they will still be accessible with a direct link if the user has the appropriate permissions.

@@ -178,7 +178,21 @@ class SettingsRepository
 			'nestedpages_menusync',
 			'nestedpages_posttypes',
 			'nestedpages_ui',
-			'nestedpages_version'
+			'nestedpages_version',
+			'nestedpages_admin'
+		];
+		foreach($options as $option){
+			delete_option($option);
+		}
+	}
+
+	/**
+	* Reset admin menu customizations
+	*/
+	public function resetAdminMenuSettings()
+	{
+		$options = [
+			'nestedpages_admin'
 		];
 		foreach($options as $option){
 			delete_option($option);
