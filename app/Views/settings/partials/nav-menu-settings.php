@@ -7,6 +7,7 @@ $nav_menu_options = $this->settings->adminCustomEnabled('nav_menu_options');
 global $np_menu_original;
 global $np_submenu_original;
 global $menu;
+
 $c = 1;
 foreach ( $roles as $role ) :
 	$menu = $np_menu_original;
@@ -82,6 +83,13 @@ foreach ( $roles as $role ) :
 
 		// Set the Link
 		$original_link = $menu_item[2];
+
+		// Get all submenus
+		$unordered_menu = $np_menu_original[$role['name']];
+		$unordered_submenus = [];
+		foreach ( $unordered_menu as $unordered_menu_item ){
+			if ( isset($unordered_menu_item['submenu']) ) $unordered_submenus[$unordered_menu_item[2]] = $unordered_menu_item['submenu'];
+		}
 		?>
 		<li class="np-nav-preview <?php if ( in_array($id, $hidden) ) echo 'disabled'; ?><?php if ( $separator ) echo ' separator';?>" <?php if ( $separator ) echo 'data-np-separator-row'; ?>>
 			<div class="menu-item">
@@ -141,6 +149,25 @@ foreach ( $roles as $role ) :
 				$submenu_items = $menu_item['submenu'];
 				$has_custom_submenu = false;
 			}
+
+			// Add any missing submenu items (added by plugins since last save)
+			if ( $has_custom_submenu ) :
+				$missing_items = [];
+				foreach ( $unordered_submenus[$id] as $unordered_item ) :
+					$missing = true;
+					foreach ( $submenu_items as $submenu_key => $submenu_item ) :
+						if ( $submenu_item['link'] == $unordered_item[2] ) $missing = false;
+					endforeach;
+					if ( $missing ){
+						$submenu_items[] = [
+							'label' => $unordered_item[0],
+							'role' => $unordered_item[1],
+							'link' => $unordered_item[2],
+							'order' => count($submenu_items) + 1
+						];
+					}
+				endforeach;
+			endif;
 			?>
 			<ul class="submenu-listing" data-np-sortable-admin-subnav>
 				<?php 
