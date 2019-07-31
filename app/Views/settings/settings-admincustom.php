@@ -1,4 +1,6 @@
-<?php settings_fields( 'nestedpages-admincustomization' ); ?>
+<?php 
+$this->admin_menu_settings = new NestedPages\Config\AdminMenuSettings;
+settings_fields( 'nestedpages-admincustomization' ); ?>
 <h3><?php _e('Select Items to Customize', 'wp-nested-pages'); ?></h3>
 <div class="nestedpages-settings-table">
 
