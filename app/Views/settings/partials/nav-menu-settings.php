@@ -6,8 +6,7 @@ $c = 1;
 foreach ( $this->admin_menu_settings->roles as $role ) :
 	$menu = $this->admin_menu_settings->np_menu_original;
 	$menu = ( isset($menu[$role['name']]) ) ? $menu[$role['name']] : $menu['default'];
-	$role_capabilities = $this->user_repo->getSingleRole($role['name']);
-	$role_capabilities = $role_capabilities['capabilities'];
+	$role_capabilities = $this->user_repo->getSingleRoleCapabilities($role['name']);
 	$hidden = $this->settings->adminMenuHidden($role['name']);
 	if ( !$hidden ) $hidden = [];
 	?>
