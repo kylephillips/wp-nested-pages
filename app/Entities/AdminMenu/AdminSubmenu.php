@@ -44,7 +44,7 @@ class AdminSubmenu
 			if ($key == $this->post_type_repo->editSlug($this->post_type)){
 				// Add the "All Link"
 				$submenu[$this->slug][50] = [$sub[5][0], 'edit_pages', esc_url(admin_url('admin.php?page=' . $this->slug))];
-				unset($sub['5']); // Remove Top Level
+				if ( isset($sub[5]) ) unset($sub[5]); // Remove Top Level
 				$menu_items = $sub;
 			}
 		}
