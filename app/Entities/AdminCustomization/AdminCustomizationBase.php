@@ -57,8 +57,10 @@ abstract class AdminCustomizationBase
 	*/
 	protected function setCurrentUserRoles()
 	{
-		$current_user = wp_get_current_user();
-		$this->current_user_role = $current_user->roles[0];
+        $current_user = wp_get_current_user();
+        if ( isset( $current_user->roles[0] ) ) {
+            $this->current_user_role = $current_user->roles[0];
+        }
 	}
 
 	/**
