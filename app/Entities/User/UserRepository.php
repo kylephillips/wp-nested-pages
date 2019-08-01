@@ -73,6 +73,20 @@ class UserRepository
 	}
 
 	/**
+	* Get the capabilities for a role
+	*/
+	public function getSingleRoleCapabilities($role = 'administrator')
+	{
+		global $wp_roles;
+		if ( isset($wp_roles->roles[$role]) ) :
+			$capabilities = $wp_roles->roles[$role]['capabilities'];
+			if ( $role == 'administrator' && class_exists('GFCommon') ) $capabilities['gform_full_access'] = true;
+			return apply_filters('nestedpages_capabilities', $capabilities, $role);
+		endif;
+		return false;
+	}
+
+	/**
 	* Can current user sort pages
 	* @return boolean
 	* @since 1.1.7

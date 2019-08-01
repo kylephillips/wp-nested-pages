@@ -298,10 +298,10 @@ class AdminMenuItems extends AdminCustomizationBase
 		
 		// Set each role's menu order
 		$user_roles = $this->user_repo->allRoles([]);
+
 		foreach( $user_roles as $role ){
 
-			$role_capabilities = $this->user_repo->getSingleRole($role['name']);
-			$role_capabilities = $role_capabilities['capabilities'];
+			$role_capabilities = $this->user_repo->getSingleRoleCapabilities($role['name']);
 
 			foreach ( $np_menu_original as $menu_item ){
 				

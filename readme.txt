@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.1.2 =
+* Adds filter to role capabilities (for adding items to customized admin menus with custom capabilities).
+
 = 3.1.1 =
 * Removes ability to hide Settings and Nested Pages menus from administrators within the admin customization interface (removing items hides links to necessary admin sections).
 * Adds ability to reset admin menu settings by clicking a single button
