@@ -21,10 +21,18 @@ settings_fields( 'nestedpages-general' );
 <tr valign="top">
 	<th scope="row"><?php _e('Display Options', 'wp-nested-pages'); ?></th>
 	<td>
+		<p>
 		<label>
 			<input type="checkbox" name="nestedpages_ui[datepicker]" value="true" <?php if ( $this->settings->datepickerEnabled() ) echo 'checked'; ?> />
 			<?php _e('Enable Date Picker in Quick Edit', 'wp-nested-pages'); ?>
 		</label>
+		</p>
+		<p>
+		<label>
+			<input type="checkbox" name="nestedpages_ui[non_indent]" value="true" <?php if ( $this->settings->nonIndentEnabled() ) echo 'checked'; ?> />
+			<?php _e('Use the classic (non-indented) hierarchy display.', 'wp-nested-pages'); ?>
+		</label>
+		</p>
 	</td>
 </tr>
 <tr valign="top">

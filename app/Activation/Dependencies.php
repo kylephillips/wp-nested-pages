@@ -148,7 +148,8 @@ class Dependencies
 				'add_translation' => __('Add Translation', 'wp-nested-pages'),
 				'edit' => __('Edit', 'wp-nested-pages'),
 				'insert_before' => __('Insert Before', 'wp-nested-pages'),
-				'insert_after' => __('Insert After', 'wp-nested-pages')
+				'insert_after' => __('Insert After', 'wp-nested-pages'),
+				'non_indent' => $this->settings->nonIndentEnabled()
 			];
 			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;
 			$localized_data['syncmenu'] = $syncmenu;
