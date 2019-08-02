@@ -205,40 +205,40 @@
 	// Block that holds the toggle child arrow
 	.child-toggle {
 		display: table-cell;
-		width: 46px;
-		background-color: darken($white, 6%);
-		text-align: center;
-		position: relative;
+		width: 30px;
+		// background-color: darken($white, 6%);
+		text-align: left;
+		// position: relative;
 		.child-toggle-spacer {
-			height: 46px;
-			width: 100%;
+			display: inline-block;
+			vertical-align: middle;
+			height: 50px;
+			width: 1px;
 		}
 		a { // Arrow Toggle
-			position: absolute;
-			top: 50%;
-			left: 8px;
-			margin-top: -16px;
-			width: 28px;
-			height: 28px;
-			background-color: $white;
-			border: 1px solid $border;
-			border-radius: 20px;
-			font-size: 20px;
-			line-height: 30px;
-			color: $black;
+			display: inline-block;
+			text-align: center;
+			vertical-align: middle;
+			// left: 8px;
+			// margin-top: -16px;
+			width: 29px;
+			height: 29px;
+			// height: 46px;
+			// background-color: darken($white, 6%);
+			// border: 1px solid $border;
+			// border-radius: 20px;
+			// font-size: 20px;
+			line-height: 29px;
 			box-shadow: none;
 			transition: all 200ms ease;
+			transform-origin: center;
 			transform: rotate(0deg);
 			&.open {
 				transition: all 200ms ease;
 				transform: rotate(90deg);
 			}
-			&:hover {
-				background-color: $black;
-				border-color: $black;
-				.np-icon-arrow {
-					border-left-color: $white;
-				}
+			&:focus, &:active {
+				outline: none;
 			}
 		}
 	} // .child-toggle
@@ -250,10 +250,58 @@
 		height: 0; 
 		position: relative;
 		top: -3px;
-		border-top: 4px solid transparent;
-		border-bottom: 4px solid transparent;
-		border-left: 6px solid $black;
+		border-top: 6px solid transparent;
+		border-bottom: 6px solid transparent;
+		border-left: 6px solid darken($white, 40%);
 	}
+
+	// Classic/Non-Indented Display of toggle
+	.non-indent {
+		.child-toggle {
+			width: 46px;
+			background-color: darken($white, 6%);
+			position: relative;
+			.child-toggle-spacer {
+				display: block;
+				height: 46px;
+				width: 46px;
+			}
+			a { // Arrow Toggle
+				position: absolute;
+				top: 50%;
+				display: inline-block;
+				vertical-align: middle;
+				left: 8px;
+				margin-top: -16px;
+				width: 28px;
+				height: 28px;
+				background-color: $white;
+				border: 1px solid $border;
+				border-radius: 50%;
+				line-height: 28px;
+				color: $black;
+				box-shadow: none;
+				transition: all 200ms ease;
+				transform: rotate(0deg);
+				&.open {
+					transition: all 200ms ease;
+					transform: rotate(90deg);
+				}
+				&:hover {
+					background-color: $black;
+					border-color: $black;
+					.np-icon-arrow {
+						border-left-color: $white;
+					}
+				}
+			}
+		} // .child-toggle
+		.np-icon-arrow {
+			border-top-width: 4px;
+			border-bottom-width: 4px;
+			border-left-width: 6px;
+		}
+	} // .non-indent
 
 	// Handle for sortable functionality
 	.handle {

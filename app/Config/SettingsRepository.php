@@ -17,6 +17,18 @@ class SettingsRepository
 	}
 
 	/**
+	* Is the Classic (non-indented) display option enabled
+	* @return boolean
+	*/
+	public function nonIndentEnabled()
+	{
+		$option = get_option('nestedpages_ui', false);
+		if ( $option && isset($option['non_indent']) && $option['non_indent'] == 'true' ) return true;
+		return false;
+	}
+	
+
+	/**
 	* Is the Menu Sync Option Visible
 	*/
 	public function hideMenuSync()

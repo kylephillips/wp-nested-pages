@@ -60,6 +60,32 @@ NestedPages.Formatter = function()
 	// Adjust nested margins based on how deep the list is nested
 	plugin.setNestedMargins = function()
 	{
+		var classic_indent = ( nestedpages.non_indent === '1') ? true : false;
+		if ( classic_indent ) return plugin.setClassicIndent();
+		plugin.setIndent();
+	}
+
+	plugin.setIndent = function()
+	{
+		$.each($(NestedPages.selectors.lists), function(i, v){
+			var parent_count = $(this).parents(NestedPages.selectors.lists).length;
+			var padding = 0;
+			if ( !NestedPages.jsData.sortable ) padding = 10;
+			if ( parent_count > 0 ){
+				var padding = ( parent_count * 30 ) + padding;
+				$(this).find('.child-toggle').css('padding-left', padding + 'px');
+				return;
+			}
+			if ( !NestedPages.jsData.sortable || $(this).hasClass('no-sort') ){
+				$(this).find('.row-inner').css('padding-left', '10px');	
+				return;
+			}
+			$(this).find('.row-inner').css('padding-left', '0px');
+		});
+	}
+
+	plugin.setClassicIndent = function()
+	{
 		$.each($(NestedPages.selectors.lists), function(i, v){
 			var parent_count = $(this).parents(NestedPages.selectors.lists).length;
 			var padding = 0;
