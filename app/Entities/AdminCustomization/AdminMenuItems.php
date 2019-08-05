@@ -150,6 +150,7 @@ class AdminMenuItems extends AdminCustomizationBase
 				$index = ($key + 1) * 10;
 				
 				// Items saved that no longer exist
+				if ( !isset($np_submenu_original[$menu_option['link']]) ) continue;
 				if ( !$this->submenuExists($np_submenu_original[$menu_option['link']], $menu['link'], $menu_option) ) continue;
 
 				$np_submenu_original[$index][0] = $menu['label'];
