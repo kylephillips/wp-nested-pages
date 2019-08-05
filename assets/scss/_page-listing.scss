@@ -206,9 +206,7 @@
 	.child-toggle {
 		display: table-cell;
 		width: 30px;
-		// background-color: darken($white, 6%);
 		text-align: left;
-		// position: relative;
 		.child-toggle-spacer {
 			display: inline-block;
 			vertical-align: middle;
@@ -219,15 +217,8 @@
 			display: inline-block;
 			text-align: center;
 			vertical-align: middle;
-			// left: 8px;
-			// margin-top: -16px;
 			width: 29px;
 			height: 29px;
-			// height: 46px;
-			// background-color: darken($white, 6%);
-			// border: 1px solid $border;
-			// border-radius: 20px;
-			// font-size: 20px;
 			line-height: 29px;
 			box-shadow: none;
 			transition: all 200ms ease;
@@ -250,9 +241,9 @@
 		height: 0; 
 		position: relative;
 		top: -3px;
-		border-top: 6px solid transparent;
-		border-bottom: 6px solid transparent;
-		border-left: 6px solid darken($white, 40%);
+		border-top: 5px solid transparent;
+		border-bottom: 5px solid transparent;
+		border-left: 6px solid darken($white, 80%);
 	}
 
 	// Classic/Non-Indented Display of toggle
@@ -312,7 +303,6 @@
 		top: -1px;
 		width: 20px;
 		height: 20px;
-		color: darken($white, 30%);
 		transition: all 200ms ease;
 		.bars {
 			fill : darken($white, 30%);
@@ -400,7 +390,7 @@
 	}
 
 	// Hide/show the submenu indicator & handle on hover of the row
-	li ol .row {
+	.non-indent li ol .row {
 		.np-icon-sub-menu { display: inline-block; }
 		.handle { display: none; }
 		&:hover {
