@@ -10,7 +10,7 @@ endif;
 <div class="wrap nestedpages <?php if ( $dark_mode ) echo 'np-dark-mode'; ?>">
 	<div class="nestedpages-listing-title">
 		<h1 class="wp-heading-inline">
-			<?php esc_html_e($this->post_type->labels->name); ?>
+			<?php apply_filters('nestedpages_page_title', esc_html_e($this->post_type->labels->name), $this->post_type); ?>
 		</h1>
 		
 		<?php if ( $this->user->canPublish($this->post_type->name) ) :  ?>
