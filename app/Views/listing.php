@@ -15,19 +15,19 @@ endif;
 		
 		<?php if ( $this->user->canPublish($this->post_type->name) ) :  ?>
 		<a href="<?php echo $this->post_type_repo->addNewPostLink($this->post_type->name); ?>" class="page-title-action">
-			<?php esc_html_e($this->post_type->labels->add_new); ?>
+			<?php echo apply_filters('nestedpages_add_new_text', esc_html($this->post_type->labels->add_new), $this->post_type); ?>
 		</a>
 		<?php endif; ?>
 
 		<?php if ( $this->user->canPublish($this->post_type->name) && !$this->listing_repo->isSearch() && $wpml_pages ) : ?>
 		<a href="#" class="open-bulk-modal page-title-action" title="<?php _e('Add Multiple', 'wp-nested-pages'); ?>" data-parentid="0" data-nestedpages-modal-toggle="np-bulk-modal">
-			<?php esc_html_e('Add Multiple', 'wp-nested-pages'); ?>
+			<?php echo apply_filters('nestedpages_add_multiple_text', esc_html('Add Multiple', 'wp-nested-pages'), $this->post_type); ?>
 		</a>
 		<?php endif; ?>
 		
 		<?php if ( $this->user->canPublish($this->post_type->name) && $this->post_type->name == 'page' && !$this->listing_repo->isSearch() && !$this->listing_repo->isOrdered($this->post_type->name) && !$this->settings->menusDisabled() && !$this->integrations->plugins->wpml->installed ) : ?>
 		<a href="#" class="open-redirect-modal page-title-action" title="<?php _e('Add Link', 'wp-nested-pages'); ?>" data-parentid="0">
-			<?php esc_html_e('Add Link', 'wp-nested-pages'); ?>
+			<?php echo apply_filters('nestedpages_add_link_text', esc_html('Add Link', 'wp-nested-pages'), $this->post_type); ?>
 		</a>
 		<?php endif; ?>
 
