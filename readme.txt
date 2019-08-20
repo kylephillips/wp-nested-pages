@@ -105,6 +105,10 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.1.3 =
+* Updates nesting interface to use an indented style. To revert to the previous format, visit Settings > Nested Pages and select the checkbox titled "Use the classic (non-indented) hierarchy display."
+* Enhances translation capabilities by replacing hardcoded strings with proper I18n functions.
+
 = 3.1.2 =
 * Adds filter to role capabilities (for adding items to customized admin menus with custom capabilities).
 
