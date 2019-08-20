@@ -66,7 +66,7 @@
 
 				<?php if ( $this->user->canSortPages() && $this->post_type->hierarchical ) : ?>
 				<div class="form-control">
-					<label><?php echo __('Parent', 'wp-nested-pages') . ' ' . $this->post_type->labels->singular_name; ?></label>
+					<label><?php echo sprintf(__('Parent %s', 'wp-nested-pages'), $this->post_type->labels->singular_name); ?></label>
 					<?php 
 						wp_dropdown_pages([
 							'show_option_no_change'=> __('— No Change —', 'wp-nested-pages'),

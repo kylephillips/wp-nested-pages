@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Nested Pages\n"
-"POT-Creation-Date: 2019-07-30 11:03-0400\n"
-"PO-Revision-Date: 2019-07-30 11:03-0400\n"
+"POT-Creation-Date: 2019-08-20 16:11-0400\n"
+"PO-Revision-Date: 2019-08-20 16:10-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -39,11 +39,10 @@ msgid "Hide Hidden"
 msgstr ""
 
 #: app/Activation/Dependencies.php:122 app/Views/listing.php:29
-#: app/Views/listing.php:30
 msgid "Add Link"
 msgstr ""
 
-#: app/Activation/Dependencies.php:123 app/Views/partials/row.php:146
+#: app/Activation/Dependencies.php:123 app/Views/partials/row.php:144
 msgid "Add Child Link"
 msgstr ""
 
@@ -51,12 +50,12 @@ msgstr ""
 #: app/Entities/Post/PostUpdateRepository.php:94
 #: app/Views/forms/new-child.php:19 app/Views/forms/new-child.php:21
 #: app/Views/forms/quickedit-post.php:24 app/Views/partials/tool-list.php:88
-#: app/Views/settings/settings-posttypes.php:269
+#: app/Views/settings/settings-posttypes.php:270
 msgid "Title"
 msgstr ""
 
 #: app/Activation/Dependencies.php:125 app/Views/forms/quickedit-post.php:14
-#: app/Views/partials/row-link.php:70 app/Views/partials/row.php:256
+#: app/Views/partials/row-link.php:66 app/Views/partials/row.php:254
 msgid "Quick Edit"
 msgstr ""
 
@@ -64,12 +63,11 @@ msgstr ""
 msgid "Page Title"
 msgstr ""
 
-#: app/Activation/Dependencies.php:127 app/Views/partials/row.php:262
+#: app/Activation/Dependencies.php:127 app/Views/partials/row.php:260
 msgid "View"
 msgstr ""
 
 #: app/Activation/Dependencies.php:128 app/Views/forms/new-child.php:7
-#: app/Views/partials/row.php:154
 msgid "Add Child"
 msgstr ""
 
@@ -95,7 +93,6 @@ msgid "Add Pages"
 msgstr ""
 
 #: app/Activation/Dependencies.php:134 app/Views/listing.php:23
-#: app/Views/listing.php:24
 msgid "Add Multiple"
 msgstr ""
 
@@ -105,7 +102,7 @@ msgid ""
 "reversible."
 msgstr ""
 
-#: app/Activation/Dependencies.php:136 app/Views/partials/row-link.php:43
+#: app/Activation/Dependencies.php:136 app/Views/partials/row-link.php:41
 #: app/Views/partials/row.php:56
 msgid "Hidden"
 msgstr ""
@@ -136,13 +133,12 @@ msgid "Trash Posts and Delete Links"
 msgstr ""
 
 #: app/Activation/Dependencies.php:144
-#: app/Views/settings/settings-posttypes.php:86
 msgid "Currently assigned to:"
 msgstr ""
 
 #: app/Activation/Dependencies.php:145
-#: app/Views/settings/partials/nav-menu-settings.php:102
-#: app/Views/settings/settings-posttypes.php:86
+#: app/Views/settings/partials/nav-menu-settings.php:44
+#: app/Views/settings/settings-posttypes.php:87
 msgid "Remove"
 msgstr ""
 
@@ -151,7 +147,7 @@ msgid "Add Translation"
 msgstr ""
 
 #: app/Activation/Dependencies.php:149 app/Views/partials/list-header.php:15
-#: app/Views/partials/row.php:73
+#: app/Views/partials/row.php:71
 msgid "Edit"
 msgstr ""
 
@@ -163,74 +159,81 @@ msgstr ""
 msgid "Insert After"
 msgstr ""
 
-#: app/Bootstrap.php:68 app/Views/settings/settings-admincustom.php:12
-#: app/Views/settings/settings-posttypes.php:22
+#: app/Bootstrap.php:68 app/Views/settings/settings-admincustom.php:14
+#: app/Views/settings/settings-posttypes.php:23
 msgid "Settings"
 msgstr ""
 
-#: app/Config/Settings.php:78 app/Views/settings/settings.php:2
+#: app/Config/AdminMenuSettings.php:60
+#: app/Views/settings/partials/nav-menu-settings.php:42
+#: app/Views/settings/partials/nav-menu-settings/header.php:22
+msgid "Separator"
+msgstr ""
+
+#: app/Config/Settings.php:83 app/Views/settings/settings.php:2
 msgid "Nested Pages Settings"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-#: app/Config/Settings.php:79
+#: app/Config/Settings.php:84
 msgid "Nested Pages"
 msgstr ""
 
-#: app/Config/SettingsRepository.php:79
+#: app/Config/SettingsRepository.php:91
 msgid "Post Title"
 msgstr ""
 
-#: app/Config/SettingsRepository.php:80 app/Views/forms/quickedit-post.php:31
+#: app/Config/SettingsRepository.php:92 app/Views/forms/quickedit-post.php:31
 msgid "Slug"
 msgstr ""
 
-#: app/Config/SettingsRepository.php:81
+#: app/Config/SettingsRepository.php:93
 msgid "Post Date"
 msgstr ""
 
-#: app/Config/SettingsRepository.php:82 app/Views/forms/clone-form.php:51
+#: app/Config/SettingsRepository.php:94 app/Views/forms/clone-form.php:51
 #: app/Views/forms/new-child.php:62 app/Views/forms/quickedit-post.php:79
 #: app/Views/partials/bulk-edit.php:35
-#: app/Views/settings/settings-posttypes.php:256
+#: app/Views/settings/settings-posttypes.php:257
 msgid "Author"
 msgstr ""
 
-#: app/Config/SettingsRepository.php:83
+#: app/Config/SettingsRepository.php:95
 msgid "Post Status"
 msgstr ""
 
-#: app/Config/SettingsRepository.php:84
+#: app/Config/SettingsRepository.php:96
 msgid "Password/Private"
 msgstr ""
 
-#: app/Config/SettingsRepository.php:85 app/Views/forms/quickedit-post.php:146
+#: app/Config/SettingsRepository.php:97 app/Views/forms/quickedit-post.php:146
 msgid "Allow Comments"
 msgstr ""
 
-#: app/Config/SettingsRepository.php:89 app/Views/forms/new-child.php:72
+#: app/Config/SettingsRepository.php:101 app/Views/forms/new-child.php:72
 #: app/Views/forms/quickedit-post.php:120 app/Views/partials/bulk-edit.php:58
 msgid "Template"
 msgstr ""
 
-#: app/Config/SettingsRepository.php:90 app/Views/forms/quickedit-post.php:171
+#: app/Config/SettingsRepository.php:102 app/Views/forms/quickedit-post.php:171
 msgid "Menu Options"
 msgstr ""
 
-#: app/Config/SettingsRepository.php:93 app/Views/forms/quickedit-link.php:60
+#: app/Config/SettingsRepository.php:105 app/Views/forms/quickedit-link.php:60
 #: app/Views/forms/quickedit-post.php:155
 msgid "Hide in Nested Pages"
 msgstr ""
 
-#: app/Config/SettingsRepository.php:101 app/Views/forms/quickedit-post.php:175
+#: app/Config/SettingsRepository.php:113 app/Views/forms/quickedit-post.php:175
 msgid "Taxonomies"
 msgstr ""
 
-#: app/Entities/AdminCustomization/AdminMenuItems.php:260
+#: app/Entities/AdminCustomization/AdminMenuItems.php:311
 msgid "Profile"
 msgstr ""
 
 #: app/Entities/AdminMenu/AdminSubmenu.php:71
+#: app/Views/partials/tool-list.php:46
 #, php-format
 msgid "Default %s"
 msgstr ""
@@ -239,34 +242,28 @@ msgstr ""
 msgid "Link successfully deleted."
 msgstr ""
 
-#: app/Entities/Confirmation/TrashConfirmation.php:18
-msgid "Links Removed."
+#: app/Entities/Confirmation/TrashConfirmation.php:17
+#, php-format
+msgid "%d Link Removed."
+msgid_plural "%d Links Removed."
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/Entities/Confirmation/TrashConfirmation.php:26
+#, php-format
+msgid "%d %s moved to the trash."
 msgstr ""
 
-#: app/Entities/Confirmation/TrashConfirmation.php:19
-msgid "Link Removed."
-msgstr ""
-
-#: app/Entities/Confirmation/TrashConfirmation.php:28
-#: app/Entities/Confirmation/TrashConfirmation.php:29
-msgid "moved to the Trash."
-msgstr ""
-
-#: app/Entities/Confirmation/TrashConfirmation.php:33
+#: app/Entities/Confirmation/TrashConfirmation.php:31
 msgid "Undo"
 msgstr ""
 
 #: app/Entities/Confirmation/TrashRestoredConfirmation.php:12
-msgid "items"
-msgstr ""
-
-#: app/Entities/Confirmation/TrashRestoredConfirmation.php:12
-msgid "item"
-msgstr ""
-
-#: app/Entities/Confirmation/TrashRestoredConfirmation.php:13
-msgid "restored from trash."
-msgstr ""
+#, php-format
+msgid "%d item restored from trash."
+msgid_plural "%d items restored from trash."
+msgstr[0] ""
+msgstr[1] ""
 
 #: app/Entities/PluginIntegration/WPML.php:146
 msgid "Sync WPML Menus"
@@ -421,7 +418,7 @@ msgid "%s is required."
 msgstr ""
 
 #: app/Views/forms/clone-form.php:10 app/Views/forms/clone-form.php:66
-#: app/Views/partials/row.php:210
+#: app/Views/partials/row.php:208
 msgid "Clone"
 msgstr ""
 
@@ -515,7 +512,6 @@ msgid "Add & Edit"
 msgstr ""
 
 #: app/Views/forms/quickedit-link.php:8
-#: app/Views/settings/settings-posttypes.php:44
 msgid "Link"
 msgstr ""
 
@@ -530,7 +526,7 @@ msgstr ""
 
 #: app/Views/forms/quickedit-post.php:39 app/Views/forms/quickedit-post.php:56
 #: app/Views/partials/tool-list.php:87
-#: app/Views/settings/settings-posttypes.php:268
+#: app/Views/settings/settings-posttypes.php:269
 msgid "Date"
 msgstr ""
 
@@ -563,11 +559,8 @@ msgid "Make Sticky"
 msgstr ""
 
 #: app/Views/listing.php:43
-msgid "Sync"
-msgstr ""
-
-#: app/Views/listing.php:43 app/Views/settings/settings-posttypes.php:284
-msgid "Order"
+#, php-format
+msgid "Sync %s Order"
 msgstr ""
 
 #: app/Views/listing.php:61 app/Views/listing.php:66
@@ -593,14 +586,15 @@ msgid "No Change"
 msgstr ""
 
 #: app/Views/partials/bulk-edit.php:69
-msgid "Parent"
+#, php-format
+msgid "Parent %s"
 msgstr ""
 
 #: app/Views/partials/bulk-edit.php:72
 msgid "— No Change —"
 msgstr ""
 
-#: app/Views/partials/bulk-edit.php:88 app/Views/partials/row.php:133
+#: app/Views/partials/bulk-edit.php:88
 msgid "Comments"
 msgstr ""
 
@@ -617,7 +611,7 @@ msgid "Display in Nested View"
 msgstr ""
 
 #: app/Views/partials/bulk-edit.php:101 app/Views/partials/bulk-edit.php:111
-#: app/Views/settings/partials/nav-menu-settings.php:47
+#: app/Views/settings/partials/nav-menu-settings/header.php:27
 msgid "Hide"
 msgstr ""
 
@@ -645,33 +639,44 @@ msgstr ""
 msgid "Posts Page"
 msgstr ""
 
-#: app/Views/partials/row.php:66
-msgid "currently editing"
+#: app/Views/partials/row.php:64
+#, php-format
+msgid "%s currently editing"
 msgstr ""
 
-#: app/Views/partials/row.php:79
+#: app/Views/partials/row.php:77
 msgid "Sticky"
 msgstr ""
 
-#: app/Views/partials/row.php:122
-msgid "Translations"
+#: app/Views/partials/row.php:120
+#, php-format
+msgid "Translations (%s)"
 msgstr ""
 
-#: app/Views/partials/row.php:166
+#: app/Views/partials/row.php:131
+msgid "%i Comments"
+msgstr ""
+
+#: app/Views/partials/row.php:152
+#, php-format
+msgid "Add Child %s"
+msgstr ""
+
+#: app/Views/partials/row.php:164
 #, php-format
 msgid "Insert %s Before"
 msgstr ""
 
-#: app/Views/partials/row.php:174
+#: app/Views/partials/row.php:172
 #, php-format
 msgid "Insert %s After"
 msgstr ""
 
-#: app/Views/partials/row.php:189
+#: app/Views/partials/row.php:187
 msgid "Push to Top"
 msgstr ""
 
-#: app/Views/partials/row.php:200
+#: app/Views/partials/row.php:198
 msgid "Push to Bottom"
 msgstr ""
 
@@ -684,11 +689,8 @@ msgid "Trash"
 msgstr ""
 
 #: app/Views/partials/tool-list.php:38
-msgid "Empty"
-msgstr ""
-
-#: app/Views/partials/tool-list.php:46
-msgid "Default"
+#, php-format
+msgid "Empty (%s)"
 msgstr ""
 
 #: app/Views/partials/tool-list.php:65
@@ -700,17 +702,17 @@ msgid "Menu Order"
 msgstr ""
 
 #: app/Views/partials/tool-list.php:90
-#: app/Views/settings/settings-posttypes.php:261
+#: app/Views/settings/settings-posttypes.php:262
 msgid "Order By"
 msgstr ""
 
 #: app/Views/partials/tool-list.php:111
-#: app/Views/settings/settings-posttypes.php:291
+#: app/Views/settings/settings-posttypes.php:292
 msgid "Ascending"
 msgstr ""
 
 #: app/Views/partials/tool-list.php:112
-#: app/Views/settings/settings-posttypes.php:292
+#: app/Views/settings/settings-posttypes.php:293
 msgid "Descending"
 msgstr ""
 
@@ -726,59 +728,57 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: app/Views/settings/partials/nav-menu-settings.php:39
-msgid "New"
-msgstr ""
-
 #: app/Views/settings/partials/nav-menu-settings.php:42
-#: app/Views/settings/partials/nav-menu-settings.php:71
-#: app/Views/settings/partials/nav-menu-settings.php:100
-msgid "Separator"
-msgstr ""
-
-#: app/Views/settings/partials/nav-menu-settings.php:100
 msgid "Separator (WooCommerce)"
 msgstr ""
 
-#: app/Views/settings/partials/nav-menu-settings.php:105
+#: app/Views/settings/partials/nav-menu-settings.php:47
 msgid "Details"
 msgstr ""
 
-#: app/Views/settings/partials/nav-menu-settings.php:121
+#: app/Views/settings/partials/nav-menu-settings.php:65
 msgid "Icon CSS Class"
 msgstr ""
 
-#: app/Views/settings/partials/nav-menu-settings.php:121
+#: app/Views/settings/partials/nav-menu-settings.php:65
 msgid "Reference"
 msgstr ""
 
-#: app/Views/settings/settings-admincustom.php:2
+#: app/Views/settings/partials/nav-menu-settings/header.php:19
+msgid "New"
+msgstr ""
+
+#: app/Views/settings/settings-admincustom.php:4
 msgid "Select Items to Customize"
 msgstr ""
 
-#: app/Views/settings/settings-admincustom.php:11
+#: app/Views/settings/settings-admincustom.php:13
 msgid "Admin Menu"
 msgstr ""
 
-#: app/Views/settings/settings-admincustom.php:19
+#: app/Views/settings/settings-admincustom.php:21
 msgid "Menu Items"
 msgstr ""
 
-#: app/Views/settings/settings-admincustom.php:19
+#: app/Views/settings/settings-admincustom.php:21
 msgid ""
 "Reorder, hide and rename admin menu items by user role. These changes do not "
 "effect actual permissions, only menu appearance."
 msgstr ""
 
-#: app/Views/settings/settings-admincustom.php:20
+#: app/Views/settings/settings-admincustom.php:22
 msgid "Important: Plugin Menu Items "
 msgstr ""
 
-#: app/Views/settings/settings-admincustom.php:20
+#: app/Views/settings/settings-admincustom.php:22
 msgid ""
 "Some plugins may add menu items on activation. These new menu items will not "
 "display until the Nested Pages Admin Menu has been configured with these "
 "items."
+msgstr ""
+
+#: app/Views/settings/settings-admincustom.php:24
+msgid "Reset Admin Menu Settings"
 msgstr ""
 
 #: app/Views/settings/settings-general.php:4
@@ -807,43 +807,48 @@ msgstr ""
 msgid "Display Options"
 msgstr ""
 
-#: app/Views/settings/settings-general.php:26
+#: app/Views/settings/settings-general.php:27
 msgid "Enable Date Picker in Quick Edit"
 msgstr ""
 
-#: app/Views/settings/settings-general.php:31
+#: app/Views/settings/settings-general.php:33
+msgid "Use the classic (non-indented) hierarchy display."
+msgstr ""
+
+#: app/Views/settings/settings-general.php:39
 msgid "Menu Sync"
 msgstr ""
 
-#: app/Views/settings/settings-general.php:37
-msgid "Hide Menu Sync Checkbox"
+#: app/Views/settings/settings-general.php:45
+#, php-format
+msgid "Hide Menu Sync Checkbox (%s)"
 msgstr ""
 
-#: app/Views/settings/settings-general.php:44
+#: app/Views/settings/settings-general.php:52
 msgid "Manually sync menu."
 msgstr ""
 
-#: app/Views/settings/settings-general.php:50
+#: app/Views/settings/settings-general.php:58
 msgid "Manually sync page order."
 msgstr ""
 
-#: app/Views/settings/settings-general.php:56
+#: app/Views/settings/settings-general.php:64
 msgid "Disable menu sync completely"
 msgstr ""
 
-#: app/Views/settings/settings-general.php:62
+#: app/Views/settings/settings-general.php:70
 msgid "Allow Page Sorting"
 msgstr ""
 
-#: app/Views/settings/settings-general.php:72
+#: app/Views/settings/settings-general.php:80
 msgid "Admins always have sorting ability."
 msgstr ""
 
-#: app/Views/settings/settings-general.php:76
+#: app/Views/settings/settings-general.php:84
 msgid "Reset Plugin Settings"
 msgstr ""
 
-#: app/Views/settings/settings-general.php:80
+#: app/Views/settings/settings-general.php:88
 msgid ""
 "Warning: Resetting plugin settings will remove all menu settings, post type "
 "customizations, role customizations and any other Nested Pages settings. "
@@ -851,27 +856,27 @@ msgid ""
 "undone."
 msgstr ""
 
-#: app/Views/settings/settings-general.php:83
+#: app/Views/settings/settings-general.php:91
 msgid "Reset Nested Pages Settings"
 msgstr ""
 
-#: app/Views/settings/settings-general.php:87
+#: app/Views/settings/settings-general.php:95
 msgid "Settings have been successfully reset."
 msgstr ""
 
-#: app/Views/settings/settings-general.php:92
-#: app/Views/settings/settings-general.php:99
+#: app/Views/settings/settings-general.php:100
+#: app/Views/settings/settings-general.php:107
 msgid "Reset User Preferences"
 msgstr ""
 
-#: app/Views/settings/settings-general.php:96
+#: app/Views/settings/settings-general.php:104
 msgid ""
 "Toggle states are saved for each user. This action will clear these "
 "preferences for all users. If PHP errors appear within the nested view after "
 "an update, this may help clear them."
 msgstr ""
 
-#: app/Views/settings/settings-general.php:103
+#: app/Views/settings/settings-general.php:111
 msgid "User preferences have been successfully reset."
 msgstr ""
 
@@ -880,185 +885,195 @@ msgid "Enable Post Types:"
 msgstr ""
 
 #: app/Views/settings/settings-posttypes.php:19
-msgid "Hierarchical"
-msgstr ""
-
-#: app/Views/settings/settings-posttypes.php:29
-msgid "Replace Default Menu"
+#, php-format
+msgid "%s <em>(Hierarchical)</em>"
 msgstr ""
 
 #: app/Views/settings/settings-posttypes.php:30
+msgid "Replace Default Menu"
+msgstr ""
+
+#: app/Views/settings/settings-posttypes.php:31
 msgid "Replace the default top-level item with the nested view link."
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:33
-msgid "Replace Default"
-msgstr ""
-
-#: app/Views/settings/settings-posttypes.php:33
-msgid "Menu"
-msgstr ""
-
-#: app/Views/settings/settings-posttypes.php:40
-msgid "Remove Default Link"
+#: app/Views/settings/settings-posttypes.php:34
+#, php-format
+msgid "Replace Default %s Menu"
 msgstr ""
 
 #: app/Views/settings/settings-posttypes.php:41
+msgid "Remove Default Link"
+msgstr ""
+
+#: app/Views/settings/settings-posttypes.php:42
 msgid ""
 "If the default menu is replaced, a link to the default view will be added. "
 "Select this to remove the link"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:44
-msgid "Hide Default"
-msgstr ""
-
-#: app/Views/settings/settings-posttypes.php:51
-#: app/Views/settings/settings-posttypes.php:55
-msgid "Disable Sorting"
+#: app/Views/settings/settings-posttypes.php:45
+#, php-format
+msgid "Hide Default %s Link"
 msgstr ""
 
 #: app/Views/settings/settings-posttypes.php:52
+#: app/Views/settings/settings-posttypes.php:56
+msgid "Disable Sorting"
+msgstr ""
+
+#: app/Views/settings/settings-posttypes.php:53
 msgid "Remove drag and drop sorting from this post type."
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:63
+#: app/Views/settings/settings-posttypes.php:64
 msgid "Disable Nesting"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:64
+#: app/Views/settings/settings-posttypes.php:65
 msgid "To disable nesting on hierarchical post types, select this option."
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:67
-msgid "Disable Nesting for"
-msgstr ""
-
-#: app/Views/settings/settings-posttypes.php:75
-msgid "Assign Page for Listing"
+#: app/Views/settings/settings-posttypes.php:68
+#, php-format
+msgid "Disable Nesting for %s"
 msgstr ""
 
 #: app/Views/settings/settings-posttypes.php:76
+msgid "Assign Page for Listing"
+msgstr ""
+
+#: app/Views/settings/settings-posttypes.php:77
 msgid ""
 "Adds contextual links and post counts to the page row for the assigned post "
 "type."
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:79
+#: app/Views/settings/settings-posttypes.php:80
 msgid "Assign Page"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:94
-msgid "Search Pages"
+#: app/Views/settings/settings-posttypes.php:87
+#, php-format
+msgid "Currently assigned to: %s"
 msgstr ""
 
 #: app/Views/settings/settings-posttypes.php:95
+msgid "Search Pages"
+msgstr ""
+
+#: app/Views/settings/settings-posttypes.php:96
 msgid "No pages were found."
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:108
+#: app/Views/settings/settings-posttypes.php:109
 msgid "There are currently no pages available."
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:124
+#: app/Views/settings/settings-posttypes.php:125
 msgid "Display Thumbnails"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:125
+#: app/Views/settings/settings-posttypes.php:126
 msgid "Display the thumbnail in the list sort view."
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:126
+#: app/Views/settings/settings-posttypes.php:127
 msgid ""
 "Note: Thumbnail width is displayed at a maximum of 80px in the nested pages "
 "view. The image is scaled proportionally."
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:129
-msgid "Display Thumbnails for"
+#: app/Views/settings/settings-posttypes.php:130
+#, php-format
+msgid "Display Thumbnails for %s"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:132
+#: app/Views/settings/settings-posttypes.php:133
 msgid "Thumbnail Source"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:143
+#: app/Views/settings/settings-posttypes.php:144
 msgid "Thumbnail Display Size"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:145
+#: app/Views/settings/settings-posttypes.php:146
 msgid "Small"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:146
+#: app/Views/settings/settings-posttypes.php:147
 msgid "Medium"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:147
+#: app/Views/settings/settings-posttypes.php:148
 msgid "Large"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:156
-#: app/Views/settings/settings-posttypes.php:160
+#: app/Views/settings/settings-posttypes.php:157
+#: app/Views/settings/settings-posttypes.php:161
 msgid "Configure Standard Fields"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:157
+#: app/Views/settings/settings-posttypes.php:158
 msgid "Remove standard fields from the quick edit form."
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:163
+#: app/Views/settings/settings-posttypes.php:164
 msgid "Check to remove from Quick Edit."
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:205
-#: app/Views/settings/settings-posttypes.php:209
+#: app/Views/settings/settings-posttypes.php:206
+#: app/Views/settings/settings-posttypes.php:210
 msgid "Configure Custom Fields"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:206
+#: app/Views/settings/settings-posttypes.php:207
 msgid "Set which custom fields display in the quick edit form."
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:212
+#: app/Views/settings/settings-posttypes.php:213
 msgid "Check to Include in Quick Edit."
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:218
+#: app/Views/settings/settings-posttypes.php:219
 msgid "Advanced Custom Fields"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:233
+#: app/Views/settings/settings-posttypes.php:234
 msgid "No ACF Fields configured for this post type"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:249
+#: app/Views/settings/settings-posttypes.php:250
 msgid "Sort Options"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:250
+#: app/Views/settings/settings-posttypes.php:251
 msgid "Add and remove sort options."
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:264
+#: app/Views/settings/settings-posttypes.php:265
 msgid "Initial Order By:"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:271
+#: app/Views/settings/settings-posttypes.php:272
 msgid "Default (Menu Order)"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:287
+#: app/Views/settings/settings-posttypes.php:285
+msgid "Order"
+msgstr ""
+
+#: app/Views/settings/settings-posttypes.php:288
 msgid "Initial Order:"
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:324
+#: app/Views/settings/settings-posttypes.php:325
 msgid ""
 "If default menu is not replaced, an additional submenu item will be added "
 "for \"Nested/Sort View\""
 msgstr ""
 
-#: app/Views/settings/settings-posttypes.php:327
+#: app/Views/settings/settings-posttypes.php:328
 msgid ""
 "<strong>Important:</strong> Changing page structures on live sites may "
 "effect SEO and existing inbound links. Limit URL structure changes on live "

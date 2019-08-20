@@ -297,6 +297,7 @@
 	// Handle for sortable functionality
 	.handle {
 		display: inline-block;
+		opacity: .4;
 		vertical-align: middle;
 		cursor: move;
 		position: relative;
@@ -413,6 +414,9 @@
 		width: 100%;
 		&:hover, &.active {
 			background-color: darken($white, 6%);
+			.handle {
+				opacity: 1;
+			}
 			.np-assigned-pt-actions li {
 				display: inline-block;
 			}

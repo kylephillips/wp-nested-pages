@@ -14,9 +14,7 @@ class TrashConfirmation implements ConfirmationInterface
 		if ( isset($_GET['link_ids']) ) :
 			$links_trashed = ( explode(',', $_GET['link_ids']) );
 			$number_trashed = count($links_trashed);
-			$out .= ( $number_trashed > 1 )
-				? ' ' . $number_trashed . ' ' . __('Links Removed.', 'wp-nested-pages') . ' '
-				: ' ' . $number_trashed . ' ' . __('Link Removed.', 'wp-nested-pages') . ' ';
+			$out .= sprintf( esc_html( _n( '%d Link Removed.', '%d Links Removed.', $number_trashed, 'wp-nested-pages'  ) ), $number_trashed );
 		endif;
 
 		// Post(s) Moved to Trash
@@ -25,8 +23,8 @@ class TrashConfirmation implements ConfirmationInterface
 			$post_type = get_post_type($trashed[0]);
 			$post_type_object = get_post_type_object($post_type);
 			$out .= ( count($trashed) > 1 )
-				? count($trashed) . ' ' . esc_html($post_type_object->labels->name) . ' ' . __('moved to the Trash.', 'wp-nested-pages')
-				: '<strong>' . get_the_title($trashed[0]) . ' </strong>' . __('moved to the Trash.', 'wp-nested-pages');			
+				? sprintf(__('%d %s moved to the trash.'), count($trashed), esc_html($post_type_object->labels->name))
+				: wp_kses(sprintf('<strong>%s</strong> moved to the trash.', get_the_title($trashed[0])), ['strong' => []] );
 			// Undo Link
 			if ( current_user_can('delete_pages') ) {
 				$ids = preg_replace( '/[^0-9,]/', '', $_GET['ids'] );

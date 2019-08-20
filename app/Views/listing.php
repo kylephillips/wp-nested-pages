@@ -40,7 +40,7 @@ endif;
 		<div class="np-sync-menu-cont" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:2px;"';?>>
 
 			<?php if ( $this->settings->autoPageOrderDisabled() ) : ?>
-			<a href="#" class="np-btn" data-np-manual-order-sync><?php echo __('Sync', 'wp-nested-pages') . ' ' . esc_html($this->post_type->labels->singular_name) . ' ' . __('Order', 'wp-nested-pages'); ?></a>
+			<a href="#" class="np-btn" data-np-manual-order-sync><?php echo sprintf(__('Sync %s Order', 'wp-nested-pages'), $this->post_type->labels->singular_name); ?></a>
 			<?php endif; ?>
 
 			<?php 

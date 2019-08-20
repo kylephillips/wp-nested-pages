@@ -42,7 +42,7 @@ settings_fields( 'nestedpages-general' );
 		<p data-menu-enabled-option data-menu-hide-checkbox>
 		<label>
 			<input type="checkbox" name="nestedpages_ui[hide_menu_sync]" value="true" <?php if ( $this->settings->hideMenuSync() ) echo 'checked'; ?> />
-			<?php _e('Hide Menu Sync Checkbox', 'wp-nested-pages'); ?> (<?php echo esc_html($sync_status); ?>)
+			<?php printf(__('Hide Menu Sync Checkbox (%s)', 'wp-nested-pages'), esc_html($sync_status)); ?>
 		</label>
 		</p>
 		<?php endif; ?>

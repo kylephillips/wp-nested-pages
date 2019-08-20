@@ -75,7 +75,15 @@ $dark_background_medium_gray: #50626f;
 
 	} // ol 1
 
-	.child-toggle {
+	.np-icon-arrow {
+		border-left-color: $white;
+	}
+	.child-toggle a:active,
+	.child-toggle a:focus {
+		box-shadow: none;
+	}
+
+	.non-indent .child-toggle {
 		background-color: rgba(#000, .15);
 		a {
 			background-color: $dark_background_medium_gray;
