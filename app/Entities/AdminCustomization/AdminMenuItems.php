@@ -143,7 +143,7 @@ class AdminMenuItems extends AdminCustomizationBase
 			if ( !isset($menu_option['original_link']) ) continue;
 			if ( !isset($menu_option['submenu']) || !$menu_option['submenu'] ){
 				$submenu[$menu_option['link']] = $np_submenu_original[$menu_option['original_link']];
-				return;
+				continue;
 			}
 			$new_submenu = [];
 			foreach ( $menu_option['submenu'] as $key => $menu ){
