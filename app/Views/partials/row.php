@@ -29,11 +29,7 @@ if ( !$wpml ) $wpml_pages = true;
 			<span class="title">
 				<?php 
 					echo apply_filters( 'the_title', $this->post->title, $this->post->id, $view = 'nestedpages_title' ); 
-					if ( !$assigned_pt ) :
-						if ( $this->post->id == get_option('page_on_front') ) echo ' <em class="np-page-type"><strong>&ndash; ' . __('Front Page', 'wp-nested-pages') . '</strong></em>';
-						if ( $this->post->id == get_option('page_for_posts') ) echo ' <em class="np-page-type"><strong>&ndash; ' . __('Posts Page', 'wp-nested-pages') . '</strong></em>';
-					endif;
-					echo $this->postStates();
+					echo $this->postStates($assigned_pt);
 				?>
 			</span>
 			<?php 
