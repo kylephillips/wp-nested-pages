@@ -5,6 +5,15 @@
 $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' ) 
 	? $this->post->nav_original_link
 	: esc_url($this->post->content);
+$original_id = esc_attr($this->post->nav_object_id);
+$new_window = true;
+if ( $original_id && $original_id !== '' ) :
+	$display_edit = ( !current_user_can('edit_others_posts') && $this->post->author !== get_current_user_id() ) ? false : true;
+	if ( $display_edit ) {
+		$link = get_edit_post_link($original_id);
+		$new_window = false;
+	}
+endif;
 ?>
 <div class="row <?php if ( $this->listing_repo->isSearch() || $this->listing_repo->isOrdered($this->post_type->name) ) echo 'search';?>">
 	
@@ -20,7 +29,7 @@ $link = ( $this->post->nav_type && $this->post->nav_type !== 'custom' )
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="handle np-icon-menu"><path d="M0 0h24v24H0z" fill="none" /><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" class="bars" /></svg>
 		<?php endif; ?>
 
-		<a href="<?php echo $link; ?>" class="page-link page-title" target="_blank">
+		<a href="<?php echo $link; ?>" class="page-link page-title" <?php if ( $new_window ) echo 'target="_blank"'; ?>>
 			<span class="title">
 				<?php echo apply_filters('the_title', $this->post->title, $this->post->id, $view = 'nestedpages_title'); ?> 
 				<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path class="icon" d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
