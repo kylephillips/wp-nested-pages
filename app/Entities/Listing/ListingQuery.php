@@ -76,6 +76,7 @@ class ListingQuery
 	public function getPosts($post_type, $h_taxonomies = [], $f_taxonomies = [])
 	{
 		$this->post_type = $post_type;
+
 		$this->setSortOptions();
 		$wpml = $this->integrations->plugins->wpml->installed;
 		$this->h_taxonomies = $h_taxonomies;
@@ -89,13 +90,17 @@ class ListingQuery
 		} else {
 			$post_type = [$post_type->name];
 		}
+
+		$statuses = ['publish', 'pending', 'draft', 'private', 'future', 'trash'];
+		$post_type_settings = $this->post_type_repo->getSinglePostType($post_type[0]);
+		if ( isset($post_type_settings->custom_statuses) ) $statuses = array_merge($statuses, $post_type_settings->custom_statuses);
 		
 		$query_args = [
 			'post_type' => $post_type,
 			'posts_per_page' => -1,
 			'author' => $this->sort_options->author,
 			'orderby' => $this->sort_options->orderby,
-			'post_status' => ['publish', 'pending', 'draft', 'private', 'future', 'trash'],
+			'post_status' => apply_filters('nestedpages_listing_statuses', $statuses, $this->post_type),
 			'order' => $this->sort_options->order
 		];
 		

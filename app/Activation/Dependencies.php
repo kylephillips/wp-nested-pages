@@ -80,6 +80,7 @@ class Dependencies
 		$screen = get_current_screen();
 		global $np_page_params;
 		global $np_env;
+		global $wp_post_statuses;
 		$settings_page = ( strpos($screen->id, 'nested-pages-settings') ) ? true : false;
 		if ( strpos( $screen->id, 'nestedpages' ) || $settings_page ) :
 			wp_enqueue_script('suggest');
@@ -149,7 +150,9 @@ class Dependencies
 				'edit' => __('Edit', 'wp-nested-pages'),
 				'insert_before' => __('Insert Before', 'wp-nested-pages'),
 				'insert_after' => __('Insert After', 'wp-nested-pages'),
-				'non_indent' => $this->settings->nonIndentEnabled()
+				'non_indent' => $this->settings->nonIndentEnabled(),
+				'private' => __('Private', 'wp-nested-pages'),
+				'post_statuses' => $wp_post_statuses
 			];
 			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;
 			$localized_data['syncmenu'] = $syncmenu;

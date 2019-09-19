@@ -151,6 +151,36 @@ settings_fields( 'nestedpages-posttypes' );
 						</div>
 					</div><!-- .row -->
 				</li>
+
+				<?php 
+				global $wp_post_statuses; 
+				$built_in_statuses = get_post_statuses();
+				$restricted_statuses = ['inherit', 'auto-draft', 'trash', 'request-pending', 'request-confirmed', 'request-failed', 'request-completed', 'future'];
+				$custom_statuses = [];
+				foreach ( $wp_post_statuses as $name => $status ){
+					if ( array_key_exists($name, $built_in_statuses) || in_array($name, $restricted_statuses) ) continue;
+					$custom_statuses[$name] = $status->label;
+				}
+				if ( !empty($custom_statuses) ) :
+				?>
+				<li>
+					<div class="row">
+						<div class="description">
+							<p><strong><?php _e('Enable Custom Statuses', 'wp-nested-pages'); ?></strong><br>
+							<?php _e('Add custom status support for this post type.', 'wp-nested-pages'); ?><br><br>
+							</p>
+						</div>
+						<div class="field">
+							<div class="nestedpages-checklist-field">
+								<?php foreach ( $custom_statuses as $name => $label ) : ?>
+								<label><input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][custom_statuses][]" value="<?php echo $name; ?>" <?php if ( in_array($name, $type->custom_statuses) ) echo 'checked'; ?> /><?php echo $label; ?></label>
+								<?php endforeach; ?>
+							</div>
+						</div>
+					</div><!-- .row -->
+				</li>
+				<?php endif; ?>
+
 				<li>
 					<div class="row">
 						<div class="description">

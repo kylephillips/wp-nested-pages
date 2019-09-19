@@ -79,6 +79,7 @@ class PostTypeRepository
 			$post_types[$type->name]->page_assignment_id = $this->configuredFields($type->name, 'post_type_page_assignment_page_id');
 			$post_types[$type->name]->page_assignment_title = $this->configuredFields($type->name, 'post_type_page_assignment_page_title');
 			$post_types[$type->name]->sort_options = $this->configuredFields($type->name, 'sort_options');
+			$post_types[$type->name]->custom_statuses = $this->configuredFields($type->name, 'custom_statuses');
 		}
 		return $post_types;
 	}
@@ -466,6 +467,7 @@ class PostTypeRepository
 	*/
 	public function quickEditStatuses($post_type)
 	{
+		$custom_statuses = ( isset($this->enabled_post_types[$post_type]['custom_statuses']) && !empty($this->enabled_post_types[$post_type]['custom_statuses']) ) ? $this->enabled_post_types[$post_type]['custom_statuses'] : null;
 		$statuses = [
 			'can_publish' => [
 				'publish' => __('Published', 'wp-nested-pages'),
@@ -476,6 +478,12 @@ class PostTypeRepository
 				'draft' => __('Draft', 'wp-nested-pages'),
 			]
 		];
+		if ( $custom_statuses ) :
+			global $wp_post_statuses;
+			foreach ( $custom_statuses as $custom_status ) {
+				$statuses['other'][$custom_status] = $wp_post_statuses[$custom_status]->label;
+			}
+		endif;
 		return apply_filters('nestedpages_quickedit_post_statuses', $statuses, $post_type);
 	}
 }

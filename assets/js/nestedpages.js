@@ -1879,11 +1879,13 @@ NestedPages.QuickEditPost = function()
 		
 		var status = $(plugin.row).find('.status');
 		if ( (plugin.newData._status !== 'publish') && (plugin.newData._status !== 'future') ){
-			$(status).text('(' + plugin.newData._status + ')');
-		} else if (plugin.newData.keep_private === 'private') {
-			$(status).text('(' + plugin.newData.keep_private + ')');
+			var newStatus = nestedpages.post_statuses[plugin.newData._status].label;
+			$(status).text('(' + newStatus + ')');
 		} else {
 			$(status).text('');
+		}
+		if ( plugin.newData.keep_private === 'private' ){
+			$(status).text(nestedpages.private);
 		}
 
 		// Password Lock Icon
