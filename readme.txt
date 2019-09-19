@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.1.4 =
+* Updates edit target for "link" row items to link to edit post screen where applicable.
+
 = 3.1.3 =
 * Updates nesting interface to use an indented style. To revert to the previous format, visit Settings > Nested Pages and select the checkbox titled "Use the classic (non-indented) hierarchy display."
 * Fixes bug where submenus were being removed after saving a new admin menu customization and reordering the item.
