@@ -24,18 +24,18 @@
 	position: fixed;
 	top: -200%;
 	width: 90%;
-	// height: 80%;
+	height: 80%;
 	margin: 10px auto 0px auto;
 	background-color: $white;
-	// transform: translateX(-50%);
 	left: 5%;
 	transition: all 500ms ease;
 	&.small {
 		width: 400px;
 	}
 	&.active {
-		top: 50px;
+		top: 50%;
 		transition: all 200ms ease;
+		transform: translateY(-50%);
 	}
 	h5 {
 		font-size: 1.1em;

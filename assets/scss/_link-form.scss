@@ -4,15 +4,49 @@
 
 // Menu Item Form (In link modal)
 .modal-body.np-menu-item-form {
-	height: 400px;
+	height: 100%;
 	padding: 0;
 	border-top: 1px solid $border;
+	position: relative;
+	display: flex;
+	align-items: stretch;
+}
+.np-link-modal-content {
+	.np-tabbed-content,
+	.new-child {
+		height: 100%;
+		form {
+			height: 94%;
+		}
+	}
+	.modal-content,
+	.form-interior {
+		position: relative;
+		height: 100%;
+	}
+	.form-interior {
+		overflow: auto;
+	}
+	.modal-footer,
+	.buttons {
+		position: absolute;
+		left: 0;
+		width: 100%;
+		bottom: 0;
+		padding: 0;
+	}
+	.buttons {
+		padding: 0 !important;
+	}
+	.footer-inner,
+	.buttons-inner {
+		padding: 10px;
+		@include clearfix;
+	}
 }
 
 // Left Type Selection
 .np-menu-type-selection {
-	float: left;
-	height: 100%;
 	overflow: auto;
 	width: 35%;
 	padding: 15px;
@@ -128,8 +162,8 @@
 // Right Pane
 .np-menu-link-object {
 	width: 65%;
-	float: right;
-	height: 100%;
+	// float: right;
+	// height: 100%;
 	overflow: auto;
 } // .np-menu-link-object
 

@@ -107,6 +107,7 @@ No. The menu synchronization currently only works within the pages post type.
 
 = 3.1.4 =
 * Updates edit target for "link" row items to link to edit post screen where applicable.
+* Updates modal UI for adding multiple pages and adding links
 
 = 3.1.3 =
 * Updates nesting interface to use an indented style. To revert to the previous format, visit Settings > Nested Pages and select the checkbox titled "Use the classic (non-indented) hierarchy display."
