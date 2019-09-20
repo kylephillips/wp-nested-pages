@@ -106,6 +106,7 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 					<input type="hidden" name="objectId" data-np-menu-objectid-input value="">
 					<input type="hidden" name="menuType" data-np-menu-type-input value="">
 					<input type="hidden" name="parent_id" class="parent_id" value="">
+					<input type="hidden" name="parent_post_type" class="parent-post-type" value="<?php echo $this->post_type->name; ?>" data-np-menu-parent-post-type>
 					<button type="button" class="button modal-close" data-nestedpages-modal-close>
 						<?php _e('Cancel', 'wp-nested-pages'); ?>
 					</button>

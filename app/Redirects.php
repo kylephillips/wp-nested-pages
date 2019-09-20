@@ -68,7 +68,14 @@ class Redirects
 			($screen->id == 'np-redirect')             &&
 			$this->arePagesNested()
 		){
-			$redirect = add_query_arg(['page'=>'nestedpages', 'linkdeleted' => true, '_wpnonce' => false, 'post' => false, 'action'=>false]);
+			$post_type = ( isset($_GET['parent_post_type']) && $_GET['parent_post_type'] !== '' )
+				? sanitize_text_field($_GET['parent_post_type']) : null;
+			if ( $post_type ) $page = 'nestedpages-' . $post_type;
+
+			$redirect = ( $post_type ) 
+				? add_query_arg(['page' => $page, 'linkdeleted' => true, '_wpnonce' => false, 'post' => false, 'action' => false])
+				: add_query_arg(['page' => 'nestedpages', 'linkdeleted' => true, '_wpnonce' => false, 'post' => false, 'action' => false]);
+
 			wp_redirect($redirect);
 			exit();
 		}

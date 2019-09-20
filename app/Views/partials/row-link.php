@@ -77,7 +77,7 @@ endif;
 			<?php endif; ?>
 
 			<?php if ( current_user_can('delete_pages') && in_array('trash', $this->post_type_settings->row_actions) ) : ?>
-			<a href="<?php echo get_delete_post_link($this->post->id, '', true); ?>" class="np-btn np-btn-trash" data-np-confirm-delete>
+			<a href="<?php echo get_delete_post_link($this->post->id, '', true); ?><?php if ( $this->post_type->name !== 'page' ) echo '&parent_post_type=' . $this->post_type->name; ?>" class="np-btn np-btn-trash" data-np-confirm-delete>
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="np-icon-remove"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" class="icon"/><path d="M0 0h24v24H0z" fill="none"/></svg>
 			</a>
 			<?php endif; ?>

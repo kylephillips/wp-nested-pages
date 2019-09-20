@@ -444,6 +444,8 @@ class PostUpdateRepository
 			$new_link['post_content'] = esc_url($data['url']);
 		}
 		$this->new_id = wp_insert_post($new_link);
+		$parent_post_type = ( isset($data['parent_post_type']) ) ? sanitize_text_field($data['parent_post_type']) : 'page';
+		add_post_meta($this->new_id, '_np_parent_post_type', $parent_post_type);
 		$this->updateMenuMeta($data);
 		return $this->new_id;
 	}
