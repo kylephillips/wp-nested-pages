@@ -133,7 +133,7 @@ if ( !$wpml ) $wpml_pages = true;
 					<?php else : $cs = 'closed'; endif; ?>
 
 					<?php 
-					if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->listing_repo->isSearch() && $wpml_pages ) :  
+					if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->listing_repo->isSearch() && $wpml_pages && $this->post_type->name == 'page') :  
 
 					// Link
 					if (!$this->settings->menusDisabled() && !$this->integrations->plugins->wpml->installed && in_array('add_child_link', $this->post_type_settings->row_actions)) : ?>

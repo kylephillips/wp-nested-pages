@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.1.5 =
+* Removes link item in dropdown from non-page hierarchical post types
+
 = 3.1.4 =
 * Adds support for custom statuses, configurable by post type. To enable statuses for a specific post type, visit the plugin settings: Settings > Nested Pages > Post Types. Toggle the post type. If there are custom statuses available, a field titled "Enable Custom Statuses" will be available to select statuses.
 * Updates edit target for "link" row items to link to edit post screen where applicable.
