@@ -323,7 +323,7 @@ class AdminMenuItems extends AdminCustomizationBase
 					continue;
 				}
 
-				if ( !array_key_exists($menu_item[1], $role_capabilities) || !$role_capabilities[$menu_item[1]] ) continue;
+				if ( $menu_item[1] === '' || !array_key_exists($menu_item[1], $role_capabilities) || !$role_capabilities[$menu_item[1]] ) continue;
 				if ( isset($menu_item[5]) && $menu_item[5] == 'menu-links' ) continue;
 				if ( $role['name'] == 'subscriber' && $menu_item[2] == 'separator2') continue;
 				if ( isset($np_submenu_original[$menu_item[2]]) ) $menu_item['submenu'] = $np_submenu_original[$menu_item[2]];
