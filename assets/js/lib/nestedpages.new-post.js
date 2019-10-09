@@ -54,6 +54,12 @@ NestedPages.NewPost = function()
 			e.preventDefault();
 			plugin.openQuickEdit($(this));
 		});
+		$(document).on('keydown', function(e){
+			if ( e.keyCode === 27 ) {
+				plugin.cancelNewPage();
+				$(document).click(); // Close Dropdown
+			}
+		});
 	}
 
 	// Open the form modal
