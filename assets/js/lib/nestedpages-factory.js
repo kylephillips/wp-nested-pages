@@ -31,6 +31,7 @@ NestedPages.selectors = {
 	syncCheckbox : '.np-sync-menu', // Sync menu checkbox
 	syncForm: '.np-sync-menu-cont', // The form/container for the sync menu element
 	ajaxError : '[data-nestedpages-error]', // AJAX error notification
+	trashWithChildrenButton : '[data-nestedpages-trash-children]',
 
 	// Responsive Toggle
 	toggleEditButtons : '.np-toggle-edit', // Button that toggles responsive buttons
@@ -163,7 +164,8 @@ NestedPages.formActions = {
 	wpmlTranslations : 'npWpmlTranslations',
 	resetSettings : 'npresetSettings',
 	resetUserPrefs : 'npresetUserPreferences',
-	resetAdminMenuSettings : 'npresetAdminMenuSettings'
+	resetAdminMenuSettings : 'npresetAdminMenuSettings',
+	trashWithChildren : 'nptrashWithChildren'
 }
 
 
@@ -196,6 +198,7 @@ NestedPages.Factory = function()
 	plugin.postSearch = new NestedPages.PostSearch;
 	plugin.postMove = new NestedPages.MovePost;
 	plugin.wpml = new NestedPages.Wpml;
+	plugin.trashWithChildren = new NestedPages.TrashWithChildren;
 
 	plugin.init = function()
 	{

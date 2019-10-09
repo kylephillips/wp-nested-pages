@@ -2448,6 +2448,7 @@ NestedPages.selectors = {
 	syncCheckbox : '.np-sync-menu', // Sync menu checkbox
 	syncForm: '.np-sync-menu-cont', // The form/container for the sync menu element
 	ajaxError : '[data-nestedpages-error]', // AJAX error notification
+	trashWithChildrenButton : '[data-nestedpages-trash-children]',
 
 	// Responsive Toggle
 	toggleEditButtons : '.np-toggle-edit', // Button that toggles responsive buttons
@@ -2580,7 +2581,8 @@ NestedPages.formActions = {
 	wpmlTranslations : 'npWpmlTranslations',
 	resetSettings : 'npresetSettings',
 	resetUserPrefs : 'npresetUserPreferences',
-	resetAdminMenuSettings : 'npresetAdminMenuSettings'
+	resetAdminMenuSettings : 'npresetAdminMenuSettings',
+	trashWithChildren : 'nptrashWithChildren'
 }
 
 
@@ -2613,6 +2615,7 @@ NestedPages.Factory = function()
 	plugin.postSearch = new NestedPages.PostSearch;
 	plugin.postMove = new NestedPages.MovePost;
 	plugin.wpml = new NestedPages.Wpml;
+	plugin.trashWithChildren = new NestedPages.TrashWithChildren;
 
 	plugin.init = function()
 	{
@@ -3535,6 +3538,51 @@ NestedPages.MovePost = function()
 			$(this).find('[' + plugin.selectors.moveToBottom + ']').removeClass('disabled');
 			var last = $(this).find(NestedPages.selectors.rows).last();
 			$(last).find('[' + plugin.selectors.moveToBottom + ']').addClass('disabled');
+		});
+	}
+
+	return plugin.bindEvents();
+}
+var NestedPages = NestedPages || {};
+
+/**
+* Trash post with all children
+* @package Nested Pages
+* @author Kyle Phillips - https://github.com/kylephillips/wp-nested-pages
+*/
+NestedPages.TrashWithChildren = function()
+{
+	var plugin = this;
+	var $ = jQuery;
+
+	plugin.post_id = ''; // The parent/source post ID
+
+	plugin.bindEvents = function()
+	{
+		$(document).on('click', NestedPages.selectors.trashWithChildrenButton, function(e){
+			e.preventDefault();
+			plugin.post_id = $(this).attr('data-post-id');
+			plugin.trash();
+		});
+	}
+
+	// Trash the posts
+	plugin.trash = function()
+	{
+		$.ajax({
+			url : NestedPages.jsData.ajaxurl,
+			type : 'post',
+			data : {
+				action : NestedPages.formActions.trashWithChildren,
+				nonce : NestedPages.jsData.nonce,
+				post_id : plugin.post_id,
+				screen : nestedpages.current_page
+			},
+			success : function(data){
+				window.location.replace(data.redirect);
+			}, error : function(data){
+				console.log(data);
+			}
 		});
 	}
 

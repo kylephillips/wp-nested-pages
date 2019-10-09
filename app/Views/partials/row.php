@@ -263,11 +263,25 @@ if ( !$wpml ) $wpml_pages = true;
 			<?php endif; ?>
 			
 			<?php if ( current_user_can('delete_pages') && $this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id)  && in_array('trash', $this->post_type_settings->row_actions) ) : ?>
-			<a href="<?php echo get_delete_post_link(get_the_id()); ?>" class="np-btn np-btn-trash">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="np-icon-remove"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" class="icon"/><path d="M0 0h24v24H0z" fill="none"/></svg>
-			</a>
+			<?php if ( $this->post_type->hierarchical ) : ?>
+			<div class="nestedpages-dropdown" data-dropdown>
+				<a href="#" class="np-btn np-btn-trash" data-dropdown-toggle>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="np-icon-remove"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" class="icon"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+				</a>
+				<ul class="nestedpages-dropdown-content" data-dropdown-content>
+					<li>
+						<a href="<?php echo get_delete_post_link(get_the_id()); ?>"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="np-icon-remove"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" class="icon"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+						<?php printf(__('Trash %s', 'wp-nested-pages'), $this->post_type->labels->singular_name); ?></a>
+					</li>
+					<li>
+						<a href="#" data-nestedpages-trash-children data-post-id="<?php echo $this->post->ID; ?>"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve"><path d="M19,4h-3.5l-1-1h-5l-1,1H5v2h14V4z M6,7v12c0,1.1,0.9,2,2,2h8c1.1,0,2-0.9,2-2V7H6z M10,14v-4h4v4h2l-4,4l-4-4H10z"/><path style="fill:none;" d="M0,0h24v24H0V0z"/></svg><?php printf(__('Trash %s & Children', 'wp-nested-pages'), $this->post_type->labels->singular_name); ?></a>
+					</li>
+				</ul>
+			</div>
+			<?php else :  ?>
+				<a href="<?php echo get_delete_post_link(get_the_id()); ?>" class="np-btn np-btn-trash"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" class="icon"/><path d="M0 0h24v24H0z" fill="none"/></svg></a>
 			<?php endif; ?>
-
+			<?php endif; ?>
 		</div><!-- .action-buttons -->
 	</div><!-- .row-inner -->
 
