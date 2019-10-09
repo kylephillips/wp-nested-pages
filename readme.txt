@@ -108,6 +108,7 @@ No. The menu synchronization currently only works within the pages post type.
 = 3.1.6 =
 * Adds filters for making "Make Sticky" quick edit form field available for any post type. 
 * Adds filter for customizing the "Make Sticky" label text.
+* Bug fixes in submenu display when using the admin customization feature.
 
 = 3.1.5 =
 * Removes link item in dropdown from non-page hierarchical post types, replaces with filterable boolean
