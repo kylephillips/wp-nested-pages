@@ -157,11 +157,16 @@
 		</div>
 		<?php endif; // Edit theme options ?>
 
-		<?php if ( !$this->post_type->hierarchical ) : ?>
+		<?php 
+		$sticky_available = ( $this->post_type->hierarchical ) ? false : true;
+		$sticky_available = apply_filters('nestedpages_sticky_available', $sticky_available, $this->post, $this->post_type);
+		$make_sticky = apply_filters('nestedpages_make_sticky_text', __('Make Sticky', 'wp-nested-pages'), $this->post, $this->post_type);
+		if ( $sticky_available ) : 
+		?>
 		<div class="comments">
 			<label>
 				<input type="checkbox" name="sticky" class="np-sticky" value="sticky" />
-				<span class="checkbox-title"><?php _e( 'Make Sticky', 'wp-nested-pages' ); ?></span>
+				<span class="checkbox-title"><?php echo $make_sticky; ?></span>
 			</label>
 		</div>
 		<?php endif; ?>
