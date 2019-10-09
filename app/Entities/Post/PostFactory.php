@@ -39,14 +39,26 @@ class PostFactory
 	*/
 	public function createChildPosts($data)
 	{
+		$post_type = sanitize_text_field($data['post_type']);
+
+		// Set the initial menu order
+		$pq = new \WP_Query([
+			'post_type' => $post_type,
+			'post_parent' => sanitize_text_field($data['parent_id']),
+			'posts_per_page' => -1,
+			'fields' => 'ids'
+		]);
+		$menu_order = ( $pq->have_posts() ) ? count($pq->posts) : 0;
+		wp_reset_postdata();
+
 		foreach($data['post_title'] as $key => $title){
-			$post_type = sanitize_text_field($data['post_type']);
 			$post = [
 				'post_title' => sanitize_text_field($title),
 				'post_status' => sanitize_text_field($data['_status']),
 				'post_author' => sanitize_text_field($data['post_author']),
 				'post_parent' => sanitize_text_field($data['parent_id']),
-				'post_type' => $post_type
+				'post_type' => $post_type,
+				'menu_order' => $menu_order
 			];
 			$new_page_id = wp_insert_post($post);
 			$data['post_id'] = $new_page_id;
