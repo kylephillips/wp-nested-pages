@@ -10,24 +10,24 @@ endif;
 <div class="wrap nestedpages <?php if ( $dark_mode ) echo 'np-dark-mode'; ?>">
 	<div class="nestedpages-listing-title">
 		<h1 class="wp-heading-inline">
-			<?php echo apply_filters('nestedpages_page_title', esc_html($this->post_type->labels->name), $this->post_type); ?>
+			<?php echo apply_filters('nestedpages_page_title', esc_html__($this->post_type->labels->name), $this->post_type); ?>
 		</h1>
 		
 		<?php if ( $this->user->canPublish($this->post_type->name) ) :  ?>
 		<a href="<?php echo $this->post_type_repo->addNewPostLink($this->post_type->name); ?>" class="page-title-action">
-			<?php echo apply_filters('nestedpages_add_new_text', esc_html($this->post_type->labels->add_new), $this->post_type); ?>
+			<?php echo apply_filters('nestedpages_add_new_text', esc_html__($this->post_type->labels->add_new), $this->post_type); ?>
 		</a>
 		<?php endif; ?>
 
 		<?php if ( $this->user->canPublish($this->post_type->name) && !$this->listing_repo->isSearch() && $wpml_pages ) : ?>
 		<a href="#" class="open-bulk-modal page-title-action" title="<?php _e('Add Multiple', 'wp-nested-pages'); ?>" data-parentid="0" data-nestedpages-modal-toggle="np-bulk-modal">
-			<?php echo apply_filters('nestedpages_add_multiple_text', esc_html('Add Multiple', 'wp-nested-pages'), $this->post_type); ?>
+			<?php echo apply_filters('nestedpages_add_multiple_text', esc_html__('Add Multiple', 'wp-nested-pages'), $this->post_type); ?>
 		</a>
 		<?php endif; ?>
 		
 		<?php if ( $this->user->canPublish($this->post_type->name) && $this->post_type->name == 'page' && !$this->listing_repo->isSearch() && !$this->listing_repo->isOrdered($this->post_type->name) && !$this->settings->menusDisabled() && !$this->integrations->plugins->wpml->installed ) : ?>
 		<a href="#" class="open-redirect-modal page-title-action" title="<?php _e('Add Link', 'wp-nested-pages'); ?>" data-parentid="0">
-			<?php echo apply_filters('nestedpages_add_link_text', esc_html('Add Link', 'wp-nested-pages'), $this->post_type); ?>
+			<?php echo apply_filters('nestedpages_add_link_text', esc_html__('Add Link', 'wp-nested-pages'), $this->post_type); ?>
 		</a>
 		<?php endif; ?>
 
@@ -59,7 +59,7 @@ endif;
 					<input type="checkbox" name="np_sync_menu" class="np-sync-menu" value="sync" <?php if ( get_option('nestedpages_menusync') == 'sync' ) echo 'checked'; ?>/> 
 					<?php 
 						esc_html_e('Sync Menu', 'wp-nested-pages'); 
-						if ( $wpml ) echo ' (' . esc_html($this->integrations->plugins->wpml->getCurrentLanguage('name')) . ')';
+						if ( $wpml ) echo ' (' . esc_html__($this->integrations->plugins->wpml->getCurrentLanguage('name')) . ')';
 					?>
 				</label>
 				<?php else : ?>

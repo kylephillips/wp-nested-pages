@@ -42,7 +42,7 @@ settings_fields( 'nestedpages-general' );
 		<p data-menu-enabled-option data-menu-hide-checkbox>
 		<label>
 			<input type="checkbox" name="nestedpages_ui[hide_menu_sync]" value="true" <?php if ( $this->settings->hideMenuSync() ) echo 'checked'; ?> />
-			<?php printf(__('Hide Menu Sync Checkbox (%s)', 'wp-nested-pages'), esc_html($sync_status)); ?>
+			<?php printf(__('Hide Menu Sync Checkbox (%s)', 'wp-nested-pages'), esc_html__($sync_status)); ?>
 		</label>
 		</p>
 		<?php endif; ?>
@@ -72,7 +72,7 @@ settings_fields( 'nestedpages-general' );
 		<?php foreach ( $this->user_repo->allRoles() as $role ) : ?>
 		<label>
 			<input type="checkbox" name="nestedpages_allowsorting[]" value="<?php echo $role['name']; ?>" <?php if ( in_array($role['name'], $allowsorting) ) echo 'checked'; ?> >
-			<?php echo esc_html($role['label']); ?>
+			<?php echo esc_html__($role['label']); ?>
 		</label>
 		<br />
 		<?php endforeach; ?>
