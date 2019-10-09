@@ -39,12 +39,15 @@ class AdminSubmenu
 	{
 		global $submenu;
 		$c = 0;
+
 		// Get the right submenu and remove all pages link
 		foreach($submenu as $key => $sub){
 			if ($key == $this->post_type_repo->editSlug($this->post_type)){
-				// Add the "All Link"
-				$submenu[$this->slug][50] = [$sub[5][0], 'edit_pages', esc_url(admin_url('admin.php?page=' . $this->slug))];
-				if ( isset($sub[5]) ) unset($sub[5]); // Remove Top Level
+				$edit_key = $this->getSubMenuEditIndex($sub);
+				if ( !$edit_key ) continue;
+				$capability = ( isset($sub[$edit_key][1]) ) ? $sub[$edit_key][1] : 'edit_pages';
+				$submenu[$this->slug][50] = [$sub[$edit_key][0], $capability, esc_url(admin_url('admin.php?page=' . $this->slug))];
+				if ( isset($sub[$edit_key]) ) unset($sub[$edit_key]); // Remove Top Level
 				$menu_items = $sub;
 			}
 		}
@@ -59,6 +62,21 @@ class AdminSubmenu
 		}
 		$this->defaultLink($c);
 	}
+
+	/**
+	* Get the edit submenu index within an individual submenu
+	* @return int
+	*/
+	private function getSubMenuEditIndex($submenu)
+	{
+		foreach ( $submenu as $key => $items ){
+			foreach ( $items as $item ){
+				if ( $item == 'edit.php?post_type=' . $this->post_type->name ) return $key;
+			}
+		}
+		return false;
+	}
+
 
 	/**
 	* Show the default link if set to show
