@@ -210,4 +210,16 @@ class SettingsRepository
 			delete_option($option);
 		}
 	}
+
+	/**
+	* Get the Menu Name
+	* @return term obj
+	*/
+	public function getMenuTerm()
+	{
+		$menu_id = get_option('nestedpages_menu');
+		if ( !$menu_id ) return false;
+		$term = ( is_numeric($menu_id) ) ? get_term_by('id', $menu_id, 'nav_menu') : false;
+		return $term;
+	}
 }

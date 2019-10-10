@@ -55,8 +55,6 @@ NestedPages.selectors = {
 	quickEditLoadingIndicator : '.np-qe-loading', // Loading indicator in Quick Edit
 	quickEditErrorDiv : '.np-quickedit-error', // Error Div in Quick Edit
 	quickEditCancel : '.np-cancel-quickedit', // Cancel button in quick edit
-	quickEditToggleTaxonomies : '.np-toggle-taxonomies', // Toggle Taxonomies in Quick Edit
-	quickEditToggleMenuOptions : '.np-toggle-menuoptions', // Toggle Menu Options in Quick Edit
 
 	// Quick Edit - Links
 	quickEditButtonLink : '.np-quick-edit-redirect', // Button to open link quick edit

@@ -32,14 +32,6 @@ NestedPages.QuickEditPost = function()
 			e.preventDefault();
 			plugin.formatter.removeQuickEdit();
 		});
-		$(document).on('click', NestedPages.selectors.quickEditToggleTaxonomies, function(e){
-			e.preventDefault();
-			$(this).parents('form').find('.np-taxonomies').toggle();
-		});
-		$(document).on('click', NestedPages.selectors.quickEditToggleMenuOptions, function(e){
-			e.preventDefault();
-			$(this).parents('form').find('.np-menuoptions').toggle();
-		});
 		$(document).on('change', '.keep_private', function(){
 			if ( this.checked ){
 				$('.post_password').val('').prop('readonly', true);

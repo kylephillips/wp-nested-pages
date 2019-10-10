@@ -1,28 +1,53 @@
 //
 // Tabs
 // --------------------------------------------------
-.np-tabs {
-	background-color: darken($white, 8%);
-	padding: 0px;
-	ul {
-		text-align: left;
-		@include unstyled;
-		li {
-			display: inline-block;
-			margin: 0;
-			a {
-				display: block;
-				text-decoration: none;
-				padding: 5px 10px;
-				&.active {
-					position: relative;
-					color: $black;
-					background-color: $white;
-				}
-				&:focus, &:active {
-					outline: none;
-					box-shadow: none;
-				}
+.np-tab-pane {
+	display: none;
+}
+.ul.np-tabs,
+.nestedpages ul.np-tabs {
+	background: transparent;
+	text-align: left;
+	@include unstyled;
+	border-bottom: 1px solid darken($white, 20%);
+	margin-bottom: 10px;
+	font-size: 0;
+	line-height: 0;
+	li {
+		font-size: 13px;
+    	line-height: 1.4em;
+		display: inline-block;
+		margin: 0 0 0 6px;
+		border: 0;
+		a {
+			background-color: darken($white, 10%);
+			display: block;
+			text-decoration: none;
+			padding: 8px 15px;
+			color: $black;
+			border: 1px solid darken($white, 20%);
+			border-bottom: 0;
+			&:hover {
+				background-color: $white;
+			}
+			&:focus, &:active {
+				outline: none;
+				box-shadow: none;
+			}
+		}
+		&.active a {
+			font-weight: bold;
+			position: relative;
+			color: $black;
+			background-color: $white;
+			&:after {
+				position: absolute;
+				width: 100%;
+				height: 2px;
+				content: '';
+				background-color: $white;
+				left: 0;
+				bottom: -1px;
 			}
 		}
 	}

@@ -1,42 +1,64 @@
-var NestedPages = NestedPages || {};
-
 /**
-* Tab functionality
-* @package Nested Pages
-* @author Kyle Phillips - https://github.com/kylephillips/wp-nested-pages
+* Tabs
+* 
+* @author Kyle Phillips
+* 
+* To use, include links with a data-tab-toggle attribute which matches the tab pane's data-tab-pane attribute
+* The tabs and panes should all the same data-tab-group attribute value
+* Add a CSS selector of .tab-pane to panes to hide them
 */
+var NestedPages = NestedPages || {};
 NestedPages.Tabs = function()
 {
-	var plugin = this;
+	var self = this;
 	var $ = jQuery;
 
-	plugin.activeContent = '';
-	plugin.activeButton = '';
-
-	plugin.init = function()
-	{
-		plugin.bindEvents();
+	self.selectors = {
+		tabToggle : 'data-np-tab-toggle',
+		tabPane : 'data-np-tab-pane',
+		tabGroup : 'data-np-tab-group'
 	}
 
-
-	plugin.bindEvents = function()
+	self.bindEvents = function()
 	{
-		$(document).on('click', NestedPages.selectors.tabButton, function(e){
+		$(document).on('click', '[' + self.selectors.tabToggle + ']', function(e){
 			e.preventDefault();
-			plugin.activeButton = $(this);
-			plugin.toggleTabs();
+			self.toggleTabs($(this));
 		});
 	}
 
-
-	plugin.toggleTabs = function()
+	/**
+	* Toggle the Tabs
+	*/
+	self.toggleTabs = function(tab)
 	{
-		plugin.activeContent = $(plugin.activeButton).attr('href');
-		$(NestedPages.selectors.tabContent).hide();
-		$(plugin.activeContent).show();
-		$(plugin.activeButton).parents(NestedPages.selectors.tabButtonParent).find(NestedPages.selectors.tabButton).removeClass('active');
-		$(plugin.activeButton).addClass('active');
+		var tabGroup = $(tab).attr(self.selectors.tabGroup);
+		var tabPanes = $('*[' + self.selectors.tabGroup + '=' + tabGroup + '][' + self.selectors.tabPane + ']');
+		var activeTab = $(tab).attr(self.selectors.tabToggle);
+		var buttons = $('*[' + self.selectors.tabGroup + '=' + tabGroup + '][' + self.selectors.tabToggle + ']');
+		var listItems = [];
+
+		for ( var i = 0; i < buttons.length; i++ ){
+			listItems[i] = $(buttons[i]).parent('li')[0];
+		}
+
+		$(tabPanes).hide();
+		$(buttons).removeClass('active');
+		$(listItems).removeClass('active');
+
+		$.each(tabPanes, function(){
+			if ( $(this).attr(self.selectors.tabPane) == activeTab ) $(this).show();
+		});
+
+		$.each(buttons, function(){
+			if ( $(this).attr(self.selectors.tabToggle) == activeTab ) {
+				$(this).addClass('active');
+				$(this).parent('li').addClass('active');
+			}
+		});
+
+		$(document).trigger('tabs-changed', [activeTab, tabGroup, tab]);
 	}
 
-	return plugin.init();
+	return self.bindEvents();
 }

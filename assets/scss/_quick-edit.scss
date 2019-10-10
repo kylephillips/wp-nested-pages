@@ -3,6 +3,48 @@
 // --------------------------------------------------
 
 .nestedpages .quick-edit, .nestedpages .new-child {
+	.header {
+		padding: 10px 0px 0 0px;
+		background-color: darken($white, 5%);
+		position: relative;
+		h3 {
+			position: absolute;
+			right: 10px;
+			top: 15px;
+			font-size: 12px;
+			span {
+				display: inline-block;
+				float: none;
+				margin-left: 10px;
+			}
+		}
+		&.no-tabs {
+			@include clearfix;
+			padding: 10px;
+			border-bottom: 1px solid darken($white, 20%);
+			h3 {
+				position: relative;
+				top: 5px;
+				right: auto;
+				float: right;
+			}
+		}
+	}
+	.np-menuoptions-description {
+		background-color: darken($white, 5%);
+		margin-bottom: 15px;
+		margin-top: -8px;
+		padding: 8px 10px;
+		border: 1px solid $border;
+		p {
+			margin: 0 0 2px 0;
+			&.note {
+				font-size: .9em;
+				margin: 0;
+				opacity: .7;
+			}
+		}
+	}
 	.form-interior {
 		padding: 10px;
 	}
@@ -146,19 +188,9 @@
 		}
 	}
 
-	// Toggle Buttons
-	.np-toggle-options {
-		background-color: darken($white, 5%);
-		padding: 5px;
-	}
-
 	.np-taxonomies, .np-menuoptions {
-		display: none;
-		clear: both;
-		background-color: $gray-lighter;
-		padding: 8px;
 		@include clearfix;
-		margin-top: 5px;
+		background-color: $white;
 	}
 	.np-taxonomy {
 		float: left;
@@ -181,22 +213,20 @@
 
 	// Menu Items
 	.np-menuoptions {
-		padding: 15px;
-		label, input[type="text"] {
-			display: block;
-			float: none;
-			width: 100%;
-		}
-		.menuoptions-left {
-			float: left;
-			width: 47%;
-		}
-		.menuoptions-right {
-			float: right;
-			width: 47%;
-			padding-top: 18px;
+		.left {
 			label {
-				margin-bottom: 10px;
+				width: 30%;
+			}
+			input {
+				width: 65%;
+			}
+		}
+		.right {
+			label {
+				margin-bottom: 5px;
+				display: block;
+				float: none;
+				width: 100%;
 			}
 		}
 	} // .np-menuoptions
