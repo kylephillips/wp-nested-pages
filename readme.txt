@@ -106,6 +106,7 @@ No. The menu synchronization currently only works within the pages post type.
 == Changelog ==
 
 = 3.1.7 =
+* Updates quick edit interface.
 * Adds filters for "Sticky" text indicator in post rows. 
 
 = 3.1.6 =
