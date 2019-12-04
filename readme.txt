@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.1.8 =
+* Fixes conflict with Subpages Expanded plugin where sidebar selections under the appearance > widgets screen was broken
+
 = 3.1.7 =
 * Updates quick edit interface.
 * Adds filters for "Sticky" text indicator in post rows. 

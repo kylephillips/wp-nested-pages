@@ -13,7 +13,7 @@ class PrivatePostParent
 		add_filter('wp_dropdown_pages', [$this, 'metabox'], 10, 3);
 	}
 
-	public function metabox($output, $arguments, $pages)
+	public function metabox($output, $arguments = [], $pages = [])
 	{
 		global $post;
 		if ( !$post ) return $output;
