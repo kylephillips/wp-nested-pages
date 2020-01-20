@@ -90,18 +90,23 @@ class UserRepository
 	* Can current user sort pages
 	* @return boolean
 	* @since 1.1.7
+	* @see NestedPages\Entities\User\UserCapabilities
 	*/
-	public function canSortPages()
+	public function canSortPosts($post_type = 'page')
 	{
 		$roles = $this->getRoles();
-		$cansort = get_option('nestedpages_allowsorting', []);
-		if ( $cansort == "" ) $cansort = [];
+		$user_can_sort = false;
+		$roles_cansort = get_option('nestedpages_allowsorting', []);
+		if ( $roles_cansort == "" ) $roles_cansort = [];
 
 		foreach($roles as $role){
 			if ( $role == 'administrator' ) return true;
-			if ( in_array($role, $cansort) ) return true;
+			if ( in_array($role, $roles_cansort) ) $user_can_sort = true; // Plugin Option
+			$role_obj = get_role($role);
+			if ( $role_obj->has_cap("nestedpages_sort_$post_type") ) $user_can_sort = true; // Custom Capability
 		}
-		return false;
+
+		return $user_can_sort;
 	}
 
 	/**

@@ -88,7 +88,7 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 								<label><?php _e('CSS Classes (optional)', 'wp-nested-pages'); ?></label>
 								<input type="text" name="cssClasses" data-np-menu-css-classes />
 							</p>
-							<?php if ( $this->user->canSortPages() ) : // Menu Options Button ?>
+							<?php if ( $this->user->canSortPosts($this->post_type->name) ) : // Menu Options Button ?>
 							<label class="checkbox">
 								<input type="checkbox" name="linkTarget" class="link_target" data-np-menu-link-target />
 								<span class="checkbox-title"><?php _e( 'Open link in a new window/tab' ); ?></span>

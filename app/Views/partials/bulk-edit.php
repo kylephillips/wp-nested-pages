@@ -64,7 +64,7 @@
 				</div>
 				<?php endif; ?>
 
-				<?php if ( $this->user->canSortPages() && $this->post_type->hierarchical ) : ?>
+				<?php if ( $this->user->canSortPosts($this->post_type->name) && $this->post_type->hierarchical ) : ?>
 				<div class="form-control">
 					<label><?php echo sprintf(__('Parent %s', 'wp-nested-pages'), $this->post_type->labels->singular_name); ?></label>
 					<?php 
@@ -103,7 +103,7 @@
 					</select>
 				</div>
 
-				<?php if ( $this->user->canSortPages() && $this->post_type->name == 'page' ) : ?>
+				<?php if ( $this->user->canSortPosts($this->post_type->name) && $this->post_type->name == 'page' ) : ?>
 				<div class="form-control">
 					<label><?php _e( 'Hide in Nav Menu', 'wp-nested-pages' ); ?></label>
 					<select name="nav_status">

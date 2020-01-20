@@ -302,7 +302,7 @@ class Listing
 		$compared = array_intersect($this->listing_repo->visiblePages($this->post_type->name), $children);
 
 		$list_classes = 'sortable visible nplist';
-		if ( !$this->user->canSortPages() || !$sortable || $this->listing_repo->isSearch() ) $list_classes .= ' no-sort';
+		if ( !$this->user->canSortPosts($this->post_type->name) || !$sortable || $this->listing_repo->isSearch() ) $list_classes .= ' no-sort';
 		if ( $this->listing_repo->isOrdered($this->post_type->name) ) $list_classes .= ' no-sort';
 		if ( $this->integrations->plugins->wpml->installed && $this->integrations->plugins->wpml->getCurrentLanguage() == 'all' ) $list_classes .= ' no-sort';
 		if ( $this->integrations->plugins->yoast->installed ) $list_classes .= ' has-yoast';
@@ -419,14 +419,14 @@ class Listing
 
 				$row_classes = '';
 				if ( !$this->post_type->hierarchical ) $row_classes .= ' non-hierarchical';
-				if ( !$this->user->canSortPages() ) $row_classes .= ' no-sort';
+				if ( !$this->user->canSortPosts($this->post_type->name) ) $row_classes .= ' no-sort';
 				if ( $wpml_current_language == 'all' ) $row_classes .= ' no-sort';
 				if ( $this->listing_repo->isSearch() || $this->listing_repo->isOrdered($this->post_type->name) ) $row_classes .= ' search';
 				if ( $this->post->template ) $row_classes .= $template;
 
 				// Filter sortable per post
 				$filtered_sortable = apply_filters('nestedpages_post_sortable', true, $this->post, $this->post_type);
-				if ( !$filtered_sortable && $this->user->canSortPages() && $this->post_type->hierarchical && !$wpml_current_language ) $row_classes .= ' no-sort-filtered';
+				if ( !$filtered_sortable && $this->user->canSortPosts($this->post_type->name) && $this->post_type->hierarchical && !$wpml_current_language ) $row_classes .= ' no-sort-filtered';
 
 				// Page Assignment for Post Type
 				$assigned_pt = ( $this->listing_repo->isAssignedPostType($this->post->id, $this->assigned_pt_pages) ) 

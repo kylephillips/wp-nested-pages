@@ -36,7 +36,7 @@ endif;
 		<a href="#" class="np-btn nestedpages-toggleall" data-toggle="closed"><?php esc_html_e('Expand All', 'wp-nested-pages'); ?></a>
 		<?php endif; ?>
 
-		<?php if ( $this->user->canSortPages() && !$this->listing_repo->isSearch() && !$this->listing_repo->isFiltered() && !$this->listing_repo->isOrdered($this->post_type->name) ) : ?>
+		<?php if ( $this->user->canSortPosts($this->post_type->name) && !$this->listing_repo->isSearch() && !$this->listing_repo->isFiltered() && !$this->listing_repo->isOrdered($this->post_type->name) ) : ?>
 		<div class="np-sync-menu-cont" <?php if ( $this->confirmation->getMessage() ) echo 'style="margin-top:2px;"';?>>
 
 			<?php if ( $this->settings->autoPageOrderDisabled() ) : ?>

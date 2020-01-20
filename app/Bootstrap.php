@@ -34,6 +34,7 @@ class Bootstrap
 		new Entities\Listing\ListingActions;
 		new Entities\NavMenu\NavMenuActions;
 		new Entities\NavMenu\NavMenuTrashActions;
+		new Entities\User\UserCapabilities;
 		new Form\Events;
 		new Config\Settings;
 	}

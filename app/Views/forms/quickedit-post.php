@@ -9,7 +9,7 @@ if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
 
 $has_taxonomies = ( !empty($this->h_taxonomies) || !empty($this->f_taxonomies) ) ? true : false;
 $has_taxonomies = ( $has_taxonomies && !array_key_exists('hide_taxonomies', $this->disabled_standard_fields) ) ? true : false;
-$has_menu_options = ( $this->user->canSortPages() && $this->post_type->name == 'page' && !$this->listing_repo->isSearch() && !array_key_exists('menu_options', $this->disabled_standard_fields) && $wpml_pages ) ? true : false;
+$has_menu_options = ( $this->user->canSortPosts($this->post_type->name) && $this->post_type->name == 'page' && !$this->listing_repo->isSearch() && !array_key_exists('menu_options', $this->disabled_standard_fields) && $wpml_pages ) ? true : false;
 ?>
 
 <form method="get" action="">

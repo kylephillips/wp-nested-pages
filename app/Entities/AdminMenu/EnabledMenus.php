@@ -60,7 +60,7 @@ class EnabledMenus
 			if ( $type->np_enabled !== true ) continue;
 			if ( $type->replace_menu ) {
 				$this->post_type = get_post_type_object($key);
-				if ( (current_user_can($this->post_type->cap->edit_posts)) || ($this->user->canSortPages()) ){
+				if ( (current_user_can($this->post_type->cap->edit_posts)) || ($this->user->canSortPosts($key)) ){
 					$this->addMenu($c);
 					$this->addSubmenu();
 					$this->removeExistingMenu();

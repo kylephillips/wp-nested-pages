@@ -105,6 +105,10 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.1.9 =
+* Adds a custom sorting user capability for each public post type: nestedpages_sort_$type, enabling control of capabilities through 3rd party plugins. 
+* Adds filter for sorting capability: nestedpages_sort_capability. Filter accepts 3 parameters: $grant_capability (boolean), $type (post type name), and $role (user role object)
+
 = 3.1.8 =
 * Fixes conflict with Subpages Expanded plugin where sidebar selections under the appearance > widgets screen was broken
 * Fixes bug where setting a page to anything other than published was not removing menu items during sync
