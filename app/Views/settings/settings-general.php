@@ -1,5 +1,6 @@
 <?php
 $allowsorting = get_option('nestedpages_allowsorting', array());
+$allowsortview = $this->settings->sortViewEnabled();
 if ( $allowsorting == "" ) $allowsorting = array();
 $sync_status = ( $this->settings->menuSyncEnabled() ) ? __('Currently Enabled', 'wp-nested-pages') : __('Currently Disabled', 'wp-nested-pages');
 settings_fields( 'nestedpages-general' ); 
@@ -67,8 +68,11 @@ settings_fields( 'nestedpages-general' );
 	</td>
 </tr>
 <tr valign="top">
-	<th scope="row"><?php _e('Allow Page Sorting', 'wp-nested-pages'); ?></th>
-	<td>
+	<th scope="row" valign="top">
+		<?php _e('Allow Page Sorting', 'wp-nested-pages'); ?>
+		<p style="font-weight:normal;font-style:oblique; font-size:.9em"><?php _e('Page sorting capability is also controlled through the nestedpages_sorting_$type capability', 'wp-nested-pages'); ?></p>
+	</th>
+	<td valign="top">
 		<?php foreach ( $this->user_repo->allRoles() as $role ) : ?>
 		<label>
 			<input type="checkbox" name="nestedpages_allowsorting[]" value="<?php echo $role['name']; ?>" <?php if ( in_array($role['name'], $allowsorting) ) echo 'checked'; ?> >
@@ -80,6 +84,29 @@ settings_fields( 'nestedpages-general' );
 		<p><em><?php _e('Admins always have sorting ability.', 'wp-nested-pages'); ?></em></p>
 	</td>
 </tr>
+
+<tr valign="top">
+	<th scope="row"><?php _e('Allow Sort View', 'wp-nested-pages'); ?>
+		<p style="font-weight:normal;font-style:oblique; font-size:.9em"><?php _e('Sort view access is also filterable through the nestedpages_sort_view_$type filter.', 'wp-nested-pages'); ?></p>
+	</th>
+	<td>
+		<input type="hidden" name="nestedpages_allowsortview[]" value="<?php echo 'administrator'; ?>" >
+		<?php foreach ( $this->user_repo->allRoles(['Administrator']) as $role ) : ?>
+		<label>
+			<?php
+			$checked = false;
+			if ( !$allowsortview ) $checked = true;
+			if ( is_array($allowsortview) && in_array($role['name'], $allowsortview) ) $checked = true;
+			?>
+			<input type="checkbox" name="nestedpages_allowsortview[]" value="<?php echo $role['name']; ?>" <?php if ( $checked ) echo 'checked'; ?> >
+			<?php echo esc_html__($role['label']); ?>
+		</label>
+		<br />
+		<?php endforeach; ?>
+		<p><em><?php _e('Admins may always view the sort view.', 'wp-nested-pages'); ?></em></p>
+	</td>
+</tr>
+
 <tr valign="top">
 	<th scope="row"><?php _e('Reset Plugin Settings', 'wp-nested-pages'); ?></th>
 	<td>

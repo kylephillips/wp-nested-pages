@@ -57,10 +57,12 @@ class EnabledMenus
 		$c = 1; // Counter for position
 		global $np_page_params;
 		foreach($this->enabled_types as $key => $type){	
+			$user_can_view = apply_filters("nestedpages_sort_view_$type->name", $this->user->canViewSorting($type->name), $this->user->getRoles());
 			if ( $type->np_enabled !== true ) continue;
+			if ( !$user_can_view ) continue;
 			if ( $type->replace_menu ) {
 				$this->post_type = get_post_type_object($key);
-				if ( (current_user_can($this->post_type->cap->edit_posts)) || ($this->user->canSortPosts($key)) ){
+				if ( (current_user_can($this->post_type->cap->edit_posts)) ){
 					$this->addMenu($c);
 					$this->addSubmenu();
 					$this->removeExistingMenu();

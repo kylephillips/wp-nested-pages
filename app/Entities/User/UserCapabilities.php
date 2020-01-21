@@ -1,20 +1,26 @@
 <?php
 namespace NestedPages\Entities\User;
 
+use NestedPages\Config\SettingsRepository;
+
 /**
 * Register custom user roles
 */
 class UserCapabilities
 {
+	/**
+	* Settings Repository
+	*/
+	private $settings;
+
 	public function __construct()
-	{		
-		add_action('plugins_loaded', [$this, 'addSortingCapabilities']);
+	{	
+		$this->settings = new SettingsRepository;
+		add_action('init', [$this, 'addSortingCapabilities']);
 	}
 
 	/**
-	* Adds custom capability of nestedpages_sort_$type
-	* $type is the post type
-	* 
+	* Adds custom capability of nestedpages_sort_$type 
 	*/
 	public function addSortingCapabilities()
 	{
@@ -27,6 +33,7 @@ class UserCapabilities
 			foreach ( $roles->roles as $name => $role_obj ) :
 				$role = get_role($name);
 				$grant_capability = ( in_array($name, $granted_roles) ) ? true : false;
+				if ( $role->has_cap("nestedpages_sorting_$type") ) $grant_capability = true;
 
 				/**
 				 * Filters the sorting capability for a given role and post type.
@@ -37,9 +44,8 @@ class UserCapabilities
 				 * @param string $type 			The post type name.
 				 * @param string  $role_name	The Role Name.
 				 */
-				$grant_capability = apply_filters("nestedpages_sort_capability", $grant_capability, $type, $role);
-
-				if ( $grant_capability ) $role->add_cap("nestedpages_sort_$type", true);
+				$grant_capability = apply_filters("nestedpages_sorting_capability", $grant_capability, $type, $role);
+				if ( $grant_capability ) $role->add_cap("nestedpages_sorting_$type", true);
 			endforeach;
 		endforeach;
 	}
