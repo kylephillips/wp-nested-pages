@@ -225,8 +225,8 @@ class Listing
 		$out = '';
 		$post_states = [];
 		if ( !$assigned_pt ) {
-			if ( $this->post->id == get_option('page_on_front') ) $post_states['page_on_front'] = __('Front Page', 'wp-nested-pages');
-			if ( $this->post->id == get_option('page_for_posts') ) $post_states['page_for_posts'] = __('Posts Page', 'wp-nested-pages');
+			if ( $this->post->id == get_option('page_on_front') ) $post_states['page_on_front'] = '&ndash; ' . __('Front Page', 'wp-nested-pages');
+			if ( $this->post->id == get_option('page_for_posts') ) $post_states['page_for_posts'] = '&ndash; ' . __('Posts Page', 'wp-nested-pages');
 		}
 		$post_states = apply_filters('display_post_states', $post_states, $this->post);
 		if ( empty($post_states) ) return $out;
@@ -235,7 +235,7 @@ class Listing
 		foreach ( $post_states as $state ) {
 			++$i;
 			( $i == $state_count ) ? $sep = '' : $sep = ', ';
-			$out .= " <em class='np-page-type'><strong>&ndash; $state</strong>$sep</em>";
+			$out .= " <em class='np-page-type'><strong>$state</strong>$sep</em>";
 		}
 		return $out;
 	}
