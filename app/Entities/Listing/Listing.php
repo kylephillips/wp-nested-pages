@@ -234,7 +234,7 @@ class Listing
 		$i = 0;
 		foreach ( $post_states as $state ) {
 			++$i;
-			( $i == $state_count ) ? $sep = '' : $sep = ', ';
+			( $i == $state_count ) ? $sep = '' : $sep = ',';
 			$out .= " <em class='np-page-type'><strong>$state</strong>$sep</em>";
 		}
 		return $out;
