@@ -1,6 +1,6 @@
 {
-	"name": "kylephillips/nestedpages",
-	"description": "Nested Pages for WordPress",
+	"name": "carleton/nestedpages",
+	"description": "Nested Pages for WordPress, forked form kylephillips/nestedpages",
 	"keywords": ["wordpress", "plugin", "nested pages"],
 	"homepage": "https://nestedpages.com",
 	"license": "GPL",
@@ -8,12 +8,19 @@
 		{
 			"name": "Kyle Phillips",
 			"homepage": "https://github.com/kylephillips"
+		},
+		{
+			"name": "David Huyck",
+			"homepage": "https://carleton.edu/"
 		}
 	],
 	"type": "wordpress-plugin",
 	"require": {
 		"php": ">=5.3.2",
 		"composer/installers": "v1.0.6"
+	},
+	"replace": {
+		"wpackagist-plugin/wp-nested-pages": "3.1.8"
 	},
 	"autoload": {
 		"psr-4" : {
