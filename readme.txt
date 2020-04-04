@@ -110,6 +110,8 @@ No. The menu synchronization currently only works within the pages post type.
 * Adds filter for sorting capability: nestedpages_sort_capability. Filter passes 3 parameters: $grant_capability (boolean), $type (post type name), and $role (user role object)
 * Adds a plugin option for disabling the sort view based on user role.
 * Adds filters for each post type to allow/disable the sort view based on user role and post type: nestedpages_sort_view_$type. Filter returns 2 parameters: $grant_access (boolean), and $roles (array of roles assigned to the current user).
+* Updates Dutch translation (Thank you to Arno Vije).
+* Tested in WordPress version 5.4.
 
 = 3.1.8 =
 * Fixes conflict with Subpages Expanded plugin where sidebar selections under the appearance > widgets screen was broken
