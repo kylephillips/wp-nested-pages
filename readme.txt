@@ -108,6 +108,7 @@ No. The menu synchronization currently only works within the pages post type.
 = 3.1.10 =
 * Updates German translations.
 * Adds support for preview_post_link filter.
+* Bug fixes in WPML integration (thanks to Timothee Moulin).
 
 = 3.1.9 =
 * Adds a custom sorting user capability for each public post type: nestedpages_sort_$type, enabling control of capabilities through 3rd party plugins. 
