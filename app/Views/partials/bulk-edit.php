@@ -95,7 +95,7 @@
 					</select>
 				</div>
 				
-				<?php if ( current_user_can('edit_theme_options') ) : ?>
+				<?php if ( current_user_can('edit_theme_options') && !array_key_exists('hide_in_np', $this->disabled_standard_fields) ) : ?>
 				<div class="form-control">
 					<label><?php _e( 'Display in Nested View', 'wp-nested-pages' ); ?></label>
 					<select name="nested_pages_status">
