@@ -128,11 +128,13 @@ class WPML
 		foreach ( $posts as $order => $post ) :
 			$translations = $this->getAllTranslations($post['id']);
 			foreach ( $translations as $lang_code => $post_info ) :
-				$post_id = $post_info->element_id;
-				$query = "UPDATE $wpdb->posts SET menu_order = '$order' WHERE ID = '$post_id'";
-				$wpdb->query( $query );
+				$translation_post_id = $post_info->element_id;
+				$translated_parent = $this->getAllTranslations($post_parent)[$lang_code]->element_id;
+				$query = "UPDATE $wpdb->posts SET menu_order = '$order', post_parent = '$translated_parent' WHERE ID = '$translation_post_id'";
 			endforeach;
-			if ( isset($post['children']) ) $this->syncPostOrder($post['children']);
+            if (isset($post['children'])) :
+                $this->syncPostOrder($post['children'], $post['id']);
+            endif;
 		endforeach;
 	}
 
