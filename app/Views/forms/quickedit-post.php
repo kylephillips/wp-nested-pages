@@ -9,7 +9,7 @@ if ( !$this->integrations->plugins->wpml->installed ) $wpml_pages = true;
 
 $has_taxonomies = ( !empty($this->h_taxonomies) || !empty($this->f_taxonomies) ) ? true : false;
 $has_taxonomies = ( $has_taxonomies && !array_key_exists('hide_taxonomies', $this->disabled_standard_fields) ) ? true : false;
-$has_menu_options = ( $this->user->canSortPosts($this->post_type->name) && $this->post_type->name == 'page' && !$this->listing_repo->isSearch() && !array_key_exists('menu_options', $this->disabled_standard_fields) && $wpml_pages ) ? true : false;
+$has_menu_options = ( $this->user->canSortPosts($this->post_type->name) && $this->post_type->name == 'page' && !$this->listing_repo->isSearch() && !array_key_exists('menu_options', $this->disabled_standard_fields) && $wpml_pages && !$this->settings->menusDisabled()  ) ? true : false;
 ?>
 
 <form method="get" action="">
@@ -17,7 +17,6 @@ $has_menu_options = ( $this->user->canSortPosts($this->post_type->name) && $this
 	<div class="header <?php if ( !$has_taxonomies && $this->post_type->name !== 'page' ) echo 'no-tabs'; ?>">
 		<h3><?php _e('Quick Edit', 'wp-nested-pages'); ?><span class="page_id"></span></h3>
 		<div class="np-quickedit-error" style="clear:both;display:none;"></div>
-		<?php if ( $has_taxonomies || $has_menu_options ) : ?>
 		<ul class="np-tabs">
 			<li class="active"><a href="#" data-np-tab-group="quick-edit" data-np-tab-toggle="post-info"><?php echo esc_html__($this->post_type->labels->singular_name); ?></a></li>
 			<?php if ( $has_taxonomies ) : ?>
@@ -27,7 +26,6 @@ $has_menu_options = ( $this->user->canSortPosts($this->post_type->name) && $this
 			<li><a href="#" data-np-tab-group="quick-edit" data-np-tab-toggle="menu-options"><?php echo __('Menu Options', 'wp-nested-pages'); ?></a></li>
 			<?php endif; ?>
 		</ul>
-		<?php endif; ?>
 	</div>
 
 	<div class="form-interior">
