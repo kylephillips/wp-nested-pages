@@ -46,7 +46,7 @@ class AdminSubmenu
 				$edit_key = $this->getSubMenuEditIndex($sub);
 				if ( !$edit_key ) continue;
 				$capability = ( isset($sub[$edit_key][1]) ) ? $sub[$edit_key][1] : 'edit_pages';
-				$submenu[$this->slug][50] = [$sub[$edit_key][0], $capability, esc_url(admin_url('admin.php?page=' . $this->slug))];
+				$submenu[$this->slug][50] = [$sub[$edit_key][0], $capability, esc_url('admin.php?page=' . $this->slug)];
 				if ( isset($sub[$edit_key]) ) unset($sub[$edit_key]); // Remove Top Level
 				$menu_items = $sub;
 			}
@@ -56,7 +56,7 @@ class AdminSubmenu
 			foreach($menu_items as $item){
 				// Make sure URLs for custom menu items are correct
 				$url = ( isset($item[3]) ) ? 'edit.php?post_type=' . $this->post_type->name . '&page=' . $item[2] : $item[2];
-				$submenu[$this->slug][$c] = [$item[0], $item[1], esc_url(admin_url($url))];
+				$submenu[$this->slug][$c] = [$item[0], $item[1], esc_url($url)];
 				$c = $c + 10;
 			}
 		}
