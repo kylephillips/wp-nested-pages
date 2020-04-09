@@ -3,9 +3,9 @@ Contributors: kylephillips
 Donate link: http://nestedpages.com/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
-Tested up to: 5.3
+Tested up to: 5.4
 Requires PHP: 5.4
-Stable tag: 3.1.8
+Stable tag: 3.1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -105,11 +105,20 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.1.10 =
+* Updates German translations.
+* Adds support for preview_post_link filter.
+* Bug fixes in WPML integration (thanks to Timothee Moulin).
+* Fixes issue where menu options where still available under the quick edit and bulk edit forms if the menu sync was disabled completely.
+* Fixes issue where "Hide in Nested View" option was still available under the bulk edit form if the field was disabled through the plugin settings.
+
 = 3.1.9 =
 * Adds a custom sorting user capability for each public post type: nestedpages_sort_$type, enabling control of capabilities through 3rd party plugins. 
 * Adds filter for sorting capability: nestedpages_sort_capability. Filter passes 3 parameters: $grant_capability (boolean), $type (post type name), and $role (user role object)
 * Adds a plugin option for disabling the sort view based on user role.
 * Adds filters for each post type to allow/disable the sort view based on user role and post type: nestedpages_sort_view_$type. Filter returns 2 parameters: $grant_access (boolean), and $roles (array of roles assigned to the current user).
+* Updates Dutch translation (Thank you to Arno Vije).
+* Tested in WordPress version 5.4.
 
 = 3.1.8 =
 * Fixes conflict with Subpages Expanded plugin where sidebar selections under the appearance > widgets screen was broken

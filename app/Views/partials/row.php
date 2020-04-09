@@ -257,11 +257,30 @@ if ( !$wpml ) $wpml_pages = true;
 			</a>
 			<?php endif; endif; ?>
 
-			<?php if ( in_array('view', $this->post_type_settings->row_actions) ) : ?>
-			<a href="<?php echo apply_filters('nestedpages_view_link', get_the_permalink(), $this->post); ?>" class="np-btn np-view-button" target="_blank">
+			<?php
+			/**
+			* View/Preview Link
+			*/
+			if ( in_array('view', $this->post_type_settings->row_actions) ) : 
+			if ( $this->post->status == 'publish' ) : 
+			$link = apply_filters('nestedpages_view_link', get_the_permalink(), $this->post);
+			$link = ( $this->post_type->name == 'page' ) ? apply_filters('page_link', $link, $this->post) : apply_filters('post_link', $link, $this->post);
+			?>
+			<a href="<?php echo $link; ?>" class="np-btn np-view-button" target="_blank">
 				<?php echo apply_filters('nestedpages_view_link_text', __('View', 'wp-nested-pages'), $this->post); ?>
 			</a>
-			<?php endif; ?>
+			<?php 
+			else :
+			$link = apply_filters('nestedpages_preview_link', get_the_permalink(), $this->post);
+			$link = apply_filters('preview_post_link', $link, $this->post);
+			?>
+			<a href="<?php echo $link; ?>" class="np-btn np-view-button" target="_blank">
+				<?php echo apply_filters('nestedpages_preview_link_text', __('Preview', 'wp-nested-pages'), $this->post); ?>
+			</a>
+			<?php
+			endif; // status
+			endif; // View in row actions
+			?>
 			
 			<?php if ( current_user_can('delete_pages') && $this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id)  && in_array('trash', $this->post_type_settings->row_actions) ) : ?>
 			<?php if ( $this->post_type->hierarchical ) : ?>
