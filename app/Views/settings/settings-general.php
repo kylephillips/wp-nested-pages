@@ -46,6 +46,12 @@ settings_fields( 'nestedpages-general' );
 			<?php printf(__('Hide Menu Sync Checkbox (%s)', 'wp-nested-pages'), esc_html__($sync_status)); ?>
 		</label>
 		</p>
+		<p data-menu-enabled-option data-menu-private>
+		<label>
+			<input type="checkbox" name="nestedpages_ui[include_private]" value="true" <?php if ( $this->settings->privateMenuEnabled() ) echo 'checked'; ?> />
+			<?php _e('Include private items in the menu.', 'wp-nested-pages'); ?>
+		</label>
+		</p>
 		<?php endif; ?>
 		<p data-menu-enabled-option data-menu-disable-auto>
 		<label>

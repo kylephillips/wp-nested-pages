@@ -59,6 +59,16 @@ class SettingsRepository
 	}
 
 	/**
+	* Are private pages viewable in the menu
+	*/
+	public function privateMenuEnabled()
+	{
+		$option = get_option('nestedpages_ui', false);
+		$enabled = ( $option && isset($option['include_private']) && $option['include_private'] == 'true' ) ? true : false;
+		return apply_filters('nestedpages_menu_private_enabled', $enabled);
+	}
+
+	/**
 	* Is AJAX page order disabled?
 	*/
 	public function autoPageOrderDisabled()

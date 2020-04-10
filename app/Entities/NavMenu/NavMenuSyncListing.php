@@ -23,6 +23,12 @@ class NavMenuSyncListing extends NavMenuSync
 	private $count = 0;
 
 	/**
+	* Private Pages Sync
+	* @var bool
+	*/
+	private $private_enabled = false;
+
+	/**
 	* Post Data Factory
 	*/
 	private $post_factory;
@@ -30,6 +36,7 @@ class NavMenuSyncListing extends NavMenuSync
 	public function __construct()
 	{
 		parent::__construct();
+		$this->private_enabled = $this->settings->privateMenuEnabled();
 		$this->post_factory = new PostDataFactory;
 	}
 
@@ -71,7 +78,8 @@ class NavMenuSyncListing extends NavMenuSync
 		// Get the Menu Item
 		$query_type = ( $this->post->type == 'np-redirect' ) ? 'xfn' : 'object_id';
 		$menu_item_id = $this->nav_menu_repo->getMenuItem($this->post->id, $query_type);
-		if ( $this->post->nav_status == 'hide' || $this->post->post_status !== 'publish' ) return $this->removeItem($menu_item_id);
+		if ( $this->post->nav_status == 'hide' ) return $this->removeItem($menu_item_id);
+		if ( $this->post->post_status !== 'publish' && !$this->private_enabled ) return $this->removeItem($menu_item_id);
 		$menu = $this->syncMenuItem($menu_parent, $menu_item_id);
 		$this->sync( $this->post->id, $menu, $nest_level );
 	}

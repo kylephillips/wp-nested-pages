@@ -3,6 +3,7 @@ namespace NestedPages\Entities\NavMenu;
 
 use NestedPages\Entities\NavMenu\NavMenuRepository;
 use NestedPages\Entities\PluginIntegration\IntegrationFactory;
+use NestedPages\Config\SettingsRepository;
 
 /**
 * Base Nav Menu Sync class
@@ -22,6 +23,12 @@ abstract class NavMenuSync
 	protected $id;
 
 	/**
+	* Settings Repository
+	* @var object
+	*/
+	protected $settings;
+
+	/**
 	* Plugin Integrations
 	* @var object
 	*/
@@ -31,6 +38,7 @@ abstract class NavMenuSync
 	{
 		$this->nav_menu_repo = new NavMenuRepository;
 		$this->integrations = new IntegrationFactory;
+		$this->settings = new SettingsRepository;
 		$this->setMenuID();
 	}
 
