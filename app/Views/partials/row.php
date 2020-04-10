@@ -283,7 +283,7 @@ if ( !$wpml ) $wpml_pages = true;
 			?>
 			
 			<?php if ( current_user_can('delete_pages') && $this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id)  && in_array('trash', $this->post_type_settings->row_actions) ) : ?>
-			<?php if ( $this->post_type->hierarchical ) : ?>
+			<?php if ( $this->post_type->hierarchical && $this->publishedChildrenCount($this->post) > 0 ) : ?>
 			<div class="nestedpages-dropdown" data-dropdown>
 				<a href="#" class="np-btn np-btn-trash" data-dropdown-toggle>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="np-icon-remove"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" class="icon"/><path d="M0 0h24v24H0z" fill="none"/></svg>
@@ -298,7 +298,7 @@ if ( !$wpml ) $wpml_pages = true;
 					</li>
 				</ul>
 			</div>
-			<?php else :  ?>
+			<?php else : ?>
 				<a href="<?php echo get_delete_post_link(get_the_id()); ?>" class="np-btn np-btn-trash"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" class="icon"/><path d="M0 0h24v24H0z" fill="none"/></svg></a>
 			<?php endif; ?>
 			<?php endif; ?>
