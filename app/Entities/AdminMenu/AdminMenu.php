@@ -3,6 +3,7 @@ namespace NestedPages\Entities\AdminMenu;
 
 use NestedPages\Entities\AdminMenu\EnabledMenus;
 use NestedPages\Entities\AdminMenu\AdminSubmenuExpander;
+use NestedPages\Entities\AdminMenu\BlockEditorLink;
 
 /**
 * Admin Menus
@@ -30,5 +31,6 @@ class AdminMenu
 	public function expandSubMenus()
 	{
 		new AdminSubmenuExpander;
+		new BlockEditorLink;
 	}
 }

@@ -111,6 +111,7 @@ No. The menu synchronization currently only works within the pages post type.
 * Bug fixes in WPML integration (thanks to Timothee Moulin).
 * Fixes issue where menu options where still available under the quick edit and bulk edit forms if the menu sync was disabled completely.
 * Fixes issue where "Hide in Nested View" option was still available under the bulk edit form if the field was disabled through the plugin settings.
+* Links full page editor admin back to nested view if the "replace menu" option is selected for the post type.
 
 = 3.1.9 =
 * Adds a custom sorting user capability for each public post type: nestedpages_sort_$type, enabling control of capabilities through 3rd party plugins. 
