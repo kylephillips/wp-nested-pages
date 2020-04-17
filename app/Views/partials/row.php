@@ -136,7 +136,7 @@ if ( !$wpml ) $wpml_pages = true;
 					$include_link_dropdown = ( $this->post_type->name == 'page' ) ? true : false;
 					$include_link_dropdown = apply_filters('nestedpages_include_links_dropdown', $include_link_dropdown, $this->post_type);
 
-					if ( current_user_can('publish_pages') && $this->post_type->hierarchical && !$this->listing_repo->isSearch() && $wpml_pages ) :  
+					if ( (current_user_can('publish_pages') || $this->user->canSubmitPending($this->post_type->name)) && $this->post_type->hierarchical && !$this->listing_repo->isSearch() && $wpml_pages ) :  
 
 					// Link
 					if ( !$this->settings->menusDisabled() && !$this->integrations->plugins->wpml->installed && in_array('add_child_link', $this->post_type_settings->row_actions) && $include_link_dropdown ) : ?>
@@ -157,7 +157,7 @@ if ( !$wpml ) $wpml_pages = true;
 
 					<?php endif; ?>
 
-					<?php if ( current_user_can('publish_pages') && !$this->listing_repo->isSearch() && !$this->listing_repo->isOrdered($this->post_type->name) ) : ?>
+					<?php if ( (current_user_can('publish_pages') || $this->user->canSubmitPending($this->post_type->name) ) && !$this->listing_repo->isSearch() && !$this->listing_repo->isOrdered($this->post_type->name) ) : ?>
 
 					<?php if ( in_array('insert_before', $this->post_type_settings->row_actions) ) : ?>
 					<li>
