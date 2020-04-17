@@ -114,6 +114,7 @@ No. The menu synchronization currently only works within the pages post type.
 * Links full page editor admin back to nested view if the "replace menu" option is selected for the post type.
 * Removes trash dropdown selection on posts with no children.
 * Adds option to include private pages in the generated menu.
+* Allows users with edit_pages/edit_posts capabilities to see "new" options for submitting non-published content (following core functionality).
 
 = 3.1.9 =
 * Adds a custom sorting user capability for each public post type: nestedpages_sort_$type, enabling control of capabilities through 3rd party plugins. 
