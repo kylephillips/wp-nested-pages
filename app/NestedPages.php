@@ -12,7 +12,7 @@ class NestedPages
 		$np_env = 'live';
 
 		global $np_version;
-		$np_version = '3.1.9';
+		$np_version = '3.1.10';
 
 		if ( is_admin() ) $app = new NestedPages\Bootstrap;
 		if ( !is_admin() ) $app = new NestedPages\FrontEndBootstrap;
