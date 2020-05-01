@@ -4,7 +4,6 @@
 .nestedpages-settings-table {
 	@include wptable;
 	.row-container {
-		background-color: $white;
 		border-bottom: 1px solid $border;
 		&:last-child {
 			border: 0;
@@ -43,6 +42,12 @@
 		.row {
 			display: table;
 			width: 100%;
+			&.submit {
+				display: block;
+				p {
+					margin: 0;
+				}
+			}
 			.description {
 				display: table-cell;
 				vertical-align: top;

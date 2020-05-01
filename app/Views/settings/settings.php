@@ -15,8 +15,12 @@
 		</a>
 	</h2>
 
-	<form method="post" enctype="multipart/form-data" action="options.php">
-		<?php include(NestedPages\Helpers::view('settings/settings-' . $tab)); ?>
-		<?php submit_button(); ?>
-	</form>
+	<?php 
+	if ( $tab !== 'general' ) echo '<form method="post" enctype="multipart/form-data" action="options.php">';
+	include(NestedPages\Helpers::view('settings/settings-' . $tab));
+	if ( $tab !== 'general' ) {
+		submit_button(); 
+		echo '</form>';
+	}
+	?>
 </div><!-- .wrap -->

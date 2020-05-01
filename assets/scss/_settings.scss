@@ -53,3 +53,81 @@
 		}
 	}
 }
+
+.nestedpages-settings-general-wrapper {
+	padding-top: 1em;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	.nestedpages-settings-table {
+		width: 67%;
+		border: 0;
+		.row {
+			border-left: 1px solid $border;
+			border-right: 1px solid $border;
+			&.submit {
+				border: 0;
+			}
+		}
+	}
+	.nestedpages-settings-support {
+		width: 30%;
+		background-color: $white;
+		text-align: center;
+		@include wptable;
+		.inner {
+			padding: 2em;
+		}
+		.or {
+			margin: 2em 0;
+		}
+	}
+	h3 {
+		color: rgba(255,45,32,1);
+		margin: 0 0 3px 0;
+		font-size: 20px;
+	}
+	h4 {
+		margin: 0;
+	}
+	.support-button {
+		display: block;
+		background-color: rgba(255,45,32,.1);
+		border: 1px solid rgba(255,45,32,.15 );
+		text-align: center;
+		color: $black;
+		text-decoration: none;
+		padding: 1em;
+		border-radius: 4px;
+		font-weight: bold;
+		font-size: 16px;
+		transition: all 200ms ease;
+		svg {
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 8px;
+			.heart {
+				fill: #ff2d20;
+			}
+		}
+		&:hover {
+			background-color: rgba(255,45,32,1);
+			transition: all 200ms ease;
+			color: $white;
+			svg .heart {
+				fill: $white;
+			}
+		}
+	} // .support-button
+}
+
+@media (max-width: 768px)
+{
+	.nestedpages-settings-general-wrapper {
+		display: block;
+		.nestedpages-settings-table,
+		.nestedpages-settings-support {
+			width: 100%;
+		}
+	}
+}
