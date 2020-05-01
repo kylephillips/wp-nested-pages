@@ -1,6 +1,6 @@
 ﻿=== Nested Pages ===
 Contributors: kylephillips
-Donate link: http://nestedpages.com/
+Donate link: https://github.com/sponsors/kylephillips/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
 Tested up to: 5.4
