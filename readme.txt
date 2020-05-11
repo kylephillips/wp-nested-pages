@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.1.11 =
+* Security Update.
+
 = 3.1.10 =
 * Updates German translations.
 * Adds support for preview_post_link filter.
