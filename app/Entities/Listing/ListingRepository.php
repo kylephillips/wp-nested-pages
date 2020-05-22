@@ -153,7 +153,7 @@ class ListingRepository
 			if ( $initial_orderby ) $ordered = true;
 		}
 		if ( $ordered && isset($_GET['orderby']) && $_GET['orderby'] == 'menu_order' && !isset($_GET['order']) ) $ordered = false;
-		// Enbales nesting if sorted by menu order in ascending order
+		// Enables nesting if sorted by menu order in ascending order
 		if ( isset($_GET['orderby']) && $_GET['orderby'] == 'menu_order' && isset($_GET['order']) && $_GET['order'] == 'ASC' ) $ordered = false;
 		return $ordered;
 	}

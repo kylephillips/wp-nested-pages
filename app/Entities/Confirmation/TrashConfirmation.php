@@ -12,14 +12,14 @@ class TrashConfirmation implements ConfirmationInterface
 
 		// Show number of Links (np-redirect) Deleted if applicable
 		if ( isset($_GET['link_ids']) ) :
-			$links_trashed = ( explode(',', $_GET['link_ids']) );
+			$links_trashed = ( explode(',', sanitize_text_field($_GET['link_ids'])) );
 			$number_trashed = count($links_trashed);
 			$out .= sprintf( esc_html__( _n( '%d Link Removed.', '%d Links Removed.', $number_trashed, 'wp-nested-pages'  ) ), $number_trashed );
 		endif;
 
 		// Post(s) Moved to Trash
 		if ( isset($_GET['ids']) ) :
-			$trashed = ( explode(',', $_GET['ids']) );
+			$trashed = ( explode(',', sanitize_text_field($_GET['ids'])) );
 			$post_type = get_post_type($trashed[0]);
 			$post_type_object = get_post_type_object($post_type);
 			$out .= ( count($trashed) > 1 )

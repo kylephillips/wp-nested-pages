@@ -163,7 +163,7 @@ class Listing
 	private function pageURL()
 	{
 		$base = ( $this->post_type->name == 'post' ) ? admin_url('edit.php') : admin_url('admin.php');
-		return $base . '?page=' . $_GET['page'];
+		return $base . '?page=' . sanitize_text_field($_GET['page']);
 	}
 
 	/**
