@@ -97,6 +97,13 @@ class PostDataFactory
 			return;
 		}
 
+		if ( $this->post_data->nav_type && $this->post_data->nav_type == 'post_type_archive' ){
+			$post_type = get_post_type_object($this->post_data->nav_object);
+			$this->post_data->nav_original_link = get_post_type_archive_link($this->post_data->nav_object);
+			$this->post_data->nav_original_title = sprintf(__('%s (Archive)', 'wp-nested-pages'), $post_type->labels->name);
+			return;
+		}
+
 		$id = $this->post_data->nav_object_id;
 		$this->post_data->nav_original_link = get_the_permalink($id);
 		$this->post_data->nav_original_title = get_the_title($id);

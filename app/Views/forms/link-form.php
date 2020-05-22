@@ -33,6 +33,11 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 								ob_end_clean();
 								$out .= '</div>';
 								$out .= '<div class="np-menu-search-noresults">' . __('No Results', 'wp-nested-pages') . '</div></li>';
+
+								if ( $type->has_archive ) :
+									$out .= '<li data-default-result class="post-type-archive"><a href="#" data-np-menu-object="' . esc_attr($name) . '" data-np-menu-type="post_type_archive" data-np-object-name="' . sprintf(__('%s (Archive)'),esc_attr($type->labels->name)) . '" data-np-permalink="' . get_post_type_archive_link($name) . '" data-np-menu-selection>' . sprintf(__('%s (Archive)', 'wp-nested-pages'), esc_html__($type->labels->name)) . '</a></li>';
+								endif;
+
 								foreach ( $recent_posts as $post ){
 									$out .= '<li data-default-result><a href="#" data-np-menu-object="' . esc_attr($name) . '" data-np-menu-type="post_type" data-np-menu-objectid="' . esc_attr($post->ID) . '" data-np-permalink="' . get_the_permalink($post->ID) . '" data-np-object-name="' . esc_attr($type->labels->singular_name) . '" data-np-menu-selection>' . esc_html__($post->post_title) . '</a></li>';
 								}

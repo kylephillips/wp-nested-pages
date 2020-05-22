@@ -107,6 +107,7 @@ No. The menu synchronization currently only works within the pages post type.
 
 = 3.1.12 =
 * Fixes bug where posts not appearing when filtering by a non top-level hierarchical taxonomy. Allows order sorting while the list is filtered (not parent order)
+* Adds ability to save and synchronize post type archive menu items when using menu sync
 
 = 3.1.11 =
 * Security Update.

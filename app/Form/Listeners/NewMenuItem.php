@@ -68,6 +68,11 @@ class NewMenuItem extends BaseHandler
 			$this->data['post']['original_title'] = $term->name;
 			return;
 		}
+		if ( $type == 'post_type_archive' ){
+			$this->data['post']['original_link'] = get_post_type_archive_link($this->data['post']['objectType']);
+			$this->data['post']['original_title'] = sanitize_text_field($this->data['post']['menuTitle']);
+			return;
+		}
 		$id = $this->data['post']['objectId'];
 		$this->data['post']['original_link'] = get_the_permalink($id);
 		$this->data['post']['original_title'] = get_the_title($id);
