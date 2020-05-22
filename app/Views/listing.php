@@ -19,7 +19,7 @@ endif;
 		</a>
 		<?php endif; ?>
 
-		<?php if ( ($this->user->canPublish($this->post_type->name) || $this->user->canSubmitPending($this->post_type->name)) && !$this->listing_repo->isSearch() && $wpml_pages ) : ?>
+		<?php if ( ($this->user->canPublish($this->post_type->name) || $this->user->canSubmitPending($this->post_type->name)) && !$this->listing_repo->isSearch() && $wpml_pages && !$this->listing_repo->isFiltered() ) : ?>
 		<a href="#" class="open-bulk-modal page-title-action" title="<?php _e('Add Multiple', 'wp-nested-pages'); ?>" data-parentid="0" data-nestedpages-modal-toggle="np-bulk-modal">
 			<?php echo apply_filters('nestedpages_add_multiple_text', esc_html__('Add Multiple', 'wp-nested-pages'), $this->post_type); ?>
 		</a>

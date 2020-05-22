@@ -134,7 +134,12 @@ class ListingRepository
 	*/ 
 	public function isFiltered()
 	{
-		return ( isset($_GET['category']) && $_GET['category'] !== "all" ) ? true : false;
+		$taxonomies = get_taxonomies();
+		$tax_filtered = false;
+		foreach ( $taxonomies as $tax ){
+			if ( isset($_GET[$tax]) && $_GET[$tax] !== '' ) $tax_filtered = true;
+		}
+		return ( (isset($_GET['category']) && $_GET['category'] !== "all") || $tax_filtered ) ? true : false;
 	}
 
 	/**

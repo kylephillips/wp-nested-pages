@@ -24,7 +24,8 @@ class Sort extends BaseHandler
 	private function updateOrder()
 	{
 		$posts = $this->data['list'];
-		$order = $this->post_update_repo->updateOrder($posts);
+		$filtered = ( isset($this->data['filtered']) && $this->data['filtered'] == 'true' ) ? true : false;
+		$order = $this->post_update_repo->updateOrder($posts, 0, $filtered);
 		if ( $order ){
 			if ( $this->integrations->plugins->wpml->installed ) $this->integrations->plugins->wpml->syncPostOrder($posts);
 			$this->response = ['status' => 'success', 'message' => __('Page order successfully updated.','wp-nested-pages') ];

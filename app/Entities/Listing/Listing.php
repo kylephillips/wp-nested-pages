@@ -364,7 +364,12 @@ class Listing
 		$wpml_current_language = null;
 		if ( $wpml ) $wpml_current_language = $this->integrations->plugins->wpml->getCurrentLanguage();
 
-		if ( !$this->listing_repo->isSearch() ){
+		if ( $this->listing_repo->isFiltered() ){
+			$parent_status = null;
+			$pages = $this->all_posts;
+			$level++;
+			echo '<ol class="sortable nplist visible filtered">';
+		} elseif ( !$this->listing_repo->isSearch() ) {
 			$pages = get_page_children($parent, $this->all_posts);
 			if ( !$pages ) return;
 			$parent_status = get_post_status($parent);
@@ -379,7 +384,7 @@ class Listing
 		
 		foreach($pages as $page) :
 
-			if ( $page->post_parent !== $parent && !$this->listing_repo->isSearch() ) continue;
+			if ( $page->post_parent !== $parent && !$this->listing_repo->isSearch() && !$this->listing_repo->isFiltered() ) continue;
 			$count++;
 
 			global $post;
@@ -437,11 +442,11 @@ class Listing
 
 			endif; // trash status
 			
-			if ( !$this->listing_repo->isSearch() ) $this->listPostLevel($page->ID, $count, $level);
+			if ( !$this->listing_repo->isSearch() && !$this->listing_repo->isFiltered() ) $this->listPostLevel($page->ID, $count, $level);
 
 			if ( $this->post->status !== 'trash' ) echo '</li>';
 
-			if ( $this->publishedChildrenCount($this->post) > 0 && !$this->listing_repo->isSearch() && $continue_nest ) echo '</ol>';
+			if ( $this->publishedChildrenCount($this->post) > 0 && !$this->listing_repo->isSearch() && !$this->listing_repo->isFiltered() ) echo '</ol>';
 
 		endforeach; // Loop
 			

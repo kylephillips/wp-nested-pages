@@ -45,7 +45,7 @@ class PostUpdateRepository
 	* @param int parent
 	* @since 1.0
 	*/
-	public function updateOrder($posts, $parent = 0)
+	public function updateOrder($posts, $parent = 0, $filtered = false)
 	{
 		$this->validation->validatePostIDs($posts);
 		global $wpdb;
@@ -56,19 +56,31 @@ class PostUpdateRepository
 			$original_modifed_date_gmt = get_post_modified_time('Y-m-d H:i:s', true, $post_id);
 
 			// Reset the modified date to the last modified date
-			$query = $wpdb->prepare(
-				"UPDATE $wpdb->posts 
-				SET menu_order = '%d', post_parent = '%d', post_modified = '%s', post_modified_gmt = '%s' 
-				WHERE ID = '%d'", 
-				intval($key), 
-				intval($parent),
-				$original_modifed_date, 
-				$original_modifed_date_gmt, 
-				intval($post_id)
-			);
+			if ( !$filtered ) :
+				$query = $wpdb->prepare(
+					"UPDATE $wpdb->posts 
+					SET menu_order = '%d', post_parent = '%d', post_modified = '%s', post_modified_gmt = '%s' 
+					WHERE ID = '%d'", 
+					intval($key), 
+					intval($parent),
+					$original_modifed_date, 
+					$original_modifed_date_gmt, 
+					intval($post_id)
+				);
+			else : // The posts are filtered, don't update the parent
+				$query = $wpdb->prepare(
+					"UPDATE $wpdb->posts 
+					SET menu_order = '%d', post_modified = '%s', post_modified_gmt = '%s' 
+					WHERE ID = '%d'", 
+					intval($key), 
+					$original_modifed_date, 
+					$original_modifed_date_gmt, 
+					intval($post_id)
+				); 
+			endif;
 
 			$wpdb->query( $query );
-			do_action('nestedpages_post_order_updated', $post_id, $parent, $key);
+			do_action('nestedpages_post_order_updated', $post_id, $parent, $key, $filtered);
 
 			if ( isset($post['children']) ) $this->updateOrder($post['children'], $post_id);
 		}

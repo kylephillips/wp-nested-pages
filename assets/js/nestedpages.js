@@ -1027,17 +1027,18 @@ NestedPages.Nesting = function()
 	// Sync Nesting
 	plugin.syncNesting = function(manual, callback)
 	{
-		var list;
+		var list,
+		filtered;
 
 		if ( nestedpages.manual_order_sync === '1' && !manual) return;
 		$(NestedPages.selectors.errorDiv).hide();
 		$(NestedPages.selectors.loadingIndicator).show();
-		if ( NestedPages.jsData.nestable ){
+		filtered = ( $(NestedPages.selectors.lists).first().hasClass('filtered') ) ? true : false;
+		if ( NestedPages.jsData.nestable && !filtered ){
 			list = $(NestedPages.selectors.sortable).nestedSortable('toHierarchy', {startDepthCount: 0});
 		} else {
 			list = plugin.setNestingArray();
 		}
-		
 		plugin.disableNesting();
 
 		var syncmenu = NestedPages.jsData.syncmenu;
@@ -1052,7 +1053,8 @@ NestedPages.Nesting = function()
 				nonce : NestedPages.jsData.nonce,
 				list : list,
 				post_type : NestedPages.jsData.posttype,
-				syncmenu : syncmenu
+				syncmenu : syncmenu,
+				filtered : filtered
 			},
 			success: function(data, callback){
 				plugin.initializeSortable();
