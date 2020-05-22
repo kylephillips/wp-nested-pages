@@ -130,7 +130,8 @@ class WPML
 			$translations = $this->getAllTranslations($post['id']);
 			foreach ( $translations as $lang_code => $post_info ) :
 				$translation_post_id = $post_info->element_id;
-				$translated_parent = $this->getAllTranslations($post_parent)[$lang_code]->element_id;
+				$parent_translations = $this->getAllTranslations($post_parent);
+				$translated_parent = ( isset($parent_translations[$lang_code]) ) ? $parent_translations[$lang_code]->element_id : 0;
 				$query = "UPDATE $wpdb->posts SET menu_order = '$order', post_parent = '$translated_parent' WHERE ID = '$translation_post_id'";
 				$wpdb->query( $query );
 			endforeach;
