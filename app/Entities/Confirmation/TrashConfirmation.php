@@ -24,7 +24,7 @@ class TrashConfirmation implements ConfirmationInterface
 			$post_type_object = get_post_type_object($post_type);
 			$out .= ( count($trashed) > 1 )
 				? sprintf(__('%d %s moved to the trash.'), count($trashed), esc_html__($post_type_object->labels->name))
-				: wp_kses(sprintf('<strong>%s</strong> moved to the trash.', get_the_title($trashed[0])), ['strong' => []] );
+				: wp_kses(sprintf(__('<strong>%s</strong> moved to the trash.', 'wp-nested-pages'), get_the_title($trashed[0])), ['strong' => []] );
 			// Undo Link
 			if ( current_user_can('delete_pages') ) {
 				$ids = preg_replace( '/[^0-9,]/', '', $_GET['ids'] );
