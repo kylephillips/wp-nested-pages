@@ -18,12 +18,12 @@ $has_menu_options = ( $this->user->canSortPosts($this->post_type->name) && $this
 		<h3><?php _e('Quick Edit', 'wp-nested-pages'); ?><span class="page_id"></span></h3>
 		<div class="np-quickedit-error" style="clear:both;display:none;"></div>
 		<ul class="np-tabs">
-			<li class="active"><a href="#" data-np-tab-group="quick-edit" data-np-tab-toggle="post-info"><?php echo esc_html__($this->post_type->labels->singular_name); ?></a></li>
+			<li class="active"><a href="#" data-np-tab-group="quick-edit" data-np-tab-toggle="post-info"><?php esc_html_e($this->post_type->labels->singular_name); ?></a></li>
 			<?php if ( $has_taxonomies ) : ?>
-			<li><a href="#" data-np-tab-group="quick-edit" data-np-tab-toggle="taxonomies"><?php echo __('Taxonomies', 'wp-nested-pages'); ?></a></li>
+			<li><a href="#" data-np-tab-group="quick-edit" data-np-tab-toggle="taxonomies"><?php esc_html_e('Taxonomies', 'wp-nested-pages'); ?></a></li>
 			<?php endif; ?>
 			<?php if ( $has_menu_options ) : ?>
-			<li><a href="#" data-np-tab-group="quick-edit" data-np-tab-toggle="menu-options"><?php echo __('Menu Options', 'wp-nested-pages'); ?></a></li>
+			<li><a href="#" data-np-tab-group="quick-edit" data-np-tab-toggle="menu-options"><?php esc_html_e('Menu Options', 'wp-nested-pages'); ?></a></li>
 			<?php endif; ?>
 		</ul>
 	</div>
@@ -69,7 +69,7 @@ $has_menu_options = ( $this->user->canSortPosts($this->post_type->name) && $this
 			</div>
 			<?php else : ?>
 			<div>
-				<label><?php _e( 'Date' ); ?></label>
+				<label><?php _e( 'Date', 'wp-nested-pages' ); ?></label>
 				<div class="dates"><?php touch_time( 1, 1, 0, 1 ); ?></div>
 			</div>
 			<?php endif; endif; ?>
@@ -204,7 +204,7 @@ $has_menu_options = ( $this->user->canSortPosts($this->post_type->name) && $this
 			if ( !$disabled ) :
 			?>
 			<div class="np-taxonomy">
-				<span class="title"><?php echo esc_html__( $taxonomy->labels->name ) ?></span>
+				<span class="title"><?php esc_html_e( $taxonomy->labels->name ) ?></span>
 				<input type="hidden" name="<?php echo ( $taxonomy->name == 'category' ) ? 'post_category[]' : 'tax_input[' . esc_attr( $taxonomy->name ) . '][]'; ?>" value="0" />
 				<ul class="cat-checklist <?php echo esc_attr( $taxonomy->name )?>-checklist">
 					<?php wp_terms_checklist( null, array( 'taxonomy' => $taxonomy->name ) ) ?>
@@ -221,8 +221,8 @@ $has_menu_options = ( $this->user->canSortPosts($this->post_type->name) && $this
 			if ( !$disabled ) :
 			?>
 			<div class="np-taxonomy">
-				<span class="title"><?php echo esc_html__( $taxonomy->labels->name ) ?></span>
-				<textarea id="<?php echo esc_attr($taxonomy->name); ?>-quickedit" cols="22" rows="1" name="tax_input[<?php echo esc_attr( $taxonomy->name )?>]" class="tax_input_<?php echo esc_attr( $taxonomy->name )?>" data-autotag data-taxonomy="<?php echo esc_attr($taxonomy->name); ?>"></textarea>
+				<span class="title"><?php esc_html_e( $taxonomy->labels->name ) ?></span>
+				<textarea id="<?php esc_attr_e($taxonomy->name); ?>-quickedit" cols="22" rows="1" name="tax_input[<?php esc_attr_e( $taxonomy->name )?>]" class="tax_input_<?php esc_attr_e( $taxonomy->name )?>" data-autotag data-taxonomy="<?php esc_attr_e($taxonomy->name); ?>"></textarea>
 			</div><!-- .np-taxonomy -->
 		<?php 
 			endif;

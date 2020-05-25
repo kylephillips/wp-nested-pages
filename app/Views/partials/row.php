@@ -60,7 +60,7 @@ if ( !$wpml ) $wpml_pages = true;
 					$u = get_userdata($user);
 					echo '<span class="locked">';
 					echo ' <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>';
-					echo '<em> ' . sprintf(__('%s currently editing', 'wp-nested-pages'), esc_html__($u->display_name)) . '</em></span>';
+					echo '<em> ' . sprintf(__('%s currently editing', 'wp-nested-pages'), esc_html($u->display_name)) . '</em></span>';
 				} elseif ( !$this->integrations->plugins->editorial_access_manager->hasAccess($this->post->id) ){
 					echo '<span class="locked">';
 					echo ' <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>';
@@ -95,7 +95,7 @@ if ( !$wpml ) $wpml_pages = true;
 
 		<?php
 		if ( $this->integrations->plugins->yoast->installed ){
-			echo '<span class="np-seo-indicator ' . esc_html__($this->post->score) . '"></span>';
+			echo '<span class="np-seo-indicator ' . esc_html($this->post->score) . '"></span>';
 		}
 		?>
 
@@ -141,7 +141,7 @@ if ( !$wpml ) $wpml_pages = true;
 					// Link
 					if ( !$this->settings->menusDisabled() && !$this->integrations->plugins->wpml->installed && in_array('add_child_link', $this->post_type_settings->row_actions) && $include_link_dropdown ) : ?>
 					<li>
-						<a href="#" class="open-redirect-modal" data-parentid="<?php echo esc_attr($this->post->id); ?>">
+						<a href="#" class="open-redirect-modal" data-parentid="<?php esc_attr_e($this->post->id); ?>">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path class="primary" d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
 						<?php _e('Add Child Link', 'wp-nested-pages'); ?></a>
 					</li>
@@ -149,7 +149,7 @@ if ( !$wpml ) $wpml_pages = true;
 			
 					<?php if ( in_array('add_child_page', $this->post_type_settings->row_actions) ) : ?>
 					<li>
-						<a href="#" class="add-new-child" data-id="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php echo esc_html__($this->post->title); ?>">
+						<a href="#" class="add-new-child" data-id="<?php esc_attr_e(get_the_id()); ?>" data-parentname="<?php esc_html_e($this->post->title); ?>">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path class="primary" d="M3 21h18v-2H3v2zM3 8v8l4-4-4-4zm8 9h10v-2H11v2zM3 3v2h18V3H3zm8 6h10V7H11v2zm0 4h10v-2H11v2z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
 						<?php echo sprintf(__('Add Child %s', 'wp-nested-pages'), $this->post_type->labels->singular_name); ?></a>
 					</li>
@@ -161,7 +161,7 @@ if ( !$wpml ) $wpml_pages = true;
 
 					<?php if ( in_array('insert_before', $this->post_type_settings->row_actions) ) : ?>
 					<li>
-						<a href="#" data-insert-before="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php echo esc_html__($this->post->title); ?>">
+						<a href="#" data-insert-before="<?php esc_attr_e(get_the_id()); ?>" data-parentname="<?php esc_html_e($this->post->title); ?>">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path class="primary" d="M8 11h3v10h2V11h3l-4-4-4 4zM4 3v2h16V3H4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
 						<?php printf(esc_html__('Insert %s Before', 'wp-nested-pages'), $this->post_type->labels->singular_name); ?></a>
 					</li>
@@ -169,7 +169,7 @@ if ( !$wpml ) $wpml_pages = true;
 
 					<?php if ( in_array('insert_after', $this->post_type_settings->row_actions) ) : ?>
 					<li>
-						<a href="#" data-insert-after="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php echo esc_html__($this->post->title); ?>">
+						<a href="#" data-insert-after="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php esc_html_e($this->post->title); ?>">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path class="primary" d="M16 13h-3V3h-2v10H8l4 4 4-4zM4 19v2h16v-2H4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
 						<?php printf(esc_html__('Insert %s After', 'wp-nested-pages'), $this->post_type->labels->singular_name); ?></a>
 					</li>
@@ -205,7 +205,7 @@ if ( !$wpml ) $wpml_pages = true;
 
 					<?php if ( current_user_can('edit_pages') && current_user_can('edit_posts') && $wpml_pages && in_array('clone', $this->post_type_settings->row_actions) ) : ?>
 					<li>
-						<a href="#" class="clone-post" data-id="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php echo esc_html__($this->post->title); ?>">
+						<a href="#" class="clone-post" data-id="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php esc_html_e($this->post->title); ?>">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path class="primary" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm-1 4l6 6v10c0 1.1-.9 2-2 2H7.99C6.89 23 6 22.1 6 21l.01-14c0-1.1.89-2 1.99-2h7zm-1 7h5.5L14 6.5V12z"/></svg>
 						<?php _e('Clone', 'wp-nested-pages'); ?></a>
 					</li>

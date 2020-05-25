@@ -55,7 +55,7 @@ $sync_status = ( $this->settings->menuSyncEnabled() ) ? __('Currently Enabled', 
 					<p data-menu-enabled-option data-menu-hide-checkbox>
 					<label>
 						<input type="checkbox" name="nestedpages_ui[hide_menu_sync]" value="true" <?php if ( $this->settings->hideMenuSync() ) echo 'checked'; ?> />
-						<?php printf(__('Hide Menu Sync Checkbox (%s)', 'wp-nested-pages'), esc_html__($sync_status)); ?>
+						<?php printf(__('Hide Menu Sync Checkbox (%s)', 'wp-nested-pages'), esc_html($sync_status)); ?>
 					</label>
 					</p>
 					<p data-menu-enabled-option data-menu-private>
@@ -95,7 +95,7 @@ $sync_status = ( $this->settings->menuSyncEnabled() ) ? __('Currently Enabled', 
 					<?php foreach ( $this->user_repo->allRoles() as $role ) : ?>
 					<label>
 						<input type="checkbox" name="nestedpages_allowsorting[]" value="<?php echo $role['name']; ?>" <?php if ( in_array($role['name'], $allowsorting) ) echo 'checked'; ?> >
-						<?php echo esc_html__($role['label']); ?>
+						<?php echo esc_html($role['label']); ?>
 					</label>
 					<br />
 					<?php endforeach; ?>
@@ -119,7 +119,7 @@ $sync_status = ( $this->settings->menuSyncEnabled() ) ? __('Currently Enabled', 
 						if ( is_array($allowsortview) && in_array($role['name'], $allowsortview) ) $checked = true;
 						?>
 						<input type="checkbox" name="nestedpages_allowsortview[]" value="<?php echo $role['name']; ?>" <?php if ( $checked ) echo 'checked'; ?> >
-						<?php echo esc_html__($role['label']); ?>
+						<?php echo esc_html($role['label']); ?>
 					</label>
 					<br />
 					<?php endforeach; ?>

@@ -43,7 +43,7 @@ foreach ( $this->admin_menu_settings->roles as $role ) :
 					?>
 					<button class="button button-small details-button" data-np-remove-separator-button><?php _e('Remove', 'wp-nested-pages'); ?></button>
 					<?php else : ?>
-					<input type="text" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][label]" value="<?php if ( $item_data['custom_label'] ) echo $item_data['custom_label']; ?>" placeholder="<?php echo esc_html__($item_data['original_text']); ?>" class="menu-title-field" />
+					<input type="text" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][label]" value="<?php if ( $item_data['custom_label'] ) echo $item_data['custom_label']; ?>" placeholder="<?php esc_html_e($item_data['original_text']); ?>" class="menu-title-field" />
 					<button class="button button-small details-button" data-np-extra-options-button><?php _e('Details', 'wp-nested-pages');?></button>
 					<?php endif; ?>
 				</p>
