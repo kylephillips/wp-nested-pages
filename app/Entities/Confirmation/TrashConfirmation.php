@@ -27,7 +27,7 @@ class TrashConfirmation implements ConfirmationInterface
 				: wp_kses(sprintf(__('<strong>%s</strong> moved to the trash.', 'wp-nested-pages'), get_the_title($trashed[0])), ['strong' => []] );
 			// Undo Link
 			if ( current_user_can('delete_pages') ) {
-				$ids = preg_replace( '/[^0-9,]/', '', $_GET['ids'] );
+				$ids = preg_replace( '/[^0-9,]/', '', sanitize_text_field($_GET['ids']) );
 				$out .= ' <a href="' . wp_nonce_url( admin_url( 'edit.php?&post_type=' . esc_attr($post_type) . '&amp;doaction=undo'. '&amp;action=untrash&amp;ids=' . esc_attr($ids) ), 'bulk-posts') . '">' . __( 'Undo' ) . "</a>";
 			}
 		endif; 
