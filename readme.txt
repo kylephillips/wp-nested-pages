@@ -5,7 +5,7 @@ Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
 Tested up to: 5.5
 Requires PHP: 5.4
-Stable tag: 3.1.11
+Stable tag: 3.1.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -106,6 +106,7 @@ No. The menu synchronization currently only works within the pages post type.
 == Changelog ==
 
 = 3.1.12 =
+* Includes security updates
 * Fixes bug where posts not appearing when filtering by a non top-level hierarchical taxonomy. Allows order sorting while the list is filtered (not parent order)
 * Adds ability to save and synchronize post type archive menu items when using menu sync
 
