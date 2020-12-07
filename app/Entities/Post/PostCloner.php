@@ -45,6 +45,7 @@ class PostCloner
 	*/
 	public function clonePost($id, $quantity = 1, $status = 'publish', $author = null)
 	{
+		if ( !current_user_can('edit_post', $id) ) return;
 		$this->original_id = $id;
 		$this->original_post = get_post( $id );
 		$this->clone_options['quantity'] = $quantity;

@@ -39,6 +39,7 @@ class PostFactory
 	*/
 	public function createChildPosts($data)
 	{
+		if ( !current_user_can('publish_posts') ) return;
 		$post_type = sanitize_text_field($data['post_type']);
 
 		// Set the initial menu order
@@ -74,6 +75,7 @@ class PostFactory
 	*/
 	public function createBeforeAfterPosts($data)
 	{
+		if ( !current_user_can('publish_posts') ) return;
 		global $wpdb;
 		$menu_order = 0;
 		$parent = false;

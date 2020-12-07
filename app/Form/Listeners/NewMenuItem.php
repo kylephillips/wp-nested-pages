@@ -12,6 +12,7 @@ class NewMenuItem extends BaseHandler
 	public function __construct()
 	{
 		parent::__construct();
+		if ( !current_user_can('publish_posts') ) return;
 		$this->validateFields();
 		$this->saveRedirect();
 		$this->syncMenu();

@@ -83,7 +83,9 @@ class TrashWithChildren extends BaseHandler
 	private function trashPosts()
 	{
 		foreach ( $this->trash_ids as $post_id ){
-			wp_trash_post($post_id);
+			$post_type = get_post_type($post_id);
+			$capability = ( $post_type == 'page' ) ? 'delete_page' : 'delete_posts';
+			if ( current_user_can( $capability, get_the_id() ) ) wp_trash_post($post_id);
 		}
 	}
 

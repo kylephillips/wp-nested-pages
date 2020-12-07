@@ -23,6 +23,7 @@ class ClonePost extends BaseHandler
 		parent::__construct();
 		$this->cloner = new PostCloner;
 		$this->setPostID();
+		if ( !current_user_can('edit_post', $this->data['post_id']) ) return;
 		$this->clonePost();
 	}
 
