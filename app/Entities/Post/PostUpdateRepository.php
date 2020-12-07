@@ -47,6 +47,7 @@ class PostUpdateRepository
 	*/
 	public function updateOrder($posts, $parent = 0, $filtered = false)
 	{
+		if ( !current_user_can('manage_options') ) return;
 		$this->validation->validatePostIDs($posts);
 		global $wpdb;
 		foreach( $posts as $key => $post )
@@ -96,6 +97,7 @@ class PostUpdateRepository
 	*/
 	public function updatePost($data, $append_taxonomies = false)
 	{
+		if ( !current_user_can( 'edit_post', $data['post_id'] ) ) return false;
 		$updated_post = [
 			'ID' => sanitize_text_field($data['post_id'])
 		];
@@ -169,7 +171,7 @@ class PostUpdateRepository
 	*/
 	public function updateTemplate($data)
 	{
-		if ( isset($data['page_template']) ){
+		if ( isset($data['page_template']) && current_user_can('edit_post_meta', $data['post_id'], '_wp_page_template') ){
 			$template = sanitize_text_field($data['page_template']);
 			update_post_meta( 
 				$data['post_id'], 
@@ -186,6 +188,7 @@ class PostUpdateRepository
 	*/
 	public function updateNavStatus($data)
 	{
+		if ( !current_user_can('edit_post_meta', $data['post_id'], '_np_nav_status') ) return;
 		$status = ( isset($data['nav_status']) && $data['nav_status'] == 'hide' ) ? 'hide' : 'show';
 		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
 		update_post_meta( 
@@ -202,6 +205,7 @@ class PostUpdateRepository
 	*/
 	private function updateNestedPagesStatus($data)
 	{
+		if ( !current_user_can('edit_post_meta', $data['post_id'], '_nested_pages_status') ) return;
 		if ( $this->post_type_repo->standardFieldDisabled('hide_in_np', sanitize_text_field($data['post_type'])) ) return;
 		
 		$status = ( isset($data['nested_pages_status']) && $data['nested_pages_status'] == 'hide' ) ? 'hide' : 'show';
@@ -220,6 +224,7 @@ class PostUpdateRepository
 	*/
 	private function updateNavTitle($data)
 	{
+		if ( !current_user_can('edit_post_meta', $data['post_id'], '_np_nav_title') ) return;
 		if ( isset($data['np_nav_title']) ){
 			$title = sanitize_text_field($data['np_nav_title']);
 			update_post_meta( 
@@ -237,6 +242,7 @@ class PostUpdateRepository
 	*/
 	private function updateNavCSS($data)
 	{
+		if ( !current_user_can('edit_post_meta', $data['post_id'], '_np_nav_css_classes') ) return;
 		if ( isset($data['np_nav_css_classes']) ){
 			$css_classes = sanitize_text_field($data['np_nav_css_classes']);
 			update_post_meta( 
@@ -254,6 +260,7 @@ class PostUpdateRepository
 	*/
 	private function updateTitleAttribute($data)
 	{
+		if ( !current_user_can('edit_post_meta', $data['post_id'], '_np_title_attribute') ) return;
 		if ( isset($data['np_title_attribute']) ){
 			$title_attr = sanitize_text_field($data['np_title_attribute']);
 			update_post_meta( 
@@ -273,6 +280,7 @@ class PostUpdateRepository
 		foreach ( $data as $key => $value ){
 			if ( strpos($key, 'np_custom_') !== false) {
 				$field_key = str_replace('np_custom_', '', $key);
+				if ( !current_user_can('edit_post_meta', $data['post_id'], $field_key) ) continue;
 				update_post_meta( 
 					$data['post_id'], 
 					$field_key, 
@@ -289,6 +297,7 @@ class PostUpdateRepository
 	*/
 	private function updateCategories($data, $append_taxonomies = false)
 	{
+		if ( !current_user_can('edit_post', $data['post_id']) ) return;
 		if ( isset($data['post_category']) )
 		{
 			$this->validation->validateIntegerArray($data['post_category']);
@@ -307,6 +316,7 @@ class PostUpdateRepository
 	*/
 	private function updateTaxonomies($data, $append_taxonomies)
 	{
+		if ( !current_user_can('edit_post', $data['post_id']) ) return;
 		if ( isset($data['tax_input']) ) {
 			foreach ( $data['tax_input'] as $taxonomy => $term_ids ){
 				$tax = get_taxonomy($taxonomy);
@@ -327,6 +337,7 @@ class PostUpdateRepository
 	*/
 	private function updateHierarchicalTaxonomies($data, $taxonomy, $term_ids, $append_taxonomies)
 	{
+		if ( !current_user_can('edit_post', $data['post_id']) ) return;
 		$terms = [];
 		foreach ( $term_ids as $term ){
 			if ( $term !== 0 ) $terms[] = (int) $term;
@@ -341,6 +352,7 @@ class PostUpdateRepository
 	*/
 	private function updateFlatTaxonomy($data, $taxonomy, $terms, $append_taxonomies)
 	{
+		if ( !current_user_can('edit_post', $data['post_id']) ) return;
 		$terms = explode(',', sanitize_text_field($terms));
 		$new_terms = array();
 		foreach($terms as $term)
@@ -357,6 +369,7 @@ class PostUpdateRepository
 	*/
 	private function updateLinkTarget($data)
 	{
+		if ( !current_user_can('edit_post_meta', $data['post_id'], '_np_link_target') ) return;
 		$link_target = ( isset($data['link_target']) && $data['link_target'] == "_blank" ) ? "_blank" : "";
 		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
 		update_post_meta( 
@@ -373,6 +386,7 @@ class PostUpdateRepository
 	*/
 	private function updateSticky($data)
 	{
+		if ( !current_user_can('manage_options') ) return;
 		if ( $this->post_type_repo->standardFieldDisabled('sticky', sanitize_text_field($data['post_type'])) ) return;
 		$sticky_posts = get_option('sticky_posts');
 		if ( isset($data['sticky']) && $data['sticky'] ){
@@ -393,6 +407,7 @@ class PostUpdateRepository
 	*/
 	private function updateMenuMeta($data)
 	{
+		if ( !current_user_can( 'edit_post', $data['post_id'] ) ) return false;
 		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
 		$link_target = ( isset($data['linkTarget']) ) ? "_blank" : "";
 		update_post_meta($id, '_np_link_target', $link_target);
@@ -420,6 +435,7 @@ class PostUpdateRepository
 	*/
 	public function updateRedirect($data)
 	{
+		if ( !current_user_can( 'edit_post', $data['post_id'] ) ) return false;
 		$menu_order = isset($data['menu_order']) ? $data['menu_order'] : 0;
 		$updated_post = [
 			'ID' => sanitize_text_field($data['post_id']),
@@ -445,6 +461,7 @@ class PostUpdateRepository
 	*/
 	public function saveRedirect($data)
 	{
+		if ( !current_user_can('manage_options') ) return;
 		$new_link = [
 			'post_title' => sanitize_text_field($data['menuTitle']),
 			'post_status' => sanitize_text_field('publish'),
@@ -469,6 +486,7 @@ class PostUpdateRepository
 	*/
 	public function updateFromMenuItem($data)
 	{
+		if ( !current_user_can( 'edit_post', $data['post_id'] ) ) return false;
 		$updated_post = [
 			'ID' => sanitize_text_field($data['post_id']),
 			'menu_order' => sanitize_text_field($data['menu_order']),
