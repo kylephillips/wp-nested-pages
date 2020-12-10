@@ -71,7 +71,7 @@ class AdminSubmenu
 	{
 		foreach ( $submenu as $key => $items ){
 			foreach ( $items as $item ){
-				if ( $item == 'edit.php?post_type=' . $this->post_type->name ) return $key;
+				if ( $item == 'edit.php' || $item == 'edit.php?post_type=' . $this->post_type->name ) return $key;
 			}
 		}
 		return false;
