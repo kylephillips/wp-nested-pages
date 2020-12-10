@@ -66,6 +66,10 @@ class PostFactory
 			if ( isset($data['page_template']) ) $this->post_update_repo->updateTemplate($data);
 			if ( isset($data['nav_status']) ) $this->post_update_repo->updateNavStatus($data);
 			$this->new_ids[$key] = $new_page_id;
+
+			$new_post = get_post($new_page_id);
+			$new_post->post_content = (string) apply_filters('default_content', $new_post->post_content, $new_post);
+			wp_update_post($new_post);
 		}
 		return $this->getNewPosts($post_type);
 	}
