@@ -419,7 +419,7 @@ class Listing
 
 				// CSS Classes for the <li> row element
 				$template = ( $this->post->template )
-					? ' tpl-' .  str_replace('.php', '', $this->post->template)
+					? ' tpl-' .  str_replace('.php', '', sanitize_html_class( $this->post->template ) )
 					: '';
 
 				$row_classes = '';
