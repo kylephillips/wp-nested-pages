@@ -28,7 +28,7 @@ if ( !$wpml ) $wpml_pages = true;
 		<a href="<?php echo apply_filters('nestedpages_edit_link', get_edit_post_link(), $this->post); ?>" class="page-link page-title">
 			<span class="title">
 				<?php 
-					echo apply_filters( 'the_title', $this->post->title, $this->post->id, $view = 'nestedpages_title' ); 
+					echo apply_filters('the_title', $this->post->title, $this->post->id); 
 					echo $this->postStates($assigned_pt);
 				?>
 			</span>
@@ -264,7 +264,9 @@ if ( !$wpml ) $wpml_pages = true;
 			if ( in_array('view', $this->post_type_settings->row_actions) ) : 
 			if ( $this->post->status == 'publish' ) : 
 			$link = apply_filters('nestedpages_view_link', get_the_permalink(), $this->post);
-			$link = ( $this->post_type->name == 'page' ) ? apply_filters('page_link', $link, $this->post->ID, false) : apply_filters('post_link', $link, $this->post, false);
+			$link = ( $this->post_type->name !== 'post' ) 
+				? apply_filters('page_link', $link, $this->post->ID, false) 
+				: apply_filters('post_link', $link, $this->post, false);
 			?>
 			<a href="<?php echo $link; ?>" class="np-btn np-view-button" target="_blank">
 				<?php echo apply_filters('nestedpages_view_link_text', __('View', 'wp-nested-pages'), $this->post); ?>

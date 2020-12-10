@@ -107,6 +107,7 @@ No. The menu synchronization currently only works within the pages post type.
 
 = 3.1.14 =
 * Additional security enhancements (Thanks Nico Mollet)
+* Developer improvements through added filters and filter usage corrections (Thanks Bjørnar Tollaksen & Alexandre Sadowski)
 
 = 3.1.13 =
 * Corrects permission issues introduced in previous update
