@@ -957,7 +957,30 @@ NestedPages.Nesting = function()
 	// Make the Menu sortable
 	plugin.initializeSortable = function()
 	{
-		
+		$(NestedPages.selectors.sortable).not(NestedPages.selectors.notSortable).sortable({
+			group : 'nested',
+			draggable : NestedPages.selectors.rows,
+			handle: NestedPages.selectors.handle,
+			ghostClass: "ui-sortable-placeholder",
+			swapThreshold: 0.65,
+			tabSize : 56,
+			filter : '.post-type-np-redirect',
+			animation : 150,
+			fallbackOnBody : true,
+			sort: function(e, ui){
+				plugin.formatter.updatePlaceholderWidth(ui);
+			},
+			stop: function(e, ui){
+				setTimeout(
+					function(){
+						plugin.formatter.updateSubMenuToggle();
+						plugin.formatter.setBorders();
+						plugin.formatter.setNestedMargins();
+					}, 100
+				);
+				plugin.syncNesting();
+			},
+		});
 	}
 
 	// Disable Nesting
