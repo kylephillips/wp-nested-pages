@@ -85,32 +85,31 @@ class Dependencies
 		if ( strpos( $screen->id, 'nestedpages' ) || $settings_page ) :
 			wp_enqueue_script('suggest');
 			wp_enqueue_script('jquery-ui-core');
-			wp_enqueue_script('jquery-ui-sortable');
 			wp_enqueue_script('jquery-ui-datepicker');
 			wp_enqueue_script(
-				'ui-touch-punch', 
-				$this->plugin_dir . '/assets/js/lib/jquery.ui.touch-punch.min.js', 
-				['jquery', 'jquery-ui-sortable'], 
+				'sortable', 
+				$this->plugin_dir . '/assets/js/lib/Sortable.js', 
+				['jquery'], 
 				$this->plugin_version
 			);
 			wp_enqueue_script(
-				'nested-sortable', 
-				$this->plugin_dir . '/assets/js/lib/jquery.mjs.nestedSortable.js', 
-				['jquery', 'jquery-ui-sortable'], 
+				'jquery-sortable', 
+				$this->plugin_dir . '/assets/js/lib/jquery-sortable.js', 
+				['jquery', 'sortable'], 
 				$this->plugin_version
 			);
 			if ( $np_env == 'dev' ){
 				wp_enqueue_script(
 					'nestedpages', 
 					$this->plugin_dir . '/assets/js/nestedpages.js', 
-					['jquery'],
+					['jquery', 'sortable', 'jquery-sortable'],
 					$this->plugin_version
 				);
 			} else {
 				wp_enqueue_script(
 					'nestedpages', 
 					$this->plugin_dir . '/assets/js/nestedpages.min.js', 
-					['jquery'], 
+					['jquery', 'sortable', 'jquery-sortable'], 
 					$this->plugin_version
 				);
 			}

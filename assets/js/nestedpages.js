@@ -957,72 +957,14 @@ NestedPages.Nesting = function()
 	// Make the Menu sortable
 	plugin.initializeSortable = function()
 	{
-		if ( !NestedPages.jsData.nestable ) return plugin.initializeSortableFlat();
-
-		$(NestedPages.selectors.sortable).not(NestedPages.selectors.notSortable).nestedSortable({
-			items : NestedPages.selectors.rows,
-			toleranceElement: '> .row',
-			handle: NestedPages.selectors.handle,
-			placeholder: "ui-sortable-placeholder",
-			tabSize : 56,
-			isAllowed: function(placeholder, placeholderParent, currentItem){
-				return ( $(placeholderParent).hasClass('post-type-np-redirect') && !$(currentItem).hasClass('post-type-np-redirect') ) ? false : true;
-			},
-			start: function(e, ui){
-				ui.placeholder.height(ui.item.height());
-			},
-			sort: function(e, ui){
-				plugin.formatter.updatePlaceholderWidth(ui);
-			},
-			stop: function(e, ui){
-				setTimeout(
-					function(){
-						plugin.formatter.updateSubMenuToggle();
-						plugin.formatter.setBorders();
-						plugin.formatter.setNestedMargins();
-					}, 100
-				);
-				plugin.syncNesting();
-			},
-		});
-	}
-
-	// Initialize Flat Sortable (Non-Hierarchical Post Types)
-	plugin.initializeSortableFlat = function()
-	{
-		var lists = $(NestedPages.selectors.lists).not(NestedPages.selectors.notSortable);
-		$.each(lists, function(){
-			$(this).sortable({
-				items : '>' + NestedPages.selectors.rows,
-				handle: NestedPages.selectors.handle,
-				placeholder: "ui-sortable-placeholder",
-				forcePlaceholderSize: true,
-				start: function(e, ui){
-					ui.placeholder.height(ui.item.height());
-				},
-				sort: function(e, ui){
-					plugin.formatter.updatePlaceholderWidth(ui);
-				},
-				stop: function(e, ui){
-					setTimeout(
-						function(){
-							plugin.formatter.updateSubMenuToggle();
-							plugin.formatter.setBorders();
-							plugin.formatter.setNestedMargins();
-						}, 100
-					);
-					plugin.syncNesting();
-				},
-			});
-		});
+		
 	}
 
 	// Disable Nesting
 	plugin.disableNesting = function()
 	{
-		$(NestedPages.selectors.sortable).sortable('destroy');
+		
 	}
-
 
 	// Sync Nesting
 	plugin.syncNesting = function(manual, callback)
@@ -1035,7 +977,7 @@ NestedPages.Nesting = function()
 		$(NestedPages.selectors.loadingIndicator).show();
 		filtered = ( $(NestedPages.selectors.lists).first().hasClass('filtered') ) ? true : false;
 		if ( NestedPages.jsData.nestable && !filtered ){
-			list = $(NestedPages.selectors.sortable).nestedSortable('toHierarchy', {startDepthCount: 0});
+			// list = $(NestedPages.selectors.sortable).nestedSortable('toHierarchy', {startDepthCount: 0});
 		} else {
 			list = plugin.setNestingArray();
 		}
