@@ -28,7 +28,8 @@ if ( !$wpml ) $wpml_pages = true;
 		<a href="<?php echo apply_filters('nestedpages_edit_link', get_edit_post_link(), $this->post); ?>" class="page-link page-title">
 			<span class="title">
 				<?php 
-					echo apply_filters('the_title', $this->post->title, $this->post->id); 
+					$title = apply_filters( 'the_title', $this->post->title, $this->post->id ); 
+					echo apply_filters('nestedpages_post_title', $title, $this->post);
 					echo $this->postStates($assigned_pt);
 				?>
 			</span>
