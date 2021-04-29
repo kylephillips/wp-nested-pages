@@ -21,7 +21,7 @@ NestedPages.selectors = {
 	lists : '.nplist', // OL elements
 	rows : '.page-row', // Page Row,
 	row : '.row', // Inner row div element
-	sortable : '.sortable', // Sortable List
+	sortable : 'sortable', // Sortable List
 	notSortable : '.no-sort', // Unsortable List
 	handle : '.handle', // Sortable Handle
 	published : '.published', // Published Rows

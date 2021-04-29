@@ -957,29 +957,51 @@ NestedPages.Nesting = function()
 	// Make the Menu sortable
 	plugin.initializeSortable = function()
 	{
+		var containers = document.getElementsByClassName(NestedPages.selectors.sortable);
+		console.log(containers);
+		var options = {
+			group : {
+				name: 'sortable-list',
+				pull: true,
+				put: true
+			},
+			// draggable : NestedPages.selectors.rows,
+			handle: NestedPages.selectors.handle,
+			ghostClass: "ui-sortable-placeholder",
+			animation : 150,
+			fallbackOnBody : true,
+			display: 'Nested'
+		}
+		for ( var i = 0; i < containers.length; i++ ){
+			var sortable = new Sortable(containers[i], options);
+		}
+		return;
 		$(NestedPages.selectors.sortable).not(NestedPages.selectors.notSortable).sortable({
-			group : 'nested',
+			group : {
+				name: 'nested',
+				pull: true,
+				put: true
+			},
 			draggable : NestedPages.selectors.rows,
 			handle: NestedPages.selectors.handle,
 			ghostClass: "ui-sortable-placeholder",
-			swapThreshold: 0.65,
-			tabSize : 56,
-			filter : '.post-type-np-redirect',
+			// swapThreshold: 0.65,
+			// tabSize : 56,
+			// filter : '.post-type-np-redirect',
 			animation : 150,
 			fallbackOnBody : true,
-			sort: function(e, ui){
-				plugin.formatter.updatePlaceholderWidth(ui);
-			},
-			stop: function(e, ui){
-				setTimeout(
-					function(){
-						plugin.formatter.updateSubMenuToggle();
-						plugin.formatter.setBorders();
-						plugin.formatter.setNestedMargins();
-					}, 100
-				);
-				plugin.syncNesting();
-			},
+			sort : true,
+			dragoverBubble: true,
+			// stop: function(e, ui){
+			// 	setTimeout(
+			// 		function(){
+			// 			plugin.formatter.updateSubMenuToggle();
+			// 			plugin.formatter.setBorders();
+			// 			plugin.formatter.setNestedMargins();
+			// 		}, 100
+			// 	);
+			// 	plugin.syncNesting();
+			// },
 		});
 	}
 
@@ -2425,7 +2447,7 @@ NestedPages.selectors = {
 	lists : '.nplist', // OL elements
 	rows : '.page-row', // Page Row,
 	row : '.row', // Inner row div element
-	sortable : '.sortable', // Sortable List
+	sortable : 'sortable', // Sortable List
 	notSortable : '.no-sort', // Unsortable List
 	handle : '.handle', // Sortable Handle
 	published : '.published', // Published Rows
