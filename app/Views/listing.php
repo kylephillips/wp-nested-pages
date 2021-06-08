@@ -31,6 +31,8 @@ endif;
 		</a>
 		<?php endif; ?>
 
+		<?php do_action('nestedpages_top_buttons', $this->post_type); ?>
+
 		<div class="nestedpages-top-toggles">
 		<?php if ( $this->post_type->hierarchical && !$this->listing_repo->isSearch() ) : ?>
 		<a href="#" class="np-btn nestedpages-toggleall" data-toggle="closed"><?php esc_html_e('Expand All', 'wp-nested-pages'); ?></a>
