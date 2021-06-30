@@ -176,7 +176,7 @@ class PostRepository
 	* @param $post_type (string)
 	* @param $include_parent (bool), whether to include parent in tree
 	*/
-	public function postTree($parent_id = 0, $post_type, $include_parent = true)
+	public function postTree($parent_id = 0, $post_type = 'page', $include_parent = true)
 	{
 		$posts = [];
 		if ( $parent_id !== 0 && $include_parent ){
