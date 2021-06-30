@@ -105,7 +105,7 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
-= 3.1.5 = 
+= 3.1.15 = 
 * Action added for outputting markup along with the add new/add multiple buttons (nestedpages_top_buttons)
 * PHP 8 deprecation errors corrected
 * Tested with WordPress v5.8
