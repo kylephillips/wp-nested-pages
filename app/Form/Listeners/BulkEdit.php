@@ -6,7 +6,7 @@ use NestedPages\Entities\Post\PostUpdateRepository;
 /**
 * Perform a Bulk Edit
 */
-class BulkEdit 
+class BulkEdit extends BaseHandler
 {
 	/**
 	* URL to redirect to
@@ -20,19 +20,9 @@ class BulkEdit
 	*/
 	private $post_ids;
 
-	/**
-	* The Field Data
-	*/
-	private $data;
-
-	/**
-	* Post Update Repo
-	*/
-	private $post_update_repo;
-
 	public function __construct()
 	{
-		$this->post_update_repo = new PostUpdateRepository;
+		parent::__construct();
 		$this->setURL();
 		$this->setFieldData();
 		$this->performEdits();

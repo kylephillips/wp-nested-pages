@@ -91,7 +91,7 @@ abstract class BaseHandler
 	protected function validateNonce()
 	{
 		if ( ! wp_verify_nonce( $this->nonce, 'nestedpages-nonce' ) ){
-			$this->response = [ 'status' => 'error', 'message' => __('Incorrect Form Field', 'wp-nested-pages') ];
+			$this->response = [ 'status' => 'error', 'message' => __('Invalid Nonce', 'wp-nested-pages') ];
 			$this->sendResponse();
 			die();
 		}

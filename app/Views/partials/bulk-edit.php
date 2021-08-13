@@ -1,11 +1,12 @@
 <?php 
-	$post_type_object = get_post_type_object( $this->post_type->name );
-	$can_publish = current_user_can( $post_type_object->cap->publish_posts );
-	$wpml_pages = ( $this->integrations->plugins->wpml->installed && $this->integrations->plugins->wpml->isDefaultLanguage()) ? true : false;
-	$has_menu_options = ( $this->user->canSortPosts($this->post_type->name) && $this->post_type->name == 'page' && !$this->listing_repo->isSearch() && !$this->settings->menusDisabled()  ) ? true : false;
+$post_type_object = get_post_type_object( $this->post_type->name );
+$can_publish = current_user_can( $post_type_object->cap->publish_posts );
+$wpml_pages = ( $this->integrations->plugins->wpml->installed && $this->integrations->plugins->wpml->isDefaultLanguage()) ? true : false;
+$has_menu_options = ( $this->user->canSortPosts($this->post_type->name) && $this->post_type->name == 'page' && !$this->listing_repo->isSearch() && !$this->settings->menusDisabled()  ) ? true : false;
 ?>
 <form data-np-bulk-edit-form class="nestedpages-bulk-edit" action="<?php echo admin_url('admin-post.php'); ?>" method="post">
 	<input type="hidden" name="action" value="npBulkEdit">
+	<?php wp_nonce_field('nestedpages-nonce', 'nonce'); ?>
 	<input type="hidden" name="page" value="<?php echo $this->pageURL(); ?>">
 	<input type="hidden" name="post_type" value="<?php echo $this->post_type->name; ?>">
 
