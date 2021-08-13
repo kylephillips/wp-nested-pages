@@ -6,12 +6,6 @@ namespace NestedPages\Form\Listeners;
 */
 class CategoryFilter extends BaseHandler
 {
-	/**
-	* URL to redirect to
-	* @var string
-	*/
-	private $url;
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -34,14 +28,5 @@ class CategoryFilter extends BaseHandler
 	private function setCategories()
 	{
 		$this->url .= '&category=' . sanitize_text_field($_POST['np_category']);
-	}
-
-
-	/**
-	* Redirect to new URL
-	*/
-	private function redirect()
-	{
-		header('Location:' . $this->url);
 	}
 }

@@ -9,12 +9,6 @@ use NestedPages\Entities\PostType\PostTypeRepository;
 class ListingSort extends BaseHandler
 {
 	/**
-	* URL to redirect to
-	* @var string
-	*/
-	private $url;
-
-	/**
 	* The Post Type
 	* @var string
 	*/
@@ -86,13 +80,5 @@ class ListingSort extends BaseHandler
 				if ( isset($_POST[$tax->name]) && $_POST[$tax->name] !== 'all' ) $this->url .= '&' . $tax->name . '=' . sanitize_text_field($_POST[$tax->name]);
 			endif;
 		endforeach;
-	}
-
-	/**
-	* Redirect to new URL
-	*/
-	private function redirect()
-	{
-		header('Location:' . $this->url);
 	}
 }

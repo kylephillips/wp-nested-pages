@@ -49,6 +49,12 @@ abstract class BaseHandler
 	protected $response;
 
 	/**
+	* URL to redirect to
+	* @var string
+	*/
+	protected $url;
+
+	/**
 	* Plugin Integrations
 	* @var object;
 	*/
@@ -150,5 +156,13 @@ abstract class BaseHandler
 	protected function sendResponse()
 	{
 		return wp_send_json($this->response);
+	}
+
+	/**
+	* Redirect to new URL
+	*/
+	protected function redirect()
+	{
+		wp_safe_redirect($this->url);
 	}
 }

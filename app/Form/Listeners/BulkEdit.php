@@ -9,12 +9,6 @@ use NestedPages\Entities\Post\PostUpdateRepository;
 class BulkEdit extends BaseHandler
 {
 	/**
-	* URL to redirect to
-	* @var string
-	*/
-	private $url;
-
-	/**
 	* Post IDs (Comma-separated)
 	* @var string
 	*/
@@ -58,13 +52,5 @@ class BulkEdit extends BaseHandler
 			$data['post_id'] = $post_id;
 			$this->post_update_repo->updatePost($data, $append_taxonomies = true);
 		}
-	}
-
-	/**
-	* Redirect to new URL
-	*/
-	private function redirect()
-	{
-		header('Location:' . $this->url);
 	}
 }
