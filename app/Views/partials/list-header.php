@@ -5,6 +5,7 @@
 	<form data-np-bulk-form style="display:none;" action="<?php echo admin_url('admin-post.php'); ?>" method="post" class="np-bulk-form">
 		<input type="hidden" name="action" value="npBulkActions">
 		<input type="hidden" name="page" value="<?php echo $this->pageURL(); ?>">
+		<?php wp_nonce_field('nestedpages-nonce', 'nonce'); ?>
 		<input type="hidden" name="redirect_post_ids" value="" data-np-bulk-redirect-ids>
 		<input type="hidden" name="post_ids" value="" data-np-bulk-ids>
 		<select id="np_bulk" name="np_bulk_action" class="nestedpages-sort">

@@ -14,11 +14,6 @@ NestedPages.BulkActions = function()
 	plugin.selectedLinks = [];
 	plugin.selectedPosts = []; // array
 
-	plugin.init = function()
-	{
-		plugin.bindEvents();
-	}
-
 	plugin.bindEvents = function()
 	{
 		$(document).on('change', NestedPages.selectors.bulkActionsCheckbox, function(){
@@ -223,5 +218,5 @@ NestedPages.BulkActions = function()
 		});
 	}
 
-	return plugin.init();
+	return plugin.bindEvents();
 }

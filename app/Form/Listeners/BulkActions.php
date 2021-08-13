@@ -4,7 +4,7 @@ namespace NestedPages\Form\Listeners;
 /**
 * Perform Bulk Actions
 */
-class BulkActions 
+class BulkActions extends BaseHandler
 {
 	/**
 	* URL to redirect to
@@ -38,6 +38,7 @@ class BulkActions
 
 	public function __construct()
 	{
+		parent::__construct();
 		$this->setURL();
 		$this->setPostIds();
 		$this->performAction();
