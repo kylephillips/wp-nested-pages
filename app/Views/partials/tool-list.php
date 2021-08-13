@@ -146,6 +146,7 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 			<div class="select">
 				<input type="hidden" name="action" value="npListingSort">
 				<input type="hidden" name="page" value="<?php echo $this->pageURL(); ?>">
+				<?php wp_nonce_field('nestedpages-nonce', 'nonce'); ?>
 				<input type="hidden" name="post_type" value="<?php echo esc_attr($this->post_type->name); ?>">
 				<input type="submit" id="nestedpages-sort" class="button" value="<?php echo esc_attr__('Apply', 'wp-nested-pages'); ?>">
 			</div>

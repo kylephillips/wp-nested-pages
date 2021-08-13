@@ -6,7 +6,7 @@ use NestedPages\Entities\PostType\PostTypeRepository;
 /**
 * Redirect to Listing with Specified Sorting Options Applied
 */
-class ListingSort 
+class ListingSort extends BaseHandler
 {
 	/**
 	* URL to redirect to
@@ -28,6 +28,7 @@ class ListingSort
 
 	public function __construct()
 	{
+		parent::__construct();
 		$this->post_type_repo = new PostTypeRepository;
 		$this->setURL();
 		$this->redirect();
