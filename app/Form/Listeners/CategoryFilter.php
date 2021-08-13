@@ -4,7 +4,7 @@ namespace NestedPages\Form\Listeners;
 /**
 * Filter Pages by Category
 */
-class CategoryFilter 
+class CategoryFilter extends BaseHandler
 {
 	/**
 	* URL to redirect to
@@ -14,6 +14,7 @@ class CategoryFilter
 
 	public function __construct()
 	{
+		parent::__construct();
 		$this->setURL();
 		$this->redirect();
 	}
