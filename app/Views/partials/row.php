@@ -6,7 +6,7 @@ $wpml = $this->integrations->plugins->wpml->installed;
 $wpml_pages = ( $wpml && $this->integrations->plugins->wpml->isDefaultLanguage()) ? true : false;
 if ( !$wpml ) $wpml_pages = true;
 ?>
-<div class="row<?php echo $row_classes; ?>">
+<div class="row <?php echo apply_filters('nestedpages_row_css_classes', $row_classes, $this->post, $this->post_type); ?>">
 	
 	<?php if ( $this->post_type->hierarchical ) : ?>
 	<div class="child-toggle">
