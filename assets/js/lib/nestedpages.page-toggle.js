@@ -14,11 +14,6 @@ NestedPages.PageToggle = function()
 
 	plugin.formatter = new NestedPages.Formatter;
 
-	plugin.init = function()
-	{
-		plugin.bindEvents();
-	}
-
 	plugin.bindEvents = function()
 	{
 		$(document).on('click', NestedPages.selectors.toggleHidden, function(e){
@@ -55,7 +50,6 @@ NestedPages.PageToggle = function()
 		}
 	}
 
-
 	// Toggle Pages based on status
 	plugin.toggleStatus = function(button)
 	{
@@ -64,6 +58,7 @@ NestedPages.PageToggle = function()
 		$(NestedPages.selectors.syncCheckbox).attr('disabled', false);
 		$(NestedPages.selectors.toggleStatus).removeClass('active');
 		$(button).addClass('active');
+		plugin.saveStatusPreference(target);
 		if ( target == 'draft' ){
 			$(NestedPages.selectors.syncCheckbox).attr('disabled', true);
 			$('.' + target).addClass('nested-visible');
@@ -77,7 +72,22 @@ NestedPages.PageToggle = function()
 		return;
 	}
 
+	// Save the user's status preference
+	plugin.saveStatusPreference = function(status)
+	{
+		$.ajax({
+			url: ajaxurl,
+			type: 'post',
+			datatype: 'json',
+			data: {
+				action : NestedPages.formActions.toggleStatusDisplay,
+				nonce : NestedPages.jsData.nonce,
+				status : status,
+				post_type : NestedPages.jsData.posttype
+			}
+		});
+	}
 
-	return plugin.init();
+	return plugin.bindEvents();
 
 }

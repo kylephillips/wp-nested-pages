@@ -407,6 +407,10 @@
 		.np-icon-sub-menu { display: inline-block; }
 	}
 
+	.page-row.hidden {
+		display: none;
+	}
+
 	// Main Row Element
 	.row {
 		background-color: $white;

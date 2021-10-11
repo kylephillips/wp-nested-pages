@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.1.17 =
+* Adds background saving of post status selection (Selecting "Published" in the post status filter will now persist on page reload)
+
 = 3.1.16 =
 * Includes security updates. Thanks to Ram Gall at Wordfence for reporting
 

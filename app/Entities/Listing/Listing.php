@@ -122,6 +122,12 @@ class Listing
 	private $sticky_posts;
 
 	/**
+	* User status preference
+	* @var array
+	*/
+	private $status_preference;
+
+	/**
 	* Enabled Custom Fields
 	*/
 	private $enabled_custom_fields;
@@ -143,6 +149,7 @@ class Listing
 		$this->setTaxonomies();
 		$this->setPostTypeSettings();
 		$this->setStandardFields();
+		$this->setStatusPreference();
 	}
 
 	/**
@@ -283,6 +290,14 @@ class Listing
 	}
 
 	/**
+	* Set the user status preference
+	*/
+	private function setStatusPreference()
+	{
+		$this->status_preference = $this->user->getStatusPreference($this->post_type->name);
+	}
+
+	/**
 	* Opening list tag <ol>
 	* @param array $pages - array of page objects from current query
 	* @param int $count - current count in loop
@@ -407,6 +422,10 @@ class Listing
 				
 				// Hidden in Nested Pages?
 				if ( $this->post->np_status == 'hide' ) echo ' np-hide';
+
+				// User Status Preference
+				if ( $this->status_preference == 'published' && $this->post->status == 'draft' ) echo ' np-hide';
+				if ( $this->status_preference == 'draft' && $this->post->status !== 'draft' ) echo ' np-hide';
 
 				// Taxonomies
 				echo ' ' . $this->post_repo->getTaxonomyCSS($this->post, $this->h_taxonomies, $this->f_taxonomies);

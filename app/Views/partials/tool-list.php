@@ -11,15 +11,15 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 
 	<ul class="subsubsub">
 		<li>
-			<a href="#all" class="np-toggle-publish active"><?php _e('All', 'wp-nested-pages'); ?></a> |
+			<a href="#all" class="np-toggle-publish <?php if ( $this->status_preference == 'all' ) echo 'active'; ?>"><?php _e('All', 'wp-nested-pages'); ?></a> |
 		</li>
 
 		<li>
-			<a href="#published" class="np-toggle-publish"><?php _e('Published', 'wp-nested-pages'); ?></a> |
+			<a href="#published" class="np-toggle-publish <?php if ( $this->status_preference == 'published' ) echo 'active'; ?>"><?php _e('Published', 'wp-nested-pages'); ?></a> |
 		</li>
 
 		<li>
-			<a href="#draft" class="np-toggle-publish"><?php _e('Draft', 'wp-nested-pages'); ?></a>
+			<a href="#draft" class="np-toggle-publish <?php if ( $this->status_preference == 'draft' ) echo 'active'; ?>"><?php _e('Draft', 'wp-nested-pages'); ?></a>
 		</li>
 
 		<li> |

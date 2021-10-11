@@ -197,4 +197,30 @@ class UserRepository
 			serialize($visible)
 		);
 	}
+
+	/**
+	* Update User's Status Preference (All/Published/Draft)
+	*/
+	public function updateStatusPreference($post_type, $status)
+	{
+		$preference = get_user_meta(get_current_user_id(), 'np_status_preference', true);
+		if ( !$preference ) $preference = [];
+		$preference[$post_type] = sanitize_text_field($status);
+		update_user_meta(
+			get_current_user_id(),
+			'np_status_preference',
+			$preference
+		);
+	}
+
+	/**
+	* Get the current user's status preference for a post type
+	* (show all/published/draft)
+	*/
+	public function getStatusPreference($post_type)
+	{
+		$preference = get_user_meta(get_current_user_id(), 'np_status_preference', true);
+		if ( !$preference || !is_array($preference) || !isset($preference[$post_type])) return 'all';
+		return $preference[$post_type];
+	}
 }

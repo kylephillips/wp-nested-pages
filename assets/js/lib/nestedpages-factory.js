@@ -163,7 +163,8 @@ NestedPages.formActions = {
 	resetSettings : 'npresetSettings',
 	resetUserPrefs : 'npresetUserPreferences',
 	resetAdminMenuSettings : 'npresetAdminMenuSettings',
-	trashWithChildren : 'nptrashWithChildren'
+	trashWithChildren : 'nptrashWithChildren',
+	toggleStatusDisplay : 'nptoggleStatusDisplay'
 }
 
 
