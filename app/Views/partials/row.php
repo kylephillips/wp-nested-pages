@@ -204,7 +204,7 @@ if ( !$wpml ) $wpml_pages = true;
 
 					<?php endif; ?>
 
-					<?php if ( current_user_can('edit_pages') && current_user_can('edit_posts') && $wpml_pages && in_array('clone', $this->post_type_settings->row_actions) ) : ?>
+					<?php if ( current_user_can('edit_pages') && current_user_can('edit_posts') && in_array('clone', $this->post_type_settings->row_actions) ) : ?>
 					<li>
 						<a href="#" class="clone-post" data-id="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php esc_html_e($this->post->title); ?>">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path class="primary" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm-1 4l6 6v10c0 1.1-.9 2-2 2H7.99C6.89 23 6 22.1 6 21l.01-14c0-1.1.89-2 1.99-2h7zm-1 7h5.5L14 6.5V12z"/></svg>
