@@ -82,6 +82,8 @@ class AdminMenuItems extends AdminCustomizationBase
 	{
 		$this->setCurrentUserRoles();
 		global $menu;
+		global $np_menu_original;
+
 		if ( !$this->settings->adminCustomEnabled('enabled_menu') ) return;
 		$menu_options = $this->settings->adminCustomEnabled('nav_menu_options');
 		if ( !$menu_options ) return;
@@ -90,6 +92,7 @@ class AdminMenuItems extends AdminCustomizationBase
 		$new_menu = array();
 		$order = 1;
 		$separator_index = 1;
+
 		foreach ( $menu_options[$this->current_user_role] as $key => $item ){
 
 			// Settings can't be hidden (unable to return to reset customizations)
@@ -112,6 +115,24 @@ class AdminMenuItems extends AdminCustomizationBase
 
 			$order++;
 		}
+
+
+		// Append top level menu items added by plugins since customization
+		$missing_top_items = [];
+		foreach ( $np_menu_original[$this->current_user_role] as $key => $item) :
+			$exists = false;
+			foreach ( $new_menu as $new_menu_item ) :
+				if ( $item[2] == $new_menu_item[2] ) $exists = true;;
+			endforeach;
+			$is_hidden = false;
+			foreach ( $menu_options[$this->current_user_role] as $menu_option ) :
+				if ( !isset($menu_option['link']) ) continue;
+				if ( $item[2] == $menu_option['link'] && isset($menu_option['hidden']) ) $is_hidden = true;
+			endforeach;
+			if ( !$exists && $item[1] !== 'read' && !$is_hidden ) $new_menu[] = $item;
+		endforeach;
+		
+
 		$menu = $new_menu;
 	}
 
@@ -200,10 +221,6 @@ class AdminMenuItems extends AdminCustomizationBase
 			if ( $option['link'] == $submenu_link && isset($option['hidden']) ) $hidden = true;
 		}
 		return $hidden;
-		echo '<pre>';
-		var_dump($submenu_link);
-		var_dump($menu_options);
-		echo '</pre>';
 	}
 
 	/**
@@ -236,7 +253,6 @@ class AdminMenuItems extends AdminCustomizationBase
 						$np_menu_ordered[$role['name']][] = $menu_item;
 					} // submenu
 				} // np menu original
-
 			} // role
 		}
 
@@ -254,7 +270,7 @@ class AdminMenuItems extends AdminCustomizationBase
 			}
 		}
 
-		// Add missing items (added by plugins after saving a custom menu)		
+		// Add missing items (added by other plugins after saving a custom menu)		
 		$missing_top_items = [];
 		$missing_sub_items = [];
 		foreach ( $np_menu_ordered as $role => $ordered_menu ){
@@ -268,16 +284,18 @@ class AdminMenuItems extends AdminCustomizationBase
 				if ( array_key_exists($ordered_item[2], $all_items) ) unset($all_items[$ordered_item[2]]);
 			}
 			$missing_top_items[$role] = $all_items;
-			foreach ( $ordered_menu as $ordered_item ){
-
-			}
-		}
+		}		
 
 		foreach ( $missing_top_items as $role => $items ){
 			foreach ( $items as $item_id => $key ){
-				$np_menu_ordered[$role][] = $np_menu_ordered['default'][$key];
+				$new_item = $np_menu_ordered['default'][$key];
+				if ( array_key_exists($item_id, $np_submenu_original) ) :
+					$new_item['submenu'] = $np_submenu_original[$item_id];
+				endif;
+				$np_menu_ordered[$role][] = $new_item;
 			}
 		}
+
 		$np_menu_original = $np_menu_ordered;
 	}
 
