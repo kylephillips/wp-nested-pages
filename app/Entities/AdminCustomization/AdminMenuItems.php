@@ -118,7 +118,6 @@ class AdminMenuItems extends AdminCustomizationBase
 
 
 		// Append top level menu items added by plugins since customization
-		$missing_top_items = [];
 		foreach ( $np_menu_original[$this->current_user_role] as $key => $item) :
 			$exists = false;
 			foreach ( $new_menu as $new_menu_item ) :
@@ -132,7 +131,6 @@ class AdminMenuItems extends AdminCustomizationBase
 			if ( !$exists && $item[1] !== 'read' && !$is_hidden ) $new_menu[] = $item;
 		endforeach;
 		
-
 		$menu = $new_menu;
 	}
 
@@ -143,7 +141,7 @@ class AdminMenuItems extends AdminCustomizationBase
 	{
 		global $submenu;
 		global $np_submenu_original;
-		$original_submenu = $submenu;
+		$original_submenu = $np_submenu_original;
 
 		if ( !$this->settings->adminCustomEnabled('enabled_menu') ) return;
 		$menu_options = $this->settings->adminCustomEnabled('nav_menu_options');
@@ -191,12 +189,16 @@ class AdminMenuItems extends AdminCustomizationBase
 		}
 
 		// Submenu pages added by plugins after saving customizations
-		foreach ( $np_submenu_original as $id => $submenu_original ){
-			if ( !isset($submenu[$id]) || empty($submenu[$id]) ) continue;
+		foreach ( $original_submenu as $id => $submenu_original ){
 			foreach ( $submenu_original as $submenu_item ){
-				if ( !$this->submenuExists($submenu[$id], $submenu_item[2])
-				&& !$this->submenuHidden($menu_options[$this->current_user_role][$id]['submenu'], $submenu_item[2]) ) {
-					$submenu[$id][] = $submenu_item;
+				if ( !isset($original_submenu[$id]) || empty($original_submenu[$id]) ) continue;
+				if ( !isset($submenu[$id]) ) $submenu[$id] = [];
+				if ( !isset($menu_options[$this->current_user_role][$id]) ) $menu_options[$this->current_user_role][$id] = [
+					'submenu' => []
+				];
+				if ( isset($menu_options[$this->current_user_role][$id]) && !$this->submenuExists($submenu[$id], $submenu_item[2]) 
+					&& !$this->submenuHidden($menu_options[$this->current_user_role][$id]['submenu'], $submenu_item[2]) ) {
+						$submenu[$id][] = $submenu_item;
 				}
 			}
 		}
