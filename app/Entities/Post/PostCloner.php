@@ -87,7 +87,7 @@ class PostCloner
 			'to_ping'        => $this->original_post->to_ping,
 			'menu_order'     => $this->original_post->menu_order
 		];
-		$this->new_id = wp_insert_post($args);
+		$this->new_id = wp_insert_post(wp_slash($args));
 		$this->new_posts[] = $this->new_id;
 	}
 
