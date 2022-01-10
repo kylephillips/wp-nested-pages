@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.1.18 =
+* Fixes issue where some custom blocks were not duplicating when cloning a post.
+
 = 3.1.17 =
 * Adds background saving of post status selection (Selecting "Published" in the post status filter will now persist on page reload)
 * Fixes bugs in admin customization related to addition of menu items added by other plugins
