@@ -108,6 +108,7 @@ No. The menu synchronization currently only works within the pages post type.
 = 3.1.17 =
 * Adds background saving of post status selection (Selecting "Published" in the post status filter will now persist on page reload)
 * Fixes bugs in admin customization related to addition of menu items added by other plugins
+* Security Update (Thanks to Chloe Chamberland at Wordfence for reporting)
 
 = 3.1.16 =
 * Includes security updates. Thanks to Ram Gall at Wordfence for reporting
