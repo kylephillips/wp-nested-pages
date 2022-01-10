@@ -72,7 +72,7 @@ class PostCloner
 	*/
 	private function clonePostData()
 	{
-		$args = array(
+		$args = [
 			'comment_status' => $this->original_post->comment_status,
 			'ping_status'    => $this->original_post->ping_status,
 			'post_author'    => $this->clone_options['author'],
@@ -86,7 +86,7 @@ class PostCloner
 			'post_type'      => $this->original_post->post_type,
 			'to_ping'        => $this->original_post->to_ping,
 			'menu_order'     => $this->original_post->menu_order
-		);
+		];
 		$this->new_id = wp_insert_post($args);
 		$this->new_posts[] = $this->new_id;
 	}
@@ -108,16 +108,16 @@ class PostCloner
 	*/
 	private function cloneMeta()
 	{
-		global $wpdb;
-		$meta = $wpdb->get_results("SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = $this->original_id");
-        if (count($meta) == 0) return;
-        $sql_query = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
-        foreach ($meta as $meta_info) {
-            $meta_key = $meta_info->meta_key;
-            $meta_value = addslashes($meta_info->meta_value);
-            $sql_query_sel[] = "SELECT $this->new_id, '$meta_key', '$meta_value'";
-        }
-        $sql_query .= implode(' UNION ALL ', $sql_query_sel);
-        $wpdb->query($sql_query);
+		$original_id = $this->original_id;
+		$new_id = $this->new_id;
+		$meta_keys = get_post_custom_keys($original_id);
+		foreach ( $meta_keys as $meta_key ) {
+			$meta_values = \get_post_custom_values($meta_key, $original_id);
+			delete_post_meta( $new_id, $meta_key );
+			foreach ( $meta_values as $meta_value ) {
+				$meta_value = \maybe_unserialize($meta_value );
+				add_post_meta( $new_id, $meta_key, wp_slash( $meta_value ) );
+			}
+		}
 	}
 }
