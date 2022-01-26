@@ -3,7 +3,7 @@ Contributors: kylephillips
 Donate link: https://github.com/sponsors/kylephillips/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
-Tested up to: 5.8
+Tested up to: 5.9
 Requires PHP: 5.4
 Stable tag: 3.1.18
 License: GPLv2 or later
@@ -104,6 +104,9 @@ No. The menu synchronization currently only works within the pages post type.
 9. The Nested Pages interface can be enabled on a per-post-type basis, with customizable options for each type.
 
 == Changelog ==
+
+= 3.1.19 =
+* Fixes dragging/sorting bug introduced in WordPress version 5.9.
 
 = 3.1.18 =
 * Fixes issue where some custom blocks were not duplicating when cloning a post.
