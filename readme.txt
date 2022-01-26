@@ -108,6 +108,7 @@ No. The menu synchronization currently only works within the pages post type.
 = 3.1.20 =
 * Fixes bug where menu item descriptions (Added in the Appearance > Menus interface) were being removed when synchronizing the Nested Pages menu
 * Removes deprecation notice from authors dropdown in quick edit interface
+* Adds 'nestedpages_row_parent_css_classes' developer filter for filtering css classes output in each row's parent <li> element
 
 = 3.1.19 =
 * Fixes dragging/sorting bug introduced in WordPress version 5.9.
