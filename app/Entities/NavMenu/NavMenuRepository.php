@@ -34,6 +34,14 @@ class NavMenuRepository
 			return ( $post_id ) ? $post_id : 0;
 		}
 
+		if ( $query == 'description' ){
+			$prefix = $wpdb->prefix;
+			$post_table = $prefix . 'posts';
+			$sql = "SELECT post_content FROM `$post_table` WHERE ID = '$id'";
+			$description = $wpdb->get_var($sql);
+			return ( $description ) ? $description : ' ';
+		}
+
 		if ( $query == 'object_id' ){
 			$menu_id = $this->getMenuID();
 			$prefix = $wpdb->prefix;
