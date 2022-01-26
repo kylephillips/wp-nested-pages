@@ -61,6 +61,7 @@ class PostFactory
 				'post_type' => $post_type,
 				'menu_order' => $menu_order
 			];
+			$post = apply_filters('nestedpages_new_post', $post, $data);
 			$new_page_id = wp_insert_post($post);
 			$data['post_id'] = $new_page_id;
 			if ( isset($data['page_template']) ) $this->post_update_repo->updateTemplate($data);
