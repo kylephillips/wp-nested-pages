@@ -49,7 +49,7 @@
 		if ( is_super_admin() || current_user_can( $post_type_object->cap->edit_others_posts ) ) :
 			$users_opt = [
 				'hide_if_only_one_author' => false,
-				'who' => 'authors',
+				'capability' => 'edit_posts',
 				'name' => 'post_author',
 				'id' => 'post_author',
 				'class'=> 'authors',
