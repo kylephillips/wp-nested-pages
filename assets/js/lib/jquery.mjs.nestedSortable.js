@@ -1,26 +1,24 @@
 /*
  * jQuery UI Nested Sortable
- * v 2.0 / 29 oct 2012
- * http://mjsarfatti.com/sandbox/nestedSortable
+ * v 2.1a / 2016-02-04
+ * https://github.com/ilikenwf/nestedSortable
  *
  * Depends on:
  *	 jquery.ui.sortable.js 1.10+
  *
- * Copyright (c) 2010-2013 Manuele J Sarfatti
+ * Copyright (c) 2010-2016 Manuele J Sarfatti and contributors
  * Licensed under the MIT License
  * http://www.opensource.org/licenses/mit-license.php
  */
 (function( factory ) {
 	"use strict";
 
-	var define = window.define;
-
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD. Register as an anonymous module.
 		define([
 			"jquery",
-			"jquery-ui/sortable"
+			"jquery-ui/ui/sortable"
 		], factory );
 	} else {
 
@@ -264,6 +262,12 @@
 			childLevels = this._getChildLevels(this.helper);
 			newList = document.createElement(o.listType);
 
+			// dragDirection object is required by jquery.ui.sortable.js 1.13+
+		    this.dragDirection = {
+			   	vertical: this._getDragVerticalDirection(),
+				horizontal: this._getDragHorizontalDirection()
+		    };
+
 			//Rearrange
 			for (i = this.items.length - 1; i >= 0; i--) {
 
@@ -340,7 +344,7 @@
 									.addClass(o.expandedClass);
 
 								self.refreshPositions();
-								self._trigger("expand", event, self._uiHash());
+								self._trigger("expand", event, [self._uiHash(), itemElement]);
 							}, o.expandOnHover);
 						}
 					}
@@ -708,10 +712,18 @@
 			function _recursiveItems(item) {
 				var id = ($(item).attr(o.attribute || "id") || "").match(o.expression || (/(.+)[-=_](.+)/)),
 					currentItem;
+
+				var data = $(item).data();
+				if (data.nestedSortableItem) {
+					delete data.nestedSortableItem; // Remove the nestedSortableItem object from the data
+				}
+
 				if (id) {
 					currentItem = {
 						"id": id[2]
 					};
+
+					currentItem = $.extend({}, currentItem, data); // Combine the two objects
 
 					if ($(item).children(o.listType).children(o.items).length > 0) {
 						currentItem.children = [];
@@ -744,7 +756,7 @@
 			}
 
 			$(this.element).children(o.items).each(function() {
-				left = _recursiveArray(this, sDepth + 1, left);
+				left = _recursiveArray(this, sDepth, left);
 			});
 
 			ret = ret.sort(function(a, b) { return (a.left - b.left); });
@@ -766,9 +778,9 @@
 					depth--;
 				}
 
-				id = ($(item).attr(o.attribute || "id")).match(o.expression || (/(.+)[-=_](.+)/));
+				id = ($(item).attr(o.attribute || "id") || "").match(o.expression || (/(.+)[-=_](.+)/));
 
-				if (depth === sDepth + 1) {
+				if (depth === sDepth) {
 					pid = o.rootID;
 				} else {
 					parentItem = ($(item).parent(o.listType)
@@ -779,13 +791,15 @@
 				}
 
 				if (id) {
-						ret.push({
-							"item_id": id[2],
-							"parent_id": pid,
-							"depth": depth,
-							"left": _left,
-							"right": right
-						});
+					var data = $(item).children('div').data();
+					var itemObj = $.extend( data, {
+						"id":id[2],
+						"parent_id":pid,
+						"depth":depth,
+						"left":_left,
+						"right":right
+						} );
+					ret.push( itemObj );
 				}
 
 				_left = right + 1;
@@ -805,7 +819,7 @@
 
 			var o = this.options,
 				childrenList = $(item).children(o.listType),
-				hasChildren = childrenList.is(':not(:empty)');
+				hasChildren = childrenList.has('li').length;
 
 			var doNotClear =
 				o.doNotClear ||
@@ -814,13 +828,10 @@
 
 			if (o.isTree) {
 				replaceClass(item, o.branchClass, o.leafClass, doNotClear);
-
-				if (doNotClear && hasChildren) {
-					replaceClass(item, o.collapsedClass, o.expandedClass);
-				}
 			}
 
 			if (!doNotClear) {
+				childrenList.parent().removeClass(o.expandedClass);
 				childrenList.remove();
 			}
 		},
