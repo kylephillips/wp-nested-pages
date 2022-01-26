@@ -23,6 +23,13 @@ For installation and usage information visit [nestedpages.com](http://nestedpage
 * A way to quickly add child pages (ideal for development)
 * A touch-friendly interface
 
+## Installation
+The latest release of this plugin is available through the [WordPress Plugin Directory](https://wordpress.org/plugins/wp-nested-pages).
+
+If installing from this repository, [composer](https://getcomposer.org) **must be run** before attempting to activate within WordPress:
+1. `cd` into the primary plugin directory
+2. Run `composer install` 
+
 ## Attribution
 
 This plugin wouldn't be possible without the [Nested Sortable](https://github.com/ilikenwf/nestedSortable) jQuery Plugin. It also makes use of the [jQuery UI Touch Punch](https://github.com/furf/jquery-ui-touch-punch) plugin for touch support.
