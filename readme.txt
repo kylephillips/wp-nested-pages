@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.1.20 =
+* Fixes bug where menu item descriptions (Added in the Appearance > Menus interface) were being removed when synchronizing the Nested Pages menu
+
 = 3.1.19 =
 * Fixes dragging/sorting bug introduced in WordPress version 5.9.
 
