@@ -24,6 +24,9 @@ class NavMenuFrontEnd
 	*/
 	public function attributeFilter($atts, $item, $args)
 	{
+		if ( get_option('nestedpages_menusync') !== 'sync' ) return $atts;
+		if ( get_option('nestedpages_disable_menu') == 'true' ) return $atts;
+
 		if ( $this->nav_menu_repo->getMenuID() == null ) return $atts;
 		if ( !isset($args->menu->term_id) ) return $atts;
 		if ( $args->menu->term_id !== $this->nav_menu_repo->getMenuID() ) return $atts;
