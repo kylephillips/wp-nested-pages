@@ -10,7 +10,6 @@ class FrontEndBootstrap
 
 	public function init()
 	{
-		// new RedirectsFrontEnd;
 		new Entities\NavMenu\NavMenuFrontEnd;
 	}
 }
