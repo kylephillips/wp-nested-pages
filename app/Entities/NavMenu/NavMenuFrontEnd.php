@@ -17,7 +17,6 @@ class NavMenuFrontEnd
 	{
 		$this->nav_menu_repo = new NavMenuRepository;
 		add_filter('nav_menu_link_attributes', [$this, 'attributeFilter'], 10, 3);
-		add_filter('nav_menu_item_args', [$this, 'removePrivateItems'], 10, 3);
 	}
 
 	/**
@@ -37,15 +36,5 @@ class NavMenuFrontEnd
 		}
 		
 		return $atts;
-	}
-
-	/**
-	* Remove Private Items from the menu
-	*/
-	public function removePrivateItems($args, $item, $depth)
-	{
-		// $status = get_post_status($item->object_id);
-		// if ( $status && $status == 'private' ) $item->post_status = 'private';
-		return $args;
 	}
 }
