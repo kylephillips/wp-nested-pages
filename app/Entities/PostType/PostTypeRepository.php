@@ -58,7 +58,8 @@ class PostTypeRepository
 		$enabled_types = $this->enabled_post_types;
 		$invalid_types = [
 			'acf-field-group',
-			'attachment'
+			'attachment',
+			'wp_block'
 		];
 		foreach($all_types as $key => $type){
 			if ( in_array($type->name, $invalid_types) ) continue;
