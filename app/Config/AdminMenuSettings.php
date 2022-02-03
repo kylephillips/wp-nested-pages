@@ -88,6 +88,7 @@ class AdminMenuSettings
 	public function submenuItems($menu_item, $role)
 	{
 		// Get all submenus
+		if ( !array_key_exists($role['name'], $this->np_menu_original) ) return $menu_item;
 		$unordered_menu = $this->np_menu_original[$role['name']];
 		$unordered_submenus = [];
 		foreach ( $unordered_menu as $unordered_menu_item ){
