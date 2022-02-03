@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.1.21 =
+* Fixes issue where Nested Pages menu persists in some instances when "Disable menu completely" is checked/enabled.
+
 = 3.1.20 =
 * Fixes bug where menu item descriptions (Added in the Appearance > Menus interface) were being removed when synchronizing the Nested Pages menu
 * Removes deprecation notice from authors dropdown in quick edit interface

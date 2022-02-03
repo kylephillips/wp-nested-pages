@@ -16,8 +16,6 @@ class NavMenuActions
 
 	public function __construct()
 	{
-		if ( get_option('nestedpages_menusync') !== 'sync' ) return;
-		if ( get_option('nestedpages_disable_menu') == 'true' ) return;
 		$this->nav_menu_repo = new NavMenuRepository;
 		$this->addUpdateHook();
 	}
@@ -37,6 +35,8 @@ class NavMenuActions
 	*/
 	public function syncMenu($menu_id, $menu_data = null)
 	{
+		if ( get_option('nestedpages_menusync') !== 'sync' ) return;
+		if ( get_option('nestedpages_disable_menu') == 'true' ) return;
 		if ( $menu_id !== $this->nav_menu_repo->getMenuID() ) return; // Don't try to sync menus not managed by NP
 		$this->removeUpdateHook();
 		if ( $menu_data == null ) $sync = new NavMenuSyncMenu($menu_id);

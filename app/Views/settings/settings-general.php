@@ -54,20 +54,20 @@ $sync_status = ( $this->settings->menuSyncEnabled() ) ? __('Currently Enabled', 
 					<?php if ( !$this->settings->menusDisabled() ) : ?>
 					<p data-menu-enabled-option data-menu-hide-checkbox>
 					<label>
-						<input type="checkbox" name="nestedpages_ui[hide_menu_sync]" value="true" <?php if ( $this->settings->hideMenuSync() ) echo 'checked'; ?> />
+						<input type="checkbox" name="nestedpages_ui[hide_menu_sync]" value="true" <?php if ( $this->settings->hideMenuSync() && !$this->settings->menusDisabled() ) echo 'checked'; ?> />
 						<?php printf(__('Hide Menu Sync Checkbox (%s)', 'wp-nested-pages'), esc_html($sync_status)); ?>
 					</label>
 					</p>
 					<p data-menu-enabled-option data-menu-private>
 					<label>
-						<input type="checkbox" name="nestedpages_ui[include_private]" value="true" <?php if ( $this->settings->privateMenuEnabled() ) echo 'checked'; ?> />
+						<input type="checkbox" name="nestedpages_ui[include_private]" value="true" <?php if ( $this->settings->privateMenuEnabled() && !$this->settings->menusDisabled() ) echo 'checked'; ?> />
 						<?php _e('Include private items in the menu.', 'wp-nested-pages'); ?>
 					</label>
 					</p>
 					<?php endif; ?>
 					<p data-menu-enabled-option data-menu-disable-auto>
 					<label>
-						<input type="checkbox" name="nestedpages_ui[manual_menu_sync]" value="true" <?php if ( $this->settings->autoMenuDisabled() ) echo 'checked'; ?> data-menu-disable-auto-checkbox />
+						<input type="checkbox" name="nestedpages_ui[manual_menu_sync]" value="true" <?php if ( $this->settings->autoMenuDisabled() && !$this->settings->menusDisabled() ) echo 'checked'; ?> data-menu-disable-auto-checkbox />
 						<?php _e('Manually sync menu.', 'wp-nested-pages'); ?>
 					</label>
 					</p>
