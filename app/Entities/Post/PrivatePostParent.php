@@ -1,11 +1,14 @@
 <?php
+
 namespace NestedPages\Entities\Post;
 
+use WP_Post;
+
 /**
-* Enables Private Posts/Pages in the Post Edit Dropdown
-* Fixes bug in WP Core where child posts of a private/draft post become un-nested when editing
-* @link https://core.trac.wordpress.org/ticket/8592#comment:129
-*/
+ * Enables Private Posts/Pages in the Post Edit Dropdown
+ * Fixes bug in WP Core where child posts of a private/draft post become un-nested when editing
+ * @link https://core.trac.wordpress.org/ticket/8592#comment:129
+ */
 class PrivatePostParent
 {
 	public function __construct()
@@ -33,6 +36,18 @@ class PrivatePostParent
 			'post_status' => ['publish', 'private', 'draft'],
 		];
 
+		/**
+		 * Filters the arguments used to generate a Pages drop-down element.
+		 *
+		 * @since 3.3.0
+		 *
+		 * @see wp_dropdown_pages()
+		 *
+		 * @param array   $dropdown_args Array of arguments used to generate the pages drop-down.
+		 * @param WP_Post $post          The current post.
+		 */
+		$args = apply_filters( 'page_attributes_dropdown_pages_args', $args, $post );
+
 		$defaults = [
 			'depth'	=> 0,
 			'child_of' => 0,
@@ -44,13 +59,13 @@ class PrivatePostParent
 			'show_option_no_change'	=> '',
 			'option_none_value'	=> '',
 		];
-		
+
 		$r = wp_parse_args($args, $defaults);
 		extract($r, EXTR_SKIP);
 
 		$pages = get_pages($r);
 		$name = esc_attr($name);
-	
+
 		// Back-compat with old system where both id and name were based on $name argument
 		if (empty($id)) $id = $name;
 
