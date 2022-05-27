@@ -107,6 +107,8 @@ No. The menu synchronization currently only works within the pages post type.
 
 = 3.1.21 =
 * Fixes issue where Nested Pages menu persists in some instances when "Disable menu completely" is checked/enabled.
+* Tested with WordPress V6
+* Security Updates
 
 = 3.1.20 =
 * Fixes bug where menu item descriptions (Added in the Appearance > Menus interface) were being removed when synchronizing the Nested Pages menu
