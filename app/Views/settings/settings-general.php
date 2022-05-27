@@ -18,18 +18,6 @@ $sync_status = ( $this->settings->menuSyncEnabled() ) ? __('Currently Enabled', 
 				</div>
 			</div><!-- .row -->
 
-			<?php if ( !$this->settings->menusDisabled() ) : ?>
-			<div class="row">
-				<div class="description">
-					<p><strong><?php _e('Menu Name', 'wp-nested-pages'); ?></strong></p>
-					<p><?php _e('Important: Once the menu name has changed, theme files should be updated to reference the new name.', 'wp-nested-pages'); ?></p>
-				</div>
-				<div class="field">
-					<input type="text" name="nestedpages_menu" id="nestedpages_menu" value="<?php echo $this->menu->name; ?>">
-				</div>
-			</div><!-- .row -->
-			<?php endif; ?>
-
 			<div class="row">
 				<div class="description">
 					<p><strong><?php _e('Display Options', 'wp-nested-pages'); ?></strong></p>
