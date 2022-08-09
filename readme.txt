@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.1.22 =
+* Fixes deprecation notice from new Yoast release
+
 = 3.1.21 =
 * Fixes issue where Nested Pages menu persists in some instances when "Disable menu completely" is checked/enabled.
 * Tested with WordPress V6
