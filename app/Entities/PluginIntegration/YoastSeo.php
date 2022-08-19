@@ -21,18 +21,24 @@ class YoastSeo
 		} 
 	}
 
+	/**
+	* Get the Score HTML
+	* @return str|html - Yoast indicator
+	*/
 	public function getScore($post_id)
 	{
 		$yoast_score = get_post_meta($post_id, '_yoast_wpseo_meta-robots-noindex', true);
 		if ( ! $yoast_score ) {
 			$yoast_score = get_post_meta($post_id, '_yoast_wpseo_linkdex', true);
 			if ( version_compare(WPSEO_VERSION, '19.5.1', '<') ){
-				return \WPSEO_Utils::translate_score($yoast_score);
+				$score = \WPSEO_Utils::translate_score($yoast_score);
+				return '<span class="np-seo-indicator ' . esc_html($score) . '"></span>';
 			}
 			$score_icon_helper = YoastSEO()->helpers->score_icon;
-			return $score_icon_helper->for_readability($yoast_score);			
+			$score_icon_presenter = $score_icon_helper->for_readability($yoast_score);
+			return $score_icon_presenter->present();
 		} else {
-			return 'noindex';
+			return '<span class="np-seo-indicator no-index"></span>';
 		}
 	}
 }

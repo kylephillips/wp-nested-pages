@@ -94,11 +94,7 @@ if ( !$wpml ) $wpml_pages = true;
 		</div>
 		<?php endif; ?>
 
-		<?php
-		if ( $this->integrations->plugins->yoast->installed ){
-			echo '<span class="np-seo-indicator ' . esc_html($this->post->score) . '"></span>';
-		}
-		?>
+		<?php if ( $this->integrations->plugins->yoast->installed ) echo $this->post->score; ?>
 
 		<div class="action-buttons">
 			

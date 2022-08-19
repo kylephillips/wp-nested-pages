@@ -138,6 +138,14 @@
 
 		// Yoast SEO Indicator
 		// See Yoast's metabox-tabs.css
+		.wpseo-score-icon {
+			position: absolute;
+			right: 10px;
+			top: 50%;
+			margin-top: -6px;
+		}
+
+		// Deprecated Version
 		.np-seo-indicator {
 			display: block;
 			position: absolute;
