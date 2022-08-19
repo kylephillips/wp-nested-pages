@@ -106,8 +106,10 @@ No. The menu synchronization currently only works within the pages post type.
 == Changelog ==
 
 = 3.2.0 =
+* Resolves issue where post_updated action was not firing after reordering of nested view.
 * Adds ability to save a custom URL for pages in the nav menu (Example: outputting an anchor link rather than the page's link). To add a custom link, select quick edit, followed by the "Menu Options" tab. There is a new "Custom URL" input.
-* Corrects previous version's Yoast indicator display
+* Corrects previous version's Yoast indicator display.
+* Fixes bug where padding was not reset correctly when dragging a sub-level item to the primary/main level
 
 = 3.1.22 =
 * Fixes deprecation notice from new Yoast release

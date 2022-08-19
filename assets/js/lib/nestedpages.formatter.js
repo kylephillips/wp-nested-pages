@@ -76,6 +76,9 @@ NestedPages.Formatter = function()
 				$(this).find(indent_element).css('padding-left', padding + 'px');
 				return;
 			}
+			if ( parent_count < 1 ){
+				$(this).find(indent_element).css('padding-left', '0px');
+			}
 			if ( !NestedPages.jsData.sortable || $(this).hasClass('no-sort') ){
 				$(this).find('.row-inner').css('padding-left', '10px');	
 				return;
