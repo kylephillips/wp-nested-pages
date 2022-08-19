@@ -32,6 +32,7 @@ class PrivatePostParent
 			'echo' => 0,
 			'post_status' => ['publish', 'private', 'draft'],
 		];
+		$args = apply_filters( 'page_attributes_dropdown_pages_args', $args, $post );
 
 		$defaults = [
 			'depth'	=> 0,
