@@ -248,6 +248,7 @@ if ( !$wpml ) $wpml_pages = true;
 				data-timeformat="<?php echo get_option('time_format'); ?>"
 				data-ampm="<?php echo date('a', $this->post->date->datepicker); ?>"
 				data-sticky="<?php if ( in_array($this->post->id, $this->sticky_posts) ) echo 'sticky'; ?>"
+				data-custom-url="<?php echo esc_attr($this->post->nav_custom_url); ?>"
 				<?php echo $this->custom_fields_repo->dataAttributes($this->post, $this->post_type); ?>
 				>
 				<?php _e('Quick Edit', 'wp-nested-pages'); ?>

@@ -77,6 +77,7 @@ NestedPages.QuickEditPost = function()
 			hour : $(plugin.button).attr('data-hour'),
 			minute : $(plugin.button).attr('data-minute'),			
 			navstatus : $(plugin.button).attr('data-navstatus'),
+			navCustomUrl: $(plugin.button).attr('data-custom-url'),
 			npstatus : $(plugin.button).attr('data-np-status'),
 			navtitle : $(plugin.button).attr('data-navtitle'),
 			navtitleattr : $(plugin.button).attr('data-navtitleattr'),
@@ -140,8 +141,9 @@ NestedPages.QuickEditPost = function()
 		$(plugin.form).find('.np_author select').val(plugin.initialData.author);
 		$(plugin.form).find('.np_status').val(plugin.initialData.status);
 		$(plugin.form).find('.np_nav_title').val(plugin.initialData.navtitle);
-		$(plugin.form).find('.np_title_attribute').val(plugin.initialData.navtitleattr);
 		$(plugin.form).find('.np_nav_css_classes').val(plugin.initialData.navcss);
+		$(plugin.form).find('.np_title_attribute').val(plugin.initialData.navtitleattr);
+		$(plugin.form).find('.np_nav_custom_url').val(plugin.initialData.navCustomUrl);
 		$(plugin.form).find('.post_password').val(plugin.initialData.password);
 		$(plugin.form).find('.np_publish_date').val(plugin.initialData.datepicker);
 		if ( plugin.initialData.cs === 'open' ) $(plugin.form).find('.np_cs').attr('checked', 'checked');

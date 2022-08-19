@@ -256,6 +256,10 @@ $has_menu_options = ( $this->user->canSortPosts($this->post_type->name) && $this
 				<label><?php _e( 'CSS Classes' ); ?></label>
 				<input type="text" name="np_nav_css_classes" class="np_nav_css_classes" value="" />
 			</div>
+			<div class="form-control">
+				<label><?php _e( 'Custom URL' ); ?></label>
+				<input type="text" name="np_nav_custom_url" class="np_nav_custom_url" placeholder="<?php _e('Example: #', 'wp-nested-pages'); ?>" value="" />
+			</div>
 		</div><!-- .menuoptions-left -->
 		<div class="right">
 			<div class="form-control">

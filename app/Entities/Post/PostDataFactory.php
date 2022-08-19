@@ -25,6 +25,7 @@ class PostDataFactory
 	*/
 	public function build($post, $h_taxonomies = null, $f_taxonomies = null)
 	{
+		if ( is_int($post) ) $post = get_post($post);
 		$this->integrations = new IntegrationFactory;
 		$this->post_data = new \WP_Post($post);
 		$this->addPostVars($post);
@@ -71,6 +72,7 @@ class PostDataFactory
 		$this->post_data->nav_type = ( isset($meta['_np_nav_menu_item_type'][0]) ) ? $meta['_np_nav_menu_item_type'][0] : null;
 		$this->post_data->nav_status = ( isset($meta['_np_nav_status'][0]) && $meta['_np_nav_status'][0] == 'hide' ) ? 'hide' : 'show';
 		$this->post_data->np_status = ( isset($meta['_nested_pages_status'][0]) && $meta['_nested_pages_status'][0] == 'hide' ) ? 'hide' : 'show';
+		$this->post_data->nav_custom_url = ( isset($meta['_np_nav_custom_url'][0]) && $meta['_np_nav_custom_url'][0] !== '' ) ? $meta['_np_nav_custom_url'][0] : null;
 		$this->post_data->template = ( isset($meta['_wp_page_template'][0]) ) ? $meta['_wp_page_template'][0] : false;
 
 		// Yoast Score

@@ -105,7 +105,8 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
-= 3.1.23 =
+= 3.2.0 =
+* Adds ability to save a custom URL for pages in the nav menu (Example: outputting an anchor link rather than the page's link). To add a custom link, select quick edit, followed by the "Menu Options" tab. There is a new "Custom URL" input.
 * Corrects previous version's Yoast indicator display
 
 = 3.1.22 =

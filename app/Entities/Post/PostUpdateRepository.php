@@ -168,6 +168,7 @@ class PostUpdateRepository
 		$this->updateLinkTarget($data);
 		$this->updateTitleAttribute($data);
 		$this->updateNavCSS($data);
+		$this->updateNavCustomUrl($data);
 
 		return true;
 	}
@@ -257,6 +258,25 @@ class PostUpdateRepository
 				$data['post_id'], 
 				'_np_nav_css_classes', 
 				$css_classes
+			);
+		}
+	}
+
+	/**
+	* Update Nested Pages Menu Custom URL
+	* @since 3.2.0
+	* @param array data
+	*/
+	private function updateNavCustomUrl($data)
+	{
+		if ( !current_user_can('edit_post', $data['post_id']) ) return;
+		if ( isset($data['np_nav_custom_url']) ){
+			$url_input = $data['np_nav_custom_url'];
+			$url = ( $url_input == '#' ) ? '#' : esc_url($data['np_nav_custom_url']);
+			update_post_meta( 
+				$data['post_id'], 
+				'_np_nav_custom_url', 
+				$url
 			);
 		}
 	}
