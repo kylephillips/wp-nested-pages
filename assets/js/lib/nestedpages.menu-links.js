@@ -196,7 +196,7 @@ NestedPages.MenuLinks = function()
 	// Create the nested pages row for the new link
 	plugin.createRow = function()
 	{
-		var html = '<li id="menuItem_' + plugin.post.id + '" class="page-row published';
+		var html = '<li id="menuItem_' + plugin.post.id + '" class="page-row post-type-np-redirect published';
 		html += '">'
 
 		html += '<div class="row"><div class="child-toggle"><div class="child-toggle-spacer"></div></div><div class="row-inner">';
