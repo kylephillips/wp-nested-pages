@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.1.23 =
+* Corrects previous version's Yoast indicator display
+
 = 3.1.22 =
 * Fixes deprecation notice from new Yoast release
 
