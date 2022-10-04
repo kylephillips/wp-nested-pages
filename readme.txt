@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.2.1 =
+* Reverts previous wp_update_post change to prevent server errors on large sites. Replaces with optional "nestedpages_use_update_post" filter to enable hook when needed.
+
 = 3.2.0 =
 * Resolves issue where post_updated action was not firing after reordering of nested view.
 * Adds ability to save a custom URL for pages in the nav menu (Example: outputting an anchor link rather than the page's link). To add a custom link, select quick edit, followed by the "Menu Options" tab. There is a new "Custom URL" input.
