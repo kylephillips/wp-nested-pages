@@ -56,6 +56,7 @@ class PostUpdateRepository
 	{
 		$this->validation->validatePostIDs($posts);
 		$post_type = get_post_type($posts[0]['id']);
+		$update_post_hook = apply_filters('nestedpages_use_update_post', false);
 		if ( !$this->user_repo->canSortPosts($post_type) ) return;
 		global $wpdb;
 		foreach( $posts as $key => $post )
@@ -63,26 +64,37 @@ class PostUpdateRepository
 			$post_id = sanitize_text_field($post['id']);
 			$original_modifed_date = get_post_modified_time('Y-m-d H:i:s', false, $post_id);
 			$original_modifed_date_gmt = get_post_modified_time('Y-m-d H:i:s', true, $post_id);
-			$args = [
-				'ID' => $post_id,
-				'menu_order' => intval($key),
-				'post_modified' => $original_modifed_date,
-				'post_modified_gmt' => $original_modifed_date_gmt
-			];
+			
 			if ( !$filtered ) $args['post_parent'] = intval($parent);
-			wp_update_post($args);
 
-			// Reset the modified date to the last modified date
-			// We can't use the above update_post, because wp_insert_post defaults to the current time
-			$query = $wpdb->prepare(
-				"UPDATE $wpdb->posts 
-				SET post_modified = '%s', post_modified_gmt = '%s' 
-				WHERE ID = '%d'", 
-				$original_modifed_date, 
-				$original_modifed_date_gmt, 
-				intval($post_id)
-			);
-			$wpdb->query($query);
+			// Update post hook causes server timeout on large sites, but may be required by some users
+			if ( $update_post_hook ) wp_update_post(['ID' => $post_id]);
+
+			if ( !$filtered ) :
+				$query = $wpdb->prepare(
+					"UPDATE $wpdb->posts 
+					SET menu_order = '%d', post_parent = '%d', post_modified = '%s', post_modified_gmt = '%s' 
+					WHERE ID = '%d'", 
+					intval($key), 
+					intval($parent),
+					$original_modifed_date, 
+					$original_modifed_date_gmt, 
+					intval($post_id)
+				);
+			else : // The posts are filtered, don't update the parent
+				$query = $wpdb->prepare(
+					"UPDATE $wpdb->posts 
+					SET menu_order = '%d', post_modified = '%s', post_modified_gmt = '%s' 
+					WHERE ID = '%d'", 
+					intval($key), 
+					$original_modifed_date, 
+					$original_modifed_date_gmt, 
+					intval($post_id)
+				); 
+			endif;
+
+			$wpdb->query( $query );
+			do_action('nestedpages_post_order_updated', $post_id, $parent, $key, $filtered);
 
 			do_action('nestedpages_post_order_updated', $post_id, $parent, $key, $filtered);
 			if ( isset($post['children']) ) $this->updateOrder($post['children'], $post_id);
