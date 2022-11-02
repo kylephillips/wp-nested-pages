@@ -108,7 +108,7 @@ class ListingQuery
 		if ( $this->listing_repo->isFiltered() ) $query_args = $this->filterParams($query_args);
 		if ( $this->sort_options->tax_query ) $query_args['tax_query'] = $this->sort_options->tax_query;
 		
-		$query_args = apply_filters('nestedpages_page_listing', $query_args);
+		$query_args = apply_filters('nestedpages_page_listing', $query_args, $this->post_type);
 		
 		add_filter( 'posts_clauses', [$this, 'queryFilter']);
 		$all_posts = new \WP_Query($query_args);

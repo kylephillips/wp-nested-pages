@@ -17,9 +17,13 @@ endif;
 ?>
 <div class="row <?php if ( $this->listing_repo->isSearch() || $this->listing_repo->isOrdered($this->post_type->name) ) echo 'search';?> <?php echo apply_filters('nestedpages_link_row_css_classes', $row_classes, $this->post, $this->post_type); ?>">
 	
+	<?php if ( $this->post_type->hierarchical ) : ?>
 	<div class="child-toggle">
 		<div class="child-toggle-spacer"></div>
 	</div>
+	<?php else : ?>
+	<div class="non-hierarchical-spacer"></div>
+	<?php endif; ?>
 
 	<div class="row-inner">
 

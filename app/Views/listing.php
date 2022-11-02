@@ -25,7 +25,7 @@ endif;
 		</a>
 		<?php endif; ?>
 		
-		<?php if ( $this->user->canPublish($this->post_type->name) && $this->post_type->name == 'page' && !$this->listing_repo->isSearch() && !$this->listing_repo->isOrdered($this->post_type->name) && !$this->settings->menusDisabled() && !$this->integrations->plugins->wpml->installed ) : ?>
+		<?php if ( $this->listing_repo->showLinks($this->post_type, $this->user) ) : ?>
 		<a href="#" class="open-redirect-modal page-title-action" title="<?php _e('Add Link', 'wp-nested-pages'); ?>" data-parentid="0">
 			<?php echo apply_filters('nestedpages_add_link_text', esc_html__('Add Link', 'wp-nested-pages'), $this->post_type); ?>
 		</a>
@@ -119,7 +119,7 @@ endif;
 <?php 
 include( NestedPages\Helpers::view('forms/empty-trash-modal') );
 include( NestedPages\Helpers::view('forms/clone-form') );
-if ( !$this->integrations->plugins->wpml->installed) include( NestedPages\Helpers::view('forms/link-form') );
+if ( $this->listing_repo->showLinks($this->post_type, $this->user) ) include( NestedPages\Helpers::view('forms/link-form') );
 include( NestedPages\Helpers::view('forms/bulk-add') );
 include( NestedPages\Helpers::view('forms/delete-confirmation-modal') ); 
 if ( $this->integrations->plugins->wpml->installed ) include( NestedPages\Helpers::view('partials/wpml-translations') );
