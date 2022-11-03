@@ -189,7 +189,7 @@ class WPML
 	{
 		global $wpdb;
 		$default_language_code = $this->getDefaultLanguage();
-		$query = $wpdb->prepare("SELECT COUNT(p.ID) FROM {$wpdb->prefix}posts AS p LEFT JOIN {$wpdb->prefix}icl_translations AS t ON t.element_id = p.ID WHERE p.post_type = '%s' AND p.post_status = 'publish' AND t.language_code = '%s'", $post_type, $default_language_code);
+		$query = $wpdb->prepare("SELECT COUNT(DISTINCT p.ID) FROM {$wpdb->prefix}posts AS p LEFT JOIN {$wpdb->prefix}icl_translations AS t ON t.element_id = p.ID AND t.element_type = CONCAT('post_', p.post_type) WHERE p.post_type = '%s' AND t.language_code = '%s' AND p.post_status != 'draft'", $post_type, $default_language_code);
 		return $wpdb->get_var( $query );
 	}
 

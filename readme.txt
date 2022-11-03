@@ -107,6 +107,8 @@ No. The menu synchronization currently only works within the pages post type.
 
 = 3.2.2 =
 * Adds two new filters: "nestedpages_page_listing" & "nestedpages_show_links". These filters allow access to add the "Links" interface to post types other than pages.
+* Fixes bug in WPML-enabled sites, where the total translation count did not include posts without a source language code.
+* Fixes bug in WPML-enabled sites where the default language post count was not accurate
 
 = 3.2.1 =
 * Reverts previous wp_update_post change to prevent server errors on large sites. Replaces with optional "nestedpages_use_update_post" filter to enable hook when needed.
