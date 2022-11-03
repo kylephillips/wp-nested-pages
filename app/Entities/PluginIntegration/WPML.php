@@ -176,11 +176,8 @@ class WPML
 	public function translatedPostCount($language_code = '', $post_type = '')
 	{
 		global $wpdb;
-
-		$default_language_code = $this->getDefaultLanguage();
 		$post_type = 'post_' . $post_type;
-
-		$query = $wpdb->prepare("SELECT COUNT( {$wpdb->prefix}posts.ID ) FROM {$wpdb->prefix}posts LEFT JOIN {$wpdb->prefix}icl_translations ON {$wpdb->prefix}posts.ID = {$wpdb->prefix}icl_translations.element_id WHERE {$wpdb->prefix}icl_translations.language_code = '%s' AND {$wpdb->prefix}icl_translations.source_language_code = '%s' AND {$wpdb->prefix}icl_translations.element_type = '%s'", $language_code, $default_language_code, $post_type);
+		$query = $wpdb->prepare("SELECT COUNT( {$wpdb->prefix}posts.ID ) FROM {$wpdb->prefix}posts LEFT JOIN {$wpdb->prefix}icl_translations ON {$wpdb->prefix}posts.ID = {$wpdb->prefix}icl_translations.element_id WHERE {$wpdb->prefix}icl_translations.language_code = '%s' AND {$wpdb->prefix}icl_translations.element_type = '%s'", $language_code, $post_type);
 
 		return $wpdb->get_var( $query );
 	}
