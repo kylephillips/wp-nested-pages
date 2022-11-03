@@ -29,10 +29,6 @@ NestedPages.Formatter = function()
 				
 				var open = ( $(row).children('ol:visible').length > 0 ) ? true : false;
 
-				if ( $(row).children('ol').find('.page-row').not('.np-hide').length > 0 ) {
-					open = true;
-				}
-
 				var html = '<div class="child-toggle-spacer"></div>';
 				html += '<a href="#"';
 				if ( open ) html += ' class="open"';
