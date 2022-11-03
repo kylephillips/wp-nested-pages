@@ -108,6 +108,7 @@ No. The menu synchronization currently only works within the pages post type.
 = 3.2.2 =
 * Adds option to default new pages to hide in the generated nav menu.
 * Adds two new filters: "nestedpages_page_listing" & "nestedpages_show_links". These filters allow access to add the "Links" interface to post types other than pages.
+* Fixes bug in page tree where toggle arrow was not shown if a hidden page was a child. The toggle arrow will still not show if the child list contains only hidden pages. In this case, select the "Show Hidden" link to reveal the toggle.
 * Fixes bug in WPML-enabled sites, where the total translation count did not include posts without a source language code.
 * Fixes bug in WPML-enabled sites where the default language post count was not accurate.
 
