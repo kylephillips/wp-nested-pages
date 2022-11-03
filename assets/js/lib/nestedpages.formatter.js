@@ -29,7 +29,9 @@ NestedPages.Formatter = function()
 				
 				var open = ( $(row).children('ol:visible').length > 0 ) ? true : false;
 
-				if ( $(row).children('ol').find('.page-row').not('.np-hide').length > 0 ) open = true;
+				if ( $(row).children('ol').find('.page-row').not('.np-hide').length > 0 ) {
+					open = true;
+				}
 
 				var html = '<div class="child-toggle-spacer"></div>';
 				html += '<a href="#"';
@@ -44,7 +46,7 @@ NestedPages.Formatter = function()
 				}
 
 				// Bug fix for pages with child hidden pages, but other pages in the hierarchy are not hidden
-				if ( $(row).children('ol').find('.page-row:visible').length > 0 ){
+				if ( $(row).children('ol').find('.page-row').not('.np-hide').length > 0 ){
 					$(button).find('a').show();
 				}
 
