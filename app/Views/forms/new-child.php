@@ -80,7 +80,7 @@
 		<?php if ( $this->post_type->name == 'page' && $this->user->canSortPosts($this->post_type->name) && !$this->listing_repo->isSearch() ) : ?>
 		<div class="form-control full checkbox">
 			<label>
-				<input type="checkbox" name="nav_status" class="np_nav_status" value="hide" />
+				<input type="checkbox" name="nav_status" class="np_nav_status" value="hide" <?php if ( $this->settings->defaultHideInNav() ) echo 'checked'; ?> />
 				<span class="checkbox-title"><?php _e( 'Hide in Nav Menu', 'wp-nested-pages' ); ?></span>
 			</label>
 		</div>

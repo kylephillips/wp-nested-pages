@@ -56,13 +56,19 @@ $sync_status = ( $this->settings->menuSyncEnabled() ) ? __('Currently Enabled', 
 					<p data-menu-enabled-option data-menu-disable-auto>
 					<label>
 						<input type="checkbox" name="nestedpages_ui[manual_menu_sync]" value="true" <?php if ( $this->settings->autoMenuDisabled() && !$this->settings->menusDisabled() ) echo 'checked'; ?> data-menu-disable-auto-checkbox />
-						<?php _e('Manually sync menu.', 'wp-nested-pages'); ?>
+						<?php _e('Manually sync menu.', 'wp-nested-pages'); ?><br>
 					</label>
 					</p>
 					<p>
 					<label>
 						<input type="checkbox" name="nestedpages_ui[manual_page_order_sync]" value="true" <?php if ( $this->settings->autoPageOrderDisabled() ) echo 'checked'; ?> />
 						<?php _e('Manually sync page order.', 'wp-nested-pages'); ?>
+					</label>
+					</p>
+					<p data-menu-enabled-option data-menu-disable-auto>
+					<label>
+						<input type="checkbox" name="nestedpages_ui[menu_sync_default_hide]" value="true" <?php if ( $this->settings->defaultHideInNav() ) echo 'checked'; ?> />
+						<?php _e('Default new pages to hide in nav menu.', 'wp-nested-pages'); ?>
 					</label>
 					</p>
 					<p>

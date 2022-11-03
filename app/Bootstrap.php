@@ -30,6 +30,7 @@ class Bootstrap
 	{
 		new Entities\PostType\RegisterPostTypes;
 		new Entities\Post\PostTrashActions;
+		new Entities\Post\PostSaveActions;
 		new Entities\Post\PrivatePostParent;
 		new Entities\Listing\ListingActions;
 		new Entities\NavMenu\NavMenuActions;

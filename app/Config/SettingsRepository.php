@@ -79,6 +79,16 @@ class SettingsRepository
 	}
 
 	/**
+	* Should new pages default to "hide in nav menu"
+	*/
+	public function defaultHideInNav()
+	{
+		$option = get_option('nestedpages_ui', false);
+		if ( $option && isset($option['menu_sync_default_hide']) && $option['menu_sync_default_hide'] == 'true' ) return true;
+		return false;
+	}
+
+	/**
 	* Are menus completely disabled?
 	* @return boolean
 	*/
