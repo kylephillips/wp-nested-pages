@@ -62,7 +62,7 @@
 			margin-left: 10px;
 			padding-left: 20px;
 			position: relative;
-			svg {
+			img {
 				position: absolute;
 				left: 0;
 				top: -5px;
@@ -80,9 +80,7 @@
 			display: inline-block;
 			vertical-align: middle;
 			margin-left: 5px;
-			.icon {
-				fill: darken($white, 30%);
-			}
+			opacity: .3;
 		}
 
 		// Indicates status if not published
@@ -305,7 +303,7 @@
 	// Handle for sortable functionality
 	.handle {
 		display: inline-block;
-		opacity: .4;
+		opacity: .1;
 		vertical-align: middle;
 		cursor: move;
 		position: relative;
@@ -313,12 +311,9 @@
 		width: 20px;
 		height: 20px;
 		transition: all 200ms ease;
-		.bars {
-			fill : darken($white, 30%);
-		}
 		&:hover {
+			opacity: .2;
 			transition: all 200ms ease;
-			color: $blue;
 		}
 	} // .handle
 
@@ -354,9 +349,7 @@
 		margin-left: 8px;
 		position: relative;
 		top: -2px;
-		.icon {
-			fill: darken($white, 30%);
-		}
+		opacity: .3;
 	}
 
 	.np-thumbnail {
@@ -529,7 +522,8 @@
 			line-height: 30px;
 			&.np-btn-trash {
 				margin-left: 4px;
-				svg {
+				svg,
+				img {
 					width: 20px;
 					height: 20px;
 					position: relative;
@@ -548,7 +542,7 @@
 		.np-btn.toggle {
 			background: transparent;
 			border: 0;
-			svg {
+			svg,img {
 				position: relative;
 				top: 4px;
 			}
@@ -576,7 +570,8 @@
 					&.disabled {
 						opacity: .3;
 					}
-					svg {
+					svg,
+					img {
 						position: absolute;
 						left: 0;
 						width: 20px;

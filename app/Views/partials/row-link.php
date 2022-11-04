@@ -27,16 +27,16 @@ endif;
 
 	<div class="row-inner">
 
-		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="np-icon-sub-menu"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M19 15l-6 6-1.42-1.42L15.17 16H4V4h2v10h9.17l-3.59-3.58L13 9l6 6z" class="arrow" /></svg>
+		<img src="<?php echo \NestedPages\Helpers::plugin_url() . '/assets/images/arrow-child.svg'; ?>" alt="<?php _e('Arrow', 'wp-nested-pages'); ?>" class="np-icon-sub-menu">
 		
 		<?php if ( $this->user->canSortPosts($this->post_type->name) && !$this->listing_repo->isSearch() && !$this->listing_repo->isOrdered($this->post_type->name) ) : ?>
-		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="handle np-icon-menu"><path d="M0 0h24v24H0z" fill="none" /><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" class="bars" /></svg>
+		<img src="<?php echo \NestedPages\Helpers::plugin_url() . '/assets/images/handle.svg'; ?>" alt="<?php _e('Sorting Handle', 'wp-nested-pages'); ?>" class="handle np-icon-menu">
 		<?php endif; ?>
 
 		<a href="<?php echo $link; ?>" class="page-link page-title" <?php if ( $new_window ) echo 'target="_blank"'; ?>>
 			<span class="title">
 				<?php echo apply_filters('the_title', $this->post->title, $this->post->id); ?> 
-				<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path class="icon" d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
+				<img src="<?php echo \NestedPages\Helpers::plugin_url(); ?>/assets/images/link.svg" alt="<?php _e('Link Icon', 'wp-nested-pages'); ?>" class="link-icon">
 			</span>
 			<?php 
 
@@ -47,7 +47,7 @@ endif;
 
 				// Nested Pages Status
 				if ( $this->post->np_status == 'hide' )
-					echo '<svg class="row-status-icon status-np-hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z" fill="none"/><path class="icon" d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></svg>';
+					echo '<img src="' . \NestedPages\Helpers::plugin_url() . '/assets/images/hidden.svg" alt="' . __('Hidden Icon', 'wp-nested-pages') . '" class="row-status-icon status-np-hidden">';
 
 				// Nav Status
 				echo ( $this->post->nav_status == 'hide' )
@@ -82,7 +82,7 @@ endif;
 
 			<?php if ( current_user_can('delete_pages') && in_array('trash', $this->post_type_settings->row_actions) ) : ?>
 			<a href="<?php echo get_delete_post_link($this->post->id, '', true); ?><?php if ( $this->post_type->name !== 'page' ) echo '&parent_post_type=' . $this->post_type->name; ?>" class="np-btn np-btn-trash" data-np-confirm-delete>
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="np-icon-remove"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" class="icon"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+				<img src="<?php echo \NestedPages\Helpers::plugin_url(); ?>/assets/images/trash.svg" alt="<?php _e('Trash Icon', 'wp-nested-pages'); ?>" class="np-icon-remove">
 			</a>
 			<?php endif; ?>
 
