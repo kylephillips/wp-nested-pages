@@ -56,24 +56,21 @@ abstract class NavMenuSync
 	 *
 	 * @param int $id - ID of nav menu item
 	 */
-	protected function removeItem( $id ) {
+	protected function removeItem($id) {
 
 		$recurse = apply_filters('nestedpages_recursive_remove_menu_item', false, $id);
 		if ( ! empty( $id ) && $recurse ) {
-
-			$args = array(
+			$args = [
 				'post_type'  => 'nav_menu_item',
-				'meta_query' => array(
-					array(
+				'meta_query' => [
+					[
 						'key'   => '_menu_item_menu_item_parent',
 						'value' => $id
-					)
-				),
+					]
+				],
 				'fields'     => 'ids'
-			);
-
+			];
 			$children = get_posts( $args );
-
 			if ( $children ) {
 				foreach ( $children as $child ) {
 					$this->removeItem( $child, true );
