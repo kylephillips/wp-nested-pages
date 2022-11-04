@@ -77,7 +77,7 @@ settings_fields( 'nestedpages-posttypes' );
 						</div>
 						<div class="field">
 							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][enable_max_nesting]" value="true" <?php if ( $type->enable_max_nesting ) echo 'checked '; ?> data-nested-pages-enable-maximum-nesting/><?php printf(__('Enable Maximum Nesting Level %s', 'wp-nested-pages'), esc_html($type->label)); ?></label>
-							<div data-nested-pages-maximum-nesting style="padding-top: 5px;<?php if ( !$type->enable_max_nesting ) echo 'style=display:none;'; ?>">
+							<div class="nestedpages-checklist-field" data-nested-pages-maximum-nesting style="padding-top: 5px;<?php if ( !$type->enable_max_nesting ) echo 'display:none;'; ?>">
 								<label><?php printf(__('Maximum Nesting Level for %s', 'wp-nested-pages'), esc_html($type->label)); ?></label>
 								<input type="number" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][maximum_nesting]" <?php if ( $type->maximum_nesting ) echo ' value="' . $type->maximum_nesting . '"'?>> 
 							</div>
