@@ -72,6 +72,8 @@ class PostTypeRepository
 			$post_types[$type->name]->hide_default = $this->postTypeSetting($type->name, 'hide_default');
 			$post_types[$type->name]->disable_sorting = $this->postTypeSetting($type->name, 'disable_sorting');
 			$post_types[$type->name]->disable_nesting = $this->postTypeSetting($type->name, 'disable_nesting');
+			$post_types[$type->name]->enable_max_nesting = $this->postTypeSetting($type->name, 'enable_max_nesting');
+			$post_types[$type->name]->maximum_nesting = $this->postTypeSetting($type->name, 'maximum_nesting');
 			$post_types[$type->name]->custom_fields_enabled = $this->postTypeSetting($type->name, 'custom_fields_enabled');
 			$post_types[$type->name]->standard_fields_enabled = $this->postTypeSetting($type->name, 'standard_fields_enabled');
 			$post_types[$type->name]->custom_fields = $this->configuredFields($type->name, 'custom_fields');

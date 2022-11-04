@@ -29,6 +29,9 @@ NestedPages.Settings = function()
 		assignPostTypeRemove : '[data-nestedpages-page-pt-assignment-remove]', // Link to remove the assigned page for the post type,
 		assignPostTypeSelection : '[data-nestedpages-page-pt-assignment-selection]', // The div displaying the selection
 
+		enableMaximumNestingLevel : '[data-nested-pages-enable-maximum-nesting]', // Checkbox to enable maximum nesting level depth,
+		maximumNestingLevel : '[data-nested-pages-maximum-nesting]', // Input for setting maximum nesting level depth
+
 		// Sort Options for Post Types
 		sortOptionCheckbox : '[data-nestedpages-sort-option-checkbox]', // Checkbox for enabling a sort option
 		defaultSortOptions : '[data-nestedpages-sort-option-default]', // Default sort options (containing div)
@@ -83,6 +86,9 @@ NestedPages.Settings = function()
 		});
 		$(document).on('change', plugin.selectors.sortOptionCheckbox, function(){
 			plugin.toggleDefaultSortOptions($(this));
+		});
+		$(document).on('change', plugin.selectors.enableMaximumNestingLevel, function(){
+			plugin.toggleMaximumNesting($(this));
 		});
 	}
 
@@ -274,6 +280,20 @@ NestedPages.Settings = function()
 			return;
 		}
 		$(options).hide();
+	}
+
+	/**
+	* Toggle the Maximum Nesting Level Option
+	*/
+	plugin.toggleMaximumNesting = function(checkbox)
+	{
+		var checked = ( $(checkbox).is(':checked') ) ? true : false;
+		var input = $(checkbox).parents('.field').find(plugin.selectors.maximumNestingLevel);
+		if ( checked ){
+			$(input).show();
+			return;
+		}
+		$(input).hide();
 	}
 
 	return plugin.bindEvents();

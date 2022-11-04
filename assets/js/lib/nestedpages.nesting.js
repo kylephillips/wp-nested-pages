@@ -16,6 +16,13 @@ NestedPages.Nesting = function()
 	plugin.initializeSortable = function()
 	{
 		if ( !NestedPages.jsData.nestable ) return plugin.initializeSortableFlat();
+		var maxLevels = 0;
+
+		// Set the max level if necessary
+		if ( typeof nestedpages.post_types[NestedPages.jsData.posttype] !== 'undefined' ){
+			var post_type = nestedpages.post_types[NestedPages.jsData.posttype];
+			if ( typeof post_type.enable_max_nesting !== 'undefined' && post_type.enable_max_nesting && typeof post_type.maximum_nesting !== 'undefined' && post_type.maximum_nesting > 1 ) maxLevels = post_type.maximum_nesting;
+		}
 
 		$(NestedPages.selectors.sortable).not(NestedPages.selectors.notSortable).nestedSortable({
 			items : NestedPages.selectors.rows,
@@ -23,6 +30,7 @@ NestedPages.Nesting = function()
 			handle: NestedPages.selectors.handle,
 			placeholder: "ui-sortable-placeholder",
 			tabSize : 56,
+			maxLevels : maxLevels,
 			isAllowed: function(placeholder, placeholderParent, currentItem){
 				return ( $(placeholderParent).hasClass('post-type-np-redirect') && !$(currentItem).hasClass('post-type-np-redirect') ) ? false : true;
 			},
