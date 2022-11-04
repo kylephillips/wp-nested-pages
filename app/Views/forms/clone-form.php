@@ -55,6 +55,15 @@
 				echo $authors_dropdown;
 			endif;
 		?>
+
+		<?php if ( $this->post_type->hierarchical ) : ?>
+		<div class="form-control">
+			<label>
+			<input type="checkbox" data-clone-children value="true" />
+			<?php _e( 'Clone Children', 'wp-nested-pages' ); ?></label>
+		</div>
+		<?php endif; ?>
+
 		</div><!-- .modal-body -->
 
 	

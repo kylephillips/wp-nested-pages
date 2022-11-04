@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.2.3 =
+* Adds the ability to clone the post/page tree in hierarchical post types
+
 = 3.2.2 =
 * Adds option to default new pages to hide in the generated nav menu.
 * Adds two new filters: "nestedpages_page_listing" & "nestedpages_show_links". These filters allow access to add the "Links" interface to post types other than pages.

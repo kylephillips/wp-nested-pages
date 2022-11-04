@@ -34,16 +34,16 @@ class PostCloner
 	private $clone_options = [];
 
 	/**
-	* New Posts
-	* @var array of post IDs
-	*/
-	private $new_posts;
-
-	/**
 	* Clone the post
-	* @var int $id
+	* @param int $id - The ID of the original post to clone
+	* @param int $quantity - The number of copies to make
+	* @param str $status - The post status
+	* @param int $author - The author id to assign the new post(s) to
+	* @param bool $clone_children - Whether to clone the post tree (hierarchical only)
+	* @param int $parent_id - The parent post to assign the clone to
+	* @param bool $original_clone - Whether this is the original clone. Used in post tree cloning only
 	*/
-	public function clonePost($id, $quantity = 1, $status = 'publish', $author = null)
+	public function clonePost($id, $quantity = 1, $status = 'publish', $author = null, $clone_children = false, $parent_id = null, $original_clone = true)
 	{
 		if ( !current_user_can('edit_post', $id) ) return;
 		$this->original_id = $id;
@@ -51,8 +51,10 @@ class PostCloner
 		$this->clone_options['quantity'] = $quantity;
 		$this->clone_options['status'] = $status;
 		$this->clone_options['author'] = $author;
+		$this->clone_options['clone_children'] = $clone_children;
+		$this->clone_options['parent_id'] = $parent_id;
+		$this->clone_options['original_clone'] = $original_clone;
 		$this->loopClone();	
-		return $this->new_posts;
 	}
 
 	/**
@@ -60,10 +62,44 @@ class PostCloner
 	*/
 	private function loopClone()
 	{
-		for ( $i = 0; $i < $this->clone_options['quantity']; $i++ ){
+		$quantity = ( $this->clone_options['original_clone'] ) ? $this->clone_options['quantity'] : 1;
+		for ( $i = 0; $i < $quantity; $i++ ){
 			$this->clonePostData();
 			$this->cloneTaxonomies();
 			$this->cloneMeta();
+			$this->cloneChildren();
+		}
+	}
+
+	/**
+	* Loop through and clone the children if set to do so
+	*/
+	private function cloneChildren()
+	{
+		if ( !$this->clone_options['clone_children'] ) return;
+		$post_type = $this->original_post->post_type;
+		if ( $post_type = 'page' ) $post_type = ['page', 'np-redirect'];
+		$child_ids = [];
+		$children = new \WP_Query([
+			'post_type' => $post_type, 
+			'post_parent' => $this->original_id, 
+			'posts_per_page' => -1, 
+			'fields' => 'ids'
+		]);
+		if ( $children->have_posts() ) $child_ids = $children->posts;
+		wp_reset_postdata();
+		if ( empty($child_ids) ) return;
+		foreach ( $child_ids as $child_id ){
+			$cloner = (new PostCloner)
+				->clonePost(
+					$child_id, 
+					$this->clone_options['quantity'], 
+					$this->clone_options['status'], 
+					$this->clone_options['author'], 
+					$this->clone_options['clone_children'],
+					$this->new_id,
+					false
+				);
 		}
 	}
 
@@ -72,6 +108,7 @@ class PostCloner
 	*/
 	private function clonePostData()
 	{
+		$parent = ( $this->clone_options['parent_id'] ) ? $this->clone_options['parent_id'] : $this->original_post->post_parent;
 		$args = [
 			'comment_status' => $this->original_post->comment_status,
 			'ping_status'    => $this->original_post->ping_status,
@@ -79,7 +116,7 @@ class PostCloner
 			'post_content'   => $this->original_post->post_content,
 			'post_excerpt'   => $this->original_post->post_excerpt,
 			'post_name'      => $this->original_post->post_name,
-			'post_parent'    => $this->original_post->post_parent,
+			'post_parent'    => $parent,
 			'post_password'  => $this->original_post->post_password,
 			'post_status'    => $this->clone_options['status'],
 			'post_title'     => $this->original_post->post_title,
@@ -88,7 +125,6 @@ class PostCloner
 			'menu_order'     => $this->original_post->menu_order
 		];
 		$this->new_id = wp_insert_post(wp_slash($args));
-		$this->new_posts[] = $this->new_id;
 	}
 
 	/**
