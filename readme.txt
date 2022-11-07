@@ -108,6 +108,7 @@ No. The menu synchronization currently only works within the pages post type.
 = 3.2.3 =
 * Adds the ability to clone the post/page tree in hierarchical post types.
 * Adds option to set the maximum nesting level per post type. To configure, visit Settings > Nested Pages > Post Types, and select the post type you'd like to configure. The option can be located under the "Maximum Nesting Depth" tab.
+* Fixes bug where nav menu was being added when saving plugin options, even when "Disable menu sync completely" was selected.
 
 = 3.2.2 =
 * Adds option to default new pages to hide in the generated nav menu.
