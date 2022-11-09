@@ -150,7 +150,6 @@ class Dependencies
 				'edit' => __('Edit', 'wp-nested-pages'),
 				'insert_before' => __('Insert Before', 'wp-nested-pages'),
 				'insert_after' => __('Insert After', 'wp-nested-pages'),
-				'non_indent' => $this->settings->nonIndentEnabled(),
 				'private' => __('Private', 'wp-nested-pages'),
 				'post_statuses' => $wp_post_statuses,
 				'current_page' => ( isset($_GET['page']) ) ? sanitize_text_field($_GET['page']) : null

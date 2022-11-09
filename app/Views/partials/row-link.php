@@ -25,10 +25,7 @@ endif;
 	<div class="non-hierarchical-spacer"></div>
 	<?php endif; ?>
 
-	<div class="row-inner">
-
-		<img src="<?php echo \NestedPages\Helpers::plugin_url() . '/assets/images/arrow-child.svg'; ?>" alt="<?php _e('Arrow', 'wp-nested-pages'); ?>" class="np-icon-sub-menu">
-		
+	<div class="row-inner">		
 		<?php if ( $this->user->canSortPosts($this->post_type->name) && !$this->listing_repo->isSearch() && !$this->listing_repo->isOrdered($this->post_type->name) ) : ?>
 		<img src="<?php echo \NestedPages\Helpers::plugin_url() . '/assets/images/handle.svg'; ?>" alt="<?php _e('Sorting Handle', 'wp-nested-pages'); ?>" class="handle np-icon-menu">
 		<?php endif; ?>

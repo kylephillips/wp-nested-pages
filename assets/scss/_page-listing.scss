@@ -34,7 +34,6 @@
 			text-decoration: none;
 		}
 
-
 		.page-link {
 			.edit-indicator {
 				margin-left: 10px;
@@ -143,40 +142,6 @@
 			margin-top: -6px;
 		}
 
-		// Deprecated Version
-		.np-seo-indicator {
-			display: block;
-			position: absolute;
-			right: 10px;
-			top: 50%;
-			margin-top: -6px;
-			width: 12px;
-			height: 12px;
-			border-radius: 50%;
-			background-color: darken($white, 40%);
-			&.good {
-				background-color: #7ad03a;
-			}
-			&.ok {
-				background-color: #ffba00;
-			}
-			&.poor {
-				background-color: #ee7c1b;
-			}
-			&.bad {
-				background-color: #dd3d36;
-			}
-			&.warn {
-				background-color: maroon;
-			}
-			&.wrong {
-				background-color: red;
-			}
-            &.noindex {
-                background-color: #1e8cbe;
-            }
-		}
-
 		li {
 			margin: 0;
 			border-top: 1px solid $border;
@@ -252,54 +217,6 @@
 		border-left: 6px solid darken($white, 80%);
 	}
 
-	// Classic/Non-Indented Display of toggle
-	.non-indent {
-		.child-toggle {
-			width: 46px;
-			background-color: darken($white, 6%);
-			position: relative;
-			.child-toggle-spacer {
-				display: block;
-				height: 46px;
-				width: 46px;
-			}
-			a { // Arrow Toggle
-				position: absolute;
-				top: 50%;
-				display: inline-block;
-				vertical-align: middle;
-				left: 8px;
-				margin-top: -16px;
-				width: 28px;
-				height: 28px;
-				background-color: $white;
-				border: 1px solid $border;
-				border-radius: 50%;
-				line-height: 28px;
-				color: $black;
-				box-shadow: none;
-				transition: all 200ms ease;
-				transform: rotate(0deg);
-				&.open {
-					transition: all 200ms ease;
-					transform: rotate(90deg);
-				}
-				&:hover {
-					background-color: $black;
-					border-color: $black;
-					.np-icon-arrow {
-						border-left-color: $white;
-					}
-				}
-			}
-		} // .child-toggle
-		.np-icon-arrow {
-			border-top-width: 4px;
-			border-bottom-width: 4px;
-			border-left-width: 6px;
-		}
-	} // .non-indent
-
 	// Handle for sortable functionality
 	.handle {
 		display: inline-block;
@@ -316,17 +233,6 @@
 			transition: all 200ms ease;
 		}
 	} // .handle
-
-	// Submenu Indicator
-	.np-icon-sub-menu {
-		display: none;
-		vertical-align: middle;
-		width: 20px;
-		height: 20px;
-		.arrow {
-			fill: darken($white, 40%);
-		}
-	}
 
 	.row.no-sort .page-title {
 		padding-left: 10px;
@@ -389,19 +295,6 @@
 		width: 30px;
 		text-align: center;
 		vertical-align: middle;
-	}
-
-	// Hide/show the submenu indicator & handle on hover of the row
-	.non-indent li ol .row {
-		.np-icon-sub-menu { display: inline-block; }
-		.handle { display: none; }
-		&:hover {
-			.np-icon-sub-menu {	display: none; }
-			.handle { display: inline-block; }
-		}
-		&.no-sort {
-			.np-icon-sub-menu { display: inline-block; }
-		}
 	}
 
 	.no-sort ol li .row:hover {
@@ -584,6 +477,26 @@
 			} // li
 		} // ul
 	} // .nestedpages-dropdown
+
+	// Core WP Columns header
+	.np-post-columns-header-wp {
+		display: none;
+	}
+
+	// Core WP Columns (Body)
+	.np-post-columns-wp {
+		display: none;
+		th.check-column {
+			display: none;
+		}
+		td.column-title {
+			display: none;
+		}
+	}
+
+	.row:hover .np-post-columns-wp {
+		// display: none;
+	}
 
 } // .nestedpages
 

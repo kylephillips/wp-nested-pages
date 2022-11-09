@@ -71,8 +71,8 @@ NestedPages.Formatter = function()
 
 	plugin.setIndent = function()
 	{
-		var amount = ( nestedpages.non_indent === '1' ) ? 20 : 30;
-		var indent_element = ( nestedpages.non_indent === '1' ) ? '.row-inner' : '.child-toggle';
+		var amount = 30;
+		var indent_element = '.child-toggle';
 		$.each($(NestedPages.selectors.lists), function(i, v){
 			var parent_count = $(this).parents(NestedPages.selectors.lists).length;
 			var padding = 0;
@@ -92,26 +92,6 @@ NestedPages.Formatter = function()
 			$(this).find('.row-inner').css('padding-left', '0px');
 		});
 	}
-
-	plugin.setClassicIndent = function()
-	{
-		$.each($(NestedPages.selectors.lists), function(i, v){
-			var parent_count = $(this).parents(NestedPages.selectors.lists).length;
-			var padding = 0;
-			if ( !NestedPages.jsData.sortable ) padding = 10;
-			if ( parent_count > 0 ){
-				var padding = ( parent_count * 20 ) + padding;
-				$(this).find('.row-inner').css('padding-left', padding + 'px');
-				return;
-			}
-			if ( !NestedPages.jsData.sortable || $(this).hasClass('no-sort') ){
-				$(this).find('.row-inner').css('padding-left', '10px');	
-				return;
-			}
-			$(this).find('.row-inner').css('padding-left', '0px');
-		});
-	}
-
 
 	// Update the width of the placeholder ( width changes depending on level of nesting )
 	plugin.updatePlaceholderWidth = function(ui)

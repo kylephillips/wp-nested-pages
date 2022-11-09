@@ -322,7 +322,6 @@ class Listing
 		if ( $this->integrations->plugins->wpml->installed && $this->integrations->plugins->wpml->getCurrentLanguage() == 'all' ) $list_classes .= ' no-sort';
 		if ( $this->integrations->plugins->yoast->installed ) $list_classes .= ' has-yoast';
 		if ( $this->listing_repo->isSearch() ) $list_classes .= ' np-search-results';
-		if ( $this->settings->nonIndentEnabled() ) $list_classes .= ' non-indent';
 
 		// Primary List
 		if ( $count == 0 ) {
