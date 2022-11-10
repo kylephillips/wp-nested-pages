@@ -29,6 +29,9 @@ class PostTypeColumns
 		$this->setTable();
 	}
 
+	/**
+	* Set the Posts_List_table
+	*/
 	public function setTable()
 	{
 		global $post_type_object;
@@ -38,6 +41,10 @@ class PostTypeColumns
 		$this->post_list_table = _get_list_table('WP_Posts_List_Table', ['screen' => $screen]);
 	}
 
+	/**
+	* Get the column headers output
+	* @return str - html
+	*/
 	public function columnHeaders()
 	{
 		ob_start();
@@ -53,13 +60,20 @@ class PostTypeColumns
 			$td->parentNode->removeChild($td);
 		}
 
-		$output = $doc->saveHTML();
+		// Add the handle spacer
+		$tr = $doc->getElementsByTagName('th'); // First element is the <th> checkbox
+		$new_th = $doc->createElement('th', '');
+		$new_th->setAttribute('class', 'handle-cell-spacer');
+		$tr->item(0)->parentNode->insertBefore($new_th, $tr->item(0));
 
+		$output = $doc->saveHTML();
 		return $output;
 	}
 
 	/**
 	* Get a single row (a single post)
+	* @param obj - WP_Post
+	* @param bool - Whether ot include the sort handle
 	*/
 	public function get_single_row($post, $sort_handle = false) 
 	{

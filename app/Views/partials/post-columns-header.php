@@ -6,7 +6,7 @@
 if ( !$this->post_list_table ) return;
 ?>
 <div class="np-post-columns-header-wp-spacer"></div>
-<table class="np-post-columns-header-wp fixed">
+<table class="np-post-columns-header-wp fixed <?php if ( $this->post_type->hierarchical ) echo 'hierarchical'; ?>">
 	<thead>
 		<tr>
 			<?php echo $this->post_list_table->columnHeaders(); ?>

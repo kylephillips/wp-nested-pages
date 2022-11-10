@@ -543,7 +543,7 @@
 		td.column-wpseo-score-readability {
 			width: 3em;
 		}
-	}
+	} // .np-post-columns-wp
 
 	.row:hover .np-post-columns-wp {
 		width: 100%;
@@ -584,9 +584,9 @@
 		z-index: 1;
 		table-layout: fixed;
 		padding-right: 33px;
-		padding-left: 50px;
-		th:first-child {
-			// padding-left: 50px;
+		// padding-left: 50px;
+		&.hierarchical {
+			// padding-left: 80px;
 		}
 	}
 
