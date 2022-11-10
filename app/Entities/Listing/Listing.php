@@ -12,6 +12,7 @@ use NestedPages\Entities\Listing\ListingQuery;
 use NestedPages\Config\SettingsRepository;
 use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 use NestedPages\Entities\PostType\PostTypeCustomFields;
+use NestedPages\Entities\PostType\PostTypeColumns;
 
 /**
 * Primary Post Listing
@@ -131,6 +132,10 @@ class Listing
 	* Enabled Custom Fields
 	*/
 	private $enabled_custom_fields;
+
+	/**
+	* Columns for the post type
+	*/
 
 	public function __construct($post_type)
 	{
@@ -277,6 +282,7 @@ class Listing
 	*/
 	public function listPosts()
 	{
+		$this->setPostListTable();
 		include( Helpers::view('listing') );
 	}
 
@@ -295,6 +301,36 @@ class Listing
 	private function setStatusPreference()
 	{
 		$this->status_preference = $this->user->getStatusPreference($this->post_type->name);
+	}
+
+	/**
+	* Set the post list table
+	*/
+	private function setPostListTable()
+	{
+		if ( !$this->post_type_repo->postTypeSetting($this->post_type->name, 'include_post_columns') ) {
+			$this->post_list_table = false;
+			return;
+		}
+		$this->post_list_table = (new PostTypeColumns($this->post_type->name));
+	}
+
+	/**
+	* Should the sorting handle be output
+	* @return bool
+	* @param $user - obj (NestedPages\Entities\User\UserRepository)
+	*/
+	private function showSortHandle()
+	{
+		$sortable = apply_filters('nestedpages_post_sortable', true, $this->post, $this->post_type);
+		$wpml_current_language = $this->listing_repo->wpmlLanguange();
+		return ( 
+			$this->user->canSortPosts($this->post_type->name) 
+			&& !$this->listing_repo->isSearch() 
+			&& !$this->post_type_settings->disable_sorting 
+			&& $wpml_current_language !== 'all' 
+			&& !$this->listing_repo->isOrdered($this->post_type->name) 
+			&& $sortable ) ? true : false;
 	}
 
 	/**
@@ -322,6 +358,7 @@ class Listing
 		if ( $this->integrations->plugins->wpml->installed && $this->integrations->plugins->wpml->getCurrentLanguage() == 'all' ) $list_classes .= ' no-sort';
 		if ( $this->integrations->plugins->yoast->installed ) $list_classes .= ' has-yoast';
 		if ( $this->listing_repo->isSearch() ) $list_classes .= ' np-search-results';
+		if ( $this->post_list_table ) $list_classes .= ' has-post-list-table';
 
 		// Primary List
 		if ( $count == 0 ) {
@@ -374,9 +411,7 @@ class Listing
 	*/
 	private function listPostLevel($parent = 0, $count = 0, $level = 1)
 	{
-		$wpml = $this->integrations->plugins->wpml->installed;
-		$wpml_current_language = null;
-		if ( $wpml ) $wpml_current_language = $this->integrations->plugins->wpml->getCurrentLanguage();
+		$wpml_current_language = $this->listing_repo->wpmlLanguange();
 
 		if ( $this->listing_repo->isFiltered() ){
 			$parent_status = null;

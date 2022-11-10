@@ -141,6 +141,12 @@
 			top: 50%;
 			margin-top: -6px;
 		}
+		.np-post-columns-wp .wpseo-score-icon {
+			position: relative;
+			top: auto;
+			right: auto;
+			margin-top: 0;
+		}
 
 		li {
 			margin: 0;
@@ -373,6 +379,33 @@
 		}
 	}
 
+	// Reset padding on lists that have the wp post list table
+	ol.has-post-list-table li ol {
+		.row-inner {
+			padding-left: 0px;
+		}
+		li ol {
+			.row-inner {
+				padding-left: 0;
+			}
+			li ol {
+				.row-inner {
+					padding-left: 0;
+				}
+				li ol {
+					.row-inner {
+						padding-left: 0;
+					}
+					li ol {
+						.row-inner {
+							padding-left: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+
 	// Post Data Columns
 	.np-post-columns {
 		float: right;
@@ -394,7 +427,7 @@
 		}
 	}
 	.has-yoast .np-post-columns {
-		margin-right: 30px;
+		margin-right: 50px;
 	}
 
 	.has-custom-columns .np-post-columns {
@@ -478,24 +511,42 @@
 		} // ul
 	} // .nestedpages-dropdown
 
-	// Core WP Columns header
-	.np-post-columns-header-wp {
-		display: none;
-	}
-
 	// Core WP Columns (Body)
 	.np-post-columns-wp {
-		display: none;
+		width: 100%;
+		padding: 10px 0;
+		text-align: left;
+		th, td {
+			text-align: left;
+			vertical-align: middle;
+			display: table-cell;
+		}
+		td.handle-cell {
+			width: 50px;
+		}
+		td.hidden {
+			display: none;
+		}
 		th.check-column {
 			display: none;
 		}
-		td.column-title {
+		.toggle-row {
 			display: none;
+		}
+		th.column-wpseo-linked, 
+		td.column-wpseo-linked, 
+		th.column-wpseo-links, 
+		td.column-wpseo-links, 
+		th.column-wpseo-score, 
+		td.column-wpseo-score, 
+		th.column-wpseo-score-readability,
+		td.column-wpseo-score-readability {
+			width: 3em;
 		}
 	}
 
 	.row:hover .np-post-columns-wp {
-		// display: none;
+		width: 100%;
 	}
 
 } // .nestedpages
@@ -510,21 +561,43 @@
 	border: 1px solid $border;
 	border-bottom: 0;
 	height: 46px;
+	position: relative;
 	@include clearfix;
 	.np-check-all {
 		float: right;
 		width: 33px;
+		position: relative;
+		z-index: 2;
 		text-align: center;
 		line-height: 46px;
 		background-color: darken($white, 6%);
 		input[type="checkbox"]{
 			margin: 0;
-			&.check-all-partial:checked:before {
-				content: "-";
-				margin: 0;
-				margin-top: -9px;
-			}
 		}
+	}
+	.np-post-columns-header-wp-spacer {
+		width: 80px;
+	}
+	.np-post-columns-header-wp {
+		position: absolute;
+		width: 100%;
+		z-index: 1;
+		table-layout: fixed;
+		padding-right: 33px;
+		padding-left: 50px;
+		th:first-child {
+			// padding-left: 50px;
+		}
+	}
+
+	th a {
+		padding: 0;
+	}
+	th.handle-cell-spacer {
+		width: 50px;
+	}
+	&.bulk-shown .np-post-columns-header-wp {
+		display: none;
 	}
 	.np-hidden-select-count {
 		display: none;

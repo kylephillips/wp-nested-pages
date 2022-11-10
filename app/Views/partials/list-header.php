@@ -17,5 +17,6 @@
 		</select>
 		<input type="submit" class="button" value="<?php echo esc_attr__('Apply', 'wp-nested-pages'); ?>">
 	</form>
+	<?php include( NestedPages\Helpers::view('partials/post-columns-header') ); ?>
 	<p class="np-hidden-select-count" data-np-hidden-count-parent><span data-np-hidden-count></span> <?php _e('Nested Items Selected', 'wp-nested-pages'); ?>. <a href="#" class="nestedpages-toggleall"><?php _e('Expand All', 'wp-nested-pages'); ?></a></p>
 </div>

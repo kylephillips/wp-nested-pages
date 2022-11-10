@@ -182,4 +182,13 @@ class ListingRepository
 		? true : false;
 		return apply_filters('nestedpages_show_links', $show_links, $post_type, $user, $this);
 	}
+
+	/**
+	* Return the WPML language if applicable
+	*/
+	public function wpmlLanguange()
+	{
+		return ( $this->integrations->plugins->wpml->installed ) 
+			? $this->integrations->plugins->wpml->getCurrentLanguage() : null;
+	}
 }

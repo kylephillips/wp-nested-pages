@@ -49,6 +49,17 @@ settings_fields( 'nestedpages-posttypes' );
 				<li>
 					<div class="row">
 						<div class="description">
+							<p><strong><?php _e('Include Default Columns', 'wp-nested-pages'); ?></strong><br />
+							<?php _e('Add the default admin post columns to the sort view.', 'wp-nested-pages'); ?></p>
+						</div>
+						<div class="field">
+							<label><input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][include_post_columns]" value="true" <?php if ( $type->include_post_columns ) echo 'checked'; ?> /><?php printf(__('Include Default %s Columns', 'wp-nested-pages'), esc_html($type->label)); ?></label>
+						</div><!-- .field -->
+					</div><!-- .row -->
+				</li>
+				<li>
+					<div class="row">
+						<div class="description">
 							<p><strong><?php _e('Disable Sorting', 'wp-nested-pages'); ?></strong><br />
 							<?php _e('Remove drag and drop sorting from this post type.', 'wp-nested-pages'); ?></p>
 						</div>

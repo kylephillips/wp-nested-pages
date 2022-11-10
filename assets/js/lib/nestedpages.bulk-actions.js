@@ -67,12 +67,14 @@ NestedPages.BulkActions = function()
 		plugin.toggleEditOption();
 		plugin.toggleLinkCountAlert();
 		if ( checked ){
+			$(NestedPages.selectors.bulkActionsHeader).addClass('bulk-shown');
 			$(NestedPages.selectors.bulkActionsForm).show();
 			$(NestedPages.selectors.bulkActionsIds).val(checked_ids);
 			$(NestedPages.selectors.bulkActionRedirectIds).val(checked_redirect_ids);
 			plugin.setSelectedNumber();
 			return;
 		}
+		$(NestedPages.selectors.bulkActionsHeader).removeClass('bulk-shown');
 		$(NestedPages.selectors.bulkActionsIds).val('');
 		$(NestedPages.selectors.bulkActionsForm).hide();
 	}
@@ -153,13 +155,15 @@ NestedPages.BulkActions = function()
 		plugin.toggleLinkCountAlert();
 		if ( visible ){
 			plugin.disableParentOptions();
+			$(NestedPages.selectors.bulkActionsHeader).addClass('bulk-shown');
 			$(NestedPages.selectors.bulkEditForm).show();
 			$(NestedPages.selectors.bulkActionsForm).hide();
 			plugin.setWPSuggest();
 			return;
 		}
+		$(NestedPages.selectors.bulkActionsHeader).removeClass('bulk-shown');
 		$(NestedPages.selectors.bulkEditForm).hide();
-		$(NestedPages.selectors.bulkActionsForm).show();
+		$(NestedPages.selectors.bulkActionsForm).hide();
 		$(NestedPages.selectors.bulkEditLinkCount).parent('div').hide();
 		$(NestedPages.selectors.bulkActionsForm).find('select option').first().text(nestedpages.bulk_actions);
 		plugin.resetBulkEditFields();

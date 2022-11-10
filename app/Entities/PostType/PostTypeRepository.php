@@ -83,6 +83,7 @@ class PostTypeRepository
 			$post_types[$type->name]->page_assignment_title = $this->configuredFields($type->name, 'post_type_page_assignment_page_title');
 			$post_types[$type->name]->sort_options = $this->configuredFields($type->name, 'sort_options');
 			$post_types[$type->name]->custom_statuses = $this->configuredFields($type->name, 'custom_statuses');
+			$post_types[$type->name]->include_post_columns = $this->configuredFields($type->name, 'include_post_columns');
 		}
 		return $post_types;
 	}

@@ -71,6 +71,7 @@ NestedPages.Formatter = function()
 
 	plugin.setIndent = function()
 	{
+		if ( $(NestedPages.selectors.lists).first().hasClass('has-post-list-table') ) return; 
 		var amount = 30;
 		var indent_element = '.child-toggle';
 		$.each($(NestedPages.selectors.lists), function(i, v){
