@@ -35,6 +35,8 @@ class PostTypeColumns
 	public function setTable()
 	{
 		global $post_type_object;
+		global $mode;
+		$mode = 'list';
 		$post_type_object = get_post_type_object($this->post_type);
 		$screen = new \stdClass;
 		$screen = convert_to_screen('edit-' . $this->post_type);
@@ -75,7 +77,7 @@ class PostTypeColumns
 	* @param obj - WP_Post
 	* @param bool - Whether ot include the sort handle
 	*/
-	public function get_single_row($post, $sort_handle = false) 
+	public function get_single_row($post, $sort_handle = false, $level = 0) 
 	{
 		ob_start();
 		$this->post_list_table->single_row($post);
@@ -103,6 +105,12 @@ class PostTypeColumns
 		endif;
 
 		$xpath = new DOMXPath($doc);
+
+		// Add the level designator
+		foreach ($xpath->query('//a[@class="row-title"]') as $td) {
+			$text = $td->nodeValue;
+			$td->nodeValue = str_repeat( '&#8212; ', $level ) . $text;
+		}
 
 		// Remove the trash link
 		foreach ($xpath->query('//span[@class="trash"]') as $span) {
