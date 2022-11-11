@@ -181,13 +181,13 @@
 
 	// Block that holds the toggle child arrow
 	.child-toggle {
-		display: table-cell;
+		// display: table-cell;
 		width: 30px;
 		text-align: left;
 		.child-toggle-spacer {
 			display: inline-block;
 			vertical-align: middle;
-			height: 50px;
+			// height: 50px;
 			width: 1px;
 		}
 		a { // Arrow Toggle
@@ -225,15 +225,17 @@
 
 	// Handle for sortable functionality
 	.handle {
-		display: inline-block;
 		opacity: .1;
-		vertical-align: middle;
 		cursor: move;
 		position: relative;
-		top: -1px;
+		top: 50%;
+		transform: translateY(-50%);
 		width: 20px;
 		height: 20px;
 		transition: all 200ms ease;
+		&.has-post-list-table {
+			margin-top: -1em;
+		}
 		&:hover {
 			opacity: .2;
 			transition: all 200ms ease;
@@ -286,13 +288,15 @@
 	}
 
 	.np-bulk-checkbox {
-		display: table-cell;
 		width: 33px;
-		vertical-align: middle;
+		margin-left: auto;
 		text-align: center;
 		background-color: darken($white, 6%);
 		input[type="checkbox"]{
 			margin-right: 0;
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
 		}
 	}
 
@@ -314,8 +318,8 @@
 	// Main Row Element
 	.row {
 		background-color: $white;
-		display: table;
-		width: 100%;
+		display: flex;
+		justify-content: space-between;
 		&:hover, &.active {
 			background-color: darken($white, 6%);
 			.handle {
@@ -346,9 +350,11 @@
 	}
 
 	.row-inner {
-		display: table-cell;
+		display: flex;
+		width: 100%;
 		vertical-align: middle;
 		position: relative;
+		padding: 20px 0;
 	}
 
 
@@ -408,8 +414,7 @@
 
 	// Post Data Columns
 	.np-post-columns {
-		float: right;
-		margin: 3px 20px 0px 0px;
+		margin-left: auto;
 		@include clearfix;
 		ul li {
 			background: transparent;
@@ -514,15 +519,11 @@
 	// Core WP Columns (Body)
 	.np-post-columns-wp {
 		width: 100%;
-		padding: 10px 0;
 		text-align: left;
 		th, td {
 			text-align: left;
 			vertical-align: middle;
 			display: table-cell;
-		}
-		td.handle-cell {
-			width: 50px;
 		}
 		td.hidden {
 			display: none;
@@ -581,15 +582,16 @@
 			margin: 0;
 		}
 	}
-	.np-post-columns-header-wp-spacer {
-		width: 80px;
-	}
 	.np-post-columns-header-wp {
 		position: absolute;
 		width: 100%;
 		z-index: 1;
 		table-layout: fixed;
 		padding-right: 33px;
+		padding-left: 30px;
+		&.hierarchical {
+			padding-left: 58px;
+		}
 		th {
 			text-align: left;
 		}
@@ -597,9 +599,6 @@
 
 	th a {
 		padding: 0;
-	}
-	th.handle-cell-spacer {
-		width: 80px;
 	}
 	&.bulk-shown .np-post-columns-header-wp {
 		display: none;

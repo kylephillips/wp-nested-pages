@@ -62,12 +62,6 @@ class PostTypeColumns
 			$td->parentNode->removeChild($td);
 		}
 
-		// Add the handle spacer
-		$tr = $doc->getElementsByTagName('th'); // First element is the <th> checkbox
-		$new_th = $doc->createElement('th', '');
-		$new_th->setAttribute('class', 'handle-cell-spacer');
-		$tr->item(0)->parentNode->insertBefore($new_th, $tr->item(0));
-
 		$output = $doc->saveHTML();
 		return $output;
 	}
@@ -85,24 +79,6 @@ class PostTypeColumns
 		
 		$doc = new DOMDocument();
 		$doc->loadHTML($row);
-
-		// Add the sort handle if necessary
-		if ( $sort_handle ) :
-			$th = $doc->getElementsByTagName('th'); // First element is the <th> checkbox
-			foreach ( $th as $key => $td ){
-				if ( $key > 0 ) continue;
-				$src = \NestedPages\Helpers::plugin_url() . '/assets/images/handle.svg';
-				$image = $doc->createElement('img');
-				$image->setAttribute('src', $src);
-				$image->setAttribute('class', 'handle');
-				$image->setAttribute('alt', __('Sorting Handle', 'wp-nested-pages'));
-				$new_td = $doc->createElement('td', '');
-				$new_td->setAttribute('class', 'handle-cell');
-				$new_td->appendChild($image);
-				$td->insertBefore($new_td);
-				$doc->saveHTML();
-			}
-		endif;
 
 		$xpath = new DOMXPath($doc);
 

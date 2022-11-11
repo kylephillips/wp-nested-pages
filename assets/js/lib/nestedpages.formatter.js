@@ -80,11 +80,11 @@ NestedPages.Formatter = function()
 			if ( !NestedPages.jsData.sortable ) padding = 10;
 			if ( parent_count > 0 ){
 				var padding = ( parent_count * amount ) + padding;
-				$(this).find(indent_element).css('padding-left', padding + 'px');
+				$(this).find(NestedPages.selectors.row).css('padding-left', padding + 'px');
 				return;
 			}
 			if ( parent_count < 1 ){
-				$(this).find(indent_element).css('padding-left', '0px');
+				$(this).find(NestedPages.selectors.row).css('padding-left', '0px');
 			}
 			if ( !NestedPages.jsData.sortable || $(this).hasClass('no-sort') ){
 				$(this).find('.row-inner').css('padding-left', '10px');	

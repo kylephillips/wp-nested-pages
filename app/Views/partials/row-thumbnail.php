@@ -3,7 +3,6 @@
 * The post thumbnail
 * Configurable under post type settings
 */
-if ( $this->post_list_table ) return;
 $thumbnail_source = $this->post_type_repo->thumbnails($this->post_type->name, 'source');
 $thumbnail_size = $this->post_type_repo->thumbnails($this->post_type->name, 'display_size');
 if ( !$thumbnail_source ) return;

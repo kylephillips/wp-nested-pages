@@ -1,4 +1,3 @@
-<?php if ( $this->post_list_table ) return; ?>
 <a href="<?php echo apply_filters('nestedpages_edit_link', get_edit_post_link(), $this->post); ?>" class="page-link page-title">
 	<span class="title">
 		<?php 

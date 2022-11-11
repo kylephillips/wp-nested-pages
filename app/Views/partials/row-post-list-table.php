@@ -7,7 +7,7 @@
 if ( !$this->post_list_table ) return;
 $current_level = ( $level <= 2 ) ? 0 : $level - 2;
 ?>
-<table class="np-post-columns-wp fixed">
+<table class="np-post-columns-wp fixed <?php if ( $this->post_type->hierarchical && $this->showSortHandle() ) echo 'hierarchical'; ?>">
 	<tbody>
 		<?php echo $this->post_list_table->get_single_row($this->post, $this->showSortHandle(), $current_level); ?>
 	</tbody>

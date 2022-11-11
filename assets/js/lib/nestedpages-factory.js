@@ -142,6 +142,7 @@ NestedPages.jsData = {
 	quickEditText : nestedpages.quick_edit, // Quick Edit Button Text
 	hiddenText : nestedpages.hidden, // Localized "Hidden"
 	titleText : nestedpages.title, // Localized "Title"
+	postListTable : false, // Are default WP columns enabled
 }
 
 
@@ -208,6 +209,7 @@ NestedPages.Factory = function()
 		plugin.setMenuSync();
 		plugin.setNestable();
 		plugin.setSortable();
+		plugin.setPostListTable();
 		plugin.formatter.updateSubMenuToggle();
 		plugin.formatter.setBorders();
 		plugin.formatter.setNestedMargins();
@@ -262,6 +264,16 @@ NestedPages.Factory = function()
 			NestedPages.jsData.posttype = $(NestedPages.selectors.sortable).attr('id').substring(3);
 		}
 		NestedPages.jsData.hierarchical = NestedPages.jsData.allPostTypes[NestedPages.jsData.posttype].hierarchical;
+	}
+
+
+	// Set Whether default post list table functionality is enabled
+	plugin.setPostListTable = function()
+	{
+		NestedPages.jsData.postListTable = ( 
+			typeof NestedPages.jsData.allPostTypes[NestedPages.jsData.posttype].include_post_columns !== 'undefined'
+			&& NestedPages.jsData.allPostTypes[NestedPages.jsData.posttype].include_post_columns === 'true' )
+		? true : false;
 	}
 
 
