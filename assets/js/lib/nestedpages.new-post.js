@@ -180,6 +180,7 @@ NestedPages.NewPost = function()
 				}
 				plugin.toggleLoading(false);
 				plugin.posts = data.new_pages;
+				console.log(data.new_pages);
 				plugin.addPosts();
 			},
 			error: function(data){
@@ -198,8 +199,6 @@ NestedPages.NewPost = function()
 		before = ( before !== '' ) ? before : false;
 		var after = $(plugin.form).find('.page_after_id').val();
 		after = ( after !== '' ) ? after : false;
-
-		var parent_li = $(plugin.form).parent('.new-child').parent('.page-row');
 		
 		// If parent li doesn't have a child ol, add one
 		if ( $(parent_li).children('ol').length === 0 && !before && !after ){
@@ -243,43 +242,57 @@ NestedPages.NewPost = function()
 		}
 
 		html += '<div class="row-inner">';
-		// Submenu
-		html += '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="np-icon-sub-menu"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M19 15l-6 6-1.42-1.42L15.17 16H4V4h2v10h9.17l-3.59-3.58L13 9l6 6z" class="arrow" /></svg>';
-		// Handle
-		html += '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="handle np-icon-menu"><path d="M0 0h24v24H0z" fill="none" /><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" class="bars" /></svg>';
-		html += '<a href="' + post.edit_link + '" class="page-link page-title">';
-		html += '<span class="title">' + post.title + '</span>';
 		
-		// Status
-		if ( post.status !== 'Publish' ){
-			html += '<span class="status">(' + post.status + ')</span>';
+		// Handle
+		html += '<img src="' + nestedpages.handle + '" class="handle np-icon-menu';
+		if ( NestedPages.jsData.postListTable ) html += ' has-post-list-table';
+		html += '">';
+
+
+		if ( NestedPages.jsData.postListTable ){
+			html += '<table class="np-post-columns-wp fixed';
+			if ( NestedPages.jsData.hierarchical ) html += ' hierarchical';
+			html += '"><tbody>';
+			html += post.post_list_table;
+			html += '</tbody></table>';
 		} else {
-			html += '<span class="status"></span>';
-		}
 
-		// Nav Status
-		html += '<span class="nav-status">';
-		if ( post.np_nav_status === 'hide' ){
-			html += ' ' + nestedpages.hidden;
-		}
-		html += '</span>';
+			html += '<a href="' + post.edit_link + '" class="page-link page-title">';
 
-		html += '<span class="edit-indicator">Edit</span>';
-		html += '</a>';
+			html += '<span class="title">' + post.title + '</span>';
+		
+			// Status
+			if ( post.status !== 'Publish' ){
+				html += '<span class="status">(' + post.status + ')</span>';
+			} else {
+				html += '<span class="status"></span>';
+			}
 
-		// Non-Hierarchical Data
-		if ( !NestedPages.jsData.hierarchical ){
-			html += '<div class="np-post-columns">';
-			html += '<ul class="np-post-info">';
-			html += '<li><span class="np-author-display">' + post.author_formatted + '</span></li>';
-			html += '<li>' + post.date_formatted + '</li>';
-			html += '</ul>';
-			html += '</div>';
-		}
+			// Nav Status
+			html += '<span class="nav-status">';
+			if ( post.np_nav_status === 'hide' ){
+				html += ' ' + nestedpages.hidden;
+			}
+			html += '</span>';
 
-		// Yoast
-		if ( $('.nplist').first().hasClass('has-yoast') ) {
-			html += '<span class="np-seo-indicator na"></span>';
+			html += '<span class="edit-indicator">Edit</span>';
+			html += '</a>';
+
+			// Non-Hierarchical Data
+			if ( !NestedPages.jsData.hierarchical ){
+				html += '<div class="np-post-columns">';
+				html += '<ul class="np-post-info">';
+				html += '<li><span class="np-author-display">' + post.author_formatted + '</span></li>';
+				html += '<li>' + post.date_formatted + '</li>';
+				html += '</ul>';
+				html += '</div>';
+			}
+
+			// Yoast
+			if ( $('.nplist').first().hasClass('has-yoast') ) {
+				html += '<span class="np-seo-indicator na"></span>';
+			}
+
 		}
 
 		// Action Buttons
@@ -300,7 +313,13 @@ NestedPages.NewPost = function()
 		html += '<a href="' + post.delete_link + '" class="np-btn np-btn-trash"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="np-icon-remove"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" class="icon"/><path d="M0 0h24v24H0z" fill="none"/></svg></a>';
 		html += '</div><!-- .action-buttons -->';
 
-		html += '</div><!-- .row-inner --></div><!-- .row -->';
+		html += '</div><!-- .row-inner -->';
+
+		html += '<div class="np-bulk-checkbox">';
+		html += '<input type="checkbox" name="nestedpages_bulk[]" value="' + post.id + '" data-np-bulk-checkbox="' + post.title +'" data-np-post-type="' + nestedpages.current_post_type + '">';
+		html += '</div>';
+
+		html += '</div><!-- .row -->';
 		html += '</li>';
 
 		if ( before ){

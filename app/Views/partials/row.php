@@ -14,8 +14,6 @@ if ( !$wpml ) $wpml_pages = true;
 	</div>
 	<?php endif; ?>
 
-	<?php //if ( !$this->post_type->hierarchical ) echo '<div class="non-hierarchical-spacer"></div>'; ?>
-
 	<div class="row-inner">
 
 		<?php if ( $this->showSortHandle() ) : ?>
@@ -42,7 +40,6 @@ if ( !$wpml ) $wpml_pages = true;
 		<?php else : ?>
 			<?php include( NestedPages\Helpers::view('partials/row-post-list-table') ); ?>
 		<?php endif; // post_list_table ?>
-
 
 		<?php include( NestedPages\Helpers::view('partials/row-action-buttons-post') ); ?>
 	</div><!-- .row-inner -->

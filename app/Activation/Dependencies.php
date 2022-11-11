@@ -152,6 +152,7 @@ class Dependencies
 				'insert_after' => __('Insert After', 'wp-nested-pages'),
 				'private' => __('Private', 'wp-nested-pages'),
 				'post_statuses' => $wp_post_statuses,
+				'handle' => Helpers::plugin_url() . '/assets/images/handle.svg',
 				'current_page' => ( isset($_GET['page']) ) ? sanitize_text_field($_GET['page']) : null
 			];
 			$syncmenu = ( get_option('nestedpages_menusync') == 'sync' ) ? true : false;

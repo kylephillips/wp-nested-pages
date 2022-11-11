@@ -78,15 +78,15 @@ class PostTypeColumns
 		$row = ob_get_clean();
 		
 		$doc = new DOMDocument();
-		$doc->loadHTML($row);
+		$doc->loadHTML($row, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
 		$xpath = new DOMXPath($doc);
 
 		// Add the level designator
-		foreach ($xpath->query('//a[@class="row-title"]') as $td) {
-			$text = $td->nodeValue;
-			$td->nodeValue = str_repeat( '&#8212; ', $level ) . $text;
-		}
+		// foreach ($xpath->query('//a[@class="row-title"]') as $td) {
+		// 	$text = $td->nodeValue;
+		// 	$td->nodeValue = str_repeat( '&#8212; ', $level ) . $text;
+		// }
 
 		// Remove the trash link
 		foreach ($xpath->query('//span[@class="trash"]') as $span) {

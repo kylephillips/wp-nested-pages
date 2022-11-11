@@ -1,5 +1,6 @@
 <?php 
 namespace NestedPages\Entities\Post;
+use NestedPages\Entities\PostType\PostTypeColumns;
 
 class PostRepository 
 {
@@ -107,6 +108,7 @@ class PostRepository
 			$pages[$c]['delete_link'] = get_delete_post_link($post->ID);
 			$pages[$c]['comment_status'] = $post->comment_status;
 			$pages[$c]['comment_count'] =  wp_count_comments($post->ID);
+			$pages[$c]['post_list_table'] = $this->getListTableRow($post);
 
 			// Date Vars
 			$pages[$c]['day'] = get_the_time('d');
@@ -221,5 +223,14 @@ class PostRepository
 			}
 		}
 		return $posts;
+	}
+
+	/**
+	* Get the WP_List_Table row for a post
+	* @param obj - post WP_Post
+	*/
+	public function getListTableRow($post)
+	{
+		return (new PostTypeColumns($post->post_type))->get_single_row($post->ID);
 	}
 }

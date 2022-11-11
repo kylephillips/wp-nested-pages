@@ -71,7 +71,10 @@ NestedPages.Formatter = function()
 
 	plugin.setIndent = function()
 	{
-		if ( $(NestedPages.selectors.lists).first().hasClass('has-post-list-table') ) return; 
+		if ( $(NestedPages.selectors.lists).first().hasClass('has-post-list-table') ) {
+			plugin.setChildIndicators();
+			return; 
+		}
 		var amount = 30;
 		var indent_element = '.child-toggle';
 		$.each($(NestedPages.selectors.lists), function(i, v){
@@ -91,6 +94,24 @@ NestedPages.Formatter = function()
 				return;
 			}
 			$(this).find('.row-inner').css('padding-left', '0px');
+		});
+	}
+
+	/**
+	* If the post list table option is enabled, update the "–" indicators on drop
+	*/
+	plugin.setChildIndicators = function()
+	{
+		$.each($(NestedPages.selectors.row), function(i, v){
+			var level = $(this).parents(NestedPages.selectors.lists).length - 1;
+			var title_text = $(this).find('.row-title').text();
+			title_text = title_text.replace(/(– )?/g, '');
+			var new_title_text = '';
+			for ( var i = 0; i < level; i++ ){
+				new_title_text += '– ';
+			}
+			new_title_text += title_text;
+			$(this).find('.row-title').text(new_title_text);
 		});
 	}
 
