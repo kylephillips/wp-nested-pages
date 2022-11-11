@@ -65,7 +65,7 @@ var styles = function(){
 var scripts = function(){
 	return gulp.src(js_source)
 		.pipe(concat('nestedpages.min.js'))
-		.pipe(uglify())
+		// .pipe(uglify())
 		.pipe(gulp.dest(js_compiled));
 };
 

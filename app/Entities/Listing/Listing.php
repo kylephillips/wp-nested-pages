@@ -352,7 +352,7 @@ class Listing
 		// Compare child pages with user's toggled pages
 		$compared = array_intersect($this->listing_repo->visiblePages($this->post_type->name), $children);
 
-		$list_classes = 'sortable visible nplist';
+		$list_classes = 'np-sortable visible nplist';
 		if ( !$this->user->canSortPosts($this->post_type->name) || !$sortable || $this->listing_repo->isSearch() ) $list_classes .= ' no-sort';
 		if ( $this->listing_repo->isOrdered($this->post_type->name) ) $list_classes .= ' no-sort';
 		if ( $this->integrations->plugins->wpml->installed && $this->integrations->plugins->wpml->getCurrentLanguage() == 'all' ) $list_classes .= ' no-sort';
