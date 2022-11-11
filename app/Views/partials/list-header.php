@@ -1,4 +1,4 @@
-<div class="nestedpages-list-header">
+<div class="nestedpages-list-header <?php if ( $this->post_list_table ) echo 'has-post-list-table'; ?>">
 	<div class="np-check-all">
 		<input type="checkbox" data-np-check-all="nestedpages_bulk[]" data-np-bulk-checkbox />
 	</div>

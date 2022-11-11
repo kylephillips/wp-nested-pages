@@ -563,6 +563,12 @@
 	height: 46px;
 	position: relative;
 	@include clearfix;
+	&.has-post-list-table {
+		height: 60px;
+		.np-check-all {
+			line-height: 60px;
+		}
+	}
 	.np-check-all {
 		float: right;
 		width: 33px;
@@ -584,9 +590,8 @@
 		z-index: 1;
 		table-layout: fixed;
 		padding-right: 33px;
-		// padding-left: 50px;
-		&.hierarchical {
-			// padding-left: 80px;
+		th {
+			text-align: left;
 		}
 	}
 
@@ -594,7 +599,7 @@
 		padding: 0;
 	}
 	th.handle-cell-spacer {
-		width: 50px;
+		width: 80px;
 	}
 	&.bulk-shown .np-post-columns-header-wp {
 		display: none;
