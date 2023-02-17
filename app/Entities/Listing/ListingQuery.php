@@ -73,7 +73,7 @@ class ListingQuery
 	/**
 	* Get the Posts
 	*/
-	public function getPosts($post_type, $h_taxonomies = [], $f_taxonomies = [])
+	public function getPosts($post_type, $h_taxonomies = [], $f_taxonomies = [], $page_group_id = null)
 	{
 		$this->post_type = $post_type;
 
@@ -101,23 +101,24 @@ class ListingQuery
 			'author' => $this->sort_options->author,
 			'orderby' => $this->sort_options->orderby,
 			'post_status' => apply_filters('nestedpages_listing_statuses', $statuses, $this->post_type),
-			'order' => $this->sort_options->order
+			'order' => $this->sort_options->order,
+			'suppress_filters' => false,
+			'nested_pages_page_group' => $page_group_id, 
 		];
 		
 		if ( $this->listing_repo->isSearch() ) $query_args = $this->searchParams($query_args);
 		if ( $this->listing_repo->isFiltered() ) $query_args = $this->filterParams($query_args);
 		if ( $this->sort_options->tax_query ) $query_args['tax_query'] = $this->sort_options->tax_query;
+		if ( $page_group_id !== null ) $query_args['post__in'] = \NestedPages\Helpers::getPostsOfPageGroup($page_group_id);
 		
 		$query_args = apply_filters('nestedpages_page_listing', $query_args, $this->post_type);
 		
-		add_filter( 'posts_clauses', [$this, 'queryFilter']);
+		add_filter( 'posts_clauses', [$this, 'queryFilter'] );
 		$all_posts = new \WP_Query($query_args);
-		remove_filter( 'posts_clauses', [$this, 'queryFilter']);
-		
-		if ( $all_posts->have_posts() ) :
-			return $all_posts->posts;
-		endif; wp_reset_postdata();
-		return null;
+		remove_filter( 'posts_clauses', [$this, 'queryFilter'] );
+
+		if ( ! $all_posts->have_posts() ) wp_reset_postdata();
+		return $all_posts->posts;
 	}
 
 	/**
@@ -166,7 +167,12 @@ class ListingQuery
 	public function queryFilter($pieces)
 	{
 		global $wpdb;
-		
+
+		// Restrict fields to avoid loading the post contents
+		$pieces['fields'] = 'ID, post_author, post_date, post_date_gmt, post_title, post_status,'
+			. ' post_name, post_modified, post_modified_gmt, post_parent, guid, menu_order,'
+			. ' post_type, post_mime_type, comment_count';
+
 		// Add Hierarchical Categories
 		$c = 0;
 		foreach($this->h_taxonomies as $tax){
@@ -209,11 +215,12 @@ class ListingQuery
 							LEFT JOIN `$wpdb->term_taxonomy` AS $tt ON $tt.term_taxonomy_id = $tr.term_taxonomy_id AND $tt.taxonomy = '$name'
 							LEFT JOIN `$wpdb->terms` AS $t ON $t.term_id = $tt.term_id";
 				endif ;
-				$pieces['fields'] .= ",GROUP_CONCAT(DISTINCT $t.term_id SEPARATOR ',') AS '$name'";
+				$pieces['fields'] .= ", GROUP_CONCAT(DISTINCT $t.term_id SEPARATOR ',') AS '$name'";
 				$c++;
 		}
 
 		$pieces['groupby'] = "$wpdb->posts.ID"; 
 		return $pieces;
 	}
+
 }

@@ -360,14 +360,39 @@ class Listing
 	}
 
 	/**
+	 * Get the number of page groups.
+	 */
+	private function countPageGroups() {
+		$count = 0;
+		foreach ( $this->all_posts as $post ) {
+			if ( ! $post->post_parent )
+				$count++;
+		}
+		return $count;
+	}
+
+	/**
 	* Loop through all the pages and create the nested / sortable list
 	* Called in listing.php view
 	*/
 	private function getPosts()
 	{
-		$this->all_posts = $this->listing_query->getPosts($this->post_type, $this->h_taxonomies, $this->f_taxonomies);
-		$this->listPostLevel();
-		return;
+		$page_group_id = null;
+		if ( array_key_exists( 'np_page_group', $_REQUEST ) ) {
+			if ( is_numeric( $_REQUEST['np_page_group'] ) )
+				$page_group_id = $_REQUEST['np_page_group'];
+		}
+		$this->all_posts = $this->listing_query->getPosts($this->post_type, $this->h_taxonomies, $this->f_taxonomies, null);
+		$toplevel_count = $this->countPageGroups();
+		if ( $toplevel_count >= 1 ) {
+			include( Helpers::view('partials/select-page-group') );
+		}
+		if ( $page_group_id !== null ) {
+			$this->all_posts = $this->listing_query->getPosts($this->post_type, $this->h_taxonomies, $this->f_taxonomies, $page_group_id);
+		}
+		if ( $toplevel_count <= 3 || $page_group_id !== null || $this->listing_repo->isSearch() ) {
+			$this->listPostLevel();
+		}
 	}
 
 	/**

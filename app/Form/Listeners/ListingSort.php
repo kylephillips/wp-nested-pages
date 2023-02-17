@@ -39,6 +39,8 @@ class ListingSort extends BaseHandler
 		$this->setOrder();
 		$this->setAuthor();
 		$this->setTaxonomies();
+		$this->setPageGroup();
+		$this->setLanguage();
 	}
 
 	/**
@@ -81,4 +83,24 @@ class ListingSort extends BaseHandler
 			endif;
 		endforeach;
 	}
+
+
+		/**
+	* Set page group
+	*/
+	private function setPageGroup()
+	{
+		if ( isset($_POST['np_page_group']) && $_POST['np_page_group'] !== '' ) $this->url .= '&np_page_group=' . sanitize_text_field($_POST['np_page_group']);
+	}
+
+
+	/**
+	 * Set language
+	 */
+	private function setLanguage()
+	{
+		if ( isset($_POST['lang']) ) $this->url .= '&lang=' . sanitize_text_field($_POST['lang']);
+	}
+
+
 }
