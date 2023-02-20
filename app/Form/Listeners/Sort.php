@@ -28,6 +28,7 @@ class Sort extends BaseHandler
 		$order = $this->post_update_repo->updateOrder($posts, 0, $filtered);
 		if ( $order ){
 			if ( $this->integrations->plugins->wpml->installed ) $this->integrations->plugins->wpml->syncPostOrder($posts);
+			apply_filters('nestedpages_update_order', $this->data['changed_parent_id']);
 			$this->response = ['status' => 'success', 'message' => __('Page order successfully updated.','wp-nested-pages') ];
 		} else {
 			$this->response = ['status'=>'error', 'message'=> __('There was an error updating the page order.','wp-nested-pages') ];
