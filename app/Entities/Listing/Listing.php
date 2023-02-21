@@ -384,9 +384,6 @@ class Listing
 		}
 		$this->all_posts = $this->listing_query->getPosts($this->post_type, $this->h_taxonomies, $this->f_taxonomies, null);
 		$toplevel_count = $this->countPageGroups();
-		if ( $toplevel_count >= 1 ) {
-			include( Helpers::view('partials/select-page-group') );
-		}
 		if ( $page_group_id !== null ) {
 			$this->all_posts = $this->listing_query->getPosts($this->post_type, $this->h_taxonomies, $this->f_taxonomies, $page_group_id);
 		}
