@@ -90,7 +90,7 @@ endif;
 	<div data-nestedpages-error class="updated error notice is-dismissible" style="display:none;"><p></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php esc_html_e('Dismiss this notice.', 'wp-nested-pages'); ?></span></button></div>
 
 	<?php
-	$this->getPosts();  // todo: bringt irgendwie nix. Sollte in tool-list verwendet werden.
+	$this->loadPageGroups();
 	include(NestedPages\Helpers::view('partials/tool-list'));
 	?>
 
@@ -98,6 +98,9 @@ endif;
 
 
 	<div class="nestedpages">
+		<?php
+		$this->printPostsList();
+		?>
 		<div class="quick-edit quick-edit-form np-inline-modal" style="display:none;">
 			<?php include( NestedPages\Helpers::view('forms/quickedit-post') ); ?>
 		</div>

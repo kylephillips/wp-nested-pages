@@ -128,6 +128,18 @@ class Listing
 	private $status_preference;
 
 	/**
+	 * Current page group
+	 * @var ?int
+	 */
+	private $page_group_id;
+
+	/**
+	 * Number of page groups
+	 * @var int
+	 */
+	private $number_of_page_groups;
+
+	/**
 	* Enabled Custom Fields
 	*/
 	private $enabled_custom_fields;
@@ -150,6 +162,7 @@ class Listing
 		$this->setPostTypeSettings();
 		$this->setStandardFields();
 		$this->setStatusPreference();
+		$this->setPageGroup();
 	}
 
 	/**
@@ -371,23 +384,39 @@ class Listing
 		return $count;
 	}
 
+
+	/**
+	 * Set the page group from the HTTP request
+	 */
+	private function setPageGroup() {
+		$this->page_group_id = null;
+		if ( array_key_exists( 'np_page_group', $_REQUEST ) ) {
+			if ( is_numeric( $_REQUEST['np_page_group'] ) )
+				$this->page_group_id = $_REQUEST['np_page_group'];
+		}
+		$this->all_posts = [];
+	}
+
+	/**
+	 * Load the page groups
+	 */
+	private function loadPageGroups() {
+		$this->all_posts = $this->listing_query->getPosts($this->post_type, $this->h_taxonomies, $this->f_taxonomies, null);
+		$this->number_of_page_groups = $this->countPageGroups();
+		error_log("COUNT: " . count($this->all_posts) . ' ' . $this->number_of_page_groups);
+	}
+
 	/**
 	* Loop through all the pages and create the nested / sortable list
 	* Called in listing.php view
 	*/
-	private function getPosts()
+	private function printPostsList()
 	{
-		$page_group_id = null;
-		if ( array_key_exists( 'np_page_group', $_REQUEST ) ) {
-			if ( is_numeric( $_REQUEST['np_page_group'] ) )
-				$page_group_id = $_REQUEST['np_page_group'];
-		}
-		$this->all_posts = $this->listing_query->getPosts($this->post_type, $this->h_taxonomies, $this->f_taxonomies, null);
-		$toplevel_count = $this->countPageGroups();
-		if ( $page_group_id !== null ) {
-			$this->all_posts = $this->listing_query->getPosts($this->post_type, $this->h_taxonomies, $this->f_taxonomies, $page_group_id);
-		}
-		if ( $toplevel_count <= 3 || $page_group_id !== null || $this->listing_repo->isSearch() ) {
+		if ( $this->number_of_page_groups <= 3 || $this->page_group_id !== null || $this->listing_repo->isSearch() ) {
+			// Just an optimization: If $this->page_group_id is null, then $this->all_posts already holds the right data.
+			if ( $this->page_group_id !== null && count($this->all_posts) != 0 ) {
+				$this->all_posts = $this->listing_query->getPosts($this->post_type, $this->h_taxonomies, $this->f_taxonomies, $this->page_group_id);
+			}
 			$this->listPostLevel();
 		}
 	}

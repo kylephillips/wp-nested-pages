@@ -152,7 +152,7 @@ $current_language_short = $this->integrations->plugins->wpml->installed ? $this-
 			// Page groups
 			?>
 			<div class="select" id="wp-nested-pages-tools-pagegroup">
-				<input type="hidden" name="lang" value="<?= $current_language ?>">
+				<input type="hidden" name="lang" value="<?= $current_language_short ?>">
 				<select id="wp-nested-pages-select-pagegroup" name="np_page_group">
 					<option value="na">[ <?= esc_attr__('Select an item', 'wp-nested-pages') ?> ]</option>
 <?php
@@ -189,6 +189,7 @@ $current_language_short = $this->integrations->plugins->wpml->installed ? $this-
 <?php
 				endforeach;
 ?>
+				</select>
 			</div>
 
 			<div class="select">
