@@ -90,7 +90,6 @@ endif;
 	<div data-nestedpages-error class="updated error notice is-dismissible" style="display:none;"><p></p><button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php esc_html_e('Dismiss this notice.', 'wp-nested-pages'); ?></span></button></div>
 
 	<?php
-	$this->loadPageGroups();
 	include(NestedPages\Helpers::view('partials/tool-list'));
 	?>
 

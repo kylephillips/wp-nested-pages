@@ -73,7 +73,7 @@ class ListingQuery
 	/**
 	* Get the Posts
 	*/
-	public function getPosts($post_type, $h_taxonomies = [], $f_taxonomies = [], $page_group_id = null)
+	public function getPosts($post_type, $h_taxonomies = [], $f_taxonomies = [], $page_group_id = null, $only_page_groups = false)
 	{
 		$this->post_type = $post_type;
 
@@ -110,6 +110,7 @@ class ListingQuery
 		if ( $this->listing_repo->isFiltered() ) $query_args = $this->filterParams($query_args);
 		if ( $this->sort_options->tax_query ) $query_args['tax_query'] = $this->sort_options->tax_query;
 		if ( $page_group_id !== null ) $query_args['post__in'] = \NestedPages\Helpers::getPostsOfPageGroup($page_group_id);
+		if ( $only_page_groups ) $query_args['post_parent__in'] = [ 0 ];
 		
 		$query_args = apply_filters('nestedpages_page_listing', $query_args, $this->post_type);
 		

@@ -134,10 +134,10 @@ class Listing
 	private $page_group_id;
 
 	/**
-	 * Number of page groups
-	 * @var int
+	 * Available page groups
+	 * @var array
 	 */
-	private $number_of_page_groups;
+	private $page_groups;
 
 	/**
 	* Enabled Custom Fields
@@ -162,6 +162,7 @@ class Listing
 		$this->setPostTypeSettings();
 		$this->setStandardFields();
 		$this->setStatusPreference();
+		$this->loadPageGroups();
 		$this->setPageGroup();
 	}
 
@@ -373,17 +374,11 @@ class Listing
 	}
 
 	/**
-	 * Get the number of page groups.
+	 * Load all the available page groups
 	 */
-	private function countPageGroups() {
-		$count = 0;
-		foreach ( $this->all_posts as $post ) {
-			if ( ! $post->post_parent )
-				$count++;
-		}
-		return $count;
+	private function loadPageGroups() {
+		$this->page_groups = $this->listing_query->getPosts($this->post_type, $this->h_taxonomies, $this->f_taxonomies, null, true);
 	}
-
 
 	/**
 	 * Set the page group from the HTTP request
@@ -398,25 +393,13 @@ class Listing
 	}
 
 	/**
-	 * Load the page groups
-	 */
-	private function loadPageGroups() {
-		$this->all_posts = $this->listing_query->getPosts($this->post_type, $this->h_taxonomies, $this->f_taxonomies, null);
-		$this->number_of_page_groups = $this->countPageGroups();
-		error_log("COUNT: " . count($this->all_posts) . ' ' . $this->number_of_page_groups);
-	}
-
-	/**
 	* Loop through all the pages and create the nested / sortable list
 	* Called in listing.php view
 	*/
 	private function printPostsList()
 	{
-		if ( $this->number_of_page_groups <= 3 || $this->page_group_id !== null || $this->listing_repo->isSearch() ) {
-			// Just an optimization: If $this->page_group_id is null, then $this->all_posts already holds the right data.
-			if ( $this->page_group_id !== null && count($this->all_posts) != 0 ) {
-				$this->all_posts = $this->listing_query->getPosts($this->post_type, $this->h_taxonomies, $this->f_taxonomies, $this->page_group_id);
-			}
+		if ( count( $this->page_groups ) <= 3 || $this->page_group_id !== null || $this->listing_repo->isSearch() ) {
+			$this->all_posts = $this->listing_query->getPosts($this->post_type, $this->h_taxonomies, $this->f_taxonomies, $this->page_group_id, false);
 			$this->listPostLevel();
 		}
 	}
