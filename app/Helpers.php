@@ -49,35 +49,54 @@ class Helpers
 		global $wpdb;
 		$sqlQuery = "select id from {$wpdb->posts} where post_parent = {$toplevel_id} $sqlWhere";
 		$rows_sub_ids = $wpdb->get_results($sqlQuery, ARRAY_A);
-		foreach ($rows_sub_ids as &$row_sub_id) {
+		foreach ( $rows_sub_ids as &$row_sub_id ) {
 			$sub_id = $row_sub_id['id'];
 			$pages[] = $sub_id;
-			self::getChildPosts_recurse( $sub_id, $pages, $sqlWhere );
+			self::getChildPosts_recurse($sub_id, $pages, $sqlWhere);
 		}
 		unset($row_sub_id);
 	}
 
 	/**
-	 * Return posts of a page group
+	 * Return a part of an SQL where clause.
+	 * Since this function is used internally and possibly by theme and plugin developers only,
+	 * it is expected that the field name is not vulnerable to SQL injection.
 	 */
-	public static function getChildPosts(int $toplevel_id, ?array $postTypes = null) {
-		if ( $postTypes === null ) $postTypes = array( 'include' => array( 'page') );
+	private static function getSQLWhere(bool $include, string $field, array $values) {
+		$sqlWhere = ' and ' . $field;
+		if ( !$include ) $sqlWhere .= ' not';
+		$sqlWhere .= ' in (';
+		$sep = '';
+		foreach ($values as $value) {
+			$sqlWhere .= $sep . "'" . esc_sql($value) . "'";
+			$sep = ', ';
+		}
+		$sqlWhere .= ')';
+	}
+
+	/**
+	 * Get child posts of a post
+	 */
+	public static function getChildPosts(int $toplevel_id, array $args = []) {
 		$sqlWhere = '';
-		if ( array_key_exists( 'include', $postTypes ) ) {
-			$sqlWhere .= ' and post_type in (';
-			foreach ( $postTypes[ 'include' ] as $postType ) $sqlWhere .= "'{$postType}'";
-			$sqlWhere .= ')';
+		foreach ( ['post_type', 'post_status'] as $field ) {
+			if ( array_key_exists($field, $args) ) {
+				foreach ( ['include', 'exclude'] as $rule ) {
+					if ( array_key_exists( $rule, $args[$field] ) ) {
+						$sqlWhere .= self::getSQLWhere($rule == 'include', $field, (array)$args[$field][$rule]);
+					}
+				}
+			}
 		}
-		if ( array_key_exists( 'exclude', $postTypes ) ) {
-			$sqlWhere .= ' and post_type not in (';
-			foreach ( $postTypes[ 'exclude' ] as $postType ) $sqlWhere .= "'{$postType}'";
-			$sqlWhere .= ')';
-		}
-		$page_ids = array($toplevel_id);
+		$page_ids = [ $toplevel_id ];
 		self::getChildPosts_recurse($toplevel_id, $page_ids, $sqlWhere);
 		return $page_ids;
 	}
 
+	/**
+	 * Get posts of a page group.
+	 * By default, it returns all related posts.
+	 */
 	public static function getPostsOfPageGroup(int $post_id, ?array $postTypes = null) {
 		$page_ids = self::getChildPosts( self::getPageGroup($post_id), $postTypes );
 		return $page_ids;

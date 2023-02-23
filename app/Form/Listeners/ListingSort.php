@@ -84,7 +84,6 @@ class ListingSort extends BaseHandler
 		endforeach;
 	}
 
-
 		/**
 	* Set page group
 	*/
@@ -92,7 +91,6 @@ class ListingSort extends BaseHandler
 	{
 		if ( isset($_POST['np_page_group']) && $_POST['np_page_group'] !== '' ) $this->url .= '&np_page_group=' . sanitize_text_field($_POST['np_page_group']);
 	}
-
 
 	/**
 	 * Set language

@@ -156,15 +156,15 @@ $current_language_short = $this->integrations->plugins->wpml->installed ? $this-
 				<select id="wp-nested-pages-select-pagegroup" name="np_page_group">
 					<option value="na">[ <?= esc_attr__('Select an item', 'wp-nested-pages') ?> ]</option>
 <?php
-				$options = array();
+				$options = [];
 				foreach ( $this->page_groups as $post ) {
-					$options[ $post->ID ] = $post->post_title;
+					$options[$post->ID] = $post->post_title;
 				}
-				if ( class_exists( 'Collator' ) ) {
+				if ( class_exists('Collator') ) {
 					$lang = $this->integrations->plugins->wpml->installed ? apply_filters('wpml_current_language', null) : get_locale();
 					echo '<!-- ' . $lang . ' -->';
-					$coll = new \Collator( $lang );
-					$coll->asort( $options );
+					$coll = new \Collator($lang);
+					$coll->asort($options);
 				} else {
 					echo '<!-- uasort -->';
 					uasort($options, 'strnatcasecmp');
@@ -177,7 +177,7 @@ $current_language_short = $this->integrations->plugins->wpml->installed ? $this-
 						if ( $post_id == $page_group_id ) echo ' selected';
 					endif;
 ?>><?php
-					echo esc_html( $post_title );
+					echo esc_html($post_title);
 					if ( $all_languages ) {
 						$language_details = apply_filters('wpml_post_language_details', null, $post_id);
 						echo ' [' . $language_details['language_code'] . ']';
