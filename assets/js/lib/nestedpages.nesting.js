@@ -48,7 +48,7 @@ NestedPages.Nesting = function()
 						plugin.formatter.setNestedMargins();
 					}, 100
 				);
-				plugin.syncNesting();
+				plugin.syncNesting(false, null, ui.item[0].id.replace("menuItem_", ""));
 			},
 		});
 	}
