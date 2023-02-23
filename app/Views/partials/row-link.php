@@ -109,9 +109,10 @@ endif;
 		$out .= '</div>';
 		echo $out;
 	endif;
-	?>
 
+	if ( $this->can_user_perform_bulk_actions ) : ?>
 	<div class="np-bulk-checkbox">
 		<input type="checkbox" name="nestedpages_bulk[]" value="<?php echo esc_attr($this->post->id); ?>" data-np-bulk-checkbox="<?php echo esc_attr($this->post->title); ?>" class="np-redirect-bulk" data-np-post-type="<?php echo esc_attr($this->post->post_type); ?>" />
 	</div>
+	<?php endif ?>
 </div><!-- .row -->

@@ -161,6 +161,21 @@ class UserRepository
 	}
 
 	/**
+	 * Can the user perform bulk actions?
+	 */
+	public function canPerformBulkActions() {
+		$allowed_roles = $this->settings->bulkActionsEnabled();
+		$allowed = false;
+		foreach ( $allowed_roles as $allowed_role ) {
+			if ( current_user_can($allowed_role) ) {
+				$allowed = true;
+				break;  // optimization
+			}
+		}
+		return $allowed;
+	}
+
+	/**
 	* Get an array of all users/ids
 	* @since 1.3.0
 	* @return array
