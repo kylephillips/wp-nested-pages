@@ -91,7 +91,8 @@ class ListingQuery
 			$post_type = [$post_type->name];
 		}
 
-		$statuses = ['publish', 'pending', 'draft', 'private', 'future', 'trash'];
+		$statuses = ['publish', 'pending', 'draft', 'private', 'future'];
+		if ( !$only_page_groups ) $statuses[] = 'trash';
 		$post_type_settings = $this->post_type_repo->getSinglePostType($post_type[0]);
 		if ( isset($post_type_settings->custom_statuses) ) $statuses = array_merge($statuses, $post_type_settings->custom_statuses);
 		
@@ -115,7 +116,7 @@ class ListingQuery
 			  [ 'post_type' =>
 			    [
 			      'include' => ['page']
-			    ]
+			    ],
 			  ]
 			);
 		if ( $only_page_groups ) $query_args['post_parent__in'] = [ 0 ];
