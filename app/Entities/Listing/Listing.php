@@ -398,7 +398,14 @@ class Listing
 	*/
 	private function printPostsList()
 	{
-		if ( count( $this->page_groups ) <= 3 || $this->page_group_id !== null || $this->listing_repo->isSearch() ) {
+		$max_nonselected_pagegroups = $this->settings->maxNonSelectedPageGroups();
+		if ( $max_nonselected_pagegroups == -1 )
+			$list_due_to_pagegroups = true;
+		else if ( $max_nonselected_pagegroups == 0 )
+			$list_due_to_pagegroups = false;
+		else
+			$list_due_to_pagegroups = count( $this->page_groups ) <= $max_nonselected_pagegroups;
+		if ( $list_due_to_pagegroups || $this->page_group_id !== null || $this->listing_repo->isSearch() ) {
 			$this->all_posts = $this->listing_query->getPosts($this->post_type, $this->h_taxonomies, $this->f_taxonomies, $this->page_group_id, false);
 			$this->listPostLevel();
 		}
