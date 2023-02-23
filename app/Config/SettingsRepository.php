@@ -230,8 +230,7 @@ class SettingsRepository
 			'nestedpages_posttypes',
 			'nestedpages_ui',
 			'nestedpages_version',
-			'nestedpages_admin',
-			'nestedpages_max_nonselected_pagegroups'
+			'nestedpages_admin'
 		];
 		foreach($options as $option){
 			delete_option($option);
