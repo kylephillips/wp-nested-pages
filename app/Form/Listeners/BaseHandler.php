@@ -84,9 +84,19 @@ abstract class BaseHandler
 	protected function setData()
 	{
 		$this->nonce = sanitize_text_field($_POST['nonce']);
-		$data = [];		
+		$data = [];
 		foreach( $_POST as $key => $value ){
-			$data[$key] = $value;
+			if ( $key == 'jsondata' ) {
+				$jsondata = @json_decode( wp_unslash($value), true );
+				if ( json_last_error() == JSON_ERROR_NONE ) {
+					foreach ( $jsondata as $json_key => &$json_value) {
+						$this->data[$json_key] = $json_value;
+					}
+					unset($jsonvalue);
+				}
+			} else {
+				$this->data[$key] = $value;
+			}
 		}
 		$this->data = $data;
 	}
