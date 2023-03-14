@@ -179,8 +179,8 @@ $current_language_short = $this->integrations->plugins->wpml->installed ? $this-
 ?>><?php
 					echo esc_html($post_title);
 					if ( $this->integrations->plugins->wpml->installed && $all_languages ) {
-						$language_details = apply_filters('wpml_post_language_details', null, $post_id);
-						echo ' [' . $language_details['language_code'] . ']';
+						$post_language = $this->integrations->plugins->wpml->getPostLanguage($post_id);
+						if ( $post_language !== null ) echo ' [' . $post_language . ']';
 					}
 ?>
 					</option>
