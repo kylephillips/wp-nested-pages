@@ -161,7 +161,7 @@ $current_language_short = $this->integrations->plugins->wpml->installed ? $this-
 					$options[$post->ID] = $post->post_title;
 				}
 				if ( class_exists('Collator') ) {
-					$lang = $this->integrations->plugins->wpml->installed ? apply_filters('wpml_current_language', null) : get_locale();
+					$lang = $this->integrations->plugins->wpml->installed ? $this->integrations->plugins->wpml->getCurrentLanguage('code') : get_locale();
 					echo '<!-- ' . $lang . ' -->';
 					$coll = new \Collator($lang);
 					$coll->asort($options);
@@ -178,7 +178,7 @@ $current_language_short = $this->integrations->plugins->wpml->installed ? $this-
 					endif;
 ?>><?php
 					echo esc_html($post_title);
-					if ( $all_languages ) {
+					if ( $this->integrations->plugins->wpml->installed && $all_languages ) {
 						$language_details = apply_filters('wpml_post_language_details', null, $post_id);
 						echo ' [' . $language_details['language_code'] . ']';
 					}
