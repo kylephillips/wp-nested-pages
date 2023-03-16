@@ -119,7 +119,7 @@ class ListingQuery
 			    ],
 			  ]
 			);
-		if ( $only_page_groups ) $query_args['post_parent__in'] = [ 0 ];
+		if ( $only_page_groups ) $query_args['post_parent'] = 0;
 		
 		$query_args = apply_filters('nestedpages_page_listing', $query_args, $this->post_type);
 		
