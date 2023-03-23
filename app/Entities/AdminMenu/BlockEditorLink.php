@@ -55,6 +55,8 @@ class BlockEditorLink
 		if ( !$user_can_view ) return;
 		$link = ( $type->name == 'page' ) ? 'admin.php?page=nestedpages' : 'admin.php?page=' . $this->post_type_repo->getMenuSlug($type);
 		$url = admin_url($link);
+		$pagegroup = \NestedPages\Helpers::getPageGroup(get_post()->ID);
+		if ( $pagegroup !== false ) $url .= '&np_page_group=' . $pagegroup;
 		echo '<script>jQuery(window).on("load", function(){ var headerLink = jQuery(".edit-post-header .edit-post-fullscreen-mode-close"); jQuery(headerLink).attr("href", "' . $url . '"); });</script>';
 	}
 }
