@@ -5,6 +5,7 @@ use NestedPages\Entities\Listing\ListingRepository;
 use NestedPages\Entities\PostType\PostTypeRepository;
 use NestedPages\Config\SettingsRepository;
 use NestedPages\Entities\PluginIntegration\IntegrationFactory;
+use NestedPages\Entities\Post\PostRepository;
 
 /**
 * Performs the query for the page listing and formats into a multidemensional array
@@ -111,7 +112,7 @@ class ListingQuery
 		if ( $this->listing_repo->isFiltered() ) $query_args = $this->filterParams($query_args);
 		if ( $this->sort_options->tax_query ) $query_args['tax_query'] = $this->sort_options->tax_query;
 		if ( $page_group_id !== null )
-			$query_args['post__in'] = \NestedPages\Helpers::getPostsOfPageGroup(
+			$query_args['post__in'] = PostRepository::getPostsOfPageGroup(
 			  $page_group_id,
 			  [ 'post_type' =>
 			    [
