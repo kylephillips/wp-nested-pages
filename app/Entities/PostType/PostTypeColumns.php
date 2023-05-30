@@ -82,12 +82,6 @@ class PostTypeColumns
 
 		$xpath = new DOMXPath($doc);
 
-		// Add the level designator
-		// foreach ($xpath->query('//a[@class="row-title"]') as $td) {
-		// 	$text = $td->nodeValue;
-		// 	$td->nodeValue = str_repeat( '&#8212; ', $level ) . $text;
-		// }
-
 		// Remove the trash link
 		foreach ($xpath->query('//span[@class="trash"]') as $span) {
 			$span->parentNode->removeChild($span);
