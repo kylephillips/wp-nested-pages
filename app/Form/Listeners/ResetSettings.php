@@ -11,6 +11,7 @@ class ResetSettings extends BaseHandler
 
 	private function reset()
 	{
+		if ( !current_user_can('manage_options') ) return;
 		$this->settings->resetSettings();
 		return wp_send_json(['status' => 'success']);
 	}
