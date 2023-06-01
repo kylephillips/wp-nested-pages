@@ -31,6 +31,10 @@ $sync_status = ( $this->settings->menuSyncEnabled() ) ? __('Currently Enabled', 
 						<input type="checkbox" name="nestedpages_ui[non_indent]" value="true" <?php if ( $this->settings->nonIndentEnabled() ) echo 'checked'; ?> />
 						<?php _e('Use the classic (non-indented) hierarchy display.', 'wp-nested-pages'); ?>
 					</label></p>
+					<p><label>
+						<input type="number" name="nestedpages_ui[max_nonselected_pagegroups]" value="<?= esc_html($this->settings->maxNonSelectedPageGroups()) ?>" min="-1" max="10" style="max-width: 5rem">
+						<?php _e('Maximum number of page groups before selection is required (-1 through 10).', 'wp-nested-pages'); ?>
+					</label></p>
 				</div>
 			</div><!-- .row -->
 

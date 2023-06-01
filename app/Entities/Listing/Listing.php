@@ -128,6 +128,18 @@ class Listing
 	private $status_preference;
 
 	/**
+	 * Current page group
+	 * @var ?int
+	 */
+	private $page_group_id;
+
+	/**
+	 * Available page groups
+	 * @var array
+	 */
+	private $page_groups;
+
+	/**
 	* Enabled Custom Fields
 	*/
 	private $enabled_custom_fields;
@@ -150,6 +162,8 @@ class Listing
 		$this->setPostTypeSettings();
 		$this->setStandardFields();
 		$this->setStatusPreference();
+		$this->loadPageGroups();
+		$this->setPageGroup();
 	}
 
 	/**
@@ -360,14 +374,41 @@ class Listing
 	}
 
 	/**
+	 * Load all the available page groups
+	 */
+	private function loadPageGroups() {
+		$this->page_groups = $this->listing_query->getPosts($this->post_type, $this->h_taxonomies, $this->f_taxonomies, null, true);
+	}
+
+	/**
+	 * Set the page group from the HTTP request
+	 */
+	private function setPageGroup() {
+		$this->page_group_id = null;
+		if ( array_key_exists( 'np_page_group', $_REQUEST ) ) {
+			if ( is_numeric( $_REQUEST['np_page_group'] ) )
+				$this->page_group_id = $_REQUEST['np_page_group'];
+		}
+		$this->all_posts = [];
+	}
+
+	/**
 	* Loop through all the pages and create the nested / sortable list
 	* Called in listing.php view
 	*/
-	private function getPosts()
+	private function printPostsList()
 	{
-		$this->all_posts = $this->listing_query->getPosts($this->post_type, $this->h_taxonomies, $this->f_taxonomies);
-		$this->listPostLevel();
-		return;
+		$max_nonselected_pagegroups = $this->settings->maxNonSelectedPageGroups();
+		if ( $max_nonselected_pagegroups == -1 )
+			$list_due_to_pagegroups = true;
+		else if ( $max_nonselected_pagegroups == 0 )
+			$list_due_to_pagegroups = false;
+		else
+			$list_due_to_pagegroups = count($this->page_groups) <= $max_nonselected_pagegroups;
+		if ( $list_due_to_pagegroups || $this->page_group_id !== null || $this->listing_repo->isSearch() ) {
+			$this->all_posts = $this->listing_query->getPosts($this->post_type, $this->h_taxonomies, $this->f_taxonomies, $this->page_group_id, false);
+			$this->listPostLevel();
+		}
 	}
 
 	/**

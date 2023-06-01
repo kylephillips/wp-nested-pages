@@ -88,6 +88,25 @@ class SettingsRepository
 		return false;
 	}
 
+
+	/**
+	 * Number of available page groups before selection is required
+	 * @return int
+	 */
+	public function maxNonSelectedPageGroups()
+	{
+		$value = 3;
+		$option = get_option('nestedpages_ui', false);
+		if ( is_array($option) )
+			if ( array_key_exists('max_nonselected_pagegroups', $option) ) {
+				if ( is_numeric($option['max_nonselected_pagegroups']) ) {
+					if ( $option['max_nonselected_pagegroups'] >= -1 ) $value = $option['max_nonselected_pagegroups'];
+				}
+			}
+		if ( $value < -1 ) $value = -1;
+		return $value;
+	}
+
 	/**
 	* Are menus completely disabled?
 	* @return boolean
@@ -262,4 +281,5 @@ class SettingsRepository
 		endif;
 		return $roles;
 	}
+
 }

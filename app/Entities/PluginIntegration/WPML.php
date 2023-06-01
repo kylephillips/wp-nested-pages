@@ -344,4 +344,15 @@ class WPML
 		$query = $wpdb->prepare("SELECT COUNT(*) FROM {$wpdb->prefix}posts AS p LEFT JOIN {$wpdb->prefix}icl_translations AS trans ON p.ID = trans.element_id WHERE post_type = %s AND p.post_status = 'publish' AND trans.language_code = %s", $post_type, $language);
 		return $wpdb->get_var($query);
 	}
+
+	/**
+	 * Get language of given post ID
+	 * @param $post_id int - the post ID
+	 * @return string or null - language code
+	 */
+	public function getPostLanguage($post_id)
+	{
+		$langauge_details = apply_filters('wpml_post_language_details', null, $post_id);
+		return $langauge_details['language_code'] ?? null;
+	}
 }

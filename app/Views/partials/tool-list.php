@@ -2,10 +2,17 @@
 $trashedCount = $this->post_repo->trashedCount($this->post_type->name); 
 $searchLabel = esc_attr($this->post_type->labels->search_items);
 
+$page_group_id = null;
+if ( array_key_exists( 'np_page_group', $_REQUEST ) ) {
+		if ( is_numeric( $_REQUEST['np_page_group'] ) )
+				$page_group_id = $_REQUEST['np_page_group'];
+}
+
 // WPML
 $wpml = $this->integrations->plugins->wpml->installed;
 if ( $wpml ) $current_lang = $this->integrations->plugins->wpml->getCurrentLanguage('name');
 if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugins->wpml->getCurrentLanguage('name') . ')';
+$current_language_short = $this->integrations->plugins->wpml->installed ? $this->integrations->plugins->wpml->getCurrentLanguage() : '';
 ?>
 <div class="nestedpages-tools">
 
@@ -142,7 +149,47 @@ if ( $wpml && $current_lang ) $searchLabel .= ' (' . $this->integrations->plugin
 						echo $out;
 					endif;
 				endforeach;
+			// Page groups
 			?>
+			<div class="select" id="wp-nested-pages-tools-pagegroup">
+				<input type="hidden" name="lang" value="<?= $current_language_short ?>">
+				<select id="wp-nested-pages-select-pagegroup" name="np_page_group">
+					<option value="na">[ <?= esc_attr__('Select an item', 'wp-nested-pages') ?> ]</option>
+<?php
+				$options = [];
+				foreach ( $this->page_groups as $post ) {
+					$options[$post->ID] = $post->post_title;
+				}
+				if ( class_exists('Collator') ) {
+					$lang = $this->integrations->plugins->wpml->installed ? $this->integrations->plugins->wpml->getCurrentLanguage('code') : get_locale();
+					echo '<!-- ' . $lang . ' -->';
+					$coll = new \Collator($lang);
+					$coll->asort($options);
+				} else {
+					echo '<!-- uasort -->';
+					uasort($options, 'strnatcasecmp');
+				}
+				$all_languages = $current_language_short == 'all';
+				foreach ( $options as $post_id => $post_title ):
+?>
+					<option value="<?= $post_id ?>" <?php
+					if ( $page_group_id !== null ):
+						if ( $post_id == $page_group_id ) echo ' selected';
+					endif;
+?>><?php
+					echo esc_html($post_title);
+					if ( $this->integrations->plugins->wpml->installed && $all_languages ) {
+						$post_language = $this->integrations->plugins->wpml->getPostLanguage($post_id);
+						if ( $post_language !== null ) echo ' [' . $post_language . ']';
+					}
+?>
+					</option>
+<?php
+				endforeach;
+?>
+				</select>
+			</div>
+
 			<div class="select">
 				<input type="hidden" name="action" value="npListingSort">
 				<input type="hidden" name="page" value="<?php echo $this->pageURL(); ?>">

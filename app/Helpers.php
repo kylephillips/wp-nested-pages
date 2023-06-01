@@ -41,4 +41,22 @@ class Helpers
 		$link = esc_url( admin_url('edit.php?post_type=' . $type ) );
 		return $link;
 	}
+
+	/**
+	 * Return a part of an SQL where clause.
+	 * Since this function is used internally and possibly by theme and plugin developers only,
+	 * it is expected that the field name is not vulnerable to SQL injection.
+	 */
+	public static function getSQLWhere(bool $include, string $field, array $values) {
+		$sqlWhere = ' and ' . $field;
+		if ( !$include ) $sqlWhere .= ' not';
+		$sqlWhere .= ' in (';
+		$sep = '';
+		foreach ($values as $value) {
+			$sqlWhere .= $sep . "'" . esc_sql($value) . "'";
+			$sep = ', ';
+		}
+		$sqlWhere .= ')';
+	}
+
 }
