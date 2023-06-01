@@ -3,6 +3,7 @@ $allowsorting = get_option('nestedpages_allowsorting', []);
 $allowsortview = $this->settings->sortViewEnabled();
 if ( $allowsorting == "" ) $allowsorting = [];
 $sync_status = ( $this->settings->menuSyncEnabled() ) ? __('Currently Enabled', 'wp-nested-pages') : __('Currently Disabled', 'wp-nested-pages');
+$bulkActionsEnabled = $this->settings->bulkActionsEnabled();
 ?>
 <div class="nestedpages-settings-general-wrapper">
 	<div class="nestedpages-settings-table">
@@ -118,6 +119,24 @@ $sync_status = ( $this->settings->menuSyncEnabled() ) ? __('Currently Enabled', 
 					<br />
 					<?php endforeach; ?>
 					<p><em><?php _e('Admins may always view the sort view.', 'wp-nested-pages'); ?></em></p>
+				</div>
+			</div><!-- .row -->
+
+			<div class="row">
+				<div class="description">
+					<p><strong><?php _e('Allow Bulk Actions', 'wp-nested-pages'); ?></strong></p>
+				</div>
+				<div class="field">
+					<?php foreach ( $this->user_repo->allRoles([]) as $role ) : ?>
+					<label>
+						<?php
+						$checked = in_array($role['name'], $bulkActionsEnabled);
+						?>
+						<input type="checkbox" name="nestedpages_allowbulkactions[]" value="<?= $role['name'] ?>" <?php if ( $checked ) echo 'checked'; ?>>
+						<?= esc_html($role['label']); ?>
+					</label>
+					<br>
+					<?php endforeach; ?>
 				</div>
 			</div><!-- .row -->
 

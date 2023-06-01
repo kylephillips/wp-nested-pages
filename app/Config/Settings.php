@@ -99,6 +99,7 @@ class Settings
 		register_setting( 'nestedpages-general', 'nestedpages_ui' );
 		register_setting( 'nestedpages-general', 'nestedpages_allowsorting' );
 		register_setting( 'nestedpages-general', 'nestedpages_allowsortview' );
+		register_setting( 'nestedpages-general', 'nestedpages_allowbulkactions' );
 		register_setting( 'nestedpages-posttypes', 'nestedpages_posttypes' );
 		register_setting( 'nestedpages-admincustomization', 'nestedpages_admin' );
 	}

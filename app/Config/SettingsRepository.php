@@ -211,7 +211,8 @@ class SettingsRepository
 			'nestedpages_posttypes',
 			'nestedpages_ui',
 			'nestedpages_version',
-			'nestedpages_admin'
+			'nestedpages_admin',
+			'nestedpages_allowbulkactions',
 		];
 		foreach($options as $option){
 			delete_option($option);
@@ -262,4 +263,17 @@ class SettingsRepository
 		endif;
 		return $roles;
 	}
+
+	/**
+	 * Bulk Actions enabled
+	 * @return array of role names
+	 */
+	public function bulkActionsEnabled() {
+		$roles = get_option('nestedpages_allowbulkactions', false);
+
+		// If the option hasn't been saved yet, fall back to all
+		if ( !is_array($roles) ) $roles = array_keys(wp_roles()->roles);
+		return $roles;
+	}
+
 }

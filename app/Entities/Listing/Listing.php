@@ -128,6 +128,11 @@ class Listing
 	private $status_preference;
 
 	/**
+	 * User can perform bulk actions
+	 */
+	private $can_user_perform_bulk_actions;
+
+	/**
 	* Enabled Custom Fields
 	*/
 	private $enabled_custom_fields;
@@ -150,6 +155,7 @@ class Listing
 		$this->setPostTypeSettings();
 		$this->setStandardFields();
 		$this->setStatusPreference();
+		$this->setCanUserPerformBulkActions();
 	}
 
 	/**
@@ -290,6 +296,13 @@ class Listing
 	}
 
 	/**
+	 * Set if the user can perform bulk actions
+	 */
+	private function setCanUserPerformBulkActions() {
+		$this->can_user_perform_bulk_actions = $this->user->canPerformBulkActions();
+	}
+
+	/**
 	* Set the user status preference
 	*/
 	private function setStatusPreference()
@@ -326,8 +339,10 @@ class Listing
 
 		// Primary List
 		if ( $count == 0 ) {
-			include( Helpers::view('partials/list-header') ); // List Header
-			include( Helpers::view('partials/bulk-edit') ); // Bulk Edit
+			if ( $this->can_user_perform_bulk_actions ) {
+				include( Helpers::view('partials/list-header') ); // List Header
+				include( Helpers::view('partials/bulk-edit') ); // Bulk Edit
+			}
 			echo '<ol class="' . $list_classes . '" id="np-' . $this->post_type->name . '">';
 			return;
 		}
