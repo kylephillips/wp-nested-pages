@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.2.5 =
+* Added ability to hide bulk edit functionality on a user-role basis. Thanks to Robert Ehrenleitner from PLUS.
+
 = 3.2.4 =
 * Security update
 
