@@ -163,14 +163,13 @@ class UserRepository
 	/**
 	 * Can the user perform bulk actions?
 	 */
-	public function canPerformBulkActions() {
-		$allowed_roles = $this->settings->bulkActionsEnabled();
+	public function canPerformBulkActions($post_type_settings)
+	{
+		if ( !isset($post_type_settings->bulk_edit_roles) || !is_array($post_type_settings->bulk_edit_roles) ) return true;
 		$allowed = false;
-		foreach ( $allowed_roles as $allowed_role ) {
-			if ( current_user_can($allowed_role) ) {
-				$allowed = true;
-				break;  // optimization
-			}
+		foreach ( $post_type_settings->bulk_edit_roles as $role ){
+			if ( current_user_can($role) ) $allowed = true;
+			break;
 		}
 		return $allowed;
 	}

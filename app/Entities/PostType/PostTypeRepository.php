@@ -83,6 +83,7 @@ class PostTypeRepository
 			$post_types[$type->name]->page_assignment_title = $this->configuredFields($type->name, 'post_type_page_assignment_page_title');
 			$post_types[$type->name]->sort_options = $this->configuredFields($type->name, 'sort_options');
 			$post_types[$type->name]->custom_statuses = $this->configuredFields($type->name, 'custom_statuses');
+			$post_types[$type->name]->bulk_edit_roles = $this->configuredFields($type->name, 'bulk_edit_roles');
 		}
 		return $post_types;
 	}
@@ -233,6 +234,18 @@ class PostTypeRepository
 			if ( isset($option['enabled']) ) $enabled = true;
 		}
 		return $enabled;
+	}
+
+	/**
+	* Does the user role have access to bulk edit
+	* @return boolean
+	*/
+	public function roleCanBulkEdit($post_type, $role)
+	{
+		$option = $this->configuredFields($post_type, 'bulk_edit_roles');
+		if ( !$option ) return true;
+		if ( is_array($option) && empty($option) ) return true;
+		return ( in_array($role, $option) ) ? true : false;
 	}
 
 	/**

@@ -298,8 +298,9 @@ class Listing
 	/**
 	 * Set if the user can perform bulk actions
 	 */
-	private function setCanUserPerformBulkActions() {
-		$this->can_user_perform_bulk_actions = $this->user->canPerformBulkActions();
+	private function setCanUserPerformBulkActions()
+	{
+		$this->can_user_perform_bulk_actions = $this->user->canPerformBulkActions($this->post_type_settings);
 	}
 
 	/**

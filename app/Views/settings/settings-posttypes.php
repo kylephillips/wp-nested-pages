@@ -359,6 +359,24 @@ settings_fields( 'nestedpages-posttypes' );
 					</div><!-- .field -->
 				</div><!-- .row -->
 			</li>
+			<li>
+				<div class="row">
+					<div class="description">
+						<p><strong><?php _e('Bulk Edit Roles', 'wp-nested-pages'); ?></strong><br />
+						<?php _e('Limit bulk edit capabilities to specific roles. Note: Features within bulk edit will respect role-specific rules. This will remove bulk edit completely from deselected roles.', 'wp-nested-pages'); ?></p>
+					</div>
+					<div class="field">
+						<div class="nestedpages-sort-options-selection">
+							<?php foreach ( $this->user_repo->allRoles([]) as $role ) : ?>
+							<label>
+								<input type="checkbox" name="nestedpages_posttypes[<?php echo esc_attr($type->name); ?>][bulk_edit_roles][]" value="<?php echo $role['name']; ?>" <?php if ( $this->post_type_repo->roleCanBulkEdit($type->name, $role['name']) ) echo 'checked'; ?> />
+								<?php echo esc_html($role['label']); ?>
+							</label>
+							<?php endforeach; ?>
+						</div><!-- .nestedpages-sort-options-selection -->
+					</div><!-- .field -->
+				</div><!-- .row -->
+			</li>
 			</ul>
 		</div><!-- .body -->
 	</div><!-- .post-type -->
