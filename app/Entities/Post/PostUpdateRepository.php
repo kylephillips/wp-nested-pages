@@ -314,11 +314,16 @@ class PostUpdateRepository
 		foreach ( $data as $key => $value ){
 			if ( strpos($key, 'np_custom_') !== false) {
 				$field_key = str_replace('np_custom_', '', $key);
+				$matches = preg_match('/nptype_(.*)_nptype/', $field_key, $output_array);
+				$field_type = ( $output_array && isset($output_array[1]) ) ? $output_array[1] : null;
+				$value = sanitize_text_field($data[$key]);
+				$field_key = preg_replace('/nptype_(.*)_nptype_/', '', $field_key);
+				if ( $field_type == 'url' ) $value = esc_url($value);
 				if ( !current_user_can('edit_post', $data['post_id']) ) continue;
 				update_post_meta( 
 					$data['post_id'], 
 					$field_key, 
-					sanitize_text_field($data[$key])
+					$value
 				);
 			}
 		}

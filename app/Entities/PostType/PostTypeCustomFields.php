@@ -38,7 +38,7 @@ class PostTypeCustomFields
 	{
 		$out = '<div class="form-control np-datepicker-container">';
 		$out .= '<label>' . $field['label'] . '</label>';
-		$out .= '<div class="datetime"><input type="text" data-datepicker-format="' . $field['format_datepicker'] . '" name="np_custom_' . $field['key'] . '" class="np_datepicker full" value="" data-np-custom-field="' . $field['key'] . '" /></div>';
+		$out .= '<div class="datetime"><input type="text" data-datepicker-format="' . $field['format_datepicker'] . '" name="np_custom_nptype_date_nptype_' . $field['key'] . '" class="np_datepicker full" value="" data-np-custom-field="' . $field['key'] . '" /></div>';
 		$out .= '</div>';
 		return $out;
 	}
@@ -47,7 +47,16 @@ class PostTypeCustomFields
 	{
 		$out = '<div class="form-control">';
 		$out .= '<label>' . $field['label'] . '</label>';
-		$out .= '<input type="text" name="np_custom_' . $field['key'] . '" value="" data-np-custom-field="' . $field['key'] . '" />';
+		$out .= '<input type="text" name="np_custom_nptype_text_nptype_' . $field['key'] . '" value="" data-np-custom-field="' . $field['key'] . '" />';
+		$out .= '</div>';
+		return $out;
+	}
+
+	public function urlField($field)
+	{
+		$out = '<div class="form-control">';
+		$out .= '<label>' . $field['label'] . '</label>';
+		$out .= '<input type="text" name="np_custom_nptype_url_nptype_' . $field['key'] . '" value="" data-np-custom-field="' . $field['key'] . '" />';
 		$out .= '</div>';
 		return $out;
 	}
@@ -56,7 +65,7 @@ class PostTypeCustomFields
 	{
 		$out = '<div class="form-control">';
 		$out .= '<label>' . $field['label'] . '</label>';
-		$out .= '<select name="np_custom_' . $field['key'] . '" value="" data-np-custom-field="' . $field['key'] . '">';
+		$out .= '<select name="np_custom_nptype_select_nptype_' . $field['key'] . '" value="" data-np-custom-field="' . $field['key'] . '">';
 		foreach ( $field['choices'] as $key => $label ){
 			$out .= '<option value="' . $key . '">' . $label . '</option>';
 		}
@@ -79,6 +88,7 @@ class PostTypeCustomFields
 			$custom_value = ( isset($post->meta[$field['key']]) ) ? $post->meta[$field['key']] : null;
 			if ( $custom_value ) :
 				$value = $custom_value[0];
+				if ( $field['type'] == 'url' && $value !== '' ) $value = esc_url($value);
 				if ( $field['type'] == 'date' && $field['format_save'] && $value !== '' ) $value = date($field['format_save'], strtotime($value));
 				$out .= ' data-npcustom-' . $field['key'] . '="' . $value . '"';
 			endif;
