@@ -22,7 +22,7 @@ namespace NestedPages\Entities\PostType;
 */
 class PostTypeCustomFields 
 {
-	public function outputFields($post_type, $column = 'left')
+	public function outputQuickEditFields($post_type, $column = 'left')
 	{
 		$fields = apply_filters('nestedpages_quickedit_custom_fields', [], $post_type, $column);
 		if ( empty($fields) ) return;
