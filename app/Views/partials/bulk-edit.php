@@ -83,6 +83,11 @@ $has_menu_options = ( $this->user->canSortPosts($this->post_type->name) && $this
 				</div>
 				<?php endif; ?>
 
+				<?php
+				$custom_fields_left = $this->custom_fields_repo->outputBulkEditFields($this->post_type, 'left');
+				if ( $custom_fields_left ) echo $custom_fields_left;
+				?>
+
 			</div><!-- .left -->
 
 			<div class="right">
@@ -116,6 +121,11 @@ $has_menu_options = ( $this->user->canSortPosts($this->post_type->name) && $this
 					</select>
 				</div>
 				<?php endif; endif; // Edit theme options ?>
+
+				<?php
+				$custom_fields_right = $this->custom_fields_repo->outputBulkEditFields($this->post_type, 'right');
+				if ( $custom_fields_right ) echo $custom_fields_right;
+				?>
 
 			</div><!-- .right -->
 		</div><!-- .fields -->

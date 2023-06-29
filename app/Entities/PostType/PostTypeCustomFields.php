@@ -2,8 +2,8 @@
 namespace NestedPages\Entities\PostType;
 
 /**
-* Enables the filtering of custom fields in the quick edit interface 
-* Basic field types currently supported : text|date|select
+* Enables the filtering of custom fields in the quick edit and bulk edit interfaces 
+* Basic field types currently supported : text|date|select|url
 * 
 * Filter should return an array of fields
 * 
@@ -22,6 +22,18 @@ namespace NestedPages\Entities\PostType;
 */
 class PostTypeCustomFields 
 {
+	public function outputBulkEditFields($post_type, $column = 'left')
+	{
+		$fields = apply_filters('nestedpages_bulkedit_custom_fields', [], $post_type, $column);
+		if ( empty($fields) ) return;
+		$out = '';
+		foreach ( $fields as $field ){
+			$method = $field['type'] . 'Field';
+			if ( method_exists($this, $method) ) $out .= $this->$method($field);
+		}
+		return $out;
+	}
+
 	public function outputQuickEditFields($post_type, $column = 'left')
 	{
 		$fields = apply_filters('nestedpages_quickedit_custom_fields', [], $post_type, $column);
@@ -38,7 +50,7 @@ class PostTypeCustomFields
 	{
 		$out = '<div class="form-control np-datepicker-container">';
 		$out .= '<label>' . $field['label'] . '</label>';
-		$out .= '<div class="datetime"><input type="text" data-datepicker-format="' . $field['format_datepicker'] . '" name="np_custom_nptype_date_nptype_' . $field['key'] . '" class="np_datepicker full" value="" data-np-custom-field="' . $field['key'] . '" /></div>';
+		$out .= '<div class="datetime"><input type="text" data-datepicker-format="' . $field['format_datepicker'] . '" name="np_custom_' . $field['key'] . '" class="np_datepicker full" value="" data-np-custom-field="' . $field['key'] . '" /></div>';
 		$out .= '</div>';
 		return $out;
 	}
@@ -47,7 +59,7 @@ class PostTypeCustomFields
 	{
 		$out = '<div class="form-control">';
 		$out .= '<label>' . $field['label'] . '</label>';
-		$out .= '<input type="text" name="np_custom_nptype_text_nptype_' . $field['key'] . '" value="" data-np-custom-field="' . $field['key'] . '" />';
+		$out .= '<input type="text" name="np_custom_' . $field['key'] . '" value="" data-np-custom-field="' . $field['key'] . '" />';
 		$out .= '</div>';
 		return $out;
 	}
