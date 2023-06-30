@@ -41,6 +41,11 @@ abstract class AdminCustomizationBase
 	* The Current User
 	*/
 	protected $current_user_role;
+
+	/**
+	* The plugin directory
+	*/
+	protected $plugin_dir;
 	
 	public function __construct()
 	{
