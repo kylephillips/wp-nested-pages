@@ -109,6 +109,8 @@ No. The menu synchronization currently only works within the pages post type.
 * Adds ability to hide bulk edit functionality on a user-role basis. Thanks to Robert Ehrenleitner from PLUS.
 * Adds ability to include basic custom fields in bulk edit through the use of a new filter: nestedpages_bulkedit_custom_fields
 * Various bugs fixed
+* PHP 8.2 compatibility
+* WordPress 6.4 compatibility
 
 = 3.2.4 =
 * Security update
