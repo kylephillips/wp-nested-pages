@@ -3,7 +3,7 @@ Contributors: kylephillips
 Donate link: https://github.com/sponsors/kylephillips/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
-Tested up to: 6.1
+Tested up to: 6.4
 Requires PHP: 5.4
 Stable tag: 3.2.4
 License: GPLv2 or later
@@ -108,6 +108,7 @@ No. The menu synchronization currently only works within the pages post type.
 = 3.2.5 =
 * Adds ability to hide bulk edit functionality on a user-role basis. Thanks to Robert Ehrenleitner from PLUS.
 * Adds ability to include basic custom fields in bulk edit through the use of a new filter: nestedpages_bulkedit_custom_fields
+* Various bugs fixed
 
 = 3.2.4 =
 * Security update
