@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.2.7 =
+* Fixes issue with cache and page ordering (Thanks to Felipe Lavín Z.)
+
 = 3.2.6 =
 * Fixes issue where bulk edit disappears when no user roles have been selected
 
