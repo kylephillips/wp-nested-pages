@@ -25,6 +25,8 @@ Nested Pages provides a drag and drop interface for managing pages & posts in th
 
 For more information visit [nestedpages.com](http://nestedpages.com).
 
+For development inquiries or to submit security notices, please visit the [Github repository](https://github.com/kylephillips/wp-nested-pages).
+
 **Important: Nested Pages requires WordPress version 3.8 or higher, and PHP version 5.4 or higher.**
 
 **Languages:**
