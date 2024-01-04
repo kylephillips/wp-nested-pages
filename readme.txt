@@ -107,6 +107,7 @@ No. The menu synchronization currently only works within the pages post type.
 
 = 3.2.7 =
 * Fixes issue with cache and page ordering (Thanks to Felipe Lavín Z.)
+* Security fix in admin customization that allowed possible vulnerability from users with administration-level access with unfiltered_html capabilities.
 
 = 3.2.6 =
 * Fixes issue where bulk edit disappears when no user roles have been selected
