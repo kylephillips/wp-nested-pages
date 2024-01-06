@@ -48,7 +48,7 @@ NestedPages.Nesting = function()
 						plugin.formatter.setNestedMargins();
 					}, 100
 				);
-				plugin.syncNesting();
+				plugin.syncNesting(false, null, ui.item[0].id.replace("menuItem_", ""));
 			},
 		});
 	}
@@ -77,7 +77,7 @@ NestedPages.Nesting = function()
 							plugin.formatter.setNestedMargins();
 						}, 100
 					);
-					plugin.syncNesting();
+					plugin.syncNesting(false, null, ui.item[0].id.replace("menuItem_", ""));
 				},
 			});
 		});
@@ -91,7 +91,7 @@ NestedPages.Nesting = function()
 
 
 	// Sync Nesting
-	plugin.syncNesting = function(manual, callback)
+	plugin.syncNesting = function(manual, callback, changedParentID = null)
 	{
 		var list,
 		filtered;
@@ -120,7 +120,8 @@ NestedPages.Nesting = function()
 				list : list,
 				post_type : NestedPages.jsData.posttype,
 				syncmenu : syncmenu,
-				filtered : filtered
+				filtered : filtered,
+				changed_parent_id : changedParentID
 			},
 			success: function(data, callback){
 				plugin.initializeSortable();
