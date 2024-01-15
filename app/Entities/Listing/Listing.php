@@ -165,8 +165,7 @@ class Listing
 	*/
 	public static function admin_menu($post_type)
 	{
-		$class_name = get_class();
-		$classinstance = new $class_name($post_type);
+		$classinstance = new \NestedPages\Entities\Listing\Listing($post_type);
 		return [&$classinstance, "listPosts"];
 	}
 
