@@ -5,11 +5,10 @@
     "gulp-concat": "^2.6.1",
     "gulp-livereload": "4.0.2",
     "gulp-minify-css": "1.2.4",
-    "gulp-notify": "3.2.0",
-    "gulp-sass": "4.1.1",
+    "gulp-sass": "5.1.0",
     "gulp-uglify": "3.0.2",
     "gulp-watch": "5.0.1",
-    "node-sass": "^4.14.1",
-    "pump": "3.0.0"
+    "pump": "3.0.0",
+    "sass": "^1.70.0"
   }
 }
