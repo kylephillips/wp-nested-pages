@@ -129,7 +129,7 @@ class Settings
 	public function settingsPage()
 	{
 		$this->setMenu();
-		$tab = ( isset($_GET['tab']) ) ? sanitize_text_field($_GET['tab']) : 'general';
+		$tab = ( isset($_GET['tab']) ) ? sanitize_file_name($_GET['tab']) : 'general';
 		include( Helpers::view('settings/settings') );
 	}
 }

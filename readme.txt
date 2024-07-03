@@ -109,6 +109,7 @@ No. The menu synchronization currently only works within the pages post type.
 
 = 3.2.8 =
 * Fixes various PHP 8 deprecation warnings when debug is enabled
+* Security update addressing CSRF issue in plugin settings 
 
 = 3.2.7 =
 * Fixes issue with cache and page ordering (Thanks to Felipe Lavín Z.)
