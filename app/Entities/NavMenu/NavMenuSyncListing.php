@@ -114,7 +114,7 @@ class NavMenuSyncListing extends NavMenuSync
 			'menu-item-url' => $url,
 			'menu-item-attr-title' => $attr_title,
 			'menu-item-status' => 'publish',
-			'menu-item-classes' => $this->post->nav_css,
+			'menu-item-classes' => ( $this->post->nav_css ) ? $this->post->nav_css : '',
 			'menu-item-type' => $type,
 			'menu-item-object' => $object,
 			'menu-item-object-id' => $object_id,
