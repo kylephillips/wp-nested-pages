@@ -12,7 +12,7 @@ License: GPLv2 or later.
 Copyright: Kyle Phillips
 */
 
-/*  Copyright 2023 Kyle Phillips  (email : support@nestedpages.com)
+/*  Copyright 2024 Kyle Phillips  (email : support@nestedpages.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
