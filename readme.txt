@@ -108,7 +108,7 @@ No. The menu synchronization currently only works within the pages post type.
 == Changelog ==
 
 = 3.2.9 =
-* Security update addressing XSS code vulnerability (Thanks to Artyom Krugov from CleanTalk)
+* Security update addressing XSS code vulnerability (Thanks to Artyom Krugov from CleanTalk and Animesh Gaurav from Automaticc)
 
 = 3.2.8 =
 * Fixes various PHP 8 deprecation warnings when debug is enabled
