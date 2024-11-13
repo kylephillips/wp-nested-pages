@@ -3,7 +3,7 @@ Contributors: kylephillips
 Donate link: https://github.com/sponsors/kylephillips/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 5.4
 Stable tag: 3.2.9
 License: GPLv2 or later
