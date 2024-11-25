@@ -62,7 +62,13 @@ $has_menu_options = ( $this->user->canSortPosts($this->post_type->name) && $this
 					<select name="page_template">
 						<option value="">&mdash; <?php _e('No Change', 'wp-nested-pages'); ?> &mdash;</option>
 						<option value="default"><?php _e( 'Default Template', 'wp-nested-pages' ); ?></option>
-						<?php page_template_dropdown() ?>
+						<?php 
+              if( is_page() ){
+                page_template_dropdown();
+              }else{
+                page_template_dropdown('', $this->post_type->name);
+              }
+            ?>
 					</select>
 				</div>
 				<?php endif; ?>
