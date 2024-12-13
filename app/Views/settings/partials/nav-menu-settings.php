@@ -43,7 +43,7 @@ foreach ( $this->admin_menu_settings->roles as $role ) :
 					?>
 					<button class="button button-small details-button" data-np-remove-separator-button><?php _e('Remove', 'wp-nested-pages'); ?></button>
 					<?php else : ?>
-					<input type="text" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][label]" value="<?php if ( $item_data['custom_label'] ) echo $item_data['custom_label']; ?>" placeholder="<?php esc_html_e($item_data['original_text']); ?>" class="menu-title-field" />
+					<input type="text" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][label]" value="<?php if ( $item_data['custom_label'] ) echo esc_attr($item_data['custom_label']); ?>" placeholder="<?php esc_html_e($item_data['original_text']); ?>" class="menu-title-field" />
 					<button class="button button-small details-button" data-np-extra-options-button><?php _e('Details', 'wp-nested-pages');?></button>
 					<?php endif; ?>
 				</p>
@@ -63,11 +63,11 @@ foreach ( $this->admin_menu_settings->roles as $role ) :
 			<div class="np-extra-options" data-np-extra-options>
 				<div class="half">
 					<label><?php _e('Icon CSS Class', 'wp-nested-pages'); ?> <em>(<a href="https://developer.wordpress.org/resource/dashicons/#admin-site" target="_blank"><?php _e('Reference', 'wp-nested-pages'); ?></a>)</em></label>
-					<input type="text" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][icon]" value="<?php if ( $item_data['custom_icon'] ) echo sanitize_text_field($item_data['custom_icon']); ?>" placeholder="<?php echo sanitize_text_field($item_data['original_icon']); ?>" />
+					<input type="text" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][icon]" value="<?php if ( $item_data['custom_icon'] ) echo esc_attr(sanitize_text_field($item_data['custom_icon'])); ?>" placeholder="<?php echo sanitize_text_field($item_data['original_icon']); ?>" />
 				</div><!-- .half -->
 				<div class="half right" style="display:none;">
-					<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][link]" value="<?php echo $item_data['original_link']; ?>">
-					<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][original_link]" value="<?php echo $item_data['original_link']; ?>">
+					<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][link]" value="<?php echo esc_attr($item_data['original_link']); ?>">
+					<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][original_link]" value="<?php echo esc_attr($item_data['original_link']); ?>">
 				</div>
 			</div><!-- .np-extra-options -->
 			<?php endif; ?>
@@ -90,9 +90,9 @@ foreach ( $this->admin_menu_settings->roles as $role ) :
 						</div>
 						<div class="title"><p><?php echo $label; ?></p></div>
 						<div class="hide-checkbox">
-							<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][submenu][<?php echo $si; ?>][label]" value="<?php echo $label; ?>" />
-							<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][submenu][<?php echo $si; ?>][role]" value="<?php echo $role_name; ?>" />
-							<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][submenu][<?php echo $si; ?>][link]" value="<?php echo $link; ?>" />
+							<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][submenu][<?php echo $si; ?>][label]" value="<?php echo esc_attr($label); ?>" />
+							<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][submenu][<?php echo $si; ?>][role]" value="<?php echo esc_attr($role_name); ?>" />
+							<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][submenu][<?php echo $si; ?>][link]" value="<?php echo esc_attr($link); ?>" />
 							<input type="hidden" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][submenu][<?php echo $si; ?>][order]" value="<?php echo $si; ?>" data-np-submenu-order>
 							<?php if ( $link !== 'nested-pages-settings' ) : ?>
 							<input type="checkbox" name="nestedpages_admin[nav_menu_options][<?php echo $role['name']; ?>][<?php echo $item_data['id']; ?>][submenu][<?php echo $si; ?>][hidden]" value="true" data-nestedpages-admin-nav-item-checkbox <?php if ( $hidden_sub )  echo 'checked'; ?>/>
