@@ -72,13 +72,13 @@
 			<label><?php _e( 'Template' ); ?></label>
 			<select name="page_template" class="np_template">
 				<option value="default"><?php _e( 'Default Template' ); ?></option>
-				<?php 
-          if( is_page() ){
-            page_template_dropdown();
-          }else{
-            page_template_dropdown('', $this->post_type->name);
-          }
-          ?>
+				<?php
+				if ( is_page() ){
+					page_template_dropdown();
+				} else {
+					page_template_dropdown('', $this->post_type->name);
+				}
+				?>
 			</select>
 		</div>
 		<?php endif; ?>
