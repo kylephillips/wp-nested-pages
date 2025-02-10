@@ -109,6 +109,8 @@ No. The menu synchronization currently only works within the pages post type.
 
 = 3.2.11 =
 * Security update addressing XSS code vulnerability
+* Addresses deprecation warnings in PHP 8.1 and later (Thanks to Misaki)
+* Adds support for custom post type template selects (Thanks to anthonyivol)
 
 = 3.2.10 =
 * Security update addressing XSS code vulnerability
