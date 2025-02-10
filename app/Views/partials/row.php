@@ -322,7 +322,7 @@ if ( !$wpml ) $wpml_pages = true;
 
 	if ( $this->can_user_perform_bulk_actions ) : ?>
 	<div class="np-bulk-checkbox">
-		<input type="checkbox" name="nestedpages_bulk[]" value="<?php echo esc_attr($this->post->id); ?>" data-np-bulk-checkbox="<?php echo sanitize_text_field(wp_kses_post($this->post->title)); ?>" data-np-post-type="<?php echo esc_attr($this->post->post_type); ?>" />
+		<input type="checkbox" name="nestedpages_bulk[]" value="<?php echo esc_attr($this->post->id); ?>" data-np-bulk-checkbox="<?php echo sanitize_text_field(html_entity_decode($this->post->title)); ?>" data-np-post-type="<?php echo esc_attr($this->post->post_type); ?>" />
 	</div>
 	<?php endif ?>
 </div><!-- .row -->

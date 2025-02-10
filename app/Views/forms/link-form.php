@@ -39,7 +39,7 @@ $can_publish = current_user_can( $post_type_object->cap->publish_posts );
 								endif;
 
 								foreach ( $recent_posts as $post ){
-									$out .= '<li data-default-result><a href="#" data-np-menu-object="' . esc_attr($name) . '" data-np-menu-type="post_type" data-np-menu-objectid="' . esc_attr($post->ID) . '" data-np-permalink="' . get_the_permalink($post->ID) . '" data-np-object-name="' . esc_attr($type->labels->singular_name) . '" data-np-menu-selection>' . esc_html($post->post_title) . '</a></li>';
+									$out .= '<li data-default-result><a href="#" data-np-menu-object="' . esc_attr($name) . '" data-np-menu-type="post_type" data-np-menu-objectid="' . esc_attr($post->ID) . '" data-np-permalink="' . get_the_permalink($post->ID) . '" data-np-object-name="' . esc_attr($type->labels->singular_name) . '" data-np-menu-selection>' . esc_attr(strip_tags(html_entity_decode(get_the_title($post->ID)))) . '</a></li>';
 								}
 								$out .= '</ul>';
 								$out .= '</li>';
