@@ -136,7 +136,13 @@ $has_menu_options = ( $this->user->canSortPosts($this->post_type->name) && $this
 				<label><?php _e( 'Template' ); ?></label>
 				<select name="page_template" class="np_template">
 					<option value="default"><?php _e( 'Default Template' ); ?></option>
-					<?php page_template_dropdown() ?>
+					<?php 
+          if( is_page() ){
+            page_template_dropdown();
+          }else{
+            page_template_dropdown('', $this->post_type->name);
+          }
+          ?>
 				</select>
 			</div>
 			<?php endif; ?>
