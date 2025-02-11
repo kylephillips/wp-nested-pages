@@ -122,7 +122,7 @@ class PostUpdateRepository
 		if ( isset($data['post_title']) && $data['post_title'] == "" ){ 
 			$this->validation->checkEmpty($data['post_title'], __('Title', 'wp-nested-pages'));
 		} elseif ( isset($data['post_title']) ){
-			$updated_post['post_title'] = sanitize_text_field($data['post_title']);
+			$updated_post['post_title'] = esc_attr($data['post_title']);
 		}
 
 		if ( isset($data['post_name']) ) 
