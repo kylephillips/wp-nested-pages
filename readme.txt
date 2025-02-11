@@ -107,6 +107,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.2.13 =
+* Security update addressing XSS code vulnerability
+
 = 3.2.12 =
 * Security update addressing XSS code vulnerability
 
