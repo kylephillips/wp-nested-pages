@@ -5,7 +5,7 @@ Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
 Tested up to: 6.7
 Requires PHP: 5.4
-Stable tag: 3.2.12
+Stable tag: 3.2.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
