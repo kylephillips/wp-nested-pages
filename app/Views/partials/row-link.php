@@ -74,7 +74,7 @@ endif;
 				data-nav-object="<?php echo esc_attr($this->post->nav_object); ?>"
 				data-nav-object-id="<?php echo esc_attr($this->post->nav_object_id); ?>"
 				data-nav-original-link="<?php echo esc_attr($this->post->nav_original_link); ?>"
-				data-nav-original-title="<?php echo esc_attr($this->post->nav_original_title); ?>"
+				data-nav-original-title="<?php echo esc_attr(strip_tags(html_entity_decode($this->post->nav_original_title))); ?>"
 				data-linktarget="<?php echo esc_attr($this->post->link_target); ?>">
 				<?php _e('Quick Edit', 'wp-nested-pages'); ?>
 			</a>

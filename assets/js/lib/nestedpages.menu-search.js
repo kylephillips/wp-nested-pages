@@ -26,10 +26,7 @@ NestedPages.MenuSearch = function()
 	plugin.searchType = ''; // The type of search (post_type, taxonomy)
 	plugin.searchObject = ''; // The object being searched (post, category, post_tag, etc…)
 
-	plugin.init = function()
-	{
-		plugin.bindEvents();
-	}
+	plugin.formatter = new NestedPages.Formatter;
 
 	plugin.bindEvents = function()
 	{
@@ -73,7 +70,6 @@ NestedPages.MenuSearch = function()
 				searchObject : plugin.searchObject,
 			},
 			success: function(data){
-				console.log(data);
 				if ( data.results ){
 					plugin.results = data.results;
 					plugin.toggleLoading(false);
@@ -94,11 +90,13 @@ NestedPages.MenuSearch = function()
 	// Append post type results
 	plugin.appendPosts = function()
 	{
+		$('[data-np-search-result]').remove();
 		var html = "";
 		$.each(plugin.results, function(i, v){
-			html += '<li data-np-search-result><a href="#" data-np-menu-object="' + plugin.searchObject + '" data-np-menu-type="post_type" data-np-menu-objectid="' + v.ID + '" data-np-permalink="' + v.permalink + '" data-np-object-name="' + v.singular_name + '" data-np-menu-selection>' + v.post_title + '</a></li>';
+			html = '<li data-np-search-result><a href="#" data-np-menu-object="' + plugin.searchObject + '" data-np-menu-type="post_type" data-np-menu-objectid="' + v.ID + '" data-np-permalink="' + v.permalink + '" data-np-object-name="' + v.singular_name + '" data-np-menu-selection></a></li>';
+			$(html).insertAfter($(plugin.activeForm).parent('li'));
+			$('[data-np-menu-objectid="' + v.ID + '"').text(v.post_title);
 		});
-		$(html).insertAfter($(plugin.activeForm).parent('li'));
 		plugin.toggleLoading(false);
 	}
 
@@ -127,5 +125,5 @@ NestedPages.MenuSearch = function()
 		$(loadingIndicator).hide();
 	}
 
-	return plugin.init();
+	return plugin.bindEvents();
 }
