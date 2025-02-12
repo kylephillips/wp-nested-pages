@@ -40,9 +40,9 @@ class UserCapabilities
 				 *
 				 * @since 3.1.9
 				 *
-				 * @param bool  $grant_role     Whether role may sort post type.
-				 * @param string $type 			The post type name.
-				 * @param string  $role_name	The Role Name.
+				 * @param bool $grant_role Whether role may sort post type.
+				 * @param string $type     The post type name.
+				 * @param \WP_Role $role   The role object.
 				 */
 				$grant_capability = apply_filters("nestedpages_sorting_capability", $grant_capability, $type, $role);
 				if ( $grant_capability ) $role->add_cap("nestedpages_sorting_$type", true);
