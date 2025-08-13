@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace NestedPages\Form\Listeners;
 
 use NestedPages\Entities\PluginIntegration\IntegrationFactory;
@@ -8,7 +8,7 @@ use NestedPages\Entities\PluginIntegration\IntegrationFactory;
 * updates menu order & page parents
 * @return json response
 */
-class Sort extends BaseHandler 
+class Sort extends BaseHandler
 {
 	public function __construct()
 	{
@@ -25,7 +25,7 @@ class Sort extends BaseHandler
 	{
 		$posts = $this->data['list'];
 		$filtered = ( isset($this->data['filtered']) && $this->data['filtered'] == 'true' ) ? true : false;
-		$order = $this->post_update_repo->updateOrder($posts, 0, $filtered);
+		$order = $this->post_update_repo->updateOrder($posts, $filtered);
 		if ( $order ){
 			if ( $this->integrations->plugins->wpml->installed ) $this->integrations->plugins->wpml->syncPostOrder($posts);
 			$this->response = ['status' => 'success', 'message' => __('Page order successfully updated.','wp-nested-pages') ];

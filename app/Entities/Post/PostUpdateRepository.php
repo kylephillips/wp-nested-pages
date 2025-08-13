@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace NestedPages\Entities\Post;
 
 use NestedPages\Form\Validation\Validation;
@@ -9,7 +9,7 @@ use NestedPages\Entities\User\UserRepository;
 /**
 * Post Create/Update Methods
 */
-class PostUpdateRepository 
+class PostUpdateRepository
 {
 	/**
 	* Validation Class
@@ -52,7 +52,7 @@ class PostUpdateRepository
 	* @param int parent
 	* @since 1.0
 	*/
-	public function updateOrder($posts, $parent = 0, $filtered = false)
+	public function updateOrder($posts, $filtered)
 	{
 		$this->validation->validatePostIDs($posts);
 		$post_type = get_post_type($posts[0]['id']);
@@ -64,8 +64,12 @@ class PostUpdateRepository
 			$post_id = sanitize_text_field($post['id']);
 			$original_modifed_date = get_post_modified_time('Y-m-d H:i:s', false, $post_id);
 			$original_modifed_date_gmt = get_post_modified_time('Y-m-d H:i:s', true, $post_id);
-			
-			if ( !$filtered ) $args['post_parent'] = intval($parent);
+
+			// if ( !$filtered ) $args['post_parent'] = intval($parent); // Not used?
+
+			// Extract data
+			$parent = $post['parent_id'];
+			$order = $post['order'];
 
 			// Update post hook causes server timeout on large sites, but may be required by some users
 			if ( $update_post_hook ) wp_update_post(['ID' => $post_id]);
@@ -74,31 +78,29 @@ class PostUpdateRepository
 				$query = $wpdb->prepare(
 					"UPDATE $wpdb->posts 
 					SET menu_order = '%d', post_parent = '%d', post_modified = '%s', post_modified_gmt = '%s' 
-					WHERE ID = '%d'", 
-					intval($key), 
-					intval($parent),
-					$original_modifed_date, 
-					$original_modifed_date_gmt, 
+					WHERE ID = '%d'",
+					intval($order), // Use order from front-end
+					intval($parent), // Use parent from front-end
+					$original_modifed_date,
+					$original_modifed_date_gmt,
 					intval($post_id)
 				);
 			else : // The posts are filtered, don't update the parent
 				$query = $wpdb->prepare(
 					"UPDATE $wpdb->posts 
 					SET menu_order = '%d', post_modified = '%s', post_modified_gmt = '%s' 
-					WHERE ID = '%d'", 
-					intval($key), 
-					$original_modifed_date, 
-					$original_modifed_date_gmt, 
+					WHERE ID = '%d'",
+					intval($order), // Use order from front-end
+					$original_modifed_date,
+					$original_modifed_date_gmt,
 					intval($post_id)
-				); 
+				);
 			endif;
 
 			$wpdb->query( $query );
-			do_action('nestedpages_post_order_updated', $post_id, $parent, $key, $filtered);
+			do_action('nestedpages_post_order_updated', $post_id, $parent, $order, $filtered);
 
 			wp_cache_delete( $post_id, 'posts' );
-			
-			if ( isset($post['children']) ) $this->updateOrder($post['children'], $post_id);
 		}
 		do_action('nestedpages_posts_order_updated', $posts, $parent);
 		return true;
@@ -119,19 +121,19 @@ class PostUpdateRepository
 
 		$this->validation->validateCustomFields($data);
 
-		if ( isset($data['post_title']) && $data['post_title'] == "" ){ 
+		if ( isset($data['post_title']) && $data['post_title'] == "" ){
 			$this->validation->checkEmpty($data['post_title'], __('Title', 'wp-nested-pages'));
 		} elseif ( isset($data['post_title']) ){
 			$updated_post['post_title'] = esc_attr($data['post_title']);
 		}
 
-		if ( isset($data['post_name']) ) 
+		if ( isset($data['post_name']) )
 			$updated_post['post_name'] = sanitize_text_field($data['post_name']);
 
-		if ( isset($data['post_author']) ) 
+		if ( isset($data['post_author']) )
 			$updated_post['post_author'] = sanitize_text_field($data['post_author']);
 
-		if ( isset($data['post_password']) ) 
+		if ( isset($data['post_password']) )
 			$updated_post['post_password'] = sanitize_text_field($data['post_password']);
 
 		if ( !$this->post_type_repo->standardFieldDisabled('allow_comments', sanitize_text_field($data['post_type'])) ){
@@ -189,9 +191,9 @@ class PostUpdateRepository
 	{
 		if ( isset($data['page_template']) && current_user_can('edit_post', $data['post_id']) ){
 			$template = sanitize_text_field($data['page_template']);
-			update_post_meta( 
-				$data['post_id'], 
-				'_wp_page_template', 
+			update_post_meta(
+				$data['post_id'],
+				'_wp_page_template',
 				$template
 			);
 		}
@@ -207,9 +209,9 @@ class PostUpdateRepository
 		if ( !current_user_can('edit_post', $data['post_id']) ) return;
 		$status = ( isset($data['nav_status']) && $data['nav_status'] == 'hide' ) ? 'hide' : 'show';
 		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
-		update_post_meta( 
-			$id, 
-			'_np_nav_status', 
+		update_post_meta(
+			$id,
+			'_np_nav_status',
 			$status
 		);
 	}
@@ -223,7 +225,7 @@ class PostUpdateRepository
 	{
 		if ( !current_user_can('edit_post', $data['post_id']) ) return;
 		if ( $this->post_type_repo->standardFieldDisabled('hide_in_np', sanitize_text_field($data['post_type'])) ) return;
-		
+
 		$status = ( isset($data['nested_pages_status']) && $data['nested_pages_status'] == 'hide' ) ? 'hide' : 'show';
 		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
 		update_post_meta(
@@ -243,9 +245,9 @@ class PostUpdateRepository
 		if ( !current_user_can('edit_post', $data['post_id']) ) return;
 		if ( isset($data['np_nav_title']) ){
 			$title = sanitize_text_field($data['np_nav_title']);
-			update_post_meta( 
-				$data['post_id'], 
-				'_np_nav_title', 
+			update_post_meta(
+				$data['post_id'],
+				'_np_nav_title',
 				$title
 			);
 		}
@@ -261,9 +263,9 @@ class PostUpdateRepository
 		if ( !current_user_can('edit_post', $data['post_id']) ) return;
 		if ( isset($data['np_nav_css_classes']) ){
 			$css_classes = sanitize_text_field($data['np_nav_css_classes']);
-			update_post_meta( 
-				$data['post_id'], 
-				'_np_nav_css_classes', 
+			update_post_meta(
+				$data['post_id'],
+				'_np_nav_css_classes',
 				$css_classes
 			);
 		}
@@ -280,9 +282,9 @@ class PostUpdateRepository
 		if ( isset($data['np_nav_custom_url']) ){
 			$url_input = $data['np_nav_custom_url'];
 			$url = ( $url_input == '#' ) ? '#' : esc_url($data['np_nav_custom_url']);
-			update_post_meta( 
-				$data['post_id'], 
-				'_np_nav_custom_url', 
+			update_post_meta(
+				$data['post_id'],
+				'_np_nav_custom_url',
 				$url
 			);
 		}
@@ -298,9 +300,9 @@ class PostUpdateRepository
 		if ( !current_user_can('edit_post', $data['post_id']) ) return;
 		if ( isset($data['np_title_attribute']) ){
 			$title_attr = sanitize_text_field($data['np_title_attribute']);
-			update_post_meta( 
-				$data['post_id'], 
-				'_np_title_attribute', 
+			update_post_meta(
+				$data['post_id'],
+				'_np_title_attribute',
 				$title_attr
 			);
 		}
@@ -321,9 +323,9 @@ class PostUpdateRepository
 				$field_key = preg_replace('/nptype_(.*)_nptype_/', '', $field_key);
 				if ( $field_type == 'url' ) $value = esc_url($value);
 				if ( !current_user_can('edit_post', $data['post_id']) ) continue;
-				update_post_meta( 
-					$data['post_id'], 
-					$field_key, 
+				update_post_meta(
+					$data['post_id'],
+					$field_key,
 					$value
 				);
 			}
@@ -412,9 +414,9 @@ class PostUpdateRepository
 		if ( !current_user_can('edit_post', $data['post_id']) ) return;
 		$link_target = ( isset($data['link_target']) && $data['link_target'] == "_blank" ) ? "_blank" : "";
 		$id = ( isset($data['post_id']) ) ? $data['post_id'] : $this->new_id;
-		update_post_meta( 
-			$id, 
-			'_np_link_target', 
+		update_post_meta(
+			$id,
+			'_np_link_target',
 			$link_target
 		);
 	}
@@ -476,14 +478,17 @@ class PostUpdateRepository
 	public function updateRedirect($data)
 	{
 		if ( !current_user_can( 'edit_post', $data['post_id'] ) ) return false;
-		$menu_order = isset($data['menu_order']) ? $data['menu_order'] : 0;
 		$updated_post = [
 			'ID' => sanitize_text_field($data['post_id']),
 			'post_title' => sanitize_text_field($data['post_title']),
 			'post_status' => sanitize_text_field($data['_status']),
 			'post_parent' => sanitize_text_field($data['parent_id']),
-			'menu_order' => $menu_order
 		];
+
+		// Only set if passed from front-end, default to existing order
+		if (isset($data['menu_order'])) {
+			$updated_post['menu_order'] = $data['menu_order'];
+		}
 
 		if ( isset($data['post_content']) && $data['post_content'] !== "" ){
 			$updated_post['post_content'] = esc_url($data['post_content']);
