@@ -12,6 +12,10 @@ NestedPages.Nesting = function()
 
 	plugin.formatter = new NestedPages.Formatter;
 
+	let ajaxLimit = 200;
+	let ajaxIndex = 0;
+	let ajaxLists = [];
+
 	// Make the Menu sortable
 	plugin.initializeSortable = function()
 	{
@@ -89,7 +93,6 @@ NestedPages.Nesting = function()
 		$(NestedPages.selectors.sortable).sortable('destroy');
 	}
 
-
 	// Sync Nesting
 	plugin.syncNesting = function(manual, callback)
 	{
@@ -105,37 +108,26 @@ NestedPages.Nesting = function()
 		} else {
 			list = plugin.setNestingArray();
 		}
+
 		plugin.disableNesting();
 
 		var syncmenu = NestedPages.jsData.syncmenu;
 		if ( nestedpages.manual_menu_sync === '1' ) syncmenu = 'nosync';
 
-		$.ajax({
-			url: ajaxurl,
-			type: 'post',
-			datatype: 'json',
-			data: {
-				action : NestedPages.formActions.syncNesting,
-				nonce : NestedPages.jsData.nonce,
-				list : list,
-				post_type : NestedPages.jsData.posttype,
-				syncmenu : syncmenu,
-				filtered : filtered
-			},
-			success: function(data, callback){
-				plugin.initializeSortable();
-				if (data.status === 'error'){
-					$(NestedPages.selectors.errorDiv).text(data.message).show();
-					$(NestedPages.selectors.loadingIndicator).hide();
-				} else {
-					if ( callback && typeof callback === 'function') {
-						callback();
-						return;
-					}
-					$(NestedPages.selectors.loadingIndicator).hide();
-				}
-			}
-		});
+		// Flatten and chunk the list to avoid max input vars errors
+		
+		let listFlat = plugin.flattenList(list, 0, 0);
+
+		ajaxIndex = 0;
+		ajaxLists = [];
+
+		for (let i = 0; i < Math.ceil(listFlat.length / ajaxLimit); i++) {
+			let start = (i * ajaxLimit);
+
+			ajaxLists.push(listFlat.slice(start, start + ajaxLimit));
+		}
+
+		plugin.doAjax(syncmenu, filtered);
 	}
 
 	plugin.setNestingArray = function(list)
@@ -166,4 +158,75 @@ NestedPages.Nesting = function()
 			return currentItem;
 		}
 	}
+
+	// Flatten the list and include new order
+
+	plugin.flattenList = function(list, depth, parent) {
+		let final = [];
+
+		$.each(list, (index, item) => {
+			final.push({
+				id: item.id,
+				parent_id: parent,
+				depth: depth + 1,
+				order: index + 1,
+			});
+
+			if (item.children) {
+				let children = plugin.flattenList(item.children, depth + 1, item.id);
+
+				final = final.concat(children);
+			}
+		});
+
+		return final;
+	}
+	
+	// Sync chunks
+	plugin.doAjax = function(syncmenu, filtered) {
+		$.ajax({
+			url: ajaxurl,
+			type: 'post',
+			datatype: 'json',
+			data: {
+				action : NestedPages.formActions.syncNesting,
+				nonce : NestedPages.jsData.nonce,
+				list: ajaxLists[ajaxIndex],
+				post_type : NestedPages.jsData.posttype,
+				syncmenu : syncmenu,
+				filtered : filtered
+			},
+			success: function(data, callback){
+				if (data.status === 'error'){
+					$(NestedPages.selectors.errorDiv).text(data.message).show();
+					$(NestedPages.selectors.loadingIndicator).hide();
+				} else {
+					// Callback not used?
+					// if ( callback && typeof callback === 'function') {
+					// 	callback();
+					// 	return;
+					// }
+					// $(NestedPages.selectors.loadingIndicator).hide();
+
+					ajaxIndex++;
+
+					if (ajaxIndex >= ajaxLists.length) {
+						plugin.syncComplete();
+					} else {
+						plugin.doAjax(syncmenu, filtered);
+					}
+				}
+			}
+		});
+	}
+
+	// All done!
+	plugin.syncComplete = function() {
+		plugin.initializeSortable();
+		$(NestedPages.selectors.loadingIndicator).hide();
+
+		ajaxIndex = 0;
+		ajaxLists = [];
+	}
+
 }

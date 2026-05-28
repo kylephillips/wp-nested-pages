@@ -57,6 +57,8 @@ abstract class NavMenuSync
 	 * @param int $id - ID of nav menu item
 	 */
 	protected function removeItem($id) {
+		$id = intval($id);
+		if ( $id <= 0 ) return;
 
 		$recurse = apply_filters('nestedpages_recursive_remove_menu_item', false, $id);
 		if ( ! empty( $id ) && $recurse ) {
