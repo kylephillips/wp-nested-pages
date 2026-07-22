@@ -117,7 +117,7 @@ NestedPages.Nesting = function()
 			data: {
 				action : NestedPages.formActions.syncNesting,
 				nonce : NestedPages.jsData.nonce,
-				list : list,
+				jsondata: JSON.stringify({list : list }),
 				post_type : NestedPages.jsData.posttype,
 				syncmenu : syncmenu,
 				filtered : filtered
