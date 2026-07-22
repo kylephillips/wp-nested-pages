@@ -3,7 +3,7 @@
 Plugin Name: Nested Pages
 Plugin URI: http://nestedpages.com
 Description: Provides an intuitive drag and drop interface for managing pages in the Wordpress admin, while enhancing quick edit. Includes an auto-generated menu to match the nested interface, support for all post types and more.
-Version: 3.2.13
+Version: 3.2.14
 Tested up to: 6.8
 Author: Kyle Phillips
 Author URI: https://github.com/kylephillips
@@ -13,7 +13,7 @@ License: GPLv2 or later.
 Copyright: Kyle Phillips
 */
 
-/*  Copyright 2025 Kyle Phillips  (email : support@nestedpages.com)
+/*  Copyright 2026 Kyle Phillips  (email : support@nestedpages.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
