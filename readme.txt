@@ -3,7 +3,7 @@ Contributors: kylephillips
 Donate link: https://github.com/sponsors/kylephillips/
 Tags: pages, admin, nested, tree view, page tree, sort, quick edit, structure
 Requires at least: 3.8
-Tested up to: 6.7
+Tested up to: 7.0
 Requires PHP: 5.4
 Stable tag: 3.2.14
 License: GPLv2 or later
@@ -108,6 +108,7 @@ No. The menu synchronization currently only works within the pages post type.
 == Changelog ==
 
 = 3.2.14 =
+* Tested with WordPress 7
 * Security update - Thanks to Meher Sudhakar Abbireddi for reporting
 
 = 3.2.13 =
