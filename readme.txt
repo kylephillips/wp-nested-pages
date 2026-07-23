@@ -107,6 +107,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.2.15 =
+* Security update - Thanks to Meher Sudhakar Abbireddi for reporting
+
 = 3.2.14 =
 * Tested with WordPress 7
 * Security update - Thanks to Meher Sudhakar Abbireddi for reporting

@@ -143,7 +143,7 @@ if ( !$wpml ) $wpml_pages = true;
 			
 					<?php if ( in_array('add_child_page', $this->post_type_settings->row_actions) ) : ?>
 					<li>
-						<a href="#" class="add-new-child" data-id="<?php esc_attr_e(get_the_id()); ?>" data-parentname="<?php echo wp_kses_post($this->post->title); ?>">
+						<a href="#" class="add-new-child" data-id="<?php esc_attr_e(get_the_id()); ?>" data-parentname="<?php echo esc_attr($this->post->title); ?>">
 						<img src="<?php echo \NestedPages\Helpers::plugin_url(); ?>/assets/images/child-page.svg" alt="<?php _e('Child Page Icon', 'wp-nested-pages'); ?>">
 						<?php echo sprintf(__('Add Child %s', 'wp-nested-pages'), esc_attr($this->post_type->labels->singular_name)); ?></a>
 					</li>
@@ -155,7 +155,7 @@ if ( !$wpml ) $wpml_pages = true;
 
 					<?php if ( in_array('insert_before', $this->post_type_settings->row_actions) ) : ?>
 					<li>
-						<a href="#" data-insert-before="<?php esc_attr_e(get_the_id()); ?>" data-parentname="<?php wp_kses_post($this->post->title); ?>">
+						<a href="#" data-insert-before="<?php esc_attr_e(get_the_id()); ?>" data-parentname="<?php echo esc_attr($this->post->title); ?>">
 						<img src="<?php echo \NestedPages\Helpers::plugin_url(); ?>/assets/images/insert-before.svg" alt="<?php _e('Insert Before Icon', 'wp-nested-pages'); ?>">
 						<?php printf(esc_html__('Insert %s Before', 'wp-nested-pages'), $this->post_type->labels->singular_name); ?></a>
 					</li>
@@ -163,7 +163,7 @@ if ( !$wpml ) $wpml_pages = true;
 
 					<?php if ( in_array('insert_after', $this->post_type_settings->row_actions) ) : ?>
 					<li>
-						<a href="#" data-insert-after="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php esc_attr($this->post->title); ?>">
+						<a href="#" data-insert-after="<?php echo esc_attr(get_the_id()); ?>" data-parentname="<?php echo esc_attr($this->post->title); ?>">
 						<img src="<?php echo \NestedPages\Helpers::plugin_url(); ?>/assets/images/insert-after.svg" alt="<?php _e('Insert After Icon', 'wp-nested-pages'); ?>">
 						<?php printf(esc_html__('Insert %s After', 'wp-nested-pages'), $this->post_type->labels->singular_name); ?></a>
 					</li>
