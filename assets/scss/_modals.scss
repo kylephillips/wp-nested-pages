@@ -58,7 +58,8 @@
 	.modal-footer {
 		padding: 10px;
 		text-align: right;
-		background-color: #404040;
+		background-color: $gray-lighter;
+		border-top: 1px solid $border;
 		@include clearfix;
 		.modal-close {
 			float: left;

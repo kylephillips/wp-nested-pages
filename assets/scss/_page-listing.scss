@@ -13,7 +13,7 @@
 		min-height: 46px;
 		border: 0;
 		border: 1px dashed $blue !important;
-		background-color: lighten($blue, 65%);
+		background-color: rgba($blue, .6);
 		margin: 0;
 	}
 
@@ -596,13 +596,13 @@
 	background-color: $white;
 	border: 1px solid $border;
 	border-bottom: 0;
-	height: 46px;
+	height: 58px;
 	@include clearfix;
 	.np-check-all {
 		float: right;
 		width: 33px;
 		text-align: center;
-		line-height: 46px;
+		line-height: 58px;
 		background-color: darken($white, 6%);
 		input[type="checkbox"]{
 			margin: 0;

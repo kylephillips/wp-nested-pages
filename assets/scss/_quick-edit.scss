@@ -82,7 +82,8 @@
 	.buttons {
 		clear: both;
 		@include clearfix;
-		background-color: darken($white, 75%);
+		background-color: $gray-lighter;
+		border-top: 1px solid $border;
 		padding: 8px;
 	}
 	.form-control {

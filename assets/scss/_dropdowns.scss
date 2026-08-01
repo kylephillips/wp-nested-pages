@@ -16,8 +16,8 @@
 	background-color: $white;
 	width: 250px;
 	text-align: left;
-	border-radius: 2px;
-	box-shadow: 1px 1px 3px 0px rgba($black, .4);
+	border-radius: 4px;
+	box-shadow: 1px 1px 10px 0px rgba($black, .25);
 	&.padded {
 		padding: 1em;
 	}

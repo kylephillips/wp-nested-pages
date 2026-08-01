@@ -1,14 +1,14 @@
 {
+  "scripts": {
+    "build": "node build-scripts/build-css.js && node build-scripts/build-js.js",
+    "watch": "node build-scripts/watch.js"
+  },
   "devDependencies": {
-    "gulp": "4.0.2",
-    "gulp-autoprefixer": "7.0.1",
-    "gulp-concat": "^2.6.1",
-    "gulp-livereload": "4.0.2",
-    "gulp-minify-css": "1.2.4",
-    "gulp-sass": "5.1.0",
-    "gulp-uglify": "3.0.2",
-    "gulp-watch": "5.0.1",
-    "pump": "3.0.0",
+    "autoprefixer": "^10.4.21",
+    "chokidar": "^3.6.0",
+    "cssnano": "^7.0.6",
+    "esbuild": "^0.25.0",
+    "postcss": "^8.5.3",
     "sass": "^1.70.0"
   }
 }
