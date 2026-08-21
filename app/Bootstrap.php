@@ -20,7 +20,6 @@ class Bootstrap
 	public function wpLoaded()
 	{
 		new Activation\Activate;
-		new Activation\Dev;
 		new Redirects;
 	}
 

@@ -105,6 +105,9 @@ No. The menu synchronization currently only works within the pages post type.
 
 == Changelog ==
 
+= 3.3.1 =
+* Additional style updates
+
 = 3.3.0 =
 * Updates styles to better match WordPress 7+
 
