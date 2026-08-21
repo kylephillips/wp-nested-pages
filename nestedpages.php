@@ -3,8 +3,8 @@
 Plugin Name: Nested Pages
 Plugin URI: http://hookandfilter.com/products/nested-pages
 Description: Provides an intuitive drag and drop interface for managing pages in the Wordpress admin, while enhancing quick edit. Includes an auto-generated menu to match the nested interface, support for all post types and more.
-Version: 3.3.0
-Tested up to: 7.0
+Version: 3.3.1
+Tested up to: 7.1
 Author: Hook & Filter
 Author URI: https://hookandfilter.com
 Text Domain: wp-nested-pages
