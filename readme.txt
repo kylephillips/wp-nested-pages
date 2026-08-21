@@ -3,7 +3,7 @@ Contributors: kylephillips, hookandfilter
 Donate link: https://hookandfilter.com/
 Tags: pages, admin, nested, tree view, page tree, sort
 Requires at least: 3.8
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 5.4
 Stable tag: 3.2.15
 License: GPLv2 or later
