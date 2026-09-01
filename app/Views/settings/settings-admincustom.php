@@ -11,7 +11,9 @@ settings_fields( 'nestedpages-admincustomization' ); ?>
 				<input type="checkbox" name="nestedpages_admin[enabled_menu]" value="true" <?php if ( $this->settings->adminCustomEnabled('enabled_menu') ) echo 'checked'; ?> id="side_menu" />
 			</div>
 			<label for="side_menu"><?php _e('Admin Menu', 'wp-nested-pages'); ?></label>
-			<a href="#" class="button" data-toggle-nestedpages-pt-settings><?php _e('Settings', 'wp-nested-pages'); ?></a>
+			<div class="settings-button">
+				<a href="#" class="button" data-toggle-nestedpages-pt-settings><?php _e('Settings', 'wp-nested-pages'); ?></a>
+			</div>
 		</div><!-- .head -->
 		<div class="body">
 			<ul class="settings-details">
