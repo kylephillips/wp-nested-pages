@@ -24,7 +24,6 @@ function ts() {
 
 // Initial build
 console.log(`[${ts()}] Building...`);
-run('generate.js');
 run('build-css.js');
 run('build-js.js');
 console.log(`[${ts()}] Ready. Watching for changes.`);

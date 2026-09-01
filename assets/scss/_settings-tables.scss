@@ -10,34 +10,39 @@
 		}
 		.head {
 			@include clearfix;
-			line-height: 46px;
 			background-color: $white;
-			padding-right: 10px;
+			display: flex;
+			justify-content: space-between;
+			min-height: 50px;
 			.checkbox {
-				float: left;
 				width: 46px;
-				height: 46px;
 				background-color: rgba($black, .06);
 				text-align: center;
-				line-height: 46px;
-				margin-right: 10px;
+				input[type="checkbox"]{
+					position: relative;
+					top: 50%;
+					margin-top: -20px;;
+				}
 			}
 			label {
-				float: left;
-				line-height: 46px;
 				margin: 0;
+				align-self: center;
+				padding-left: 10px;
 				em {
 					color: darken($white, 40%);
 				}
 			}
-			.button {
-				float: right;
-				margin-top: 10px;
+			.settings-button {
+				margin-left: auto;
+				padding: .5rem;
 			}
 		} // .head
 		&.active .head {
 			background-color: $blue;
 			color: $white;
+			.button {
+				background-color: $white;
+			}
 		}
 		.row {
 			display: table;

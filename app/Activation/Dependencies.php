@@ -179,7 +179,7 @@ class Dependencies
 		if ( strpos( $screen->id, 'nested-pages-settings' ) ) :
 			wp_enqueue_script(
 				'nestedpages-settings', 
-				$this->plugin_dir . '/assets/js/nestedpages.settings.min.js', 
+				$this->plugin_dir . '/assets/js/nestedpages.settings.js', 
 				['jquery'], 
 				$this->plugin_version
 			);

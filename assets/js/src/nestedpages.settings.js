@@ -97,7 +97,7 @@ NestedPages.Settings = function()
 	*/
 	plugin.toggleRow = function(button)
 	{
-		$(button).parent('.head').siblings('.body').toggle();
+		$(button).parents('.head').siblings('.body').toggle();
 		$(button).parents('.row-container').toggleClass('active');
 	}
 
